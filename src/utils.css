@@ -1,0 +1,99 @@
+
+.noir {
+  background-color: #000;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.page-blanche {
+  background-color: #fff;
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  overflow-y: auto;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
+}
+
+.cadre {
+  text-align: center;
+}
+
+.photo {
+  width: 410px;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.marge-20px {
+  padding-top: 30px;
+  padding-bottom: 30px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.display-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-bottom: 15px;
+}
+
+.p-15px {
+  font-size: 15px;
+}
+
+.photo-70px img {
+  height: 70px;
+  width: 70px;
+  margin-left: 5px;
+  margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.pre-17px {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 17px;
+}
+
+
+/* Sur PC plus large, augmenter la taille si besoin */
+
+/* 700px */
+@media screen and (min-width: 700px) {
+  .photo {
+    width: 80%;
+	max-width: 1500px;
+  }
+}
+
+
+/* 440px */
+@media screen and (max-width: 440px) {
+	
+  .photo {
+    width: 100%;
+  }
+  
+}
+  
+  
+  

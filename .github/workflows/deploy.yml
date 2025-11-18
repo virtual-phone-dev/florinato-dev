@@ -1,0 +1,41 @@
+name: Déployer l'application React sur GitHub Pages, Flori
+
+# Permissions nécessaires pour pousser sur gh-pages
+permissions:
+  contents: write
+
+# Déclenche le workflow à chaque push sur master
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1️⃣ Récupérer le code du repo
+      - name: Récupérer le dépôt
+        uses: actions/checkout@v4
+
+      # 2️⃣ Installer Node.js
+      - name: Configurer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      # 3️⃣ Installer les dépendances
+      - name: Installer les dépendances
+        run: npm install
+
+      # 4️⃣ Construire le projet React
+      - name: Construire le projet
+        run: npm run build
+
+      # 5️⃣ Déployer le build sur gh-pages
+      - name: Déployer sur GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./build   # Assure-toi que ton build est bien ici
+          publish_branch: gh-pages

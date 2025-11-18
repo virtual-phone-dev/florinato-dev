@@ -1,0 +1,79 @@
+export default function SvgSurprised() {
+  return (
+    <>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        enableBackground="new 0 0 48 48"
+        viewBox="0 0 48 48"
+        width="30px"
+        cursor="pointer"
+      >
+        <g>
+          <circle cx="24" cy="24" r="12.244" fill="#FFD872"></circle>
+          <ellipse
+            cx="24.119"
+            cy="28.674"
+            fill="#303030"
+            rx="3.216"
+            ry="4.312"
+          ></ellipse>
+          <circle
+            cx="24"
+            cy="24"
+            r="12.244"
+            fill="none"
+            stroke="#303030"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeMiterlimit="10"
+            strokeWidth="0.7"
+          ></circle>
+          <ellipse
+            cx="24.119"
+            cy="28.674"
+            fill="none"
+            stroke="#303030"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeMiterlimit="10"
+            strokeWidth="0.7"
+            rx="3.216"
+            ry="4.312"
+          ></ellipse>
+          <ellipse
+            cx="29.408"
+            cy="21.145"
+            fill="#303030"
+            rx="1.406"
+            ry="2.216"
+          ></ellipse>
+          <path
+            fill="none"
+            stroke="#303030"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeMiterlimit="10"
+            strokeWidth="0.7"
+            d="M27.716 15.593c.07-.916 3.168-.677 3.098.238"
+          ></path>
+          <ellipse
+            cx="18.592"
+            cy="21.145"
+            fill="#303030"
+            rx="1.406"
+            ry="2.216"
+          ></ellipse>
+          <path
+            fill="none"
+            stroke="#303030"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeMiterlimit="10"
+            strokeWidth="0.7"
+            d="M20.284 15.593c-.07-.916-3.168-.677-3.098.238"
+          ></path>
+        </g>
+      </svg>
+    </>
+  );
+}
