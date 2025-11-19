@@ -44346,7 +44346,7 @@ async function SendMessagetype42() {
   // État pour gérer l’ouverture du popup
 	useEffect(() => {
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
-	  const isProfilePage = location.pathname.startsWith('/profile/'); // Vérifier si l'URL correspond à un profil
+	  const isProfilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à un profil
 	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
 	  
 	  if (isProfilePage) {
