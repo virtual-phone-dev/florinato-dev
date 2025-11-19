@@ -175,54 +175,6 @@ async function envoyerFAA({ urlApi, id, idUser, urlPhoto, urlVideo, visible, typ
 }
 
 
-export async function Envoyer3({
-  file,
-  urlApi,
-  id,
-  idUser,
-  urlVideo,
-  visible,
-  type,
-  actions = {}, // par défaut, un objet vide
-}) {
-	
-	console.log("file ici :", file);
-	
-	
-  // Vérifier si chaque action doit être effectuée
-  if (actions.envoyerPhoto) {
-    try {
-      // const uploadRes = await uploadImage(file);
-	  // urlPhoto = uploadRes.urlPhoto;
-	  
-	  const { urlPhoto } = await uploadImage(file);	  
-      if (urlPhoto) { localStorage.setItem("urlPhotoreq", urlPhoto); }
-    } catch (err) {
-      console.error('Erreur lors de l\'upload photo:', err);
-    }
-  }
-
-  if (actions.envoyer) {
-    try {
-      await envoyerFAA({ urlApi, id, idUser, urlVideo, visible, type });
-    } catch (err) {
-      console.error('Erreur lors de l\'envoi FAA:', err);
-    }
-  }
-  
-  /*
-  if (actions.envoyerMessage) {
-    try {
-      await envoyerMessage({ id, idUser, urlVideo, visible, type });
-    } catch (err) {
-      console.error('Erreur lors de l\'envoi du message:', err);
-    }
-  } */
-  
-}
-// Envoyer3
-
-
 export async function GenererMiniatureVideo({ file, setMiniature, second }) {
   console.log("Début de la génération de miniature");
   
@@ -297,6 +249,48 @@ export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'im
   const byteArray = new Uint8Array(byteNumbers);
   return new File([byteArray], filename, { type: mimeType });
 }
+
+
+
+export async function Envoyer3({
+  file,
+  urlApi,
+  id,
+  idUser,
+  urlVideo,
+  visible,
+  type,
+  actions = {}, // par défaut, un objet vide
+}) {
+	
+	console.log("file ici :", file);
+	
+	
+  // Vérifier si chaque action doit être effectuée
+  if (actions.envoyerPhoto) {
+    try {
+      // const uploadRes = await uploadImage(file);
+	  // urlPhoto = uploadRes.urlPhoto;
+	  
+	  const photoConverti = base64ToFile(file);
+
+	  const { urlPhoto } = await uploadImage(photoConverti);	  
+      if (urlPhoto) { localStorage.setItem("urlPhotoreq", urlPhoto); }
+    } catch (err) {
+      console.error('Erreur lors de l\'upload photo:', err);
+    }
+  }
+
+  if (actions.envoyer) {
+    try {
+      await envoyerFAA({ urlApi, id, idUser, urlVideo, visible, type });
+    } catch (err) {
+      console.error('Erreur lors de l\'envoi FAA:', err);
+    }
+  }
+  
+}
+// Envoyer3
 
 
 async function getMessagesFromIndexedDB() {
