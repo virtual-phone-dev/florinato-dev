@@ -6,7 +6,7 @@ import axios from "axios";
 import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 
-import { Page, Close, Input, MissionTemplate, SeePhotoModal, Envoyer3, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
+import { Page, Close, Input, MissionTemplate, SeePhotoModal, Envoyer3, GenererMiniatureVideo, base64ToFile, ComptesRecentsTemplate, SpeedMessages } from "../utils";
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
 
@@ -44422,6 +44422,7 @@ const [second, setSecond] = useState(10);
 /* voir la miniature- FA  */
 const [voirMiniature, setVoirMiniature] = useState(false);
 const [photoUrl, setPhotoUrl] = useState();
+const photoConverti = base64ToFile(photoUrl);
 
 async function CloseVoirMiniature() { //fermer
   setVoirMiniature(false);
@@ -44441,7 +44442,7 @@ const [lienGitLab, setLienGitLab] = useState("");
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
 	console.log("envoyer photo");
-	console.log("photoUrl ici :", photoUrl);
+	console.log("photoConverti ici :", photoConverti);
 	
 	const actions = {
 	  envoyerPhoto: true,
@@ -44453,7 +44454,7 @@ async function EnvoyerVideoFAA() {
 	  urlApi: process.env.REACT_APP_Api1,
 	  id: localStorage.getItem("createId"),
 	  idUser: idUserConnectedFA,
-	  file: photoUrl,
+	  file: photoConverti,
 	  type, 
 	  actions,
 	});
