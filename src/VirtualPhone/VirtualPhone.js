@@ -44418,6 +44418,7 @@ const [lienGitLab, setLienGitLab] = useState("");
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
 	console.log("envoyer photo");
+	console.log("photoUrl ici :", photoUrl);
 	
 	const actions = {
 	  envoyerPhoto: true,

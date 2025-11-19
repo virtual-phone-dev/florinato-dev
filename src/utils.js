@@ -186,6 +186,8 @@ export async function Envoyer3({
   actions = {}, // par défaut, un objet vide
 }) {
 	
+	console.log("file ici :", file);
+	
 	
   // Vérifier si chaque action doit être effectuée
   if (actions.envoyerPhoto) {
