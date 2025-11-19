@@ -44417,13 +44417,15 @@ const [lienGitLab, setLienGitLab] = useState("");
 
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
+	console.log("envoyer photo");
+	
 	const actions = {
 	  envoyerPhoto: true,
 	  // envoyer: true,
 	  // envoyerMessage: true,
 	};
 	
-	Envoyer3({
+	await Envoyer3({
 	  urlApi: process.env.REACT_APP_Api1,
 	  id: localStorage.getItem("createId"),
 	  idUser: idUserConnectedFA,
