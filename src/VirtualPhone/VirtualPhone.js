@@ -5,6 +5,7 @@ import Loader from "../Loader/Loader";
 import axios from "axios";
 import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
+import "../utils.css"; 
 
 import { Page, Close, Input, MissionTemplate, SeePhotoModal, Envoyer3, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
 import { missions } from "../missions";
@@ -44445,17 +44446,30 @@ async function EnvoyerVideoFAA() {
 	
 	const actions = {
 	  envoyerPhoto: true,
-	  // envoyer: true,
+	  publierVideo: true,
 	  // envoyerMessage: true,
 	};
 	
 	await Envoyer3({
-	  urlApi: process.env.REACT_APP_Api1,
-	  id: localStorage.getItem("createId"),
-	  idUser: idUserConnectedFA,
-	  file: photoUrl,
-	  type, 
-	  actions,
+	    file: photoUrl,
+		
+		id: 6000,
+        message: "..",
+        urlVideo: lienGitLab,
+		idAccount: idPersonConnectedFA,
+		nameAccount: nameFA,
+        photoAccount: photoFA,
+        badgeAccount: badgeFA,
+		idAccountChef: localStorage.getItem("idAccountChef"),
+        idGroupChef: localStorage.getItem("idGroupChef"),
+        clic: 0,
+        comment: 0,
+        account: 1,
+        group: 1,
+        visible: 1,		
+	    type: 3, 
+	    actions,
+		url: "/api/messageFA/new",
 	});
 }
 

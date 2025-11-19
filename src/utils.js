@@ -106,14 +106,16 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 
 const apiUrls = [
-  `${process.env.REACT_APP_Api1}/api/messageFA/sendPhoto`,
-  `${process.env.REACT_APP_Api2}/api/messageFA/sendPhoto`,
-  `${process.env.REACT_APP_Api3}/api/messageFA/sendPhoto`,
+  `${process.env.REACT_APP_Api1}`,
+  `${process.env.REACT_APP_Api2}`,
+  `${process.env.REACT_APP_Api3}`,
 ];
+
+const apiUrlsPhoto = apiUrls.map(base => `${base}/api/messageFA/sendPhoto`);
 	  
 
 async function uploadImage(file) {
-  for (const api of apiUrls) {
+  for (const api of apiUrlsPhoto) {
     try {
       const formData = new FormData();
       formData.append('image', file);
@@ -156,7 +158,7 @@ export async function EnvoyerFAA({ urlApi, id, idUser, urlPhoto, urlVideo, visib
 }
 
 
-async function envoyerFAA({ urlApi, id, idUser, urlPhoto, urlVideo, visible, type }) {
+async function envoyerFAA2({ urlApi, id, idUser, urlPhoto, urlVideo, visible, type }) {
   for (const api of apiUrls) {
     try {
       const response = await fetch(api, {
@@ -169,6 +171,67 @@ async function envoyerFAA({ urlApi, id, idUser, urlPhoto, urlVideo, visible, typ
       return data; // ou autre indication de succès
     } catch (err) {
       // passer à l'API suivante en cas d'erreur
+    }
+  }
+  throw new Error('Toutes les tentatives d\'envoi FAA ont échoué');
+}
+
+
+async function envoyerFAA({
+		id,	  
+		message,
+		urlPhoto,
+        urlVideo,
+		idAccount,
+		nameAccount,
+        photoAccount,
+        badgeAccount,
+		idAccountChef,
+        idGroupChef,
+        clic,
+        comment,
+        account,
+        group,
+        visible,		
+	    type, 
+		url,	
+	}) {
+
+  for (const api of apiUrls) {
+    try {
+	  // Concaténer l'API de base avec l'endpoint
+      const fullUrl = `${api}${url}`;
+	  
+	  console.log("fullUrl ici", fullUrl)
+	  console.log("url ici", url)
+	  console.log("urlPhoto ici", urlPhoto)
+	  console.log("urlVideo ici", urlVideo)
+	  console.log("idAccount ici", idAccount)
+	  console.log("message ici", message)
+	  
+      const response = await axios.post(fullUrl, {
+        id,	  
+		message,
+        urlPhoto,
+        urlVideo,
+		idAccount,
+		nameAccount,
+        photoAccount,
+        badgeAccount,
+		idAccountChef,
+        idGroupChef,
+        clic,
+        comment,
+        account,
+        group,
+        visible,		
+	    type, 
+      }, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      return response.data; // Retourne la réponse de l'API
+    } catch (err) {
+      // Passer à l'API suivante en cas d'erreur
     }
   }
   throw new Error('Toutes les tentatives d\'envoi FAA ont échoué');
@@ -253,17 +316,32 @@ export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'im
 
 
 export async function Envoyer3({
-  file,
-  urlApi,
-  id,
-  idUser,
-  urlVideo,
-  visible,
-  type,
-  actions = {}, // par défaut, un objet vide
+		file,
+  
+		id,
+		message,
+        urlVideo,
+		idAccount,
+		nameAccount,
+        photoAccount,
+        badgeAccount,
+		idAccountChef,
+        idGroupChef,
+        clic,
+        comment,
+        account,
+        group,
+        visible,		
+	    type, 
+	    actions,
+		url,
+		actions = {}, // par défaut, un objet vide
 }) {
 	
 	console.log("file ici :", file);
+	console.log("idAccount ici :", idAccount);
+	console.log("type ici :", type);
+	console.log("urlVideo ici :", urlVideo);
 	
 	
   // Vérifier si chaque action doit être effectuée
@@ -275,7 +353,7 @@ export async function Envoyer3({
 	  const photoConverti = base64ToFile(file);
 
 	  const { urlPhoto } = await uploadImage(photoConverti);	  
-      if (urlPhoto) { localStorage.setItem("urlPhotoreq", urlPhoto); }
+	  const urlPhotoSauvegarder = urlPhoto;
     } catch (err) {
       console.error('Erreur lors de l\'upload photo:', err);
     }
@@ -284,6 +362,32 @@ export async function Envoyer3({
   if (actions.envoyer) {
     try {
       await envoyerFAA({ urlApi, id, idUser, urlVideo, visible, type });
+    } catch (err) {
+      console.error('Erreur lors de l\'envoi FAA:', err);
+    }
+  }
+  
+  if (actions.publierVideo) {
+    try {
+      await publierVideoFA({  
+		id,	  
+		message,
+        urlPhoto: urlPhotoSauvegarder,
+        urlVideo,
+		idAccount,
+		nameAccount,
+        photoAccount,
+        badgeAccount,
+		idAccountChef,
+        idGroupChef,
+        clic,
+        comment,
+        account,
+        group,
+        visible,		
+	    type, 
+		url,
+		});  
     } catch (err) {
       console.error('Erreur lors de l\'envoi FAA:', err);
     }
