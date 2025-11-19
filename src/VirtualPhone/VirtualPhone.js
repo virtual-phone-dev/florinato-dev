@@ -44356,11 +44356,7 @@ async function SendMessagetype42() {
 		setFlorinatoApp(true);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
-	  } else {
-		// si pas d'URL /profile/ID, ferme la popup
-		console.log("pas d'URL /profile/ID, ferme la popup");
-		setTelephoneVirtuel(true);
-	  }
+	  } 
 	}, [location]);
 
 /*
