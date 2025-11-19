@@ -282,7 +282,14 @@ export async function GenererMiniatureVideo({ file, setMiniature, second }) {
 
 // convertir l'image qui est en base64 => en file
 export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'image/jpeg') {
-  const byteCharacters = atob(photobase64.split(',')[1]);
+  if (!photobase64) {
+    throw new Error('La chaîne base64 est indéfinie ou vide.');
+  }
+
+  const base64Parts = photobase64.split(',');
+  const base64Data = base64Parts.length > 1 ? base64Parts[1] : photobase64;
+
+  const byteCharacters = atob(base64Data);
   const byteNumbers = new Array(byteCharacters.length);
   for (let i = 0; i < byteCharacters.length; i++) {
     byteNumbers[i] = byteCharacters.charCodeAt(i);
