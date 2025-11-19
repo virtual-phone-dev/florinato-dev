@@ -14,8 +14,9 @@ export default function App() {
         <Routes>
           <Route path="*" element={<VirtualPhone />} />
           <Route path="/" element={<VirtualPhone />} />
-          <Route path="/oui" element={<VirtualPhone />} />
 		  <Route path="/profile" element={<VirtualPhone />} />
+		  <Route path="/m" element={<VirtualPhone />} />
+		  <Route path="/video" element={<VirtualPhone />} />
 		  {/* <Route path="/profile/:id" element={<VirtualPhone />} /> */}
           {/* <Route path="/control" element={<Control />} /> */}
         </Routes>

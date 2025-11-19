@@ -42063,7 +42063,7 @@ async function PageRedirection66groupOtherFA() {
   // Les comptes les plus populaires sur florinato - FA 
   const [popularityAccountsPageFA, setPopularityAccountsPageFA] = useState(false); 
   async function PopularityAccountsPageFA() {
-    setPopularityAccountsPageFA(true);
+    
 
     async function get() {
       await axios
@@ -44337,8 +44337,8 @@ async function SendMessagetype42() {
 // SendMessagetype42
 
 
-// url pour tomber directement sur le profil
-// url pour tomber directement sur le profil
+// url pour tomber directement sur la page
+// url pour tomber directement sur la page
 
 	const location = useLocation();
 	// const navigate = useNavigate();
@@ -44346,17 +44346,40 @@ async function SendMessagetype42() {
   // État pour gérer l’ouverture du popup
 	useEffect(() => {
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
-	  const isProfilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à un profil
+	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
+	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
+	  const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
 	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
 	  
-	  if (isProfilePage) {
+	  if (profilePage) {
 		// const id = isProfilePage[1];
 		// ouvre la popup avec cet ID
+		setProfilOtherFA(true);
+		setPopularityAccountsPageFA(true);
 		
 		setFlorinatoApp(true);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
-	  } 
+	  }
+	  
+	  if (messagePage) {
+		setMessageFA(true);
+		
+		setFlorinatoApp(true);
+        setTelephoneVirtuel(false);
+        setInscriptionPageAA(false);
+	  }
+	  
+	  if (videoPage) {
+		setSeeVideoFA(true);
+		setProfilOtherFA(true);
+		setPopularityAccountsPageFA(true);
+		
+		setFlorinatoApp(true);
+        setTelephoneVirtuel(false);
+        setInscriptionPageAA(false);
+	  }
+	  
 	}, [location]);
 
 /*
@@ -51208,18 +51231,11 @@ son compte Vixinol store */
               <div className="a">
                 <div className="aa"> <SvgLeft/> </div>
                 <div className="bb"> <img src={florinatoLogo} alt=""/> </div>
-                <div className="cc"> <p>Sur Florinato</p> </div>
+                <div className="p-17px"> <p>Populaires sur Florinato</p> </div>
               </div>
               {/* a */}
             </div>
             {/* block-un */}
-
-              <div className="block-deux">
-                <div className="b"> <SvgFavoris/> </div>
-                <div className="b"> <p>Populaires en ce moment</p> </div>
-                {/* b */}
-              </div>
-              {/* block-deux */}
           </div>
           {/* close */}
 
