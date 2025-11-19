@@ -42063,7 +42063,7 @@ async function PageRedirection66groupOtherFA() {
   // Les comptes les plus populaires sur florinato - FA 
   const [popularityAccountsPageFA, setPopularityAccountsPageFA] = useState(false); 
   async function PopularityAccountsPageFA() {
-    
+    setPopularityAccountsPageFA(true);
 
     async function get() {
       await axios
