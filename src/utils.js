@@ -112,6 +112,7 @@ const apiUrls = [
 ];
 
 const apiUrlsPhoto = apiUrls.map(base => `${base}/api/messageFA/sendPhoto`);
+const apiUrlsGetAllData = apiUrls.map(base => `${base}/api/messageFA`);
 	  
 
 async function uploadImage(file) {
@@ -238,6 +239,25 @@ async function envoyerFAA({
 }
 
 
+// obtenir toutes les donnees qui sont dans l'api
+async function getAllData(donnees) {
+  for (const api of apiUrlsGetAllData) {
+    try {
+	  const fullUrl = `${api}${url}`;
+  	  console.log("getAllData, fullUrl icii :", fullUrl)
+	  
+      const res = await axios.get(fullUrl);
+      donnees(res.data);
+	  console.log(`res ici :`, res);
+      return;
+    } catch (err) {
+      console.warn(`Échec de la requête sur ${api}`, err);
+    }
+  }
+  console.error('Toutes les tentatives ont échoué pour récupérer les donnees.');
+}
+
+
 export async function GenererMiniatureVideo({ file, setMiniature, second }) {
   console.log("Début de la génération de miniature");
   
@@ -350,7 +370,6 @@ export async function Envoyer3({
     try {
       // const uploadRes = await uploadImage(file);
 	  // urlPhoto = uploadRes.urlPhoto;
-	  
 	  const photoConverti = base64ToFile(file);
 
 	  const { urlPhoto } = await uploadImage(photoConverti);	  
@@ -393,6 +412,15 @@ export async function Envoyer3({
       console.error('Erreur lors de l\'envoi FAA:', err);
     }
   }
+  
+  if (actions.allData) {
+    try {
+	  await getAllData();
+    } catch (err) {
+      console.error('Erreur lors de l\'obtention des donnees FA:', err);
+    }
+  }
+  
   
 }
 // Envoyer3

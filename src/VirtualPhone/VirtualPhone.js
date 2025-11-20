@@ -44445,9 +44445,9 @@ async function EnvoyerVideoFAA() {
 	console.log("photoUrl ici :", photoUrl);
 	
 	const actions = {
-	  envoyerPhoto: true,
-	  publierVideo: true,
-	  // envoyerMessage: true,
+	  //envoyerPhoto: true,
+	  //publierVideo: true,
+	  allData: true,
 	};
 	
 	await Envoyer3({
@@ -44472,6 +44472,12 @@ async function EnvoyerVideoFAA() {
 		url: "/api/messageFA/new",
 	});
 }
+
+
+// obtenir toutes les donnees
+useEffect(() => {
+    await getAllData({ donnees: setApiMessageFA });
+  }, []);
 
 
 //logique pour ajouter une photo de couverture a la video
