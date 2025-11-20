@@ -138,7 +138,7 @@ async function uploadImage(file) {
 }
 	  
 	  
-export async function EnvoyerFAA({ urlApi, id, idUser, urlPhoto, urlVideo, visible, type }) {
+export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visible, type }) {
   const data = {};
 
   if (id !== undefined) data.id = id;
@@ -360,7 +360,7 @@ export async function Envoyer3({
 
   if (actions.envoyer) {
     try {
-      await envoyerFAA({ urlApi, id, idUser, urlVideo, visible, type });
+      await envoyerFAA({ id, urlVideo, visible, type });
     } catch (err) {
       console.error('Erreur lors de l\'envoi FAA:', err);
     }
@@ -368,7 +368,7 @@ export async function Envoyer3({
   
   if (actions.publierVideo) {
     try {
-      await publierVideoFA({  
+      await envoyerFAA({  
 		id,	  
 		message,
         urlPhoto: urlPhotoSauvegarder,
