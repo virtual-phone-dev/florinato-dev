@@ -44428,10 +44428,13 @@ async function CloseVoirMiniature() { //fermer
   setVoirMiniature(false);
 } 
 
-const transVoirMiniature = (url, title) => { //transmettre VoirMiniature (on transmet la miniature a l'autre composant (au modal))
+
+async function transVoirMiniature(url) { //transmettre VoirMiniature (on transmet la miniature a l'autre composant (au modal))
+  console.log("transVoirMiniature, url ici :", url);
   setPhotoUrl(url);
   setVoirMiniature(true);
-};
+} 
+  
 
 //logique pour ajouter les liens de la video (lien de chaque service ou la video est heberger)
 const [lienDropbox, setLienDropbox] = useState("");
@@ -44446,8 +44449,8 @@ async function EnvoyerVideoFAA() {
 	
 	const actions = {
 	  envoyerPhoto: true,
-	  publierVideo: true,
-	  allData: true,
+	  //publierVideo: true,
+	  //allData: true,
 	};
 	
 	await Envoyer3({
