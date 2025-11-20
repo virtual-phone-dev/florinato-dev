@@ -44471,13 +44471,15 @@ async function EnvoyerVideoFAA() {
 	    actions,
 		url: "/api/messageFA/new",
 	});
+	
+	
+	if (actions.allData) {
+		const data = await getAllData();
+		setApiMessageFA(data);
+		console.log(`data est là :`, data);
+	  }
 }
-
-
-// obtenir toutes les donnees
-useEffect(() => {
-    getAllData(setApiMessageFA);
-  }, []);
+// EnvoyerVideoFAA
 
 
 //logique pour ajouter une photo de couverture a la video

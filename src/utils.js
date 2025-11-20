@@ -112,7 +112,7 @@ const apiUrls = [
 ];
 
 const apiUrlsPhoto = apiUrls.map(base => `${base}/api/messageFA/sendPhoto`);
-const apiUrlsGetAllData = apiUrls.map(base => `${base}/api/messageFA`);
+const apiUrlsObtenirDonnees = apiUrls.map(base => `${base}/api/messageFA`);
 	  
 
 async function uploadImage(file) {
@@ -240,13 +240,12 @@ async function envoyerFAA({
 
 
 // obtenir toutes les donnees qui sont dans l'api
-export async function getAllData(donnees) {
-  for (const api of apiUrlsGetAllData) {
+export async function getAllData() { 
+  for (const api of apiUrlsObtenirDonnees) {
     try {
       const res = await axios.get(api);
-      donnees(res.data);
-	  console.log(`res ici :`, res);
-      return;
+	  return res.data;
+	  console.log(`res.data ici :`, res.data);
     } catch (err) {
       console.log(`Échec de la requête sur ${api}`, err);
     }
@@ -375,6 +374,7 @@ export async function Envoyer3({
       console.error('Erreur lors de l\'upload photo:', err);
     }
   }
+  
 
   if (actions.envoyer) {
     try {
@@ -383,6 +383,7 @@ export async function Envoyer3({
       console.error('Erreur lors de l\'envoi FAA:', err);
     }
   }
+  
   
   if (actions.publierVideo) {
     try {
@@ -409,15 +410,7 @@ export async function Envoyer3({
       console.error('Erreur lors de l\'envoi FAA:', err);
     }
   }
-  
-  if (actions.allData) {
-    try {
-	  await getAllData();
-    } catch (err) {
-      console.error('Erreur lors de l\'obtention des donnees FA:', err);
-    }
-  }
-  
+
   
 }
 // Envoyer3
