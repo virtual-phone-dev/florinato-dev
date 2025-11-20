@@ -333,7 +333,6 @@ export async function Envoyer3({
         group,
         visible,		
 	    type, 
-	    actions,
 		url,
 		actions = {}, // par défaut, un objet vide
 }) {
