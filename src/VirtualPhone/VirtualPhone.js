@@ -44449,8 +44449,8 @@ async function EnvoyerVideoFAA() {
 	
 	const actions = {
 	  envoyerPhoto: true,
-	  //publierVideo: true,
-	  //allData: true,
+	  publierVideo: true,
+	  allData: true,
 	};
 	
 	await Envoyer3({
