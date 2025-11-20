@@ -248,10 +248,10 @@ export async function getAllData(donnees) {
 	  console.log(`res ici :`, res);
       return;
     } catch (err) {
-      console.warn(`Échec de la requête sur ${api}`, err);
+      console.log(`Échec de la requête sur ${api}`, err);
     }
   }
-  console.error('Toutes les tentatives ont échoué pour récupérer les donnees.');
+  console.log('Toutes les tentatives ont échoué pour récupérer les donnees.');
 }
 
 
