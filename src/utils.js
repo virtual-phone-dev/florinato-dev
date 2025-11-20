@@ -240,7 +240,7 @@ async function envoyerFAA({
 
 
 // obtenir toutes les donnees qui sont dans l'api
-async function getAllData(donnees) {
+export async function getAllData(donnees) {
   for (const api of apiUrlsGetAllData) {
     try {
 	  const fullUrl = `${api}${url}`;
