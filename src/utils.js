@@ -243,10 +243,7 @@ async function envoyerFAA({
 export async function getAllData(donnees) {
   for (const api of apiUrlsGetAllData) {
     try {
-	  const fullUrl = `${api}${url}`;
-  	  console.log("getAllData, fullUrl icii :", fullUrl)
-	  
-      const res = await axios.get(fullUrl);
+      const res = await axios.get(api);
       donnees(res.data);
 	  console.log(`res ici :`, res);
       return;
