@@ -1223,9 +1223,26 @@ function ChildApi66profilOtherFA({ api }) {
   }
 
    // GoToselectedFA (page pour afficher la photo sur laquelle on a cliquer)
+   /*
    async function GoToselectedFA() {
     const selected = "1";
     localStorage.setItem("GoToselectedFA", selected);
+  } */
+  
+  //redirect vers la page pour afficher la video
+   async function gotoVideo() {
+    const video = "1";
+    const photo = "0";
+	localStorage.setItem("gotoVideo", video);
+    localStorage.setItem("gotoPhoto", photo);
+  }
+  
+  //redirect vers la page pour afficher la photo
+   async function gotoPhoto() {
+    const video = "0";
+    const photo = "1";
+	localStorage.setItem("gotoVideo", video);
+    localStorage.setItem("gotoPhoto", photo);
   }
 
   const idAccount = localStorage.getItem("idAccountChef");
@@ -1236,15 +1253,15 @@ function ChildApi66profilOtherFA({ api }) {
     <div className="child" onClick={Checked}>
       {api.type === "3" && id && (<> {/* type=3 , video */}
       <div className="type3">
-        <div className="a"> <img onClick={GoToselectedFA} src={api.urlPhoto} alt=""/> </div>
-        <div className="b"> <button onClick={GoToselectedFA}><SvgPlay2/></button> </div>
+        <div className="a"> <img onClick={gotoVideo} src={api.urlPhoto} alt=""/> </div>
+        <div className="b"> <button onClick={gotoVideo}><SvgPlay2/></button> </div>
       </div>
       {/* type3 */}
       </>)}
       {/* type=3 , video */}
 
       {api.type === "2" && id && (<> {/* type=2 , photo */}
-      <div className="type2"> <img onClick={GoToselectedFA} src={api.urlPhoto} alt=""/> </div>
+      <div className="type2"> <img onClick={gotoPhoto} src={api.urlPhoto} alt=""/> </div>
       </>)}
       {/* type=2 , photo */}
     </div>
@@ -40300,9 +40317,17 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
   // PageRedirection 66ChildApi66profilOtherFA
   async function PageRedirection66ChildApi66profilOtherFA() {
+	  
+	const gotoVideo = localStorage.getItem("gotoVideo");
+    if (gotoVideo === "1") { setSeeVideoFA(true); }
+	
+	const gotoPhoto = localStorage.getItem("gotoPhoto");
+    if (gotoPhoto === "1") { setSeePhotoFA(true); }
+	   
     //page pour afficher ce que j'ai cliqué
+	/*
     const selected = localStorage.getItem("GoToselectedFA");
-    if (selected === "1") { setSelected2FA(true); }
+    if (selected === "1") { setSelected2FA(true); } */
   }
 
 
