@@ -337,12 +337,14 @@ export async function Envoyer3({
 		actions = {}, // par défaut, un objet vide
 }) {
 	
+	let urlPhotoSauvegarder = null;
+	
 	console.log("file ici :", file);
 	console.log("idAccount ici :", idAccount);
 	console.log("type ici :", type);
 	console.log("urlVideo ici :", urlVideo);
 	
-	
+
   // Vérifier si chaque action doit être effectuée
   if (actions.envoyerPhoto) {
     try {
@@ -352,7 +354,7 @@ export async function Envoyer3({
 	  const photoConverti = base64ToFile(file);
 
 	  const { urlPhoto } = await uploadImage(photoConverti);	  
-	  const urlPhotoSauvegarder = urlPhoto;
+	  urlPhotoSauvegarder = urlPhoto;
     } catch (err) {
       console.error('Erreur lors de l\'upload photo:', err);
     }
