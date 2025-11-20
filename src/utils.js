@@ -106,8 +106,8 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 
 const apiUrls = [
-  `${process.env.REACT_APP_Api1}`,
   `${process.env.REACT_APP_Api2}`,
+  `${process.env.REACT_APP_Api1}`,
   `${process.env.REACT_APP_Api3}`,
 ];
 
