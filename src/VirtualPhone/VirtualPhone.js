@@ -44476,7 +44476,7 @@ async function EnvoyerVideoFAA() {
 
 // obtenir toutes les donnees
 useEffect(() => {
-    await getAllData({ donnees: setApiMessageFA });
+    getAllData({ donnees: setApiMessageFA });
   }, []);
 
 
