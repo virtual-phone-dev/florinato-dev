@@ -244,8 +244,8 @@ export async function getAllData() {
   for (const api of apiUrlsObtenirDonnees) {
     try {
       const res = await axios.get(api);
-	  return res.data;
 	  console.log(`res.data ici :`, res.data);
+	  return res.data;
     } catch (err) {
       console.log(`Échec de la requête sur ${api}`, err);
     }

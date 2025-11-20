@@ -44445,8 +44445,8 @@ async function EnvoyerVideoFAA() {
 	console.log("photoUrl ici :", photoUrl);
 	
 	const actions = {
-	  //envoyerPhoto: true,
-	  //publierVideo: true,
+	  envoyerPhoto: true,
+	  publierVideo: true,
 	  allData: true,
 	};
 	
