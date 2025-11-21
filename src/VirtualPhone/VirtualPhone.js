@@ -1230,19 +1230,23 @@ function ChildApi66profilOtherFA({ api }) {
   } */
   
   //redirect vers la page pour afficher la video
-   async function gotoVideo() {
+   async function GotoVideo() {
+	   console.log("enregistrer GotoVideo");
     const video = "1";
     const photo = "0";
 	localStorage.setItem("gotoVideo", video);
     localStorage.setItem("gotoPhoto", photo);
+	console.log("enregistrement terminer GotoVideo");
   }
   
   //redirect vers la page pour afficher la photo
-   async function gotoPhoto() {
+   async function GotoPhoto() {
+	console.log("enregistrer GotoPhoto");
     const video = "0";
     const photo = "1";
 	localStorage.setItem("gotoVideo", video);
     localStorage.setItem("gotoPhoto", photo);
+	console.log("enregistrement terminer GotoPhoto");
   }
 
   const idAccount = localStorage.getItem("idAccountChef");
@@ -1253,15 +1257,15 @@ function ChildApi66profilOtherFA({ api }) {
     <div className="child" onClick={Checked}>
       {api.type === "3" && id && (<> {/* type=3 , video */}
       <div className="type3">
-        <div className="a"> <img onClick={gotoVideo} src={api.urlPhoto} alt=""/> </div>
-        <div className="b"> <button onClick={gotoVideo}><SvgPlay2/></button> </div>
+        <div className="a"> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
+        <div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
       </div>
       {/* type3 */}
       </>)}
       {/* type=3 , video */}
 
       {api.type === "2" && id && (<> {/* type=2 , photo */}
-      <div className="type2"> <img onClick={gotoPhoto} src={api.urlPhoto} alt=""/> </div>
+      <div className="type2"> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
       </>)}
       {/* type=2 , photo */}
     </div>
