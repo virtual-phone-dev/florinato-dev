@@ -40300,7 +40300,13 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   const [profilFA, setProfilFA] = useState(false); 
   async function ProfilFA() {
     setProfilFA(true);
+	
+	if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
+	if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
+	console.log("idAccountChef", idPersonConnectedFA);
+	console.log("idGroupChef", getidGroup);
   }
+  
   async function CloseProfilFA() {
     setProfilFA(false);
   }
@@ -40319,10 +40325,6 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
   // PageRedirection 66ChildApi66profilFA
   async function PageRedirection66ChildApi66profilFA() {
-	if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
-	if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
-	console.log("idAccountChef", idPersonConnectedFA);
-	console.log("idGroupChef", getidGroup);
 	  
 	const gotoVideo = localStorage.getItem("gotoVideo");
     if (gotoVideo === "1") { setSeeVideoFA(true); }
