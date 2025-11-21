@@ -542,6 +542,13 @@ export function PopularityAccountCard({ api }) {
       <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
       <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
     </div>
+	
+	<div className="p-15px">
+		<p>nameAccount {api.nameAccount}</p>
+		<p>_id, idPersonConnectedFA, idAccount, idAccountChef) {api._id}</p>
+		<p>idUser, idUserConnectedFA {api.idUser}</p>
+		<p>idGroup, idGroupChef {api.idGroup}</p>
+	</div>
   );
 }
 
