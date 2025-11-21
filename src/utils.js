@@ -536,7 +536,7 @@ useEffect(() => {
 
 
 export function PopularityAccountCard({ api }) {
-  return (
+  return (<>
     <div className="display-nowrap">
       <div className="p-15px"><p>{api.popularity}</p></div>
       <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
@@ -549,7 +549,7 @@ export function PopularityAccountCard({ api }) {
 		<p>idUser, idUserConnectedFA {api.idUser}</p>
 		<p>idGroup, idGroupChef {api.idGroup}</p>
 	</div>
-  );
+  </>);
 }
 
 
