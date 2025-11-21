@@ -44528,6 +44528,7 @@ async function EnvoyerVideoFAA() {
 	
 	if (actions.allData) {
 		const data = await getAllData();
+		setApiMessageFA(data);
 		setApiMessageFAA(data);
 		console.log(`data est là :`, data);
 	  }
