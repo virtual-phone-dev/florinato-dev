@@ -1231,22 +1231,18 @@ function ChildApi66profilOtherFA({ api }) {
   
   //redirect vers la page pour afficher la video
    async function GotoVideo() {
-	   console.log("enregistrer GotoVideo");
     const video = "1";
     const photo = "0";
 	localStorage.setItem("gotoVideo", video);
     localStorage.setItem("gotoPhoto", photo);
-	console.log("enregistrement terminer GotoVideo");
   }
   
   //redirect vers la page pour afficher la photo
    async function GotoPhoto() {
-	console.log("enregistrer GotoPhoto");
     const video = "0";
     const photo = "1";
 	localStorage.setItem("gotoVideo", video);
     localStorage.setItem("gotoPhoto", photo);
-	console.log("enregistrement terminer GotoPhoto");
   }
 
   const idAccount = localStorage.getItem("idAccountChef");
@@ -51458,7 +51454,10 @@ g
 
   h
 </div> </>)}
-              <div className="block-deux"> <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div> </div>
+              <div className="block-deux"> 
+				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div> 
+				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div> 
+			  </div>
             </div>
             {/* close */} 
           </div>
