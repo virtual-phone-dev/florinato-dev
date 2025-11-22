@@ -44415,7 +44415,7 @@ async function SendMessagetype42() {
 		let id = null;
 
 		// Cas 1 : URL du style /profile/12345
-		const match = pathname.match(/^\/profile\/([^\/]+)$/);
+		const match = location.pathname.match(/^\/profile\/([^\/]+)$/);
 		if (match) {
 		  id = match[1]; // Récupère l'ID dans la partie après /profile/
 		  console.log("id trouver dans l'url ", id);
