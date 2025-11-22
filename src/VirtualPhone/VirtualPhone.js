@@ -44411,6 +44411,15 @@ async function SendMessagetype42() {
 		setFlorinatoApp(true);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
+		
+		let id = null;
+
+		// Cas 1 : URL du style /profile/12345
+		const match = pathname.match(/^\/profile\/([^\/]+)$/);
+		if (match) {
+		  id = match[1]; // Récupère l'ID dans la partie après /profile/
+		  console.log("id trouver dans l'url ", id);
+		}
 	  }
 	  
 	  if (messagePage) {
@@ -44502,7 +44511,7 @@ async function EnvoyerVideoFAA() {
 	  publierVideo: true,
 	  allData: true,
 	};
-	
+		
 	await Envoyer3({
 	    file: photoUrl,
 		
