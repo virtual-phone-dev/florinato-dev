@@ -16,9 +16,9 @@ export default function App() {
           <Route path="/" element={<VirtualPhone />} />
 		  {/* <Route path="/profile" element={<VirtualPhone />} /> */}
 		  
-		  <Route path="/m" element={<VirtualPhone />} />
 		  <Route path="/video" element={<VirtualPhone />} />
 		  <Route path="/profile/:id" element={<VirtualPhone />} />
+		  <Route path="/m/:id" element={<VirtualPhone />} />
           {/* <Route path="/control" element={<Control />} /> */}
         </Routes>
       </BrowserRouter>
