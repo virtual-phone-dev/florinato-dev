@@ -44419,6 +44419,8 @@ async function SendMessagetype42() {
 		if (match) {
 		  id = match[1]; // Récupère l'ID dans la partie après /profile/
 		  console.log("id trouver dans l'url ", id);
+		  localStorage.setItem("idAccountChef", id);
+		  console.log("idAccountChef deja enregistrer : ", id);
 		}
 	  }
 	  
