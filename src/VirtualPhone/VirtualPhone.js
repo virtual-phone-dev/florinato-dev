@@ -44447,7 +44447,7 @@ async function SendMessagetype42() {
 	  setApiMessageFAA(data);
 	  console.log(`data est là , coool :`, data);
 	  
-	}, [location]);
+	}, [location, data]);
 
 /*
 const closePopup = () => {
