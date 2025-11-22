@@ -454,31 +454,6 @@ export function SpeedMessages({ visible, fermer, data }) {
 	  console.log("messages de SpeedMessages ici :", messages);
 	  console.log("data ici :", data);
 	}	
-	
-	/*
-  //Charger les messages quand data change
-  useEffect(() => {
-    if (data) {
-      storeMessages(data); // Stocker tous les messages dans IndexedDB
-      setMessages(data); // Mettre à jour le state avec seulement 20 messages
-    }
-  }, [data]);
-  
-  
-useEffect(() => {
-  async function loadMessages() {
-    try {
-      const storedMessages = await getMessagesFromIndexedDB();
-	  console.log("storedMessages ici ici:", storedMessages);
-      setMessages(storedMessages);
-    } catch (error) {
-      console.log("Erreur lors du chargement depuis IndexedDB :", error);
-    }
-  }
-  loadMessages();
-}, []); 
-
-*/
 
 
   const lot = 20; // Taille du lot

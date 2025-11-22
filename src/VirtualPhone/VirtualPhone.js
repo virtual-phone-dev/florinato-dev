@@ -44442,6 +44442,11 @@ async function SendMessagetype42() {
         setInscriptionPageAA(false);
 	  }
 	  
+	  const data = await getAllData();
+	  setApiMessageFA(data);
+	  setApiMessageFAA(data);
+	  console.log(`data est là , coool :`, data);
+	  
 	}, [location]);
 
 /*
