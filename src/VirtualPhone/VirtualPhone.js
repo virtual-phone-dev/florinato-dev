@@ -285,8 +285,9 @@ function ChildApi66florinatoApp({ api, profil }) {
 
 
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
+  const getphotoProfile = profil.photoProfile;
   
-  console.log("profil.photoProfile", profil.photoProfile);
+  console.log("profil.photoProfile", getphotoProfile);
 
   return (
     <>
