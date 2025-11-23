@@ -51263,6 +51263,7 @@ son compte Vixinol store */
               {filterFA.map((api) => {				
 				const profilAssocie = profilMap[api.idAccount]; // profil lié à la conversation
 				console.log("profilAssocie", profilAssocie);
+				console.log("api", api);
 				return ( <ChildApi66florinatoApp api={api} profil={profilAssocie} /> )} 
               )}
             </div> 
