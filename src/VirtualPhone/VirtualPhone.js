@@ -286,7 +286,7 @@ function ChildApi66florinatoApp({ api, profil }) {
 
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
   
-  if (getphotoProfile) {  
+  if (profil.type === "10") {  
 	  const getphotoProfile = profil.photoProfile;
 	  console.log("profil.photoProfile", getphotoProfile);
 	}
@@ -52684,7 +52684,17 @@ g
 				
 				<div className="block-trois"> <button onClick={CloseAddVideoPageFA}>Valider</button> </div>
 
-                <div className="block-quatre"> <p>Important: Pour github la taille maximale de la video est 25mb, les autres c'est illimité</p> </div> 
+                <div className="block-quatre"> <p>Important :</div> 
+                <div className="block-quatre"> <p>**Petits fichiers :</div> 
+                <div className="block-quatre"> <p>Gitlab</div> 
+                <div className="block-quatre"> <p>Github</div> 
+                <div className="block-quatre"> <p>**Gros fichiers :</div> 
+                <div className="block-quatre"> <p>Drive</div> 
+                <div className="block-quatre"> <p>Dropbox</div> 
+				<div className="block-quatre"> <p>Important : Pour github et gitlab, la taille maximale de la video est de 25mb, les autres c'est illimité</p> </div> 
+				<div className="block-quatre"> <p>Avantages :</p> </div> 
+				<div className="block-quatre"> <p>Pour github, gitlab, et dropbox, telechargement direct de la video</p> </div> 
+				<div className="block-quatre"> <p>drive, telechargement indirect de la video</p> </div> 
                 {/* block-quatre */}
               </div>
               {/* card */}
