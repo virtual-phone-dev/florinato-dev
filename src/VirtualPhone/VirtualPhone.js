@@ -217,7 +217,7 @@ const dateParserLong = (date) => {
 
 
 //ChildApi 66florinatoApp
-function ChildApi66florinatoApp({ api }) {
+function ChildApi66florinatoApp({ api, profil }) {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
   const [checked, setChecked] = useState(false);
@@ -278,20 +278,22 @@ function ChildApi66florinatoApp({ api }) {
     localStorage.setItem("GoTomessageFA", one);
     localStorage.setItem("GoTogroupOtherFA", zero);
   }
-
+  
   //afficher les messages uniquement aux personnes concernées (cette logique nous permet d'éviter que les messages que j'ai envoyé ou recu puissent s'afficher a tout le monde)
   const idAccount = api.idAccount === idPersonConnectedFA;
   const idOther = api.idOther === idPersonConnectedFA;
 
 
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
+  
+  console.log("profil.photoProfile", profil.photoProfile);
 
   return (
     <>
     <div className="child" onClick={Checked}>
       {api.type === "30" && idAccount && (<> {/* type=30 , (conversation que j'ai envoyé à Other) */}
       <div className="type30" onClick={GoTomessageFA}>
-        <div className="A"> <img src={api.photoOther} alt=""/> </div>
+        <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
 
         <div className="B">
           <div className="a"> <p>{api.nameOther}</p> </div>
@@ -303,7 +305,7 @@ function ChildApi66florinatoApp({ api }) {
 
       {api.type === "30" && idOther && (<> {/* type=30 , (conversation que Other à reçu) */}
       <div className="type30" onClick={GoTomessageFA}>
-        <div className="A"> <img src={api.photoAccount} alt=""/> </div>
+        <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
 
         <div className="B">
           <div className="a"> <p>{api.nameAccount}</p> </div>
@@ -316,7 +318,7 @@ function ChildApi66florinatoApp({ api }) {
     
       {api.type === "50" && id && (<> {/* type=50 , je me suis abonné */}
       <div className="type50" onClick={GoTogroupOtherFA}>
-        <div className="A"> <img src={api.photoOther} alt=""/> </div>
+        <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
 
         <div className="B">
           <div className="a"> <pre>{api.nameOther}</pre> </div>
@@ -35492,6 +35494,17 @@ async function DissadAA() {
 
   //filtre general
   const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
+  
+  // Créer une map pour accéder rapidement aux profils par id
+	const profilMap = {};
+	filterFA.forEach(item => {
+	  if (item.type === 10) { // profil
+		profilMap[item._id] = item;
+	  }
+	});
+	
+  console.log("profilMap", profilMap);
+
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
   const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.florinatoApp === "1").sort((a, b) => b.popularity - a.popularity);
@@ -51232,9 +51245,11 @@ son compte Vixinol store */
 
           <div className="body">
             <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
-              {filterFA.map((api) => (<>
-                <ChildApi66florinatoApp api={api} />
-              </>))}
+              {filterFA.map((api) => {				
+				const profilAssocie = profilMap[api.idAccount]; // profil lié à la conversation
+				console.log("profilAssocie", profilAssocie);
+				return ( <ChildApi66florinatoApp key={api._id} api={api} profil={profilAssocie} /> )} 
+              )}
             </div> 
           </div>
           {/* body */}
