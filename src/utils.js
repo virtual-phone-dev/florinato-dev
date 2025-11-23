@@ -509,12 +509,11 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
-
 export function RechercheTemplate() {
   return (<>
 		{/* rechercher un compte */}
-                  <div className="rechercheIAC">
-                    <div className="block-un">
+                  <div>
+                    <div className="marge-bottom25px">
                       <div className="display-flex">
                         <div className="a">
                           <label for="css">
@@ -535,10 +534,10 @@ export function RechercheTemplate() {
                       </div>
                       {/* display-flex */}
                     </div>
-                    {/* block-un */}
+                    {/* marge-bottom25px */}
 
                     {/* on affiche les donnees de la recherche dans l'enfant api */}
-                    <div> <hr /><hr /> </div>
+                    <div className="hr-15px"> <hr /> </div>
                   </div>
 
 	</>);
