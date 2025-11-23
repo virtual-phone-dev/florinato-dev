@@ -512,10 +512,10 @@ export function SpeedMessages({ visible, fermer, data }) {
 
 export function RechercheTemplate() {
   return (<>
-{/* rechercher un compte */}
+		{/* rechercher un compte */}
                   <div className="rechercheIAC">
                     <div className="block-un">
-                      <div className="display">
+                      <div className="display-flex">
                         <div className="a">
                           <label for="css">
                             <svg
@@ -530,12 +530,10 @@ export function RechercheTemplate() {
                         </div>
                         {/* a */}
 
-                        <div className="b">
-                          <input id="css" type="text" placeholder="..." />
-                        </div>
-                        {/* b */}
+                        <div className="input-130px"> <input id="css" type="text" placeholder="..."/> </div>
+                        {/* input-130px */}
                       </div>
-                      {/* display */}
+                      {/* display-flex */}
                     </div>
                     {/* block-un */}
 
