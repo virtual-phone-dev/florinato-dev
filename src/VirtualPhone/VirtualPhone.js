@@ -52684,13 +52684,13 @@ g
 				
 				<div className="block-trois"> <button onClick={CloseAddVideoPageFA}>Valider</button> </div>
 
-                <div className="block-quatre"> <p>Important :</div> 
-                <div className="block-quatre"> <p>**Petits fichiers :</div> 
-                <div className="block-quatre"> <p>Gitlab</div> 
-                <div className="block-quatre"> <p>Github</div> 
-                <div className="block-quatre"> <p>**Gros fichiers :</div> 
-                <div className="block-quatre"> <p>Drive</div> 
-                <div className="block-quatre"> <p>Dropbox</div> 
+                <div className="block-quatre"> <p>Important :</p></div> 
+                <div className="block-quatre"> <p>**Petits fichiers :</p></div> 
+                <div className="block-quatre"> <p>Gitlab</p></div> 
+                <div className="block-quatre"> <p>Github</p></div> 
+                <div className="block-quatre"> <p>**Gros fichiers :</p></div> 
+                <div className="block-quatre"> <p>Drive</p></div> 
+                <div className="block-quatre"> <p>Dropbox</p></div> 
 				<div className="block-quatre"> <p>Important : Pour github et gitlab, la taille maximale de la video est de 25mb, les autres c'est illimité</p> </div> 
 				<div className="block-quatre"> <p>Avantages :</p> </div> 
 				<div className="block-quatre"> <p>Pour github, gitlab, et dropbox, telechargement direct de la video</p> </div> 
