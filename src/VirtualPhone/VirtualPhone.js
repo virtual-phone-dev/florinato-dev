@@ -285,11 +285,11 @@ function ChildApi66florinatoApp({ api, profil }) {
 
 
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
-  
+  /*
   if (profil.type === "10") {  
 	  const getphotoProfile = profil.photoProfile;
 	  console.log("profil.photoProfile", getphotoProfile);
-	}
+	} */
 	
   return (
     <>
