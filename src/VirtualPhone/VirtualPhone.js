@@ -44545,9 +44545,10 @@ async function EnvoyerVideoFAA() {
 	console.log("photoUrl ici :", photoUrl);
 	
 	const actions = {
-	  envoyerPhoto: true,
+	  /*envoyerPhoto: true,
 	  publierVideo: true,
-	  allData: true,
+	  allData: true,*/
+	  adapterLien: true,
 	};
 		
 	await Envoyer3({
@@ -44577,7 +44578,7 @@ async function EnvoyerVideoFAA() {
 		const data = await getAllData();
 		setApiMessageFA(data);
 		setApiMessageFAA(data);
-		console.log(`data est là :`, data);
+		//console.log(`data est là :`, data);
 	  }
 }
 // EnvoyerVideoFAA

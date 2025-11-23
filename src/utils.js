@@ -384,6 +384,15 @@ export async function Envoyer3({
     }
   }
   
+  if (actions.adapterLien) {
+    try {
+	  const geturl = await AdapterLien(urlVideo)
+	  console.log('url est la :', geturl);
+    } catch (err) {
+      console.log('url rien', err);
+    }
+  }
+  
   
   if (actions.publierVideo) {
     try {
@@ -414,6 +423,26 @@ export async function Envoyer3({
   
 }
 // Envoyer3
+
+
+// adapter le lien en un lien video github, gitlab, dropbox, drive
+export async function AdapterLien(url) {
+  if (!url) return '';
+  
+  // Dropbox : dl=0 → raw=1
+  if (url.includes('dl=0')) {
+    return url.replace('dl=0', 'raw=1');
+  }
+
+  // GitHub : blob → raw
+  if (url.includes('github.com') && url.includes('/blob/')) {
+    return url.replace('/blob/', '/raw/');
+  }
+
+  // Ajoute d'autres cas si nécessaire (GitLab, Drive, etc.)
+  return url;
+}
+
 
 
 async function getMessagesFromIndexedDB() {
