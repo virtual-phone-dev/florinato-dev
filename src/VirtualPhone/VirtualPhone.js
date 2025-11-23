@@ -285,10 +285,12 @@ function ChildApi66florinatoApp({ api, profil }) {
 
 
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
-  const getphotoProfile = profil.photoProfile;
   
-  console.log("profil.photoProfile", getphotoProfile);
-
+  if (getphotoProfile) {  
+	  const getphotoProfile = profil.photoProfile;
+	  console.log("profil.photoProfile", getphotoProfile);
+	}
+	
   return (
     <>
     <div className="child" onClick={Checked}>
