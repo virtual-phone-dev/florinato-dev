@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useMemo } from "react";
 import { io } from "socket.io-client";
 import { NavLink, useLocation } from "react-router-dom";
 import Loader from "../Loader/Loader";
@@ -35502,14 +35502,16 @@ async function DissadAA() {
   const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
   
   // Créer une map pour accéder rapidement aux profils par id
-	const profilMap = {};
-	filterFA.forEach(item => {
-	  if (item.type === 10) { // profil
-		profilMap[item._id] = item;
-	  }
-	});
-	
-  console.log("profilMap", profilMap);
+  const profilMap = useMemo(() => {
+	  const map = {};
+	  filterFA.forEach(item => {
+		if (item.type === 10) {
+		  map[item._id] = item;
+		}
+	  });
+	  console.log("profilMap mis à jour", map);
+	  return map;
+}, [apiMessageFA]);
 
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
