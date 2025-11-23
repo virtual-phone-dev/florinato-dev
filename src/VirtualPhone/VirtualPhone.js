@@ -35507,6 +35507,7 @@ async function DissadAA() {
   const profilMap = useMemo(() => {
 	  const map = {};
 	  filterFA.forEach(item => {
+		  console.log("AJOUT DANS MAP → clé =", item._id, " / objet =", item);
 		if (item.type === 10) {
 		  map[item._id] = item;
 		}
