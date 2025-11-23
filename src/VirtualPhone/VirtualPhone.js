@@ -35501,6 +35501,8 @@ async function DissadAA() {
   //filtre general
   const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
   
+  console.log("filterFA ici ", filterFA)
+  
   // Créer une map pour accéder rapidement aux profils par id
   const profilMap = useMemo(() => {
 	  const map = {};
