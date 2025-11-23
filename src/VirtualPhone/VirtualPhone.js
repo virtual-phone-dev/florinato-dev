@@ -44402,6 +44402,18 @@ async function SendMessagetype42() {
 	  const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
 	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
 	  
+	  // petite logique pour recuperer l'id qui est dans l'url
+	    let id = null;
+
+		// URL du style /profile/12345
+		const match = location.pathname.match(/^\/profile\/([^\/]+)$/);
+		if (match) {
+		  id = match[1]; // Récupère l'ID dans la partie après /profile/
+		  console.log("id trouver dans l'url ", id);
+		  localStorage.setItem("idAccountChef", id);
+		  console.log("idAccountChef deja enregistrer : ", id);
+		}
+	  
 	  if (profilePage) {
 		// const id = isProfilePage[1];
 		// ouvre la popup avec cet ID
@@ -44411,17 +44423,6 @@ async function SendMessagetype42() {
 		setFlorinatoApp(true);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
-		
-		let id = null;
-
-		// Cas 1 : URL du style /profile/12345
-		const match = location.pathname.match(/^\/profile\/([^\/]+)$/);
-		if (match) {
-		  id = match[1]; // Récupère l'ID dans la partie après /profile/
-		  console.log("id trouver dans l'url ", id);
-		  localStorage.setItem("idAccountChef", id);
-		  console.log("idAccountChef deja enregistrer : ", id);
-		}
 	  }
 	  
 	  if (messagePage) {
