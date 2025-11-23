@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import VirtualPhone from "./VirtualPhone/VirtualPhone";
-//import Control from "./Control/Control";
+import Control from "./Control/Control";
 //import Cool from "./cool";
 
 import "./utils.css";
@@ -19,7 +19,7 @@ export default function App() {
 		  <Route path="/video" element={<VirtualPhone />} />
 		  <Route path="/profile/:id" element={<VirtualPhone />} />
 		  <Route path="/m/:id" element={<VirtualPhone />} />
-          {/* <Route path="/control" element={<Control />} /> */}
+          <Route path="/control" element={<Control />} />
         </Routes>
       </BrowserRouter>
     </>
