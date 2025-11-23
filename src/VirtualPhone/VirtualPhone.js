@@ -44441,13 +44441,16 @@ async function SendMessagetype42() {
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
 	  }
+
+	  const fetchData = async () => {
+		const data = await getAllData();
+		setApiMessageFA(data);
+		setApiMessageFAA(data);
+		console.log(`data est là , coool :`, data);
+	  };
+	  fetchData();
 	  
-	  const data = getAllData();
-	  setApiMessageFA(data);
-	  setApiMessageFAA(data);
-	  console.log(`data est là , coool :`, data);
-	  
-	}, [location, data]);
+	}, [location]);
 
 /*
 const closePopup = () => {
