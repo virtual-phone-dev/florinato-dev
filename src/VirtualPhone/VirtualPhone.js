@@ -217,7 +217,7 @@ const dateParserLong = (date) => {
 
 
 //ChildApi 66florinatoApp
-function ChildApi66florinatoApp({ api, profil }) {
+function ChildApi66florinatoApp({ api, profilMap }) {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
   const [checked, setChecked] = useState(false);
@@ -282,16 +282,16 @@ function ChildApi66florinatoApp({ api, profil }) {
   //afficher les messages uniquement aux personnes concernées (cette logique nous permet d'éviter que les messages que j'ai envoyé ou recu puissent s'afficher a tout le monde)
   const idAccount = api.idAccount === idPersonConnectedFA;
   const idOther = api.idOther === idPersonConnectedFA;
-
-
+  
+  // pour obtenir les informations du profil, (logique pour savoir si c'est l'id de l'expediteur ou du destinataire)
+  const idToUse = idAccount ? api.idAccount : idOther ? api.idOther : null;
+  const profil = idToUse ? profilMap[idToUse] : null;
+  
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
-  /*
-  if (profil.type === "10") {  
-	  const getphotoProfile = profil.photoProfile;
-	  console.log("profil.photoProfile", getphotoProfile);
-	} 
+  
+	console.log("idToUse icii ", idToUse);
 	console.log("profil icii ", profil);
-	console.log("api icii ", api);*/
+	console.log("profilMap icii ", profilMap);
 	
   return (
     <>
@@ -51261,10 +51261,7 @@ son compte Vixinol store */
           <div className="body">
             <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
               {filterFA.map((api) => {				
-				const profilAssocie = profilMap[api.idAccount]; // profil lié à la conversation
-				//console.log("profilAssocie", profilAssocie);
-				//console.log("api", api);
-				return ( <ChildApi66florinatoApp api={api} profil={profilAssocie} /> )} 
+				return ( <ChildApi66florinatoApp api={api} profilMap={profilMap} /> )} 
               )}
             </div> 
           </div>
