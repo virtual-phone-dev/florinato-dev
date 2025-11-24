@@ -289,9 +289,9 @@ function ChildApi66florinatoApp({ api, profil }) {
   if (profil.type === "10") {  
 	  const getphotoProfile = profil.photoProfile;
 	  console.log("profil.photoProfile", getphotoProfile);
-	} */
+	} 
 	console.log("profil icii ", profil);
-	console.log("api icii ", api);
+	console.log("api icii ", api);*/
 	
   return (
     <>
@@ -35505,19 +35505,17 @@ async function DissadAA() {
 
   //filtre general
   const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
-  
-  console.log("filterFA ici ", filterFA)
-  
+    
   // Créer une map pour accéder rapidement aux profils par id
   const profilMap = useMemo(() => {
 	  const map = {};
 	  filterFA.forEach(item => {
 		if (item.type === "10") {
-			console.log("AJOUT DANS MAP → clé =", item._id, " / objet =", item);
+			//console.log("AJOUT DANS MAP → clé =", item._id, " / objet =", item);
 		  map[item._id] = item;
 		}
 	  });
-	  console.log("profilMap mis à jour", map);
+	  //console.log("profilMap mis à jour", map);
 	  return map;
 }, [apiMessageFA]);
 
@@ -51264,8 +51262,8 @@ son compte Vixinol store */
             <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
               {filterFA.map((api) => {				
 				const profilAssocie = profilMap[api.idAccount]; // profil lié à la conversation
-				console.log("profilAssocie", profilAssocie);
-				console.log("api", api);
+				//console.log("profilAssocie", profilAssocie);
+				//console.log("api", api);
 				return ( <ChildApi66florinatoApp api={api} profil={profilAssocie} /> )} 
               )}
             </div> 
