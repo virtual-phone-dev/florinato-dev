@@ -298,7 +298,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
     <div className="child" onClick={Checked}>
       {api.type === "30" && idAccount && (<> {/* type=30 , (conversation que j'ai envoyé à Other) */}
       <div className="type30" onClick={GoTomessageFA}>
-		{profil && (<>
+		{profil ? (<>
         <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
           </>) : (<><p>Profil non trouvé</p> </>)}
 
@@ -312,7 +312,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
 
       {api.type === "30" && idOther && (<> {/* type=30 , (conversation que Other à reçu) */}
       <div className="type30" onClick={GoTomessageFA}>
-		{profil && (<>
+		{profil ? (<>
         <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
 		</>) : (<><p>Profil non trouvé</p> </>)}
 
@@ -327,7 +327,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
     
       {api.type === "50" && id && (<> {/* type=50 , je me suis abonné */}
       <div className="type50" onClick={GoTogroupOtherFA}>
-		{profil && (<>
+		{profil ? (<>
         <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
 		</>) : (<><p>Profil non trouvé</p> </>)}
 
