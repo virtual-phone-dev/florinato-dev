@@ -1067,10 +1067,6 @@ function ChildApi66profilFA({ api }) {
       localStorage.setItem("type", type); 
       localStorage.setItem("message", message); 
     }
-    console.log("id", id);
-    console.log("idreq", id);
-    console.log("type", type);
-    console.log("message", message);
     
     const urlVideo = api.urlVideo;
     if(urlVideo) { 
@@ -11284,17 +11280,17 @@ dans le localStorage */
   const [apiUserAA, setApiUserAA] = useState([]);
   useEffect(() => {
     async function get() {
-      console.log("aa1");
+      //console.log("aa1");
       await axios
       .get(`${process.env.REACT_APP_UserAA}/api/userAA`)
       .then((res) => {
         setApiUserAA(res.data);
-        console.log("aa2");
+        //console.log("aa2");
 
         //verificationLogin 
         // on verifie si le mot de passe est toujours le meme pour le garder connecter ou pour l'ejecter
         async function verificationLogin() {
-          console.log("aa3");
+          //console.log("aa3");
           const writeVirtualNumber = localStorage.getItem("writeVirtualNumberAAforVerificationLoginAA");
           const writePassword = localStorage.getItem("writePasswordAAforVerificationLoginAA");
           
@@ -40686,10 +40682,10 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
   
   // filtre pour obtenir tout les messages de la discussion - FA
-  console.log("apiMessageFAA cool", apiMessageFAA);
+  //console.log("apiMessageFAA cool", apiMessageFAA);
   
   const filterMessageFA = apiMessageFAA.filter((api) => api.idConversation === idConversation);
-  console.log("filterMessageFA bb", filterMessageFA);
+  //console.log("filterMessageFA bb", filterMessageFA);
   
 
   async function SendMessageFAA() {
