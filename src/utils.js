@@ -7,6 +7,7 @@ import SvgLeft from "./Svg/SvgLeft";
 import SvgLeft2 from "./Svg/SvgLeft2"
 import SvgPointsVertical from "./Svg/SvgPointsVertical";
 import SvgSend from "./Svg/SvgSend";
+import Loader from "./Loader/Loader";
 
 import { theme } from "./theme";
 import "./utils.css"; 
@@ -178,16 +179,7 @@ async function envoyerFAA2({ urlApi, id, idUser, urlPhoto, urlVideo, visible, ty
 }
 
 
-async function envoyerFAA({ id, message,
-		urlPhoto,
-        urlVideo, idAccount, nameAccount, photoAccount,
-        badgeAccount, idAccountChef,
-        idGroupChef, clic, comment, account, group,
-        visible,		
-	    type, 
-		url,	
-	}) {
-
+async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
   for (const api of apiUrls) {
     try {
 	  // Concaténer l'API de base avec l'endpoint
@@ -323,27 +315,7 @@ export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'im
 
 
 
-export async function Envoyer3({
-		file,
-  
-		id,
-		message,
-        urlVideo,
-		idAccount,
-		nameAccount,
-        photoAccount,
-        badgeAccount,
-		idAccountChef,
-        idGroupChef,
-        clic,
-        comment,
-        account,
-        group,
-        visible,		
-	    type, 
-		url,
-		actions = {}, // par défaut, un objet vide
-}) {
+export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
 	
 	let urlPhotoSauvegarder = null;
 	
@@ -388,30 +360,11 @@ export async function Envoyer3({
   
   if (actions.publierVideo) {
     try {
-      await envoyerFAA({  
-		id,	  
-		message,
-        urlPhoto: urlPhotoSauvegarder,
-        urlVideo,
-		idAccount,
-		nameAccount,
-        photoAccount,
-        badgeAccount,
-		idAccountChef,
-        idGroupChef,
-        clic,
-        comment,
-        account,
-        group,
-        visible,		
-	    type, 
-		url,
-		});  
+      await envoyerFAA({ id, message, urlPhoto: urlPhotoSauvegarder, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url });  
     } catch (err) {
       console.error('Erreur lors de l\'envoi FAA:', err);
     }
   }
-
   
 }
 // Envoyer3
@@ -585,8 +538,6 @@ export function PopularityAccountCard({ api }) {
 
 export function ComptesRecentsTemplate({ visible, data, fermer }) {
   if (!visible) return null;
-  
-  console.log('data ici:', data);
 
   return (<>
       <div className="page-blanche">
@@ -595,13 +546,43 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
 			  
 			  <RechercheTemplate />
 			  
+			  <ModifierTemplate />
+			  
 			  {data.map((api) => (<>
 				<PopularityAccountCard api={api} />
 			  </>))}
 		 </div>
 	 </div>
  </>)}
-   
+
+
+export function ModifierTemplate({ description, setDescription, onValidate, onModifyClick, isLoading, title = "Modifier la publication", placeholder = "Entrez votre description..." }) {
+  return (
+    <div className="page-opacity">
+      <div className="align">
+        <div className="card">
+          <div className="block">
+            <div className="a">
+              <p style={{ color: "blue" }} onClick={onModifyClick}>{title}</p>
+			  
+              <div className="textarea">
+                <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder={placeholder} />
+              </div>
+			  
+              {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
+              ):(<div className="btn-bleu"> <button onClick={onValidate}>Valider</button> </div> )}
+            </div>
+            {/* a */}
+          </div>
+          {/* block */}
+        </div>
+        {/* card */}
+      </div>
+      {/* align */}
+    </div>
+  );
+}
+
 
 export function MissionTemplate({ visible, valeur, setValeur, envoyer, message, nomMembre, titre, titre2, titre3, titre4, titre5, titre7, titre8, titre9 }) {
   if (!visible) return null;
