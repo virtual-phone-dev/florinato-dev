@@ -51261,7 +51261,7 @@ son compte Vixinol store */
           <div className="body">
             <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
               {filterFA.map((api) => {				
-				const profilAssocie = profilMap[api._id]; // profil lié à la conversation
+				const profilAssocie = profilMap[api.idAccount]; // profil lié à la conversation
 				//console.log("profilAssocie", profilAssocie);
 				//console.log("api", api);
 				return ( <ChildApi66florinatoApp api={api} profil={profilAssocie} /> )} 
