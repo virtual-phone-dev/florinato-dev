@@ -284,14 +284,14 @@ function ChildApi66florinatoApp({ api, profilMap }) {
   const idOther = api.idOther === idPersonConnectedFA;
   
   // pour obtenir les informations du profil, (logique pour savoir si c'est l'id de l'expediteur ou du destinataire)
-  const idToUse = idAccount ? api.idAccount : idOther ? api.idOther : null;
+  const idToUse = idAccount ? api.idOther : idOther ? api.idAccount : null;
   const profil = idToUse ? profilMap[idToUse] : null;
   
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
   
-	console.log("idToUse icii ", idToUse);
+	/*console.log("idToUse icii ", idToUse);
 	console.log("profil icii ", profil);
-	console.log("profilMap icii ", profilMap);
+	console.log("profilMap icii ", profilMap);*/
 	
   return (
     <>
