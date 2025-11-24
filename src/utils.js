@@ -210,11 +210,13 @@ async function envoyerFAA({
 	  console.log("idAccount ici", idAccount)
 	  console.log("message ici", message)
 	  
+	  const newUrlVideo = await AdapterLien(urlVideo)
+	  
       const response = await axios.post(fullUrl, {
         id,	  
 		message,
         urlPhoto,
-        urlVideo,
+        newUrlVideo,
 		idAccount,
 		nameAccount,
         photoAccount,

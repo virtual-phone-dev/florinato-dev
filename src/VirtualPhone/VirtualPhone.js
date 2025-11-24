@@ -44545,10 +44545,10 @@ async function EnvoyerVideoFAA() {
 	console.log("photoUrl ici :", photoUrl);
 	
 	const actions = {
-	  /*envoyerPhoto: true,
+	  envoyerPhoto: true,
 	  publierVideo: true,
-	  allData: true,*/
-	  adapterLien: true,
+	  allData: true,
+	  //adapterLien: true,
 	};
 		
 	await Envoyer3({
