@@ -44603,7 +44603,7 @@ async function ValiderUrl() {
 	
 	const actions = { modifier: true };
 		
-	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions )}
+	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
 	setisLoading666ValideUrl(false);
 }
 // ValiderUrl
