@@ -226,23 +226,24 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
 
 async function ValiderModificationLogique({ nouveauUrl, idPost }) {
   for (const api of apiUrlsPUT) {
-    try {
-      const fullUrl = `${api}/${idPost}`;
+	  const fullUrl = `${api}/${idPost}`;
 	  const urlVideoAdapter = await AdapterLien(nouveauUrl)
 	  
 	  console.log("fullUrl", fullUrl)
 	  console.log("urlVideoAdapter", urlVideoAdapter)
 	  
-      const res = await axios.put(fullUrl, { urlVideo: urlVideoAdapter }, {
-        headers: { 'Content-Type': 'application/json' }
-      });
-      return res.data;
-	  
-	  console.log("res.data", res.data)
-	  } catch (err) {
-      console.log(`Échec de la requête sur ${api}`, err);
+		await axios({
+            method: "put",
+            url: fullUrl, 
+            data: { urlVideo: urlVideoAdapter },
+            })
+            .then((res) => {
+				console.log("modification reussie");
+				console.log(res.data);
+			})
+			.catch((err) => console.log(`Échec de la requête sur ${api}`, err); );
     }
-  }
+	
   console.log('Toutes les tentatives ont échoué pour enregistrer les modifications.');
 }
 
