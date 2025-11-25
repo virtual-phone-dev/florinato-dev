@@ -589,7 +589,7 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
  </>)}
 
 
-export function ModifierTemplate({ visible, fermer, valeur, setValeur, validerModification, onModifyClick, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderModification, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
   if (!visible) return null;
   const urlVideo = localStorage.getItem("urlVideo");
   
@@ -607,7 +607,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, validerMo
               </div>
 			  
               {isLoading666ValiderModification ? (<div className="loader-display-flex"> <Loader/> </div>
-              ):(<div className="btn-bleu"> <button onClick={validerModification}>Valider</button> </div> )}
+              ):(<div className="btn-bleu"> <button onClick={ValiderModification}>Valider</button> </div> )}
             </div>
             {/* a */}
           </div>
