@@ -35454,8 +35454,8 @@ async function DissadAA() {
       localStorage.setItem("badgeFA", getBadge);
       localStorage.setItem("phoneNumberFA", getPhoneNumber);
       localStorage.setItem("idGroupFA", getidGroup);
-	  localStorage.setItem("idGroupChef", getidGroup); 
-	  localStorage.setItem("idAccountChef", idPersonConnectedFA); 
+	  //localStorage.setItem("idGroupChef", getidGroup); 
+	  //localStorage.setItem("idAccountChef", idPersonConnectedFA); 
       localStorage.setItem("nameGroupFA", getNameGroup);
       localStorage.setItem("photoGroupFA", getPhotoGroup);
       localStorage.setItem("popularityFA", getPopularity);
@@ -44631,10 +44631,17 @@ async function ValiderUrl() {
 	console.log("url pas encore modifier :", ecrire666modifierUrl);
 	console.log("idPost ici :", idPost);
 	
-	const actions = { modifier: true };
+	const actions = { modifier: true, allData: true };
 		
 	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
 	setisLoading666ValideUrl(false);
+	
+	if (actions.allData) {
+		const data = await getAllData();
+		setApiMessageFA(data);
+		setApiMessageFAA(data);
+		//console.log(`data est là :`, data);
+	  }
 }
 // ValiderUrl
 
