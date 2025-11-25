@@ -35454,6 +35454,8 @@ async function DissadAA() {
       localStorage.setItem("badgeFA", getBadge);
       localStorage.setItem("phoneNumberFA", getPhoneNumber);
       localStorage.setItem("idGroupFA", getidGroup);
+	  localStorage.setItem("idGroupChef", getidGroup); 
+	  localStorage.setItem("idAccountChef", idPersonConnectedFA); 
       localStorage.setItem("nameGroupFA", getNameGroup);
       localStorage.setItem("photoGroupFA", getPhotoGroup);
       localStorage.setItem("popularityFA", getPopularity);
@@ -38920,9 +38922,14 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
                     //inscription reussie , alors on le connecte directement sur florinato
                     //on enregistre l'idAccount pour le maintenir connecté !
-                    const idAccount = localStorage.getItem("idAccount");
-                    if (idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
-
+					const idAccount = localStorage.getItem("idAccount");
+                    const idGroup = localStorage.getItem("idGroup");
+                    if (idAccount) { 
+						localStorage.setItem("idPersonConnectedFA", idAccount);
+						localStorage.setItem("idAccountChef", idAccount); 
+						localStorage.setItem("idGroupChef", idGroup); 
+					}
+					
                     const idUser = localStorage.getItem("idUser");
                     if (idUser) { localStorage.setItem("idUserConnectedFA", idUser); }
 
@@ -39287,18 +39294,19 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
                     },
                   })
                   .then((res) => {
-                    console.log("photo ajouter aux favoris", res);
 
                     //inscription reussie , alors on le connecte directement sur florinato
                     //on enregistre l'idAccount pour le maintenir connecté !
                     const idAccount = localStorage.getItem("idAccount");
-                    if (idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
+                    const idGroup = localStorage.getItem("idGroup");
+                    if (idAccount) { 
+						localStorage.setItem("idPersonConnectedFA", idAccount);
+						localStorage.setItem("idAccountChef", idAccount); 
+						localStorage.setItem("idGroupChef", idGroup); 
+					}
 
                     const idUser = localStorage.getItem("idUser");
                     if (idUser) { localStorage.setItem("idUserConnectedFA", idUser); }
-
-                    console.log("inscription reussie, idPersonConnectedFA", idAccount);
-                    console.log("idUserConnectedFA", idUser);
 
               //11e requete - api2
               // obtenir de nouvelles données
@@ -39307,7 +39315,6 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
                   .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
                   .then((res) => {
                     setApiMessageFA(res.data);
-                    console.log(res);
     
                     //connexion reussie, on affiche la page d'accueil de la messagerie
                     setAddPhoto666inscriptionPageAA(false);
