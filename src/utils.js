@@ -591,7 +591,8 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
  </>)}
 
 
-export function ModifierTemplate({ valeur, setValeur, validerModification, onModifyClick, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, validerModification, onModifyClick, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
+  if (!visible) return null;
   const urlVideo = localStorage.getItem("urlVideo");
   
   return (
@@ -600,8 +601,8 @@ export function ModifierTemplate({ valeur, setValeur, validerModification, onMod
         <div className="card">
           <div className="block">
             <div className="a">
-              <p style={{ color: "blue" }} onClick={onModifyClick}>{title}</p>
-			  <p className="p-15px-center">{urlVideo}</p>
+              <p style={{ color: "blue" }} onClick={fermer}>{title}</p>
+			  <p className="p-15px-center" onClick={fermer}>{urlVideo}</p>
 			  
               <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
