@@ -57,6 +57,13 @@
   font-size: 15px;
 }
 
+.p-15px-center {
+  font-size: 15px
+  align-items: center;
+  padding: 15px;
+}
+
+
 .p-17px p {
   font-size: 17px;
 }

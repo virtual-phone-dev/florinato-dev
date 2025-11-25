@@ -556,7 +556,9 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
  </>)}
 
 
-export function ModifierTemplate({ description, setDescription, onValidate, onModifyClick, isLoading, title = "Modifier la publication", placeholder = "Entrez votre description..." }) {
+export function ModifierTemplate({ description, setDescription, onValidate, onModifyClick, isLoading, title = "Modifier l'url de  la video", placeholder = "Entrez votre description..." }) {
+  const urlVideo = localStorage.getItem("urlVideo");
+  
   return (
     <div className="page-opacity">
       <div className="align">
@@ -564,6 +566,7 @@ export function ModifierTemplate({ description, setDescription, onValidate, onMo
           <div className="block">
             <div className="a">
               <p style={{ color: "blue" }} onClick={onModifyClick}>{title}</p>
+			  <p className="p-15px-center">{urlVideo}</p>
 			  
               <div className="textarea">
                 <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder={placeholder} />
