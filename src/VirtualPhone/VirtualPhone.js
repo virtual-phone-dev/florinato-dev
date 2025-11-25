@@ -44580,18 +44580,31 @@ async function EnvoyerVideoFAA() {
 // EnvoyerVideoFAA
 
 
-ModifierTemplate({ valeur, setValeur, validerModification, onModifyClick, isLoading666ValiderModification,
-
+//page pour enregistrer l'url modifier
+const [modifierUrlPage, setmodifierUrlPage] = useState(false);
+async function ModifierUrlPage() {
+	setmodifierUrlPage(true);
+}
+async function CloseModifierUrlPage() {
+	setmodifierUrlPage(false);
+}
 
 //logique pour enregistrer l'url modifier
-async function ValiderUrl() { 
+const [isLoading666ValiderUrl, setisLoading666ValideUrl] = useState(false);
+const [ecrire666modifierUrl, setecrire666modifierUrl] = useState("");
+
+async function ValiderUrl() {
+	setisLoading666ValideUrl(true);
+	const idPost = localStorage.getItem("idPost");
+	
 	console.log("debut ValiderUrl");
-	console.log("nouveauUrl ici :", nouveauUrl);
+	console.log("url pas encore modifier :", ecrire666modifierUrl);
 	console.log("idPost ici :", idPost);
 	
 	const actions = { modifier: true };
 		
-	await Envoyer3({ nouveauUrl: lienGitLab, idPost: 600, actions )}
+	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions )}
+	setisLoading666ValideUrl(false);
 }
 // ValiderUrl
 
@@ -52581,6 +52594,7 @@ g
       <div className="seeVideoFA">
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
+          <div className="b" onClick={ModifierUrlPage}> <SvgAdd/> </div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
         </div>
         {/* close */}
@@ -52716,6 +52730,10 @@ g
         </>)}
       {/* choisir la video a ajouter à la photo - FA  */}
 	  
+
+      {/* page pour modifier l'url  */}
+	  <ModifierTemplate visible={modifierUrlPage}, fermer={CloseModifierUrlPage}, valeur={ecrire666modifierUrl}, setValeur={setecrire666modifierUrl}, ValiderModification={ValiderUrl}, isLoading666ValiderModification={isLoading666ValiderUrl} />
+
 
       {/* voir la miniature- FA  */}
 	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />

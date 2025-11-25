@@ -341,7 +341,7 @@ export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'im
 
 
 
-export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
+export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAccount, nameAccount, photoAccount, nouveauUrl, idPost, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
 	
 	let urlPhotoSauvegarder = null;
 	
@@ -389,6 +389,15 @@ export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAc
       await envoyerFAA({ id, message, urlPhoto: urlPhotoSauvegarder, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url });  
     } catch (err) {
       console.error('Erreur lors de l\'envoi FAA:', err);
+    }
+  }
+  
+  
+  if (actions.modifier) {
+    try {
+	  await ValiderModificationLogique({ nouveauUrl, idPost )}
+    } catch (err) {
+      console.log('impossible de modifier', err);
     }
   }
   
