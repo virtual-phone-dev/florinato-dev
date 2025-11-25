@@ -114,6 +114,7 @@ const apiUrls = [
 
 const apiUrlsPhoto = apiUrls.map(base => `${base}/api/messageFA/sendPhoto`);
 const apiUrlsObtenirDonnees = apiUrls.map(base => `${base}/api/messageFA`);
+const apiUrlsPUT = apiUrls.map(base => `${base}/api/messageFA/update`);
 	  
 
 async function uploadImage(file) {
@@ -221,6 +222,31 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
   }
   throw new Error('Toutes les tentatives d\'envoi FAA ont échoué');
 }
+
+
+async function ValiderModificationLogique({ nouveauUrl, idPost }) {
+  for (const api of apiUrlsPUT) {
+    try {
+      const fullUrl = `${api}/${idPost}`;
+	  const urlVideoAdapter = await AdapterLien(nouveauUrl)
+	  
+	  console.log("fullUrl", fullUrl)
+	  console.log("urlVideoAdapter", urlVideoAdapter)
+	  
+      const res = await axios.put(fullUrl, { urlVideo: urlVideoAdapter }, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      return res.data;
+	  
+	  console.log("res.data", res.data)
+	  } catch (err) {
+      console.log(`Échec de la requête sur ${api}`, err);
+    }
+  }
+  console.log('Toutes les tentatives ont échoué pour enregistrer les modifications.');
+}
+
+
 
 
 // obtenir toutes les donnees qui sont dans l'api
@@ -556,7 +582,7 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
  </>)}
 
 
-export function ModifierTemplate({ description, setDescription, onValidate, onModifyClick, isLoading, title = "Modifier l'url de  la video", placeholder = "Entrez votre description..." }) {
+export function ModifierTemplate({ valeur, setValeur, validerModification, onModifyClick, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
   const urlVideo = localStorage.getItem("urlVideo");
   
   return (
@@ -569,11 +595,11 @@ export function ModifierTemplate({ description, setDescription, onValidate, onMo
 			  <p className="p-15px-center">{urlVideo}</p>
 			  
               <div className="textarea">
-                <textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder={placeholder} />
+                <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
               </div>
 			  
-              {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
-              ):(<div className="btn-bleu"> <button onClick={onValidate}>Valider</button> </div> )}
+              {isLoading666ValiderModification ? (<div className="loader-display-flex"> <Loader/> </div>
+              ):(<div className="btn-bleu"> <button onClick={validerModification}>Valider</button> </div> )}
             </div>
             {/* a */}
           </div>
