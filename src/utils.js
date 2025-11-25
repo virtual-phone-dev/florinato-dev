@@ -241,7 +241,7 @@ async function ValiderModificationLogique({ nouveauUrl, idPost }) {
 				console.log("modification reussie");
 				console.log(res.data);
 			})
-			.catch((err) => console.log(`Échec de la requête sur ${api}`, err); );
+			.catch((err) => { console.log(`Échec de la requête sur ${api}`, err); });
     }
 	
   console.log('Toutes les tentatives ont échoué pour enregistrer les modifications.');
