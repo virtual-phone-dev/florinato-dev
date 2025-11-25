@@ -395,7 +395,7 @@ export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAc
   
   if (actions.modifier) {
     try {
-	  await ValiderModificationLogique({ nouveauUrl, idPost )}
+	  await ValiderModificationLogique({ nouveauUrl, idPost })
     } catch (err) {
       console.log('impossible de modifier', err);
     }
