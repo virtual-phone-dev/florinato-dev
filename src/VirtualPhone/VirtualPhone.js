@@ -409,10 +409,14 @@ function ChildApi66accountsFA({ api }) {
     if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
 
     const idGroup = api.idGroup;
-    if(idGroup) { localStorage.setItem("idGroupFA", idGroup); }
+	if(idGroup) { 
+		localStorage.setItem("idGroupFA", idGroup); 
+		localStorage.setItem("idAccountChef", idAccount); 
+		localStorage.setItem("idGroupChef", idGroup); 
+	}
 
-    console.log("idPersonConnectedFA", idAccount);
-    console.log("idGroupFA", idGroup);
+    //console.log("idPersonConnectedFA", idAccount);
+    //console.log("idGroupFA", idGroup);
   }
 
   // date envoie message
@@ -474,10 +478,14 @@ function ChildApi266accountsFA({ api2 }) {
     if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
 
     const idGroup = api2.idGroup;
-    if(idGroup) { localStorage.setItem("idGroupFA", idGroup); }
+    if(idGroup) { 
+		localStorage.setItem("idGroupFA", idGroup); 
+		localStorage.setItem("idAccountChef", idAccount); 
+		localStorage.setItem("idGroupChef", idGroup); 
+	}
 
-    console.log("idPersonConnectedFA", idAccount);
-    console.log("idGroupFA", idGroup);
+    //console.log("idPersonConnectedFA", idAccount);
+    //console.log("idGroupFA", idGroup);
   }
 
   // date envoie message
