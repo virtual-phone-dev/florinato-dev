@@ -44580,32 +44580,18 @@ async function EnvoyerVideoFAA() {
 // EnvoyerVideoFAA
 
 
-
-//8e requete - api1
-        // on met l'idPhotoProfile sur son compte
-        async function huitiemeReq() {
-          const idAccount = localStorage.getItem("idAccount");
-          const idPhotoProfile = localStorage.getItem("idPhotoProfile");
-          const idGroup = localStorage.getItem("idGroup");
-
-          await axios({
-            method: "put",
-            url: `${process.env.REACT_APP_Api1}/api/messageFA/update/${idAccount}`, 
-            data: {
-              idPhotoProfile,
-              idGroup,
-            },
-            })
-            .then((res) => {
-            console.log("l'id de la photo de profil a ete mis sur le compte");
-            console.log(res);
-
 ModifierTemplate({ valeur, setValeur, validerModification, onModifyClick, isLoading666ValiderModification,
 
 
 //logique pour enregistrer l'url modifier
-async function ValiderUrl() {
-	mm
+async function ValiderUrl() { 
+	console.log("debut ValiderUrl");
+	console.log("nouveauUrl ici :", nouveauUrl);
+	console.log("idPost ici :", idPost);
+	
+	const actions = { modifier: true };
+		
+	await Envoyer3({ nouveauUrl: lienGitLab, idPost: 600, actions )}
 }
 // ValiderUrl
 
