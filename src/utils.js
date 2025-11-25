@@ -581,8 +581,6 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
 			  
 			  <RechercheTemplate />
 			  
-			  <ModifierTemplate />
-			  
 			  {data.map((api) => (<>
 				<PopularityAccountCard api={api} />
 			  </>))}
@@ -602,7 +600,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, validerMo
           <div className="block">
             <div className="a">
               <p style={{ color: "blue" }} onClick={fermer}>{title}</p>
-			  <p className="p-15px-center" onClick={fermer}>{urlVideo}</p>
+			  <p className="p-15px-center">{urlVideo}</p>
 			  
               <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />

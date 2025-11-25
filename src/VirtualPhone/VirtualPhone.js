@@ -1064,6 +1064,8 @@ function ChildApi66profilFA({ api }) {
     if(id) { 
       localStorage.setItem("id", id); 
       localStorage.setItem("idreq", id); 
+      localStorage.setItem("idPost", id); 
+      localStorage.setItem("idPostreq", id); 
       localStorage.setItem("type", type); 
       localStorage.setItem("message", message); 
     }
@@ -1073,6 +1075,9 @@ function ChildApi66profilFA({ api }) {
       localStorage.setItem("urlVideo", urlVideo); 
       localStorage.setItem("urlVideoreq", urlVideo); 
     }
+	
+	console.log("idPostreq", id)
+	console.log("urlVideo", urlVideo)
 
     const image = api.urlPhoto;
     if(image) { 
@@ -35824,7 +35829,12 @@ async function DissadAA() {
               //Compte créer avec success , alors on le connecte directement sur le nouveau compte florinato
               //on enregistre l'idAccount pour le maintenir connecté !
               const idAccount = localStorage.getItem("idAccount");
-              if (idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
+              const idGroup = localStorage.getItem("idGroup");
+              if (idAccount) { 
+				localStorage.setItem("idPersonConnectedFA", idAccount);
+                localStorage.setItem("idAccountChef", idAccount); 
+                localStorage.setItem("idGroupChef", idGroup); 
+			  }
 
               console.log("Compte créer avec success, idPersonConnectedFA", idAccount);
               console.log(res);
@@ -36022,8 +36032,13 @@ async function DissadAA() {
               setApiMessageFA(res.data);
               //Compte créer avec success , alors on le connecte directement sur le nouveau compte florinato
               //on enregistre l'idAccount pour le maintenir connecté !
-              const idAccount = localStorage.getItem("idAccount");
-              if (idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
+			  const idAccount = localStorage.getItem("idAccount");
+              const idGroup = localStorage.getItem("idGroup");
+              if (idAccount) { 
+				localStorage.setItem("idPersonConnectedFA", idAccount);
+                localStorage.setItem("idAccountChef", idAccount); 
+                localStorage.setItem("idGroupChef", idGroup); 
+			  }
 
               console.log("Compte créer avec success, idPersonConnectedFA", idAccount);
               console.log(res);
