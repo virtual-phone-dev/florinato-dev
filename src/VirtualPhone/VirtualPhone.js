@@ -51524,7 +51524,7 @@ g
 
   h
 </div> </>)}
-              <div className="block-deux"> 
+              <div className="display-flex-nowrap"> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div> 
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div> 
 			  </div>

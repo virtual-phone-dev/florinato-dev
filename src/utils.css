@@ -53,6 +53,11 @@
   padding-bottom: 15px;
 }
 
+.display-flex-nowrap {
+  display: flex;
+  flex-wrap: nowrap;
+}
+
 .p-15px {
   font-size: 15px;
 }
