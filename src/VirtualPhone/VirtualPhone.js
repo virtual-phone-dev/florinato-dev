@@ -52732,7 +52732,7 @@ g
 	  
 
       {/* page pour modifier l'url  */}
-	  <ModifierTemplate visible={modifierUrlPage}, fermer={CloseModifierUrlPage}, valeur={ecrire666modifierUrl}, setValeur={setecrire666modifierUrl}, ValiderModification={ValiderUrl}, isLoading666ValiderModification={isLoading666ValiderUrl} />
+	  <ModifierTemplate visible={modifierUrlPage} fermer={CloseModifierUrlPage} valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} ValiderModification={ValiderUrl} isLoading666ValiderModification={isLoading666ValiderUrl} />
 
 
       {/* voir la miniature- FA  */}
