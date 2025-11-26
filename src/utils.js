@@ -161,25 +161,6 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
 }
 
 
-async function envoyerFAA2({ urlApi, id, idUser, urlPhoto, urlVideo, visible, type }) {
-  for (const api of apiUrls) {
-    try {
-      const response = await fetch(api, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ urlApi, id, idUser, urlPhoto, urlVideo, visible, type }),
-      });
-      if (!response.ok) throw new Error('Envoi FAA échoué');
-      const data = await response.json();
-      return data; // ou autre indication de succès
-    } catch (err) {
-      // passer à l'API suivante en cas d'erreur
-    }
-  }
-  throw new Error('Toutes les tentatives d\'envoi FAA ont échoué');
-}
-
-
 async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
   for (const api of apiUrls) {
     try {
@@ -226,6 +207,44 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
 
 async function ValiderModificationLogique({ nouveauUrl, idPost }) {
   for (const api of apiUrlsPUT) {
+    try {
+      const fullUrl = `${api}/${idPost}`;
+      const urlVideoAdapter = await AdapterLien(nouveauUrl);
+	  
+      const response = await axios.put(fullUrl, { urlVideo: urlVideoAdapter }, {
+        headers: { 'Content-Type': 'application/json' }
+      });
+      
+      console.log("Modification réussie sur", fullUrl);
+      console.log(response.data);
+      return response.data; // Retourner dès que c'est réussi
+    } catch (err) {
+      console.log(`Échec de la requête sur ${api}`, err);
+      // Continue à essayer avec l'API suivante
+	  
+	  //ca ce sont des erreurs precises , pour savoir ce que renvoie le serveur
+	  if (err.response) {
+		// La requête a été faite et le serveur a répondu avec un code de statut
+		console.log(`Erreur serveur sur ${api}:`, err.response.data);
+		console.log('Status:', err.response.status);
+		console.log('Headers:', err.response.headers);
+	  } else if (err.request) {
+		// La requête a été faite mais aucune réponse n’a été reçue
+		console.log(`Pas de réponse du serveur sur ${api}:`, err.request);
+	  } else {
+		// Quelque chose s’est produit lors de la configuration de la requête
+		console.log(`Erreur lors de la requête sur ${api}:`, err.message);
+	  }
+	  
+    }
+  }
+  throw new Error('Toutes les tentatives ont échoué pour enregistrer les modifications.');
+}
+
+
+/*
+async function ValiderModificationLogique({ nouveauUrl, idPost }) {
+  for (const api of apiUrlsPUT) {
 	  const fullUrl = `${api}/${idPost}`;
 	  const urlVideoAdapter = await AdapterLien(nouveauUrl)
 	  
@@ -245,7 +264,7 @@ async function ValiderModificationLogique({ nouveauUrl, idPost }) {
     }
 	
   console.log('Toutes les tentatives ont échoué pour enregistrer les modifications.');
-}
+}*/
 
 
 
@@ -601,7 +620,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderMo
           <div className="block">
             <div className="a">
               <p style={{ color: "blue" }} onClick={fermer}>{title}</p>
-			  <p className="p-15px-center">{urlVideo}</p>
+			  <pre className="pre-15px-center">{urlVideo}</pre>
 			  
               <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
