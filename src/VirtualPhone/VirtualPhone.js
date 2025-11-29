@@ -52714,6 +52714,8 @@ g
           <div className="publier-video-opacity">
             <div className="align">
               <div className="card">
+				<div className="photo-25px" onClick={SeePhoto66profilFA}> <img src={getPhoto} alt=""/> </div>
+				
                 <div onClick={CloseAddVideoPageFA} className="block">
                   <div className="a"> <SvgVideo9 /> </div>
                   <div className="b"> <p>Mettez le Lien de la vidéo</p> </div>

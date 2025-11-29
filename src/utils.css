@@ -58,6 +58,10 @@
   flex-wrap: nowrap;
 }
 
+.display-flex-nowrap .a {
+  padding-left: 10px;
+}
+
 .p-15px {
   font-size: 15px;
 }
@@ -80,6 +84,15 @@
   width: 70px;
   margin-left: 5px;
   margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.photo-25px img {
+  height: 25px;
+  width: 25px;
   border-radius: 50%;
   object-fit: cover;
   border: 1px solid #eee;
