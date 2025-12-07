@@ -44563,10 +44563,12 @@ async function transVoirMiniature(url) { //transmettre VoirMiniature (on transme
 const [lienDropbox, setLienDropbox] = useState("");
 const [lienGitHub, setLienGitHub] = useState("");
 const [lienGitLab, setLienGitLab] = useState("");
+const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
 
 
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
+	setisLoading666EnvoyerVideoFAA(true);
 	console.log("envoyer photo");
 	console.log("photoUrl ici :", photoUrl);
 	
@@ -44606,6 +44608,8 @@ async function EnvoyerVideoFAA() {
 		setApiMessageFAA(data);
 		//console.log(`data est là :`, data);
 	  }
+	  
+	setisLoading666EnvoyerVideoFAA(false);
 }
 // EnvoyerVideoFAA
 
@@ -52738,14 +52742,13 @@ g
 					setFileVideoFAA(fichier);
 				  }}
 				  /> </div>
-
                 {/* block-deux */}
 				
 				{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)} 
-
 				
-				<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div>
-				
+				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
+				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div> )}
+					
 				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
 
                 <div className="block-quatre"> 
@@ -52993,7 +52996,7 @@ g
           <div className="title">
             <div className="a">
               <div className="aa"> 
-                <p>{t("--virtual phone")}</p>
+                <p>La messagerie 2026</p>
                 <p></p> 
               </div> 
               <div onClick={Translation} className="bb"> <SvgTranslation /> </div>
