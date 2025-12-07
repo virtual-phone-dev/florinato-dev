@@ -52718,7 +52718,7 @@ g
 				
                 <div onClick={CloseAddVideoPageFA} className="block">
                   <div className="a"> <SvgVideo9 /> </div>
-                  <div className="b"> <p>Mettez le Lien de la vidéo</p> </div>
+                  <div className="b"> <p>Lien de la vidéo</p> </div>
                 </div>
                 {/* block */}
 				
@@ -52746,19 +52746,19 @@ g
 				
 				<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div>
 				
-				<div className="block-trois"> <button onClick={CloseAddVideoPageFA}>Valider</button> </div>
+				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
 
-                <div className="block-quatre"> <p>Important :</p></div> 
-                <div className="block-quatre"> <p>**Petits fichiers :</p></div> 
-                <div className="block-quatre"> <p>Gitlab</p></div> 
-                <div className="block-quatre"> <p>Github</p></div> 
-                <div className="block-quatre"> <p>**Gros fichiers :</p></div> 
-                <div className="block-quatre"> <p>Drive</p></div> 
-                <div className="block-quatre"> <p>Dropbox</p></div> 
-				<div className="block-quatre"> <p>Important : Pour github et gitlab, la taille maximale de la video est de 25mb, les autres c'est illimité</p> </div> 
-				<div className="block-quatre"> <p>Avantages :</p> </div> 
-				<div className="block-quatre"> <p>Pour github, gitlab, et dropbox, telechargement direct de la video</p> </div> 
-				<div className="block-quatre"> <p>drive, telechargement indirect de la video</p> </div> 
+                <div className="block-quatre"> 
+					<p>Important :</p>
+					<p>**Uploader les Petits fichiers sur : Gitlab, ou Github (taille maximale 25mb)</p>
+					<p>**Uploader les Gros fichiers sur : Drive, ou Dropbox</p>
+				</div> 				
+
+				<div className="block-quatre"> 
+					<p>Avantages :</p>
+					<p>Pour github, gitlab, et dropbox, c'est facile de télécharger la video depuis Florinato</p>
+					<p>Pour Drive, c'est difficile de télécharger la video depuis Florinato</p> 
+				</div> 
                 {/* block-quatre */}
               </div>
               {/* card */}

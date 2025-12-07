@@ -140,6 +140,16 @@
   border: none;
 }
 
+.fermer button {
+  cursor: pointer;
+  background-color: transparent;
+  color: white;
+  border: 1px solid #ccc;
+  padding: 4px 18px;
+  margin-bottom: 13px;
+  font-size: 14px;
+  border-radius: 3px;
+}
 
 /* Sur PC plus large, augmenter la taille si besoin */
 

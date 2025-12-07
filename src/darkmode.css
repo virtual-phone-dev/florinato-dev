@@ -7711,6 +7711,7 @@
 
 .publier-video-opacity .align .card .block-trois {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .publier-video-opacity .align .card .block-trois-vert {
@@ -7737,12 +7738,14 @@
   border-radius: 3px;
 }
 
+.publier-video-opacity .align .card .block-quatre {
+  margin-top: 20px;
+}
+
 .publier-video-opacity .align .card .block-quatre p {
   text-align: center;
   color: #a6a6a6;
-  cursor: pointer;
   font-size: 14px;
-  margin-top: 25px;
 }
 
 .ajouter-admin-opacity {
