@@ -35536,9 +35536,7 @@ async function DissadAA() {
   
   //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
-  //console.log('comptesRecentsFA ici:', comptesRecentsFA);
-  pourquoi ca fait planter, le site, disant que, je fais la partie recherche de la barre de  Recherche, pour un rechercher un compte qui se trouve dans ma bdd mongodb.
-  Uncaught TypeError: Cannot read properties of undefined (reading 'includes')
+
   
   // logique pour obtenir, afficher les resultats de la recherche - FA
   const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
