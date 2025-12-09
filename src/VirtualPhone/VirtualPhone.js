@@ -35543,7 +35543,7 @@ async function DissadAA() {
   if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
 
   // rechercher parmi les comptes 
-  const listAccountFA = apiMessageFA.filter((api) => api.nameAccount && api.nameAccount.includes(mySearchFA) && api.visible === "1").sort((a, b) => b.id - a.id);
+  const listAccountFA = apiMessageFA.filter((api) => api.type === "10" && api.nameAccount && api.nameAccount.includes(mySearchFA) && api.visible === "1").sort((a, b) => b.id - a.id);
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
   
