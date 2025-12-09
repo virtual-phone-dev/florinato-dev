@@ -35534,19 +35534,18 @@ async function DissadAA() {
   //filtre pour afficher les comptes les plus populaires sur Florinato
   const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.florinatoApp === "1").sort((a, b) => b.popularity - a.popularity);
   
-  //filtre pour afficher les comptes creer
+  //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
   //console.log('comptesRecentsFA ici:', comptesRecentsFA);
-  
+  pourquoi ca fait planter, le site, disant que, je fais la partie recherche de la barre de  Recherche, pour un rechercher un compte qui se trouve dans ma bdd mongodb.
+  Uncaught TypeError: Cannot read properties of undefined (reading 'includes')
   
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  const [mySearchFA, setMySearchFA] = useState("");
+  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
   if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
-  const getMySearchFA = localStorage.getItem("searchFA");
 
-  
   // rechercher parmi les comptes 
-  const listAccountFA = apiMessageFA.filter((api) => api.nameAccount.includes(getMySearchAA) && api.visible === "1").sort((a, b) => b.id - a.id);
+  const listAccountFA = apiMessageFA.filter((api) => api.nameAccount.includes(mySearchFA) && api.visible === "1").sort((a, b) => b.id - a.id);
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
   
   console.log('mySearchFA ici:', mySearchFA);
