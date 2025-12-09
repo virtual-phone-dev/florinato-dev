@@ -35556,12 +35556,16 @@ async function DissadAA() {
 	};
 
   // rechercher parmi les comptes 
-  const listAccountFA = apiMessageFA.filter((api) => 
-  api.type === "10" && 
-  api.nameAccount && 
-  // api.nameAccount.toLowerCase().includes(mySearchFA.toLowerCase()) && 
-  normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
-  api.visible === "1");
+  const listAccountFA = apiMessageFA.filter((api) => {
+  if (!mySearchFA) return false; // Si la recherche est vide, ne retourne rien
+  
+  return (
+	  api.type === "10" && 
+	  api.nameAccount && 
+	  // api.nameAccount.toLowerCase().includes(mySearchFA.toLowerCase()) && 
+	  normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
+	  api.visible === "1");
+	})
   
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
