@@ -35539,11 +35539,17 @@ async function DissadAA() {
 
   
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
-  if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
+  // const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
+  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("");
+  // if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
 
   // rechercher parmi les comptes 
-  const listAccountFA = apiMessageFA.filter((api) => api.type === "10" && api.nameAccount && api.nameAccount.includes(mySearchFA) && api.visible === "1").sort((a, b) => b.id - a.id);
+  const listAccountFA = apiMessageFA.filter((api) => 
+  api.type === "10" && 
+  api.nameAccount && 
+  api.nameAccount.toLowerCase().includes(mySearchFA.toLowerCase()) && 
+  api.visible === "1");
+  
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
   
