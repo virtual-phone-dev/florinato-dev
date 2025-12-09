@@ -35544,11 +35544,13 @@ async function DissadAA() {
 
   // rechercher parmi les comptes 
   const listAccountFA = apiMessageFA.filter((api) => api.nameAccount && api.nameAccount.includes(mySearchFA) && api.visible === "1").sort((a, b) => b.id - a.id);
+  const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
   
   console.log('mySearchFA ici:', mySearchFA);
   console.log('listAccountFA ici:', listAccountFA);
   console.log('verifyAccountFA ici:', verifyAccountFA);
+  console.log('verifyAccountFAnombre ici:', verifyAccountFAnombre);
   
 
    // filtre pour obtenir tout les favoris
