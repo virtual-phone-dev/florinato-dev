@@ -40698,12 +40698,13 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   // logique pour envoyer un message privé sur florinato
   const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
-  const [apiMessageFAA, setApiMessageFAA] = useState([]);
+  const [apiMessageFAA, setApiMessageFAA] = useState([]);  
   useEffect(() => {
     async function get() {
       await axios.get(`${process.env.REACT_APP_Api2}/api/messageFA`)
       .then((res) => {
         setApiMessageFAA(res.data);
+        setApiMessageFA(res.data);
       })
       .catch((err) => {
 		console.log("apiMessageFAA, impossible de recevoir les messages");
@@ -40717,11 +40718,12 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 	  transports: ["websocket"],
 	});
 	
-  
+	
   useEffect(() => {	  
 	  // Temps réel
 	  socket.on("receiveMessage", (msg) => {
 		setApiMessageFAA((prev) => [msg, ...prev]);
+		setApiMessageFA((prev) => [msg, ...prev]);
 	  });
 
 	  return () => socket.off("receiveMessage");
