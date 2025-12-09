@@ -557,9 +557,6 @@ export function RechercheTemplate({ data, valeur, setValeur }) {
                           </label>
                         </div>
                         {/* a */}
-valeur={ecrire666modifierUrl} setValeur={setMySearchFA}
-
-
 
                         <div className="input-130px"> <input id="css" type="text" placeholder="..." value={valeur} onChange={(e) => setValeur(e.target.value)}/> </div>
                         {/* input-130px */}
@@ -607,7 +604,7 @@ export function ComptesRecentsTemplate({ visible, data, listAccount, fermer, val
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  
-			  <RechercheTemplate data={listAccount} valeur={valeur}, setValeur={setValeur} />
+			  <RechercheTemplate data={listAccount} valeur={valeur} setValeur={setValeur} />
 			  
 			  {data.map((api) => (<>
 				<PopularityAccountCard api={api} />
