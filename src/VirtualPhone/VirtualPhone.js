@@ -35546,7 +35546,7 @@ async function DissadAA() {
 
   
   // rechercher parmi les comptes 
-  const listAccountFA = apiMessageFA.filter((api) => api.nameAccount.includes(getMySearchAA) && api.visible === "1").sort((a, b) => b.id - a.id;
+  const listAccountFA = apiMessageFA.filter((api) => api.nameAccount.includes(getMySearchAA) && api.visible === "1").sort((a, b) => b.id - a.id);
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
   
   console.log('mySearchFA ici:', mySearchFA);
