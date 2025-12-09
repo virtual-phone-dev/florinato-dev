@@ -35537,6 +35537,23 @@ async function DissadAA() {
   //filtre pour afficher les comptes creer
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
   //console.log('comptesRecentsFA ici:', comptesRecentsFA);
+  
+  
+  // logique pour obtenir, afficher les resultats de la recherche - FA
+  const [mySearchFA, setMySearchFA] = useState("");
+  if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
+  const getMySearchFA = localStorage.getItem("searchFA");
+
+  
+  // rechercher parmi les comptes 
+  const listAccountFA = apiMessageFA.filter((api) => api.nameAccount.includes(getMySearchAA) && api.visible === "1").sort((a, b) => b.id - a.id;
+  const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
+  
+  console.log('mySearchFA ici:', mySearchFA);
+  console.log('getMySearchFA ici:', getMySearchFA);
+  console.log('listAccountFA ici:', listAccountFA);
+  console.log('verifyAccountFA ici:', verifyAccountFA);
+  
 
    // filtre pour obtenir tout les favoris
   const allMessageFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA);
@@ -51313,6 +51330,7 @@ son compte Vixinol store */
       
               <div className="block-deux">
                 {dev && (<><div className="a" onClick={RencontreFA}> <SvgLove2/> </div></>)}
+				
                 <div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div>
                 <div className="b" onClick={ComptesRecentsPageFA}> <SvgAdd/> </div>
                 <div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div>
@@ -51338,7 +51356,7 @@ son compte Vixinol store */
       {/* application florinato */}
 	  
 	  
-		<ComptesRecentsTemplate visible={comptesRecentsPageFA} data={comptesRecentsFA} fermer={CloseComptesRecentsPageFA} />
+		<ComptesRecentsTemplate visible={comptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} fermer={CloseComptesRecentsPageFA} valeur={mySearchFA} setValeur={setMySearchFA} />
 		
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		

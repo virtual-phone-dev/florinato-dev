@@ -538,7 +538,7 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
-export function RechercheTemplate() {
+export function RechercheTemplate({ data, valeur, setValeur }) {
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -557,8 +557,11 @@ export function RechercheTemplate() {
                           </label>
                         </div>
                         {/* a */}
+valeur={ecrire666modifierUrl} setValeur={setMySearchFA}
 
-                        <div className="input-130px"> <input id="css" type="text" placeholder="..."/> </div>
+
+
+                        <div className="input-130px"> <input id="css" type="text" placeholder="..." value={valeur} onChange={(e) => setValeur(e.target.value)}/> </div>
                         {/* input-130px */}
                       </div>
                       {/* display-flex */}
@@ -568,6 +571,11 @@ export function RechercheTemplate() {
                     {/* on affiche les donnees de la recherche dans l'enfant api */}
                     <div className="hr-15px"> <hr /> </div>
                   </div>
+				  
+				  
+			{data.map((api) => (<>
+				<PopularityAccountCard api={api} />
+			</>))}
 
 	</>);
 }
@@ -591,7 +599,7 @@ export function PopularityAccountCard({ api }) {
 }
 
 
-export function ComptesRecentsTemplate({ visible, data, fermer }) {
+export function ComptesRecentsTemplate({ visible, data, listAccount, fermer, valeur, setValeur }) {
   if (!visible) return null;
 
   return (<>
@@ -599,7 +607,7 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  
-			  <RechercheTemplate />
+			  <RechercheTemplate data={listAccount} valeur={valeur}, setValeur={setValeur} />
 			  
 			  {data.map((api) => (<>
 				<PopularityAccountCard api={api} />
