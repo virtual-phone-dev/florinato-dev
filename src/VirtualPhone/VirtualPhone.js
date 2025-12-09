@@ -35537,16 +35537,16 @@ async function DissadAA() {
   //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
-  
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  // const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
-  const [mySearchFA, setMySearchFA] = useState("");
-  // if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
+  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
+  //const [mySearchFA, setMySearchFA] = useState("");
+  if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
   
   /*
   Pour gérer les caractères accentués comme "é" dans la recherche, vous pouvez utiliser une technique pour "normaliser" les chaînes de caractères en supprimant 
   les accents. Ainsi, la recherche devient insensible aux accents.
     voici comment faire :
+	
 	Utiliser la méthode normalize avec la forme "NFD" pour décomposer les caractères accentués.
 	Filtrer en comparant les chaînes normalisées et sans accents
   */
