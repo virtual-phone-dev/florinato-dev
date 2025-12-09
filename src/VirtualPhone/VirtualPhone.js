@@ -35547,7 +35547,6 @@ async function DissadAA() {
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
   
   console.log('mySearchFA ici:', mySearchFA);
-  console.log('getMySearchFA ici:', getMySearchFA);
   console.log('listAccountFA ici:', listAccountFA);
   console.log('verifyAccountFA ici:', verifyAccountFA);
   
