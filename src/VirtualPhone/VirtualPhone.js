@@ -7,7 +7,7 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
-import { Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, Envoyer3, getAllData, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
+import { Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, Envoyer3, envoyerPOST, getAllData, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
 
@@ -1103,11 +1103,21 @@ function ChildApi66profilFA({ api }) {
   
   //redirect vers la page pour afficher la video
    async function GotoVideo() {
-    const video = "1";
-    const photo = "0";
-	localStorage.setItem("gotoVideo", video);
-    localStorage.setItem("gotoPhoto", photo);
-  }
+		const video = "1";
+		const photo = "0";
+		localStorage.setItem("gotoVideo", video);
+		localStorage.setItem("gotoPhoto", photo);
+		
+		await envoyerPOST({ 
+			id: 500, 
+			idMessageOther: 500, 
+			//idPost: 500, 
+			idAccount: idPersonConnectedFA, 
+			idOther: idPersonConnectedFA,
+			visible: 1, type: 204, url: "/api/messageFA/new" 
+		});
+	}
+  
   
   //redirect vers la page pour afficher la photo
    async function GotoPhoto() {

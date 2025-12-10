@@ -126,9 +126,9 @@ async function uploadImage(file) {
       const res = await axios.post(api, formData, {
         headers: { 'Content-Type': 'multipart/form-data', },
       });
-	  console.log("resultat de l'upload, res", res);
+	  /*console.log("resultat de l'upload, res", res);
 	  console.log("resultat de l'upload, res.data", res.data);
-	  console.log("resultat de l'upload, res.data.urlPhoto", res.data.urlPhoto);
+	  console.log("resultat de l'upload, res.data.urlPhoto", res.data.urlPhoto);*/
 
       if (res.status !== 200) throw new Error("Erreur lors de l'upload de l'image");
 
@@ -139,7 +139,7 @@ async function uploadImage(file) {
   }
   throw new Error('Toutes les tentatives d\'upload ont échoué');
 }
-	  
+
 	  
 export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visible, type }) {
   const data = {};
@@ -161,18 +161,44 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
 }
 
 
+export async function envoyerPOST({ id: 500, visible: 1, type: 204, url: "/api/messageFA/new" }) {
+	const data = {};
+	
+	if (id !== undefined) data.id = id;
+    if (idUser !== undefined) data.idUser = idUser;
+	if (urlPhoto !== undefined) data.urlPhoto = urlPhoto;
+    if (urlVideo !== undefined) data.urlVideo = urlVideo;
+    if (visible !== undefined) data.visible = visible;
+    if (type !== undefined) data.type = type;
+  
+	for (const api of apiUrls) {
+		try {
+		  const fullUrl = `${api}${url}`; // Concaténer l'API de base avec l'endpoint
+		  
+		  const res = await axios.post(fullUrl, data
+		  //, { headers: { 'Content-Type': 'application/json' } }
+		  );
+		  return res.data; // Retourne la réponse de l'API
+		} catch (err) {
+		  // Passer à l'API suivante en cas d'erreur
+		}
+	  }
+	  throw new Error('Toutes les tentatives d\'envoi FAA ont échoué');
+}
+
+
 async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
   for (const api of apiUrls) {
     try {
 	  // Concaténer l'API de base avec l'endpoint
       const fullUrl = `${api}${url}`;
 	  
-	  console.log("fullUrl ici", fullUrl)
+	  /*console.log("fullUrl ici", fullUrl)
 	  console.log("url ici", url)
 	  console.log("urlPhoto ici", urlPhoto)
 	  console.log("urlVideo ici", urlVideo)
 	  console.log("idAccount ici", idAccount)
-	  console.log("message ici", message)
+	  console.log("message ici", message)*/
 	  
 	  const newUrlVideo = await AdapterLien(urlVideo)
 	  
@@ -240,33 +266,6 @@ async function ValiderModificationLogique({ nouveauUrl, idPost }) {
   }
   throw new Error('Toutes les tentatives ont échoué pour enregistrer les modifications.');
 }
-
-
-/*
-async function ValiderModificationLogique({ nouveauUrl, idPost }) {
-  for (const api of apiUrlsPUT) {
-	  const fullUrl = `${api}/${idPost}`;
-	  const urlVideoAdapter = await AdapterLien(nouveauUrl)
-	  
-	  console.log("fullUrl", fullUrl)
-	  console.log("urlVideoAdapter", urlVideoAdapter)
-	  
-		await axios({
-            method: "put",
-            url: fullUrl, 
-            data: { urlVideo: urlVideoAdapter },
-            })
-            .then((res) => {
-				console.log("modification reussie");
-				console.log(res.data);
-			})
-			.catch((err) => { console.log(`Échec de la requête sur ${api}`, err); });
-    }
-	
-  console.log('Toutes les tentatives ont échoué pour enregistrer les modifications.');
-}*/
-
-
 
 
 // obtenir toutes les donnees qui sont dans l'api
