@@ -538,6 +538,33 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
+export function ConfirmationTemplate({ visible, fermer }) {	
+	if (!visible) return null;
+
+	return (
+          <div className="confirmerRechargeIA">
+            <div className="align">
+              <div className="card">
+                <div className="block-un"> <p>Confirmation</p> </div>
+                <div className="block-deux"> <p>Voulez-vous recharger FCFA dans votre Compte izocash National !</p> </div>
+
+                <div className="block-trois">
+                  <div className="a"> <button>Annuler</button> </div>
+                  <div className="b"> <button>Valider</button> </div>
+                  <div className="rechargeActive"> <button>Valider</button> </div>
+                  {/* rechargeActive */}
+                </div>
+                {/* block-trois */}
+              </div>
+              {/* card */}
+            </div>
+            {/* align */}
+          </div>
+          {/* confirmerRechargeIA */}
+  );
+}
+
+
 export function RechercheTemplate({ data, valeur, setValeur }) {
   return (<>
 		{/* rechercher un compte */}
