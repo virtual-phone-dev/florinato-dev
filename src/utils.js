@@ -161,7 +161,7 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
 }
 
 
-export async function envoyerPOST({ id: 500, visible: 1, type: 204, url: "/api/messageFA/new" }) {
+export async function envoyerPOST({ id, visible, type, url }) {
 	const data = {};
 	
 	if (id !== undefined) data.id = id;
