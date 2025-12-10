@@ -1127,17 +1127,17 @@ function ChildApi66profilFA({ api }) {
       <div className="type3">
         <div className="a"> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
         <div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
-		<div className="p-15px"> <p>{api.clic}</p> </div>
       </div> </>)}
       {/* type=3 , video  */}
 
       {api.type === "2" && id && (<> {/* type=2 , photo  */}
       <div className="type2"> 
 		  <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> 
-		  <div className="p-15px"> <p>{api.clic}</p> </div>
 	  </div> 
       </>)}
       {/* type=2 , photo  */}
+	  
+	  <div className="p-15px"> <p>{api.clic}</p> </div>
     </div>
     </>
   );
@@ -1163,8 +1163,6 @@ function ChildApi266profilFA({ api2 }) {
     });
     return newDate;
   };
-
-
 
 
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
