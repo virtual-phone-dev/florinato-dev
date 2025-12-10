@@ -541,7 +541,7 @@ export function SpeedMessages({ visible, fermer, data }) {
 export function ConfirmationTemplate({ visible, fermer }) {	
 	if (!visible) return null;
 
-	return (
+	return (<>
           <div className="confirmerRechargeIA">
             <div className="align">
               <div className="card">
@@ -561,7 +561,7 @@ export function ConfirmationTemplate({ visible, fermer }) {
             {/* align */}
           </div>
           {/* confirmerRechargeIA */}
-  );
+  </>);
 }
 
 
