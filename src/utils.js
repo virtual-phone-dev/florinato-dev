@@ -165,9 +165,9 @@ export async function envoyerPOST({ id, visible, type, url }) {
 	const data = {};
 	
 	if (id !== undefined) data.id = id;
-    if (idUser !== undefined) data.idUser = idUser;
-	if (urlPhoto !== undefined) data.urlPhoto = urlPhoto;
-    if (urlVideo !== undefined) data.urlVideo = urlVideo;
+    //if (idUser !== undefined) data.idUser = idUser;
+	//if (urlPhoto !== undefined) data.urlPhoto = urlPhoto;
+    //if (urlVideo !== undefined) data.urlVideo = urlVideo;
     if (visible !== undefined) data.visible = visible;
     if (type !== undefined) data.type = type;
   
