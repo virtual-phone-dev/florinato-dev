@@ -51678,7 +51678,7 @@ g
 
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
               {filterFA.map((api) => (<>
-				<div key={api._id} onClick={() => setIdVideo(api._id)}>
+				<div onClick={() => setIdVideo(api._id)}>
 					<ChildApi66profilFA api={api} />
 				</div>
               </>))}
