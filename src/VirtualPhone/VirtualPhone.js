@@ -7,7 +7,13 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
-import { Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, Envoyer3, envoyerPOST, getAllData, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
+import { 
+	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, 
+	Envoyer3, envoyerPOST, envoyerPUT, getAllData, 
+	idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef,
+	GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages 
+  } from "../utils";
+
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
 
@@ -1107,25 +1113,15 @@ function ChildApi66profilFA({ api }) {
 		const photo = "0";
 		localStorage.setItem("gotoVideo", video);
 		localStorage.setItem("gotoPhoto", photo);
-		
-		await envoyerPOST({ 
-			id: 500, 
-			idMessageOther: 500, 
-			//idPost: 500, 
-			idAccount: idPersonConnectedFA, 
-			idOther: idPersonConnectedFA,
-			visible: 1, type: 204, url: "/api/messageFA/new" 
-		});
 	}
-  
   
   //redirect vers la page pour afficher la photo
    async function GotoPhoto() {
-    const video = "0";
-    const photo = "1";
-	localStorage.setItem("gotoVideo", video);
-    localStorage.setItem("gotoPhoto", photo);
-  }
+		const video = "0";
+		const photo = "1";
+		localStorage.setItem("gotoVideo", video);
+		localStorage.setItem("gotoPhoto", photo);
+	}
 
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
@@ -35432,11 +35428,11 @@ async function DissadAA() {
   }, []);
 
 
-  const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
+  /*const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   const idAccount = localStorage.getItem("idAccountChef");
-  const idAccountChef = localStorage.getItem("idAccountChef");
+  const idAccountChef = localStorage.getItem("idAccountChef");*/
 
   
   // filtre pour obtenir quelques infos de l'utilisateur connecter)
@@ -44683,10 +44679,9 @@ async function ValiderUrl() {
 	setisLoading666ValideUrl(true);
 	const idPost = localStorage.getItem("idPost");
 	
-	console.log("debut ValiderUrl");
+	/*console.log("debut ValiderUrl");
 	console.log("url pas encore modifier :", ecrire666modifierUrl);
-	console.log("idPost ici :", idPost);
-	
+	console.log("idPost ici :", idPost);*/
 	const actions = { modifier: true, allData: true };
 		
 	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
@@ -44702,6 +44697,22 @@ async function ValiderUrl() {
 // ValiderUrl
 
 
+const [idVideo, setIdVideo] = useState(null);
+console.log(`idVideo FA:`, idVideo);
+
+async function clicVideoFAA() {
+		await envoyerPOST({ 
+			id: 500, 
+			idPost: 700, 
+			idAccount: idPersonConnectedFA, 
+			idOther: idPersonConnectedFA,
+			visible: 1, type: 204, url: "/api/messageFA/new" 
+		});
+		
+		await envoyerPUT({ idPost: idVideo, clic: 300 });
+}
+	
+	
 //logique pour ajouter une photo de couverture a la video
 const [isLoading66addVideoPageFA, setIsLoading66addVideoPageFA] = useState(false);
 
@@ -51667,7 +51678,9 @@ g
 
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
               {filterFA.map((api) => (<>
-                <ChildApi66profilFA api={api} />
+				<div key={api._id} onClick={() => setIdVideo(api._id)}>
+					<ChildApi66profilFA api={api} />
+				</div>
               </>))}
               </div>
 

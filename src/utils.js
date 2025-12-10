@@ -106,6 +106,13 @@ export function MiniPhrase({ titre1, titre2 }) {
 )}
 
 
+export const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
+export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+export const idGroupFA = localStorage.getItem("idGroupFA");
+export const idAccount = localStorage.getItem("idAccountChef");
+export const idAccountChef = localStorage.getItem("idAccountChef");
+
+
 const apiUrls = [
   `${process.env.REACT_APP_Api2}`,
   `${process.env.REACT_APP_Api1}`,
@@ -158,6 +165,24 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
     // Gère l'erreur dans le composant appelant si nécessaire
     throw err; 
   }
+}
+
+
+export async function envoyerPUT({ idPost, clic }) {
+	const data = {};
+    if (clic !== undefined) data.clic = clic;
+  
+	for (const api of apiUrls) {
+		try {
+		  const fullUrl = `${api}/api/messageFA/update/${idPost}`; // Concaténer l'API de base avec l'endpoint
+		  
+		  const res = await axios.put(fullUrl, data);
+		  return res.data; // Retourne la réponse de l'API
+		} catch (err) {
+		  // Passer à l'API suivante en cas d'erreur
+		}
+	  }
+	  throw new Error('Toutes les tentatives de modifications ont échoué');
 }
 
 
