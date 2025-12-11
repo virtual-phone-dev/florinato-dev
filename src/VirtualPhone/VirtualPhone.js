@@ -51412,16 +51412,11 @@ son compte Vixinol store */
       {/* application florinato */}
 	  
 	  
-		<ComptesRecentsTemplate 
-			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} 
-			data={comptesRecentsFA} listAccount={listAccountFA} 
-			valeur={mySearchFA} setValeur={setMySearchFA} 
-		/>
-		
+		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} />
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
 		<ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
-		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
+		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} data={listAccount} valeur={mySearchFA} setValeur={setMySearchFA} />
 
 
       {/* rencontre - FA */}

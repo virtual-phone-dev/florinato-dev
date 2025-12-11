@@ -649,7 +649,7 @@ export function PopularityAccountCard({ api }) {
 }
 
 
-export function ComptesRecentsTemplate({ visible, data, listAccount, fermer, valeur, setValeur }) {
+export function ComptesRecentsTemplate({ visible, data, fermer }) {
   if (!visible) return null;
 
   return (<>
@@ -657,7 +657,7 @@ export function ComptesRecentsTemplate({ visible, data, listAccount, fermer, val
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  
-			  <RechercheTemplate data={listAccount} valeur={valeur} setValeur={setValeur} />
+			  <RechercheTemplate />
 			  {data.map((api) => (<>
 				<PopularityAccountCard api={api} />
 			  </>))}
