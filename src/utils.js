@@ -558,6 +558,7 @@ export function SpeedMessages({ visible, fermer, data }) {
         </div>
       ))}
     </div>
+	
   );
 }
 
@@ -573,7 +574,7 @@ export function ConfirmationTemplate({ visible, fermer }) {
                 <div className="block-deux"> <p>Voulez-vous recharger FCFA dans votre Compte izocash National !</p> </div>
 
                 <div className="block-trois">
-                  <div className="a"> <button>Annuler</button> </div>
+                  <div className="a"> <button onClick={fermer}>Annuler</button> </div>
                   <div className="b"> <button>Valider</button> </div>
                   <div className="rechargeActive"> <button>Valider</button> </div>
                   {/* rechargeActive */}
@@ -589,7 +590,7 @@ export function ConfirmationTemplate({ visible, fermer }) {
 }
 
 
-export function RechercheTemplate({ data, valeur, setValeur }) {
+export function RechercheTemplate({ data, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -620,11 +621,11 @@ export function RechercheTemplate({ data, valeur, setValeur }) {
                     <div className="hr-15px"> <hr /> </div>
                   </div>
 				  
-				  
+			<div onClick={ouvrirGestionCompteConfirmation}>	  
 			{data.map((api) => (<>
 				<PopularityAccountCard api={api} />
 			</>))}
-
+			</div>
 	</>);
 }
 
@@ -656,7 +657,6 @@ export function ComptesRecentsTemplate({ visible, data, listAccount, fermer, val
 			  <Close fermer={fermer} />
 			  
 			  <RechercheTemplate data={listAccount} valeur={valeur} setValeur={setValeur} />
-			  
 			  {data.map((api) => (<>
 				<PopularityAccountCard api={api} />
 			  </>))}

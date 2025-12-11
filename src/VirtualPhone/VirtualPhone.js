@@ -8,12 +8,12 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, 
+	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, RechercheTemplate,
 	Envoyer3, envoyerPOST, envoyerPUT, getAllData, 
 	idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef,
 	GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages 
   } from "../utils";
-
+		
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
 
@@ -42212,6 +42212,16 @@ async function PageRedirection66groupOtherFA() {
   }
   
   
+  // ajouter un autre compte a la gestion du compte florinato - FA 
+  const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
+  async function AjouterGestionCompteConfirmation() {
+    setAjouterGestionCompteConfirmation(true);
+  }
+  async function CloseAjouterGestionCompteConfirmation() {
+    setAjouterGestionCompteConfirmation(false);
+  }
+  
+
   // Les comptes les plus populaires sur florinato - FA 
   const [popularityAccountsPageFA, setPopularityAccountsPageFA] = useState(false); 
   async function PopularityAccountsPageFA() {
@@ -51402,12 +51412,18 @@ son compte Vixinol store */
       {/* application florinato */}
 	  
 	  
-		<ComptesRecentsTemplate visible={comptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} fermer={CloseComptesRecentsPageFA} valeur={mySearchFA} setValeur={setMySearchFA} />
+		<ComptesRecentsTemplate 
+			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} 
+			data={comptesRecentsFA} listAccount={listAccountFA} 
+			valeur={mySearchFA} setValeur={setMySearchFA} 
+		/>
 		
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
-		
-      {/* rencontre - FA */}
+		<ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
+		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
+
+
       {/* rencontre - FA */}
       {rencontreFA && (<>
         <div className="rencontreFA">
