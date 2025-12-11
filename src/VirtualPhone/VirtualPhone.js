@@ -1090,8 +1090,8 @@ function ChildApi66profilFA({ api }) {
       localStorage.setItem("urlVideoreq", urlVideo); 
     }
 	
-	console.log("idPostreq", id)
-	console.log("urlVideo", urlVideo)
+	/**console.log("idPostreq", id)
+	console.log("urlVideo", urlVideo)*/
 
     const image = api.urlPhoto;
     if(image) { 
@@ -51416,7 +51416,7 @@ son compte Vixinol store */
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
 		<ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
-		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} data={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
+		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
 
 
       {/* rencontre - FA */}
@@ -52698,7 +52698,15 @@ g
         </div>
         {/* close */}
 
-        <div className="body"> <img src={urlPhoto} ref={videoRef} alt="" /> </div>
+        <div className="body"> 
+			<img src={urlPhoto} ref={videoRef} alt="" /> 
+		
+			{filterFA.map((api) => (<>
+			<div onClick={() => setIdVideo(api._id)}>
+				<ChildApi66profilFA api={api} />
+			</div>
+			</>))}
+		</div>
         {/* body*/}
       </div>
       {/* seePhotoFA */}
@@ -52722,6 +52730,12 @@ g
           <div className="block-video">
             <video ref={videoRef} autoPlay={"autoplay"} muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
           </div>
+		  
+		{filterFA.map((api) => (<>
+			<div onClick={() => setIdVideo(api._id)}>
+				<ChildApi66profilFA api={api} />
+			</div>
+        </>))}
         </div>
         {/* body */}
       </div>
