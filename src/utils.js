@@ -621,11 +621,12 @@ export function RechercheTemplate({ data, valeur, setValeur, ouvrirGestionCompte
                     <div className="hr-15px"> <hr /> </div>
                   </div>
 				  
-			<div onClick={ouvrirGestionCompteConfirmation}>	  
+			  
 			{data.map((api) => (<>
+			<div onClick={ouvrirGestionCompteConfirmation}>	
 				<PopularityAccountCard api={api} />
-			</>))}
 			</div>
+			</>))}
 	</>);
 }
 
