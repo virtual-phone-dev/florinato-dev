@@ -51416,7 +51416,7 @@ son compte Vixinol store */
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
 		<ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
-		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} data={listAccount} valeur={mySearchFA} setValeur={setMySearchFA} />
+		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} data={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
 
 
       {/* rencontre - FA */}
