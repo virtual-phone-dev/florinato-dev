@@ -52746,11 +52746,15 @@ g
             <video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
           </div>
 		  
+        <div className="overflow-x">
 		{filterFA.map((api) => (<>
-			<div className="overflow-x" onClick={() => setIdVideo(api._id)}>
+			<div onClick={() => setIdVideo(api._id)}>
 				<ChildApi66profilFA api={api} photocss="photo-70px-carre" />
 			</div>
         </>))}
+        </div>
+		{/* overflow-x */}
+		
         </div>
         {/* body */}
       </div>
