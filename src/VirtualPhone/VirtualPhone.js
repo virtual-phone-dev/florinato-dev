@@ -47052,6 +47052,16 @@ async function PostVideoFA() {
   //lecteur video personnaliser - VB
   const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
+  
+  
+  // relire la video - FA
+  useEffect(() => {
+	  if (videoRef.current) {
+		videoRef.current.load();   // recharge la vidéo
+		videoRef.current.play();   // lance la lecture
+	  }
+	}, [urlVideo]);
+
 
   //ca c'est le bouton play - VB
   //quand on clique sur play, on peut jouer la video ou mettre en pause la video
@@ -52731,9 +52741,9 @@ g
         {/* close */}
 
         <div className="body">
-          {/* on affiche la video */}
+          {/* on affiche la video autoPlay={"autoplay"} */}
           <div className="block-video">
-            <video ref={videoRef} autoPlay={"autoplay"} muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
+            <video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
           </div>
 		  
 		{filterFA.map((api) => (<>
