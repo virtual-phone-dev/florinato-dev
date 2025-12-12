@@ -1067,7 +1067,7 @@ function ChildApi66groupOtherFA({ api }) {
 
 
 //ChildApi 66profilFA
-function ChildApi66profilFA({ api }) {
+function ChildApi66profilFA({ api, photocss }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -1131,7 +1131,7 @@ function ChildApi66profilFA({ api }) {
     <div className="child" onClick={Checked}>
       {api.type === "3" && id && (<> {/* type=3 , video*/}
       <div className="type3">
-        <div className="a"> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
+        <div className={photocss} <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
         <div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
 		<div className="p-15px"> <p>{api.clic}</p> </div>
       </div> </>)}
@@ -1139,7 +1139,7 @@ function ChildApi66profilFA({ api }) {
 
       {api.type === "2" && id && (<> {/* type=2 , photo  */}
       <div className="type2"> 
-		  <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> 
+		  <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
 		  <div className="p-15px"> <p>{api.clic}</p> </div>
 	  </div> 
       </>)}
@@ -51701,7 +51701,7 @@ g
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
               {filterFA.map((api) => (<>
 				  <div onClick={() => setIdVideo(api._id)}>
-					  <ChildApi66profilFA api={api} />
+					  <ChildApi66profilFA api={api} photocss="photo-70px-carre" />
 				  </div>
               </>))}
               </div>
@@ -52710,11 +52710,11 @@ g
         {/* close */}
 
         <div className="body"> 
-			<img src={urlPhoto} ref={videoRef} alt="" /> 
+			<img src={urlPhoto} alt="" /> 
 		
 			{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} />
+				<ChildApi66profilFA api={api} photocss="photo-70px-carre" />
 			</div>
 			</>))}
 		</div>
@@ -52744,7 +52744,7 @@ g
 		  
 		{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} />
+				<ChildApi66profilFA api={api} photocss="photo-70px-carre" />
 			</div>
         </>))}
         </div>
