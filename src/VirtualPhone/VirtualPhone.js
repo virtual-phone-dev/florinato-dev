@@ -1131,7 +1131,7 @@ function ChildApi66profilFA({ api, photocss }) {
     <div className="child" onClick={Checked}>
       {api.type === "3" && id && (<> {/* type=3 , video*/}
       <div className="type3">
-        <div className={photocss} <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
+        <div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
         <div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
 		<div className="p-15px"> <p>{api.clic}</p> </div>
       </div> </>)}
