@@ -35541,8 +35541,8 @@ async function DissadAA() {
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
-  //const [mySearchFA, setMySearchFA] = useState("");
+  //const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
+  const [mySearchFA, setMySearchFA] = useState("");
   if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
   
   /*
