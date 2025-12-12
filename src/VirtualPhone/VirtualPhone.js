@@ -35577,7 +35577,7 @@ async function DissadAA() {
 	  api.visible === "1");
 	})*/
 	
-	const listAccountFA = mySearchFA? apiMessageFA.filter((api) => {
+	const listAccountFA = mySearchFA && Array.isArray(apiMessageFA) ? apiMessageFA.filter((api) => {
 	  return (
 		api.type === "10" && 
 		api.nameAccount && 
