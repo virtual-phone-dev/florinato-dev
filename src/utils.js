@@ -591,8 +591,6 @@ export function ConfirmationTemplate({ visible, fermer }) {
 
 
 export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
-console.log("SET VALEUR = ", setValeur);
-
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -624,7 +622,7 @@ console.log("SET VALEUR = ", setValeur);
                   </div>
 				  
 			  
-			{(listAccount || []).map((api) => (<>
+			{listAccount.map((api) => (<>
 			<div onClick={ouvrirGestionCompteConfirmation}>	
 				<PopularityAccountCard api={api} />
 			</div>
@@ -651,15 +649,15 @@ export function PopularityAccountCard({ api }) {
 }
 
 
-export function ComptesRecentsTemplate({ visible, data, fermer }) {
+export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
   if (!visible) return null;
 
   return (<>
       <div className="page-blanche">
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
+			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
 			  
-			  <RechercheTemplate />
 			  {data.map((api) => (<>
 				<PopularityAccountCard api={api} />
 			  </>))}

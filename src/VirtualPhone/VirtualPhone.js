@@ -7,7 +7,7 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
-import { Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, RechercheTemplate, Envoyer3, envoyerPOST, envoyerPUT, getAllData, idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
+import { Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, Envoyer3, envoyerPOST, envoyerPUT, getAllData, idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
 		
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
@@ -35541,8 +35541,8 @@ async function DissadAA() {
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  //const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
-  const [mySearchFA, setMySearchFA] = useState("");
+  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
+  //const [mySearchFA, setMySearchFA] = useState("");
   if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
   
   /*
@@ -35561,7 +35561,7 @@ async function DissadAA() {
 
   // rechercher parmi les comptes 
   
-  /*const listAccountFA = apiMessageFA.filter((api) => {
+  const listAccountFA = apiMessageFA.filter((api) => {
   if (!mySearchFA) return false; // Si la recherche est vide, ne retourne rien
   
   return (
@@ -35570,16 +35570,16 @@ async function DissadAA() {
 	  // api.nameAccount.toLowerCase().includes(mySearchFA.toLowerCase()) && 
 	  normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
 	  api.visible === "1");
-	})*/
+	})
 	
-	const listAccountFA = mySearchFA && Array.isArray(apiMessageFA) ? apiMessageFA.filter((api) => {
+	/*const listAccountFA = mySearchFA && Array.isArray(apiMessageFA) ? apiMessageFA.filter((api) => {
 	  return (
 		api.type === "10" && 
 		api.nameAccount && 
 		normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
 		api.visible === "1"
 	  );
-	}) : [];
+	}) : []; */
   
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
@@ -51418,11 +51418,10 @@ son compte Vixinol store */
       {/* application florinato */}
 	  
 	  
-		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} />
+		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
 		<ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
-		<RechercheTemplate ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
 
 
       {/* rencontre - FA */}
