@@ -590,7 +590,8 @@ export function ConfirmationTemplate({ visible, fermer }) {
 }
 
 
-export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
+export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
+	console.log("listAccount yess", listAccount);
   return (<>
 		{/* rechercher un compte */}
                   <div>
