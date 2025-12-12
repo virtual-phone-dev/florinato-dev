@@ -590,7 +590,7 @@ export function ConfirmationTemplate({ visible, fermer }) {
 }
 
 
-export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
+export function RechercheTemplate({ listAccount, valeur, setValeur }) {	
 	console.log("listAccount yess", listAccount);
   return (<>
 		{/* rechercher un compte */}
@@ -624,7 +624,7 @@ export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestio
 				  
 			  
 			{listAccount.map((api) => (<>
-			<div onClick={ouvrirGestionCompteConfirmation}>	
+			<div>	
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
