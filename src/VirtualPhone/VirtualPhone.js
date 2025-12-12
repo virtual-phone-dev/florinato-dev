@@ -35563,8 +35563,10 @@ async function DissadAA() {
 	  return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 	};
 
+
   // rechercher parmi les comptes 
-  const listAccountFA = apiMessageFA.filter((api) => {
+  
+  /*const listAccountFA = apiMessageFA.filter((api) => {
   if (!mySearchFA) return false; // Si la recherche est vide, ne retourne rien
   
   return (
@@ -35573,7 +35575,16 @@ async function DissadAA() {
 	  // api.nameAccount.toLowerCase().includes(mySearchFA.toLowerCase()) && 
 	  normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
 	  api.visible === "1");
-	})
+	})*/
+	
+	const listAccountFA = mySearchFA? apiMessageFA.filter((api) => {
+	  return (
+		api.type === "10" && 
+		api.nameAccount && 
+		normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
+		api.visible === "1"
+	  );
+	}) : [];
   
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
