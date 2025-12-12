@@ -591,6 +591,8 @@ export function ConfirmationTemplate({ visible, fermer }) {
 
 
 export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
+console.log("SET VALEUR = ", setValeur);
+
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -664,6 +666,14 @@ export function ComptesRecentsTemplate({ visible, data, fermer }) {
 		 </div>
 	 </div>
  </>)}
+
+
+
+
+
+
+
+
 
 
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderModification, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
