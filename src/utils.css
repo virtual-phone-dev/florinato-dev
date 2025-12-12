@@ -74,9 +74,15 @@
   word-wrap: break-word;
 }
 
-
 .p-17px p {
   font-size: 17px;
+}
+
+
+.overflow-x {
+  display: flex;
+  flex-wrap: nowrap;
+  overflow-x: auto;
 }
 
 .photo-70px img {

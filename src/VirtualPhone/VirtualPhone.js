@@ -47055,13 +47055,12 @@ async function PostVideoFA() {
   
   
   // relire la video - FA
-  /*
   useEffect(() => {
 	  if (videoRef.current) {
 		videoRef.current.load();   // recharge la vidéo
 		videoRef.current.play();   // lance la lecture
 	  }
-	}, [urlVideo]);*/
+	}, [urlVideo]);
 
 
   //ca c'est le bouton play - VB
@@ -52744,11 +52743,11 @@ g
         <div className="body">
           {/* on affiche la video autoPlay={"autoplay"} */}
           <div className="block-video">
-            <video key={urlVideo} ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
+            <video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
           </div>
 		  
 		{filterFA.map((api) => (<>
-			<div onClick={() => setIdVideo(api._id)}>
+			<div className="overflow-x" onClick={() => setIdVideo(api._id)}>
 				<ChildApi66profilFA api={api} photocss="photo-70px-carre" />
 			</div>
         </>))}
