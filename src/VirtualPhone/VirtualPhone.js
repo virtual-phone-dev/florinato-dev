@@ -7,12 +7,7 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
-import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, RechercheTemplate,
-	Envoyer3, envoyerPOST, envoyerPUT, getAllData, 
-	idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef,
-	GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages 
-  } from "../utils";
+import { Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, RechercheTemplate, Envoyer3, envoyerPOST, envoyerPUT, getAllData, idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
 		
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
