@@ -1061,8 +1061,88 @@ function ChildApi66groupOtherFA({ api }) {
 //ChildApi 66groupOtherFA
 
 
+/*
+function MediaChild({
+  api,
+  id,
+  photocss,
+  onVideo,
+  onPhoto,
+  rendu = "auto",
+  verifierId = true, // 👈 par défaut, COMME TON CODE
+}) {
+
+  // verifierId nous dit si id est necessaire pour afficher le rendu
+  if (!verifierId) return null;
+
+  // déterminer quoi afficher
+  const afficherVideo =
+    rendu === "video" ||
+    rendu === "les deux" ||
+    (rendu === "auto" && api.type === "3");
+
+  const afficherPhoto =
+    rendu === "photo" ||
+    rendu === "les deux" ||
+    (rendu === "auto" && api.type === "2");
+
+  return (
+    <div className="child">
+      {afficherVideo && (
+        <div className="type3">
+          <div className={photocss}>
+            <img onClick={onVideo} src={api.urlPhoto} alt="" />
+          </div>
+          <div className="b">
+            <button onClick={onVideo}>
+              <SvgPlay2 />
+            </button>
+          </div>
+          <div className="p-15px">
+            <p>{api.clic}</p>
+          </div>
+        </div>
+      )}
+
+      {afficherPhoto && (
+        <div className="type2">
+          <div className={photocss}>
+            <img onClick={onPhoto} src={api.urlPhoto} alt="" />
+          </div>
+          <div className="p-15px">
+            <p>{api.clic}</p>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+*/
+
+/*
+Vidéo seule, sans id
+<MediaChild
+  api={api}
+  onVideo={GotoVideo}
+  rendu="video"
+  verifierId={false}    
+  photocss={photocss}
+/>
+
+<MediaChild
+  api={api}
+  id={id}
+  onVideo={GotoVideo}
+  onPhoto={GotoPhoto}
+  rendu="les deux"
+  verifierId={true}    
+  photocss={photocss}
+/>
+*/
+
+
 //ChildApi 66profilFA
-function ChildApi66profilFA({ api, photocss }) {
+function ChildApi66profilFA({ api, photocss, verifierId }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -1085,8 +1165,6 @@ function ChildApi66profilFA({ api, photocss }) {
       localStorage.setItem("urlVideoreq", urlVideo); 
     }
 	
-	/**console.log("idPostreq", id)
-	console.log("urlVideo", urlVideo)*/
 
     const image = api.urlPhoto;
     if(image) { 
@@ -1096,12 +1174,6 @@ function ChildApi66profilFA({ api, photocss }) {
   }
 
 
-  // GoToselectedFA (page pour afficher la photo sur laquelle on a cliquer)
-  /* async function GoToselectedFA() {
-    const selected = "1";
-    localStorage.setItem("GoToselectedFA", selected);
-  } */
-  
   //redirect vers la page pour afficher la video
    async function GotoVideo() {
 		const video = "1";
@@ -1124,7 +1196,7 @@ function ChildApi66profilFA({ api, photocss }) {
   return (
     <>
     <div className="child" onClick={Checked}>
-      {api.type === "3" && id && (<> {/* type=3 , video*/}
+      {api.type === "3" && (!verifierId || id) && (<> {/* type=3 , video*/}
       <div className="type3">
         <div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
         <div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
@@ -1132,7 +1204,7 @@ function ChildApi66profilFA({ api, photocss }) {
       </div> </>)}
       {/* type=3 , video  */}
 
-      {api.type === "2" && id && (<> {/* type=2 , photo  */}
+      {api.type === "2" && (!verifierId || id) && (<> {/* type=2 , photo  */}
       <div className="type2"> 
 		  <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
 		  <div className="p-15px"> <p>{api.clic}</p> </div>
@@ -51705,7 +51777,7 @@ g
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
               {filterFA.map((api) => (<>
 				  <div onClick={() => setIdVideo(api._id)}>
-					  <ChildApi66profilFA api={api} photocss="photo-70px-carre" />
+					  <ChildApi66profilFA api={api} verifierId={true} photocss="photo-70px-carre" />
 				  </div>
               </>))}
               </div>
@@ -52718,7 +52790,7 @@ g
 		
 			{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} verifierId={false} photocss="photo-70px-carre" />
 			</div>
 			</>))}
 		</div>
@@ -52749,7 +52821,7 @@ g
         <div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} verifierId={false} photocss="photo-70px-carre" />
 			</div>
         </>))}
         </div>
