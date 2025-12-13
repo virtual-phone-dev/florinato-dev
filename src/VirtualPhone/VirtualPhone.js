@@ -1206,15 +1206,15 @@ function ChildApi66profilFA({ api, photocss, verifierId, photo, video, clic=true
       {afficherVideo && (!verifierId || id) && (<> 
       <div className="type3">
         <div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
-        clic && (
+        clic && (<>
 		<div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
-		<div className="p-15px"> <p>{api.clic}</p> </div> )
+		<div className="p-15px"> <p>{api.clic}</p> </div> </>)
       </div> </>)}
 
       {afficherPhoto && (!verifierId || id) && (<> 
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
-		clic && (<div className="p-15px"> <p>{api.clic}</p> </div>) 
+		clic && (<><div className="p-15px"> <p>{api.clic}</p> </div></>) 
 	  </div> 
       </>)}
 
