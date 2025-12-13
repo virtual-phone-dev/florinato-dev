@@ -7,7 +7,11 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
-import { Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, Envoyer3, envoyerPOST, envoyerPUT, getAllData, idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages } from "../utils";
+import { 
+	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, Envoyer3, envoyerPOST, envoyerPUT, getAllData, idUserConnectedFA, 
+	idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, 
+	GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages 
+	} from "../utils";
 		
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
@@ -52793,7 +52797,7 @@ g
 		
 			{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-			<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false}, svg={false} photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
 			</div>
 			</>))}
 		</div>
@@ -52824,7 +52828,7 @@ g
         <div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={true} video="video" clic={false}, svg={false} photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} verifierId={true} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
 			</div>
         </>))}
         </div>
@@ -52833,7 +52837,7 @@ g
 		<div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={false} video="video" photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
 			</div>
         </>))}
         </div>
