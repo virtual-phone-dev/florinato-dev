@@ -1142,7 +1142,7 @@ Vidéo seule, sans id
 
 
 //ChildApi 66profilFA
-function ChildApi66profilFA({ api, photocss, verifierId, photo, video }) {
+function ChildApi66profilFA({ api, photocss, verifierId, photo, video, clic=true, svg=true }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -1202,14 +1202,15 @@ function ChildApi66profilFA({ api, photocss, verifierId, photo, video }) {
       {afficherVideo && (!verifierId || id) && (<> 
       <div className="type3">
         <div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
-        <div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
-		<div className="p-15px"> <p>{api.clic}</p> </div>
+        clic && (
+		<div className="b"> <button onClick={GotoVideo}><SvgPlay2/></button> </div>
+		<div className="p-15px"> <p>{api.clic}</p> </div> )
       </div> </>)}
 
       {afficherPhoto && (!verifierId || id) && (<> 
       <div className="type2"> 
-		  <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
-		  <div className="p-15px"> <p>{api.clic}</p> </div>
+		<div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
+		clic && (<div className="p-15px"> <p>{api.clic}</p> </div>) 
 	  </div> 
       </>)}
 
@@ -35658,11 +35659,11 @@ async function DissadAA() {
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
   
-  console.log('mySearchFA ici:', mySearchFA);
+  /*console.log('mySearchFA ici:', mySearchFA);
   console.log('listAccountFA ici:', listAccountFA);
   console.log('verifyAccountFA ici:', verifyAccountFA);
   console.log('verifyAccountFAnombre ici:', verifyAccountFAnombre);
-  
+  */
 
    // filtre pour obtenir tout les favoris
   const allMessageFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA);
@@ -52792,7 +52793,7 @@ g
 		
 			{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={false} video="video" photocss="photo-70px-carre" />
+			<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false}, svg={false} photocss="photo-70px-carre" />
 			</div>
 			</>))}
 		</div>
@@ -52815,7 +52816,7 @@ g
         {/* close */}
 
         <div className="body">
-          {/* on affiche la video autoPlay={"autoplay"} */}
+          {/* on affiche la video */}
           <div className="block-video">
             <video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
           </div>
@@ -52823,7 +52824,7 @@ g
         <div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setIdVideo(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={true} video="video" photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} verifierId={true} video="video" clic={false}, svg={false} photocss="photo-70px-carre" />
 			</div>
         </>))}
         </div>
