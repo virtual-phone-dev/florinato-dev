@@ -15,96 +15,6 @@ import "./darkmode.css";
 
 
 
-export function SeePhotoModal({ visible, fermer, url, title }) {
-  if (!visible) return null; // n'affiche rien si pas visible
-
-  return (
-    <div className="noir">
-      <div className="flex">
-        <div onClick={fermer} className="a"> <SvgLeft2 /> </div>
-        <div className="b"> <p>{title || ""}</p> </div>
-      </div>
-
-      <div className="cadre"> <img src={url} alt={title || "photo"} className="photo"/> </div>
-    </div>
-  );
-}
-
-export function Page2({ visible, fermer, children }) {
-  if (!visible) return null;
-
-  return (
-    <div onClick={fermer} className="page-blanche">
-		<div style={theme.marge}>
-		  {children}
-		</div>
-    </div>
-  );
-}
-
-
-export function Page({ visible }) {
-	if (!visible) return null;
-  return (
-    <div className="page-blanche"> </div>
-  );
-}
-
-
-export function Close({ fermer }) {
-  return (<>
-			<div className="close">
-              <div className="a" onClick={fermer}> <SvgLeft /> </div>
-              <div className="b"> <p></p> </div>
-            </div>
-            {/* close */}
-  </>
-)}
-
-
-export function Button({ envoyer, texte }) {
-  return (<>
-		<button style={theme.bouton} onClick={envoyer}>{texte}</button>
-  </>
-  
-)}
-
-
-export function Input({ texte, valeur, setValeur }) {
-
-  return (<>
-              <input
-			  type="text"
-              placeholder={texte}
-              value={valeur}
-              onChange={(e) => setValeur(e.target.value)}
-			  style={theme.input}
-            />
-  </>
-)}
-
-
-
-export function MilieuMA({ nom, titre, titre2 }) {
-
-  return (<>
-              <div className="b"> <h1>{nom}</h1> </div>
-			  <div style={theme.blue}> <p>{titre}</p> </div>
-			  <div className="b"> <p>{titre2}</p> </div>
-  </>
-)}
-
-
-export function MiniPhrase({ titre1, titre2 }) {
-
-  return (<>
-		<div className="block-quatre">
-                  <div className="b"> <p>{titre1}</p> </div>
-				  <div> <p>{titre2}</p> </div>
-                </div>
-				</>
-)}
-
 
 export const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
@@ -494,6 +404,115 @@ async function getMessagesFromIndexedDB() {
     };
   });
 }
+
+
+export function SeePhotoModal({ visible, fermer, url, title }) {
+  if (!visible) return null; // n'affiche rien si pas visible
+
+  return (
+    <div className="noir">
+      <div className="flex">
+        <div onClick={fermer} className="a"> <SvgLeft2 /> </div>
+        <div className="b"> <p>{title || ""}</p> </div>
+      </div>
+
+      <div className="cadre"> <img src={url} alt={title || "photo"} className="photo"/> </div>
+    </div>
+  );
+}
+
+export function Page2({ visible, fermer, children }) {
+  if (!visible) return null;
+
+  return (
+    <div onClick={fermer} className="page-blanche">
+		<div style={theme.marge}>
+		  {children}
+		</div>
+    </div>
+  );
+}
+
+
+export function Page({ visible }) {
+	if (!visible) return null;
+  return (
+    <div className="page-blanche"> </div>
+  );
+}
+
+
+export function Close({ fermer }) {
+  return (<>
+			<div className="close">
+              <div className="a" onClick={fermer}> <SvgLeft /> </div>
+              <div className="b"> <p></p> </div>
+            </div>
+            {/* close */}
+  </>
+)}
+
+
+export function PageTemplate({ visible, fermer, photo, titre }) {
+	if (!visible) return null;
+	
+  return (<>
+	<div className="page-blanche">
+		<div className="close">
+            <div className="a" onClick={fermer}> <SvgLeft /> <p>{titre}</p></div>
+        </div>
+		{/* close */}
+		
+        <div className="photo-25px"> <img src={photo} alt=""/> </div>
+        {/*<div className="b"> <SvgBottom5/> </div> */}
+    </div>
+    {/* page-blanche */}
+  </>
+)}
+
+
+export function Button({ envoyer, texte }) {
+  return (<>
+		<button style={theme.bouton} onClick={envoyer}>{texte}</button>
+  </>
+  
+)}
+
+
+export function Input({ texte, valeur, setValeur }) {
+
+  return (<>
+              <input
+			  type="text"
+              placeholder={texte}
+              value={valeur}
+              onChange={(e) => setValeur(e.target.value)}
+			  style={theme.input}
+            />
+  </>
+)}
+
+
+
+export function MilieuMA({ nom, titre, titre2 }) {
+
+  return (<>
+              <div className="b"> <h1>{nom}</h1> </div>
+			  <div style={theme.blue}> <p>{titre}</p> </div>
+			  <div className="b"> <p>{titre2}</p> </div>
+  </>
+)}
+
+
+export function MiniPhrase({ titre1, titre2 }) {
+
+  return (<>
+		<div className="block-quatre">
+                  <div className="b"> <p>{titre1}</p> </div>
+				  <div> <p>{titre2}</p> </div>
+                </div>
+				</>
+)}
 
 
 export function SpeedMessages({ visible, fermer, data }) {	

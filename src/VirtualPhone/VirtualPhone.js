@@ -8,9 +8,9 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, Envoyer3, envoyerPOST, envoyerPUT, getAllData, idUserConnectedFA, 
-	idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, 
-	GenererMiniatureVideo, ComptesRecentsTemplate, SpeedMessages 
+	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate,
+	idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, 
+	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData
 	} from "../utils";
 		
 import { missions } from "../missions";
@@ -51850,9 +51850,9 @@ g
 		  AjouterCompteCommeAdmin={AjouterCompteCommeAdminFA} 
 	  />
 	  
-	  <ConfirmationTemplate visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} />
-	  <ConfirmationTemplate visible={mettreEnAvantCompte} fermer={CloseMettreEnAvantCompteFA} />
-	  <ConfirmationTemplate visible={ajouterCompteCommeAdmin} fermer={CloseAjouterCompteCommeAdminFA} />
+	  <PageTemplate visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
+	  <PageTemplate visible={mettreEnAvantCompte} fermer={CloseMettreEnAvantCompteFA} titre="Listes des comptes mises en avant" photo={photoFA} />
+	  <PageTemplate visible={ajouterCompteCommeAdmin} fermer={CloseAjouterCompteCommeAdminFA} titre="Listes des comptes ajoutés comme admin Florinato" photo={photoFA} />
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}
