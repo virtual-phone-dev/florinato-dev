@@ -78,6 +78,14 @@
   font-size: 17px;
 }
 
+.btn-vert button {
+  background: transparent;
+  color: #00cc00;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
 
 .overflow-x {
   display: flex;

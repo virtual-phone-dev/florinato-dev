@@ -571,12 +571,14 @@ export function ConfirmationTemplate({ visible, fermer }) {
             <div className="align">
               <div className="card">
                 <div className="block-un"> <p>Confirmation</p> </div>
-                <div className="block-deux"> <p>Voulez-vous recharger FCFA dans votre Compte izocash National !</p> </div>
+                <div className="block-deux"> 
+					<p>Etes vous sur d'ajouter Nganon comme l'un des Gestionnaire de votre compte ?</p> 
+					<p>il pourra publier sur votre compte et modifier le contenu qu'il a publier</p> 
+				</div>
 
                 <div className="block-trois">
                   <div className="a"> <button onClick={fermer}>Annuler</button> </div>
-                  <div className="b"> <button>Valider</button> </div>
-                  <div className="rechargeActive"> <button>Valider</button> </div>
+                  <div className="btn-vert"> <button>Valider</button> </div>
                   {/* rechargeActive */}
                 </div>
                 {/* block-trois */}
