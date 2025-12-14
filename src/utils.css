@@ -66,6 +66,14 @@
   font-size: 15px;
 }
 
+.p-16px {
+  font-size: 16px;
+}
+
+.p-17px p {
+  font-size: 17px;
+}
+
 .pre-15px-center {
   font-size: 13px;
   align-items: center;
@@ -74,13 +82,19 @@
   word-wrap: break-word;
 }
 
-.p-17px p {
-  font-size: 17px;
-}
 
 .btn-vert button {
   background: transparent;
   color: #00cc00;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  margin: 10px;
+}
+
+.btn-blue button {
+  background: transparent;
+  color: blue;
   font-size: 16px;
   border: none;
   cursor: pointer;
