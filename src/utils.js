@@ -2,6 +2,7 @@ import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 
 import SvgBadge from "./Svg/SvgBadge";
+import SvgBottom5 from "./Svg/SvgBottom5";
 import SvgFile from "./Svg/SvgFile"; //f
 import SvgLeft from "./Svg/SvgLeft";
 import SvgLeft2 from "./Svg/SvgLeft2"
