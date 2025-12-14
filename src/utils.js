@@ -563,6 +563,62 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
+export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin }) {
+  return (<>
+		<div className="list">
+            <div className="b" onClick={GestionDuCompte}> <p>Gestion du compte</p> </div>
+            <div className="b" onClick={MettreEnAvantCompte}> <p>Mettre en avant un compte</p> </div>
+            <div className="b" onClick={AjouterCompteCommeAdmin}> <p>Ajouter un compte comme Admin Florinato</p> </div>
+        </div>
+        {/* list */}
+  </>
+)}
+
+
+export function PopupDuBasTemplate({ visible, fermer, photo, titre,  
+	GestionDuCompte,
+	MettreEnAvantCompte,
+	AjouterCompteCommeAdmin
+}) {	
+	if (!visible) return null;
+
+	return (<>
+        <div className="favoriteFA">
+        <div className="align">
+          <div className="head" onClick={fermer}> 
+            <div className="block-one"> <p>{titre}</p> </div>
+
+            <div className="block-two"> 
+              <div className="a"> <img src={photo} alt=""/> </div>
+              <div className="b"> <SvgBottom5/> </div>
+            </div>
+            {/* block-two */}
+          </div>
+          {/* head */}
+
+          <div className="body">
+            <div className="card">
+			
+			<ListeDuMenu 
+			  GestionDuCompte={GestionDuCompte} 
+			  MettreEnAvantCompte={MettreEnAvantCompte} 
+			  AjouterCompteCommeAdmin={AjouterCompteCommeAdmin} 
+			/>
+			
+			<p style={{ paddingTop: "100px" }}></p>
+            </div>
+            {/* card */}
+          </div>
+          {/* body */}
+        </div>
+        {/* align */}
+        </div>
+        {/* favoriteFA */}
+	</>);
+}
+{/* PopupDuBasTemplate */}
+
+		   
 export function ConfirmationTemplate({ visible, fermer }) {	
 	if (!visible) return null;
 
@@ -578,7 +634,7 @@ export function ConfirmationTemplate({ visible, fermer }) {
 
                 <div className="block-trois">
                   <div className="a"> <button onClick={fermer}>Annuler</button> </div>
-                  <div className="btn-vert"> <button>Valider</button> </div>
+                  <div className="btn-blue"> <button>Valider</button> </div>
                   {/* rechargeActive */}
                 </div>
                 {/* block-trois */}
@@ -666,14 +722,6 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
 		 </div>
 	 </div>
  </>)}
-
-
-
-
-
-
-
-
 
 
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderModification, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {

@@ -40478,8 +40478,48 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     //setMessagePublicXA(false);
     setTelephoneVirtuel(true);
   }
-
-
+  
+  // menuFA
+  const [menuFA, setMenuFA] = useState(false); 
+  async function MenuFA() {
+    setMenuFA(true);
+  }
+  async function CloseMenuFA() {
+    setMenuFA(false);
+  }
+  
+  
+  // gestionDuCompteFA
+  const [gestionDuCompteFA, setGestionDuCompteFA] = useState(false); 
+  async function GestionDuCompteFA() {
+    setGestionDuCompteFA(true);
+  }
+  async function CloseGestionDuCompteFA() {
+    setGestionDuCompteFA(false);
+  }
+  
+  
+  // MettreEnAvantCompteFA
+  const [mettreEnAvantCompteFA, setMettreEnAvantCompteFA] = useState(false); 
+  async function MettreEnAvantCompteFA() {
+    setMettreEnAvantCompteFA(true);
+  }
+  async function CloseMettreEnAvantCompteFA() {
+    setMettreEnAvantCompteFA(false);
+  }
+  
+  
+  // AjouterCompteCommeAdminFA
+  const [ajouterCompteCommeAdminFA, setAjouterCompteCommeAdminFA] = useState(false); 
+  async function AjouterCompteCommeAdminFA() {
+    setAjouterCompteCommeAdminFA(true);
+  }
+  async function CloseAjouterCompteCommeAdminFA() {
+    setAjouterCompteCommeAdminFA(false);
+  }
+  
+  
+  
   // on affiche son compte - FA 
   const [profilFA, setProfilFA] = useState(false); 
   async function ProfilFA() {
@@ -51764,6 +51804,7 @@ g
   h
 </div> </>)}
               <div className="display-flex-nowrap"> 
+				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div> 
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div> 
 			  </div>
@@ -51800,6 +51841,18 @@ g
         {/* profilFA */}
       </>)}
       {/* on affiche mon compte - FA */}
+	  
+
+	  <PopupDuBasTemplate 
+		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" 
+		  GestionDuCompte={GestionDuCompteFA} 
+		  MettreEnAvantCompte={MettreEnAvantCompteFA} 
+		  AjouterCompteCommeAdmin={AjouterCompteCommeAdminFA} 
+	  />
+	  
+	  <ConfirmationTemplate visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} />
+	  <ConfirmationTemplate visible={mettreEnAvantCompte} fermer={CloseMettreEnAvantCompteFA} />
+	  <ConfirmationTemplate visible={ajouterCompteCommeAdmin} fermer={CloseAjouterCompteCommeAdminFA} />
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}
