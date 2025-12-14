@@ -9,7 +9,8 @@ import "../utils.css";
 
 import { 
 	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate,
-	idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, 
+	//idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, 
+	getIdUserConnectedFA, getIdPersonConnectedFA, getIdGroupFA, getIdAccount, getIdAccountChef,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData
 	} from "../utils";
 		
@@ -69,138 +70,12 @@ import settingsLogo from "../img/settingsLogo.jpg";
 import bavardageLogo from "../img/bavardageLogo.png";
 
 
-// svg
-/*
-import SvgAdd from "../Svg/SvgAdd"; //a
-import SvgAdd3 from "../Svg/SvgAdd3";
-import SvgAdd5 from "../Svg/SvgAdd5";
 
-import SvgBottom2 from "../Svg/SvgBottom2";//b
-import SvgBottom4 from "../Svg/SvgBottom4"; 
-import SvgBottom5 from "../Svg/SvgBottom5"; 
-import SvgBadge from "../Svg/SvgBadge";
-import SvgCheckbox from "../Svg/SvgCheckbox"; //c
-import SvgCheckboxNoActive from "../Svg/SvgCheckboxNoActive";
-import SvgClose2 from "../Svg/SvgClose2";
-
-import SvgClose3 from "../Svg/SvgClose3";
-import SvgClose4 from "../Svg/SvgClose4";
-import SvgCamera from "../Svg/SvgCamera";
-import SvgCamera3 from "../Svg/SvgCamera3";
-import SvgDash3 from "../Svg/SvgDash3"; //d
-import SvgDislove from "../Svg/SvgDislove";
-import SvgDislike from "../Svg/SvgDislike";
-import SvgDissad from "../Svg/SvgDissad";
-import SvgExit from "../Svg/SvgExit"; //e
-import SvgExplore from "../Svg/SvgExplore"; 
-import SvgFile from "../Svg/SvgFile"; //f
-import SvgFire from "../Svg/SvgFire";
-import SvgFavoris from "../Svg/SvgFavoris";
-import SvgFullScreen2 from "../Svg/SvgFullScreen2"; 
-import SvgHome from "../Svg/SvgHome"; //h
-import SvgHome2 from "../Svg/SvgHome2";
-import SvgHome3 from "../Svg/SvgHome3";
-import SvgHome4 from "../Svg/SvgHome4";
-import SvgHorizontal from "../Svg/SvgHorizontal";
-import SvgHorizontal3 from "../Svg/SvgHorizontal3";
-import SvgInfos from "../Svg/SvgInfos"; //i
-import SvgInfos2 from "../Svg/SvgInfos2";
-import SvgInfos3 from "../Svg/SvgInfos3";
-import SvgInfos4 from "../Svg/SvgInfos4";
-import SvgImage from "../Svg/SvgImage";
-import SvgOneImage3 from "../Svg/SvgOneImage3";
-import SvgLogin from "../Svg/SvgLogin";
-import SvgLogout from "../Svg/SvgLogout"; //l
-import SvgLogout2 from "../Svg/SvgLogout2";
-import SvgLogout3 from "../Svg/SvgLogout3";
-import SvgLogout4 from "../Svg/SvgLogout4";
-import SvgLeft from "../Svg/SvgLeft";
-import SvgLeft2 from "../Svg/SvgLeft2";
-import SvgLeft3 from "../Svg/SvgLeft3";
-import SvgLeft4 from "../Svg/SvgLeft4";
-import SvgLike from "../Svg/SvgLike";
-import SvgLove from "../Svg/SvgLove";
-import SvgLove2 from "../Svg/SvgLove2";
-import SvgMaps from "../Svg/SvgMaps"; //m
-import SvgMark1 from "../Svg/SvgMark1";
-import SvgMark2 from "../Svg/SvgMark2";
-import SvgMaps2 from "../Svg/SvgMaps2";
-import SvgMenu from "../Svg/SvgMenu";
-import SvgMenu2 from "../Svg/SvgMenu2";
-import SvgMenu3 from "../Svg/SvgMenu3";
-import SvgMenu4 from "../Svg/SvgMenu4";
-import SvgMenu5 from "../Svg/SvgMenu5";
-import SvgMoneyBag from "../Svg/SvgMoneyBag";
-import SvgMessage01 from "../Svg/SvgMessage01";
-import SvgMessage from "../Svg/SvgMessage";
-import SvgMessage10 from "../Svg/SvgMessage10";
-import SvgMessage11 from "../Svg/SvgMessage11";
-import SvgMessage3 from "../Svg/SvgMessage3";
-import SvgMessage4 from "../Svg/SvgMessage4";
-import SvgNewOnglet from "../Svg/SvgNewOnglet"; //n
-import SvgNotification from "../Svg/SvgNotification"; 
-import SvgPopularity from "../Svg/SvgPopularity"; //p
-import SvgPointsHorizontal from "../Svg/SvgPointsHorizontal"; 
-import SvgPointsHorizontal2 from "../Svg/SvgPointsHorizontal2";
-import SvgPointsVertical from "../Svg/SvgPointsVertical";
-import SvgProfil from "../Svg/SvgProfil";
-import SvgProfil2 from "../Svg/SvgProfil2";
-import SvgProfil3 from "../Svg/SvgProfil3";
-import SvgProfil4 from "../Svg/SvgProfil4";
-import SvgProfil5 from "../Svg/SvgProfil5";
-import SvgPay from "../Svg/SvgPay";
-import SvgPlay3 from "../Svg/SvgPlay3";
-import SvgPause2 from "../Svg/SvgPause2"; 
-import SvgPlay2 from "../Svg/SvgPlay2"; 
-import SvgPlay6 from "../Svg/SvgPlay6"; 
-import SvgPhoneNumber from "../Svg/SvgPhoneNumber";
-import SvgPencil3 from "../Svg/SvgPencil3";
-import SvgQuestionMark3 from "../Svg/SvgQuestionMark3";
-import SvgRefresh from "../Svg/SvgRefresh"; //r
-import SvgRight from "../Svg/SvgRight";
-import SvgRight2 from "../Svg/SvgRight2";
-import SvgRight3 from "../Svg/SvgRight3";
-import SvgRight4 from "../Svg/SvgRight4";
-import SvgRight5 from "../Svg/SvgRight5";
-import SvgSearch from "../Svg/SvgSearch"; //s
-import SvgSearch2 from "../Svg/SvgSearch2";
-import SvgSearch3 from "../Svg/SvgSearch3";
-import SvgSad from "../Svg/SvgSad";
-import SvgSend from "../Svg/SvgSend";
-import SvgShare from "../Svg/SvgShare";
-import SvgSettings from "../Svg/SvgSettings";
-import SvgTranslation from "../Svg/SvgTranslation"; //t
-import SvgTranslate from "../Svg/SvgTranslate";
-import SvgToggleActive from "../Svg/SvgToggleActive";
-import SvgToggleInactive from "../Svg/SvgToggleInactive";
-import SvgText from "../Svg/SvgText";
-import SvgText3 from "../Svg/SvgText3";
-import SvgVirtualNumber from "../Svg/SvgVirtualNumber"; //v
-import SvgVirtualNumber2 from "../Svg/SvgVirtualNumber2"; 
-import SvgValidate3 from "../Svg/SvgValidate3"; 
-import SvgValidate4 from "../Svg/SvgValidate4"; 
-import SvgValidate5 from "../Svg/SvgValidate5"; 
-import SvgValidate6 from "../Svg/SvgValidate6"; 
-import SvgVertical from "../Svg/SvgVertical"; 
-import SvgVideo3 from "../Svg/SvgVideo3"; 
-import SvgVideo5 from "../Svg/SvgVideo5"; 
-import SvgVideo6 from "../Svg/SvgVideo6"; 
-import SvgVideo7 from "../Svg/SvgVideo7"; 
-import SvgVideo8 from "../Svg/SvgVideo8"; 
-import SvgVideo9 from "../Svg/SvgVideo9"; 
-import SvgVideo10 from "../Svg/SvgVideo10"; 
-import SvgVolumeOn2 from "../Svg/SvgVolumeOn2"; 
-import SvgVolumeOff2 from "../Svg/SvgVolumeOff2"; 
-
-import Svg1Photo3 from "../Svg/Svg1Photo3"; 
-import Svg3Photo3 from "../Svg/Svg3Photo3"; 
-
-import SvgCommentAA from "../Svg/SvgComment";
-import SvgGlobeAfricaAA from "../Svg/SvgGlobeAfrica";
-import SvgLaughAA from "../Svg/SvgLaugh";
-import SvgAngryAA from "../Svg/SvgAngry";
-import SvgSurprisedAA from "../Svg/SvgSurprised";
-*/
+const idUserConnectedFA = getIdUserConnectedFA();
+const idPersonConnectedFA = getIdPersonConnectedFA();
+const idGroupFA = getIdGroupFA();
+const idAccount = getIdAccount();
+const idAccountChef = getIdAccountChef();
 
 
 /* convertir une date au format local (on convertit en fonction des parametres de l'horaire 
@@ -233,12 +108,6 @@ const dateParserLong = (date) => {
   const developer = localStorage.getItem("dev");
   const dev = developer === "1";
 
-// space
-// regex pour mettre l'espace entre les chiffres
-/*const space = (x) => {
-  let code = x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-  return code;
-}*/
 
 
 //ChildApi 66florinatoApp
@@ -40528,6 +40397,16 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     setMettreEnAvantCompteFA(false);
   }
   
+  // popup pour Choisir le compte à mettre en avant
+  const [choisirCompteAMettreEnAvantPageFA, setChoisirCompteAMettreEnAvantPageFA] = useState(false); 
+  async function ChoisirCompteAMettreEnAvantPageFA() {
+    setChoisirCompteAMettreEnAvantPageFA(true);
+  }
+  async function CloseChoisirCompteAMettreEnAvantPageFA() {
+    setChoisirCompteAMettreEnAvantPageFA(false);
+  }
+  
+
   
   // AjouterCompteCommeAdminFA
   const [ajouterCompteCommeAdminFA, setAjouterCompteCommeAdminFA] = useState(false); 
@@ -51870,8 +51749,13 @@ g
 	  />
 	  
 	  <PageTemplate visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
-	  <PageTemplate visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} titre="Listes des comptes mises en avant" photo={photoFA} />
+	  <PageTemplate visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} ChoisirCompteAMettreEnAvantPage={ChoisirCompteAMettreEnAvantPageFA} titre="Listes des comptes mises en avant" photo={photoFA} />
 	  <PageTemplate visible={ajouterCompteCommeAdminFA} fermer={CloseAjouterCompteCommeAdminFA} titre="Listes des comptes ajoutés comme admin Florinato" photo={photoFA} />
+	  
+	  
+	  
+	  <PopupDuBasTemplate visible={choisirCompteAMettreEnAvantPageFA} fermer={CloseChoisirCompteAMettreEnAvantPageFA} photo={photoFA} titre="Choisir le compte à mettre en avant" />
+
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}

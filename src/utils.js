@@ -1,17 +1,8 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 
-/*import SvgBadge from "./Svg/SvgBadge";
-import SvgBottom5 from "./Svg/SvgBottom5";
-import SvgFile from "./Svg/SvgFile"; //f
-import SvgLeft from "./Svg/SvgLeft";
-import SvgLeft2 from "./Svg/SvgLeft2"
-import SvgPointsVertical from "./Svg/SvgPointsVertical";
-import SvgSend from "./Svg/SvgSend"; */
-
 import Loader from "./Loader/Loader";
-
-import { SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
+import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
 
 import { theme } from "./theme";
 import "./utils.css"; 
@@ -25,18 +16,11 @@ export const idAccount = localStorage.getItem("idAccountChef");
 export const idAccountChef = localStorage.getItem("idAccountChef"); */
 
 
-// utils.js
-/*export const getIdUserConnectedFA = () => localStorage.getItem("idUserConnectedFA");
+export const getIdUserConnectedFA = () => localStorage.getItem("idUserConnectedFA");
 export const getIdPersonConnectedFA = () => localStorage.getItem("idPersonConnectedFA");
 export const getIdGroupFA = () => localStorage.getItem("idGroupFA");
 export const getIdAccount = () => localStorage.getItem("idAccount");
-export const getIdAccountChef = () => localStorage.getItem("idAccountChef"); */
-
-export const idUserConnectedFA = () => localStorage.getItem("idUserConnectedFA");
-export const idPersonConnectedFA = () => localStorage.getItem("idPersonConnectedFA");
-export const idGroupFA = () => localStorage.getItem("idGroupFA");
-export const idAccount = () => localStorage.getItem("idAccount");
-export const idAccountChef = () => localStorage.getItem("idAccountChef");
+export const getIdAccountChef = () => localStorage.getItem("idAccountChef"); 
 
 
 
@@ -470,24 +454,6 @@ export function Close({ fermer }) {
 )}
 
 
-export function PageTemplate({ visible, fermer, photo, titre }) {
-	if (!visible) return null;
-	
-  return (<>
-	<div className="page-blanche">
-		<div className="close">
-            <div className="a" onClick={fermer}> <SvgLeft /> <p>{titre}</p></div>
-        </div>
-		{/* close */}
-		
-        <div className="photo-25px"> <img src={photo} alt=""/> </div>
-        {/*<div className="b"> <SvgBottom5/> </div> */}
-    </div>
-    {/* page-blanche */}
-  </>
-)}
-
-
 export function Button({ envoyer, texte }) {
   return (<>
 		<button style={theme.bouton} onClick={envoyer}>{texte}</button>
@@ -599,6 +565,31 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
+
+export function PageTemplate({ visible, fermer, photo, titre, ChoisirCompteAMettreEnAvantPage }) {
+	if (!visible) return null;
+	
+  return (<>
+	<div className="page-blanche">
+		<div className="close">
+            <div className="a" onClick={fermer}> <SvgLeft /> <p>{titre}</p></div>
+        </div>
+		{/* close */}
+		
+        <div className="photo-25px"> <img src={photo} alt=""/> </div>
+        <div className="b" onClick={ChoisirCompteAMettreEnAvantPage}> <SvgAdd/> </div>
+    </div>
+    {/* page-blanche */}
+  </>
+)}
+
+
+/*
+export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
+			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
+*/
+
+
 export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin }) {
   return (<>
 		<div className="list">
@@ -611,11 +602,7 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AjouterCompt
 )}
 
 
-export function PopupDuBasTemplate({ visible, fermer, photo, titre,  
-	GestionDuCompte,
-	MettreEnAvantCompte,
-	AjouterCompteCommeAdmin
-}) {	
+export function PopupDuBasTemplate({ visible, fermer, photo, titre, GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin }) {	
 	if (!visible) return null;
 
 	return (<>
