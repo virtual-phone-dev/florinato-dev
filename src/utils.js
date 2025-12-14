@@ -1,14 +1,17 @@
 import axios from 'axios';
 import { React, useState, useEffect } from 'react';
 
-import SvgBadge from "./Svg/SvgBadge";
+/*import SvgBadge from "./Svg/SvgBadge";
 import SvgBottom5 from "./Svg/SvgBottom5";
 import SvgFile from "./Svg/SvgFile"; //f
 import SvgLeft from "./Svg/SvgLeft";
 import SvgLeft2 from "./Svg/SvgLeft2"
 import SvgPointsVertical from "./Svg/SvgPointsVertical";
-import SvgSend from "./Svg/SvgSend";
+import SvgSend from "./Svg/SvgSend"; */
+
 import Loader from "./Loader/Loader";
+
+import { SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
 
 import { theme } from "./theme";
 import "./utils.css"; 

@@ -16,6 +16,54 @@ import {
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
 
+import {
+  SvgAdd, SvgAdd3, SvgAdd5,
+  SvgBottom2, SvgBottom4, SvgBottom5, SvgBadge,
+  SvgCheckbox, SvgCheckboxNoActive,
+  SvgClose2, SvgClose3, SvgClose4,
+  SvgCamera, SvgCamera3,
+  SvgDash3, SvgDislove, SvgDislike, SvgDissad,
+  SvgExit, SvgExplore,
+  SvgFile, SvgFire, SvgFavoris, SvgFullScreen2,
+  SvgHome, SvgHome2, SvgHome3, SvgHome4,
+  SvgHorizontal, SvgHorizontal3,
+  SvgInfos, SvgInfos2, SvgInfos3, SvgInfos4,
+  SvgImage, SvgOneImage3,
+  SvgLogin,
+  SvgLogout, SvgLogout2, SvgLogout3, SvgLogout4,
+  SvgLeft, SvgLeft2, SvgLeft3, SvgLeft4,
+  SvgLike, SvgLove, SvgLove2,
+  SvgMaps, SvgMaps2, SvgMark1, SvgMark2,
+  SvgMenu, SvgMenu2, SvgMenu3, SvgMenu4, SvgMenu5,
+  SvgMoneyBag,
+  SvgMessage, SvgMessage01, SvgMessage3, SvgMessage4,
+  SvgMessage10, SvgMessage11,
+  SvgNewOnglet, SvgNotification,
+  SvgPopularity,
+  SvgPointsHorizontal, SvgPointsHorizontal2, SvgPointsVertical,
+  SvgProfil, SvgProfil2, SvgProfil3, SvgProfil4, SvgProfil5,
+  SvgPay,
+  SvgPlay2, SvgPlay3, SvgPlay6, SvgPause2,
+  SvgPhoneNumber, SvgPencil3, SvgQuestionMark3,
+  SvgRefresh,
+  SvgRight, SvgRight2, SvgRight3, SvgRight4, SvgRight5,
+  SvgSearch, SvgSearch2, SvgSearch3,
+  SvgSad, SvgSend, SvgShare, SvgSettings,
+  SvgTranslation, SvgTranslate,
+  SvgToggleActive, SvgToggleInactive,
+  SvgText, SvgText3,
+  SvgVirtualNumber, SvgVirtualNumber2,
+  SvgValidate3, SvgValidate4, SvgValidate5, SvgValidate6,
+  SvgVertical,
+  SvgVideo3, SvgVideo5, SvgVideo6, SvgVideo7,
+  SvgVideo8, SvgVideo9, SvgVideo10,
+  SvgVolumeOn2, SvgVolumeOff2,
+  Svg1Photo3, Svg3Photo3,
+  SvgCommentAA, SvgGlobeAfricaAA, SvgLaughAA,
+  SvgAngryAA, SvgSurprisedAA
+} from "../Svg/Svg";
+
+
 // image, logo
 import tictac from "../img/tictac.jpg";
 import chaussure from "../img/chaussure.jpg";
@@ -51,7 +99,9 @@ import officialLogo from "../img/officialLogo.png";
 import settingsLogo from "../img/settingsLogo.jpg";
 import bavardageLogo from "../img/bavardageLogo.png";
 
+
 // svg
+/*
 import SvgAdd from "../Svg/SvgAdd"; //a
 import SvgAdd3 from "../Svg/SvgAdd3";
 import SvgAdd5 from "../Svg/SvgAdd5";
@@ -181,6 +231,7 @@ import SvgGlobeAfricaAA from "../Svg/SvgGlobeAfrica";
 import SvgLaughAA from "../Svg/SvgLaugh";
 import SvgAngryAA from "../Svg/SvgAngry";
 import SvgSurprisedAA from "../Svg/SvgSurprised";
+*/
 
 
 /* convertir une date au format local (on convertit en fonction des parametres de l'horaire 
@@ -51851,8 +51902,8 @@ g
 	  />
 	  
 	  <PageTemplate visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
-	  <PageTemplate visible={mettreEnAvantCompte} fermer={CloseMettreEnAvantCompteFA} titre="Listes des comptes mises en avant" photo={photoFA} />
-	  <PageTemplate visible={ajouterCompteCommeAdmin} fermer={CloseAjouterCompteCommeAdminFA} titre="Listes des comptes ajoutés comme admin Florinato" photo={photoFA} />
+	  <PageTemplate visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} titre="Listes des comptes mises en avant" photo={photoFA} />
+	  <PageTemplate visible={ajouterCompteCommeAdminFA} fermer={CloseAjouterCompteCommeAdminFA} titre="Listes des comptes ajoutés comme admin Florinato" photo={photoFA} />
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}
