@@ -40570,7 +40570,6 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   }
   
   
-  
   // on affiche son compte - FA 
   const [profilFA, setProfilFA] = useState(false); 
   async function ProfilFA() {
@@ -40578,8 +40577,8 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 	
 	if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
 	if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
-	console.log("idAccountChef", idPersonConnectedFA);
-	console.log("idGroupChef", getidGroup);
+	/*console.log("idAccountChef", idPersonConnectedFA);
+	console.log("idGroupChef", getidGroup);*/
   }
   
   async function CloseProfilFA() {
