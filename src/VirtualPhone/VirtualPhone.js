@@ -51749,13 +51749,19 @@ g
 	  />
 	  
 	  <PageTemplate visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
-	  <PageTemplate visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} ChoisirCompteAMettreEnAvantPage={ChoisirCompteAMettreEnAvantPageFA} titre="Listes des comptes mises en avant" photo={photoFA} />
+	  
+	  <PageTemplate 
+		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} 
+		  ChoisirCompteAMettreEnAvantPage={ChoisirCompteAMettreEnAvantPageFA} titre="Listes des comptes mises en avant" photo={photoFA} 
+	  />
+	  
 	  <PageTemplate visible={ajouterCompteCommeAdminFA} fermer={CloseAjouterCompteCommeAdminFA} titre="Listes des comptes ajoutés comme admin Florinato" photo={photoFA} />
 	  
 	  
-	  
-	  <PopupDuBasTemplate visible={choisirCompteAMettreEnAvantPageFA} fermer={CloseChoisirCompteAMettreEnAvantPageFA} photo={photoFA} titre="Choisir le compte à mettre en avant" />
-
+	  <PopupDuBasTemplate 
+		  visible={choisirCompteAMettreEnAvantPageFA} fermer={CloseChoisirCompteAMettreEnAvantPageFA} photo={photoFA} titre="Choisir le compte à mettre en avant" 
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation}
+	  />
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}

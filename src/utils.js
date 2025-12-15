@@ -602,7 +602,10 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AjouterCompt
 )}
 
 
-export function PopupDuBasTemplate({ visible, fermer, photo, titre, GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin }) {	
+export function PopupDuBasTemplate({ 
+	visible, fermer, photo, titre, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation, 
+	GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin 
+	}) {	
 	if (!visible) return null;
 
 	return (<>
@@ -627,6 +630,8 @@ export function PopupDuBasTemplate({ visible, fermer, photo, titre, GestionDuCom
 			  MettreEnAvantCompte={MettreEnAvantCompte} 
 			  AjouterCompteCommeAdmin={AjouterCompteCommeAdmin} 
 			/>
+			
+			<RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
 			
 			<p style={{ paddingTop: "100px" }}></p>
             </div>
