@@ -557,86 +557,6 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
-
-export function PageTemplate({ visible, fermer, photo, titre, ChoisirCompteAMettreEnAvantPage }) {
-	if (!visible) return null;
-	
-  return (<>
-	<div className="page-blanche">
-		<div className="close">
-            <div className="a" onClick={fermer}> <SvgLeft /> <p>{titre}</p></div>
-        </div>
-		{/* close */}
-		
-        <div className="photo-25px"> <img src={photo} alt=""/> </div>
-        <div className="b" onClick={ChoisirCompteAMettreEnAvantPage}> <SvgAdd/> </div>
-    </div>
-    {/* page-blanche */}
-  </>
-)}
-
-
-/*
-export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
-			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
-*/
-
-
-export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin }) {
-  return (<>
-		<div className="list">
-            <div className="b" onClick={GestionDuCompte}> <p>Gestion du compte</p> </div>
-            <div className="b" onClick={MettreEnAvantCompte}> <p>Mettre en avant un compte</p> </div>
-            <div className="b" onClick={AjouterCompteCommeAdmin}> <p>Ajouter un compte comme Admin Florinato</p> </div>
-        </div>
-        {/* list */}
-  </>
-)}
-
-export function PopupDuBasTemplate({ 
-	visible, fermer, photo, titre, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation, 
-	GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin 
-	}) {	
-	if (!visible) return null;
-
-	return (<>
-        <div className="favoriteFA">
-        <div className="align">
-          <div className="head" onClick={fermer}> 
-            <div className="block-one"> <p>{titre}</p> </div>
-
-            <div className="block-two"> 
-              <div className="a"> <img src={photo} alt=""/> </div>
-              <div className="b"> <SvgBottom5/> </div>
-            </div>
-            {/* block-two */}
-          </div>
-          {/* head */}
-
-          <div className="body">
-            <div className="card">
-			
-			<ListeDuMenu 
-			  GestionDuCompte={GestionDuCompte} 
-			  MettreEnAvantCompte={MettreEnAvantCompte} 
-			  AjouterCompteCommeAdmin={AjouterCompteCommeAdmin} 
-			/>
-			
-			<RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
-			
-			<p style={{ paddingTop: "100px" }}></p>
-            </div>
-            {/* card */}
-          </div>
-          {/* body */}
-        </div>
-        {/* align */}
-        </div>
-        {/* favoriteFA */}
-	</>);
-}
-{/* PopupDuBasTemplate */}
-
 		   
 export function ConfirmationTemplate({ visible, fermer }) {	
 	if (!visible) return null;
@@ -666,7 +586,87 @@ export function ConfirmationTemplate({ visible, fermer }) {
   </>);
 }
 
-export function RechercheTemplate({ listAccount = [], valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
+
+export function PageTemplate({ visible, fermer, photo, titre, clicSvg }) {
+	if (!visible) return null;
+	
+  return (<>
+	<div className="page-blanche">
+		<div className="close">
+            <div className="a" onClick={fermer}> <SvgLeft /> <p>{titre}</p></div>
+        </div>
+		{/* close */}
+		
+        <div className="photo-25px"> <img src={photo} alt=""/> </div>
+        <div className="b" onClick={clicSvg}> <SvgAdd/> </div>
+    </div>
+    {/* page-blanche */}
+  </>
+)}
+
+
+/*
+export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
+			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
+*/
+
+
+export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorinato }) {
+  return (<>
+		<div className="list">
+            <div className="b" onClick={GestionDuCompte}> <p>Gestion du compte</p> </div>
+            <div className="b" onClick={MettreEnAvantCompte}> <p>Mettre en avant un compte</p> </div>
+            <div className="b" onClick={AdminFlorinato}> <p>Ajouter un compte comme Admin Florinato</p> </div>
+        </div>
+        {/* list */}
+  </>
+)}
+
+export function PopupDuBasTemplate({ 
+	visible, fermer, photo, titre, listAccount, valeur, setValeur, cliquer, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato 
+	}) {	
+	if (!visible) return null;
+
+	return (<>
+        <div className="favoriteFA">
+        <div className="align">
+          <div className="head" onClick={fermer}> 
+            <div className="block-one"> <p>{titre}</p> </div>
+
+            <div className="block-two"> 
+              <div className="a"> <img src={photo} alt=""/> </div>
+              <div className="b"> <SvgBottom5/> </div>
+            </div>
+            {/* block-two */}
+          </div>
+          {/* head */}
+
+          <div className="body">
+            <div className="card">
+			
+			<ListeDuMenu 
+			  GestionDuCompte={GestionDuCompte} MettreEnAvantCompte={MettreEnAvantCompte} 
+			  AdminFlorinato={AdminFlorinato} />
+			
+			<RechercheTemplate 
+				listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
+				cliquer={cliquer} />
+			
+			<p style={{ paddingTop: "100px" }}></p>
+            </div>
+            {/* card */}
+          </div>
+          {/* body */}
+        </div>
+        {/* align */}
+        </div>
+        {/* favoriteFA */}
+	</>);
+}
+{/* PopupDuBasTemplate */}
+
+
+export function RechercheTemplate({ listAccount = [], valeur, setValeur, cliquer }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -699,10 +699,17 @@ export function RechercheTemplate({ listAccount = [], valeur, setValeur, ouvrirG
 				  
 			  
 			{listAccount.map((api) => (<>
-			<div onClick={ouvrirGestionCompteConfirmation}>	
+			<div onClick={() => cliquer(api)}>	
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
+			
+			 {/*
+			{listAccount.map((api) => (<>
+			<div onClick={() => cliquer(api)}>	
+				<PopularityAccountCard api={api} />
+			</div>
+			</>))}  */}
 	</>);
 }
 

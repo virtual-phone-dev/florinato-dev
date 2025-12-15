@@ -40359,54 +40359,60 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     setTelephoneVirtuel(true);
   }
   
+  
   // menuFA
   const [menuFA, setMenuFA] = useState(false); 
-  async function MenuFA() {
-    setMenuFA(true);
-  }
-  async function CloseMenuFA() {
-    setMenuFA(false);
-  }
+  async function MenuFA() { setMenuFA(true); }
+  async function CloseMenuFA() { setMenuFA(false); }
   
   
-  // gestionDuCompteFA
+  // gestionDuCompteFA - listes des comptes qui pourront publier sur votre compte
   const [gestionDuCompteFA, setGestionDuCompteFA] = useState(false); 
-  async function GestionDuCompteFA() {
-    setGestionDuCompteFA(true);
-  }
-  async function CloseGestionDuCompteFA() {
-    setGestionDuCompteFA(false);
-  }
+  async function GestionDuCompteFA() { setGestionDuCompteFA(true); }
+  async function CloseGestionDuCompteFA() { setGestionDuCompteFA(false); }
+  
+  // PopupDuBas - Ajouter un compte qui pourra publier sur votre compte
+  const [publierSurVotreCompteFApb, setPublierSurVotreCompteFApb] = useState(false); 
+  async function OuvrirPublierSurVotreCompteFApb() { setPublierSurVotreCompteFApb(true); }
+  async function ClosePublierSurVotreCompteFApb() { setPublierSurVotreCompteFApb(false); }
+  
+  // confirmation popup - confirmer l'ajout du compte qui pourra publier sur votre compte
+  const [publierSurVotreCompteFAconfp, setPublierSurVotreCompteFAconfp] = useState(false); 
+  async function PublierSurVotreCompteFAconfp() { setPublierSurVotreCompteFAconfp(true); }
+  async function ClosePublierSurVotreCompteFAconfp() { setPublierSurVotreCompteFAconfp(false); }
   
   
   // MettreEnAvantCompteFA
   const [mettreEnAvantCompteFA, setMettreEnAvantCompteFA] = useState(false); 
-  async function MettreEnAvantCompteFA() {
-    setMettreEnAvantCompteFA(true);
-  }
-  async function CloseMettreEnAvantCompteFA() {
-    setMettreEnAvantCompteFA(false);
-  }
+  async function MettreEnAvantCompteFA() { setMettreEnAvantCompteFA(true); }
+  async function CloseMettreEnAvantCompteFA() { setMettreEnAvantCompteFA(false); }
   
-  // popup pour Choisir le compte à mettre en avant
-  const [choisirCompteAMettreEnAvantPageFA, setChoisirCompteAMettreEnAvantPageFA] = useState(false); 
-  async function ChoisirCompteAMettreEnAvantPageFA() {
-    setChoisirCompteAMettreEnAvantPageFA(true);
-  }
-  async function CloseChoisirCompteAMettreEnAvantPageFA() {
-    setChoisirCompteAMettreEnAvantPageFA(false);
-  }
+  // PopupDuBas - Selectionner, Ajouter un compte qui sera mis en avant
+  const [mettreEnAvantFApb, setMettreEnAvantFApb] = useState(false); 
+  async function OuvrirMettreEnAvantFApb() { setMettreEnAvantFApb(true); }
+  async function CloseMettreEnAvantFApb() { setMettreEnAvantFApb(false); }
   
-
+  // confirmation popup - confirmer l'ajout du compte qui sera mis en avant sur Florinato
+  const [mettreEnAvantFAconfp, setMettreEnAvantFAconfp] = useState(false); 
+  async function MettreEnAvantFAconfp() { setMettreEnAvantFAconfp(true); }
+  async function CloseMettreEnAvantFAconfp() { setMettreEnAvantFAconfp(false); }
   
-  // AjouterCompteCommeAdminFA
-  const [ajouterCompteCommeAdminFA, setAjouterCompteCommeAdminFA] = useState(false); 
-  async function AjouterCompteCommeAdminFA() {
-    setAjouterCompteCommeAdminFA(true);
-  }
-  async function CloseAjouterCompteCommeAdminFA() {
-    setAjouterCompteCommeAdminFA(false);
-  }
+  
+    // page - listes des admins florinato
+  const [adminFlorinato, setAdminFlorinato] = useState(false); 
+  async function AdminFlorinato() { setAdminFlorinato(true); }
+  async function CloseAdminFlorinato() { setAdminFlorinato(false); }
+  
+  // PopupDuBas - Selectionner, Ajouter un compte qui sera admin Florinato
+  const [adminFlorinatopb, setAdminFlorinatopb] = useState(false); 
+  async function OuvrirAdminFlorinatopb() { setAdminFlorinatopb(true); }
+  async function CloseAdminFlorinatopb() { setAdminFlorinatopb(false); }
+  
+  // confirmation popup - confirmer l'ajout du compte qui sera admin Florinato
+  const [adminFlorinatoconfp, setAdminFlorinatoconfp] = useState(false); 
+  async function OuvrirAdminFlorinatoconfp() { setAdminFlorinatoconfp(true); }
+  async function CloseAdminFlorinatoconfp() { setAdminFlorinatoconfp(false); }
+  
   
   
   // on affiche son compte - FA 
@@ -51729,31 +51735,41 @@ g
       </>)}
       {/* on affiche mon compte - FA */}
 	  
-
-	  <PopupDuBasTemplate 
-		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" 
-		  GestionDuCompte={GestionDuCompteFA} 
-		  MettreEnAvantCompte={MettreEnAvantCompteFA} 
-		  AjouterCompteCommeAdmin={AjouterCompteCommeAdminFA} 
-	  />
 	  
-	  <PageTemplate visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
+	  <PageTemplate 
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} 
+		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
 	  
 	  <PageTemplate 
 		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} 
-		  ChoisirCompteAMettreEnAvantPage={ChoisirCompteAMettreEnAvantPageFA} titre="Listes des comptes mises en avant" photo={photoFA} 
-	  />
-	  
-	  <PageTemplate visible={ajouterCompteCommeAdminFA} fermer={CloseAjouterCompteCommeAdminFA} titre="Listes des comptes ajoutés comme admin Florinato" photo={photoFA} />
-	  
+		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mises en avant" photo={photoFA} />
+		  
+		<PageTemplate 
+		  visible={adminFlorinato} fermer={CloseAdminFlorinato} 
+		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
+		  
+		  
+  
+	  <PopupDuBasTemplate 
+		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
+		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} />
+
+	  <PopupDuBasTemplate 
+		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={PublierSurVotreCompteFAconfp} />
 	  
 	  <PopupDuBasTemplate 
-		  visible={choisirCompteAMettreEnAvantPageFA} fermer={CloseChoisirCompteAMettreEnAvantPageFA} photo={photoFA} titre="Choisir le compte à mettre en avant" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation}
-	  />
+		  visible={mettreEnAvantFA} fermer={CloseMettreEnAvantFA} photo={photoFA} titre="Choisir le compte à mettre en avant" 
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={MettreEnAvantFAconfp} />
 	  
+	  <PopupDuBasTemplate 
+		  visible={adminFlorinatopb} fermer={CloseAdminFlorinatopb} photo={photoFA} titre="Ajouter un compte qui sera admin Florinato" 
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={OuvrirAdminFlorinatoconfp} />
+		  
 	  
-	  <ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
+	  <ConfirmationTemplate visible={publierSurVotreCompteconfp} fermer={ClosePublierSurVotreCompteconfp} />
+	  <ConfirmationTemplate visible={mettreEnAvantFAconfp} fermer={CloseMettreEnAvantFAconfp} />
+	  <ConfirmationTemplate visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} />
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}
