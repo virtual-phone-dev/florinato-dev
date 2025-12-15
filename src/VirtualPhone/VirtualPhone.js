@@ -70,12 +70,19 @@ import settingsLogo from "../img/settingsLogo.jpg";
 import bavardageLogo from "../img/bavardageLogo.png";
 
 
+const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(null);
+const [idUserConnectedFA, setIdUserConnectedFA] = useState(null);
+const [idGroupFA, setIdGroupFA] = useState(null);
+const [idAccount, setIdAccount] = useState(null);
+const [idAccountChef, setIdAccountChef] = useState(null);
 
-const idUserConnectedFA = getIdUserConnectedFA();
-const idPersonConnectedFA = getIdPersonConnectedFA();
-const idGroupFA = getIdGroupFA();
-const idAccount = getIdAccount();
-const idAccountChef = getIdAccountChef();
+useEffect(() => {
+  setIdUserConnectedFA(getIdUserConnectedFA());
+  setIdPersonConnectedFA(getIdPersonConnectedFA());
+  setIdGroupFA(getIdGroupFA());
+  setIdAccount(getIdAccount());
+  setIdAccountChef(getIdAccountChef());
+}, []);
 
 
 /* convertir une date au format local (on convertit en fonction des parametres de l'horaire 
@@ -51448,9 +51455,7 @@ son compte Vixinol store */
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
-		<ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
-
-
+		
       {/* rencontre - FA */}
       {rencontreFA && (<>
         <div className="rencontreFA">
@@ -51762,6 +51767,9 @@ g
 		  visible={choisirCompteAMettreEnAvantPageFA} fermer={CloseChoisirCompteAMettreEnAvantPageFA} photo={photoFA} titre="Choisir le compte à mettre en avant" 
 		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation}
 	  />
+	  
+	  
+	  <ConfirmationTemplate visible={ajouterGestionCompteConfirmation} fermer={CloseAjouterGestionCompteConfirmation} />
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}
