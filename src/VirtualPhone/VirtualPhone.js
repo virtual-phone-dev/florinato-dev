@@ -51759,7 +51759,7 @@ g
 		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={PublierSurVotreCompteFAconfp} />
 	  
 	  <PopupDuBasTemplate 
-		  visible={mettreEnAvantFA} fermer={CloseMettreEnAvantFA} photo={photoFA} titre="Choisir le compte à mettre en avant" 
+		  visible={mettreEnAvantFApb} fermer={CloseMettreEnAvantFApb} photo={photoFA} titre="Choisir le compte à mettre en avant" 
 		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={MettreEnAvantFAconfp} />
 	  
 	  <PopupDuBasTemplate 
@@ -51767,9 +51767,10 @@ g
 		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={OuvrirAdminFlorinatoconfp} />
 		  
 	  
-	  <ConfirmationTemplate visible={publierSurVotreCompteconfp} fermer={ClosePublierSurVotreCompteconfp} />
+	  <ConfirmationTemplate visible={publierSurVotreCompteFAconfp} fermer={ClosePublierSurVotreCompteFAconfp} />
 	  <ConfirmationTemplate visible={mettreEnAvantFAconfp} fermer={CloseMettreEnAvantFAconfp} />
 	  <ConfirmationTemplate visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} />
+
 
 
       {/* délivrer un numéro virtuel (admin florinato) */}
