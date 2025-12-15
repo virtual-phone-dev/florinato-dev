@@ -601,7 +601,6 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AjouterCompt
   </>
 )}
 
-
 export function PopupDuBasTemplate({ 
 	visible, fermer, photo, titre, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation, 
 	GestionDuCompte, MettreEnAvantCompte, AjouterCompteCommeAdmin 
@@ -675,8 +674,7 @@ export function ConfirmationTemplate({ visible, fermer }) {
   </>);
 }
 
-
-export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
+export function RechercheTemplate({ listAccount = [], valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
