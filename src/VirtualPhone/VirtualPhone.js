@@ -51735,6 +51735,10 @@ g
       </>)}
       {/* on affiche mon compte - FA */}
 	  
+	  <PopupDuBasTemplate 
+		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
+		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} />
+	  
 	  
 	  <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} 
@@ -51748,11 +51752,7 @@ g
 		  visible={adminFlorinato} fermer={CloseAdminFlorinato} 
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
 		  
-		  
-  
-	  <PopupDuBasTemplate 
-		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
-		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} />
+		  	  
 
 	  <PopupDuBasTemplate 
 		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
