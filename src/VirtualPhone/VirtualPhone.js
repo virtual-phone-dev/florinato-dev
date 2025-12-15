@@ -9,9 +9,7 @@ import "../utils.css";
 
 import { 
 	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate,
-	//idUserConnectedFA, idPersonConnectedFA, idGroupFA, idAccount, idAccountChef, 
-	getIdUserConnectedFA, getIdPersonConnectedFA, getIdGroupFA, getIdAccount, getIdAccountChef,
-	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData
+	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData
 	} from "../utils";
 		
 import { missions } from "../missions";
@@ -69,20 +67,6 @@ import officialLogo from "../img/officialLogo.png";
 import settingsLogo from "../img/settingsLogo.jpg";
 import bavardageLogo from "../img/bavardageLogo.png";
 
-
-const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(null);
-const [idUserConnectedFA, setIdUserConnectedFA] = useState(null);
-const [idGroupFA, setIdGroupFA] = useState(null);
-const [idAccount, setIdAccount] = useState(null);
-const [idAccountChef, setIdAccountChef] = useState(null);
-
-useEffect(() => {
-  setIdUserConnectedFA(getIdUserConnectedFA());
-  setIdPersonConnectedFA(getIdPersonConnectedFA());
-  setIdGroupFA(getIdGroupFA());
-  setIdAccount(getIdAccount());
-  setIdAccountChef(getIdAccountChef());
-}, []);
 
 
 /* convertir une date au format local (on convertit en fonction des parametres de l'horaire 
@@ -35398,11 +35382,11 @@ async function DissadAA() {
   }, []);
 
 
-  /*const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
+  const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   const idAccount = localStorage.getItem("idAccountChef");
-  const idAccountChef = localStorage.getItem("idAccountChef");*/
+  const idAccountChef = localStorage.getItem("idAccountChef");
 
   
   // filtre pour obtenir quelques infos de l'utilisateur connecter)

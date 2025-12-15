@@ -8,19 +8,11 @@ import { theme } from "./theme";
 import "./utils.css"; 
 import "./darkmode.css";
 
-/*
-export const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+/* export const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 export const idGroupFA = localStorage.getItem("idGroupFA");
 export const idAccount = localStorage.getItem("idAccountChef");
 export const idAccountChef = localStorage.getItem("idAccountChef"); */
-
-
-export const getIdUserConnectedFA = () => localStorage.getItem("idUserConnectedFA");
-export const getIdPersonConnectedFA = () => localStorage.getItem("idPersonConnectedFA");
-export const getIdGroupFA = () => localStorage.getItem("idGroupFA");
-export const getIdAccount = () => localStorage.getItem("idAccount");
-export const getIdAccountChef = () => localStorage.getItem("idAccountChef"); 
 
 
 
