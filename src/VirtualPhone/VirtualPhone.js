@@ -51741,15 +51741,15 @@ g
 	  
 	  
 	  <PageTemplate 
-		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} 
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} listAccount={listAccountFA}
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
 	  
 	  <PageTemplate 
-		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} 
+		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} listAccount={listAccountFA}
 		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mises en avant" photo={photoFA} />
 		  
 		<PageTemplate 
-		  visible={adminFlorinato} fermer={CloseAdminFlorinato} 
+		  visible={adminFlorinato} fermer={CloseAdminFlorinato} listAccount={listAccountFA}
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
 		  
 		  	  

@@ -587,7 +587,7 @@ export function ConfirmationTemplate({ visible, fermer }) {
 }
 
 
-export function PageTemplate({ visible, fermer, photo, titre, clicSvg }) {
+export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccount }) {
 	if (!visible) return null;
 	
   return (<>
@@ -599,6 +599,8 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg }) {
 		
         <div className="photo-25px"> <img src={photo} alt=""/> </div>
         <div className="b" onClick={clicSvg}> <SvgAdd/> </div>
+		
+		<ListeDesComptes data={listAccount} />
     </div>
     {/* page-blanche */}
   </>
@@ -703,13 +705,6 @@ export function RechercheTemplate({ listAccount = [], valeur, setValeur, cliquer
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
-			
-			 {/*
-			{listAccount.map((api) => (<>
-			<div onClick={() => cliquer(api)}>	
-				<PopularityAccountCard api={api} />
-			</div>
-			</>))}  */}
 	</>);
 }
 
@@ -740,13 +735,21 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
-			  
-			  {data.map((api) => (<>
-				<PopularityAccountCard api={api} />
-			  </>))}
+			  <ListeDesComptes data={data} />
 		 </div>
 	 </div>
  </>)}
+ 
+ 
+export function ListeDesComptes({ data = [] }) {
+  return (
+    <>
+      {data.map((api) => (
+        <PopularityAccountCard key={api._id} api={api} />
+      ))}
+    </>
+  );
+}
 
 
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderModification, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
