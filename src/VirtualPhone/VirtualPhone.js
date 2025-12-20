@@ -44590,9 +44590,9 @@ const [lienGitHub, setLienGitHub] = useState("");
 const [lienGitLab, setLienGitLab] = useState("");
 const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
 
-const [id, setId] = useState();
+const [idreq, setId] = useState();
 const [idVideo, setIdVideo] = useState(null);
-console.log(`id ici:`, id);
+console.log(`id ici:`, idreq);
 console.log(`idVideo ici:`, idVideo);
 
 
@@ -44665,7 +44665,7 @@ async function ExecuterActionFA({ actions = ["post"], id, ...donnees }) { // don
 // on fait cette petite reutilisation de code pour eviter la redondance de code
 async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) {
   loader(true);
-  const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccountFA && api.idOther === id && api.type === type);
+  const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccountFA && api.idOther === idreq && api.type === type);
   const idInfos = filterInfos.map((api) => api._id);
   const existe = filterInfos.length > 0;
 
@@ -44678,7 +44678,7 @@ async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) 
 
 //logique pour ajouter un admin qui pourra publier sur un compte florinato
 async function AjouterAdminFA() {
-	console.log("id du compte, yesss", id);
+	console.log("idreq ici", idreq);
 	await avantExecuterActionFA({ loader: setIsLoading666AjouterAdminFA, type: 81, donneesPut: { admin: 1 }, donneesPost: { admin: 1 }, });
 }
 
@@ -44695,7 +44695,7 @@ async function MettreEnAvantFA() {
 
 // clic de la video 
 async function clicVideoFAA() {
-  await executerActionFA({ donnees: { idAccountFA, idOtherFA:id, idPost:idVideo, visible: 1, type: 204}}); 
+  await executerActionFA({ donnees: { idAccount:idAccountFA, idOtherFA:idreq, idPost:idVideo, visible: 1, type: 204}}); 
   await executerActionFA({ donnees: { clic: totalClic}, id:idVideo, actions: ["put"] }); 
 }
 
