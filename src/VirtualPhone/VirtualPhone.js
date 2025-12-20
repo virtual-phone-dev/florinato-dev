@@ -18625,49 +18625,6 @@ dans le localStorage */
     setErreurRencontrerIA(false);
   }
 
-  // filtre pour afficher la liste des pays (en fonction de la langue) - IA
-  /*const idLangueIA = localStorage.getItem(
-    "https://alrani.com/idLangueSelectionnerIA"
-  );
-  const filtreApiListeDesPaysIA = apiListeDesPaysIA.filter(
-    (api) => api.idLangue === idLangueIA
-  );
-
-  // filtre pour afficher la liste des villes (en fonction du pays) - IA
-  const idPaysIA = localStorage.getItem(
-    "https://alrani.com/idPaysSelectionnerIA"
-  );
-  const filtreApiListeDesVillesIA = apiListeDesVillesIA.filter(
-    (api) => api.idPays === idPaysIA
-  );
-
-  // filtre pour afficher la liste des quartiers (en fonction de la ville) - IA
-  const idVilleIA = localStorage.getItem(
-    "https://alrani.com/idVilleSelectionnerIA"
-  );
-  const filtreApiListeDesQuartiersIA = apiQuarterIA.filter(
-    (api) => api.idVille === idVilleIA
-  );
-
-  // filtre pour afficher la liste des zones  (en fonction du quartier) - IA
-  const idQuartierIA = localStorage.getItem(
-    "https://alrani.com/idQuartierSelectionnerIA"
-  );
-  const filtreApiListeDesZonesIA = apiListeDesZonesIA.filter(
-    (api) => api.idQuartier === idQuartierIA
-  );*/
-
-  //
-  /* filtre pour afficher les photos d'identiter de l'entreprise 
-  (en fonction de l'idCompte) - verificationDidentiterEntrepriseIA */
-  /*const filtreApiPhotoIdentiterEntrepriseIA =
-    apiPhotoIdentiterEntrepriseIA.filter(
-      (api) => api.idCompte === idPersonConnectedIA
-    );*/
-
-
-  
-
 
   //Izocash International - IA
   /*on affiche la page qui va permettre a la personne de demarrer le processus pour 
@@ -35386,6 +35343,7 @@ async function DissadAA() {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   const idAccount = localStorage.getItem("idAccountChef");
+  const idAccountFA = localStorage.getItem("idPersonConnectedFA");
   const idAccountChef = localStorage.getItem("idAccountChef");
 
   
@@ -35455,6 +35413,7 @@ async function DissadAA() {
     //const countryOther = accountOther.map((api) => api.countryCode); // pays
     //const onlineOther = accountOther.map((api) => api.online); // online (pour savoir sa date de derniere connexion)
 
+    const idOtherFA = localStorage.getItem("idOtherFA");
     const idGroupOther = localStorage.getItem("idGroupChef");
     const idMessageEpingler = localStorage.getItem("idMessageEpingler");
 
@@ -35531,23 +35490,10 @@ async function DissadAA() {
 	  api.visible === "1");
 	})
 	
-	/*const listAccountFA = mySearchFA && Array.isArray(apiMessageFA) ? apiMessageFA.filter((api) => {
-	  return (
-		api.type === "10" && 
-		api.nameAccount && 
-		normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
-		api.visible === "1"
-	  );
-	}) : []; */
   
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
-  
-  /*console.log('mySearchFA ici:', mySearchFA);
-  console.log('listAccountFA ici:', listAccountFA);
-  console.log('verifyAccountFA ici:', verifyAccountFA);
-  console.log('verifyAccountFAnombre ici:', verifyAccountFAnombre);
-  */
+
 
    // filtre pour obtenir tout les favoris
   const allMessageFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA);
@@ -44519,6 +44465,9 @@ async function SendMessagetype42() {
 // SendMessagetype42
 
 
+
+
+
 // url pour tomber directement sur la page
 // url pour tomber directement sur la page
 
@@ -44611,7 +44560,6 @@ const [second, setSecond] = useState(10);
   useEffect(() => {
 	async function GenererMiniature() {
 		if (fileVideoFAA) {
-			console.log('fileVideoFAA vir:', fileVideoFAA);
 			// Supposons que vous avez votre fichier vidéo dans `file`
 			await GenererMiniatureVideo({ file: fileVideoFAA, setMiniature: setMiniature, second: second });
 		}
@@ -44631,7 +44579,6 @@ async function CloseVoirMiniature() { //fermer
 
 
 async function transVoirMiniature(url) { //transmettre VoirMiniature (on transmet la miniature a l'autre composant (au modal))
-  console.log("transVoirMiniature, url ici :", url);
   setPhotoUrl(url);
   setVoirMiniature(true);
 } 
@@ -44643,12 +44590,17 @@ const [lienGitHub, setLienGitHub] = useState("");
 const [lienGitLab, setLienGitLab] = useState("");
 const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
 
+const [id, setId] = useState();
+const [idVideo, setIdVideo] = useState(null);
+console.log(`id ici:`, id);
+console.log(`idVideo ici:`, idVideo);
+
 
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
 	setisLoading666EnvoyerVideoFAA(true);
-	console.log("envoyer photo");
-	console.log("photoUrl ici :", photoUrl);
+	/*console.log("envoyer photo");
+	console.log("photoUrl ici :", photoUrl);*/
 	
 	const actions = {
 	  envoyerPhoto: true,
@@ -44679,17 +44631,73 @@ async function EnvoyerVideoFAA() {
 		url: "/api/messageFA/new",
 	});
 	
-	
-	if (actions.allData) {
-		const data = await getAllData();
-		setApiMessageFA(data);
-		setApiMessageFAA(data);
-		//console.log(`data est là :`, data);
-	  }
+	if (actions.allData) { await ObtenirLesDonneesFA(); }
 	  
 	setisLoading666EnvoyerVideoFAA(false);
 }
 // EnvoyerVideoFAA
+
+
+const [isLoading666AjouterAdminFA, setIsLoading666AjouterAdminFA] = useState(false);
+const [isLoading666AjouterAdminFlorinato, setIsLoading666AjouterAdminFlorinato] = useState(false);
+const [isLoading666MettreEnAvantFA, setIsLoading666MettreEnAvantFA] = useState(false);
+
+
+// toutes les donnees FA
+async function ObtenirLesDonneesFA() {
+  const data = await getAllData();
+  setApiMessageFA(data);
+  setApiMessageFAA(data);
+}
+
+
+async function ExecuterActionFA({ actions = ["post"], id, ...donnees }) { // donnees = {}
+  for (const action of actions) {
+    if (action === "post") { await envoyerPOST({ ...donnees }); }
+    if (action === "put") { await envoyerPUT({ id, ...donnees }); }
+  }
+
+  await ObtenirLesDonneesFA();
+}
+
+
+
+// on fait cette petite reutilisation de code pour eviter la redondance de code
+async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) {
+  loader(true);
+  const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccountFA && api.idOther === id && api.type === type);
+  const idInfos = filterInfos.map((api) => api._id);
+  const existe = filterInfos.length > 0;
+
+  try {
+    if (existe) { await ExecuterActionFA({ donnees: donneesPut, id:idInfos, actions: ["put"] }); } // donnees existe deja , alors on fait un put
+	else { await ExecuterActionFA({ donnees: { ...donneesPost, idAccount:idAccountFA, idOther:id, visible:1, type } }); } // donnees n'existe pas , alors on fait un post
+  } finally { loader(false); }
+}
+
+
+//logique pour ajouter un admin qui pourra publier sur un compte florinato
+async function AjouterAdminFA() {
+	console.log("id du compte, yesss", id);
+	await avantExecuterActionFA({ loader: setIsLoading666AjouterAdminFA, type: 81, donneesPut: { admin: 1 }, donneesPost: { admin: 1 }, });
+}
+
+//logique pour ajouter un admin florinato
+async function AjouterAdminFlorinato() {
+	await avantExecuterActionFA({ loader: setIsLoading666AjouterAdminFlorinato, type: 80, donneesPut: { adminFlorinato: 1 }, donneesPost: { adminFlorinato: 1 }, });
+}
+
+//logique pour mettre en avant un compte - FA
+async function MettreEnAvantFA() {
+	await avantExecuterActionFA({ loader: setIsLoading666MettreEnAvantFA, type: 82, donneesPut: { top: 1 }, donneesPost: { top: 1 }, });
+}
+
+
+// clic de la video 
+async function clicVideoFAA() {
+  await executerActionFA({ donnees: { idAccountFA, idOtherFA:id, idPost:idVideo, visible: 1, type: 204}}); 
+  await executerActionFA({ donnees: { clic: totalClic}, id:idVideo, actions: ["put"] }); 
+}
 
 
 //page pour enregistrer l'url modifier
@@ -44709,9 +44717,6 @@ async function ValiderUrl() {
 	setisLoading666ValideUrl(true);
 	const idPost = localStorage.getItem("idPost");
 	
-	/*console.log("debut ValiderUrl");
-	console.log("url pas encore modifier :", ecrire666modifierUrl);
-	console.log("idPost ici :", idPost);*/
 	const actions = { modifier: true, allData: true };
 		
 	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
@@ -44721,26 +44726,9 @@ async function ValiderUrl() {
 		const data = await getAllData();
 		setApiMessageFA(data);
 		setApiMessageFAA(data);
-		//console.log(`data est là :`, data);
 	  }
 }
 // ValiderUrl
-
-
-const [idVideo, setIdVideo] = useState(null);
-console.log(`idVideo FA:`, idVideo);
-
-async function clicVideoFAA() {
-		await envoyerPOST({ 
-			id: 500, 
-			idPost: 700, 
-			idAccount: idPersonConnectedFA, 
-			idOther: idPersonConnectedFA,
-			visible: 1, type: 204, url: "/api/messageFA/new" 
-		});
-		
-		await envoyerPUT({ idPost: idVideo, clic: 300 });
-}
 	
 	
 //logique pour ajouter une photo de couverture a la video
@@ -51717,7 +51705,7 @@ g
 
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
               {filterFA.map((api) => (<>
-				  <div onClick={() => setIdVideo(api._id)}>
+				  <div onClick={() => setId(api._id)}>
 					  <ChildApi66profilFA api={api} verifierId={true} video="video" photo="photo" photocss="photo-70px-carre" />
 				  </div>
               </>))}
@@ -51756,23 +51744,32 @@ g
 
 	  <PopupDuBasTemplate 
 		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={PublierSurVotreCompteFAconfp} />
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} />
 	  
 	  <PopupDuBasTemplate 
 		  visible={mettreEnAvantFApb} fermer={CloseMettreEnAvantFApb} photo={photoFA} titre="Choisir le compte à mettre en avant" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={MettreEnAvantFAconfp} />
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={MettreEnAvantFAconfp} setId={setId} />
 	  
 	  <PopupDuBasTemplate 
 		  visible={adminFlorinatopb} fermer={CloseAdminFlorinatopb} photo={photoFA} titre="Ajouter un compte qui sera admin Florinato" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={OuvrirAdminFlorinatoconfp} />
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} />
+		  
 		  
 	  
-	  <ConfirmationTemplate visible={publierSurVotreCompteFAconfp} fermer={ClosePublierSurVotreCompteFAconfp} />
-	  <ConfirmationTemplate visible={mettreEnAvantFAconfp} fermer={CloseMettreEnAvantFAconfp} />
-	  <ConfirmationTemplate visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} />
-
-
-
+	  <ConfirmationTemplate 
+		  visible={publierSurVotreCompteFAconfp} fermer={ClosePublierSurVotreCompteFAconfp} 
+		  isLoading={isLoading666AjouterAdminFA} Validerbtn={AjouterAdminFA} />
+	  
+	  <ConfirmationTemplate 
+		  visible={mettreEnAvantFAconfp} fermer={CloseMettreEnAvantFAconfp} 
+		  isLoading={isLoading666MettreEnAvantFA} Validerbtn={MettreEnAvantFA} />
+	  
+	  <ConfirmationTemplate 
+		  visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} 
+		  isLoading={isLoading666AjouterAdminFlorinato} Validerbtn={AjouterAdminFlorinato} />
+	  
+	  
+	  
       {/* délivrer un numéro virtuel (admin florinato) */}
       {/* délivrer un numéro virtuel (admin florinato) */}
       {delivrerNumeroVirtuel && (<>
@@ -52767,7 +52764,7 @@ g
 			<img src={urlPhoto} alt="" /> 
 		
 			{filterFA.map((api) => (<>
-			<div onClick={() => setIdVideo(api._id)}>
+			<div onClick={() => setId(api._id)}>
 				<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
 			</div>
 			</>))}
@@ -52798,7 +52795,7 @@ g
 		  
         <div className="overflow-x">
 		{filterFA.map((api) => (<>
-			<div onClick={() => setIdVideo(api._id)}>
+			<div onClick={() => setId(api._id)}>
 				<ChildApi66profilFA api={api} verifierId={true} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
 			</div>
         </>))}
@@ -52807,7 +52804,7 @@ g
 		
 		<div className="overflow-x">
 		{filterFA.map((api) => (<>
-			<div onClick={() => setIdVideo(api._id)}>
+			<div onClick={() => setId(api._id)}>
 				<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
 			</div>
         </>))}

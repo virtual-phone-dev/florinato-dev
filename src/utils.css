@@ -19,14 +19,6 @@
   overflow-y: auto;
 }
 
-.flex {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-  margin-left: 15px;
-  margin-right: 15px;
-}
-
 .cadre {
   text-align: center;
 }
@@ -44,6 +36,14 @@
   padding-bottom: 30px;
   padding-left: 20px;
   padding-right: 20px;
+}
+
+.flex {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+  margin-left: 15px;
+  margin-right: 15px;
 }
 
 .display-nowrap {

@@ -25,6 +25,7 @@ const apiUrls = [
 const apiUrlsPhoto = apiUrls.map(base => `${base}/api/messageFA/sendPhoto`);
 const apiUrlsObtenirDonnees = apiUrls.map(base => `${base}/api/messageFA`);
 const apiUrlsPUT = apiUrls.map(base => `${base}/api/messageFA/update`);
+const apiUrlsPOST = apiUrls.map(base => `${base}/api/messageFA/new`);
 	  
 
 async function uploadImage(file) {
@@ -71,13 +72,13 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
 }
 
 
-export async function envoyerPUT({ idPost, clic }) {
+/* export async function envoyerPUT({ id, clic }) {
 	const data = {};
     if (clic !== undefined) data.clic = clic;
   
 	for (const api of apiUrls) {
 		try {
-		  const fullUrl = `${api}/api/messageFA/update/${idPost}`; // Concaténer l'API de base avec l'endpoint
+		  const fullUrl = `${api}/api/messageFA/update/${id}`; // Concaténer l'API de base avec l'endpoint
 		  
 		  const res = await axios.put(fullUrl, data);
 		  return res.data; // Retourne la réponse de l'API
@@ -86,33 +87,53 @@ export async function envoyerPUT({ idPost, clic }) {
 		}
 	  }
 	  throw new Error('Toutes les tentatives de modifications ont échoué');
-}
+} */
 
 
-export async function envoyerPOST({ id, visible, type, url }) {
-	const data = {};
-	
-	if (id !== undefined) data.id = id;
-    //if (idUser !== undefined) data.idUser = idUser;
-	//if (urlPhoto !== undefined) data.urlPhoto = urlPhoto;
-    //if (urlVideo !== undefined) data.urlVideo = urlVideo;
-    if (visible !== undefined) data.visible = visible;
-    if (type !== undefined) data.type = type;
-  
-	for (const api of apiUrls) {
+export async function envoyerPUT({ id, visible, type, url, clic, ...donnees, }) {
+	const data = {
+	  ...(id !== undefined && { id }),
+	  ...(visible !== undefined && { visible }),
+	  ...(type !== undefined && { type }),
+	  ...(clic !== undefined && { clic }),
+	  //if (urlVideo !== undefined) data.urlVideo = urlVideo;
+	  ...donnees,
+	};
+
+	for (const api of apiUrlsPUT) {
 		try {
-		  const fullUrl = `${api}${url}`; // Concaténer l'API de base avec l'endpoint
-		  
-		  const res = await axios.post(fullUrl, data
-		  //, { headers: { 'Content-Type': 'application/json' } }
-		  );
+		  const fullUrl = `${api}/${id}`;
+		  const res = await axios.put(fullUrl, data);
 		  return res.data; // Retourne la réponse de l'API
 		} catch (err) {
 		  // Passer à l'API suivante en cas d'erreur
 		}
 	  }
-	  throw new Error('Toutes les tentatives d\'envoi FAA ont échoué');
+	  throw new Error('Toutes les tentatives envoyerPUT ont échoué avec toutes les url');
 }
+//envoyerPUT
+
+
+export async function envoyerPOST({ id, visible, type, url, ...donnees, }) {
+	const data = {
+	  ...(id !== undefined && { id }),
+	  ...(visible !== undefined && { visible }),
+	  ...(type !== undefined && { type }),
+	  //if (urlVideo !== undefined) data.urlVideo = urlVideo;
+	  ...donnees,
+	};
+
+	for (const api of apiUrlsPOST) {
+		try {		 
+		  const res = await axios.post(api, data);
+		  return res.data; // Retourne la réponse de l'API
+		} catch (err) {
+		  // Passer à l'API suivante en cas d'erreur
+		}
+	  }
+	  throw new Error('Toutes les tentatives envoyerPOST ont échoué avec toutes les url');
+}
+//envoyerPOST
 
 
 async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
@@ -120,14 +141,6 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
     try {
 	  // Concaténer l'API de base avec l'endpoint
       const fullUrl = `${api}${url}`;
-	  
-	  /*console.log("fullUrl ici", fullUrl)
-	  console.log("url ici", url)
-	  console.log("urlPhoto ici", urlPhoto)
-	  console.log("urlVideo ici", urlVideo)
-	  console.log("idAccount ici", idAccount)
-	  console.log("message ici", message)*/
-	  
 	  const newUrlVideo = await AdapterLien(urlVideo)
 	  
       const response = await axios.post(fullUrl, {
@@ -291,12 +304,6 @@ export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'im
 export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAccount, nameAccount, photoAccount, nouveauUrl, idPost, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
 	
 	let urlPhotoSauvegarder = null;
-	
-	console.log("file ici :", file);
-	console.log("idAccount ici :", idAccount);
-	console.log("type ici :", type);
-	console.log("urlVideo ici :", urlVideo);
-	
 
   // Vérifier si chaque action doit être effectuée
   if (actions.envoyerPhoto) {
@@ -558,7 +565,7 @@ export function SpeedMessages({ visible, fermer, data }) {
 
 
 		   
-export function ConfirmationTemplate({ visible, fermer }) {	
+export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn }) {	
 	if (!visible) return null;
 
 	return (<>
@@ -573,8 +580,10 @@ export function ConfirmationTemplate({ visible, fermer }) {
 
                 <div className="block-trois">
                   <div className="a"> <button onClick={fermer}>Annuler</button> </div>
-                  <div className="btn-blue"> <button>Valider</button> </div>
-                  {/* rechargeActive */}
+				  
+				  {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
+				  ):(<div className="btn-bleu"> <button onClick={Validerbtn}>Valider</button> </div> )}
+                  {/* btn-bleu */}
                 </div>
                 {/* block-trois */}
               </div>
@@ -592,25 +601,21 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccou
 	
   return (<>
 	<div className="page-blanche">
-		<div className="close">
-            <div className="a" onClick={fermer}> <SvgLeft /> <p>{titre}</p></div>
+		<div className="flex">
+			<div className="display-flex-nowrap">
+				<div onClick={fermer}> <SvgLeft/> <p>{titre}</p> </div>
+				<div className="photo-25px"> <img src={photo} alt=""/> </div>
+			</div>
+			
+			<div className="b"> <div onClick={clicSvg}> <SvgAdd/> </div> </div>
         </div>
 		{/* close */}
-		
-        <div className="photo-25px"> <img src={photo} alt=""/> </div>
-        <div className="b" onClick={clicSvg}> <SvgAdd/> </div>
 		
 		<ListeDesComptes data={listAccount} />
     </div>
     {/* page-blanche */}
   </>
 )}
-
-
-/*
-export function RechercheTemplate({ listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {	
-			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
-*/
 
 
 export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorinato }) {
@@ -624,9 +629,7 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorina
   </>
 )}
 
-export function PopupDuBasTemplate({ 
-	visible, fermer, photo, titre, listAccount, valeur, setValeur, cliquer, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato 
-	}) {	
+export function PopupDuBasTemplate({ visible, fermer, photo, titre, listAccount, valeur, setValeur, cliquer, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, setId }) {	
 	if (!visible) return null;
 
 	return (<>
@@ -652,7 +655,7 @@ export function PopupDuBasTemplate({
 			
 			<RechercheTemplate 
 				listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
-				cliquer={cliquer} />
+				cliquer={cliquer} setId={setId} />
 			
 			<p style={{ paddingTop: "100px" }}></p>
             </div>
@@ -668,7 +671,7 @@ export function PopupDuBasTemplate({
 {/* PopupDuBasTemplate */}
 
 
-export function RechercheTemplate({ listAccount = [], valeur, setValeur, cliquer }) {	
+export function RechercheTemplate({ listAccount = [], valeur, setValeur, cliquer, setId }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -699,9 +702,8 @@ export function RechercheTemplate({ listAccount = [], valeur, setValeur, cliquer
                     <div className="hr-15px"> <hr /> </div>
                   </div>
 				  
-			  
 			{listAccount.map((api) => (<>
-			<div onClick={() => cliquer(api)}>	
+			<div onClick={() => { cliquer(api); setId(api._id); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
