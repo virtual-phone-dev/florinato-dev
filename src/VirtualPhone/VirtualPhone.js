@@ -51719,7 +51719,7 @@ g
 	  
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
-		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} />
+		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
 	  
 	  
 	  <PageTemplate 
@@ -51738,15 +51738,15 @@ g
 
 	  <PopupDuBasTemplate 
 		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} />
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} search/>
 	  
 	  <PopupDuBasTemplate 
 		  visible={mettreEnAvantFApb} fermer={CloseMettreEnAvantFApb} photo={photoFA} titre="Choisir le compte à mettre en avant" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={MettreEnAvantFAconfp} setId={setId} />
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={MettreEnAvantFAconfp} setId={setId} search/>
 	  
 	  <PopupDuBasTemplate 
 		  visible={adminFlorinatopb} fermer={CloseAdminFlorinatopb} photo={photoFA} titre="Ajouter un compte qui sera admin Florinato" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} />
+		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} search/>
 		  
 		  
 	  

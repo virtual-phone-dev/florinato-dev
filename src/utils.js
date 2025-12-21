@@ -657,7 +657,7 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorina
   </>
 )}
 
-export function PopupDuBasTemplate({ visible, fermer, photo, titre, listAccount, valeur, setValeur, cliquer, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, setId }) {	
+export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, cliquer, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, setId }) {	
 	if (!visible) return null;
 
 	return (<>
@@ -677,13 +677,15 @@ export function PopupDuBasTemplate({ visible, fermer, photo, titre, listAccount,
           <div className="body">
             <div className="card">
 			
+			{list && (
 			<ListeDuMenu 
 			  GestionDuCompte={GestionDuCompte} MettreEnAvantCompte={MettreEnAvantCompte} 
-			  AdminFlorinato={AdminFlorinato} />
-			
+			  AdminFlorinato={AdminFlorinato}/> )}
+			  
+			{search && (
 			<RechercheTemplate 
 				listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
-				cliquer={cliquer} setId={setId} />
+				cliquer={cliquer} setId={setId}/> )}
 			
 			<p style={{ paddingTop: "100px" }}></p>
             </div>
