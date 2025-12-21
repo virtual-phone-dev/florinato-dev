@@ -3,7 +3,8 @@ export default function SvgVideo6() {
       <>
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        fill="#666"
+        fill="#000"
+		width="20px"
         cursor="pointer"
         version="1.1"
         viewBox="0 0 32 32"

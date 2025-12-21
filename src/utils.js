@@ -16,6 +16,79 @@ export const idAccountChef = localStorage.getItem("idAccountChef"); */
 
 
 
+/*CODE FINAL (SANS FICHIER TEMPORAIRE)
+
+
+import axios from "axios";
+import fs from "fs";
+import ffmpeg from "fluent-ffmpeg";
+import path from "path";
+
+export async function generateThumbnailFromUrl(videoUrl, postId) {
+  const outputDir = "uploads/thumbs";
+  const outputPath = path.join(outputDir, `${postId}.jpg`);
+
+  // s'assurer que le dossier existe
+  if (!fs.existsSync(outputDir)) {
+    fs.mkdirSync(outputDir, { recursive: true });
+  }
+
+  // stream vidéo
+  const response = await axios({
+    url: videoUrl,
+    method: "GET",
+    responseType: "stream",
+  });
+
+  return new Promise((resolve, reject) => {
+    ffmpeg(response.data)
+      .inputOptions(["-analyzeduration 1000000", "-probesize 1000000"])
+      .outputOptions([
+        "-frames:v 1",   // une seule frame
+        "-q:v 2"         // bonne qualité
+      ])
+      .seekInput(2)     // à 2 secondes
+      .output(outputPath)
+      .on("end", () => {
+        resolve(`/uploads/thumbs/${postId}.jpg`);
+      })
+      .on("error", (err) => {
+        reject(err);
+      })
+      .run();
+  });
+}
+*/
+
+
+
+/* EXEMPLE D’UTILISATION
+
+
+const thumb = await generateThumbnailFromUrl(
+  "https://dl.dropboxusercontent.com/s/xxxx/video.mp4",
+  "post_123"
+);
+
+console.log("Miniature générée :", thumb);
+*/
+
+
+
+/* BONUS : publier 100 vidéos d’un coup
+
+
+for (const video of videoLinks) {
+  const thumb = await generateThumbnailFromUrl(video.url, video.id);
+
+  await creerPost({
+    videoUrl: video.url,
+    thumbnail: thumb,
+    visible: 1
+  });
+}
+*/
+
 const apiUrls = [
   `${process.env.REACT_APP_Api2}`,
   `${process.env.REACT_APP_Api1}`,

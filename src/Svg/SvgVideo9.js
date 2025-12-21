@@ -4,7 +4,7 @@ export default function SvgVideo9() {
       <>
      <svg
       xmlns="http://www.w3.org/2000/svg"
-      width="40px"
+      width="20px"
       cursor="pointer"
       fill="#000"
       version="1.1"
