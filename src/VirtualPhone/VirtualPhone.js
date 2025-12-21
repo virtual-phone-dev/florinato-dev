@@ -51410,7 +51410,8 @@ son compte Vixinol store */
               <div className="block-deux">
                 {dev && (<><div className="a" onClick={RencontreFA}> <SvgLove2/> </div></>)}
 				
-                <div className="b" onClick={VideosPageFA}> <SvgVideo5/> </div>
+                <div className="b" onClick={VideosPageFA}> <SvgVideo8/> </div>
+                <div className="b" onClick={VideosPageFA}> <SvgVideo10/> </div>
                 <div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div>
                 <div className="b" onClick={ComptesRecentsPageFA}> <SvgAdd/> </div>
                 <div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div>
