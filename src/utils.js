@@ -421,6 +421,26 @@ export function SeePhotoModal({ visible, fermer, url, title }) {
   );
 }
 
+
+export function Close({ fermer }) {
+  return (<>
+			<div className="close">
+              <div className="a" onClick={fermer}> <SvgLeft /> </div>
+              <div className="b"> <p></p> </div>
+            </div>
+            {/* close */}
+  </>
+)}
+
+
+export function Page({ visible }) {
+	if (!visible) return null;
+  return (
+    <div className="page-blanche"> </div>
+  );
+}
+
+
 export function Page2({ visible, fermer, children }) {
   if (!visible) return null;
 
@@ -434,25 +454,6 @@ export function Page2({ visible, fermer, children }) {
 }
 
 
-export function Page({ visible }) {
-	if (!visible) return null;
-  return (
-    <div className="page-blanche"> </div>
-  );
-}
-
-
-export function Close({ fermer }) {
-  return (<>
-			<div className="close">
-              <div className="a" onClick={fermer}> <SvgLeft /> </div>
-              <div className="b"> <p></p> </div>
-            </div>
-            {/* close */}
-  </>
-)}
-
-
 export function Button({ envoyer, texte }) {
   return (<>
 		<button style={theme.bouton} onClick={envoyer}>{texte}</button>
@@ -462,7 +463,6 @@ export function Button({ envoyer, texte }) {
 
 
 export function Input({ texte, valeur, setValeur }) {
-
   return (<>
               <input
 			  type="text"
@@ -473,7 +473,6 @@ export function Input({ texte, valeur, setValeur }) {
             />
   </>
 )}
-
 
 
 export function MilieuMA({ nom, titre, titre2 }) {
@@ -564,6 +563,48 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
+export function Close({ fermer }) {
+  return (<>
+			<div className="close">
+              <div className="a" onClick={fermer}> <SvgLeft /> </div>
+              <div className="b"> <p></p> </div>
+            </div>
+            {/* close */}
+  </>
+)}
+
+
+export function Page({ visible }) {
+	if (!visible) return null;
+  return (
+    <div className="page-blanche"> </div>
+  );
+}
+
+
+export default function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
+  return (
+    <div className="flex">
+      <div className="display-flex-nowrap" onClick={fermer}>
+        {left && (<div> <SvgLeft/> </div>)}
+        {titre && (<div> <p>{titre}</p> </div>)}
+        {photo && (<div className="photo-25px"> <img src={photo} alt=""/> </div>)}
+      </div>
+
+      {clicSvgAdd && (<div className="b"> <div onClick={clicSvgAdd}><SvgAdd/></div> </div>)}
+    </div>
+  );
+}
+
+
+export function VideosPageTemplate({ visible, fermer, photo }) {
+	if (!visible) return null;
+	return (
+		<div className="page-blanche"> 
+			<CloseAction fermer={fermer} titre="Videos" left photo={photo}/>
+		</div>
+	);
+}
 		   
 export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn }) {	
 	if (!visible) return null;
@@ -596,11 +637,15 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 }
 
 
+
 export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccount }) {
 	if (!visible) return null;
 	
   return (<>
 	<div className="page-blanche">
+		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
+		
+		{/*
 		<div className="flex">
 			<div className="display-flex-nowrap" onClick={fermer}>
 				<div><SvgLeft/></div>
@@ -610,7 +655,7 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccou
 			
 			<div className="b"> <div onClick={clicSvg}><SvgAdd/></div> </div>
         </div>
-		{/* flex */}
+		 flex */}
 		
 		<ListeDesComptes data={listAccount} />
     </div>

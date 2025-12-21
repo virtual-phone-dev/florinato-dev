@@ -8,7 +8,8 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, 
+	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate,
 	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData
 	} from "../utils";
 		
@@ -42159,35 +42160,26 @@ async function PageRedirection66groupOtherFA() {
 
   // speedMessagesPagesFA (optimiser , juste 20 messages)
   const [speedMessagesPagesFA, setSpeedMessagesPagesFA] = useState(false); 
-  async function SpeedMessagesPagesFA() {
-    setSpeedMessagesPagesFA(true);
-  }
-  async function CloseSpeedMessagesPagesFA() {
-    setSpeedMessagesPagesFA(false);
-  }
-
-
+  async function SpeedMessagesPagesFA() { setSpeedMessagesPagesFA(true); }
+  async function CloseSpeedMessagesPagesFA() { setSpeedMessagesPagesFA(false); }
 
   // Listes de tout les comptes (par ordre de comptes recents) - FA 
   const [comptesRecentsPageFA, setComptesRecentsPageFA] = useState(false); 
-  async function ComptesRecentsPageFA() {
-    setComptesRecentsPageFA(true);
-  }
-  async function CloseComptesRecentsPageFA() {
-    setComptesRecentsPageFA(false);
-  }
-  
+  async function ComptesRecentsPageFA() { setComptesRecentsPageFA(true); }
+  async function CloseComptesRecentsPageFA() { setComptesRecentsPageFA(false); }
   
   // ajouter un autre compte a la gestion du compte florinato - FA 
   const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
-  async function AjouterGestionCompteConfirmation() {
-    setAjouterGestionCompteConfirmation(true);
-  }
-  async function CloseAjouterGestionCompteConfirmation() {
-    setAjouterGestionCompteConfirmation(false);
-  }
+  async function AjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(true); }
+  async function CloseAjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(false); }
   
-
+  
+  // page ou on affiche toutes les videos - FA 
+  const [videosPageFA, setVideosPageFA] = useState(false); 
+  async function VideosPageFA() { setVideosPageFA(true); }
+  async function CloseVideosPageFA() { setVideosPageFA(false); }
+  
+  
   // Les comptes les plus populaires sur florinato - FA 
   const [popularityAccountsPageFA, setPopularityAccountsPageFA] = useState(false); 
   async function PopularityAccountsPageFA() {
@@ -51405,6 +51397,7 @@ son compte Vixinol store */
               <div className="block-deux">
                 {dev && (<><div className="a" onClick={RencontreFA}> <SvgLove2/> </div></>)}
 				
+                <div className="b" onClick={VideosPageFA}> <SvgVideo3/> </div>
                 <div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div>
                 <div className="b" onClick={ComptesRecentsPageFA}> <SvgAdd/> </div>
                 <div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div>
@@ -51430,6 +51423,7 @@ son compte Vixinol store */
       {/* application florinato */}
 	  
 	  
+		<VideosPageTemplate visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} />
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
