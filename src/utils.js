@@ -602,15 +602,15 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccou
   return (<>
 	<div className="page-blanche">
 		<div className="flex">
-			<div className="display-flex-nowrap" onClick={fermer>
-				<div> <SvgLeft/> </div>
-				<div> <p>{titre}</p> </div>
+			<div className="display-flex-nowrap" onClick={fermer}>
+				<div><SvgLeft/></div>
+				<div><p>{titre}</p></div>
 				<div className="photo-25px"> <img src={photo} alt=""/> </div>
 			</div>
 			
-			<div className="b"> <div onClick={clicSvg}> <SvgAdd/> </div> </div>
+			<div className="b"> <div onClick={clicSvg}><SvgAdd/></div> </div>
         </div>
-		{/* close */}
+		{/* flex */}
 		
 		<ListeDesComptes data={listAccount} />
     </div>
