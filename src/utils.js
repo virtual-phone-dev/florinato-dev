@@ -563,7 +563,7 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
-export default function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
+export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
   return (
     <div className="flex">
       <div className="display-flex-nowrap" onClick={fermer}>
@@ -926,7 +926,7 @@ export function SignupPage({
 }
 
 
-export default function MessageModal({ visible, onClose, user, messages, onSend, onStartConversation, isLoading, value, onChange, devMode = false }) {
+export function MessageModal({ visible, onClose, user, messages, onSend, onStartConversation, isLoading, value, onChange, devMode = false }) {
   if (!visible) return null;
 
   return (

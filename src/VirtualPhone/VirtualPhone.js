@@ -51705,7 +51705,7 @@ g
               </>))}
               </div>
 
-              <div className="api2" onClick={PageRedirection66ChildApi66profilFA}>
+              <div className="api2">
               {filterFA.map((api2) => (<>
                 <ChildApi266profilFA api2={api2} />
               </>))}
