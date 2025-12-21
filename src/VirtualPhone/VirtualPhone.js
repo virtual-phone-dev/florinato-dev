@@ -4,6 +4,7 @@ import { NavLink, useLocation } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import axios from "axios";
 import i18n from "../i18n";
+import Fuse from "fuse.js";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
@@ -35479,7 +35480,7 @@ async function DissadAA() {
 
 
   // rechercher parmi les comptes 
-  
+  /*
   const listAccountFA = apiMessageFA.filter((api) => {
   if (!mySearchFA) return false; // Si la recherche est vide, ne retourne rien
   
@@ -35489,9 +35490,21 @@ async function DissadAA() {
 	  // api.nameAccount.toLowerCase().includes(mySearchFA.toLowerCase()) && 
 	  normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
 	  api.visible === "1");
-	})
+	})*/
 	
-  
+	const comptesRecherchables = apiMessageFA.filter(api => api.type === "10" && api.visible === "1" && api.nameAccount);
+	
+	const fuse = new Fuse(comptesRecherchables, {
+	  keys: [
+		{
+		  name: "nameAccount",
+		  getFn: (obj) => normalizeString(obj.nameAccount),
+		},
+	  ],
+	  threshold: 0.4, // tolérance (0 = strict, 1 = très large)
+	});
+	
+  const listAccountFA = mySearchFA? fuse.search(normalizeString(mySearchFA)).map(r => r.item): [];
   const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
 
@@ -51397,7 +51410,7 @@ son compte Vixinol store */
               <div className="block-deux">
                 {dev && (<><div className="a" onClick={RencontreFA}> <SvgLove2/> </div></>)}
 				
-                <div className="b" onClick={VideosPageFA}> <SvgVideo3/> </div>
+                <div className="b" onClick={VideosPageFA}> <SvgVideo5/> </div>
                 <div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div>
                 <div className="b" onClick={ComptesRecentsPageFA}> <SvgAdd/> </div>
                 <div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div>
