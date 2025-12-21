@@ -44671,7 +44671,7 @@ async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) 
 
   try {
     if (existe) { await ExecuterActionFA({ donnees: donneesPut, id:idInfos, actions: ["put"] }); } // donnees existe deja , alors on fait un put
-	else { await ExecuterActionFA({ donnees: { ...donneesPost, idAccount:idAccountFA, idOther:id, visible:1, type } }); } // donnees n'existe pas , alors on fait un post
+	else { await ExecuterActionFA({ donnees: {idAccount:idAccountFA, idOther:id, visible:1, type, ...donneesPost } }); } // donnees n'existe pas , alors on fait un post
   } finally { loader(false); }
 }
 
@@ -44695,8 +44695,8 @@ async function MettreEnAvantFA() {
 
 // clic de la video 
 async function clicVideoFAA() {
-  await executerActionFA({ donnees: { idAccount:idAccountFA, idOtherFA:idreq, idPost:idVideo, visible: 1, type: 204}}); 
-  await executerActionFA({ donnees: { clic: totalClic}, id:idVideo, actions: ["put"] }); 
+  await ExecuterActionFA({ donnees: { idAccount:idAccountFA, idOtherFA:idreq, idPost:idVideo, visible: 1, type: 204}}); 
+  await ExecuterActionFA({ donnees: { clic: idreq}, id:idVideo, actions: ["put"] }); 
 }
 
 
