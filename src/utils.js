@@ -90,14 +90,14 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
 } */
 
 
-export async function envoyerPUT({ id, visible, type, url, clic, ...donnees, }) {
+export async function envoyerPUT({ id, visible, type, url, clic, ...donnees }) {
 	const data = {
 	  ...(id !== undefined && { id }),
 	  ...(visible !== undefined && { visible }),
 	  ...(type !== undefined && { type }),
 	  ...(clic !== undefined && { clic }),
 	  //if (urlVideo !== undefined) data.urlVideo = urlVideo;
-	  ...donnees,
+	  ...donnees
 	};
 
 	for (const api of apiUrlsPUT) {
@@ -114,13 +114,13 @@ export async function envoyerPUT({ id, visible, type, url, clic, ...donnees, }) 
 //envoyerPUT
 
 
-export async function envoyerPOST({ id, visible, type, url, ...donnees, }) {
+export async function envoyerPOST({ id, visible, type, url, ...donnees }) {
 	const data = {
 	  ...(id !== undefined && { id }),
 	  ...(visible !== undefined && { visible }),
 	  ...(type !== undefined && { type }),
 	  //if (urlVideo !== undefined) data.urlVideo = urlVideo;
-	  ...donnees,
+	  ...donnees
 	};
 
 	for (const api of apiUrlsPOST) {
