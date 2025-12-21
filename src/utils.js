@@ -602,8 +602,9 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccou
   return (<>
 	<div className="page-blanche">
 		<div className="flex">
-			<div className="">
-				<div onClick={fermer}> <SvgLeft/> <p>{titre}</p> </div>
+			<div className="display-flex-nowrap" onClick={fermer>
+				<div> <SvgLeft/> </div>
+				<div> <p>{titre}</p> </div>
 				<div className="photo-25px"> <img src={photo} alt=""/> </div>
 			</div>
 			
