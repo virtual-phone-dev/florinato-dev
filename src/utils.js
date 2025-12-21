@@ -563,25 +563,6 @@ export function SpeedMessages({ visible, fermer, data }) {
 }
 
 
-export function Close({ fermer }) {
-  return (<>
-			<div className="close">
-              <div className="a" onClick={fermer}> <SvgLeft /> </div>
-              <div className="b"> <p></p> </div>
-            </div>
-            {/* close */}
-  </>
-)}
-
-
-export function Page({ visible }) {
-	if (!visible) return null;
-  return (
-    <div className="page-blanche"> </div>
-  );
-}
-
-
 export default function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
   return (
     <div className="flex">
@@ -605,6 +586,7 @@ export function VideosPageTemplate({ visible, fermer, photo }) {
 		</div>
 	);
 }
+		   
 		   
 export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn }) {	
 	if (!visible) return null;
