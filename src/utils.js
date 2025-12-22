@@ -3,6 +3,7 @@ import { React, useState, useEffect } from 'react';
 
 import Loader from "./Loader/Loader";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
+import { ChildApi66profilFA } from "./VirtualPhone/VirtualPhone";
 
 import { theme } from "./theme";
 import "./utils.css"; 
@@ -479,6 +480,21 @@ async function getMessagesFromIndexedDB() {
 }
 
 
+export function VideoData({ data = [], setId, verifierId, video, clic, svg, photocss }) {
+  return (
+    <>
+	
+      {data.map((api) => (
+      <div onClick={() => setId(api._id)}>
+		<ChildApi66profilFA api={api} verifierId={verifierId} video={video} clic={clic} svg={svg} photocss={photocss} />
+      </div>
+      ))}
+	  
+    </>
+  );
+}
+
+
 export function SeePhotoModal({ visible, fermer, url, title }) {
   if (!visible) return null; // n'affiche rien si pas visible
 
@@ -651,11 +667,12 @@ export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
 }
 
 
-export function VideosPageTemplate({ visible, fermer, photo }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, verifierId, video, clic, svg, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" left photo={photo}/>
+			<VideoData data={data} setId={setId} verifierId={verifierId} video={video} clic={clic} svg={svg} photocss={photocss} />
 		</div>
 	);
 }
