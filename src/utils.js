@@ -311,9 +311,14 @@ export async function GenererMiniatureVideo({ file, setMiniature, second }) {
     // Fonction pour capturer la miniature
     const captureThumbnail = (videoFile, seconds = 1) => {
       return new Promise((resolve, reject) => {
+		  console.log("🎬 captureThumbnail appelée");
+		console.log("🎞 videoFile :", videoFile);
+		console.log("⏱ seconds :", seconds);
         const url = URL.createObjectURL(videoFile);
         const video = document.createElement('video');
-
+		
+		console.log("🔗 objectURL :", url);
+		
         // Pour avoir une meilleure qualité
         video.src = url;
         video.crossOrigin = "anonymous";
@@ -326,17 +331,20 @@ export async function GenererMiniatureVideo({ file, setMiniature, second }) {
 
         // Quand la lecture est positionnée
         video.addEventListener('seeked', () => {
+			console.log("🎯 seeked déclenché");
           const canvas = document.createElement('canvas');
           canvas.width = video.videoWidth;
           canvas.height = video.videoHeight;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           const dataURL = canvas.toDataURL('image/jpeg', 1); // HD
+		  console.log("📸 dataURL length :", dataURL.length);
           resolve(dataURL);
           URL.revokeObjectURL(url);
         });
 
         video.addEventListener('error', (err) => {
+			console.error("❌ Erreur vidéo :", video.error);
           reject(err);
         });
       });
@@ -344,7 +352,16 @@ export async function GenererMiniatureVideo({ file, setMiniature, second }) {
 
     // Capture la miniature
     const miniatureBase64 = await captureThumbnail(file, second);
-    
+	
+	//
+	console.log("🟢 Miniature générée");
+	console.log("📸 base64 preview :", miniatureBase64?.slice(0, 50));
+
+	if (!miniatureBase64) {
+	  throw new Error("Miniature vide");
+	}
+    //
+	
     // Mettre à jour l’état ou faire autre chose avec l’image
     setMiniature(miniatureBase64);
     
@@ -366,6 +383,9 @@ export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'im
 
   const base64Parts = photobase64.split(',');
   const base64Data = base64Parts.length > 1 ? base64Parts[1] : photobase64;
+  console.log("📤 base64 AVANT upload :", photobase64);
+  console.log("📏 longueur :", photobase64?.length);
+
 
   const byteCharacters = atob(base64Data);
   const byteNumbers = new Array(byteCharacters.length);

@@ -1079,8 +1079,8 @@ export function ChildApi66profilFA({ api, photocss, verifierId, photo, video, cl
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
   
-  const afficherVideo = video === "video" && api.type === "3";
-  const afficherPhoto = photo === "photo" && api.type === "2";
+  const afficherVideo = video && api.type === "3";
+  const afficherPhoto = photo && api.type === "2";
 
   return (
     <>
@@ -51717,7 +51717,7 @@ g
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
               {filterFA.map((api) => (<>
 				  <div onClick={() => setId(api._id)}>
-					  <ChildApi66profilFA api={api} video="video" photo="photo" photocss="photo-70px-carre" clic svg verifierId/>
+					  <ChildApi66profilFA api={api} video photo photocss="photo-70px-carre" clic svg verifierId/>
 				  </div>
               </>))}
               </div>
@@ -52776,7 +52776,7 @@ g
 		
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={false} video="video" photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" />
 			</div>
 			</>))}
 		</div>
@@ -52807,7 +52807,7 @@ g
         <div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video="video" photocss="photo-70px-carre" verifierId/>
+				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" verifierId/>
 			</div>
         </>))}
         </div>
@@ -52816,7 +52816,7 @@ g
 		<div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video="video" photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" />
 			</div>
         </>))}
         </div>
