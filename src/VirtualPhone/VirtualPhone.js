@@ -51717,7 +51717,7 @@ g
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
               {filterFA.map((api) => (<>
 				  <div onClick={() => setId(api._id)}>
-					  <ChildApi66profilFA api={api} verifierId={true} video="video" photo="photo" photocss="photo-70px-carre" />
+					  <ChildApi66profilFA api={api} video="video" photo="photo" photocss="photo-70px-carre" clic svg verifierId/>
 				  </div>
               </>))}
               </div>
@@ -52776,7 +52776,7 @@ g
 		
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} verifierId={false} video="video" photocss="photo-70px-carre" />
 			</div>
 			</>))}
 		</div>
@@ -52807,7 +52807,7 @@ g
         <div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={true} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} video="video" photocss="photo-70px-carre" verifierId/>
 			</div>
         </>))}
         </div>
@@ -52816,7 +52816,7 @@ g
 		<div className="overflow-x">
 		{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} verifierId={false} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} video="video" photocss="photo-70px-carre" />
 			</div>
         </>))}
         </div>
