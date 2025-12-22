@@ -44604,8 +44604,8 @@ console.log(`idVideo ici:`, idVideo);
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
 	setisLoading666EnvoyerVideoFAA(true);
-	console.log("envoyer photo");
-	console.log("photoUrl ici :", photoUrl);
+	console.log("envoyer miniature");
+	console.log("miniature ici :", miniature);
 	
 	const actions = {
 	  envoyerPhoto: true,
@@ -44615,7 +44615,7 @@ async function EnvoyerVideoFAA() {
 	};
 		
 	await Envoyer3({
-	    file: photoUrl,
+	    file: miniature,
 		
 		id: 6000,
         message: "..",
