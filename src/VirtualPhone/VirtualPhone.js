@@ -1028,7 +1028,7 @@ Vidéo seule, sans id
 
 
 //ChildApi 66profilFA
-export function ChildApi66profilFA({ api, photocss, verifierId, photo, video, clic=true, svg=true }) {
+export function ChildApi66profilFA({ api, photocss, verifierId, photo, video, clic, svg }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -44604,8 +44604,8 @@ console.log(`idVideo ici:`, idVideo);
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
 	setisLoading666EnvoyerVideoFAA(true);
-	/*console.log("envoyer photo");
-	console.log("photoUrl ici :", photoUrl);*/
+	console.log("envoyer photo");
+	console.log("photoUrl ici :", photoUrl);
 	
 	const actions = {
 	  envoyerPhoto: true,

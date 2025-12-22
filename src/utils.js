@@ -217,6 +217,8 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
       const fullUrl = `${api}${url}`;
 	  const newUrlVideo = await AdapterLien(urlVideo)
 	  
+	  console.log("urlPhoto 2 ", urlPhoto);
+	  
       const response = await axios.post(fullUrl, {
         id,	  
 		message,
@@ -238,6 +240,7 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
         headers: { 'Content-Type': 'application/json' }
       });
       return response.data; // Retourne la réponse de l'API
+	  console.log("response.data", response.data);
     } catch (err) {
       // Passer à l'API suivante en cas d'erreur
     }
@@ -388,6 +391,8 @@ export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAc
 
 	  const { urlPhoto } = await uploadImage(photoConverti);	  
 	  urlPhotoSauvegarder = urlPhoto;
+	  console.log("urlPhoto", urlPhoto);
+	  console.log("urlPhotoSauvegarder", urlPhotoSauvegarder);
     } catch (err) {
       console.error('Erreur lors de l\'upload photo:', err);
     }
