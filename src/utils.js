@@ -102,6 +102,8 @@ const apiUrlsPUT = apiUrls.map(base => `${base}/api/messageFA/update`);
 const apiUrlsPOST = apiUrls.map(base => `${base}/api/messageFA/new`);
 	  
 
+
+// logique pour envoyer la photo sur imagekit
 async function uploadImage(file) {
   for (const api of apiUrlsPhoto) {
     try {
@@ -111,10 +113,7 @@ async function uploadImage(file) {
       const res = await axios.post(api, formData, {
         headers: { 'Content-Type': 'multipart/form-data', },
       });
-	  /*console.log("resultat de l'upload, res", res);
-	  console.log("resultat de l'upload, res.data", res.data);
-	  console.log("resultat de l'upload, res.data.urlPhoto", res.data.urlPhoto);*/
-
+	  
       if (res.status !== 200) throw new Error("Erreur lors de l'upload de l'image");
 
       return { urlPhoto: res.data.urlPhoto, messageCool: "Image uploadée avec succès" };
@@ -122,7 +121,7 @@ async function uploadImage(file) {
       // passer à l'API suivante en cas d'erreur
     }
   }
-  throw new Error('Toutes les tentatives d\'upload ont échoué');
+  throw new Error('Toutes les tentatives d\'envoi de la photo sur imagekit ont échoué avec toutes les urls');
 }
 
 	  
@@ -144,24 +143,6 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
     throw err; 
   }
 }
-
-
-/* export async function envoyerPUT({ id, clic }) {
-	const data = {};
-    if (clic !== undefined) data.clic = clic;
-  
-	for (const api of apiUrls) {
-		try {
-		  const fullUrl = `${api}/api/messageFA/update/${id}`; // Concaténer l'API de base avec l'endpoint
-		  
-		  const res = await axios.put(fullUrl, data);
-		  return res.data; // Retourne la réponse de l'API
-		} catch (err) {
-		  // Passer à l'API suivante en cas d'erreur
-		}
-	  }
-	  throw new Error('Toutes les tentatives de modifications ont échoué');
-} */
 
 
 export async function envoyerPUT({ id, visible, type, url, clic, ...donnees }) {
@@ -217,8 +198,6 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
       const fullUrl = `${api}${url}`;
 	  const newUrlVideo = await AdapterLien(urlVideo)
 	  
-	  console.log("urlPhoto 2 ", urlPhoto);
-	  
       const response = await axios.post(fullUrl, {
         id,	  
 		message,
@@ -240,7 +219,6 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
         headers: { 'Content-Type': 'application/json' }
       });
       return response.data; // Retourne la réponse de l'API
-	  console.log("response.data", response.data);
     } catch (err) {
       // Passer à l'API suivante en cas d'erreur
     }
@@ -249,19 +227,24 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
 }
 
 
-async function ValiderModificationLogique({ nouveauUrl, idPost }) {
+async function ValiderModificationLogique({ idPost, nouveauUrl, urlPhoto }) {
   for (const api of apiUrlsPUT) {
     try {
       const fullUrl = `${api}/${idPost}`;
       const urlVideoAdapter = await AdapterLien(nouveauUrl);
 	  
-      const response = await axios.put(fullUrl, { urlVideo: urlVideoAdapter }, {
+	  const data = {
+        ...(nouveauUrl !== undefined && { urlVideo: urlVideoAdapter }),
+        ...(urlPhoto !== undefined && { urlPhoto }),
+      };
+	  
+      const res = await axios.put(fullUrl, data, {
         headers: { 'Content-Type': 'application/json' }
       });
       
       console.log("Modification réussie sur", fullUrl);
-      console.log(response.data);
-      return response.data; // Retourner dès que c'est réussi
+      console.log(res.data);
+      return res.data; // Retourner dès que c'est réussi
     } catch (err) {
       console.log(`Échec de la requête sur ${api}`, err);
       // Continue à essayer avec l'API suivante
@@ -302,22 +285,12 @@ export async function getAllData() {
 
 
 export async function GenererMiniatureVideo({ file, setMiniature, second }) {
-  console.log("Début de la génération de miniature");
-  
-  console.log('file icii:', file);
-  console.log('second icii:', second);
-	
   try {
     // Fonction pour capturer la miniature
     const captureThumbnail = (videoFile, seconds = 1) => {
       return new Promise((resolve, reject) => {
-		  console.log("🎬 captureThumbnail appelée");
-		console.log("🎞 videoFile :", videoFile);
-		console.log("⏱ seconds :", seconds);
         const url = URL.createObjectURL(videoFile);
         const video = document.createElement('video');
-		
-		console.log("🔗 objectURL :", url);
 		
         // Pour avoir une meilleure qualité
         video.src = url;
@@ -331,22 +304,17 @@ export async function GenererMiniatureVideo({ file, setMiniature, second }) {
 
         // Quand la lecture est positionnée
         video.addEventListener('seeked', () => {
-			console.log("🎯 seeked déclenché");
           const canvas = document.createElement('canvas');
           canvas.width = video.videoWidth;
           canvas.height = video.videoHeight;
           const ctx = canvas.getContext('2d');
           ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
           const dataURL = canvas.toDataURL('image/jpeg', 1); // HD
-		  console.log("📸 dataURL length :", dataURL.length);
           resolve(dataURL);
           URL.revokeObjectURL(url);
         });
 
-        video.addEventListener('error', (err) => {
-			console.error("❌ Erreur vidéo :", video.error);
-          reject(err);
-        });
+        video.addEventListener('error', (err) => { reject(err); });
       });
     };
 
@@ -354,12 +322,7 @@ export async function GenererMiniatureVideo({ file, setMiniature, second }) {
     const miniatureBase64 = await captureThumbnail(file, second);
 	
 	//
-	console.log("🟢 Miniature générée");
-	console.log("📸 base64 preview :", miniatureBase64?.slice(0, 50));
-
-	if (!miniatureBase64) {
-	  throw new Error("Miniature vide");
-	}
+	if (!miniatureBase64) { throw new Error("Miniature vide"); }
     //
 	
     // Mettre à jour l’état ou faire autre chose avec l’image
@@ -377,16 +340,10 @@ export async function GenererMiniatureVideo({ file, setMiniature, second }) {
 
 // convertir l'image qui est en base64 => en file
 export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'image/jpeg') {
-  if (!photobase64) {
-    throw new Error('La chaîne base64 est indéfinie ou vide.');
-  }
-
+  if (!photobase64) { throw new Error('La chaîne base64 est indéfinie ou vide.'); }
   const base64Parts = photobase64.split(',');
   const base64Data = base64Parts.length > 1 ? base64Parts[1] : photobase64;
-  console.log("📤 base64 AVANT upload :", photobase64);
-  console.log("📏 longueur :", photobase64?.length);
-
-
+  
   const byteCharacters = atob(base64Data);
   const byteNumbers = new Array(byteCharacters.length);
   for (let i = 0; i < byteCharacters.length; i++) {
@@ -404,58 +361,34 @@ export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAc
 
   // Vérifier si chaque action doit être effectuée
   if (actions.envoyerPhoto) {
-    try {
-      // const uploadRes = await uploadImage(file);
-	  // urlPhoto = uploadRes.urlPhoto;
-	  const photoConverti = base64ToFile(file);
+	const photoConverti = base64ToFile(file);
 
-	  const { urlPhoto } = await uploadImage(photoConverti);	  
-	  urlPhotoSauvegarder = urlPhoto;
-	  console.log("urlPhoto", urlPhoto);
-	  console.log("urlPhotoSauvegarder", urlPhotoSauvegarder);
-    } catch (err) {
-      console.error('Erreur lors de l\'upload photo:', err);
-    }
+	const { urlPhoto } = await uploadImage(photoConverti);	  
+	urlPhotoSauvegarder = urlPhoto;
   }
+
+
+  if (actions.envoyer) { await envoyerFAA({ id, urlVideo, visible, type }); }
   
-
-  if (actions.envoyer) {
-    try {
-      await envoyerFAA({ id, urlVideo, visible, type });
-    } catch (err) {
-      console.error('Erreur lors de l\'envoi FAA:', err);
-    }
-  }
   
   if (actions.adapterLien) {
-    try {
-	  const geturl = await AdapterLien(urlVideo)
-	  console.log('url est la :', geturl);
-    } catch (err) {
-      console.log('url rien', err);
-    }
+	const geturl = await AdapterLien(urlVideo)
+	console.log('url est la :', geturl);
   }
   
   
   if (actions.publierVideo) {
-    try {
-      await envoyerFAA({ id, message, urlPhoto: urlPhotoSauvegarder, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url });  
-    } catch (err) {
-      console.error('Erreur lors de l\'envoi FAA:', err);
-    }
+    await envoyerFAA({ id, message, urlPhoto: urlPhotoSauvegarder, urlVideo, idAccount, nameAccount, photoAccount, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url });  
   }
   
   
   if (actions.modifier) {
-    try {
-	  await ValiderModificationLogique({ nouveauUrl, idPost })
-    } catch (err) {
-      console.log('impossible de modifier', err);
-    }
+	await ValiderModificationLogique({ nouveauUrl, idPost })
   }
   
 }
 // Envoyer3
+
 
 
 // adapter le lien en un lien video github, gitlab, dropbox, drive
@@ -503,6 +436,21 @@ async function getMessagesFromIndexedDB() {
     };
   });
 }
+
+
+export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileVideo }) {
+  return (
+    <>
+	<div className="block-quatre"> <p>Sélectionner la video juste pour obtenir automatiquement une miniature (photo de couverture de la video)</p> </div> 
+	
+	<div className="block-deux"> <input type="file" name="video" accept=".mp4" 
+	onChange={(e) => {
+		const fichier = e.target.files[0];
+		setFileVideo(fichier); }} /> </div> {/* block-deux */}
+    
+	miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)
+	</>
+)}
 
 
 export function VideoData({ data = [], setId, verifierId, video, clic, svg, photocss }) {

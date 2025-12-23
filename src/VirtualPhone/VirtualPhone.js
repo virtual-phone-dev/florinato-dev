@@ -10,7 +10,7 @@ import "../utils.css";
 
 import { 
 	Page, Close, Input, MissionTemplate, SeePhotoModal, 
-	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate,
+	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData
 	} from "../utils";
 		
@@ -44556,7 +44556,7 @@ async function CloseAddVideoPageFA() { //fermer
 
 
 //logique pour GenererMiniatureVideo
-const [miniature, setMiniature] = useState();
+const [miniatureFA, setMiniatureFA] = useState();
 const [fileVideoFAA, setFileVideoFAA] = useState();
 const [second, setSecond] = useState(10);
 
@@ -44566,7 +44566,7 @@ const [second, setSecond] = useState(10);
 	async function GenererMiniature() {
 		if (fileVideoFAA) {
 			// Supposons que vous avez votre fichier vidéo dans `file`
-			await GenererMiniatureVideo({ file: fileVideoFAA, setMiniature: setMiniature, second: second });
+			await GenererMiniatureVideo({ file: fileVideoFAA, setMiniature: setMiniatureFA, second: second });
 		}
 	}
 	GenererMiniature();
@@ -44583,7 +44583,7 @@ async function CloseVoirMiniature() { //fermer
 } 
 
 
-async function transVoirMiniature(url) { //transmettre VoirMiniature (on transmet la miniature a l'autre composant (au modal))
+async function transVoirMiniatureFA(url) { //transmettre VoirMiniature (on transmet la miniature a l'autre composant (au modal))
   setPhotoUrl(url);
   setVoirMiniature(true);
 } 
@@ -44604,18 +44604,10 @@ console.log(`idVideo ici:`, idVideo);
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
 	setisLoading666EnvoyerVideoFAA(true);
-	console.log("envoyer miniature");
-	console.log("miniature ici :", miniature);
-	
-	const actions = {
-	  envoyerPhoto: true,
-	  publierVideo: true,
-	  allData: true,
-	  //adapterLien: true,
-	};
+	const actions = { envoyerPhoto: true, publierVideo: true, allData: true, };
 		
 	await Envoyer3({
-	    file: miniature,
+	    file: miniatureFA,
 		
 		id: 6000,
         message: "..",
@@ -44667,8 +44659,7 @@ async function ExecuterActionFA({ actions = ["post"], id, ...donnees }) { // don
 
 
 
-// on fait cette petite reutilisation de code pour eviter la redondance de code
-async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) {
+async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) { // on fait cette petite reutilisation de code pour eviter la redondance de code
   loader(true);
   const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccountFA && api.idOther === idreq && api.type === type);
   const idInfos = filterInfos.map((api) => api._id);
@@ -44695,6 +44686,12 @@ async function AjouterAdminFlorinato() {
 //logique pour mettre en avant un compte - FA
 async function MettreEnAvantFA() {
 	await avantExecuterActionFA({ loader: setIsLoading666MettreEnAvantFA, type: 82, donneesPut: { top: 1 }, donneesPost: { top: 1 }, });
+}
+
+
+// remplacer la miniature de la video - FA
+async function RemplacerMiniatureFA() {
+  await ExecuterActionFA({ id:idreq, urlPhoto: miniatureFA, actions: ["put"] }); 
 }
 
 
@@ -52912,16 +52909,18 @@ g
 				  <div className="block-quatre"> <p>La capture va se faire à quelle seconde de la video (Facultatif)</p> </div> 
 				  <Input texte="seconde(s)" valeur={second} setValeur={setSecond} />
 				  
-				<div className="block-quatre"> <p>Sélectionner la video juste pour obtenir automatiquement une miniature (photo de couverture de la video)</p> </div> 
+				{/*<div className="block-quatre"> <p>Sélectionner la video juste pour obtenir automatiquement une miniature (photo de couverture de la video)</p> </div> 
 				<div className="block-deux"> <input id="file" type="file" name="video" accept=".mp4" 
 				onChange={(e) => {
 					const fichier = e.target.files[0];
 					setFileVideoFAA(fichier);
 				  }}
 				  /> </div>
-                {/* block-deux */}
+                {/* block-deux 
 				
-				{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)} 
+				{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)} */}
+				
+				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} />
 				
 				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
 				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div> )}
