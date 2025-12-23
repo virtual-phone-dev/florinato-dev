@@ -438,9 +438,12 @@ async function getMessagesFromIndexedDB() {
 }
 
 
-export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileVideo }) {
+export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
   return (
     <>
+	<div className="block-quatre"> <p>La capture va se faire à quelle seconde de la video (Facultatif)</p> </div> 
+	<Input texte="seconde(s)" valeur={second} setValeur={setSecond} />
+	
 	<div className="block-quatre"> <p>Sélectionner la video juste pour obtenir automatiquement une miniature (photo de couverture de la video)</p> </div> 
 	
 	<div className="block-deux"> <input type="file" name="video" accept=".mp4" 
@@ -448,7 +451,7 @@ export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileV
 		const fichier = e.target.files[0];
 		setFileVideo(fichier); }} /> </div> {/* block-deux */}
     
-	miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)
+	{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)
 	</>
 )}
 

@@ -52905,10 +52905,7 @@ g
 				  <Input texte="Lien dropbox" valeur={lienDropbox} setValeur={setLienDropbox} />
 				  <Input texte="Lien github" valeur={lienGitHub} setValeur={setLienGitHub} />
 				  <Input texte="Lien gitlab" valeur={lienGitLab} setValeur={setLienGitLab} />
-				  
-				  <div className="block-quatre"> <p>La capture va se faire à quelle seconde de la video (Facultatif)</p> </div> 
-				  <Input texte="seconde(s)" valeur={second} setValeur={setSecond} />
-				  
+				  				  
 				{/*<div className="block-quatre"> <p>Sélectionner la video juste pour obtenir automatiquement une miniature (photo de couverture de la video)</p> </div> 
 				<div className="block-deux"> <input id="file" type="file" name="video" accept=".mp4" 
 				onChange={(e) => {
@@ -52920,7 +52917,7 @@ g
 				
 				{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)} */}
 				
-				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} />
+				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
 				
 				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
 				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div> )}
