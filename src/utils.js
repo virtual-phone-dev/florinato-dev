@@ -451,7 +451,7 @@ export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileV
 		const fichier = e.target.files[0];
 		setFileVideo(fichier); }} /> </div> {/* block-deux */}
     
-	{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)
+	{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)}
 	</>
 )}
 
