@@ -867,6 +867,8 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderMo
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
               </div>
 			  
+			  <VideoMiniatureTemplate />
+			  
               {isLoading666ValiderModification ? (<div className="loader-display-flex"> <Loader/> </div>
               ):(<div className="btn-bleu"> <button onClick={ValiderModification}>Valider</button> </div> )}
             </div>
