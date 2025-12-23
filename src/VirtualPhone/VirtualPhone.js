@@ -52946,8 +52946,13 @@ g
       {/* choisir la video a ajouter à la photo - FA  */}
 	  
 
-      {/* page pour modifier l'url  */}
-	  <ModifierTemplate visible={modifierUrlPage} fermer={CloseModifierUrlPage} valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} ValiderModification={ValiderUrl} isLoading666ValiderModification={isLoading666ValiderUrl} />
+    {/* page pour modifier l'url  */}
+	<ModifierTemplate 
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} 
+		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond}
+		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} ValiderModification={ValiderUrl} isLoading666ValiderModification={isLoading666ValiderUrl} />
+
+	<VideoMiniatureTemplate  />
 
 
       {/* voir la miniature- FA  */}

@@ -850,9 +850,10 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderModification, isLoading666ValiderModification, title = "Modifier l'url de  la video", texte = "Entrez votre description..." }) {
-  if (!visible) return null;
-  const urlVideo = localStorage.getItem("urlVideo");
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderModification, isLoading666ValiderModification, title = "Modifier l'url de  la video", 
+	texte = "Entrez votre description...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
+	if (!visible) return null;
+	const urlVideo = localStorage.getItem("urlVideo");
   
   return (
     <div className="page-opacity">
@@ -867,7 +868,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderMo
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
               </div>
 			  
-			  <VideoMiniatureTemplate />
+			  <VideoMiniatureTemplate transVoirMiniature={transVoirMiniature} miniature={miniature} setFileVideo={setFileVideo} second={second} setSecond={setSecond} />
 			  
               {isLoading666ValiderModification ? (<div className="loader-display-flex"> <Loader/> </div>
               ):(<div className="btn-bleu"> <button onClick={ValiderModification}>Valider</button> </div> )}
