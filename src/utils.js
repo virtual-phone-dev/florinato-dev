@@ -227,20 +227,19 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
 }
 
 
-async function ValiderModificationLogique({ idPost, nouveauUrl, urlPhoto }) {
+async function ValiderModificationLogique({ id, nouveauUrl, file }) {
   for (const api of apiUrlsPUT) {
     try {
-      const fullUrl = `${api}/${idPost}`;
+      const fullUrl = `${api}/${id}`;
       const urlVideoAdapter = await AdapterLien(nouveauUrl);
+	  urlPhotoConverti = await uploadImageConverti(file)
 	  
 	  const data = {
         ...(nouveauUrl !== undefined && { urlVideo: urlVideoAdapter }),
-        ...(urlPhoto !== undefined && { urlPhoto }),
+        ...(file !== undefined && { urlPhoto: urlPhotoConverti }),
       };
 	  
-      const res = await axios.put(fullUrl, data, {
-        headers: { 'Content-Type': 'application/json' }
-      });
+      const res = await axios.put(fullUrl, data, { headers: { 'Content-Type': 'application/json' } });
       
       console.log("Modification réussie sur", fullUrl);
       console.log(res.data);
@@ -356,18 +355,23 @@ export function base64ToFile(photobase64, filename = 'image.jpg', mimeType = 'im
 
 
 
+export async function uploadImageConverti(file) {
+  if (!file) return null;
+
+  const photoConverti = base64ToFile(file); //convertir base64 to file (convertir en un vrai fichier image)
+  const { urlPhoto } = await uploadImage(photoConverti);
+
+  return urlPhoto;
+}
+
+
 export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAccount, nameAccount, photoAccount, nouveauUrl, idPost, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
 	
 	let urlPhotoSauvegarder = null;
 
   // Vérifier si chaque action doit être effectuée
-  if (actions.envoyerPhoto) {
-	const photoConverti = base64ToFile(file);
-
-	const { urlPhoto } = await uploadImage(photoConverti);	  
-	urlPhotoSauvegarder = urlPhoto;
-  }
-
+  
+  if (actions.envoyerPhoto) { urlPhotoSauvegarder = await uploadImageConverti(file); }
 
   if (actions.envoyer) { await envoyerFAA({ id, urlVideo, visible, type }); }
   
@@ -384,7 +388,7 @@ export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAc
   
   
   if (actions.modifier) {
-	await ValiderModificationLogique({ nouveauUrl, idPost })
+	await ValiderModificationLogique({ nouveauUrl, id })
   }
   
 }
@@ -851,9 +855,11 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
+
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, 
 	changerUrl, changerMiniature,
 	title = "Modifier l'url de  la video", texte = "Entrez votre description...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
+		
 	if (!visible) return null;
 	const urlVideo = localStorage.getItem("urlVideo");
   

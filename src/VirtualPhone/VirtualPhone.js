@@ -11,7 +11,7 @@ import "../utils.css";
 import { 
 	Page, Close, Input, MissionTemplate, SeePhotoModal, 
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
-	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData
+	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique
 	} from "../utils";
 		
 import { missions } from "../missions";
@@ -44676,33 +44676,35 @@ await ObtenirLesDonneesFA();
 */
 
 
-async function ExecuterActionFA({ actions = ["post"], id, ...donnees }) { // donnees = {}
-  for (const action of actions) {
-    if (action === "post") { await envoyerPOST({ ...donnees }); }
-    if (action === "put") { await envoyerPUT({ id, ...donnees }); }
-  }
+async function ExecuterActionFA({ actions = ["post"], id, file, ...donnees }) { // donnees = {}
+	try { if (loader) loader(true);
+		
+	    for (const action of actions) {
+		  if (action === "post") { await envoyerPOST({ ...donnees }); }	
+		  if (action === "put") { await ValiderModificationLogique({ id, file }) }
+		  //if (action === "put") { await envoyerPUT({ id, ...donnees }); }
+		}
 
-  await ObtenirLesDonneesFA();
+		await ObtenirLesDonneesFA();
+
+	} finally { if (loader) loader(false); }
 }
 
 
 
 async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) { // on fait cette petite reutilisation de code pour eviter la redondance de code
-  loader(true);
   const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccountFA && api.idOther === idreq && api.type === type);
   const idInfos = filterInfos.map((api) => api._id);
   const existe = filterInfos.length > 0;
 
-  try {
-    if (existe) { await ExecuterActionFA({ donnees: donneesPut, id:idInfos, actions: ["put"] }); } // donnees existe deja , alors on fait un put
-	else { await ExecuterActionFA({ donnees: {idAccount:idAccountFA, idOther:id, visible:1, type, ...donneesPost } }); } // donnees n'existe pas , alors on fait un post
-  } finally { loader(false); }
+  if (existe) { await ExecuterActionFA({ donnees: donneesPut, id:idInfos, loader, actions: ["put"] }); } // donnees existe deja , alors on fait un put
+  else { await ExecuterActionFA({ donnees: {idAccount:idAccountFA, idOther:id, visible:1, type, loader, ...donneesPost } }); } // donnees n'existe pas , alors on fait un post
 }
+
 
 
 //logique pour ajouter un admin qui pourra publier sur un compte florinato
 async function AjouterAdminFA() {
-	console.log("idreq ici", idreq);
 	await avantExecuterActionFA({ loader: setIsLoading666AjouterAdminFA, type: 81, donneesPut: { admin: 1 }, donneesPost: { admin: 1 }, });
 }
 
@@ -44717,11 +44719,6 @@ async function MettreEnAvantFA() {
 }
 
 
-// remplacer la miniature de la video - FA
-async function RemplacerMiniatureFA() {
-  await ExecuterActionFA({ id:idreq, urlPhoto: miniatureFA, actions: ["put"] }); 
-}
-
 
 // clic de la video 
 async function clicVideoFAA() {
@@ -44735,7 +44732,11 @@ const [changerMiniaturePage, setChangerMiniaturePage] = useState(false);
 async function ChangerMiniaturePage() { setChangerMiniaturePage(true); }
 async function CloseChangerMiniaturePage() { setChangerMiniaturePage(false); }
 
-
+//logique pour changer la miniature de la video - FA
+const [isLoading666ChangerMiniatureFA, setIsLoading666ChangerMiniatureFA] = useState(false);
+async function ChangerMiniatureFA() { await ExecuterActionFA({ id:idreq, file: miniatureFA, loader:setIsLoading666ChangerMiniatureFA, actions: ["put"] }); }
+	
+	
 
 //page pour enregistrer l'url modifier
 const [modifierUrlPage, setmodifierUrlPage] = useState(false);
@@ -52984,7 +52985,7 @@ g
 	
 	
 	<ModifierTemplate 
-		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} 
+		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
 		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} changerMiniature/>
 
 
