@@ -851,8 +851,9 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderModification, isLoading666ValiderModification, title = "Modifier l'url de  la video", 
-	texte = "Entrez votre description...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, 
+	changerUrl, changerMiniature,
+	title = "Modifier l'url de  la video", texte = "Entrez votre description...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 	if (!visible) return null;
 	const urlVideo = localStorage.getItem("urlVideo");
   
@@ -863,17 +864,20 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderMo
           <div className="block">
             <div className="a">
               <p style={{ color: "blue" }} onClick={fermer}>{title}</p>
+			  
+			  {changerUrl && (
 			  <pre className="pre-15px-center">{urlVideo}</pre>
 			  
               <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
-              </div>
+              </div>)}
 			  
-			  <VideoMiniatureTemplate transVoirMiniature={transVoirMiniature} miniature={miniature} setFileVideo={setFileVideo} second={second} setSecond={setSecond} />
 			  
-              {isLoading666ValiderModification ? (<div className="loader-display-flex"> <Loader/> </div>
-              ):(<div className="btn-bleu"> <button onClick={ValiderModification}>Valider</button> </div> )}
-              <div className="btn-bleu"> <button onClick={ValiderModification}>Valider photo</button> </div>
+			  {changerMiniature && (
+			  <VideoMiniatureTemplate transVoirMiniature={transVoirMiniature} miniature={miniature} setFileVideo={setFileVideo} second={second} setSecond={setSecond}/> )}
+			  
+              {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
+              ):(<div className="btn-bleu"> <button onClick={Valider}>Valider</button> </div> )}
             </div>
             {/* a */}
           </div>

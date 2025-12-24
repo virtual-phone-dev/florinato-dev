@@ -44730,14 +44730,17 @@ async function clicVideoFAA() {
 }
 
 
+//page pour changer la miniature de la video - FA
+const [changerMiniaturePage, setChangerMiniaturePage] = useState(false);
+async function ChangerMiniaturePage() { setChangerMiniaturePage(true); }
+async function CloseChangerMiniaturePage() { setChangerMiniaturePage(false); }
+
+
+
 //page pour enregistrer l'url modifier
 const [modifierUrlPage, setmodifierUrlPage] = useState(false);
-async function ModifierUrlPage() {
-	setmodifierUrlPage(true);
-}
-async function CloseModifierUrlPage() {
-	setmodifierUrlPage(false);
-}
+async function ModifierUrlPage() { setmodifierUrlPage(true); }
+async function CloseModifierUrlPage() { setmodifierUrlPage(false); }
 
 //logique pour enregistrer l'url modifier
 const [isLoading666ValiderUrl, setisLoading666ValideUrl] = useState(false);
@@ -52818,7 +52821,7 @@ g
       <div className="seeVideoFA">
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
-          <div className="b" onClick={ModifierUrlPage}> <SvgAdd/> </div>
+          <div className="b" onClick={ChangerMiniaturePage}> <SvgPencil3/> </div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
         </div>
         {/* close */}
@@ -52977,8 +52980,13 @@ g
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
 		visible={modifierUrlPage} fermer={CloseModifierUrlPage} 
-		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond}
-		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} ValiderModification={ValiderUrl} isLoading666ValiderModification={isLoading666ValiderUrl} />
+		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl/>
+	
+	
+	<ModifierTemplate 
+		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} 
+		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} changerMiniature/>
+
 
 
       {/* voir la miniature- FA  */}
