@@ -97,7 +97,7 @@ const apiUrls = [
 ];
 
 const apiUrlsPhoto = apiUrls.map(base => `${base}/api/messageFA/sendPhoto`);
-const apiUrlsObtenirDonnees = apiUrls.map(base => `${base}/api/messageFA`);
+const apiUrlsObtenirDonnees = apiUrls.map(base => `${base}/api/messageFA?tri=recent`);
 const apiUrlsPUT = apiUrls.map(base => `${base}/api/messageFA/update`);
 const apiUrlsPOST = apiUrls.map(base => `${base}/api/messageFA/new`);
 	  
@@ -270,7 +270,7 @@ async function ValiderModificationLogique({ idPost, nouveauUrl, urlPhoto }) {
 
 
 // obtenir toutes les donnees qui sont dans l'api
-export async function getAllData() { 
+export async function getAllData() {
   for (const api of apiUrlsObtenirDonnees) {
     try {
       const res = await axios.get(api);
@@ -280,7 +280,9 @@ export async function getAllData() {
       console.log(`Échec de la requête sur ${api}`, err);
     }
   }
+  
   console.log('Toutes les tentatives ont échoué pour récupérer les donnees.');
+  return [];
 }
 
 

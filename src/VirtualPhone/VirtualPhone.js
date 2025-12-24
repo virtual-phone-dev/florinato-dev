@@ -40745,7 +40745,19 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   const filterMessageFA = apiMessageFAA.filter((api) => api.idConversation === idConversation);
   //console.log("filterMessageFA bb", filterMessageFA);
   
+  /*
+  // important
+  // important
+  
+  Solution 2 (sécurité React, fortement recommandée)
+  Toujours protéger les .filter()
+  
+  const filterMessageFA = Array.isArray(apiMessageFAA)? apiMessageFAA.filter(api => api.idConversation === idConversation) : [];
+  
+  // OU version courte :
+  const filterMessageFA = apiMessageFAA?.filter?.(api => api.idConversation === idConversation) || []; */
 
+  
   async function SendMessageFAA() {
     if (!writeMessage66messageFA.trim()) return;
 
