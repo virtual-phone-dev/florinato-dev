@@ -871,12 +871,12 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
             <div className="a">
               <p style={{ color: "blue" }} onClick={fermer}>{title}</p>
 			  
-			  {changerUrl && (
+			  {changerUrl && (<>
 			  <pre className="pre-15px-center">{urlVideo}</pre>
 			  
               <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
-              </div>)}
+              </div> </>)}
 			  
 			  
 			  {changerMiniature && (

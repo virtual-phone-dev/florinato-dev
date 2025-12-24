@@ -44676,7 +44676,7 @@ await ObtenirLesDonneesFA();
 */
 
 
-async function ExecuterActionFA({ actions = ["post"], id, file, ...donnees }) { // donnees = {}
+async function ExecuterActionFA({ actions = ["post"], id, file, loader, ...donnees }) { // donnees = {}
 	try { if (loader) loader(true);
 		
 	    for (const action of actions) {
