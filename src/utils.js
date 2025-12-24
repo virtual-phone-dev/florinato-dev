@@ -274,7 +274,6 @@ export async function getAllData() {
   for (const api of apiUrlsObtenirDonnees) {
     try {
       const res = await axios.get(api);
-	  console.log(`res.data ici :`, res.data);
 	  return res.data;
     } catch (err) {
       console.log(`Échec de la requête sur ${api}`, err);
@@ -874,6 +873,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, ValiderMo
 			  
               {isLoading666ValiderModification ? (<div className="loader-display-flex"> <Loader/> </div>
               ):(<div className="btn-bleu"> <button onClick={ValiderModification}>Valider</button> </div> )}
+              <div className="btn-bleu"> <button onClick={ValiderModification}>Valider photo</button> </div>
             </div>
             {/* a */}
           </div>

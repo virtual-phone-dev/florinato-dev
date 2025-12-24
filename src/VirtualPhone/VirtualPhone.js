@@ -44659,6 +44659,22 @@ async function ObtenirLesDonneesFA() {
   setApiMessageFAA(data);
 }
 
+/*
+important
+important
+
+async function ObtenirLesDonneesFA() {
+  const data = await getAllData();
+  setApiMessageFA(Array.isArray(data) ? data : []);
+  setApiMessageFAA(Array.isArray(data) ? data : []);
+}
+
+
+puis partout
+await ObtenirLesDonneesFA();
+
+*/
+
 
 async function ExecuterActionFA({ actions = ["post"], id, ...donnees }) { // donnees = {}
   for (const action of actions) {
@@ -52963,8 +52979,6 @@ g
 		visible={modifierUrlPage} fermer={CloseModifierUrlPage} 
 		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond}
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} ValiderModification={ValiderUrl} isLoading666ValiderModification={isLoading666ValiderUrl} />
-
-	<VideoMiniatureTemplate  />
 
 
       {/* voir la miniature- FA  */}
