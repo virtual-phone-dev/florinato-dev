@@ -40382,24 +40382,40 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 	
 	if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
 	if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
-	/*console.log("idAccountChef", idPersonConnectedFA);
-	console.log("idGroupChef", getidGroup);*/
   }
   
-  async function CloseProfilFA() {
-    setProfilFA(false);
-  }
+  async function CloseProfilFA() { setProfilFA(false); }
+  
+  
+  const [seePhotoFA, setSeePhotoFA] = useState(false); //voir la photo 
+  async function SeePhotoFA() { setSeePhotoFA(true); }
+  async function CloseSeePhotoFA() { setSeePhotoFA(false); }
+  
+  
+  const [seeVideoFA, setSeeVideoFA] = useState(false); //voir la video
+  async function SeeVideoFA() { setSeeVideoFA(true); }
+  async function CloseSeeVideoFA() { setSeeVideoFA(false); }
+  
+
+  const [seePhotoFAreq, setSeePhotoFAreq] = useState(false); 
+  async function SeePhotoFAreq() { setSeePhotoFAreq(true); } //voir la photo (lors de la requete) 
+  async function CloseSeePhotoFAreq() { setSeePhotoFAreq(false); }
+  
+
+  const [seeVideoFAreq, setSeeVideoFAreq] = useState(false); 
+  async function SeeVideoFAreq() { setSeeVideoFAreq(true); } //voir la video (lors de la requete)
+  async function CloseSeeVideoFAreq() { setSeeVideoFAreq(false); }
+  
+  
+  const [seePhotoOther, setSeePhotoOther] = useState(false); 
+  async function SeePhotoOther() { setSeePhotoOther(true); } //afficher la photo de l'autre 
+  async function CloseSeePhotoOther() { setSeePhotoOther(false); }
 
 
   //selected2FA (selectionner photo, video, texte,.. )
   const [selected2FA, setSelected2FA] = useState(false);
-  async function CloseSelected2FA() { 
-    setSelected2FA(false);
-  }
-
-  async function Annuler66selected2FA() {
-    setSelected2FA(false);
-  } 
+  async function CloseSelected2FA() { setSelected2FA(false); }
+  async function Annuler66selected2FA() { setSelected2FA(false); } 
 
 
   // PageRedirection 66ChildApi66profilFA
@@ -43102,49 +43118,6 @@ async function PageRedirection66groupOtherFA() {
   }
   async function CloseSeePhoto66profilFA() {
     setSeePhoto66profilFA(false);
-  }
-
-
-  // voir la photo 
-  const [seePhotoFA, setSeePhotoFA] = useState(false); 
-  async function SeePhotoFA() {
-    setSeePhotoFA(true);
-  }
-  async function CloseSeePhotoFA() {
-    setSeePhotoFA(false);
-  }
-
-  // voir la video
-  const [seeVideoFA, setSeeVideoFA] = useState(false); 
-  /*async function SeeVideoFA() {
-    setSeeVideoFA(true);
-  }*/
-  async function CloseSeeVideoFA() {
-    setSeeVideoFA(false);
-  }
-
-  const [seePhotoFAreq, setSeePhotoFAreq] = useState(false); 
-  async function SeePhotoFAreq() { // voir la photo (lors de la requete)
-    setSeePhotoFAreq(true);
-  }
-  async function CloseSeePhotoFAreq() {
-    setSeePhotoFAreq(false);
-  }
-
-  const [seeVideoFAreq, setSeeVideoFAreq] = useState(false); 
-  async function SeeVideoFAreq() { // voir la video (lors de la requete)
-    setSeeVideoFAreq(true);
-  }
-  async function CloseSeeVideoFAreq() {
-    setSeeVideoFAreq(false);
-  }
-  
-  const [seePhotoOther, setSeePhotoOther] = useState(false); 
-  async function SeePhotoOther() { // afficher la photo de l'autre
-    setSeePhotoOther(true);
-  }
-  async function CloseSeePhotoOther() {
-    setSeePhotoOther(false);
   }
 
 
@@ -51467,7 +51440,7 @@ son compte Vixinol store */
 	  
 		<VideosPageTemplate 
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} verifierId={false} video="video" clic={false} svg={false} photocss="photo-70px-carre" />
+			data={filterFA} setId={setId} cliquerVideo={SeeVideoFA} photocss="photo-70px-carre" video />
 
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />

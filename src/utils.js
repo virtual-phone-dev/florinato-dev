@@ -227,7 +227,7 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
 }
 
 
-async function ValiderModificationLogique({ id, nouveauUrl, file }) {
+export async function ValiderModificationLogique({ id, nouveauUrl, file }) {
   for (const api of apiUrlsPUT) {
     try {
       const fullUrl = `${api}/${id}`;
@@ -461,21 +461,6 @@ export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileV
 )}
 
 
-export function VideoData({ data = [], setId, verifierId, video, clic, svg, photocss }) {
-  return (
-    <>
-	
-      {data.map((api) => (
-      <div onClick={() => setId(api._id)}>
-		<ChildApi66profilFA api={api} verifierId={verifierId} video={video} clic={clic} svg={svg} photocss={photocss} />
-      </div>
-      ))}
-	  
-    </>
-  );
-}
-
-
 export function SeePhotoModal({ visible, fermer, url, title }) {
   if (!visible) return null; // n'affiche rien si pas visible
 
@@ -648,12 +633,23 @@ export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
 }
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, verifierId, video, clic, svg, photocss }) {
+export function VideoData({ data = [], setId, video, cliquerVideo, photocss }) {
+  return (<>
+	
+      {data.map((api) => (
+      <div onClick={() => { setId(api._id); cliquerVideo(api); }}>
+		<ChildApi66profilFA api={api} photocss={photocss} video />
+      </div>
+      ))}
+	  
+    </>)}
+
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, cliquerVideo, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
-			<CloseAction fermer={fermer} titre="Videos" left photo={photo}/>
-			<VideoData data={data} setId={setId} verifierId={verifierId} video={video} clic={clic} svg={svg} photocss={photocss} />
+			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
+			<VideoData data={data} setId={setId} cliquerVideo={cliquerVideo} photocss={photocss} video />
 		</div>
 	);
 }
