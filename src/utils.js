@@ -232,7 +232,7 @@ export async function ValiderModificationLogique({ id, nouveauUrl, file }) {
     try {
       const fullUrl = `${api}/${id}`;
       const urlVideoAdapter = await AdapterLien(nouveauUrl);
-	  urlPhotoConverti = await uploadImageConverti(file)
+	  const urlPhotoConverti = await uploadImageConverti(file)
 	  
 	  const data = {
         ...(nouveauUrl !== undefined && { urlVideo: urlVideoAdapter }),
