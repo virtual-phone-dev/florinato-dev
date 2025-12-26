@@ -52795,7 +52795,7 @@ g
       <div className="seeVideoFA">
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
-          <div className="b" onClick={ChangerMiniaturePage}> <SvgPencil3/> </div>
+          <div className="b" onClick={ChangerMiniaturePage}> <SvgClose2/> </div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
         </div>
         {/* close */}
