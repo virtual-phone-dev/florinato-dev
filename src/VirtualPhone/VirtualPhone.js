@@ -13023,7 +13023,6 @@ dans le localStorage */
   }
 
   const dernierMessage = "Click to start the conversation..";
-  const id = localStorage.getItem("https://alrani.com/idAuteur");
   const idAuteur = localStorage.getItem("https://alrani.com/idAuteur");
   const nomAuteur = "Alrani.com";
   const photoProfil =
@@ -44712,7 +44711,7 @@ async function clicVideoFAA() {
 	const clic = clicFA + 1;  //type:204 il a cliqué sur la video 
 	console.log("clicFA ", clicFA);
 	console.log("clic ", clic);
-	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther:idOtherreq,, visible:1, type:204}, id:idreq, actions: ["post", "put"] });
+	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther:idOtherreq, visible:1, type:204}, id:idreq, actions: ["post", "put"] });
 }
 		
 
