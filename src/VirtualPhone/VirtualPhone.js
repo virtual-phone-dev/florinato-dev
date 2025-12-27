@@ -44530,7 +44530,6 @@ async function SendMessagetype42() {
 		const data = await getAllData();
 		setApiMessageFA(data);
 		setApiMessageFAA(data);
-		console.log(`data est là , coool :`, data);
 	  };
 	  fetchData();
 	  
@@ -44599,6 +44598,15 @@ const [idVideo, setIdVideo] = useState(null);
 console.log(`id ici:`, idreq);
 console.log(`idOtherreq ici:`, idOtherreq);
 console.log(`idVideo ici:`, idVideo);
+
+
+	// useEffect pour réagir au changement de idreq
+	useEffect(() => {
+		if (idreq !== undefined) {
+			clicVideoFAA(idreq);
+			//autreFonction(idreq);
+		}
+	}, [idreq]); // se déclenche quand idreq change
 
 
 //logique pour envoyer ou publier une video
@@ -44707,7 +44715,7 @@ async function MettreEnAvantFA() {
 
 
 // clic de la video 
-async function clicVideoFAA(idreq, idOtherreq) {
+async function clicVideoFAA() {
 	const clic = clicFA + 1;  //type:204 il a cliqué sur la video 
 	console.log("clicFA ", clicFA);
 	console.log("clic ", clic);
