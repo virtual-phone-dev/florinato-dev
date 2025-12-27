@@ -13157,7 +13157,7 @@ dans le localStorage */
                 url: `${process.env.REACT_APP_BACKEND}/api/conversation/create`,
                 data: {
                   // l'autre personne
-                  idDestinataire: id,
+                  //idDestinataire: id,
                   nomDestinataire: nomAuteur,
                   photoProfilDestinataire: photoProfil,
                   badgeVerifiedDestinataire: badgeVerified,
