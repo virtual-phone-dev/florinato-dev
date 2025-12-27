@@ -44707,7 +44707,7 @@ async function clicVideoFAA({ id, idOther }) {
 	console.count("clicVideoFAA appelé");
 	//if (!id || !idOther) return;
 	
-	const clic = clicFA + 1;  //type:204 il a cliqué sur la video 
+	const clic = parseInt(clicFA) + parseInt(1);;  //type:204 il a cliqué sur la video 
 	console.log("clicFA ", clicFA);
 	console.log("clic ", clic);
 	console.log("idOther ", idOther);
@@ -52812,10 +52812,6 @@ g
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
           <div className="b" onClick={ChangerMiniaturePage}> <SvgFullScreen2/> </div>
-		  
-          <div className="b"> <SvgFullScreen2/> </div>
-          <div className="b"> <SvgClose2/> </div>
-		  
           <div className="b" onClick={ModifierUrlPage}> <SvgClose2/> </div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
         </div>
