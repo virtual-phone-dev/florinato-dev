@@ -44606,7 +44606,10 @@ console.log(`idVideo ici:`, idVideo);
 			clicVideoFAA(idreq);
 			//autreFonction(idreq);
 		}
-	}, [idreq]); // se déclenche quand idreq change
+		
+		if (idOtherreq !== undefined) { clicVideoFAA(idOtherreq); }
+		
+	}, [idreq, idOtherreq]); // se déclenche quand idreq change
 
 
 //logique pour envoyer ou publier une video
