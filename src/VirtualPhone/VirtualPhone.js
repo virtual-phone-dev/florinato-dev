@@ -35437,11 +35437,15 @@ async function DissadAA() {
   const messageEpinglerFA = filterMessageEpinglerFA.map((api) => api.message); // messageEpingler
   
   
+	const [idreq, setId] = useState();
+	console.log(`id ici:`, idreq);
+  
 	// filtre pour obtenir les infos du post - FA
     const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
 	
     //const getName = infosPostFA.map((api) => api.nameAccount); // name
     const clicFA = infosPostFA.map((api) => api.clic); // photoProfile
+
 
 
   //filtre general
@@ -44591,12 +44595,6 @@ const [lienDropbox, setLienDropbox] = useState("");
 const [lienGitHub, setLienGitHub] = useState("");
 const [lienGitLab, setLienGitLab] = useState("");
 const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
-
-const [idreq, setId] = useState();
-//const [idVideo, setIdVideo] = useState(null);
-console.log(`id ici:`, idreq);
-//console.log(`idVideo ici:`, idVideo);
-
 
 
 //logique pour envoyer ou publier une video
