@@ -169,12 +169,10 @@ export async function envoyerPUT({ id, visible, type, url, clic, ...donnees }) {
 //envoyerPUT
 
 
-export async function envoyerPOST({ id, visible, type, url, ...donnees }) {
+export async function envoyerPOST({ visible, dataPOST, donnees }) {
 	const data = {
-	  ...(id !== undefined && { id }),
 	  ...(visible !== undefined && { visible }),
-	  ...(type !== undefined && { type }),
-	  //if (urlVideo !== undefined) data.urlVideo = urlVideo;
+	  ...(dataPOST ?? {}),
 	  ...donnees
 	};
 
@@ -227,7 +225,7 @@ async function envoyerFAA({ id, message, urlPhoto, urlVideo, idAccount, nameAcco
 }
 
 
-export async function ValiderModificationLogique({ id, nouveauUrl, file }) {
+export async function ValiderModificationLogique({ id, nouveauUrl, file, dataPUT }) {
   for (const api of apiUrlsPUT) {
     try {
       const fullUrl = `${api}/${id}`;
@@ -237,32 +235,14 @@ export async function ValiderModificationLogique({ id, nouveauUrl, file }) {
 	  const data = {
         ...(nouveauUrl !== undefined && { urlVideo: urlVideoAdapter }),
         ...(file !== undefined && { urlPhoto: urlPhotoConverti }),
+		...(dataPUT ?? {}),
       };
 	  
-      const res = await axios.put(fullUrl, data, { headers: { 'Content-Type': 'application/json' } });
-      
-      console.log("Modification réussie sur", fullUrl);
-      console.log(res.data);
-      return res.data; // Retourner dès que c'est réussi
-    } catch (err) {
-      console.log(`Échec de la requête sur ${api}`, err);
-      // Continue à essayer avec l'API suivante
-	  
-	  //ca ce sont des erreurs precises , pour savoir ce que renvoie le serveur
-	  if (err.response) {
-		// La requête a été faite et le serveur a répondu avec un code de statut
-		console.log(`Erreur serveur sur ${api}:`, err.response.data);
-		console.log('Status:', err.response.status);
-		console.log('Headers:', err.response.headers);
-	  } else if (err.request) {
-		// La requête a été faite mais aucune réponse n’a été reçue
-		console.log(`Pas de réponse du serveur sur ${api}:`, err.request);
-	  } else {
-		// Quelque chose s’est produit lors de la configuration de la requête
-		console.log(`Erreur lors de la requête sur ${api}:`, err.message);
-	  }
-	  
-    }
+      //const res = await axios.put(fullUrl, data, { headers: { 'Content-Type': 'application/json' } });
+	  const res = await axios.put(fullUrl, data);
+	  //return res.data; 
+      console.log("Modification réussie sur", res.data);
+    } catch (err) { console.log(`Échec de la requête sur ${api}`, err); }
   }
   throw new Error('Toutes les tentatives ont échoué pour enregistrer les modifications.');
 }
@@ -633,23 +613,23 @@ export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
 }
 
 
-export function VideoData({ data = [], setId, video, cliquerVideo, photocss }) {
+export function VideoData({ data = [], setId, setIdOtherreq, video, voirVideo, clicVideo, photocss }) {
   return (<>
 	
       {data.map((api) => (
-      <div onClick={() => { setId(api._id); cliquerVideo(api); }}>
+      <div onClick={() => { setId(api._id); voirVideo(api); clicVideo(api); setIdOtherreq(api.idAccountChef) }}>
 		<ChildApi66profilFA api={api} photocss={photocss} video />
       </div>
       ))}
 	  
     </>)}
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, cliquerVideo, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, setIdOtherreq, video, clicVideo, voirVideo, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
-			<VideoData data={data} setId={setId} cliquerVideo={cliquerVideo} photocss={photocss} video />
+			<VideoData data={data} setId={setId} setIdOtherreq={setIdOtherreq} clicVideo={clicVideo} voirVideo={voirVideo} photocss={photocss} video />
 		</div>
 	);
 }

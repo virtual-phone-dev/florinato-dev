@@ -1096,7 +1096,7 @@ export function ChildApi66profilFA({ api, photocss, verifierId, photo, video, cl
       {afficherVideo && (!verifierId || id) && (<> 
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
-		{clic && (<><div className="p-15px"> <p>{api.clic}</p> </div></>)} 
+		{clic && (<><div className="p-15px"> <p>{api.clic}</p> </div></>)}
 	  </div> 
       </>)}
 
@@ -35298,7 +35298,6 @@ async function DissadAA() {
   const type = localStorage.getItem("type"); 
   const urlPhoto = localStorage.getItem("urlPhoto"); 
   const urlVideo = localStorage.getItem("urlVideo"); 
-  //onst urlVideo = "https://www.dropbox.com/scl/fi/e62i5zd2vnm48laj06wgk/SHAN-L-MYTHO-Clip-officiel.mp4?rlkey=ljud1nhrxgmqmkgn12mxcf4wc&st=tc8r5pbi&raw=1"; 
 
   const urlPhotoreq = localStorage.getItem("urlPhotoreq");
   const urlVideoreq = localStorage.getItem("urlVideoreq");
@@ -35344,8 +35343,10 @@ async function DissadAA() {
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
-  const idAccount = localStorage.getItem("idAccountChef");
   const idAccountFA = localStorage.getItem("idPersonConnectedFA");
+  
+  const idAccount = localStorage.getItem("idPersonConnectedFA");
+  const idOther = localStorage.getItem("idAccountChef");
   const idAccountChef = localStorage.getItem("idAccountChef");
 
   
@@ -35436,6 +35437,14 @@ async function DissadAA() {
   // filtre pour afficher le message epingler
   const filterMessageEpinglerFA = apiMessageFA.filter((api) => api.epingler === "1" && api._id === idMessageEpingler);
   const messageEpinglerFA = filterMessageEpinglerFA.map((api) => api.message); // messageEpingler
+  
+  
+	// filtre pour obtenir les infos du post - FA
+    const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
+	
+    //const getName = infosPostFA.map((api) => api.nameAccount); // name
+    const clicFA = infosPostFA.map((api) => api.clic); // photoProfile
+
 
   //filtre general
   const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
@@ -35455,7 +35464,7 @@ async function DissadAA() {
 
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
-  const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.florinatoApp === "1").sort((a, b) => b.popularity - a.popularity);
+  const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.top ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
   
   //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
@@ -42283,7 +42292,11 @@ async function PageRedirection66groupOtherFA() {
   // logique pour envoyer la visite lorsqu'on clique sur un compte
   async function ClicAccount() {
     if (idPersonConnectedFA) {
-
+		
+		const popularity = popularityOther + 1;  //type:200 il a visité le compte
+		await ExecuterActionFA({ dataPUT:{popularity}, dataPOST: {idAccount, idOther, visible:1, type:200}, id:idAccount, actions: ["post", "put"] });
+		
+		/*
       const block = localStorage.getItem("blockFA");
       if (block === "0") { //block on applique ça uniquement aux personnes indesirables qui veulent detruire notre business
 
@@ -42482,6 +42495,8 @@ async function PageRedirection66groupOtherFA() {
         premiereReq();
         //1ere requete -api1
       } // if (block === "0")
+	  */
+  
       } // if(idPersonConnectedFA)
     }
     ClicAccount();
@@ -44581,8 +44596,10 @@ const [lienGitLab, setLienGitLab] = useState("");
 const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
 
 const [idreq, setId] = useState();
+const [idOtherreq, setIdOtherreq] = useState();
 const [idVideo, setIdVideo] = useState(null);
 console.log(`id ici:`, idreq);
+console.log(`idOtherreq ici:`, idOtherreq);
 console.log(`idVideo ici:`, idVideo);
 
 
@@ -44649,13 +44666,12 @@ await ObtenirLesDonneesFA();
 */
 
 
-async function ExecuterActionFA({ actions = ["post"], id, file, loader, ...donnees }) { // donnees = {}
+async function ExecuterActionFA({ actions = ["post"], id, file, loader, dataPOST={}, dataPUT={} }) {
 	try { if (loader) loader(true);
 		
 	    for (const action of actions) {
-		  if (action === "post") { await envoyerPOST({ ...donnees }); }	
-		  if (action === "put") { await ValiderModificationLogique({ id, file }) }
-		  //if (action === "put") { await envoyerPUT({ id, ...donnees }); }
+		  if (action === "post") { await envoyerPOST({ dataPOST }); }
+		  if (action === "put") { await ValiderModificationLogique({ id, file, dataPUT }) }
 		}
 
 		await ObtenirLesDonneesFA();
@@ -44664,41 +44680,42 @@ async function ExecuterActionFA({ actions = ["post"], id, file, loader, ...donne
 }
 
 
-
-async function avantExecuterActionFA({ loader, type, donneesPut, donneesPost }) { // on fait cette petite reutilisation de code pour eviter la redondance de code
-  const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccountFA && api.idOther === idreq && api.type === type);
+// il verifie s'il faut faire un post ou un put
+async function verificationAvantExecuterActionFA({ loader, type, dataPUT, dataPOST2 }) { 
+  const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccount && api.idOther === idreq && api.type === type);
   const idInfos = filterInfos.map((api) => api._id);
   const existe = filterInfos.length > 0;
 
-  if (existe) { await ExecuterActionFA({ donnees: donneesPut, id:idInfos, loader, actions: ["put"] }); } // donnees existe deja , alors on fait un put
-  else { await ExecuterActionFA({ donnees: {idAccount:idAccountFA, idOther:id, visible:1, type, loader, ...donneesPost } }); } // donnees n'existe pas , alors on fait un post
+  if (existe) { await ExecuterActionFA({ dataPUT, id:idInfos, loader, actions: ["put"] }); } // donnees existe deja , alors on fait un put
+  else { await ExecuterActionFA({ dataPOST: {...dataPOST2, idAccount, idOther:idreq, visible:1, type, loader } }); } // donnees n'existe pas , alors on fait un post
 }
 
 
 
 //logique pour ajouter un admin qui pourra publier sur un compte florinato
 async function AjouterAdminFA() {
-	await avantExecuterActionFA({ loader: setIsLoading666AjouterAdminFA, type: 81, donneesPut: { admin: 1 }, donneesPost: { admin: 1 }, });
+	await verificationAvantExecuterActionFA({ dataPUT:{admin:1}, dataPOST2:{admin:1}, loader:setIsLoading666AjouterAdminFA, type:81 });
 }
 
 //logique pour ajouter un admin florinato
 async function AjouterAdminFlorinato() {
-	await avantExecuterActionFA({ loader: setIsLoading666AjouterAdminFlorinato, type: 80, donneesPut: { adminFlorinato: 1 }, donneesPost: { adminFlorinato: 1 }, });
+	await verificationAvantExecuterActionFA({ dataPUT:{adminFlorinato:1}, dataPOST2:{adminFlorinato:1}, loader:setIsLoading666AjouterAdminFlorinato, type:80 });
 }
 
 //logique pour mettre en avant un compte - FA
 async function MettreEnAvantFA() {
-	await avantExecuterActionFA({ loader: setIsLoading666MettreEnAvantFA, type: 82, donneesPut: { top: 1 }, donneesPost: { top: 1 }, });
+	await verificationAvantExecuterActionFA({ dataPUT:{top:1}, dataPOST2:{top:1}, loader:setIsLoading666MettreEnAvantFA, type:82 });
 }
-
 
 
 // clic de la video 
 async function clicVideoFAA() {
-  await ExecuterActionFA({ donnees: { idAccount:idAccountFA, idOtherFA:idreq, idPost:idVideo, visible: 1, type: 204}}); 
-  await ExecuterActionFA({ donnees: { clic: idreq}, id:idVideo, actions: ["put"] }); 
+	const clic = clicFA + 1;  //type:204 il a cliqué sur la video 
+	console.log("clicFA ", clicFA);
+	console.log("clic ", clic);
+	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther:idOtherreq,, visible:1, type:204}, id:idreq, actions: ["post", "put"] });
 }
-
+		
 
 //page pour changer la miniature de la video - FA
 const [changerMiniaturePage, setChangerMiniaturePage] = useState(false);
@@ -51440,7 +51457,7 @@ son compte Vixinol store */
 	  
 		<VideosPageTemplate 
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} cliquerVideo={SeeVideoFA} photocss="photo-70px-carre" video />
+			data={filterFA} setId={setId} setIdOtherreq={setIdOtherreq} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-70px-carre" video />
 
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
@@ -52796,34 +52813,48 @@ g
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
           <div className="b" onClick={ChangerMiniaturePage}> <SvgFullScreen2/> </div>
+		  
+          <div className="b"> <SvgFullScreen2/> </div>
+          <div className="b"> <SvgClose2/> </div>
+		  
           <div className="b" onClick={ModifierUrlPage}> <SvgClose2/> </div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
         </div>
         {/* close */}
 
         <div className="body">
-          {/* on affiche la video */}
-          <div className="block-video">
-            <video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
-          </div>
-		  
-        <div className="overflow-x">
-		{filterFA.map((api) => (<>
+			{/* on affiche la video */}
+			<div className="block-video">
+				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
+			</div>
+			
+			<div className="p-15px"> {clicFA} </div>
+			
+		  		  
+				  
+			<div className="overflow-x">
+			
+			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
 				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" verifierId/>
 			</div>
-        </>))}
-        </div>
-		{/* overflow-x */}
+			</>))}
+			
+			</div>
+			{/* overflow-x */}
+			
+			
 		
-		<div className="overflow-x">
-		{filterFA.map((api) => (<>
+			<div className="overflow-x">
+			
+			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
 				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" />
 			</div>
-        </>))}
-        </div>
-		{/* overflow-x */}
+			</>))}
+			
+			</div>
+			{/* overflow-x */}
 		
         </div>
         {/* body */}
