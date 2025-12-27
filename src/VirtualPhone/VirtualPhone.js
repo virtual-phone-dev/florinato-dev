@@ -52838,10 +52838,8 @@ g
 			<div className="block-video">
 				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
+			<div className="p-15px-white"> {clicFA} </div>
 			
-			<div className="p-15px"> {clicFA} </div>
-			
-		  		  
 				  
 			<div className="overflow-x">
 			
@@ -52850,12 +52848,10 @@ g
 				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" verifierId/>
 			</div>
 			</>))}
-			
 			</div>
 			{/* overflow-x */}
 			
 			
-		
 			<div className="overflow-x">
 			
 			{filterFA.map((api) => (<>
@@ -52863,7 +52859,6 @@ g
 				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" />
 			</div>
 			</>))}
-			
 			</div>
 			{/* overflow-x */}
 		
