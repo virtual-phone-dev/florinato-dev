@@ -44593,23 +44593,10 @@ const [lienGitLab, setLienGitLab] = useState("");
 const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
 
 const [idreq, setId] = useState();
-const [idOtherreq, setIdOtherreq] = useState();
-const [idVideo, setIdVideo] = useState(null);
+//const [idVideo, setIdVideo] = useState(null);
 console.log(`id ici:`, idreq);
-console.log(`idOtherreq ici:`, idOtherreq);
-console.log(`idVideo ici:`, idVideo);
+//console.log(`idVideo ici:`, idVideo);
 
-
-	// useEffect pour réagir au changement de idreq
-	useEffect(() => {
-		if (idreq !== undefined) {
-			clicVideoFAA(idreq);
-			//autreFonction(idreq);
-		}
-		
-		if (idOtherreq !== undefined) { clicVideoFAA(idOtherreq); }
-		
-	}, [idreq, idOtherreq]); // se déclenche quand idreq change
 
 
 //logique pour envoyer ou publier une video
@@ -44718,13 +44705,16 @@ async function MettreEnAvantFA() {
 
 
 // clic de la video
-async function clicVideoFAA() {
+async function clicVideoFAA({ id, idOther ) {
 	console.count("clicVideoFAA appelé");
+	//if (!id || !idOther) return;
 	
 	const clic = clicFA + 1;  //type:204 il a cliqué sur la video 
 	console.log("clicFA ", clicFA);
 	console.log("clic ", clic);
-	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther:idOtherreq, visible:1, id:idreq, type:204}, id:idreq, actions: ["post", "put"] });
+	console.log("idOther ", idOther);
+	console.log("id ", id);
+	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther, visible:1, id, type:204}, id, actions: ["post", "put"] });
 }
 		
 
@@ -51468,7 +51458,7 @@ son compte Vixinol store */
 	  
 		<VideosPageTemplate 
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} setIdOtherreq={setIdOtherreq} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-70px-carre" video />
+			data={filterFA} setId={setId} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-70px-carre" video />
 
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
@@ -52804,11 +52794,11 @@ g
         <div className="body"> 
 			<img src={urlPhoto} alt="" /> 
 		
-			{filterFA.map((api) => (<>
+			{/* {filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
 				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" />
 			</div>
-			</>))}
+			</>))} */}
 		</div>
         {/* body*/}
       </div>

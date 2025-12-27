@@ -613,23 +613,26 @@ export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
 }
 
 
-export function VideoData({ data = [], setId, setIdOtherreq, video, voirVideo, clicVideo, photocss }) {
+export function VideoData({ data = [], setId, video, voirVideo, clicVideo, photocss }) {
   return (<>
 	
       {data.map((api) => (
-      <div onClick={() => { setId(api._id); voirVideo(api); clicVideo(api); setIdOtherreq(api.idAccountChef) }}>
+      <div onClick={() => { setId(api._id); voirVideo(api);
+		  clicVideo({ id:api._id, idOther:api.idAccountChef })
+		  }}>
+		  
 		<ChildApi66profilFA api={api} photocss={photocss} video />
       </div>
       ))}
 	  
     </>)}
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, setIdOtherreq, video, clicVideo, voirVideo, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
-			<VideoData data={data} setId={setId} setIdOtherreq={setIdOtherreq} clicVideo={clicVideo} voirVideo={voirVideo} photocss={photocss} video />
+			<VideoData data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} photocss={photocss} video />
 		</div>
 	);
 }
