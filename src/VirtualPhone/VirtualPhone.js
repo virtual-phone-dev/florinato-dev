@@ -44705,7 +44705,7 @@ async function MettreEnAvantFA() {
 
 
 // clic de la video
-async function clicVideoFAA({ id, idOther ) {
+async function clicVideoFAA({ id, idOther }) {
 	console.count("clicVideoFAA appelé");
 	//if (!id || !idOther) return;
 	
