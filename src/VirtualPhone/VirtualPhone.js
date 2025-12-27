@@ -35293,7 +35293,6 @@ async function DissadAA() {
   const photoGroupFA = localStorage.getItem("photoGroupFA");
   const popularityFA = localStorage.getItem("popularityFA");
   const idConversation = localStorage.getItem("idConversation");
-  const idOther = localStorage.getItem("idOther");
   const message = localStorage.getItem("message"); 
   const type = localStorage.getItem("type"); 
   const urlPhoto = localStorage.getItem("urlPhoto"); 
@@ -35350,7 +35349,7 @@ async function DissadAA() {
   const idAccountChef = localStorage.getItem("idAccountChef");
 
   
-  // filtre pour obtenir quelques infos de l'utilisateur connecter)
+  // filtre pour obtenir quelques infos de l'utilisateur connecter
   const userConnectedFA = apiMessageFA.filter((api) => api._id === idUserConnectedFA);
   const getblockFA = userConnectedFA.map((api) => api.block); // block
   const verifyData = userConnectedFA.length > 0; // verifier si les données sont disponibles
