@@ -64,6 +64,11 @@
   font-size: 15px;
 }
 
+.p-15px p {
+  font-size: 15px;
+  color: #fff;
+}
+
 .p-16px {
   font-size: 16px;
 }

@@ -177,7 +177,7 @@ export async function envoyerPOST({ visible, dataPOST, donnees }) {
 	};
 
 	for (const api of apiUrlsPOST) {
-		try {		 
+		try {
 		  const res = await axios.post(api, data);
 		  return res.data; // Retourne la réponse de l'API
 		} catch (err) {
@@ -240,8 +240,8 @@ export async function ValiderModificationLogique({ id, nouveauUrl, file, dataPUT
 	  
       //const res = await axios.put(fullUrl, data, { headers: { 'Content-Type': 'application/json' } });
 	  const res = await axios.put(fullUrl, data);
-	  //return res.data; 
       console.log("Modification réussie sur", res.data);
+	  return res.data; 
     } catch (err) { console.log(`Échec de la requête sur ${api}`, err); }
   }
   throw new Error('Toutes les tentatives ont échoué pour enregistrer les modifications.');

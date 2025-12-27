@@ -44722,8 +44722,6 @@ async function clicVideoFAA() {
 	const clic = clicFA + 1;  //type:204 il a cliqué sur la video 
 	console.log("clicFA ", clicFA);
 	console.log("clic ", clic);
-	console.log("idreq 2 ", idreq);
-	console.log("idOtherreq 2 ", idOtherreq);
 	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther:idOtherreq, visible:1, id:idreq, type:204}, id:idreq, actions: ["post", "put"] });
 }
 		
