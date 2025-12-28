@@ -847,12 +847,14 @@ export function ChildApi66LesVideos({ api, photo, video }) {
 		{/* {afficherVideo && (!verifierId || id) && (<> */}
 		{afficherVideo && (<>
 		<img className="video-thumb" src={api.urlPhoto} />
-		<p className="video-title">{api.message}</p> </>)}
+		<pre className="pre-17px">{api.message}</pre>
+		<p className="p-15px">{api.clic}</p> </>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
 		{afficherPhoto && (<> 
 		<img className="video-thumb" src={api.urlPhoto} />
-		<p className="video-title">{api.message}</p> </>)}
+		<pre className="pre-17px">{api.message}</pre>
+		<p className="p-15px">{api.clic}</p> </>)}
     </>
   );
 }
