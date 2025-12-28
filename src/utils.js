@@ -861,11 +861,13 @@ export function ChildApi66LesVideos({ api, photo, video }) {
 export function LesVideos({ data = [], setId, clicVideo, voirVideo, video }) {
   return (
 <div className="video-grid">
-{data.map((api) => (
-  <div className="video-card" onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
-    <ChildApi66LesVideos api={api} video />
-  </div>
-  ))}
+	<div className="video-card">
+	{data.map((api) => (
+	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
+		<ChildApi66LesVideos api={api} video />
+	  </div>
+	  ))}
+	</div>
 </div>
 )}
 
