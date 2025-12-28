@@ -835,6 +835,19 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
+export function LesVideos({ data = [], setId }) {
+  return (
+<div className="video-grid">
+{data.map((api) => (
+  <div className="video-card" onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); }}>
+    <img className="video-thumb" src={api.urlPhoto} />
+    <p className="video-title">{api.title}</p>
+  </div>
+  ))}
+</div>
+)}
+
+
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, 
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 		

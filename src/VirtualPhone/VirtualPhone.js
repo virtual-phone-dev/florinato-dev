@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, 
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique
 	} from "../utils";
@@ -52850,8 +52850,8 @@ g
 			</>))}
 			</div>
 			{/* overflow-x */}
-
 			
+
 			<div className="overflow-x">
 			
 			{filterFA.map((api) => (<>
@@ -52861,7 +52861,23 @@ g
 			</>))}
 			</div>
 			{/* overflow-x */}
-		
+			
+			
+			<div className="video-grid">
+			<div className="video-card">
+			{filterFA.map((api) => (<>
+			<div onClick={() => setId(api._id)}>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white"/>
+			</div>
+			</>))}
+			</div> </div>
+			{/* video-grid */}
+			
+			<>A la fin</>
+			
+			
+			<LesVideos data={filterFA} setId={setId} />
+			
         </div>
         {/* body */}
       </div>
