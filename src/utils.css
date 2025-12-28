@@ -179,20 +179,22 @@
 
 .video-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 16px;
 }
 
 .video-card {
   display: flex;
   flex-direction: column;
+  cursor: pointer;
 }
 
 .video-thumb {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  height: 200px;
   object-fit: cover;
   border-radius: 8px;
+  width: 100%;
 }
 
 .video-title {
