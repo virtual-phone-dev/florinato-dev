@@ -44707,7 +44707,7 @@ async function clicVideoFAA({ id, idOther }) {
 	console.count("clicVideoFAA appelé");
 	//if (!id || !idOther) return;
 	
-	const clic = parseInt(clicFA) + parseInt(1);;  //type:204 il a cliqué sur la video 
+	const clic = clicFA + parseInt(1);;  //type:204 il a cliqué sur la video 
 	console.log("clicFA ", clicFA);
 	console.log("clic ", clic);
 	console.log("idOther ", idOther);
