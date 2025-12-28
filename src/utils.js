@@ -633,6 +633,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
+			<LesVideos data={data} setId={setId} />
 			<VideoData data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} photocss={photocss} video />
 		</div>
 	);
