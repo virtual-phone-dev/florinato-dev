@@ -52863,7 +52863,7 @@ g
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={filterFA} setId={setId} />
+			<LesVideos data={filterFA} setId={setId} video />
 			
         </div>
         {/* body */}
