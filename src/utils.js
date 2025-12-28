@@ -633,7 +633,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
-			<LesVideos data={data} setId={setId} />
+			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
 			<VideoData data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} photocss={photocss} video />
 		</div>
 	);
@@ -836,20 +836,21 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-export function ChildApi66LesVideos({ api, verifierId, photo, video }) {
-	const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-    const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
-  
+export function ChildApi66LesVideos({ api, photo, video }) {
+	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+    //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
     const afficherVideo = video && api.type === "3";
     const afficherPhoto = photo && api.type === "2";
 
   return (
     <>
-		{afficherVideo && (!verifierId || id) && (<> 
+		{/* {afficherVideo && (!verifierId || id) && (<> */}
+		{afficherVideo && (<>
 		<img className="video-thumb" src={api.urlPhoto} />
 		<p className="video-title">{api.message}</p> </>)}
 		
-		{afficherPhoto && (!verifierId || id) && (<> 
+		{/* {afficherPhoto && (!verifierId || id) && (<> */}
+		{afficherPhoto && (<> 
 		<img className="video-thumb" src={api.urlPhoto} />
 		<p className="video-title">{api.message}</p> </>)}
     </>
@@ -857,11 +858,11 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video }) {
 }
 
 
-export function LesVideos({ data = [], setId }) {
+export function LesVideos({ data = [], setId, clicVideo, voirVideo, video }) {
   return (
 <div className="video-grid">
 {data.map((api) => (
-  <div className="video-card" onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); }}>
+  <div className="video-card" onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
     <ChildApi66LesVideos api={api} video />
   </div>
   ))}
