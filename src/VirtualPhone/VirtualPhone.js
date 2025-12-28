@@ -1028,7 +1028,7 @@ Vidéo seule, sans id
 
 
 //ChildApi 66profilFA
-export function ChildApi66profilFA({ api, photocss, verifierId, photo, video, clic, svg }) {
+export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px-eee", verifierId, photo, video, clic, svg }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -1089,14 +1089,17 @@ export function ChildApi66profilFA({ api, photocss, verifierId, photo, video, cl
       <div className="type3">
         <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
 		{clic && (<>
-		<div className="b"> <button onClick={GotoPhoto}><SvgPlay2/></button> </div>
-		<div className="p-15px"> <p>{api.clic}</p> </div> </>)}
+		<div className="b"> <button onClick={GotoPhoto}><SvgPlay2/></button> </div></>)}
+		
+		<div className={titrecss}> <pre>{api.message}</pre> </div>
+		<div className={cliccss}> <p>{api.clic}</p> </div>
       </div> </>)}
 
       {afficherVideo && (!verifierId || id) && (<> 
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
-		<div className="p-15px"> <p>{api.clic}</p> </div>
+		<div className={titrecss}> <pre>{api.message}</pre> </div>
+		<div className={cliccss}> <p>{api.clic}</p> </div>
 	  </div> 
       </>)}
 
@@ -52835,25 +52838,25 @@ g
 			<div className="block-video">
 				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
-			<div className="p-15px-white"> {clicFA} </div>
+			<div className="p-15px-white"> {clicFA} clic</div>
 			
 				  
 			<div className="overflow-x">
 			
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" verifierId/>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white" verifierId/>
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */}
-			
+
 			
 			<div className="overflow-x">
 			
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" />
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white"/>
 			</div>
 			</>))}
 			</div>

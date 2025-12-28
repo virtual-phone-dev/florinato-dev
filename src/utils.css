@@ -64,9 +64,14 @@
   font-size: 15px;
 }
 
-.p-15px-white p {
+.p-15px-eee {
   font-size: 15px;
-  color: #fff;
+  color: #eee;
+}
+
+.p-15px-white {
+  font-size: 15px;
+  color: white;
 }
 
 .p-16px {
@@ -84,6 +89,29 @@
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+
+.pre-17px {
+  font-size: 17px;
+  color: #000;
+  padding: 13px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.pre-17px-white {
+  font-size: 17px;
+  color: white;
+  padding: 13px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+/*
+.pre-17px {
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-size: 17px;
+}*/
 
 
 .btn-vert button {
@@ -121,6 +149,15 @@
   cursor: pointer;
 }
 
+.photo-200px-carre img {
+  height: 200px;
+  width: 100px;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
 .photo-70px-carre img {
   height: 70px;
   width: 70px;
@@ -137,12 +174,6 @@
   object-fit: cover;
   border: 1px solid #eee;
   cursor: pointer;
-}
-
-.pre-17px {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  font-size: 17px;
 }
 
 .hr-15px hr {
