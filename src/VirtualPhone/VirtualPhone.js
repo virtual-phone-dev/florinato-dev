@@ -1028,7 +1028,7 @@ Vidéo seule, sans id
 
 
 //ChildApi 66profilFA
-export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px-eee", verifierId, photo, video, clic, svg }) {
+export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", verifierId, photo, video, clic, svg }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -51470,7 +51470,7 @@ son compte Vixinol store */
 	  
 		<VideosPageTemplate 
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-70px-carre" video />
+			data={filterFA} setId={setId} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video />
 
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
