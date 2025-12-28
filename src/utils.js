@@ -626,6 +626,7 @@ export function VideoData({ data = [], setId, video, voirVideo, clicVideo, photo
       ))}
 	  
     </>)}
+	
 
 export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, photocss }) {
 	if (!visible) return null;

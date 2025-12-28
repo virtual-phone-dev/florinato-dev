@@ -51464,11 +51464,11 @@ son compte Vixinol store */
           {/* body */}
         </div>
         {/* florinatoApp */}
-      </>)} 
+      </>)}
       {/* application florinato */}
 	  
 	  
-		<VideosPageTemplate 
+		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
 			data={filterFA} setId={setId} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video />
 
@@ -52992,19 +52992,19 @@ g
 
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
-		visible={modifierUrlPage} fermer={CloseModifierUrlPage} texte="Modifier l'url de la vidéo"
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo"
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl/>
 		
 		
 	<ModifierTemplate 
-		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} texte="Modifier le titre de la vidéo"
+		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo"
 		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl/>
 	
 	
 	<ModifierTemplate 
 		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
 		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
-		texte="Changer la miniature de la vidéo" changerMiniature/>
+		titre="Changer la miniature de la vidéo" changerMiniature/>
 
 
 
