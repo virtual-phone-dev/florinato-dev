@@ -834,10 +834,8 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, 
-	changerUrl, changerMiniature,
-	title = "Modifier l'url de  la video", texte = "Entrez votre description...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
+	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 		
 	if (!visible) return null;
 	const urlVideo = localStorage.getItem("urlVideo");
@@ -848,7 +846,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
         <div className="card">
           <div className="block">
             <div className="a">
-              <p style={{ color: "blue" }} onClick={fermer}>{title}</p>
+              <p style={{ color: "blue" }} onClick={fermer}>{titre}</p>
 			  
 			  {changerUrl && (<>
 			  <pre className="pre-15px-center">{urlVideo}</pre>

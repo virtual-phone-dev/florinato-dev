@@ -44726,6 +44726,17 @@ const [isLoading666ChangerMiniatureFA, setIsLoading666ChangerMiniatureFA] = useS
 async function ChangerMiniatureFA() { await ExecuterActionFA({ id:idreq, file: miniatureFA, loader:setIsLoading666ChangerMiniatureFA, actions: ["put"] }); }
 	
 	
+	
+//page pour changer le titre de la video - FA
+const [modifierTitrePageFA , setmodifierTitrePageFA] = useState(false);
+async function ModifierTitrePageFA() { setmodifierTitrePageFA(true); }
+async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
+
+//logique pour changer ou modifier le titre de la video - FA
+const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
+const [nouveauTitre, setNouveauTitre] = useState("");
+async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idreq, loader:isLoading666ModifierTitreFA, actions: ["put"] }); }
+
 
 //page pour enregistrer l'url modifier
 const [modifierUrlPage, setmodifierUrlPage] = useState(false);
@@ -52803,6 +52814,7 @@ g
       {/* seePhotoFA */}
       </>)}
       {/* page pour voir la photo - FA */}
+	  
 
 
       {/* voir la video - FA */}
@@ -52811,6 +52823,7 @@ g
       <div className="seeVideoFA">
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
+          <div className="b" onClick={ModifierTitrePageFA}> <SvgFullScreen2/> </div>
           <div className="b" onClick={ChangerMiniaturePage}> <SvgFullScreen2/> </div>
           <div className="b" onClick={ModifierUrlPage}> <SvgClose2/> </div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
@@ -52970,18 +52983,25 @@ g
           </div>
           {/* publier-video-opacity */}
         </>)}
-      {/* choisir la video a ajouter à la photo - FA  */}
+      {/* choisir la video a ajouter à la phot
+
 	  
 
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
-		visible={modifierUrlPage} fermer={CloseModifierUrlPage} 
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} texte="Modifier l'url de la vidéo"
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl/>
+		
+		
+	<ModifierTemplate 
+		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} texte="Modifier le titre de la vidéo"
+		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl/>
 	
 	
 	<ModifierTemplate 
 		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
-		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} changerMiniature/>
+		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
+		texte="Changer la miniature de la vidéo" changerMiniature/>
 
 
 
