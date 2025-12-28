@@ -179,7 +179,6 @@
 
 .video-card {
   display: flex;
-  flex-direction: column;
 }
 
 .video-thumb {
