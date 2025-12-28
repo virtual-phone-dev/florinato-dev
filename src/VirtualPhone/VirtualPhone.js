@@ -52851,7 +52851,8 @@ g
 			</div>
 			{/* overflow-x */}
 			
-
+			
+			{/* 
 			<div className="overflow-x">
 			
 			{filterFA.map((api) => (<>
@@ -52861,21 +52862,7 @@ g
 			</>))}
 			</div>
 			{/* overflow-x */}
-			
-			
-			<div className="video-grid">
-			<div className="video-card">
-			{filterFA.map((api) => (<>
-			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white"/>
-			</div>
-			</>))}
-			</div> </div>
-			{/* video-grid */}
-			
-			<>A la fin</>
-			
-			
+
 			<LesVideos data={filterFA} setId={setId} />
 			
         </div>

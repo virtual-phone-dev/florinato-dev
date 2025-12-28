@@ -835,13 +835,33 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
+export function ChildApi66LesVideos({ api, verifierId, photo, video }) {
+	const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+    const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
+  
+    const afficherVideo = video && api.type === "3";
+    const afficherPhoto = photo && api.type === "2";
+
+  return (
+    <>
+		{afficherVideo && (!verifierId || id) && (<> 
+		<img className="video-thumb" src={api.urlPhoto} />
+		<p className="video-title">{api.message}</p> </>)}
+		
+		{afficherPhoto && (!verifierId || id) && (<> 
+		<img className="video-thumb" src={api.urlPhoto} />
+		<p className="video-title">{api.message}</p> </>)}
+    </>
+  );
+}
+
+
 export function LesVideos({ data = [], setId }) {
   return (
 <div className="video-grid">
 {data.map((api) => (
   <div className="video-card" onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); }}>
-    <img className="video-thumb" src={api.urlPhoto} />
-    <p className="video-title">{api.title}</p>
+    <ChildApi66LesVideos api={api} video />
   </div>
   ))}
 </div>
