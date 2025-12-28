@@ -1096,7 +1096,7 @@ export function ChildApi66profilFA({ api, photocss, verifierId, photo, video, cl
       {afficherVideo && (!verifierId || id) && (<> 
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
-		{clic && (<><div className="p-15px"> <p>{api.clic}</p> </div></>)}
+		<div className="p-15px"> <p>{api.clic}</p> </div>
 	  </div> 
       </>)}
 
