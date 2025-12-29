@@ -175,6 +175,7 @@
     width: 100%;
 	max-width: 330px;
 	min-width: 180px;
+	margin: 7px;
 }
 
 .video-thumb {
@@ -186,7 +187,6 @@
 	object-position: top;
 	border-radius: 8px;
 	cursor: pointer;
-	margin: 7px;
 }
 
 
