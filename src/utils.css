@@ -60,9 +60,6 @@
   padding-left: 10px;
 }
 
-.p-15px {
-  font-size: 15px;
-}
 
 .p-15px {
   font-size: 15px;
@@ -85,7 +82,7 @@
 .pre-15px-center {
   font-size: 13px;
   align-items: center;
-  padding: 13px;
+  padding: 0px;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -93,7 +90,7 @@
 .pre-17px {
   font-size: 17px;
   color: #000;
-  padding: 13px;
+  padding: 0px;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
@@ -101,17 +98,10 @@
 .pre-17px-white {
   font-size: 17px;
   color: white;
-  padding: 13px;
+  padding: 0px;
   white-space: pre-wrap;
   word-wrap: break-word;
 }
-
-/*
-.pre-17px {
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  font-size: 17px;
-}*/
 
 
 .btn-vert button {
