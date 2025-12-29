@@ -167,8 +167,14 @@
 }
 
 
-.video-card {
+.video-grille {
   display: flex;
+}
+
+.video-card {
+    width: 100%;
+	max-width: 330px;
+	min-width: 180px;
 }
 
 .video-thumb {
@@ -181,12 +187,6 @@
 	border-radius: 8px;
 	cursor: pointer;
 	margin: 7px;
-}
-
-.video-title {
-  margin-top: 6px;
-  font-size: 17px;
-  line-height: 1.3;
 }
 
 
