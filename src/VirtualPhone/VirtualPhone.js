@@ -35484,10 +35484,9 @@ async function DissadAA() {
   if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
   if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
 
-  
     const [mySearchFA, setMySearchFA] = ls("mySearchFA"); //rechercher parmi les comptes
-	const [maRechercheVideoFA, setMaRechercheVideoFA] = ls("maRechercheVideoFA"); //rechercher parmi les videos
-    const [rechercheMesComptesFA, setRechercheMesComptesFA] = ls("rechercheMesComptesFA"); //rechercher parmi mes comptes (que jai creer)
+	const [maRechercheVideoFA, setmaRechercheVideoFA] = ls("maRechercheVideoFA"); //rechercher parmi les videos
+    const [rechercheMesComptesFA, setrechercheMesComptesFA] = ls("rechercheMesComptesFA"); //rechercher parmi mes comptes (que jai creer)
 	 
 
   /*
