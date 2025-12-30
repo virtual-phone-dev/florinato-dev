@@ -179,8 +179,8 @@
 }
 
 .video-thumb {
-	width: 100%;
-	/*max-width: 330px;
+	/*width: 100%;
+	max-width: 330px;
 	min-width: 180px;
 	height: 220px;*/
 	object-fit: cover;
