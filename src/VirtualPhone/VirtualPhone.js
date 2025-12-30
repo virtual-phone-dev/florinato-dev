@@ -52862,7 +52862,7 @@ g
 			</div>
 			{/* overflow-x */} 
 
-			<LesVideos data={filterFA} setId={setId} titrecss="pre-17px-white" cliccss="p-15px-eee" video />
+			<LesVideos data={filterFA} setId={setId} titrecss="pre-17px-white" cliccss="p-14px-eee" video />
 			
         </div>
         {/* body */}
