@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { React, useState, useEffect } from 'react';
+import { React, useState, useEffect, useRef } from 'react';
 
 import Loader from "./Loader/Loader";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
@@ -879,13 +879,13 @@ export function ChildApi66LesVideos({ api, photo, video }) {
 		{/* {afficherVideo && (!verifierId || id) && (<> */}
 		{afficherVideo && (<> 
 		<div className="video-card">
-		<img className="video-thumb" src={api.urlPhoto} onLoad={onImageCharge} ref={imgRef} /> 
+		<img className="video-thumb" src={api.urlPhoto} ref={imgRef} /> 
 		<pre className="pre-17px">{gettitre}</pre>
 		<p className="p-15px">{api.clic} clic</p> </div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
 		{afficherPhoto && (<> 
-		<img className="video-thumb" src={api.urlPhoto} onLoad={onImageCharge} ref={imgRef} />
+		<img className="video-thumb" src={api.urlPhoto} ref={imgRef} />
 		<pre className="pre-17px">{gettitre}</pre>
 		<p className="p-15px">{api.clic} clic</p> </>)}
     </>
