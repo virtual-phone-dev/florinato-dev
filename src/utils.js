@@ -864,7 +864,6 @@ export function ChildApi66LesVideos({ api, photo, video }) {
 export function LesVideos({ data = [], setId, clicVideo, voirVideo, video }) {
   return (
 <div className="video-grille">
- 
 	{data.map((api) => (
 	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
 		<ChildApi66LesVideos api={api} video />
