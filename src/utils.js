@@ -836,7 +836,7 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-export function ChildApi66LesVideos({ api, photo, video }) {
+export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cliccss="p-15px-ccc" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
@@ -880,14 +880,15 @@ export function ChildApi66LesVideos({ api, photo, video }) {
 		{afficherVideo && (<> 
 		<div className="video-card">
 		<img className="video-thumb" src={api.urlPhoto} ref={imgRef} /> 
-		<pre className="pre-17px">{gettitre}</pre>
-		<p className="p-15px">{api.clic} clic</p> </div></>)}
+		<pre className={titrecss}>{gettitre}</pre>
+		<p className={cliccss}>{api.clic} clic</p> </div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
 		{afficherPhoto && (<> 
+		<div className="video-card">
 		<img className="video-thumb" src={api.urlPhoto} ref={imgRef} />
-		<pre className="pre-17px">{gettitre}</pre>
-		<p className="p-15px">{api.clic} clic</p> </>)}
+		<pre className={titrecss}>{gettitre}</pre>
+		<p className={cliccss}>{api.clic} clic</p> </div></>)}
     </>
   );
 }

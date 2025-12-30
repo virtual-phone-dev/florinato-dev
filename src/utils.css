@@ -66,9 +66,14 @@
   color: #000;
 }
 
-.p-15px-white {
+.p-15px-eee {
   font-size: 15px;
-  color: white;
+  color: #eee;
+}
+
+.p-15px-ccc {
+  font-size: 15px;
+  color: #ccc;
 }
 
 .p-16px {
