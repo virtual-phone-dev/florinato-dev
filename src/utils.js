@@ -906,12 +906,11 @@ export function LesVideos({ data = [], setId, clicVideo, voirVideo, titrecss, cl
 )}
 
 
-export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, 
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos,
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 		
 	if (!visible) return null;
-	const urlVideo = localStorage.getItem("urlVideo");
-  
+	//const urlVideo = localStorage.getItem("urlVideo");
   return (
     <div className="page-opacity">
       <div className="align">
@@ -919,9 +918,9 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
           <div className="block">
             <div className="a">
               <p style={{ color: "blue" }} onClick={fermer}>{titre}</p>
-			  
+			  			  
 			  {changerUrl && (<>
-			  <pre className="pre-15px-center">{urlVideo}</pre>
+			  <pre className="pre-15px-center">{infos}</pre> 
 			  
               <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />

@@ -35345,6 +35345,7 @@ async function DissadAA() {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   const idAccountFA = localStorage.getItem("idPersonConnectedFA");
+  const urlVideoFA = localStorage.getItem("urlVideo");
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
   const idOther = localStorage.getItem("idAccountChef");
@@ -52996,14 +52997,14 @@ g
 
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
-		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo"
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={titreFA}
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl/>
 		
 		
 	<ModifierTemplate 
-		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo"
+		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={urlVideoFA} 
 		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl/>
-	
+		
 	
 	<ModifierTemplate 
 		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
