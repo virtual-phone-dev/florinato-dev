@@ -839,6 +839,38 @@ export function ListeDesComptes({ data = [] }) {
 export function ChildApi66LesVideos({ api, photo, video }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
+	
+	const imgRef = useRef(null);
+	const [nombreLettre, setnombreLettre] = useState(40);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+
+    function calculerRatio() {
+      const ratio = img.naturalWidth / img.naturalHeight;
+
+      console.log("ratio image :", ratio);
+
+      if (ratio < 0.8) {
+        setnombreLettre(30);       // portrait (image étroite)
+      } else if (ratio < 1.3) {
+        setnombreLettre(45);       // carré
+      } else {
+        setnombreLettre(65);       // paysage
+      }
+    }
+
+    if (img.complete) {
+      calculerRatio();
+    } else {
+      img.onload = calculerRatio;
+    }
+  }, []);
+
+  const titre = api.message || "";
+  const gettitre = titre.length > nombreLettre ? titre.slice(0, nombreLettre) + ". . ." : titre;
+
     const afficherVideo = video && api.type === "3";
     const afficherPhoto = photo && api.type === "2";
 
@@ -847,14 +879,14 @@ export function ChildApi66LesVideos({ api, photo, video }) {
 		{/* {afficherVideo && (!verifierId || id) && (<> */}
 		{afficherVideo && (<> 
 		<div className="video-card">
-		<img className="video-thumb" src={api.urlPhoto} /> 
-		<pre className="pre-17px">{api.message}</pre>
+		<img className="video-thumb" src={api.urlPhoto} onLoad={onImageCharge} ref={imgRef} /> 
+		<pre className="pre-17px">{gettitre}</pre>
 		<p className="p-15px">{api.clic} clic</p> </div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
 		{afficherPhoto && (<> 
-		<img className="video-thumb" src={api.urlPhoto} />
-		<pre className="pre-17px">{api.message}</pre>
+		<img className="video-thumb" src={api.urlPhoto} onLoad={onImageCharge} ref={imgRef} />
+		<pre className="pre-17px">{gettitre}</pre>
 		<p className="p-15px">{api.clic} clic</p> </>)}
     </>
   );
