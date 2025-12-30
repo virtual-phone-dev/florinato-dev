@@ -52838,7 +52838,7 @@ g
 			<div className="block-video">
 				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
-			<div className="p-15px-white"> {clicFA} clic</div>
+			<pre className="pre-17px-white">{clicFA} clic</pre>
 			
 				  
 			<div className="overflow-x">
