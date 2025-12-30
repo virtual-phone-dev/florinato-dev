@@ -172,9 +172,9 @@
 }
 
 .video-card {
-	max-width: 330px;
+	/*max-width: 330px;
 	min-width: 180px;
-	height: 220px;
+	height: 220px;  */
 	margin: 7px;
 }
 
