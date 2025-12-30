@@ -853,11 +853,11 @@ export function ChildApi66LesVideos({ api, photo, video }) {
       console.log("ratio image :", ratio);
 
       if (ratio < 0.8) {
-        setnombreLettre(30);       // portrait (image étroite)
+        setnombreLettre(20);       // portrait (image étroite)
       } else if (ratio < 1.3) {
-        setnombreLettre(45);       // carré
+        setnombreLettre(35);       // carré
       } else {
-        setnombreLettre(65);       // paysage
+        setnombreLettre(55);       // paysage
       }
     }
 
