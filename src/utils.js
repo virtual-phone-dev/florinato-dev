@@ -628,12 +628,12 @@ export function VideoData({ data = [], setId, video, voirVideo, clicVideo, photo
     </>)}
 	
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, photocss, titrecss, cliccss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
-			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
+			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
 			<VideoData data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} photocss={photocss} video />
 		</div>
 	);
@@ -894,12 +894,12 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cl
 }
 
 
-export function LesVideos({ data = [], setId, clicVideo, voirVideo, video }) {
+export function LesVideos({ data = [], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
 	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
-		<ChildApi66LesVideos api={api} video />
+		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} video />
 	  </div>
 	  ))}
 </div>
