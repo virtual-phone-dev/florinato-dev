@@ -589,7 +589,7 @@ export function VideoData({ data = [], setId, video, voirVideo, clicVideo, photo
     </>)}
 	
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
+/* export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
@@ -602,7 +602,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
 		</div>
 	);
-}
+} */
 		   
 		   
 export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn }) {	
