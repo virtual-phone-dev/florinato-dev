@@ -35447,7 +35447,8 @@ async function DissadAA() {
     const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
 	
     //const getName = infosPostFA.map((api) => api.nameAccount); // name
-    const clicFA = infosPostFA.map((api) => api.clic); // photoProfile
+    const clicFA = infosPostFA.map((api) => api.clic); // clic
+    const titreFA = infosPostFA.map((api) => api.message); // message
 
 
 
@@ -52838,7 +52839,8 @@ g
 			<div className="block-video">
 				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
-			<pre className="pre-17px-white">{clicFA} clic</pre>
+			<pre className="pre-17px-white">{titreFA}</pre>
+			<p className="p-14px-ccc">{clicFA} clic</p>
 			
 				  
 			<div className="overflow-x">
