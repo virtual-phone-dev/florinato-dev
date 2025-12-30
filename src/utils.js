@@ -846,9 +846,10 @@ export function ChildApi66LesVideos({ api, photo, video }) {
     <>
 		{/* {afficherVideo && (!verifierId || id) && (<> */}
 		{afficherVideo && (<> 
+		<div className="video-card">
 		<img className="video-thumb" src={api.urlPhoto} /> 
 		<pre className="pre-17px">{api.message}</pre>
-		<p className="p-15px">{api.clic} clic</p> </>)}
+		<p className="p-15px">{api.clic} clic</p> </div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
 		{afficherPhoto && (<> 
@@ -863,13 +864,12 @@ export function ChildApi66LesVideos({ api, photo, video }) {
 export function LesVideos({ data = [], setId, clicVideo, voirVideo, video }) {
   return (
 <div className="video-grille">
-<div className="video-card"> 
+ 
 	{data.map((api) => (
 	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
 		<ChildApi66LesVideos api={api} video />
 	  </div>
 	  ))}
-</div>
 </div>
 )}
 
