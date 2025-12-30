@@ -4,13 +4,12 @@ import { NavLink, useLocation } from "react-router-dom";
 import Loader from "../Loader/Loader";
 import axios from "axios";
 import i18n from "../i18n";
-import Fuse from "fuse.js";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos,
-	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ls, rechercherAvecFuse,
+	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique
 	} from "../utils";
 		
@@ -35447,7 +35446,6 @@ async function DissadAA() {
 	// filtre pour obtenir les infos du post - FA
     const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
 	
-    //const getName = infosPostFA.map((api) => api.nameAccount); // name
     const clicFA = infosPostFA.map((api) => api.clic); // clic
     const titreFA = infosPostFA.map((api) => api.message); // message
 
@@ -35461,7 +35459,6 @@ async function DissadAA() {
 	  const map = {};
 	  filterFA.forEach(item => {
 		if (item.type === "10") {
-			//console.log("AJOUT DANS MAP → clé =", item._id, " / objet =", item);
 		  map[item._id] = item;
 		}
 	  });
@@ -35477,10 +35474,22 @@ async function DissadAA() {
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("searchFA") || "");
-  //const [mySearchFA, setMySearchFA] = useState("");
-  if (mySearchFA) { localStorage.setItem("searchFA", mySearchFA); }
   
+  /* const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
+  const [maRechercheVideoFA, setmaRechercheVideoFA] = useState(() => localStorage.getItem("maRechercheVideoFA") || "");
+  const [rechercheMesComptesFA, setrechercheMesComptesFA] = useState(() => localStorage.getItem("rechercheMesComptesFA") || ""); */
+  
+   //const [mySearchFA, setMySearchFA] = useState("");
+  /* if (mySearchFA) { localStorage.setItem("mySearchFA", mySearchFA); }
+  if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
+  if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
+
+  
+    const [mySearchFA, setMySearchFA] = ls("mySearchFA"); //rechercher parmi les comptes
+	const [maRechercheVideoFA, setMaRechercheVideoFA] = ls("maRechercheVideoFA"); //rechercher parmi les videos
+    const [rechercheMesComptesFA, setRechercheMesComptesFA] = ls("rechercheMesComptesFA"); //rechercher parmi mes comptes (que jai creer)
+	 
+
   /*
   Pour gérer les caractères accentués comme "é" dans la recherche, vous pouvez utiliser une technique pour "normaliser" les chaînes de caractères en supprimant 
   les accents. Ainsi, la recherche devient insensible aux accents.
@@ -35489,24 +35498,13 @@ async function DissadAA() {
 	Utiliser la méthode normalize avec la forme "NFD" pour décomposer les caractères accentués.
 	Filtrer en comparant les chaînes normalisées et sans accents
   */
-
+  
+  
+/*
 	const normalizeString = (str) => {
 	  return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 	};
 
-
-  // rechercher parmi les comptes 
-  /*
-  const listAccountFA = apiMessageFA.filter((api) => {
-  if (!mySearchFA) return false; // Si la recherche est vide, ne retourne rien
-  
-  return (
-	  api.type === "10" && 
-	  api.nameAccount && 
-	  // api.nameAccount.toLowerCase().includes(mySearchFA.toLowerCase()) && 
-	  normalizeString(api.nameAccount).includes(normalizeString(mySearchFA)) &&
-	  api.visible === "1");
-	})*/
 	
 	const comptesRecherchables = apiMessageFA.filter(api => api.type === "10" && api.visible === "1" && api.nameAccount);
 	
@@ -35520,9 +35518,21 @@ async function DissadAA() {
 	  threshold: 0.4, // tolérance (0 = strict, 1 = très large)
 	});
 	
-  const listAccountFA = mySearchFA? fuse.search(normalizeString(mySearchFA)).map(r => r.item): [];
-  const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
-  const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
+  const listAccountFA = mySearchFA? fuse.search(normalizeString(mySearchFA)).map(r => r.item): []; */
+  
+  //const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
+  //const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
+
+  
+	const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
+	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
+	
+	const videosR = apiMessageFA.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
+	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"], }); // videosR = videos Recherche
+	
+	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
+	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
+
 
 
    // filtre pour obtenir tout les favoris
@@ -51470,11 +51480,11 @@ son compte Vixinol store */
       </>)}
       {/* application florinato */}
 	  
-	  
+		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video />
-
+			data={filterFA} setId={setId} clicVideo={clicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
+			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} titrecss="pre-17px-white" cliccss="p-14px-eee" />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
@@ -51884,22 +51894,28 @@ g
               {/* close */}
             </div>
             {/* head */}
+						
 
-          <div className="body">
+            <div className="body">
+				<MesComptes 
+					data={filterFA} cliquerSurMonCompte={DataFA} 
+					listMesComptes={listMesComptesFA} valeur={rechercheMesComptesFA} setValeur={setrechercheMesComptesFA} />
+				  
+		   {/*
             {dataFA && (<>
             <div className="api">
               {filterFA.map((api) => (<>
                 <ChildApi66accountsFA api={api} />
               </>))}
             </div>
-            {/* api */}
+            {/* api 
 
             <div className="api2" onClick={DataFA}>
               {filterFA.map((api2) => (<>
                 <ChildApi266accountsFA api2={api2} />
               </>))}
-            </div> </>)} {/* dataFA && */}
-            {/* api2 */}
+            </div> </>)} {/* dataFA && 
+            {/* api2 
 
             {!dataFA && (<>
             <div className="api">
@@ -51907,7 +51923,7 @@ g
                 <ChildApi66accountsFA api={api} />
               </>))}
             </div>
-            {/* api */}
+            {/* api 
 
               <div className="api2" onClick={DataFA}>
                 {filterFA.map((api2) => (<>
@@ -52843,13 +52859,16 @@ g
 			</div>
 			<pre className="pre-17px-white">{titreFA}</pre>
 			<p className="p-14px-ccc">{clicFA} clic</p>
-			
-				  
+
+			<RechercheTemplate 
+				listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA}
+				setId={setId} titrecss="pre-17px-white" cliccss="p-14px-eee" clicVideo={clicVideoFAA} />
+				
+
 			<div className="overflow-x">
-			
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white" verifierId/>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white" clicVideo={clicVideoFAA} verifierId/>
 			</div>
 			</>))}
 			</div>
@@ -52857,17 +52876,15 @@ g
 			
 			
 			<div className="overflow-x">
-			
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white"/>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" cliccss="p-15px-white" titrecss="pre-17px-white" clicVideo={clicVideoFAA} />
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */} 
 
-			<LesVideos data={filterFA} setId={setId} titrecss="pre-17px-white" cliccss="p-14px-eee" video />
-			
+			<LesVideos data={filterFA} setId={setId} titrecss="pre-17px-white" cliccss="p-14px-eee" clicVideo={clicVideoFAA} video />
         </div>
         {/* body */}
       </div>

@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { React, useState, useEffect, useRef } from 'react';
+import Fuse from "fuse.js";
 
 import Loader from "./Loader/Loader";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
@@ -10,85 +11,45 @@ import "./utils.css";
 import "./darkmode.css";
 
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-/* export const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
-export const idGroupFA = localStorage.getItem("idGroupFA");
-export const idAccount = localStorage.getItem("idAccountChef");
-export const idAccountChef = localStorage.getItem("idAccountChef"); */
 
 
 
-/*CODE FINAL (SANS FICHIER TEMPORAIRE)
 
-
-import axios from "axios";
-import fs from "fs";
-import ffmpeg from "fluent-ffmpeg";
-import path from "path";
-
-export async function generateThumbnailFromUrl(videoUrl, postId) {
-  const outputDir = "uploads/thumbs";
-  const outputPath = path.join(outputDir, `${postId}.jpg`);
-
-  // s'assurer que le dossier existe
-  if (!fs.existsSync(outputDir)) {
-    fs.mkdirSync(outputDir, { recursive: true });
-  }
-
-  // stream vidéo
-  const response = await axios({
-    url: videoUrl,
-    method: "GET",
-    responseType: "stream",
-  });
-
-  return new Promise((resolve, reject) => {
-    ffmpeg(response.data)
-      .inputOptions(["-analyzeduration 1000000", "-probesize 1000000"])
-      .outputOptions([
-        "-frames:v 1",   // une seule frame
-        "-q:v 2"         // bonne qualité
-      ])
-      .seekInput(2)     // à 2 secondes
-      .output(outputPath)
-      .on("end", () => {
-        resolve(`/uploads/thumbs/${postId}.jpg`);
-      })
-      .on("error", (err) => {
-        reject(err);
-      })
-      .run();
-  });
+export function normaliserTexte(str="") {
+  return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 }
-*/
 
 
+export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.4, }) {
+  if (!search) return [];
 
-/* EXEMPLE D’UTILISATION
-
-
-const thumb = await generateThumbnailFromUrl(
-  "https://dl.dropboxusercontent.com/s/xxxx/video.mp4",
-  "post_123"
-);
-
-console.log("Miniature générée :", thumb);
-*/
-
-
-
-/* BONUS : publier 100 vidéos d’un coup
-
-
-for (const video of videoLinks) {
-  const thumb = await generateThumbnailFromUrl(video.url, video.id);
-
-  await creerPost({
-    videoUrl: video.url,
-    thumbnail: thumb,
-    visible: 1
+  const fuse = new Fuse(data, {
+    keys: keys.map((key) => ({
+      name: key,
+      getFn: (obj) => normaliserTexte(obj[key]),
+    })),
+    threshold,
   });
+
+  return fuse.search(normaliserTexte(search)).map((r) => r.item);
 }
-*/
+
+
+export function ls(key, initialValue="") { //ls = localStorageState
+  const [value, setValue] = useState(() => {
+    return localStorage.getItem(key) || initialValue;
+  });
+
+  useEffect(() => {
+    localStorage.setItem(key, value);
+  }, [key, value]);
+
+  return [value, setValue];
+}
+
+
+
+
 
 const apiUrls = [
   `${process.env.REACT_APP_Api2}`,
@@ -628,13 +589,17 @@ export function VideoData({ data = [], setId, video, voirVideo, clicVideo, photo
     </>)}
 	
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, photocss, titrecss, cliccss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
+			
+			<RechercheTemplate 
+				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
+				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
+			
 			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
-			<VideoData data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} photocss={photocss} video />
 		</div>
 	);
 }
@@ -678,19 +643,6 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccou
   return (<>
 	<div className="page-blanche">
 		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
-		
-		{/*
-		<div className="flex">
-			<div className="display-flex-nowrap" onClick={fermer}>
-				<div><SvgLeft/></div>
-				<div><p>{titre}</p></div>
-				<div className="photo-25px"> <img src={photo} alt=""/> </div>
-			</div>
-			
-			<div className="b"> <div onClick={clicSvg}><SvgAdd/></div> </div>
-        </div>
-		 flex */}
-		
 		<ListeDesComptes data={listAccount} />
     </div>
     {/* page-blanche */}
@@ -753,7 +705,20 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 {/* PopupDuBasTemplate */}
 
 
-export function RechercheTemplate({ listAccount = [], valeur, setValeur, cliquer, setId }) {	
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
+	if (!visible) return null;
+	return (
+		<div className="page-blanche"> 
+			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
+			
+			<RechercheTemplate 
+				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
+				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
+		</div>
+)}
+
+
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -789,8 +754,32 @@ export function RechercheTemplate({ listAccount = [], valeur, setValeur, cliquer
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
+			
+			
+			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
+			<MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
 	</>);
 }
+
+
+export function MesComptes({ data, listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
+  return (
+    <>
+      <div className="api">
+        {data.map((api) => (
+          <ChildApi66accountsFA key={api._id} api={api} />
+        ))}
+      </div>
+	  
+	  	<RechercheTemplate listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
+
+      <div className="api2" onClick={cliquerSurMonCompte}>
+        {data.map((api) => (
+          <ChildApi266accountsFA key={api._id} api2={api} />
+        ))}
+      </div>
+    </>
+  )}
 
 
 export function PopularityAccountCard({ api }) {
@@ -894,7 +883,7 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cl
 }
 
 
-export function LesVideos({ data = [], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
+export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
