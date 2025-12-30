@@ -172,17 +172,17 @@
 }
 
 .video-card {
-	/*max-width: 330px; 
-	min-width: 180px; */
-	width: fit-content;
+	max-width: 330px;
+	min-width: 180px;
+	height: 220px;
 	margin: 7px;
 }
 
 .video-thumb {
 	width: 100%;
-	max-width: 330px;
+	/*max-width: 330px;
 	min-width: 180px;
-	height: 220px;
+	height: 220px;*/
 	object-fit: cover;
 	object-position: top;
 	border-radius: 8px;
