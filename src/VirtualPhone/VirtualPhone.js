@@ -44594,11 +44594,12 @@ async function transVoirMiniatureFA(url) { //transmettre VoirMiniature (on trans
   setVoirMiniature(true);
 } 
   
-
+  
 //logique pour ajouter les liens de la video (lien de chaque service ou la video est heberger)
 const [lienDropbox, setLienDropbox] = useState("");
 const [lienGitHub, setLienGitHub] = useState("");
 const [lienGitLab, setLienGitLab] = useState("");
+const [ecrireTitre, setecrireTitre] = useState(""); //titre de la video
 const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
 
 
@@ -44611,7 +44612,7 @@ async function EnvoyerVideoFAA() {
 	    file: miniatureFA,
 		
 		id: 6000,
-        message: "..",
+        message: ecrireTitre,
         urlVideo: lienGitLab,
 		idAccount: idPersonConnectedFA,
 		nameAccount: nameFA,
@@ -52953,18 +52954,9 @@ g
 				  <Input texte="Lien dropbox" valeur={lienDropbox} setValeur={setLienDropbox} />
 				  <Input texte="Lien github" valeur={lienGitHub} setValeur={setLienGitHub} />
 				  <Input texte="Lien gitlab" valeur={lienGitLab} setValeur={setLienGitLab} />
+				  <Input texte="Titre de la vidéo (facultatif)" valeur={ecrireTitre} setValeur={setecrireTitre} />
+				  
 				  				  
-				{/*<div className="block-quatre"> <p>Sélectionner la video juste pour obtenir automatiquement une miniature (photo de couverture de la video)</p> </div> 
-				<div className="block-deux"> <input id="file" type="file" name="video" accept=".mp4" 
-				onChange={(e) => {
-					const fichier = e.target.files[0];
-					setFileVideoFAA(fichier);
-				  }}
-				  /> </div>
-                {/* block-deux 
-				
-				{miniature && (<div className="photo-70px"> <img src={miniature} alt="" onClick={() => transVoirMiniature(miniature)} /> </div>)} */}
-				
 				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
 				
 				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
