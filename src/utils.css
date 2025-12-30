@@ -179,10 +179,10 @@
 }
 
 .video-thumb {
-	/*width: 100%;
+	width: 100%;
 	max-width: 330px;
 	min-width: 180px;
-	height: 220px;*/
+	height: 220px;
 	object-fit: cover;
 	object-position: top;
 	border-radius: 8px;
