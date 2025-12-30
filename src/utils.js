@@ -846,9 +846,7 @@ export function ChildApi66LesVideos({ api, photo, video }) {
     <>
 		{/* {afficherVideo && (!verifierId || id) && (<> */}
 		{afficherVideo && (<> 
-		<div className="video-thumb"> 
-		<img src={api.urlPhoto} />
-		{/* <img className="video-thumb" src={api.urlPhoto} /> */}
+		<img className="video-thumb" src={api.urlPhoto} /> 
 		<pre className="pre-17px">{api.message}</pre>
 		<p className="p-15px">{api.clic} clic</p> </div></>)}
 		
