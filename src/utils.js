@@ -14,10 +14,9 @@ export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
 
 
-/*
 export function normaliserTexte(str="") {
   return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
-} */
+} 
 
 
 export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.4, }) {
