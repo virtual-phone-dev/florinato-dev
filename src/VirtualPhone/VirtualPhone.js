@@ -52862,10 +52862,13 @@ g
 			</div>
 			<pre className="pre-17px-white">{titreFA}</pre>
 			<p className="p-14px-ccc">{clicFA} clic</p>
+			
+			<RechercheTemplate />
+			{/*
 
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA}
-				setId={setId} titrecss="pre-17px-white" cliccss="p-14px-eee" clicVideo={clicVideoFAA} />
+				setId={setId} titrecss="pre-17px-white" cliccss="p-14px-eee" clicVideo={clicVideoFAA} /> */}
 				
 
 			<div className="overflow-x">

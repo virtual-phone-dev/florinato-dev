@@ -711,9 +711,12 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
 			
+			<RechercheTemplate />
+			{/* 
 			<RechercheTemplate 
 				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
 				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
+				 */}
 		</div>
 )}
 
@@ -772,8 +775,10 @@ export function MesComptes({ data, listMesComptes, valeur, setValeur, cliquerSur
         ))}
       </div>
 	  
+	  <RechercheTemplate />
+			{/*
 	  	<RechercheTemplate listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
-
+*/}
       <div className="api2" onClick={cliquerSurMonCompte}>
         {data.map((api) => (
           <ChildApi266accountsFA key={api._id} api2={api} />
