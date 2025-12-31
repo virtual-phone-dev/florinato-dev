@@ -14,14 +14,14 @@ export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
 
 
-
+/*
 export function normaliserTexte(str="") {
   return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
-}
+} */
 
 
 export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.4, }) {
-  if (!search) return [];
+  /* if (!search) return [];
 
   const fuse = new Fuse(data, {
     keys: keys.map((key) => ({
@@ -31,12 +31,12 @@ export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.4,
     threshold,
   });
 
-  return fuse.search(normaliserTexte(search)).map((r) => r.item);
+  return fuse.search(normaliserTexte(search)).map((r) => r.item); */
 }
 
 
 export function useLocalStorageState(key, initialValue="") { 
-  const [value, setValue] = useState(() => {
+  /* const [value, setValue] = useState(() => {
     return localStorage.getItem(key) || initialValue;
   });
 
@@ -44,7 +44,7 @@ export function useLocalStorageState(key, initialValue="") {
     localStorage.setItem(key, value);
   }, [key, value]);
 
-  return [value, setValue];
+  return [value, setValue];  */
 }
 
 
