@@ -4,7 +4,7 @@ import Fuse from "fuse.js";
 
 import Loader from "./Loader/Loader";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
-import { ChildApi66profilFA } from "./VirtualPhone/VirtualPhone";
+import { ChildApi66profilFA, ChildApi266accountsFA, ChildApi66accountsFA } from "./VirtualPhone/VirtualPhone";
 
 import { theme } from "./theme";
 import "./utils.css"; 
@@ -35,7 +35,7 @@ export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.4,
 }
 
 
-export function ls(key, initialValue="") { //ls = localStorageState
+export function useLocalStorageState(key, initialValue="") { 
   const [value, setValue] = useState(() => {
     return localStorage.getItem(key) || initialValue;
   });
