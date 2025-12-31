@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, useLocalStorageState, rechercherAvecFuse,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, rechercherAvecFuse,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique
 	} from "../utils";
@@ -35474,20 +35474,20 @@ async function DissadAA() {
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  
-  /* const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
+  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
   const [maRechercheVideoFA, setmaRechercheVideoFA] = useState(() => localStorage.getItem("maRechercheVideoFA") || "");
-  const [rechercheMesComptesFA, setrechercheMesComptesFA] = useState(() => localStorage.getItem("rechercheMesComptesFA") || ""); */
+  const [rechercheMesComptesFA, setrechercheMesComptesFA] = useState(() => localStorage.getItem("rechercheMesComptesFA") || "");
   
    //const [mySearchFA, setMySearchFA] = useState("");
-  /* if (mySearchFA) { localStorage.setItem("mySearchFA", mySearchFA); }
+  if (mySearchFA) { localStorage.setItem("mySearchFA", mySearchFA); }
   if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
-  if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
+  if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } // rechercher parmi les comptes
 
+/*
     const [mySearchFA, setMySearchFA] = useLocalStorageState("mySearchFA"); //rechercher parmi les comptes
 	const [maRechercheVideoFA, setmaRechercheVideoFA] = useLocalStorageState("maRechercheVideoFA"); //rechercher parmi les videos
     const [rechercheMesComptesFA, setrechercheMesComptesFA] = useLocalStorageState("rechercheMesComptesFA"); //rechercher parmi mes comptes (que jai creer)
-	 
+	 */
 
   /*
   Pour gérer les caractères accentués comme "é" dans la recherche, vous pouvez utiliser une technique pour "normaliser" les chaînes de caractères en supprimant 
