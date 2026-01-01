@@ -761,8 +761,9 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			</>))} 
 			
 			
-			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> */}
-			<MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
+			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
+			<MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} /> */}
+			<MesComptes />
 			 
 	</>);
 }
