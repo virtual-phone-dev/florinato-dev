@@ -35522,15 +35522,14 @@ async function DissadAA() {
   //const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   //const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
 
-  /*
-	const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
-	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
+	//const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
+	//const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
 	
 	const videosR = apiMessageFA.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
 	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"], }); // videosR = videos Recherche
 	
-	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
-	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], }); */
+	//const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
+	//const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
 
 
 
@@ -35538,9 +35537,9 @@ async function DissadAA() {
   const allMessageFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA);
   const allFavoriteAA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
   
-  const listAccountFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
-  const listVideoFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
-  const listMesComptesFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
+  //const listAccountFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
+  //const listVideoFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
+  //const listMesComptesFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
 
 
   //on affiche la liste des numeros virtuels délivrés
