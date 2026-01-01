@@ -769,7 +769,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data, listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
+export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
   return (
     <>
       <div className="api">
