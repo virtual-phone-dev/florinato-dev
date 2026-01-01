@@ -704,40 +704,23 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 }
 {/* PopupDuBasTemplate */}
 
-/* export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
-	if (!visible) return null;
-	return (
-		<div className="page-blanche"> 
-			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
-			
-			<RechercheTemplate 
-				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
-				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
-			
-			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
-		</div>
-	);
-} */
+
 export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
 			
-			<RechercheTemplate />
-			{/* 
 			<RechercheTemplate 
 				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
 				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
-				 */}
 				 
 			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
 		</div>
 )}
 
 
-export async function RechercheTemplate({ listVideo=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
-//export async function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -767,25 +750,21 @@ export async function RechercheTemplate({ listVideo=[], valeur, setValeur, cliqu
                     {/* on affiche les donnees de la recherche dans l'enfant api */}
                     <div className="hr-15px"> <hr /> </div>
                   </div>
-				  
-				  {/*
+
 				  
 			{listAccount.map((api) => (<>
 			<div onClick={() => { cliquer(api); setId(api._id); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))} 
-			 */}
 			
 			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
-			 {/* <MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} /> */}
-			<MesComptes />
-			 
+			<MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />			 
 	</>);
 }
 
 
-export async function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
+export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
   return (
     <>
       <div className="api">
@@ -794,10 +773,8 @@ export async function MesComptes({ data=[], listMesComptes, valeur, setValeur, c
         ))}
       </div>
 	  
-	  <RechercheTemplate />
-			{/*
 	  	<RechercheTemplate listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
-*/}
+
       <div className="api2" onClick={cliquerSurMonCompte}>
         {data.map((api) => (
           <ChildApi266accountsFA api2={api} />
@@ -807,7 +784,7 @@ export async function MesComptes({ data=[], listMesComptes, valeur, setValeur, c
   )}
 
 
-export async function PopularityAccountCard({ api }) {
+export function PopularityAccountCard({ api }) {
   return (<>
     <div className="display-nowrap">
       <div className="p-15px"><p>{api.popularity}</p></div>
@@ -832,17 +809,15 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
       <div className="page-blanche">
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
-			  <RechercheTemplate />
-			{/*
+			  
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
-			  */}
 			  <ListeDesComptes data={data} />
 		 </div>
 	 </div>
  </>)}
  
  
-export async function ListeDesComptes({ data = [] }) {
+export function ListeDesComptes({ data = [] }) {
   return (
     <>
       {data.map((api) => (
@@ -853,7 +828,7 @@ export async function ListeDesComptes({ data = [] }) {
 }
 
 
-export async function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cliccss="p-14px-ccc" }) {
+export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cliccss="p-14px-ccc" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
@@ -911,7 +886,7 @@ export async function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17p
 }
 
 
-export async function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
+export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
