@@ -760,10 +760,10 @@ export async function RechercheTemplate({ listVideo=[], valeur, setValeur, cliqu
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))} 
-			
+			 */}
 			
 			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
-			<MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} /> */}
+			 {/* <MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} /> */}
 			<MesComptes />
 			 
 	</>);

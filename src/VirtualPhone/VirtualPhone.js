@@ -35305,7 +35305,12 @@ async function DissadAA() {
   //requete pour obtenir tout les messages
   const [apiMessageFA, setApiMessageFA] = useState([]);
   useEffect(() => {
-    async function get() {
+	  /*
+		const data = await getAllData();
+        setApiMessageFA(data);
+        setApiMessageFAA(data);
+		*/
+    async function get() {		
       await axios
       .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
       .then((res) => {
