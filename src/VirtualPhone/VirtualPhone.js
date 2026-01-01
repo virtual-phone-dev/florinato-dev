@@ -35526,7 +35526,7 @@ async function DissadAA() {
 	//const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
 	
 	const videosR = apiMessageFA.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
-	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"], }); // videosR = videos Recherche
+	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
 	
 	//const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
 	//const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
