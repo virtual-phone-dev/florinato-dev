@@ -723,7 +723,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
   return (<>
-		{/* rechercher un compte 
+		{/* rechercher un compte */}
                   <div>
                     <div className="marge-bottom25px">
                       <div className="display-flex">
@@ -739,18 +739,20 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
                             </svg>
                           </label>
                         </div>
-                        {/* a 
+                        {/* a */}
 
                         <div className="input-130px"> <input id="css" type="text" placeholder="..." value={valeur} onChange={(e) => setValeur(e.target.value)}/> </div>
-                        {/* input-130px 
+                        {/* input-130px */}
                       </div>
-                      {/* display-flex 
+                      {/* display-flex */}
                     </div>
-                    {/* marge-bottom25px 
+                    {/* marge-bottom25px */}
 
-                    {/* on affiche les donnees de la recherche dans l'enfant api
+                    {/* on affiche les donnees de la recherche dans l'enfant api */}
                     <div className="hr-15px"> <hr /> </div>
                   </div>
+				  
+				  {/*
 				  
 			{listAccount.map((api) => (<>
 			<div onClick={() => { cliquer(api); setId(api._id); }}>	
@@ -813,7 +815,10 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
       <div className="page-blanche">
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
+			  <RechercheTemplate />
+			{/*
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
+			  */}
 			  <ListeDesComptes data={data} />
 		 </div>
 	 </div>
