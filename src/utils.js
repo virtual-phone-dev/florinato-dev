@@ -704,7 +704,20 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 }
 {/* PopupDuBasTemplate */}
 
-
+/* export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
+	if (!visible) return null;
+	return (
+		<div className="page-blanche"> 
+			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
+			
+			<RechercheTemplate 
+				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
+				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
+			
+			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
+		</div>
+	);
+} */
 export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
 	if (!visible) return null;
 	return (
@@ -717,6 +730,8 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
 				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
 				 */}
+				 
+			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
 		</div>
 )}
 
