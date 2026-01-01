@@ -705,7 +705,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 {/* PopupDuBasTemplate */}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
+export async function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
@@ -721,7 +721,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
+export async function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -769,7 +769,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
+export async function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
   return (
     <>
       <div className="api">
@@ -791,7 +791,7 @@ export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquer
   )}
 
 
-export function PopularityAccountCard({ api }) {
+export async function PopularityAccountCard({ api }) {
   return (<>
     <div className="display-nowrap">
       <div className="p-15px"><p>{api.popularity}</p></div>
@@ -809,7 +809,7 @@ export function PopularityAccountCard({ api }) {
 }
 
 
-export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
+export async function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
   if (!visible) return null;
 
   return (<>
@@ -826,7 +826,7 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
  </>)}
  
  
-export function ListeDesComptes({ data = [] }) {
+export async function ListeDesComptes({ data = [] }) {
   return (
     <>
       {data.map((api) => (
@@ -837,7 +837,7 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cliccss="p-14px-ccc" }) {
+export async function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cliccss="p-14px-ccc" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
@@ -895,7 +895,7 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cl
 }
 
 
-export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
+export async function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
@@ -907,7 +907,7 @@ export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, clic
 )}
 
 
-export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos,
+export async function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos,
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 		
 	if (!visible) return null;

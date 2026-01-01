@@ -286,7 +286,7 @@ function ChildApi66envoyerContactFA({ api }) {
 
 
 //ChildApi 66accountsFA
-export function ChildApi66accountsFA({ api }) {
+export async function ChildApi66accountsFA({ api }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -355,7 +355,7 @@ export function ChildApi66accountsFA({ api }) {
 
 
 //ChildApi2 66accountsFA
-export function ChildApi266accountsFA({ api2 }) {
+export async function ChildApi266accountsFA({ api2 }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
