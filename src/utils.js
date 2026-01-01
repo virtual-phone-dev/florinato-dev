@@ -705,7 +705,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 {/* PopupDuBasTemplate */}
 
 
-export async function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
@@ -809,7 +809,7 @@ export async function PopularityAccountCard({ api }) {
 }
 
 
-export async function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
+export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
   if (!visible) return null;
 
   return (<>
@@ -907,7 +907,7 @@ export async function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss
 )}
 
 
-export async function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos,
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos,
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 		
 	if (!visible) return null;
