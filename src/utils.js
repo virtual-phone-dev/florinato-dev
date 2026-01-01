@@ -721,7 +721,8 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 )}
 
 
-export async function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
+export async function RechercheTemplate({ listVideo=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
+//export async function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
