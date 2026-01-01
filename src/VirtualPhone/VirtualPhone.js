@@ -44723,7 +44723,7 @@ async function MettreEnAvantFA() {
 
 // clic de la video
 async function clicVideoFAA({ id, idOther }) {
-	console.count("clicVideoFAA appelé");
+	//console.count("clicVideoFAA appelé");
 	//if (!id || !idOther) return;
 	
 	const clic = (Number(clicFA) || 0) + 1; //type:204 il a cliqué sur la video 

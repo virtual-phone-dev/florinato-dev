@@ -201,7 +201,6 @@ export async function ValiderModificationLogique({ id, nouveauUrl, file, dataPUT
 	  
       //const res = await axios.put(fullUrl, data, { headers: { 'Content-Type': 'application/json' } });
 	  const res = await axios.put(fullUrl, data);
-      console.log("Modification réussie sur", res.data);
 	  return res.data; 
     } catch (err) { console.log(`Échec de la requête sur ${api}`, err); }
   }
@@ -848,7 +847,7 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cl
     function calculerRatio() {
       const ratio = img.naturalWidth / img.naturalHeight;
 
-      console.log("ratio image :", ratio);
+      //console.log("ratio image :", ratio);
 
       if (ratio < 0.8) {
         setnombreLettre(15);       // portrait (image étroite)
