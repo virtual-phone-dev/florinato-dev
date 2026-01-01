@@ -774,7 +774,7 @@ export async function MesComptes({ data=[], listMesComptes, valeur, setValeur, c
     <>
       <div className="api">
         {data.map((api) => (
-          <ChildApi66accountsFA key={api._id} api={api} />
+          <ChildApi66accountsFA api={api} />
         ))}
       </div>
 	  
@@ -784,7 +784,7 @@ export async function MesComptes({ data=[], listMesComptes, valeur, setValeur, c
 */}
       <div className="api2" onClick={cliquerSurMonCompte}>
         {data.map((api) => (
-          <ChildApi266accountsFA key={api._id} api2={api} />
+          <ChildApi266accountsFA api2={api} />
         ))}
       </div>
     </>
