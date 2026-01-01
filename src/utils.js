@@ -758,12 +758,12 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			<div onClick={() => { cliquer(api); setId(api._id); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
-			</>))}
+			</>))} */}
 			
 			
 			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
 			<MesComptes data={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
-			 */}
+			 
 	</>);
 }
 
