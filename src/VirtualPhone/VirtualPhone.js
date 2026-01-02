@@ -285,7 +285,7 @@ function ChildApi66envoyerContactFA({ api }) {
 //ChildApi 66envoyerContactFA (on affiche la liste des contacts)
 
 
-//ChildApi 66accountsFA
+//ChildApi66accountsFA
 export function ChildApi66accountsFA({ api }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
@@ -351,10 +351,10 @@ export function ChildApi66accountsFA({ api }) {
     </>
   );
 } 
-//ChildApi 66accountsFA
+//ChildApi66accountsFA
 
 
-//ChildApi2 66accountsFA
+//ChildApi266accountsFA
 export function ChildApi266accountsFA({ api2 }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
@@ -414,7 +414,7 @@ export function ChildApi266accountsFA({ api2 }) {
     </>
   );
 } 
-//ChildApi2 66accountsFA
+//ChildApi266accountsFA
 
 
 // ChildApi 66favoriteFA
@@ -35305,11 +35305,12 @@ async function DissadAA() {
   //requete pour obtenir tout les messages
   const [apiMessageFA, setApiMessageFA] = useState([]);
   useEffect(() => {
-	  /*
-		const data = await getAllData();
-        setApiMessageFA(data);
-        setApiMessageFAA(data);
-		*/
+	async function fetchData() {
+		await ObtenirLesDonneesFA();
+	}
+	fetchData();
+
+/*
     async function get() {		
       await axios
       .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
@@ -35341,7 +35342,7 @@ async function DissadAA() {
         // 2e Api
     });
     }
-    get();
+    get(); */
   }, []);
 
 
@@ -44547,12 +44548,11 @@ async function SendMessagetype42() {
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
 	  }
-
-	  const fetchData = async () => {
-		const data = await getAllData();
-		setApiMessageFA(data);
-		setApiMessageFAA(data);
-	  };
+	  
+	  
+	  async function fetchData() {
+		await ObtenirLesDonneesFA();
+	  }
 	  fetchData();
 	  
 	}, [location]);
@@ -44658,25 +44658,10 @@ const [isLoading666MettreEnAvantFA, setIsLoading666MettreEnAvantFA] = useState(f
 // toutes les donnees FA
 async function ObtenirLesDonneesFA() {
   const data = await getAllData();
+  if (data === null) { return; }
   setApiMessageFA(data);
   setApiMessageFAA(data);
 }
-
-/*
-important
-important
-
-async function ObtenirLesDonneesFA() {
-  const data = await getAllData();
-  setApiMessageFA(Array.isArray(data) ? data : []);
-  setApiMessageFAA(Array.isArray(data) ? data : []);
-}
-
-
-puis partout
-await ObtenirLesDonneesFA();
-
-*/
 
 
 async function ExecuterActionFA({ actions = ["post"], id, file, loader, dataPOST={}, dataPUT={} }) {
@@ -44777,6 +44762,7 @@ async function ValiderUrl() {
 	
 	if (actions.allData) {
 		const data = await getAllData();
+		if (data === null) { return; }
 		setApiMessageFA(data);
 		setApiMessageFAA(data);
 	  }
@@ -51912,7 +51898,7 @@ g
               </>))}
             </div>
             {/* api 
-
+<
             <div className="api2" onClick={DataFA}>
               {filterFA.map((api2) => (<>
                 <ChildApi266accountsFA api2={api2} />

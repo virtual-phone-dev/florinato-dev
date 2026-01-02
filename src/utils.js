@@ -207,7 +207,6 @@ export async function ValiderModificationLogique({ id, nouveauUrl, file, dataPUT
   throw new Error('Toutes les tentatives ont échoué pour enregistrer les modifications.');
 }
 
-
 // obtenir toutes les donnees qui sont dans l'api
 export async function getAllData() {
   for (const api of apiUrlsObtenirDonnees) {
@@ -220,7 +219,7 @@ export async function getAllData() {
   }
   
   console.log('Toutes les tentatives ont échoué pour récupérer les donnees.');
-  return [];
+  return null;
 }
 
 
@@ -892,6 +891,9 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cl
 
 
 export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
+	console.log("clicVideo:", clicVideo);
+	console.log("voirVideo:", voirVideo);
+
   return (
 <div className="video-grille">
 	{data.map((api) => (
