@@ -40749,7 +40749,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     //const seePhoto = localStorage.getItem("GoToseePhotoFA"); //voir la photo
     //if (seePhoto === "1") { setSeePhotoFA(true) }
   }
-	  
+	
   // logique pour envoyer un message privé sur florinato
   const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
@@ -52834,9 +52834,6 @@ g
       <div className="seeVideoFA">
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
-          <div className="b" onClick={ModifierTitrePageFA}> <SvgFullScreen2/> </div>
-          <div className="b" onClick={ChangerMiniaturePage}> <SvgFullScreen2/> </div>
-          <div className="b" onClick={ModifierUrlPage}> <SvgClose2/> </div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
         </div>
         {/* close */}
@@ -52846,6 +52843,11 @@ g
 			<div className="block-video">
 				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
+			
+			<p onClick={ModifierTitrePageFA} className="p-14px-ccc">Modifier Titre</p>
+			<p onClick={ChangerMiniaturePage} className="p-14px-ccc">Changer</p>
+			<p onClick={ModifierUrlPage} className="p-14px-ccc">Modifier Url</p>
+			
 			<pre className="pre-17px-white">{titreFA}</pre>
 			<p className="p-14px-ccc">{clicFA} clic</p>
 			
