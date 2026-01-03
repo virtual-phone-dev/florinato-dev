@@ -52844,9 +52844,12 @@ g
 				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
 			
-			<p onClick={ModifierTitrePageFA} className="p-14px-ccc">Modifier Titre</p>
-			<p onClick={ChangerMiniaturePage} className="p-14px-ccc">Changer</p>
-			<p onClick={ModifierUrlPage} className="p-14px-ccc">Modifier Url</p>
+			<p className="p-14px-ccc">Commenter</p>
+			<p className="p-14px-ccc">Modifier le post</p>
+			<p className="p-14px-ccc">Supprimer le post</p>
+			<p onClick={ModifierTitrePageFA} className="p-14px-ccc">Modifier le Titre</p>
+			<p onClick={ChangerMiniaturePage} className="p-14px-ccc">Changer la Miniature</p>
+			<p onClick={ModifierUrlPage} className="p-14px-ccc">Modifier l'url</p>
 			
 			<pre className="pre-17px-white">{titreFA}</pre>
 			<p className="p-14px-ccc">{clicFA} clic</p>
