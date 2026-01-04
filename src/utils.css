@@ -51,6 +51,10 @@
   padding-bottom: 15px;
 }
 
+.display-flex {
+  display: flex;
+}
+
 .display-flex-nowrap {
   display: flex;
   flex-wrap: nowrap;
