@@ -53001,12 +53001,12 @@ g
 
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
-		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={titreFA}
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideoFA}
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl/>
 		
 		
 	<ModifierTemplate 
-		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={urlVideoFA} 
+		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={titreFA} 
 		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl/>
 		
 	
