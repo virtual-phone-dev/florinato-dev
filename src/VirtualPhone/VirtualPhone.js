@@ -44739,7 +44739,7 @@ async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
 //logique pour changer ou modifier le titre de la video - FA
 const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
 const [nouveauTitre, setNouveauTitre] = useState("");
-async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idreq, loader:isLoading666ModifierTitreFA, actions: ["put"] }); }
+async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idreq, loader:setIsLoading666ModifierTitreFA, actions: ["put"] }); }
 
 
 //page pour enregistrer l'url modifier
