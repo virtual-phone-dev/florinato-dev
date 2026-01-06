@@ -703,7 +703,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 {/* PopupDuBasTemplate */}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
@@ -711,9 +711,9 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 			
 			<RechercheTemplate 
 				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
-				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
+				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
 				 
-			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
+			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
 		</div>
 )}
 
@@ -832,7 +832,7 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-17px", cliccss="p-14px-ccc" }) {
+export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cliccss="p-14px-ccc" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
