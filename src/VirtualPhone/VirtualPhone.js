@@ -44716,12 +44716,12 @@ async function MettreEnAvantFA() {
 
 
 // clic de la video
-async function ClicVideoFAA({ id, idOther }) {
+async function ClicVideoFAA({ id, idOther, nombreClic }) {
 	//console.count("clicVideoFAA appelé");
 	//if (!id || !idOther) return;
 	
-	const clic = (Number(clicFA) || 0) + 1; //type:204 il a cliqué sur la video 
-	console.log("clicFA ", clicFA);
+	const clic = (Number(nombreClic) || 0) + 1; //type:204 il a cliqué sur la video 
+	console.log("nombreClic ", nombreClic);
 	console.log("clic ", clic);
 	console.log("idOther ", idOther);
 	console.log("id ", id);
@@ -51481,7 +51481,7 @@ son compte Vixinol store */
 		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
+			data={filterFA} setId={setId} clicVideo={ClicVideoFAA} clicFA={clicFA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
@@ -52867,12 +52867,12 @@ g
 			
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA}
-				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} nombreClic={nombreClic} />
 				
 			<div className="overflow-x">
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} verifierId/>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} nombreClic={nombreClic} verifierId/>
 			</div>
 			</>))}
 			</div>
@@ -52882,13 +52882,13 @@ g
 			<div className="overflow-x">
 			{filterFA.map((api) => (<>
 			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} nombreClic={nombreClic} />
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */} 
 
-			<LesVideos data={filterFA} setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos data={filterFA} setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} nombreClic={nombreClic} video />
         </div>
         {/* body */}
       </div>
