@@ -490,7 +490,7 @@ export function MiniPhrase({ titre1, titre2 }) {
 )}
 
 
-export function SpeedMessages({ visible, fermer, data }) {	
+export function SpeedMessages({ fermer, data }) {	
   //const [messages, setMessages] = useState([]); // Messages affichés
   
   const [messages, setMessages] = useState([]); // Tous les messages chargés
@@ -534,7 +534,7 @@ export function SpeedMessages({ visible, fermer, data }) {
     }
   };
   
-  if (!visible) return null;
+  //if (!visible) return null;
 
   return (
     <div className="page-blanche" onScroll={handleScroll}>
