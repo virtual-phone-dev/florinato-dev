@@ -863,6 +863,12 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
 		<div className="video-card">
 		<img className="video-thumb" src={api.urlPhoto} ref={imgRef} /> 
 		<pre className={titrecss}>{gettitre}</pre>
+		
+		<p style={{color: "#6B7280", fontSize: "13px" }}>{api.clic} clic a</p>
+		<p style={{color: "#2563EB", fontSize: "13px" }}>{api.clic} clic b</p>
+		<p style={{color: "#555", fontSize: "13px" }}>{api.clic} clic c</p>
+		<p style={{color: "#16A34A", fontSize: "13px" }}>{api.clic} clic d</p>
+		
 		<p className={cliccss}>{api.clic} clic</p> </div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
