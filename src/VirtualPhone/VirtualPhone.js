@@ -44716,15 +44716,12 @@ async function MettreEnAvantFA() {
 
 
 // clic de la video
-async function ClicVideoFAA({ id, idOther, nombreClic }) {
-	//console.count("clicVideoFAA appelé");
-	//if (!id || !idOther) return;
-	
+async function ClicVideoFAA({ id, idOther, nombreClic }) {	
 	const clic = (Number(nombreClic) || 0) + 1; //type:204 il a cliqué sur la video 
 	console.log("nombreClic ", nombreClic);
 	console.log("clic ", clic);
-	console.log("idOther ", idOther);
-	console.log("id ", id);
+	//console.log("idOther ", idOther);
+	//console.log("id ", id); 
 	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther, visible:1, id, type:204}, id, actions: ["post", "put"] });
 }
 		
@@ -51481,7 +51478,7 @@ son compte Vixinol store */
 		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} clicVideo={ClicVideoFAA} clicFA={clicFA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
+			data={filterFA} setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />

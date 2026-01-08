@@ -588,22 +588,6 @@ export function VideoData({ data = [], setId, video, voirVideo, clicVideo, photo
 	  
     </>)}
 	
-
-/* export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss, titrecss, cliccss }) {
-	if (!visible) return null;
-	return (
-		<div className="page-blanche"> 
-			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
-			
-			<RechercheTemplate 
-				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
-				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} />
-			
-			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} video />
-		</div>
-	);
-} */
-		   
 		   
 export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn }) {	
 	if (!visible) return null;
@@ -705,7 +689,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 {/* PopupDuBasTemplate */}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, nombreClic, voirVideo, listVideo, valeur, setValeur, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
@@ -713,14 +697,14 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 			
 			<RechercheTemplate 
 				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
-				setId={setId} clicVideo={clicVideo} nombreClic={nombreClic} voirVideo={voirVideo} />
+				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
 				 
-			<LesVideos data={data} setId={setId} clicVideo={clicVideo} nombreClic={nombreClic} voirVideo={voirVideo} video />
+			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
 		</div>
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, nombreClic, voirVideo, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -765,7 +749,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			))}
 			</div>
 			
-			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} nombreClic={nombreClic} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
+			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
 	</>);
 }
 
@@ -892,11 +876,7 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
 }
 
 
-export function LesVideos({ data=[], setId, clicVideo, nombreClic, voirVideo, titrecss, cliccss, video }) {
-	console.log("clicVideo:", clicVideo);
-	console.log("voirVideo:", voirVideo);
-	console.log("nombreClic :", nombreClic);
-
+export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
