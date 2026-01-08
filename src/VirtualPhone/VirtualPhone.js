@@ -1027,7 +1027,7 @@ Vidéo seule, sans id
 
 
 //ChildApi 66profilFA
-export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", verifierId, photo, video, clic, svg }) {
+export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", clicVideo, verifierId, photo, video, clic, svg }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -52868,8 +52868,8 @@ g
 				
 			<div className="overflow-x">
 			{filterFA.map((api) => (<>
-			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} verifierId/>
+			<div onClick={() => setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId/>
 			</div>
 			</>))}
 			</div>
@@ -52878,12 +52878,12 @@ g
 			
 			<div className="overflow-x">
 			{filterFA.map((api) => (<>
-			<div onClick={() => setId(api._id)}>
+			<div onClick={() => setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}
 			</div>
-			{/* overflow-x */} 
+			{/* overflow-x */}
 
 			<LesVideos data={filterFA} setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
