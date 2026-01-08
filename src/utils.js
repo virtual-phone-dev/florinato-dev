@@ -940,7 +940,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
             {/* a */}
           </div>
           {/* block */}
-        </d 
+        </div> 
         {/* card */}
       </div>
       {/* align */}
