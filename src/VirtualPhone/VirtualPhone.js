@@ -44742,10 +44742,23 @@ const [modifierTitrePageFA , setmodifierTitrePageFA] = useState(false);
 async function ModifierTitrePageFA() { setmodifierTitrePageFA(true); }
 async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
 
-//logique pour changer ou modifier le titre de la video - FA
+//logique pour changer le titre de la video - FA
 const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
 const [nouveauTitre, setNouveauTitre] = useState("");
 async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idreq, loader:setIsLoading666ModifierTitreFA, actions: ["put"] }); }
+
+
+
+//page pour commenter la vidéo- FA
+const [commenterPageFA, setcommenterPageFA] = useState(false);
+async function CommenterPageFA() { setcommenterPageFA(true); }
+async function CloseCommenterPageFA() { setcommenterPageFA(false); }
+
+//logique pour commenter la vidéo - FA
+const [isLoading666CommenterFA, setIsLoading666CommenterFA] = useState(false);
+const [ecrireCommentaireFA, setEcrireCommentaireFA] = useState("");
+async function CommenterFA() { await ExecuterActionFA({ dataPOST:{message: ecrireCommentaireFA}, id:idreq, loader:setIsLoading666CommenterFA, actions: ["post"] }); }
+
 
 
 //page pour enregistrer l'url modifier
@@ -52850,8 +52863,8 @@ g
 				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
 			
-			<div className="display-flex">
-				<p className="p-14px-ccc-esp">Commenter</p>
+			<div className="display-flex"> 
+				<p onClick={CommenterPageFA} className="p-14px-ccc-esp">Commenter</p>
 				<p onClick={ModifierTitrePageFA} className="p-14px-ccc-esp">Modifier le Titre</p>
 				<p onClick={ChangerMiniaturePage} className="p-14px-ccc-esp">Changer la Miniature</p>
 				<p onClick={ModifierUrlPage} className="p-14px-ccc-esp">Modifier l'url</p>
@@ -53009,6 +53022,11 @@ g
 	<ModifierTemplate 
 		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideoFA}
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl/>
+		
+	
+	<ModifierTemplate 
+		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
+		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} changerUrl/>
 		
 		
 	<ModifierTemplate 
