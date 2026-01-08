@@ -704,7 +704,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
