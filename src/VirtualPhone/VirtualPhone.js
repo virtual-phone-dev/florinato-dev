@@ -52859,7 +52859,7 @@ g
 			</div>
 			
 			<pre className="pre-17px-white">{titreFA}</pre>
-			<p className="p-14px-ccc">{clicFA} clic</p>
+			<p className="p-14px-eee">{clicFA} clic</p>
 			
 			
 			<RechercheTemplate 
