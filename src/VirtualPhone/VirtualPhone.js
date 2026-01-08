@@ -52865,10 +52865,10 @@ g
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA}
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
-				
+
 			<div className="overflow-x">
 			{filterFA.map((api) => (<>
-			<div onClick={() => setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }>
+			<div onClick={() => {setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId/>
 			</div>
 			</>))}
@@ -52878,7 +52878,7 @@ g
 			
 			<div className="overflow-x">
 			{filterFA.map((api) => (<>
-			<div onClick={() => setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }>
+			<div onClick={() => {setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}

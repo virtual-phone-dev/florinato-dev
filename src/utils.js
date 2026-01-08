@@ -818,7 +818,7 @@ export function ListeDesComptes({ data = [] }) {
 }
 
 
-export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cliccss="p-14px-ccc" }) {
+export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cliccss="p-14px" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
