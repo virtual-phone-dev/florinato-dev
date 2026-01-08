@@ -851,7 +851,7 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
   }, []);
 
   const titre = api.message || "";
-  const gettit.re = titre.length > nombreLettre ? titre.slice(0, nombreLettre) + ". . ." : titre;
+  const gettitre = titre.length > nombreLettre ? titre.slice(0, nombreLettre) + ". . ." : titre;
 
     const afficherVideo = video && api.type === "3";
     const afficherPhoto = photo && api.type === "2";
