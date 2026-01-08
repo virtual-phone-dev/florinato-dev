@@ -35446,14 +35446,23 @@ async function DissadAA() {
   const messageEpinglerFA = filterMessageEpinglerFA.map((api) => api.message); // messageEpingler
   
   
-	const [idreq, setId] = useState();
-	console.log(`id ici:`, idreq);
+	const [idreq, setId] = useState(null);
+	const [infosPostFA, setInfosPostFA] = useState([]);
+	console.log(`idreq ici:`, idreq);
+	console.log(`infosPostFA ici:`, infosPostFA);
+
+	useEffect(() => {
+	  if (!idreq) return;
+	  const result = apiMessageFA.filter(api => api._id === idreq);
+	  setInfosPostFA(result);
+	}, [idreq, apiMessageFA]);
   
 	// filtre pour obtenir les infos du post - FA
-    const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
+    //const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
 	
     const clicFA = infosPostFA.map((api) => api.clic); // clic
     const titreFA = infosPostFA.map((api) => api.message); // message
+	
 
 
 
