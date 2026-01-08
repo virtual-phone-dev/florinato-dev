@@ -375,7 +375,7 @@ async function getMessagesFromIndexedDB() {
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
       if (!db.objectStoreNames.contains('messages')) {
-        db.createObjectStore('messages', { keyPath: 'id' });
+        db.createObjectStore('messages', { keyPath:! 'id' });
       }
     };
   });
@@ -490,7 +490,7 @@ export function MiniPhrase({ titre1, titre2 }) {
 )}
 
 
-export function SpeedMessages({ fermer, data }) {	
+export function SpeedMessages({ visible, fermer, data }) {	
   //const [messages, setMessages] = useState([]); // Messages affichés
   
   const [messages, setMessages] = useState([]); // Tous les messages chargés
@@ -534,7 +534,7 @@ export function SpeedMessages({ fermer, data }) {
     }
   };
   
-  //if (!visible) return null;
+  if (!visible) return null;
 
   return (
     <div className="page-blanche" onScroll={handleScroll}>
@@ -544,6 +544,8 @@ export function SpeedMessages({ fermer, data }) {
       <button>Charger plus</button>
 	  
 	  <button onClick={logMessages}>console log</button>
+	  
+	  {/* <ListeDesComptes data={data} /> */}
 
       {afficherMessages.map((api) => (
         <div key={api._id.toString()}>
