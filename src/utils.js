@@ -703,7 +703,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 {/* PopupDuBasTemplate */}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, nombreClic, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
@@ -711,14 +711,14 @@ export function VideosPageTemplate({ visible, fermer, photo, data, setId, video,
 			
 			<RechercheTemplate 
 				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
-				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
+				setId={setId} clicVideo={clicVideo} nombreClic={nombreClic} voirVideo={voirVideo} />
 				 
-			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
+			<LesVideos data={data} setId={setId} clicVideo={clicVideo} nombreClic={nombreClic} voirVideo={voirVideo} video />
 		</div>
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, nombreClic, voirVideo, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -763,7 +763,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			))}
 			</div>
 			
-			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
+			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} nombreClic={nombreClic} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
 	</>);
 }
 
@@ -890,14 +890,15 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
 }
 
 
-export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
+export function LesVideos({ data=[], setId, clicVideo, nombreClic, voirVideo, titrecss, cliccss, video }) {
 	console.log("clicVideo:", clicVideo);
 	console.log("voirVideo:", voirVideo);
+	console.log("nombreClic :", nombreClic);
 
   return (
 <div className="video-grille">
 	{data.map((api) => (
-	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
+	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} video />
 	  </div>
 	  ))}
@@ -921,6 +922,8 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  {changerUrl && (<>
 			  <pre className="pre-15px-center">{infos}</pre> 
 			  
+			  <AutoTextarea value={valeur} onChange={setValeur} placeholder={texte} />
+			  
               <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
               </div> </>)}
@@ -935,7 +938,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
             {/* a */}
           </div>
           {/* block */}
-        </div>
+        </d 
         {/* card */}
       </div>
       {/* align */}
@@ -944,6 +947,23 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 }
 
 
+export function AutoTextarea({ value, onChange, placeholder="..", maxHeight=160, className="textarea-css", rows=1, }) {
+  const textareaRef = useRef(null);
+
+  useEffect(() => {
+    const el = textareaRef.current;
+    if (!el) return;
+
+    el.style.height = "auto";
+    el.style.height = Math.min(el.scrollHeight, maxHeight) + "px";
+    el.style.overflowY =
+      el.scrollHeight > maxHeight ? "auto" : "hidden";
+  }, [value, maxHeight]);
+
+  return (
+    <textarea ref={textareaRef} value={value} rows={rows} placeholder={placeholder} className={className} onChange={(e) => onChange(e.target.value)} />
+)}  
+   
 export function MissionTemplate({ visible, valeur, setValeur, envoyer, message, nomMembre, titre, titre2, titre3, titre4, titre5, titre7, titre8, titre9 }) {
   if (!visible) return null;
 

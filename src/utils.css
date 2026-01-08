@@ -197,6 +197,14 @@
   cursor: pointer;
 }
 
+.textarea-css {
+  border: 1px solid #444;
+  font-size: 16px;
+  resize: none;
+  width: 100%;
+  padding: 5px;
+  border-radius: 5px;
+}
 
 .video-grille {
   display: flex;
