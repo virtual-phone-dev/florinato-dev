@@ -912,9 +912,10 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  
 			  <AutoTextarea value={valeur} onChange={setValeur} placeholder={texte} />
 			  
-              <div className="textarea">
+              {/* <div className="textarea">
                 <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
-              </div> </>)}
+              </div> */}
+			  </>)}
 			  
 			  
 			  {changerMiniature && (
