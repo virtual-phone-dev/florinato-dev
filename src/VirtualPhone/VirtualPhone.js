@@ -35483,11 +35483,11 @@ async function DissadAA() {
 
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
-  const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.top ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
+  const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.top ==="1").sort((a, b) => a.popularity - b.popularity);
   
-  const filterTopFA = apiMessageFA.filter((api) => api.popularity && api.top ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
-  const filterAdminFA = apiMessageFA.filter((api) => api.popularity && api.admin ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
-  const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.popularity && api.adminFlorinato ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
+  const filterTopFA = apiMessageFA.filter((api) => api.top ==="1");
+  const filterAdminFA = apiMessageFA.filter((api) => api.admin ==="1");
+  const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.adminFlorinato ==="1");
   
   
   //filtre pour afficher les comptes creer.
