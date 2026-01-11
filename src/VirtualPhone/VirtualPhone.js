@@ -35485,6 +35485,11 @@ async function DissadAA() {
   //filtre pour afficher les comptes les plus populaires sur Florinato
   const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.top ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
   
+  const filterTopFA = apiMessageFA.filter((api) => api.popularity && api.top ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
+  const filterAdminFA = apiMessageFA.filter((api) => api.popularity && api.admin ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
+  const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.popularity && api.adminFlorinato ==="1" && api.florinatoApp === "1").sort((a, b) => a.popularity - b.popularity);
+  
+  
   //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
@@ -51790,18 +51795,18 @@ g
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
 		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
-	  
-	  
+  
+  
 	  <PageTemplate 
-		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} listAccount={listAccountFA}
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterTopFA}
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
 	  
 	  <PageTemplate 
-		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} listAccount={listAccountFA}
-		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mises en avant" photo={photoFA} />
+		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterAdminFA}
+		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mis en avant" photo={photoFA} />
 		  
 		<PageTemplate 
-		  visible={adminFlorinato} fermer={CloseAdminFlorinato} listAccount={listAccountFA}
+		  visible={adminFlorinato} fermer={CloseAdminFlorinato} data={filterAdminFlorinatoFA}
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
 		  
 		  	  

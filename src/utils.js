@@ -621,13 +621,13 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 
 
 
-export function PageTemplate({ visible, fermer, photo, titre, clicSvg, listAccount }) {
+export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data }) {
 	if (!visible) return null;
 	
   return (<>
 	<div className="page-blanche">
 		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
-		<ListeDesComptes data={listAccount} />
+		<ListeDesComptes data={data} />
     </div>
     {/* page-blanche */}
   </>
@@ -784,7 +784,7 @@ export function PopularityAccountCard({ api }) {
 	
 	<div className="p-15px">
 		<p>nameAccount {api.nameAccount}</p>
-		<p>_id, idPersonConnectedFA, idAccount, idAccountChef) {api._id}</p>
+		<p>_id, idPersonConnectedFA, idAccount, idAccountChef {api._id}</p>
 		<p>idUser, idUserConnectedFA {api.idUser}</p>
 		<p>idGroup, idGroupChef {api.idGroup}</p>
 	</div>
