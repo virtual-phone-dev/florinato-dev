@@ -35465,7 +35465,6 @@ async function DissadAA() {
 	
 
 
-
   //filtre general
   const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
     
@@ -35483,7 +35482,7 @@ async function DissadAA() {
 
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
-  const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.popularity && api.top ==="1").sort((a, b) => a.popularity - b.popularity);
+  const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.top ==="1");
   
   const filterTopFA = apiMessageFA.filter((api) => api.top ==="1");
   const filterAdminFA = apiMessageFA.filter((api) => api.admin ==="1");

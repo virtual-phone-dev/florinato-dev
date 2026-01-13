@@ -354,11 +354,12 @@ export async function AdapterLien(url) {
 }
 
 
-
+/*
 async function getMessagesFromIndexedDB() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open('MessagesDB', 1);
     request.onerror = () => reject(request.error);
+	
     request.onsuccess = () => {
       const db = request.result;
       const transaction = db.transaction('messages', 'readonly');
@@ -372,13 +373,42 @@ async function getMessagesFromIndexedDB() {
         reject(getAllRequest.error);
       };
     };
+	
     request.onupgradeneeded = (event) => {
       const db = event.target.result;
       if (!db.objectStoreNames.contains('messages')) {
-        db.createObjectStore('messages', { keyPath:! 'id' });
+        db.createObjectStore('messages', { keyPath: 'id' });
       }
     };
   });
+}
+*/
+
+
+async function saveMessageToIndexedDB(data) {
+  const request = indexedDB.open('MessagesDB', 1); // Ouverture de la base de données . Cette ligne tente d'ouvrir (ou créer si elle n'existe pas) une base de données IndexedDB nommée 'MessagesDB' avec la version 1
+
+  request.onupgradeneeded = (e) => { // Gestion de la mise à jour de la structure (upgrade) . Cet événement se déclenche si la base de données doit être créée ou si une mise à jour est nécessaire (par exemple, si la version change).
+    const db = e.target.result;
+    if (!db.objectStoreNames.contains('messages')) { // Ici, on vérifie si l’object store 'messages' existe déjà. S’il n’existe pas, on le crée avec createObjectStore().
+      db.createObjectStore('messages', { keyPath: '_id' }); // keyPath: 'id' indique que chaque message doit avoir un attribut id qui sera la clé principale dans cette table
+    }
+  };
+
+  request.onsuccess = () => { // Connexion réussie à la base de données
+    const db = request.result; // Lorsqu’on a réussi à ouvrir la base, on récupère l’objet db.
+    const transaction = db.transaction('messages', 'readwrite'); // On démarre une transaction sur l’object store 'messages' en mode 'readwrite' (lecture/écriture).
+    const store = transaction.objectStore('messages'); // On récupère l’object store pour effectuer des opérations dessus.
+
+    store.put(data); // pour insérer ou mettre à jour . cette ligne insère le message dans la base ou met à jour celui existant si un message avec le même id existe déjà.
+    transaction.oncomplete = () => {
+      console.log('Message sauvegardé'); // Quand la transaction est terminée, on affiche dans la console que le message a été sauvegardé.
+    };
+  };
+
+  request.onerror = () => { // Si une erreur survient lors de l’ouverture de la base, cette fonction est appelée
+    console.error('Erreur lors de l\'ouverture de IndexedDB', request.error);
+  };
 }
 
 
@@ -490,6 +520,7 @@ export function MiniPhrase({ titre1, titre2 }) {
 )}
 
 
+
 export function SpeedMessages({ visible, fermer, data }) {	
   //const [messages, setMessages] = useState([]); // Messages affichés
   
@@ -507,7 +538,7 @@ export function SpeedMessages({ visible, fermer, data }) {
 
   useEffect(() => {
     const fetchMessages = async () => {
-      const allMessages = await getMessagesFromIndexedDB(); // Récupère tous les messages
+      const allMessages = await saveMessageToIndexedDB(data); // Récupère tous les messages
       setMessages(allMessages);
       // Charger le premier lot
       setAfficherMessages(allMessages.slice(0, lot));
@@ -548,7 +579,7 @@ export function SpeedMessages({ visible, fermer, data }) {
 	  {/* <ListeDesComptes data={data} /> */}
 
       {afficherMessages.map((api) => (
-        <div key={api._id.toString()}>
+        <div>
           <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
           <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
         </div>
@@ -787,6 +818,9 @@ export function PopularityAccountCard({ api }) {
 		<p>_id, idPersonConnectedFA, idAccount, idAccountChef {api._id}</p>
 		<p>idUser, idUserConnectedFA {api.idUser}</p>
 		<p>idGroup, idGroupChef {api.idGroup}</p>
+		<p>top {api.top}</p>
+		<p>admin {api.admin}</p>
+		<p>adminFlorinato {api.adminFlorinato}</p>
 	</div>
   </>);
 }
