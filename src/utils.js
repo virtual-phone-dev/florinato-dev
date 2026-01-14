@@ -1,18 +1,16 @@
 import axios from 'axios';
 import { React, useState, useEffect, useRef } from 'react';
 import Fuse from "fuse.js";
-
 import Loader from "./Loader/Loader";
-import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
-import { ChildApi266accountsFA, ChildApi66accountsFA } from "./VirtualPhone/VirtualPhone";
-
 import { theme } from "./theme";
+import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2 } from "./Svg/Svg";
+import { ChildApi266accountsFA, ChildApi66accountsFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
 
+
+
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-
-
 
 export function normaliserTexte(str="") {
   return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
