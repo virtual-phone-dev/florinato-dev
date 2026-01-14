@@ -827,7 +827,7 @@ export function PopularityAccountCard({ api }) {
 
 export function PopularityAccountCard2({ api, profilMap }) {
 	// pour obtenir les informations du profil
-    const idToUse = api.idAccount;
+    const idToUse = api.idOther;
     const profil = idToUse ? profilMap[idToUse] : null;
   
     return (<>
