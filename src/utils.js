@@ -12,6 +12,7 @@ import "./darkmode.css";
 
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
+
 export function normaliserTexte(str="") {
   return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 } 
@@ -383,31 +384,51 @@ async function getMessagesFromIndexedDB() {
 */
 
 
-async function saveMessageToIndexedDB(data) {
-  const request = indexedDB.open('MessagesDB', 1); // Ouverture de la base de données . Cette ligne tente d'ouvrir (ou créer si elle n'existe pas) une base de données IndexedDB nommée 'MessagesDB' avec la version 1
+function openDB() {
+  return new Promise((resolve, reject) => {
+    const request = indexedDB.open("MessagesDB", 1);
 
-  request.onupgradeneeded = (e) => { // Gestion de la mise à jour de la structure (upgrade) . Cet événement se déclenche si la base de données doit être créée ou si une mise à jour est nécessaire (par exemple, si la version change).
-    const db = e.target.result;
-    if (!db.objectStoreNames.contains('messages')) { // Ici, on vérifie si l’object store 'messages' existe déjà. S’il n’existe pas, on le crée avec createObjectStore().
-      db.createObjectStore('messages', { keyPath: '_id' }); // keyPath: 'id' indique que chaque message doit avoir un attribut id qui sera la clé principale dans cette table
-    }
-  };
-
-  request.onsuccess = () => { // Connexion réussie à la base de données
-    const db = request.result; // Lorsqu’on a réussi à ouvrir la base, on récupère l’objet db.
-    const transaction = db.transaction('messages', 'readwrite'); // On démarre une transaction sur l’object store 'messages' en mode 'readwrite' (lecture/écriture).
-    const store = transaction.objectStore('messages'); // On récupère l’object store pour effectuer des opérations dessus.
-
-    store.put(data); // pour insérer ou mettre à jour . cette ligne insère le message dans la base ou met à jour celui existant si un message avec le même id existe déjà.
-    transaction.oncomplete = () => {
-      console.log('Message sauvegardé'); // Quand la transaction est terminée, on affiche dans la console que le message a été sauvegardé.
+    request.onupgradeneeded = (e) => {
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains("messages")) {
+        db.createObjectStore("messages", { keyPath: "_id" });
+      }
     };
-  };
 
-  request.onerror = () => { // Si une erreur survient lors de l’ouverture de la base, cette fonction est appelée
-    console.error('Erreur lors de l\'ouverture de IndexedDB', request.error);
-  };
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
 }
+
+
+export async function saveMessagesToIndexedDB(messages = []) {
+  if (!Array.isArray(messages)) return;
+
+  const db = await openDB();
+  const tx = db.transaction("messages", "readwrite");
+  const store = tx.objectStore("messages");
+
+  messages.forEach(msg => {
+    store.put(msg);
+  });
+
+  return new Promise(resolve => {
+    tx.oncomplete = () => resolve(true);
+  });
+}
+
+
+export async function getMessagesFromIndexedDB() {
+  const db = await openDB();
+  const tx = db.transaction("messages", "readonly");
+  const store = tx.objectStore("messages");
+
+  return new Promise(resolve => {
+    const request = store.getAll();
+    request.onsuccess = () => resolve(request.result || []);
+  });
+}
+
 
 
 export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
@@ -519,40 +540,46 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 
 
-export function SpeedMessages({ visible, fermer, data }) {	
-  //const [messages, setMessages] = useState([]); // Messages affichés
-  
+export function SpeedMessages({ visible, fermer, data=[] }) {	  
   const [messages, setMessages] = useState([]); // Tous les messages chargés
   const [afficherMessages, setAfficherMessages] = useState([]); // Messages affichés
   const [currentIndex, setCurrentIndex] = useState(0); // Index pour le lot actuel
+  const lot = 20; // Taille du lot
   
   async function logMessages() {
 	  console.log("messages de SpeedMessages ici :", messages);
 	  console.log("data ici :", data);
 	}	
 
+  
+    useEffect(() => {
+		if (!visible) return;
 
-  const lot = 20; // Taille du lot
-
-  useEffect(() => {
-    const fetchMessages = async () => {
-      const allMessages = await saveMessageToIndexedDB(data); // Récupère tous les messages
-      setMessages(allMessages);
-      // Charger le premier lot
-      setAfficherMessages(allMessages.slice(0, lot));
-      setCurrentIndex(lot);
-    };
-
-    fetchMessages();
-  }, [])
+		async function init() {
+		  if (data.length) { await saveMessagesToIndexedDB(data); }	// 1. Sauvegarder les data de MongoDB → IndexedDB
+		  
+		  const allMessages = await getMessagesFromIndexedDB(); // 2. Lire depuis IndexedDB
+		  setMessages(allMessages);
+		  
+		  setAfficherMessages(allMessages.slice(0, lot)); // Charger le premier lot
+		  setCurrentIndex(lot);
+		}
+		init();
+  }, [visible, data]);
   
   
   const loadMore = () => {
     const nextIndex = currentIndex + lot;
+    setAfficherMessages(prev => prev.concat(messages.slice(currentIndex, nextIndex)));
+    setCurrentIndex(nextIndex);
+  };
+  
+  /* const loadMore = () => {
+    const nextIndex = currentIndex + lot;
     const moreMessages = messages.slice(currentIndex, nextIndex);
     setAfficherMessages(prev => [...prev, ...moreMessages]);
     setCurrentIndex(nextIndex);
-  };
+  }; */
 
   // Gérer le scroll pour charger plus
   const handleScroll = (e) => {
