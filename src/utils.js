@@ -652,17 +652,15 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 
 
 
-export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data }) {
+export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap }) {
 	if (!visible) return null;
-	
-  return (<>
+    return (<>
 	<div className="page-blanche">
 		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
-		<ListeDesComptes data={data} />
+		<ListeDesComptes2 data={data} profilMap={profilMap} />
     </div>
     {/* page-blanche */}
-  </>
-)}
+ </>)}
 
 
 export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorinato }) {
@@ -675,6 +673,7 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorina
         {/* list */}
   </>
 )}
+
 
 export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, cliquer, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, setId }) {	
 	if (!visible) return null;
@@ -771,7 +770,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			<div onClick={() => { cliquer(api); setId(api._id); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
-			</>))} 
+			</>))}
 			
 			
 			<div className="api2" onClick={cliquerSurMonCompte}>
@@ -826,6 +825,31 @@ export function PopularityAccountCard({ api }) {
 }
 
 
+export function PopularityAccountCard2({ api, profilMap }) {
+	// pour obtenir les informations du profil
+    const idToUse = api.idAccount;
+    const profil = idToUse ? profilMap[idToUse] : null;
+  
+    return (<>
+    <div className="display-nowrap">
+      <div className="p-15px"><p>{profil.popularity}</p></div>
+      <div className="photo-70px"><img src={profil.photoProfile} alt="" /></div>
+      <div className="pre-17px"><pre>{profil.nameAccount}</pre></div>
+    </div>
+	
+	<div className="p-15px">
+		<p>nameAccount {api.nameAccount}</p>
+		<p>_id, idPersonConnectedFA, idAccount, idAccountChef {api._id}</p>
+		<p>idUser, idUserConnectedFA {api.idUser}</p>
+		<p>idGroup, idGroupChef {api.idGroup}</p>
+		<p>top {api.top}</p>
+		<p>admin {api.admin}</p>
+		<p>adminFlorinato {api.adminFlorinato}</p>
+	</div>
+  </>);
+}
+
+
 export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
   if (!visible) return null;
 
@@ -840,18 +864,28 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
 	 </div>
  </>)}
  
- 
-export function ListeDesComptes({ data = [] }) {
+
+			  
+export function ListeDesComptes({ data=[] }) {
   return (
     <>
       {data.map((api) => (
         <PopularityAccountCard key={api._id} api={api} />
       ))}
     </>
-  );
-}
+  )}
 
 
+export function ListeDesComptes2({ data=[], profilMap }) {
+  return (
+    <>
+	    {filterFA.map((api) => {				
+			return (<PopularityAccountCard2 api={api} profilMap={profilMap} /> )} 
+        )}
+    </>
+  )}
+  
+  
 export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cliccss="p-14px" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";

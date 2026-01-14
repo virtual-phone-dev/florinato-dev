@@ -170,7 +170,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
   const idOther = api.idOther === idPersonConnectedFA;
   
   // pour obtenir les informations du profil, (logique pour savoir si c'est l'id de l'expediteur ou du destinataire)
-  const idToUse = idAccount ? api.idOther : idOther ? api.idAccount : null;
+  const idToUse = idAccount ? api.idOther:idOther ? api.idAccount : null;
   const profil = idToUse ? profilMap[idToUse] : null;
   
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
@@ -179,8 +179,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
 	console.log("profil icii ", profil);
 	console.log("profilMap icii ", profilMap);*/
 	
-  return (
-    <>
+  return (<>
     <div className="child" onClick={Checked}>
       {api.type === "30" && idAccount && (<> {/* type=30 , (conversation que j'ai envoyé à Other) */}
       <div className="type30" onClick={GoTomessageFA}>
@@ -35481,6 +35480,7 @@ async function DissadAA() {
 }, [apiMessageFA]);
 
 
+
   //filtre pour afficher les comptes les plus populaires sur Florinato
   const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.top ==="1");
   
@@ -51797,15 +51797,15 @@ g
   
   
 	  <PageTemplate 
-		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterTopFA}
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterTopFA} profilMap={profilMap}
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
 	  
 	  <PageTemplate 
-		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterAdminFA}
+		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterAdminFA} profilMap={profilMap}
 		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mis en avant" photo={photoFA} />
 		  
 		<PageTemplate 
-		  visible={adminFlorinato} fermer={CloseAdminFlorinato} data={filterAdminFlorinatoFA}
+		  visible={adminFlorinato} fermer={CloseAdminFlorinato} data={filterAdminFlorinatoFA} profilMap={profilMap}
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
 		  
 		  	  
