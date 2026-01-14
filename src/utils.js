@@ -4,7 +4,7 @@ import Fuse from "fuse.js";
 
 import Loader from "./Loader/Loader";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend } from "./Svg/Svg";
-import { ChildApi66profilFA, ChildApi266accountsFA, ChildApi66accountsFA } from "./VirtualPhone/VirtualPhone";
+import { ChildApi266accountsFA, ChildApi66accountsFA } from "./VirtualPhone/VirtualPhone";
 
 import { theme } from "./theme";
 import "./utils.css"; 
@@ -719,17 +719,20 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 {/* PopupDuBasTemplate */}
 
 
+export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, clicVideo, voirVideo, video }) {
+  return (<>
+	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
+    <LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
+</>)}
+
+
 export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche"> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
 			
-			<RechercheTemplate 
-				listVideo={listVideo} valeur={valeur} setValeur={setValeur}
-				setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
-				 
-			<LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
+			<VideoSearchBlock data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
 		</div>
 )}
 
@@ -1015,6 +1018,91 @@ export function AutoTextarea({ value, onChange, placeholder="..", maxHeight=160,
   return (
     <textarea ref={textareaRef} value={value} rows={rows} placeholder={placeholder} className={className} onChange={(e) => onChange(e.target.value)} />
 )}  
+
+
+
+//ChildApi 66profilFA
+export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", clicVideo, verifierId, photo, video, clic, svg }) {
+  const [checked, setChecked] = useState(false);
+  async function Checked() {
+    setChecked(!checked);
+
+    const message = api.message;
+    const type = api.type;
+    const id = api._id;
+    if(id) { 
+      localStorage.setItem("id", id); 
+      localStorage.setItem("idreq", id); 
+      localStorage.setItem("idPost", id); 
+      localStorage.setItem("idPostreq", id); 
+      localStorage.setItem("type", type); 
+      localStorage.setItem("message", message); 
+    }
+    
+    const urlVideo = api.urlVideo;
+    if(urlVideo) { 
+      localStorage.setItem("urlVideo", urlVideo); 
+      localStorage.setItem("urlVideoreq", urlVideo); 
+    }
+	
+
+    const image = api.urlPhoto;
+    if(image) { 
+      localStorage.setItem("urlPhoto", image); 
+      localStorage.setItem("urlPhotoreq", image); 
+    }
+  }
+
+
+  //redirect vers la page pour afficher la video
+   async function GotoVideo() {
+		const video = "1";
+		const photo = "0";
+		localStorage.setItem("gotoVideo", video);
+		localStorage.setItem("gotoPhoto", photo);
+	}
+  
+  //redirect vers la page pour afficher la photo
+   async function GotoPhoto() {
+		const video = "0";
+		const photo = "1";
+		localStorage.setItem("gotoVideo", video);
+		localStorage.setItem("gotoPhoto", photo);
+	}
+
+  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
+  
+  const afficherVideo = video && api.type === "3";
+  const afficherPhoto = photo && api.type === "2";
+
+  return (
+    <>
+    <div className="child" onClick={Checked}>
+      {afficherPhoto && (!verifierId || id) && (<> 
+      <div className="type3">
+        <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
+		{clic && (<>
+		<div className="b"> <button onClick={GotoPhoto}><SvgPlay2/></button> </div></>)}
+		
+		<div className={titrecss}> <pre>{api.message}</pre> </div>
+		<div className={cliccss}> <p>{api.clic}</p> </div>
+      </div> </>)}
+
+      {afficherVideo && (!verifierId || id) && (<> 
+      <div className="type2"> 
+		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
+		<div className={titrecss}> <pre>{api.message}</pre> </div>
+		<div className={cliccss}> <p>{api.clic}</p> </div>
+	  </div> 
+      </>)}
+
+    </div>
+    </>
+  );
+}
+//ChildApi 66profilFA
+
    
 export function MissionTemplate({ visible, valeur, setValeur, envoyer, message, nomMembre, titre, titre2, titre3, titre4, titre5, titre7, titre8, titre9 }) {
   if (!visible) return null;

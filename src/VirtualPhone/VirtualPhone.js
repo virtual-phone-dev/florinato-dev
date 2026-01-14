@@ -8,9 +8,9 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, rechercherAvecFuse,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
-	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique
+	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique, rechercherAvecFuse,
 	} from "../utils";
 		
 import { missions } from "../missions";
@@ -222,7 +222,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
           <div className="b"> <p>{dateParser(api.createdAt)}</p> </div>
         </div>
         {/* B */}
-      </div></>)} 
+      </div></>)}
       {/* type=50 , je me suis abonné */}
     </div>
     {/* child */}
@@ -944,168 +944,6 @@ function ChildApi66groupOtherFA({ api }) {
 }
 //ChildApi 66groupOtherFA
 
-
-/*
-function MediaChild({
-  api,
-  id,
-  photocss,
-  onVideo,
-  onPhoto,
-  rendu = "auto",
-  verifierId = true, // 👈 par défaut, COMME TON CODE
-}) {
-
-  // verifierId nous dit si id est necessaire pour afficher le rendu
-  if (!verifierId) return null;
-
-  // déterminer quoi afficher
-  const afficherVideo =
-    rendu === "video" ||
-    rendu === "les deux" ||
-    (rendu === "auto" && api.type === "3");
-
-  const afficherPhoto =
-    rendu === "photo" ||
-    rendu === "les deux" ||
-    (rendu === "auto" && api.type === "2");
-
-  return (
-    <div className="child">
-      {afficherVideo && (
-        <div className="type3">
-          <div className={photocss}>
-            <img onClick={onVideo} src={api.urlPhoto} alt="" />
-          </div>
-          <div className="b">
-            <button onClick={onVideo}>
-              <SvgPlay2 />
-            </button>
-          </div>
-          <div className="p-15px">
-            <p>{api.clic}</p>
-          </div>
-        </div>
-      )}
-
-      {afficherPhoto && (
-        <div className="type2">
-          <div className={photocss}>
-            <img onClick={onPhoto} src={api.urlPhoto} alt="" />
-          </div>
-          <div className="p-15px">
-            <p>{api.clic}</p>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-*/
-
-/*
-Vidéo seule, sans id
-<MediaChild
-  api={api}
-  onVideo={GotoVideo}
-  rendu="video"
-  verifierId={false}    
-  photocss={photocss}
-/>
-
-<MediaChild
-  api={api}
-  id={id}
-  onVideo={GotoVideo}
-  onPhoto={GotoPhoto}
-  rendu="les deux"
-  verifierId={true}    
-  photocss={photocss}
-/>
-*/
-
-
-//ChildApi 66profilFA
-export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", clicVideo, verifierId, photo, video, clic, svg }) {
-  const [checked, setChecked] = useState(false);
-  async function Checked() {
-    setChecked(!checked);
-
-    const message = api.message;
-    const type = api.type;
-    const id = api._id;
-    if(id) { 
-      localStorage.setItem("id", id); 
-      localStorage.setItem("idreq", id); 
-      localStorage.setItem("idPost", id); 
-      localStorage.setItem("idPostreq", id); 
-      localStorage.setItem("type", type); 
-      localStorage.setItem("message", message); 
-    }
-    
-    const urlVideo = api.urlVideo;
-    if(urlVideo) { 
-      localStorage.setItem("urlVideo", urlVideo); 
-      localStorage.setItem("urlVideoreq", urlVideo); 
-    }
-	
-
-    const image = api.urlPhoto;
-    if(image) { 
-      localStorage.setItem("urlPhoto", image); 
-      localStorage.setItem("urlPhotoreq", image); 
-    }
-  }
-
-
-  //redirect vers la page pour afficher la video
-   async function GotoVideo() {
-		const video = "1";
-		const photo = "0";
-		localStorage.setItem("gotoVideo", video);
-		localStorage.setItem("gotoPhoto", photo);
-	}
-  
-  //redirect vers la page pour afficher la photo
-   async function GotoPhoto() {
-		const video = "0";
-		const photo = "1";
-		localStorage.setItem("gotoVideo", video);
-		localStorage.setItem("gotoPhoto", photo);
-	}
-
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
-  
-  const afficherVideo = video && api.type === "3";
-  const afficherPhoto = photo && api.type === "2";
-
-  return (
-    <>
-    <div className="child" onClick={Checked}>
-      {afficherPhoto && (!verifierId || id) && (<> 
-      <div className="type3">
-        <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
-		{clic && (<>
-		<div className="b"> <button onClick={GotoPhoto}><SvgPlay2/></button> </div></>)}
-		
-		<div className={titrecss}> <pre>{api.message}</pre> </div>
-		<div className={cliccss}> <p>{api.clic}</p> </div>
-      </div> </>)}
-
-      {afficherVideo && (!verifierId || id) && (<> 
-      <div className="type2"> 
-		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
-		<div className={titrecss}> <pre>{api.message}</pre> </div>
-		<div className={cliccss}> <p>{api.clic}</p> </div>
-	  </div> 
-      </>)}
-
-    </div>
-    </>
-  );
-}
-//ChildApi 66profilFA
 
 
 //ChildApi2 66profilFA
@@ -51772,12 +51610,16 @@ g
         {/* block-un */}
 
               <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
-              {filterFA.map((api) => (<>
+               {/* {filterFA.map((api) => (<>
 				  <div onClick={() => setId(api._id)}>
 					  <ChildApi66profilFA api={api} video photo photocss="photo-70px-carre" clic svg verifierId/>
 				  </div>
-              </>))}
+              </>))}  */}
               </div>
+			  
+			  
+			<VideoSearchBlock data={filterFA} listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+
 
               <div className="api2">
               {filterFA.map((api2) => (<>
@@ -51790,6 +51632,8 @@ g
         {/* profilFA */}
       </>)}
       {/* on affiche mon compte - FA */}
+	  
+	  
 	  
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
