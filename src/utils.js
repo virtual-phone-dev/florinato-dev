@@ -880,7 +880,7 @@ export function ListeDesComptes({ data=[] }) {
 export function ListeDesComptes2({ data=[], profilMap }) {
   return (
     <>
-	    {filterFA.map((api) => {				
+	    {data.map((api) => {				
 			return (<PopularityAccountCard2 api={api} profilMap={profilMap} /> )} 
         )}
     </>
