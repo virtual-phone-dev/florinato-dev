@@ -841,6 +841,7 @@ export function PopularityAccountCard2({ api, profilMap }) {
 		<p>nameAccount {api.nameAccount}</p>
 		<p>_id, idPersonConnectedFA, idAccount, idAccountChef {api._id}</p>
 		<p>idUser, idUserConnectedFA {api.idUser}</p>
+		<p>idUser, idUserConnectedFA {api.idUser}</p>
 		<p>idGroup, idGroupChef {api.idGroup}</p>
 		<p>top {api.top}</p>
 		<p>admin {api.admin}</p>
