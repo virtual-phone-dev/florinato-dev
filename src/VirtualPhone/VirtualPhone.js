@@ -35447,8 +35447,8 @@ async function DissadAA() {
   
 	const [idreq, setId] = useState(null);
 	const [infosPostFA, setInfosPostFA] = useState([]);
-	console.log(`idreq ici:`, idreq);
-	console.log(`infosPostFA ici:`, infosPostFA);
+	/* console.log(`idreq ici:`, idreq);
+	console.log(`infosPostFA ici:`, infosPostFA); */
 
 	useEffect(() => {
 	  if (!idreq) return;
