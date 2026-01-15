@@ -529,8 +529,8 @@ export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
 		  reject(requete.error);
 		  console.log("Erreur lors de l'ouverture de la base ");
 		};
-	});
-	}
+	};
+	})
 }
 
 
