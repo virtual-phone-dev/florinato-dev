@@ -354,36 +354,6 @@ export async function AdapterLien(url) {
 
 
 /*
-async function getMessagesFromIndexedDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open('MessagesDB', 1);
-    request.onerror = () => reject(request.error);
-	
-    request.onsuccess = () => {
-      const db = request.result;
-      const transaction = db.transaction('messages', 'readonly');
-      const store = transaction.objectStore('messages');
-      const getAllRequest = store.getAll();
-
-      getAllRequest.onsuccess = () => {
-        resolve(getAllRequest.result);
-      };
-      getAllRequest.onerror = () => {
-        reject(getAllRequest.error);
-      };
-    };
-	
-    request.onupgradeneeded = (event) => {
-      const db = event.target.result;
-      if (!db.objectStoreNames.contains('messages')) {
-        db.createObjectStore('messages', { keyPath: 'id' });
-      }
-    };
-  });
-}
-*/
-
-
 function openDB() {
   return new Promise((resolve, reject) => {
     const request = indexedDB.open("MessagesDB", 1);
@@ -428,7 +398,7 @@ export async function getMessagesFromIndexedDB() {
     request.onsuccess = () => resolve(request.result || []);
   });
 }
-
+*/
 
 
 export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
@@ -539,8 +509,106 @@ export function MiniPhrase({ titre1, titre2 }) {
 )}
 
 
+export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
+  return new Promise((resolve, reject) => {
+    const requete = indexedDB.open("MessagesDB", 1);
+
+    requete.onupgradeneeded = (e) => { //Création ou mise à jour de la base
+      const db = e.target.result;
+      if (!db.objectStoreNames.contains("messages")) { //Table des messages
+        db.createObjectStore("messages", { keyPath: "_id" }); 
+      }
+    };
+
+    requete.onsuccess = () => resolve(requete.result); // ✅ Base ouverte avec succès
+    requete.onerror = () => reject(requete.error); // Erreur
+  });
+}
+
+
+export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[]) {
+  if (!Array.isArray(donnees)) return;
+
+  const db = await ouvrirDB();
+  const transaction = db.transaction(nomStockage, "readwrite");
+  const stockage = transaction.objectStore(nomStockage);
+
+  donnees.forEach(msg => {
+    stockage.put(msg);
+  });
+
+  return new Promise(resolve => {
+    transaction.oncomplete = () => resolve(true);
+  });
+}
+
+
+export async function lireDepuisIndexedDB(nomStockage="messages") {
+  const db = await ouvrirDB();
+  const tr = db.transaction(nomStockage, "readonly");
+  const stockage = tr.objectStore(nomStockage);
+
+  return new Promise(resolve => {
+    const requete = stockage.getAll();
+    requete.onsuccess = () => resolve(requete.result || []);
+  });
+}
+
+
+export function utiliserScrollIndexedDB({ nomStockage="messages", donnees=[], lot=20, visible=true }) {
+  const [toutesDonnees, setToutesDonnees] = useState([]);
+  const [donneesAffichees, setDonneesAffichees] = useState([]);
+  const [lotActuel, setLotActuel] = useState(0);
+  
+		
+  useEffect(() => {
+    if (!visible) return;
+
+    async function init() {
+      if (donnees.length) { await sauvegarderDansIndexedDB(nomStockage, donnees); } // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
+
+      const donneesLocales = await lireDepuisIndexedDB(nomStockage); // 2. Lire depuis IndexedDB
+      setToutesDonnees(donneesLocales);
+	  
+      setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
+      setLotActuel(lot);
+    }
+
+    init();
+  }, [visible, donnees, nomStockage, lot]);
+
+
+	async function chargerPlus() { //pour scroller encore , scroller plus )
+		const prochainLot = lotActuel + lot;
+		setDonneesAffichees(prev => prev.concat(toutesDonnees.slice(lotActuel, prochainLot)) );
+		setLotActuel(prochainLot);
+	};
+	
+	
+	async function gererScroll(e) {
+		const { scrollTop, scrollHeight, clientHeight } = e.target;
+		if (scrollTop + clientHeight >= scrollHeight - 10) {
+			//Si on arrive en bas, charger plus
+			chargerPlus(); 
+		}
+	};
+
+	return { donneesAffichees, chargerPlus, gererScroll };
+}
+//utiliserScrollIndexedDB
+
+
 
 export function SpeedMessages({ visible, fermer, data=[] }) {	  
+	//const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = utiliserScrollIndexedDB({ nomStockage: "messages", donnees:data, lot:20, visible});
+	const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = utiliserScrollIndexedDB({ donnees:data });
+	
+	async function logMessages() {
+	  console.log("messages de SpeedMessages ici :", messages);
+	  console.log("data ici :", data);
+	}	
+
+/*
   const [messages, setMessages] = useState([]); // Tous les messages chargés
   const [afficherMessages, setAfficherMessages] = useState([]); // Messages affichés
   const [currentIndex, setCurrentIndex] = useState(0); // Index pour le lot actuel
@@ -556,7 +624,7 @@ export function SpeedMessages({ visible, fermer, data=[] }) {
 		if (!visible) return;
 
 		async function init() {
-		  if (data.length) { await saveMessagesToIndexedDB(data); }	// 1. Sauvegarder les data de MongoDB → IndexedDB
+		  if (data.length) { await saveMessagesToIndexedDB(data); }	// 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
 		  
 		  const allMessages = await getMessagesFromIndexedDB(); // 2. Lire depuis IndexedDB
 		  setMessages(allMessages);
@@ -574,12 +642,6 @@ export function SpeedMessages({ visible, fermer, data=[] }) {
     setCurrentIndex(nextIndex);
   };
   
-  /* const loadMore = () => {
-    const nextIndex = currentIndex + lot;
-    const moreMessages = messages.slice(currentIndex, nextIndex);
-    setAfficherMessages(prev => [...prev, ...moreMessages]);
-    setCurrentIndex(nextIndex);
-  }; */
 
   // Gérer le scroll pour charger plus
   const handleScroll = (e) => {
@@ -588,23 +650,20 @@ export function SpeedMessages({ visible, fermer, data=[] }) {
       // Si on arrive en bas, charger plus
       loadMore();
     }
-  };
+  }; */
   
   if (!visible) return null;
-
+  
   return (
-    <div className="page-blanche" onScroll={handleScroll}>
+    <div className="page-blanche" onScroll={gererScroll}>
       <Close fermer={fermer} />
 	  
 	  {/* Bouton pour charger plus */}
-      <button>Charger plus</button>
-	  
+      <button onClick={chargerPlus}>Charger plus</button>
 	  <button onClick={logMessages}>console log</button>
 	  
-	  {/* <ListeDesComptes data={data} /> */}
-
       {afficherMessages.map((api) => (
-        <div>
+        <div key={api._id}>
           <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
           <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
         </div>
