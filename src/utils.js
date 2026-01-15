@@ -515,8 +515,12 @@ export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
 
     requete.onupgradeneeded = (e) => { //Création ou mise à jour de la base
       const db = e.target.result;
+	  console.log("🧱 onupgradeneeded déclenché");
+	  
       if (!db.objectStoreNames.contains("messages")) { //Table des messages
         db.createObjectStore("messages", { keyPath: "_id" }); 
+		
+		console.log("📦 ObjectStore 'messages' créé avec keyPath '_id'");
       }
     };
 
@@ -527,20 +531,48 @@ export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
 
 
 export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[]) {
+	console.log("📥 Données reçues :", donnees);
+  console.log("📥 Est un tableau ?", Array.isArray(donnees));
+  
   if (!Array.isArray(donnees)) return;
 
   const db = await ouvrirDB();
+  
+  console.log("🟢 DB ouverte", db);
+  
   const transaction = db.transaction(nomStockage, "readwrite");
   const stockage = transaction.objectStore(nomStockage);
 
   donnees.forEach(msg => {
-	if (msg && msg._id) {
-      stockage.put(msg); // ✅ 1 message = 1 clé
+	console.log(`🔍 Message:`, msg);
+    console.log("_id =", msg?._id);
+
+	if (!msg || !msg._id) {
+      console.error("❌ MESSAGE SANS _id :", msg);
+      return;
+    }
+
+    try {
+      stockage.put(msg);
+      console.log("✅ Sauvegardé :", msg._id);
+    } catch (e) {
+      console.error("💥 ERREUR PUT :", msg, e);
     }
   });
 
+/*
   return new Promise(resolve => {
     transaction.oncomplete = () => resolve(true);
+  }); */
+  
+  return new Promise(resolve => {
+    transaction.oncomplete = () => {
+      console.log("🏁 Transaction terminée");
+      resolve(true);
+    };
+    transaction.onerror = e => {
+      console.error("💥 Transaction error", e);
+    };
   });
 }
 
@@ -567,6 +599,8 @@ export function useScrollIndexedDB({ nomStockage="messages", donnees=[], lot=20,
     if (!visible) return;
 
     async function init() {
+		console.log("🚀 donnees venant de MongoDB :", donnees);
+		
       if (donnees.length) { await sauvegarderDansIndexedDB(nomStockage, donnees); } // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
 
       const donneesLocales = await lireDepuisIndexedDB(nomStockage); // 2. Lire depuis IndexedDB
