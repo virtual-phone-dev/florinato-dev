@@ -11,6 +11,7 @@ import {
 	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, VideoSearchBlock,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique, rechercherAvecFuse,
+	useScrollIndexedDB,
 	} from "../utils";
 		
 import { missions } from "../missions";
@@ -35146,46 +35147,18 @@ async function DissadAA() {
 		await ObtenirLesDonneesFA();
 	}
 	fetchData();
-
-/*
-    async function get() {		
-      await axios
-      .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
-      .then((res) => {
-        setApiMessageFA(res.data);
-      })
-      .catch((err) => {
-
-      async function get2() { // 2e Api
-        await axios
-        .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-        })
-        .catch((err) => {
-
-      async function get3() { // 3e Api
-        await axios
-        .get(`${process.env.REACT_APP_Api3}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-        });
-        }
-        get3();
-        // 3e Api
-        });
-        }
-        get2();
-        // 2e Api
-    });
-    }
-    get(); */
   }, []);
+  
+  
+	const { donneesAffichees: apiMessageFAidb, gererScroll } = useScrollIndexedDB({ donnees:apiMessageFA });
+	console.log("apiMessageFAidb", apiMessageFAidb);
+	console.log("gererScroll", gererScroll);
+	console.log("apiMessageFA", apiMessageFA);
 
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  const idGroupFA = localStorage.getItem("idGroupFA");
+  const idGroupFA = localStorage.getItem("idGroupFA");+-
   const idAccountFA = localStorage.getItem("idPersonConnectedFA");
   const urlVideoFA = localStorage.getItem("urlVideo");
   
