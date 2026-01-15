@@ -544,8 +544,8 @@ export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[
   const stockage = transaction.objectStore(nomStockage);
 
   donnees.forEach(msg => {
-	console.log(`🔍 Message:`, msg);
-    console.log("_id =", msg?._id);
+	//console.log(`🔍 Message:`, msg);
+    //console.log("_id =", msg?._id);
 
 	if (!msg || !msg._id) {
       console.error("❌ MESSAGE SANS _id :", msg);
@@ -554,7 +554,7 @@ export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[
 
     try {
       stockage.put(msg);
-      console.log("✅ Sauvegardé :", msg._id);
+      //console.log("✅ Sauvegardé :", msg._id);
     } catch (e) {
       console.error("💥 ERREUR PUT :", msg, e);
     }
@@ -599,7 +599,7 @@ export function useScrollIndexedDB({ nomStockage="messages", donnees=[], lot=20,
     if (!visible) return;
 
     async function init() {
-		console.log("🚀 donnees venant de MongoDB :", donnees);
+		//console.log("🚀 donnees venant de MongoDB :", donnees);
 		
       if (donnees.length) { await sauvegarderDansIndexedDB(nomStockage, donnees); } // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
 
