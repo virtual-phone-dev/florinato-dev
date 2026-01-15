@@ -534,7 +534,9 @@ export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[
   const stockage = transaction.objectStore(nomStockage);
 
   donnees.forEach(msg => {
-    stockage.put(msg);
+	if (msg && msg._id) {
+      stockage.put(msg); // ✅ 1 message = 1 clé
+    }
   });
 
   return new Promise(resolve => {
