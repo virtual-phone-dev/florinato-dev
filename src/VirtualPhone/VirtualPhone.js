@@ -35149,12 +35149,7 @@ async function DissadAA() {
 	fetchData();
   }, []);
   
-  
-	const { donneesAffichees: apiMessageFAi, gererScroll } = useScrollIndexedDB({ donnees:apiMessageFA });
-	/* console.log("apiMessageFAi", apiMessageFAi);
-	console.log("gererScroll", gererScroll);
-	console.log("apiMessageFA", apiMessageFA); */
-
+ 
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
@@ -35263,9 +35258,9 @@ async function DissadAA() {
 
 	useEffect(() => {
 	  if (!idreq) return;
-	  const result = apiMessageFAi.filter(api => api._id === idreq);
+	  const result = apiMessageFA.filter(api => api._id === idreq);
 	  setInfosPostFA(result);
-	}, [idreq, apiMessageFAi]);
+	}, [idreq, apiMessageFA]);
   
 	// filtre pour obtenir les infos du post - FA
     //const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
@@ -35276,7 +35271,7 @@ async function DissadAA() {
 
 
   //filtre general
-  const filterFA = apiMessageFAi.sort((a, b) => b.id - a.id);
+  const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
     
   // Créer une map pour accéder rapidement aux profils par id
   const profilMap = useMemo(() => {
@@ -35288,20 +35283,25 @@ async function DissadAA() {
 	  });
 	  //console.log("profilMap mis à jour", map);
 	  return map;
-}, [apiMessageFAi]);
+}, [apiMessageFA]);
 
 
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
-  const filterPopularityAccountsFA = apiMessageFAi.filter((api) => api.top ==="1");
+  const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.top ==="1");
+
+  const filterTopFA = apiMessageFA.filter((api) => api.top ==="1");
+  const filterAdminFA = apiMessageFA.filter((api) => api.admin ==="1");
+  const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.adminFlorinato ==="1");
   
-  const filterTopFA = apiMessageFAi.filter((api) => api.top ==="1");
-  const filterAdminFA = apiMessageFAi.filter((api) => api.admin ==="1");
-  const filterAdminFlorinatoFA = apiMessageFAi.filter((api) => api.adminFlorinato ==="1");
+  
+    const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
+	
+	const { donneesAffichees: dataVideoFA, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA });
   
   
   //filtre pour afficher les comptes creer.
-  const comptesRecentsFA = apiMessageFAi.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
+  const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
   const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
@@ -35352,32 +35352,32 @@ async function DissadAA() {
   //const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
   //const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
 
-	const comptesR = apiMessageFAi.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
+	const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
 	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
 	
-	const videosR = apiMessageFAi.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
+	const videosR = apiMessageFA.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
 	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
 
-	const mesComptesR = apiMessageFAi.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
+	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
 	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
 
 
 
    // filtre pour obtenir tout les favoris
-  const allMessageFA = apiMessageFAi.filter((api) => api.idUser === idUserConnectedFA);
-  const allFavoriteAA = apiMessageFAi.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
+  const allMessageFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA);
+  const allFavoriteAA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA && api.type === "20");
   
 
   //on affiche la liste des numeros virtuels délivrés
-  const filter66delivrerNumeroVirtuelAf = apiMessageFAi.filter((api) => api.izocashApp === "1" && api.visible === "1" && api.type === "1").sort((a, b) => b.id - a.id);
+  const filter66delivrerNumeroVirtuelAf = apiMessageFA.filter((api) => api.izocashApp === "1" && api.visible === "1" && api.type === "1").sort((a, b) => b.id - a.id);
 
   //on affiche la liste des contacts 
-  const filter66envoyerContactFA = apiMessageFAi.filter((api) => api.florinatoApp === "1" && api.visible === "1" && api.type === "10").sort((a, b) => b.id - a.id);
+  const filter66envoyerContactFA = apiMessageFA.filter((api) => api.florinatoApp === "1" && api.visible === "1" && api.type === "10").sort((a, b) => b.id - a.id);
 
 
   // verifier s'il existe une conversation avec l'autre utilisateur
   // on verifie en fonction de l'idAccount
-  const getidConversation1 = apiMessageFAi.filter((api) => api.idAccount === idPersonConnectedFA && api.idOther === idOther && api.visible === "1" && api.type === "30");
+  const getidConversation1 = apiMessageFA.filter((api) => api.idAccount === idPersonConnectedFA && api.idOther === idOther && api.visible === "1" && api.type === "30");
   const verifyConversation1 = getidConversation1.length > 0;
 
   const idConversation1 = getidConversation1.map((api) => api._id);
@@ -35385,7 +35385,7 @@ async function DissadAA() {
 
 
   //on verifie en fonction de l'idOther
-  const getidConversation2 = apiMessageFAi.filter((api) => api.idOther === idPersonConnectedFA && api.idAccount === idOther && api.visible === "1" && api.type === "30");
+  const getidConversation2 = apiMessageFA.filter((api) => api.idOther === idPersonConnectedFA && api.idAccount === idOther && api.visible === "1" && api.type === "30");
   const verifyConversation2 = getidConversation2.length > 0;
   
   const idConversation2 = getidConversation2.map((api) => api._id);
@@ -51302,7 +51302,7 @@ son compte Vixinol store */
 		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={filterFA} setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
+			data={dataVideoFA} setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />

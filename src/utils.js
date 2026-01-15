@@ -512,48 +512,38 @@ export function MiniPhrase({ titre1, titre2 }) {
 export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
   return new Promise((resolve, reject) => {
     const requete = indexedDB.open("MessagesDB", 1);
+	const ListesDesTables = ["messages", "videos", "notifications"];
 
     requete.onupgradeneeded = (e) => { //Création ou mise à jour de la base
-      const db = e.target.result;
-	  console.log("🧱 onupgradeneeded déclenché");
+        const base = e.target.result;	  
 	  
-      if (!db.objectStoreNames.contains("messages")) { //Table des messages
-        db.createObjectStore("messages", { keyPath: "_id" }); 
-		console.log("📦 ObjectStore 'messages' créé avec keyPath '_id'");
-      }
-	  
-      // Table des vidéos
-      if (!db.objectStoreNames.contains("videos")) {
-        db.createObjectStore("videos", { keyPath: "_id" });
-      }
+	    ListesDesTables.forEach(nomTable => {
+          if (!base.objectStoreNames.contains(nomTable)) {
+            base.createObjectStore(nomTable, { keyPath: "_id" });
+          }
+        });
 
-      // Table des notifications
-      if (!db.objectStoreNames.contains("notifications")) {
-        db.createObjectStore("notifications", { keyPath: "_id" });
-      };
-
-    requete.onsuccess = () => resolve(requete.result); // ✅ Base ouverte avec succès
-    requete.onerror = () => reject(requete.error); // Erreur
-  });
+		requete.onsuccess = () => resolve(requete.result); // ✅ Base ouverte avec succès
+		
+		requete.onerror = () => {
+		  reject(requete.error);
+		  console.log("Erreur lors de l'ouverture de la base ");
+		};
+	});
+	}
 }
 
 
-export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[]) {
+export async function sauvegarderDansIndexedDB(nomStockage, donnees=[]) {
   if (!Array.isArray(donnees)) return;
 
   const db = await ouvrirDB();
   const transaction = db.transaction(nomStockage, "readwrite");
-  const stockage = transaction.objectStore(nomStockage);
+  const table = transaction.objectStore(nomStockage);
 
-  donnees.forEach((index, item) => {
-	console.log("🧪 ITEM AVANT PUT", index, item, "_id =", item?._id);
-	
-	if (!item || !item._id) {
-		console.warn("⛔ IGNORÉ (pas de _id)", item);
-		return;
-	}
-	
-	stockage.put(item);
+  donnees.forEach(msg => {
+	if (!msg || !msg._id) { console.warn("IGNORÉ (pas de _id)", msg); return; }
+	table.put(msg);
   });
   
   
@@ -569,19 +559,19 @@ export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[
 }
 
 
-export async function lireDepuisIndexedDB(nomStockage="messages") {
+export async function lireDepuisIndexedDB(nomStockage) {
   const db = await ouvrirDB();
   const tr = db.transaction(nomStockage, "readonly");
-  const stockage = tr.objectStore(nomStockage);
+  const table = tr.objectStore(nomStockage);
 
   return new Promise(resolve => {
-    const requete = stockage.getAll();
+    const requete = table.getAll();
     requete.onsuccess = () => resolve(requete.result || []);
   });
 }
 
 
-export function useScrollIndexedDB({ nomStockage="messages", donnees=[], lot=20, visible=true }) {
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
