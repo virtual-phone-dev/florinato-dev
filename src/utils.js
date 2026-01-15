@@ -519,10 +519,18 @@ export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
 	  
       if (!db.objectStoreNames.contains("messages")) { //Table des messages
         db.createObjectStore("messages", { keyPath: "_id" }); 
-		
 		console.log("📦 ObjectStore 'messages' créé avec keyPath '_id'");
       }
-    };
+	  
+      // Table des vidéos
+      if (!db.objectStoreNames.contains("videos")) {
+        db.createObjectStore("videos", { keyPath: "_id" });
+      }
+
+      // Table des notifications
+      if (!db.objectStoreNames.contains("notifications")) {
+        db.createObjectStore("notifications", { keyPath: "_id" });
+      };
 
     requete.onsuccess = () => resolve(requete.result); // ✅ Base ouverte avec succès
     requete.onerror = () => reject(requete.error); // Erreur
@@ -531,46 +539,23 @@ export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
 
 
 export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[]) {
-	console.log("📥 Données reçues :", donnees);
-  console.log("📥 Est un tableau ?", Array.isArray(donnees));
-  
   if (!Array.isArray(donnees)) return;
 
   const db = await ouvrirDB();
-  
-  console.log("🟢 DB ouverte", db);
-  
   const transaction = db.transaction(nomStockage, "readwrite");
   const stockage = transaction.objectStore(nomStockage);
 
-  donnees.forEach(msg => {
+  donnees.forEach((index, item) => {
 	console.log("🧪 ITEM AVANT PUT", index, item, "_id =", item?._id);
-
-	  if (!item || !item._id) {
+	
+	if (!item || !item._id) {
 		console.warn("⛔ IGNORÉ (pas de _id)", item);
 		return;
-	  }
-
-	  stockage.put(item);
-
-/*
-	if (!msg || !msg._id) {
-      console.error("❌ MESSAGE SANS _id :", msg);
-      return;
-    }
-
-    try {
-      stockage.put(msg);
-      //console.log("✅ Sauvegardé :", msg._id);
-    } catch (e) {
-      console.error("💥 ERREUR PUT :", msg, e);
-    } */
+	}
+	
+	stockage.put(item);
   });
-
-/*
-  return new Promise(resolve => {
-    transaction.oncomplete = () => resolve(true);
-  }); */
+  
   
   return new Promise(resolve => {
     transaction.oncomplete = () => {
