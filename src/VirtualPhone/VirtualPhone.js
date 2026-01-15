@@ -35151,9 +35151,9 @@ async function DissadAA() {
   
   
 	const { donneesAffichees: apiMessageFAi, gererScroll } = useScrollIndexedDB({ donnees:apiMessageFA });
-	console.log("apiMessageFAi", apiMessageFAi);
+	/* console.log("apiMessageFAi", apiMessageFAi);
 	console.log("gererScroll", gererScroll);
-	console.log("apiMessageFA", apiMessageFA);
+	console.log("apiMessageFA", apiMessageFA); */
 
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
@@ -35353,7 +35353,7 @@ async function DissadAA() {
   //const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
 
 	const comptesR = apiMessageFAi.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
-	const listAccountFA = rechercherAvecFusie({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
+	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
 	
 	const videosR = apiMessageFAi.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
 	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
