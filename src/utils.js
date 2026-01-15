@@ -544,9 +544,16 @@ export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[
   const stockage = transaction.objectStore(nomStockage);
 
   donnees.forEach(msg => {
-	//console.log(`🔍 Message:`, msg);
-    //console.log("_id =", msg?._id);
+	console.log("🧪 ITEM AVANT PUT", index, item, "_id =", item?._id);
 
+	  if (!item || !item._id) {
+		console.warn("⛔ IGNORÉ (pas de _id)", item);
+		return;
+	  }
+
+	  stockage.put(item);
+
+/*
 	if (!msg || !msg._id) {
       console.error("❌ MESSAGE SANS _id :", msg);
       return;
@@ -557,7 +564,7 @@ export async function sauvegarderDansIndexedDB(nomStockage="messages", donnees=[
       //console.log("✅ Sauvegardé :", msg._id);
     } catch (e) {
       console.error("💥 ERREUR PUT :", msg, e);
-    }
+    } */
   });
 
 /*
