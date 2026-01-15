@@ -555,7 +555,7 @@ export async function lireDepuisIndexedDB(nomStockage="messages") {
 }
 
 
-export function utiliserScrollIndexedDB({ nomStockage="messages", donnees=[], lot=20, visible=true }) {
+export function useScrollIndexedDB({ nomStockage="messages", donnees=[], lot=20, visible=true }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
@@ -595,16 +595,16 @@ export function utiliserScrollIndexedDB({ nomStockage="messages", donnees=[], lo
 
 	return { donneesAffichees, chargerPlus, gererScroll };
 }
-//utiliserScrollIndexedDB
+//useScrollIndexedDB
 
 
 
 export function SpeedMessages({ visible, fermer, data=[] }) {	  
 	//const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = utiliserScrollIndexedDB({ nomStockage: "messages", donnees:data, lot:20, visible});
-	const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = utiliserScrollIndexedDB({ donnees:data });
+	const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
 	
 	async function logMessages() {
-	  console.log("messages de SpeedMessages ici :", messages);
+	  console.log("messages de SpeedMessages ici :", afficherMessages);
 	  console.log("data ici :", data);
 	}	
 
