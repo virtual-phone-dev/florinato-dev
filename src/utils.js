@@ -511,13 +511,13 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
   return new Promise((resolve, reject) => {
-    const requete = indexedDB.open("MessagesDB", 1);
-	const ListesDesTables = ["messages", "videos", "notifications"];
+    const requete = indexedDB.open("MessagesDB", 2);
+	const tables = ["messages", "videos", "notifications"];
 
     requete.onupgradeneeded = (e) => { //Création ou mise à jour de la base
         const base = e.target.result;	  
 	  
-	    ListesDesTables.forEach(nomTable => {
+	    tables.forEach(nomTable => {
           if (!base.objectStoreNames.contains(nomTable)) {
             base.createObjectStore(nomTable, { keyPath: "_id" });
           }
@@ -581,7 +581,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
     if (!visible) return;
 
     async function init() {
-		//console.log("🚀 donnees venant de MongoDB :", donnees);
+		console.log("📦 Sauvegarde vidéos :", nomStockage, donnees.length);
 		
       if (donnees.length) { await sauvegarderDansIndexedDB(nomStockage, donnees); } // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
 

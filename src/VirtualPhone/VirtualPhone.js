@@ -35298,7 +35298,10 @@ async function DissadAA() {
     const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
 	
 	const { donneesAffichees: dataVideoFA, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA });
-  
+	console.log("dataVideoFA", dataVideoFA);
+	console.log("filterVideoFA", filterVideoFA);
+	console.log("nomStockage", nomStockage);
+
   
   //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
