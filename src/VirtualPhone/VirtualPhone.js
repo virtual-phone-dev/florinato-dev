@@ -10,7 +10,7 @@ import "../utils.css";
 import { 
 	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, VideoSearchBlock,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
-	idPersonConnectedFA, GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, ValiderModificationLogique, rechercherAvecFuse,
+	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
 	useScrollIndexedDB,
 	} from "../utils";
 		
@@ -35154,7 +35154,7 @@ async function DissadAA() {
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
-  const idAccountFA = localStorage.getItem("idPersonConnectedFA");
+  //const idAccountFA = localStorage.getItem("idPersonConnectedFA");
   const urlVideoFA = localStorage.getItem("urlVideo");
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
@@ -35228,7 +35228,7 @@ async function DissadAA() {
     //const countryOther = accountOther.map((api) => api.countryCode); // pays
     //const onlineOther = accountOther.map((api) => api.online); // online (pour savoir sa date de derniere connexion)
 
-    const idOtherFA = localStorage.getItem("idOtherFA");
+    //const idOtherFA = localStorage.getItem("idOtherFA");
     const idGroupOther = localStorage.getItem("idGroupChef");
     const idMessageEpingler = localStorage.getItem("idMessageEpingler");
 
@@ -35300,6 +35300,7 @@ async function DissadAA() {
 	const { donneesAffichees: dataVideoFA, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA });
 	console.log("dataVideoFA", dataVideoFA);
 	console.log("filterVideoFA", filterVideoFA);
+	console.log("gererScroll", gererScroll);
 
   
   //filtre pour afficher les comptes creer.
@@ -42062,9 +42063,9 @@ async function PageRedirection66groupOtherFA() {
   async function CloseComptesRecentsPageFA() { setComptesRecentsPageFA(false); }
   
   // ajouter un autre compte a la gestion du compte florinato - FA 
-  const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
-  async function AjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(true); }
-  async function CloseAjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(false); }
+  //const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
+  //async function AjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(true); }
+  //async function CloseAjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(false); }
   
   
   // page ou on affiche toutes les videos - FA 
@@ -51307,7 +51308,7 @@ son compte Vixinol store */
 			data={dataVideoFA} setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
-		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} ouvrirGestionCompteConfirmation={AjouterGestionCompteConfirmation} />
+		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
 		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
 		

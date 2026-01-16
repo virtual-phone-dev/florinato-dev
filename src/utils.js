@@ -816,8 +816,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
         {/* align */}
         </div>
         {/* favoriteFA */}
-	</>);
-}
+	</>)}
 {/* PopupDuBasTemplate */}
 
 
@@ -1035,14 +1034,14 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
 		{/* {afficherVideo && (!verifierId || id) && (<> */}
 		{afficherVideo && (<> 
 		<div className="video-card">
-		<img className="video-thumb" src={api.urlPhoto} ref={imgRef} /> 
+		<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} /> 
 		<pre className={titrecss}>{gettitre}</pre>
 		<p className={cliccss}>{api.clic} clic</p> </div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
 		{afficherPhoto && (<> 
 		<div className="video-card">
-		<img className="video-thumb" src={api.urlPhoto} ref={imgRef} />
+		<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} />
 		<pre className={titrecss}>{gettitre}</pre>
 		<p className={cliccss}>{api.clic} clic</p> </div></>)}
     </>
