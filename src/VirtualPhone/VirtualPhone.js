@@ -35300,7 +35300,6 @@ async function DissadAA() {
 	const { donneesAffichees: dataVideoFA, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA });
 	console.log("dataVideoFA", dataVideoFA);
 	console.log("filterVideoFA", filterVideoFA);
-	console.log("nomStockage", nomStockage);
 
   
   //filtre pour afficher les comptes creer.
