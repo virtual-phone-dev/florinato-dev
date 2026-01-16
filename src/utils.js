@@ -534,34 +534,69 @@ export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
 }
 
 
-export async function sauvegarderDansIndexedDB(nomStockage, donnees=[]) {
-  if (!Array.isArray(donnees)) return;
+export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
+  console.log("🟡 sauvegarderDansIndexedDB APPELÉE");
+  console.log("➡️ nomStockage :", nomStockage);
+  console.log("➡️ donnees reçues :", donnees);
+  console.log("➡️ nombre d'éléments :", donnees?.length);
+
+  if (!Array.isArray(donnees)) {
+    console.error("❌ donnees n'est PAS un tableau");
+    return;
+  }
+
+  if (!donnees.length) {
+    console.warn("⚠️ donnees est un tableau VIDE");
+    return;
+  }
 
   const db = await ouvrirDB();
-  console.log("Base de données ouverte:", db);
-  
-  const transaction = db.transaction(nomStockage, "readwrite");
-  console.log("Transaction créée:", transaction);
-  
-  const table = transaction.objectStore(nomStockage);
-  console.log("Table existante:", table);
+  console.log("✅ DB ouverte :", db.name, db.version);
+  console.log("📦 tables existantes :", db.objectStoreNames);
 
-  donnees.forEach(msg => {
-	console.log("Traitement de la donnée:", msg);
-	
-	if (!msg || !msg._id) { console.warn("IGNORÉ (pas de _id)", msg); return; }
-	table.put(msg);
+  if (!db.objectStoreNames.contains(nomStockage)) {
+    console.error(`❌ La table "${nomStockage}" N'EXISTE PAS`);
+    return;
+  }
+
+  const transaction = db.transaction(nomStockage, "readwrite");
+  const table = transaction.objectStore(nomStockage);
+
+  transaction.onabort = (e) => {
+    console.error("🛑 TRANSACTION ABORT", e.target?.error);
+  };
+
+  transaction.onerror = (e) => {
+    console.error("💥 TRANSACTION ERROR", e.target?.error);
+  };
+
+  donnees.forEach((msg, index) => {
+    console.log(`🔍 élément ${index}`, msg);
+
+    if (!msg || !msg._id) {
+      console.warn("⚠️ IGNORÉ (pas de _id)", msg);
+      return;
+    }
+
+    try {
+      const req = table.put(msg);
+
+      req.onsuccess = () => {
+        console.log(`✅ PUT OK (_id=${msg._id})`);
+      };
+
+      req.onerror = (e) => {
+        console.error(`❌ PUT ERROR (_id=${msg._id})`, e.target.error);
+      };
+    } catch (err) {
+      console.error("💣 ERREUR JS pendant put()", err);
+    }
   });
-  
-  
+
   return new Promise(resolve => {
     transaction.oncomplete = () => {
-      console.log("🏁 Transaction terminée");
+      console.log("🏁 TRANSACTION TERMINÉE AVEC SUCCÈS");
       resolve(true);
-    };
-	
-    transaction.onerror = e => {
-      console.error("💥 Transaction error", e);
     };
   });
 }
