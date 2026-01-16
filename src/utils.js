@@ -619,24 +619,25 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
   
-		
+  
   useEffect(() => {
-    if (!visible) return;
+	  if (!visible) return;
+	  if (!Array.isArray(donnees)) return;
+	  if (donnees.length === 0) return; // on attend les vraies données
+	  console.log("🚀 DONNÉES ARRIVÉES POUR INDEXEDDB :", nomStockage, donnees.length);
 
-    async function init() {
-		console.log("📦 Sauvegarde vidéos a1 :", nomStockage, donnees.length);
-		
-      if (donnees) { await sauvegarderDansIndexedDB(nomStockage, donnees); } // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
+	  async function syncIndexedDB() {
+		await sauvegarderDansIndexedDB(nomStockage, donnees); // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
+		const donneesLocales = await lireDepuisIndexedDB(nomStockage); // 2. Lire depuis IndexedDB
+		console.log("📥 LUES DEPUIS INDEXEDDB :", donneesLocales.length);
 
-      const donneesLocales = await lireDepuisIndexedDB(nomStockage); // 2. Lire depuis IndexedDB
-      setToutesDonnees(donneesLocales);
-	  
-      setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
-      setLotActuel(lot);
-    }
+		setToutesDonnees(donneesLocales);
+		setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
+		setLotActuel(lot);
+	  }
 
-    init();
-  }, [visible, donnees, nomStockage, lot]);
+	  syncIndexedDB();
+}, [donnees, visible, nomStockage]); // ⬅️ lot retiré volontairement
 
 
 	async function chargerPlus() { //pour scroller encore , scroller plus )
