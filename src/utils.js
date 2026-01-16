@@ -817,7 +817,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
         </div>
         {/* favoriteFA */}
 	</>)}
-{/* PopupDuBasTemplate */}
+// PopupDuBasTemplate 
 
 
 export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, clicVideo, voirVideo, video }) {

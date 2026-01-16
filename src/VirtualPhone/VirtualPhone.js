@@ -35269,22 +35269,37 @@ async function DissadAA() {
     const titreFA = infosPostFA.map((api) => api.message); // message
 	
 
-
   //filtre general
   const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
-    
+	
+	
   // Créer une map pour accéder rapidement aux profils par id
-  const profilMap = useMemo(() => {
+  const { filterFA, profilMap } = useMemo(() => {
+	  const sorted = [...apiMessageFA].sort((a, b) => b.id - a.id);
 	  const map = {};
-	  filterFA.forEach(item => {
+
+	  sorted.forEach(item => {
+		if (item.type === "10") {
+		  map[item._id] = item;
+		}
+	  });
+
+	  return { filterFA: sorted, profilMap: map };
+}, [apiMessageFA]);
+
+  
+  /*
+  const profilMap = useMemo(() => {
+	const map = {};
+	apiMessageFA.slice().sort((a, b) => b.id - a.id)
+	.forEach(item => {
 		if (item.type === "10") {
 		  map[item._id] = item;
 		}
 	  });
 	  //console.log("profilMap mis à jour", map);
 	  return map;
-}, [apiMessageFA]);
-
+}, [apiMessageFA]); */
 
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
