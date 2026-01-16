@@ -624,9 +624,9 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
     if (!visible) return;
 
     async function init() {
-		console.log("📦 Sauvegarde vidéos :", nomStockage, donnees.length);
+		console.log("📦 Sauvegarde vidéos a1 :", nomStockage, donnees.length);
 		
-      if (donnees.length) { await sauvegarderDansIndexedDB(nomStockage, donnees); } // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
+      if (donnees) { await sauvegarderDansIndexedDB(nomStockage, donnees); } // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
 
       const donneesLocales = await lireDepuisIndexedDB(nomStockage); // 2. Lire depuis IndexedDB
       setToutesDonnees(donneesLocales);
