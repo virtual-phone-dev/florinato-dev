@@ -44331,7 +44331,9 @@ async function SendMessagetype42() {
 
 
 
-
+  Line 44353:57:  Unnecessary escape character: \/  no-useless-escape
+  
+  
 // url pour tomber directement sur la page
 // url pour tomber directement sur la page
 
@@ -44350,7 +44352,8 @@ async function SendMessagetype42() {
 	    let id = null;
 
 		// URL du style /profile/12345
-		const match = location.pathname.match(/^\/profile\/([^\/]+)$/);
+		//const match = location.pathname.match(/^\/profile\/([^\/]+)$/);
+		const match = location.pathname.match(/^\/profile\/([^/]+)$/);
 		if (match) {
 		  id = match[1]; // Récupère l'ID dans la partie après /profile/
 		  console.log("id trouver dans l'url ", id);
