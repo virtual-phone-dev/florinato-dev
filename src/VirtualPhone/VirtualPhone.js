@@ -35270,7 +35270,7 @@ async function DissadAA() {
 	
 
   //filtre general
-  const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
+  //const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
 	
 	
   // Créer une map pour accéder rapidement aux profils par id
