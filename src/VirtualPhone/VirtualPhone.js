@@ -44329,10 +44329,6 @@ async function SendMessagetype42() {
 // SendMessagetype42
 
 
-
-
-  Line 44353:57:  Unnecessary escape character: \/  no-useless-escape
-  
   
 // url pour tomber directement sur la page
 // url pour tomber directement sur la page
