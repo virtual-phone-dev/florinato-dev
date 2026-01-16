@@ -538,10 +538,17 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees=[]) {
   if (!Array.isArray(donnees)) return;
 
   const db = await ouvrirDB();
+  console.log("Base de données ouverte:", db);
+  
   const transaction = db.transaction(nomStockage, "readwrite");
+  console.log("Transaction créée:", transaction);
+  
   const table = transaction.objectStore(nomStockage);
+  console.log("Table existante:", table);
 
   donnees.forEach(msg => {
+	console.log("Traitement de la donnée:", msg);
+	
 	if (!msg || !msg._id) { console.warn("IGNORÉ (pas de _id)", msg); return; }
 	table.put(msg);
   });
@@ -552,6 +559,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees=[]) {
       console.log("🏁 Transaction terminée");
       resolve(true);
     };
+	
     transaction.onerror = e => {
       console.error("💥 Transaction error", e);
     };
