@@ -667,11 +667,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 
 
 	async function chargerPlus() { //pour scroller encore , scroller plus )
-		//if (lotActuel >= toutesDonnees.length) { console.log("PLUS RIEN À CHARGER"); return; }
-		
-		const prochainLot = lotActuel + lot;
-		//console.log("⬇️ CHARGEMENT PLUS :", { lotActuel, prochainLot, total: toutesDonnees.length });
-		
+		const prochainLot = lotActuel + lot;		
 		setDonneesAffichees(prev => prev.concat(toutesDonnees.slice(lotActuel, prochainLot)) );
 		setLotActuel(prochainLot);
 	};
