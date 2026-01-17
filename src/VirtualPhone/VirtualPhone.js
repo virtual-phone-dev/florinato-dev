@@ -35314,6 +35314,7 @@ async function DissadAA() {
 
 	const { donneesAffichees: dataVideoFA, gererScroll, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
 	console.log("dataVideoFA", dataVideoFA);
+	console.log("donneesAffichees", donneesAffichees);
 	console.log("filterVideoFA", filterVideoFA);
 	console.log("toutesDonnees", toutesDonnees);
 	console.log("maRechercheVideoFA ici..", maRechercheVideoFA);
@@ -35375,11 +35376,11 @@ async function DissadAA() {
 	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
 	
 	const videosR = toutesDonnees.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
-	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
+	const videosRecherchees = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
+	const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, donneesAffichees.length) : donneesAffichees;
 
 	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
 	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
-
 
 
    // filtre pour obtenir tout les favoris
