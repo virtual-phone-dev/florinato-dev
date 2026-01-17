@@ -620,50 +620,42 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
+  const dejaInitialise = useRef(false);
 
 
 	// useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB)
 	useEffect(() => {
-	  if (!visible) return;
-	  if (!nomStockage) return;
-	  console.log("📖 LECTURE INITIALE INDEXEDDB :", nomStockage);
+	  if (!visible || !nomStockage) return;
 
 	  async function lireLocal() {
 		const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-		console.log("📦 DONNÉES LOCALES AU DÉMARRAGE :", donneesLocales.length);
 
-		if (donneesLocales.length > 0) {
+		if (donneesLocales.length > 0 && !dejaInitialise.current) {
 		  setToutesDonnees(donneesLocales);
 		  setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
 		  setLotActuel(lot);
+		  dejaInitialise.current = true; // 🔒
 		}
 	  }
 
 	  lireLocal();
-	}, [nomStockage, visible, lot]);
-	
+	}, [nomStockage, visible]);
+
 	
 	// useEffect 2 (agit quand les donnees mongodb arrive)
 	useEffect(() => {
-	  if (!visible) return;
-	  if (!Array.isArray(donnees)) return;
-	  if (donnees.length === 0) return;
-	  if (!nomStockage) return;
-	  console.log("🔄 SYNC INDEXEDDB ← MONGODB :", nomStockage, donnees.length);
+	  if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage) return;
 
 	  async function syncIndexedDB() {
-		await sauvegarderDansIndexedDB(nomStockage, donnees); // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
+		await sauvegarderDansIndexedDB(nomStockage, donnees);
 
-		const donneesLocales = await lireDepuisIndexedDB(nomStockage); // 2. Lire depuis IndexedDB
-		console.log("📥 APRÈS SYNC INDEXEDDB :", donneesLocales.length);
-
+		const donneesLocales = await lireDepuisIndexedDB(nomStockage);
 		setToutesDonnees(donneesLocales);
-		setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
-		setLotActuel(lot);
+		//  NE PAS reset donneesAffichees ni lotActuel
 	  }
 
 	  syncIndexedDB();
-	}, [donnees, visible, nomStockage, lot]);
+	}, [donnees, visible, nomStockage]);
 
 
 	async function chargerPlus() { //pour scroller encore , scroller plus )
