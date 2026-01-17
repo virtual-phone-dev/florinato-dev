@@ -35311,10 +35311,12 @@ async function DissadAA() {
   
   
     const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
-	
-	const { donneesAffichees: dataVideoFA, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA });
+
+	const { donneesAffichees: dataVideoFA, gererScroll, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
 	console.log("dataVideoFA", dataVideoFA);
 	console.log("filterVideoFA", filterVideoFA);
+	console.log("toutesDonnees", toutesDonnees);
+	console.log("maRechercheVideoFA ici..", maRechercheVideoFA);
 
   
   //filtre pour afficher les comptes creer.
@@ -35372,7 +35374,7 @@ async function DissadAA() {
 	const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
 	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
 	
-	const videosR = dataVideoFA.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
+	const videosR = toutesDonnees.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
 	const listVideoFA = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
 
 	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);

@@ -616,7 +616,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
-export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true }) {
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, maRechercheVideo }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
@@ -634,7 +634,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 		  setToutesDonnees(donneesLocales);
 		  setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
 		  setLotActuel(lot);
-		  dejaInitialise.current = true; // 🔒
+		  dejaInitialise.current = true; // 
 		}
 	  }
 
@@ -656,6 +656,12 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 
 	  syncIndexedDB();
 	}, [donnees, visible, nomStockage]);
+	
+	
+	useEffect(() => { //on reinitialise le lot , si maRechercheVideo change
+	  setLotActuel(lot);
+	}, [maRechercheVideo]);
+
 
 
 	async function chargerPlus() { //pour scroller encore , scroller plus )
@@ -673,10 +679,9 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 		}
 	};
 
-	return { donneesAffichees, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
-
 
 
 export function SpeedMessages({ visible, fermer, data=[] }) {	  
