@@ -583,9 +583,9 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
     try {
       const req = table.put(msg);
 
-      req.onsuccess = () => {
+      /* req.onsuccess = () => {
         console.log(`✅ PUT OK (_id=${msg._id})`);
-      };
+      }; */
 
       req.onerror = (e) => {
         console.error(`❌ PUT ERROR (_id=${msg._id})`, e.target.error);
@@ -901,7 +901,7 @@ export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, set
 export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
-		<div className="page-blanche" onClick={gererScroll}> 
+		<div className="page-blanche" onScroll={gererScroll}> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
 			
 			<VideoSearchBlock data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
