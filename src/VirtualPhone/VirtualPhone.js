@@ -35310,14 +35310,7 @@ async function DissadAA() {
   const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.adminFlorinato ==="1");
   
   
-    const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
-
-	const { donneesAffichees: dataVideoFA, gererScroll, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
-	console.log("dataVideoFA", dataVideoFA);
-	console.log("filterVideoFA", filterVideoFA);
-	console.log("toutesDonnees", toutesDonnees);
-	console.log("maRechercheVideoFA ici..", maRechercheVideoFA);
-
+    
   
   //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
@@ -35331,6 +35324,15 @@ async function DissadAA() {
   if (mySearchFA) { localStorage.setItem("mySearchFA", mySearchFA); }
   if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
   if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } // rechercher parmi les comptes
+
+
+	const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
+
+	const { donneesAffichees: dataVideoFA, gererScroll, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
+	console.log("dataVideoFA", dataVideoFA);
+	console.log("filterVideoFA", filterVideoFA);
+	console.log("toutesDonnees", toutesDonnees);
+	console.log("maRechercheVideoFA ici..", maRechercheVideoFA);
 
 /*
     const [mySearchFA, setMySearchFA] = useLocalStorageState("mySearchFA"); //rechercher parmi les comptes

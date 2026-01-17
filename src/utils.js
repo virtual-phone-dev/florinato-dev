@@ -660,7 +660,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	
 	useEffect(() => { //on reinitialise le lot , si maRechercheVideo change
 	  setLotActuel(lot);
-	}, [maRechercheVideo]);
+	}, [maRechercheVideo, lot]);
 
 
 
