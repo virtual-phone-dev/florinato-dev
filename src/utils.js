@@ -619,7 +619,6 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
   
-  
   useEffect(() => {
 	  if (!visible) return;
 	  if (!Array.isArray(donnees)) return;
@@ -637,7 +636,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	  }
 
 	  syncIndexedDB();
-}, [donnees, visible, nomStockage]); // ⬅️ lot retiré volontairement
+}, [donnees, visible, nomStockage, lot]); // ⬅️ lot retiré volontairement
 
 
 	async function chargerPlus() { //pour scroller encore , scroller plus )
