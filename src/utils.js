@@ -574,8 +574,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   };
 
   donnees.forEach((msg, index) => {
-    console.log(`🔍 élément ${index}`, msg);
-
+    //console.log(`🔍 élément ${index}`, msg);
     if (!msg || !msg._id) {
       console.warn("⚠️ IGNORÉ (pas de _id)", msg);
       return;
@@ -876,10 +875,10 @@ export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, set
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, voirVideo, listVideo, valeur, setValeur, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
-		<div className="page-blanche"> 
+		<div className="page-blanche" onClick={gererScroll}> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
 			
 			<VideoSearchBlock data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />

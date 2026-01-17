@@ -51319,7 +51319,7 @@ son compte Vixinol store */
 		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={dataVideoFA} setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
+			data={dataVideoFA} setId={setId} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
