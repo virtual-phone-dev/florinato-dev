@@ -639,7 +639,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	  }
 
 	  lireLocal();
-	}, [nomStockage, visible]);
+	}, [nomStockage, visible, lot]);
 
 	
 	// useEffect 2 (agit quand les donnees mongodb arrive)
