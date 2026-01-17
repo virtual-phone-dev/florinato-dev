@@ -620,20 +620,42 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
-  
-  useEffect(() => {
+
+
+	// useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB)
+	useEffect(() => {
+	  if (!visible) return;
+	  if (!nomStockage) return;
+	  console.log("📖 LECTURE INITIALE INDEXEDDB :", nomStockage);
+
+	  async function lireLocal() {
+		const donneesLocales = await lireDepuisIndexedDB(nomStockage);
+		console.log("📦 DONNÉES LOCALES AU DÉMARRAGE :", donneesLocales.length);
+
+		if (donneesLocales.length > 0) {
+		  setToutesDonnees(donneesLocales);
+		  setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
+		  setLotActuel(lot);
+		}
+	  }
+
+	  lireLocal();
+	}, [nomStockage, visible, lot]);
+	
+	
+	// useEffect 2 (agit quand les donnees mongodb arrive)
+	useEffect(() => {
 	  if (!visible) return;
 	  if (!Array.isArray(donnees)) return;
-	  if (donnees.length === 0) return; // on attend les vraies données
+	  if (donnees.length === 0) return;
 	  if (!nomStockage) return;
-	  //if (!nomStockage) { return { donneesAffichees:[], chargerPlus:()=>{}, gererScroll:()=>{} }; }
-	  
-	  console.log("🚀 DONNÉES ARRIVÉES POUR INDEXEDDB :", nomStockage, donnees.length);
+	  console.log("🔄 SYNC INDEXEDDB ← MONGODB :", nomStockage, donnees.length);
 
 	  async function syncIndexedDB() {
 		await sauvegarderDansIndexedDB(nomStockage, donnees); // 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
+
 		const donneesLocales = await lireDepuisIndexedDB(nomStockage); // 2. Lire depuis IndexedDB
-		console.log("📥 LUES DEPUIS INDEXEDDB :", donneesLocales.length);
+		console.log("📥 APRÈS SYNC INDEXEDDB :", donneesLocales.length);
 
 		setToutesDonnees(donneesLocales);
 		setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
@@ -641,7 +663,8 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	  }
 
 	  syncIndexedDB();
-}, [donnees, visible, nomStockage, lot]); // ⬅️ lot retiré volontairement
+	}, [donnees, visible, nomStockage, lot]);
+
 
 
 	async function chargerPlus() { //pour scroller encore , scroller plus )
