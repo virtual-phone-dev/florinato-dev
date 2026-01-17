@@ -509,28 +509,31 @@ export function MiniPhrase({ titre1, titre2 }) {
 )}
 
 
-export function ouvrirDB() { // logique pour ouvrir la base de donnees indexedDB
+export function ouvrirDB() {
   return new Promise((resolve, reject) => {
     const requete = indexedDB.open("MessagesDB", 2);
-	const tables = ["messages", "videos", "notifications"];
+    const tables = ["messages", "videos", "notifications"];
 
-    requete.onupgradeneeded = (e) => { //Création ou mise à jour de la base
-        const base = e.target.result;	  
-	  
-	    tables.forEach(nomTable => {
-          if (!base.objectStoreNames.contains(nomTable)) {
-            base.createObjectStore(nomTable, { keyPath: "_id" });
-          }
-        });
+    requete.onupgradeneeded = (e) => {
+      const base = e.target.result;
 
-		requete.onsuccess = () => resolve(requete.result); // ✅ Base ouverte avec succès
-		
-		requete.onerror = () => {
-		  reject(requete.error);
-		  console.log("Erreur lors de l'ouverture de la base ");
-		};
-	};
-	})
+      tables.forEach(nomTable => {
+        if (!base.objectStoreNames.contains(nomTable)) {
+          base.createObjectStore(nomTable, { keyPath: "_id" });
+        }
+      });
+    };
+
+    requete.onsuccess = () => {
+      console.log("✅ IndexedDB ouverte");
+      resolve(requete.result);
+    };
+
+    requete.onerror = () => {
+      console.error("❌ Erreur ouverture IndexedDB", requete.error);
+      reject(requete.error);
+    };
+  });
 }
 
 
@@ -623,6 +626,9 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	  if (!visible) return;
 	  if (!Array.isArray(donnees)) return;
 	  if (donnees.length === 0) return; // on attend les vraies données
+	  if (!nomStockage) return;
+	  //if (!nomStockage) { return { donneesAffichees:[], chargerPlus:()=>{}, gererScroll:()=>{} }; }
+	  
 	  console.log("🚀 DONNÉES ARRIVÉES POUR INDEXEDDB :", nomStockage, donnees.length);
 
 	  async function syncIndexedDB() {
