@@ -35329,10 +35329,10 @@ async function DissadAA() {
 	const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
 
 	const { donneesAffichees: dataVideoFA, gererScroll, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
-	console.log("dataVideoFA", dataVideoFA);
+	/*console.log("dataVideoFA", dataVideoFA);
 	console.log("filterVideoFA", filterVideoFA);
 	console.log("toutesDonnees", toutesDonnees);
-	console.log("maRechercheVideoFA ici..", maRechercheVideoFA);
+	console.log("maRechercheVideoFA ici..", maRechercheVideoFA); */
 
 /*
     const [mySearchFA, setMySearchFA] = useLocalStorageState("mySearchFA"); //rechercher parmi les comptes
@@ -51607,7 +51607,7 @@ g
               </div>
 			  
 			  
-			<VideoSearchBlock data={filterFA} listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+			<VideoSearchBlock data={dataVideoFA} listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
               <div className="api2">
@@ -52717,7 +52717,7 @@ g
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
 			<div className="overflow-x">
-			{filterFA.map((api) => (<>
+			{dataVideoFA.map((api) => (<>
 			<div onClick={() => {setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId/>
 			</div>
@@ -52727,7 +52727,7 @@ g
 			
 			
 			<div className="overflow-x">
-			{filterFA.map((api) => (<>
+			{dataVideoFA.map((api) => (<>
 			<div onClick={() => {setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
@@ -52735,7 +52735,7 @@ g
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={filterFA} setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos data={dataVideoFA} setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>
