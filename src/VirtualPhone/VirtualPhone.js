@@ -35270,11 +35270,11 @@ async function DissadAA() {
 	
 
   //filtre general
-  //const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
+  const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
 	
 	
   // Créer une map pour accéder rapidement aux profils par id
-  const { filterFA, profilMap } = useMemo(() => {
+ /* const { filterFA, profilMap } = useMemo(() => {
 	  const sorted = [...apiMessageFA].sort((a, b) => b.id - a.id);
 	  const map = {};
 
@@ -35285,7 +35285,19 @@ async function DissadAA() {
 	  });
 
 	  return { filterFA: sorted, profilMap: map };
-}, [apiMessageFA]);
+}, [apiMessageFA]); */
+
+
+const profilsFA = apiMessageFA.filter(api => api.type === "10");
+const { donneesAffichees: dataComptesFA, gererScroll } = useScrollIndexedDB({ nomStockage: "comptes", donnees:profilsFA });
+
+
+const profilMap = useMemo(() => {
+  const map = {};
+  dataComptesFA.forEach(profil => { map[profil._id] = profil; });
+  return map;
+}, [dataComptesFA]);
+
 
   
   /*
@@ -35327,12 +35339,19 @@ async function DissadAA() {
 
 
 	const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
+	//const filterConversationFA = apiMessageFA.filter((api) => api.type ==="30" || api.type ==="50");
+	
+	const typesConversation = ["30", "50"];
+	const filterConversationFA = apiMessageFA.filter(api => typesConversation.includes(api.type));
+
 
 	const { donneesAffichees: dataVideoFA, gererScroll, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
+	const { donneesAffichees: dataConversationFA, gererScroll } = useScrollIndexedDB({ nomStockage: "messages", donnees:filterConversationFA });
 	/*console.log("dataVideoFA", dataVideoFA);
 	console.log("filterVideoFA", filterVideoFA);
 	console.log("toutesDonnees", toutesDonnees);
 	console.log("maRechercheVideoFA ici..", maRechercheVideoFA); */
+
 
 /*
     const [mySearchFA, setMySearchFA] = useLocalStorageState("mySearchFA"); //rechercher parmi les comptes
@@ -51308,7 +51327,7 @@ son compte Vixinol store */
 
           <div className="body">
             <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
-              {filterFA.map((api) => {				
+              {dataConversationFA.map((api) => {				
 				return ( <ChildApi66florinatoApp api={api} profilMap={profilMap} /> )} 
               )}
             </div> 
