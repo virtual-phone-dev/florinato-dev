@@ -525,7 +525,7 @@ export function ouvrirDB() {
     };
 
     requete.onsuccess = () => {
-      console.log("✅ IndexedDB ouverte");
+      //console.log("✅ IndexedDB ouverte");
       resolve(requete.result);
     };
 
@@ -538,27 +538,27 @@ export function ouvrirDB() {
 
 
 export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
-  console.log("🟡 sauvegarderDansIndexedDB APPELÉE");
+  /*console.log("🟡 sauvegarderDansIndexedDB APPELÉE");
   console.log("➡️ nomStockage :", nomStockage);
   console.log("➡️ donnees reçues :", donnees);
-  console.log("➡️ nombre d'éléments :", donnees?.length);
+  console.log("➡️ nombre d'éléments :", donnees?.length); */
 
   if (!Array.isArray(donnees)) {
-    console.error("❌ donnees n'est PAS un tableau");
+    //console.error("❌ donnees n'est PAS un tableau");
     return;
   }
 
   if (!donnees.length) {
-    console.warn("⚠️ donnees est un tableau VIDE");
+    //console.warn("⚠️ donnees est un tableau VIDE");
     return;
   }
 
   const db = await ouvrirDB();
-  console.log("✅ DB ouverte :", db.name, db.version);
-  console.log("📦 tables existantes :", db.objectStoreNames);
+  //console.log("✅ DB ouverte :", db.name, db.version);
+  //console.log("📦 tables existantes :", db.objectStoreNames);
 
   if (!db.objectStoreNames.contains(nomStockage)) {
-    console.error(`❌ La table "${nomStockage}" N'EXISTE PAS`);
+    //console.error(`❌ La table "${nomStockage}" N'EXISTE PAS`);
     return;
   }
 
@@ -576,7 +576,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   donnees.forEach((msg, index) => {
     //console.log(`🔍 élément ${index}`, msg);
     if (!msg || !msg._id) {
-      console.warn("⚠️ IGNORÉ (pas de _id)", msg);
+      //console.warn("⚠️ IGNORÉ (pas de _id)", msg);
       return;
     }
 
