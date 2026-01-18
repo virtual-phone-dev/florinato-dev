@@ -35149,7 +35149,11 @@ async function DissadAA() {
 	fetchData();
   }, []);
   
- 
+  
+	useEffect(() => {
+	  console.log("apiMessageFA a changé :", apiMessageFA.length);
+	}, [apiMessageFA]);
+  
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
