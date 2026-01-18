@@ -35270,11 +35270,11 @@ async function DissadAA() {
 	
 
   //filtre general
-  const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
+  //const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
 	
 	
   // Créer une map pour accéder rapidement aux profils par id
- /* const { filterFA, profilMap } = useMemo(() => {
+  const { filterFA, profilMap } = useMemo(() => {
 	  const sorted = [...apiMessageFA].sort((a, b) => b.id - a.id);
 	  const map = {};
 
@@ -35285,19 +35285,18 @@ async function DissadAA() {
 	  });
 
 	  return { filterFA: sorted, profilMap: map };
-}, [apiMessageFA]); */
+}, [apiMessageFA]); 
 
 
 const profilsFA = apiMessageFA.filter(api => api.type === "10");
 const { donneesAffichees: dataComptesFA } = useScrollIndexedDB({ nomStockage: "videos", donnees:profilsFA });
 
 
-const profilMap = useMemo(() => {
+/* const profilMap = useMemo(() => {
   const map = {};
   dataComptesFA.forEach(profil => { map[profil._id] = profil; });
   return map;
-}, [dataComptesFA]);
-
+}, [dataComptesFA]); */
 
   
   /*
@@ -35320,8 +35319,6 @@ const profilMap = useMemo(() => {
   const filterTopFA = apiMessageFA.filter((api) => api.top ==="1");
   const filterAdminFA = apiMessageFA.filter((api) => api.admin ==="1");
   const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.adminFlorinato ==="1");
-  
-  
     
   
   //filtre pour afficher les comptes creer.
