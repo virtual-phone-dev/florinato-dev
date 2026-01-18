@@ -35433,14 +35433,18 @@ console.log("dataComptesFA", dataComptesFA);
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
-  const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
+  const [mySearchFA, setMySearchFA] = useState("");
+  const [maRechercheVideoFA, setmaRechercheVideoFA] = useState("");
+  const [rechercheMesComptesFA, setrechercheMesComptesFA] = useState("");
+  
+  /* const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
   const [maRechercheVideoFA, setmaRechercheVideoFA] = useState(() => localStorage.getItem("maRechercheVideoFA") || "");
-  const [rechercheMesComptesFA, setrechercheMesComptesFA] = useState(() => localStorage.getItem("rechercheMesComptesFA") || "");
+  const [rechercheMesComptesFA, setrechercheMesComptesFA] = useState(() => localStorage.getItem("rechercheMesComptesFA") || ""); */
   
    //const [mySearchFA, setMySearchFA] = useState("");
-  if (mySearchFA) { localStorage.setItem("mySearchFA", mySearchFA); }
+  /* if (mySearchFA) { localStorage.setItem("mySearchFA", mySearchFA); }
   if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
-  if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } // rechercher parmi les comptes
+  if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
 
 
 	const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
