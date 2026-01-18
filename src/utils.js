@@ -544,12 +544,12 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   console.log("➡️ nombre d'éléments :", donnees?.length); */
 
   if (!Array.isArray(donnees)) {
-    //console.error("❌ donnees n'est PAS un tableau");
+    console.error("❌ donnees n'est PAS un tableau");
     return;
   }
 
   if (!donnees.length) {
-    //console.warn("⚠️ donnees est un tableau VIDE");
+    console.warn("⚠️ donnees est un tableau VIDE");
     return;
   }
 
@@ -558,7 +558,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   //console.log("📦 tables existantes :", db.objectStoreNames);
 
   if (!db.objectStoreNames.contains(nomStockage)) {
-    //console.error(`❌ La table "${nomStockage}" N'EXISTE PAS`);
+    console.error(`❌ La table "${nomStockage}" N'EXISTE PAS`);
     return;
   }
 
@@ -576,7 +576,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   donnees.forEach((msg, index) => {
     //console.log(`🔍 élément ${index}`, msg);
     if (!msg || !msg._id) {
-      //console.warn("⚠️ IGNORÉ (pas de _id)", msg);
+      console.warn("⚠️ IGNORÉ (pas de _id)", msg);
       return;
     }
 
@@ -597,7 +597,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
 
   return new Promise(resolve => {
     transaction.oncomplete = () => {
-      console.log("🏁 TRANSACTION TERMINÉE AVEC SUCCÈS");
+	//console.log("🏁 TRANSACTION TERMINÉE AVEC SUCCÈS");
       resolve(true);
     };
   });
