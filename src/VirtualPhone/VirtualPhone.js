@@ -35346,11 +35346,10 @@ const profilMap = useMemo(() => {
 
 
 	const { donneesAffichees: dataVideoFA, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
-	const { donneesAffichees: dataConversationFA } = useScrollIndexedDB({ nomStockage: "messages", donnees:filterConversationFA });
-	/*console.log("dataVideoFA", dataVideoFA);
-	console.log("filterVideoFA", filterVideoFA);
-	console.log("toutesDonnees", toutesDonnees);
-	console.log("maRechercheVideoFA ici..", maRechercheVideoFA); */
+	const { donneesAffichees: dataConversationFA, toutesDonnees } = useScrollIndexedDB({ nomStockage: "messages", donnees:filterConversationFA });
+	console.log("dataConversationFA", dataConversationFA);
+	console.log("filterConversationFA", filterConversationFA); 
+	console.log("toutesDonnees", toutesDonnees); 
 
 
 /*
