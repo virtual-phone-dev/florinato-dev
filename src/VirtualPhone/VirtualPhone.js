@@ -44551,7 +44551,7 @@ async function verificationAvantExecuterActionFA({ loader, type, dataPUT, dataPO
   const existe = filterInfos.length > 0;
 
   if (existe) { await ExecuterActionFA({ dataPUT, id:idInfos, loader, actions: ["put"] }); } // donnees existe deja , alors on fait un put
-  else { await ExecuterActionFA({ dataPOST: {...dataPOST2, idAccount, idOther:idreq, visible:1, type, loader } }); } // donnees n'existe pas , alors on fait un post
+  else { await ExecuterActionFA({ dataPOST: {...dataPOST2, idAccount, idOther:idreq, visible:1, type }, loader }); } // donnees n'existe pas , alors on fait un post
 }
 
 
