@@ -35444,11 +35444,15 @@ console.log("dataComptesFA", dataComptesFA);
 
 
 	const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
+	const filterMesVideosFA = apiMessageFA.filter(api => api.type === "3" && api.idAccount === idPersonConnectedFA);
+
 	const filterConversationFA = apiMessageFA.filter(api => api.type === "30");
 	const filterFollowersFA = apiMessageFA.filter(api => api.type === "50");
 
 	
 	const { donneesAffichees: dataVideoFA, toutesDonnees, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
+	const { donneesAffichees: dataMesVideosFA } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterMesVideosFA });
+	
 	const { toutesDonnees:dataConversations } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterConversationFA });
 	const { toutesDonnees:dataFollowers } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterFollowersFA });
 	
@@ -35510,6 +35514,12 @@ console.log("dataComptesFA", dataComptesFA);
 	const videosR = toutesDonnees.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
 	const videosRecherchees = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
 	const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : dataVideoFA;
+	
+	
+	const mesvideosR = toutesDonnees.filter((api) => api.type === "3" && api.visible === "1" && api.message && api.idAccount === idPersonConnectedFA); //rechercher parmis les videos publiersur mon compte
+	const mesvideosRecherchees = rechercherAvecFuse({ data:mesvideosR, search:maRechercheVideoFA, keys:["message"] }); 
+	const listMesVideosFA = maRechercheVideoFA ? mesvideosRecherchees.slice(0, dataMesVideosFA.length) : dataMesVideosFA;
+	
 
 	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
 	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
@@ -51663,7 +51673,7 @@ g
               </div>
 			  
 			  
-			<VideoSearchBlock data={dataVideoFA} listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+			<VideoSearchBlock data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
               <div className="api2">
