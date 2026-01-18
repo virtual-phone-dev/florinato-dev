@@ -35339,15 +35339,23 @@ const profilMap = useMemo(() => {
 
 
 	const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
-	//const filterConversationFA = apiMessageFA.filter((api) => api.type ==="30" || api.type ==="50");
+	const filterConversationFA = apiMessageFA.filter(api => api.type === "30");
+	const filterFollowersFA = apiMessageFA.filter(api => api.type === "50");
+
 	
-	const typesConversation = ["30", "50"];
-	const filterConversationFA = apiMessageFA.filter(api => typesConversation.includes(api.type));
-
-
 	const { donneesAffichees: dataVideoFA, toutesDonnees, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
-	const { donneesAffichees:dataConversationFA, toutesDonnees:toutesDonneesConversationFA } = useScrollIndexedDB({ nomStockage: "conversations", donnees:filterConversationFA });
+	const { donneesAffichees:dataConversations, toutesDonnees:toutesDonneesConversationFA } = useScrollIndexedDB({ nomStockage: "conversations", donnees:filterConversationFA });
+	const { donneesAffichees:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:filterFollowersFA });
+	
+	const dataConversationFA = useMemo(() => {
+	  return [...dataConversations, ...dataFollowers]
+		.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+	}, [dataConversations, dataFollowers]);
+		
+	
 	console.log("dataConversationFA", dataConversationFA);
+	console.log("dataConversations", dataConversations);
+	console.log("dataFollowers", dataFollowers);
 	console.log("filterConversationFA", filterConversationFA); 
 	console.log("toutesDonneesConversationFA", toutesDonneesConversationFA); 
 
