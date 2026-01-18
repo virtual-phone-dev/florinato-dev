@@ -35162,6 +35162,109 @@ async function DissadAA() {
   const idAccountChef = localStorage.getItem("idAccountChef");
 
   
+  // logique pour envoyer un message privé sur florinato
+  const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
+  
+  
+  /* useEffect(() => {
+    async function get() {
+      await axios.get(`${process.env.REACT_APP_Api2}/api/messageFA`)
+      .then((res) => {
+        setApiMessageFAA(res.data);
+        setApiMessageFA(res.data);
+      })
+      .catch((err) => {
+		console.log("apiMessageFAA, impossible de recevoir les messages");
+		console.log(err);
+	  });
+    }
+    get();
+  }, []);
+
+  const socket = io("https://api2florinato.onrender.com", {
+	  transports: ["websocket"],
+	});
+	
+	
+  useEffect(() => {	  
+	  // Temps réel
+	  socket.on("receiveMessage", (msg) => {
+		setApiMessageFAA((prev) => [msg, ...prev]);
+		setApiMessageFA((prev) => [msg, ...prev]);
+	  });
+
+	  return () => socket.off("receiveMessage");
+	}, [socket]);
+*/
+
+
+	const socketRef = useRef(null);
+
+	useEffect(() => {
+	  if (!socketRef.current) {
+		socketRef.current = io("https://api2florinato.onrender.com", {
+		  transports: ["websocket"],
+		});
+	  }
+
+	  const socket = socketRef.current;
+	  
+	  socket.on("receiveMessage", (msg) => {
+	  setApiMessageFA(prev => {
+		  if (prev.some(m => m._id === msg._id)) return prev;
+		  return [msg, ...prev];
+		});
+	  }); 
+	  
+	  /*socket.on("receiveMessage", (msg) => {
+		setApiMessageFA(prev => [msg, ...prev]);
+	  }); */
+
+	  return () => { socket.off("receiveMessage"); };
+	}, []);
+
+
+  // filtre pour obtenir tout les messages de la discussion - FA
+  //console.log("apiMessageFAA cool", apiMessageFAA);
+  
+  const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversation);
+  //console.log("filterMessageFA bb", filterMessageFA);
+  
+  /*
+  // important
+  // important
+  
+  Solution 2 (sécurité React, fortement recommandée)
+  Toujours protéger les .filter()
+  
+  const filterMessageFA = Array.isArray(apiMessageFAA)? apiMessageFAA.filter(api => api.idConversation === idConversation) : [];
+  
+  // OU version courte :
+  const filterMessageFA = apiMessageFAA?.filter?.(api => api.idConversation === idConversation) || []; */
+
+  async function SendMessageFAA() {
+    if (!writeMessage66messageFA.trim()) return;
+	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
+
+    const messageData = {
+	  idConversation,
+	  idOther,
+      idAccount: idPersonConnectedFA,
+      nameAccount: nameFA,
+      photoAccount: photoFA,
+      badgeAccount: badgeFA,
+      message: writeMessage66messageFA,
+      type: "1",
+      visible: "1",
+    };
+	
+	console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
+	
+	socketRef.current.emit("sendMessage", messageData);
+    setWriteMessage66messageFA("");
+  };
+
+
   // filtre pour obtenir quelques infos de l'utilisateur connecter
   const userConnectedFA = apiMessageFA.filter((api) => api._id === idUserConnectedFA);
   const getblockFA = userConnectedFA.map((api) => api.block); // block
@@ -40615,104 +40718,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     //if (seePhoto === "1") { setSeePhotoFA(true) }
   }
 	
-  // logique pour envoyer un message privé sur florinato
-  const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
-  const [apiMessageFAA, setApiMessageFAA] = useState([]);  
-  
-  /* useEffect(() => {
-    async function get() {
-      await axios.get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-      .then((res) => {
-        setApiMessageFAA(res.data);
-        setApiMessageFA(res.data);
-      })
-      .catch((err) => {
-		console.log("apiMessageFAA, impossible de recevoir les messages");
-		console.log(err);
-	  });
-    }
-    get();
-  }, []);
-
-  const socket = io("https://api2florinato.onrender.com", {
-	  transports: ["websocket"],
-	});
-	
-	
-  useEffect(() => {	  
-	  // Temps réel
-	  socket.on("receiveMessage", (msg) => {
-		setApiMessageFAA((prev) => [msg, ...prev]);
-		setApiMessageFA((prev) => [msg, ...prev]);
-	  });
-
-	  return () => socket.off("receiveMessage");
-	}, [socket]);
-*/
-
-
-	const socketRef = useRef(null);
-
-	useEffect(() => {
-	  if (!socketRef.current) {
-		socketRef.current = io("https://api2florinato.onrender.com", {
-		  transports: ["websocket"],
-		});
-	  }
-
-	  const socket = socketRef.current;
-
-	  socket.on("receiveMessage", (msg) => {
-		setApiMessageFAA(prev => [msg, ...prev]);
-	  });
-
-	  return () => {
-		socket.off("receiveMessage");
-	  };
-	}, []);
-
-
-  // filtre pour obtenir tout les messages de la discussion - FA
-  //console.log("apiMessageFAA cool", apiMessageFAA);
-  
-  const filterMessageFA = apiMessageFAA.filter((api) => api.idConversation === idConversation);
-  //console.log("filterMessageFA bb", filterMessageFA);
-  
-  /*
-  // important
-  // important
-  
-  Solution 2 (sécurité React, fortement recommandée)
-  Toujours protéger les .filter()
-  
-  const filterMessageFA = Array.isArray(apiMessageFAA)? apiMessageFAA.filter(api => api.idConversation === idConversation) : [];
-  
-  // OU version courte :
-  const filterMessageFA = apiMessageFAA?.filter?.(api => api.idConversation === idConversation) || []; */
-
-  async function SendMessageFAA() {
-    if (!writeMessage66messageFA.trim()) return;
-	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
-
-    const messageData = {
-	  idConversation,
-	  idOther,
-      idAccount: idPersonConnectedFA,
-      nameAccount: nameFA,
-      photoAccount: photoFA,
-      badgeAccount: badgeFA,
-      message: writeMessage66messageFA,
-      type: "1",
-      visible: "1",
-    };
-	
-	console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
-	
-	socketRef.current.emit("sendMessage", messageData);
-    setWriteMessage66messageFA("");
-  };
-
 
 
   async function SendMessageFA() {
