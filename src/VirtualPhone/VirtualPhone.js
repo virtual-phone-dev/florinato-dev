@@ -35344,8 +35344,8 @@ const profilMap = useMemo(() => {
 
 	
 	const { donneesAffichees: dataVideoFA, toutesDonnees, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
-	const { donneesAffichees:dataConversations, toutesDonnees:toutesDonneesConversationFA } = useScrollIndexedDB({ nomStockage: "conversations", donnees:filterConversationFA });
-	const { donneesAffichees:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:filterFollowersFA });
+	const { toutesDonnees:dataConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:filterConversationFA });
+	const { toutesDonnees:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:filterFollowersFA });
 	
 	const dataConversationFA = useMemo(() => {
 	  return [...dataConversations, ...dataFollowers]
