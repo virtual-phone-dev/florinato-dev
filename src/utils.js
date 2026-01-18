@@ -995,7 +995,7 @@ export function PopularityAccountCard({ api }) {
   </>);
 }
 
-
+securise moi ca, popularity nexiste pas, et fait planter la page
 export function PopularityAccountCard2({ api, profilMap }) {
 	// pour obtenir les informations du profil
     const idToUse = api.idOther;

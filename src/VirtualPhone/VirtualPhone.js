@@ -35290,6 +35290,7 @@ async function DissadAA() {
 
 const profilsFA = apiMessageFA.filter(api => api.type === "10");
 const { donneesAffichees: dataComptesFA } = useScrollIndexedDB({ nomStockage: "videos", donnees:profilsFA });
+console.log("dataComptesFA", dataComptesFA);
 
 
 /* const profilMap = useMemo(() => {
@@ -51676,11 +51677,11 @@ g
   
   
 	  <PageTemplate 
-		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterTopFA} profilMap={profilMap}
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap}
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
 	  
 	  <PageTemplate 
-		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterAdminFA} profilMap={profilMap}
+		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterTopFA} profilMap={profilMap}
 		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mis en avant" photo={photoFA} />
 		  
 		<PageTemplate 
