@@ -44536,7 +44536,7 @@ async function EnvoyerVideoFAA() {
 		url: "/api/messageFA/new",
 	});
 	
-	if (actions.allData) { await ObtenirLesDonneesFA(); }
+	//if (actions.allData) { await ObtenirLesDonneesFA(); }
 	  
 	setisLoading666EnvoyerVideoFAA(false);
 }
@@ -44565,7 +44565,7 @@ async function ExecuterActionFA({ actions = ["post"], id, file, loader, dataPOST
 		  if (action === "put") { await ValiderModificationLogique({ id, file, dataPUT }) }
 		}
 
-		await ObtenirLesDonneesFA();
+		//await ObtenirLesDonneesFA();
 
 	} finally { if (loader) loader(false); }
 }
@@ -44663,12 +44663,12 @@ async function ValiderUrl() {
 	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
 	setisLoading666ValideUrl(false);
 	
-	if (actions.allData) {
+	/* if (actions.allData) {
 		const data = await getAllData();
 		if (data === null) { return; }
 		setApiMessageFA(data);
 		setApiMessageFAA(data);
-	  }
+	  } */
 }
 // ValiderUrl
 	
