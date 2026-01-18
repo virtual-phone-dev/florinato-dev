@@ -35345,11 +35345,11 @@ const profilMap = useMemo(() => {
 	const filterConversationFA = apiMessageFA.filter(api => typesConversation.includes(api.type));
 
 
-	const { donneesAffichees: dataVideoFA, toutesDonnees } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
-	const { donneesAffichees: dataConversationFA, toutesDonnees } = useScrollIndexedDB({ nomStockage: "messages", donnees:filterConversationFA });
+	const { donneesAffichees: dataVideoFA, toutesDonnees, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
+	const { donneesAffichees:dataConversationFA, toutesDonnees:toutesDonneesConversationFA } = useScrollIndexedDB({ nomStockage: "messages", donnees:filterConversationFA });
 	console.log("dataConversationFA", dataConversationFA);
 	console.log("filterConversationFA", filterConversationFA); 
-	console.log("toutesDonnees", toutesDonnees); 
+	console.log("toutesDonneesConversationFA", toutesDonneesConversationFA); 
 
 
 /*
