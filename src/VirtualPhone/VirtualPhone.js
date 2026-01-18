@@ -40618,7 +40618,8 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
   const [apiMessageFAA, setApiMessageFAA] = useState([]);  
-  useEffect(() => {
+  
+  /* useEffect(() => {
     async function get() {
       await axios.get(`${process.env.REACT_APP_Api2}/api/messageFA`)
       .then((res) => {
@@ -40647,8 +40648,30 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
 	  return () => socket.off("receiveMessage");
 	}, [socket]);
+*/
 
-  
+
+	const socketRef = useRef(null);
+
+	useEffect(() => {
+	  if (!socketRef.current) {
+		socketRef.current = io("https://api2florinato.onrender.com", {
+		  transports: ["websocket"],
+		});
+	  }
+
+	  const socket = socketRef.current;
+
+	  socket.on("receiveMessage", (msg) => {
+		setApiMessageFAA(prev => [msg, ...prev]);
+	  });
+
+	  return () => {
+		socket.off("receiveMessage");
+	  };
+	}, []);
+
+
   // filtre pour obtenir tout les messages de la discussion - FA
   //console.log("apiMessageFAA cool", apiMessageFAA);
   
