@@ -44576,7 +44576,7 @@ async function ExecuterActionFA({ actions = ["post"], id, file, loader, dataPOST
 
 // il verifie s'il faut faire un post ou un put
 async function verificationAvantExecuterActionFA({ loader, type, dataPUT, dataPOST2 }) { 
-  const filterInfos = apiMessageFAA.filter((api) => api.idAccount === idAccount && api.idOther === idreq && api.type === type);
+  const filterInfos = apiMessageFA.filter((api) => api.idAccount === idAccount && api.idOther === idreq && api.type === type);
   const idInfos = filterInfos.map((api) => api._id);
   const existe = filterInfos.length > 0;
 
@@ -51799,11 +51799,11 @@ g
 
             <div className="body">
 				<MesComptes 
-					data={apiMessageFAA} cliquerSurMonCompte={DataFA} 
+					data={apiMessageFA} cliquerSurMonCompte={DataFA} 
 					listMesComptes={listMesComptesFA} valeur={rechercheMesComptesFA} setValeur={setrechercheMesComptesFA} />
 				  
 		   {/*
-            {dataFA && (<>
+            {dataFA && (<>                                                                                                                
             <div className="api">
               {filterFA.map((api) => (<>
                 <ChildApi66accountsFA api={api} />
