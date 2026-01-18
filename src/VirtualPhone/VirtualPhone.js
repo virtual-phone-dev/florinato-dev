@@ -44557,7 +44557,6 @@ async function ObtenirLesDonneesFA() {
   const data = await getAllData();
   if (data === null) { return; }
   setApiMessageFA(data);
-  setApiMessageFAA(data);
 }
 
 
