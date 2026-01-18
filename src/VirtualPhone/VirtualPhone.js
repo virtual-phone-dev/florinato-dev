@@ -40691,9 +40691,9 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   // OU version courte :
   const filterMessageFA = apiMessageFAA?.filter?.(api => api.idConversation === idConversation) || []; */
 
-  
   async function SendMessageFAA() {
     if (!writeMessage66messageFA.trim()) return;
+	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
 
     const messageData = {
 	  idConversation,
@@ -40709,7 +40709,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 	
 	console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
 	
-    socket.emit("sendMessage", messageData);
+	socketRef.current.emit("sendMessage", messageData);
     setWriteMessage66messageFA("");
   };
 

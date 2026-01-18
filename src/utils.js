@@ -8,6 +8,8 @@ import { ChildApi266accountsFA, ChildApi66accountsFA } from "./VirtualPhone/Virt
 import "./utils.css"; 
 import "./darkmode.css";
 
+import investirPhoto from "./img/investir.jpg";
+
 
 
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
@@ -995,30 +997,50 @@ export function PopularityAccountCard({ api }) {
   </>);
 }
 
-securise moi ca, popularity nexiste pas, et fait planter la page
-export function PopularityAccountCard2({ api, profilMap }) {
-	// pour obtenir les informations du profil
-    const idToUse = api.idOther;
-    const profil = idToUse ? profilMap[idToUse] : null;
-  
-    return (<>
-    <div className="display-nowrap">
-      <div className="p-15px"><p>{profil.popularity}</p></div>
-      <div className="photo-70px"><img src={profil.photoProfile} alt="" /></div>
-      <div className="pre-17px"><pre>{profil.nameAccount}</pre></div>
-    </div>
-	
-	<div className="p-15px">
-		<p>nameAccount {api.nameAccount}</p>
-		<p>_id, idPersonConnectedFA, idAccount, idAccountChef {api._id}</p>
-		<p>idUser, idUserConnectedFA {api.idUser}</p>
-		<p>idUser, idUserConnectedFA {api.idUser}</p>
-		<p>idGroup, idGroupChef {api.idGroup}</p>
-		<p>top {api.top}</p>
-		<p>admin {api.admin}</p>
-		<p>adminFlorinato {api.adminFlorinato}</p>
-	</div>
-  </>);
+
+export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
+  // pour obtenir les informations du profil
+  const idToUse = api?.idOther;
+  const profil = idToUse ? profilMap?.[idToUse] : null;
+
+  // Valeurs sûres
+  const popularity = profil?.popularity ?? 0;
+  const photoProfile = profil?.photoProfile ?? investirPhoto;
+  const nameAccount = profil?.nameAccount ?? "Compte inconnu";
+
+  return (
+    <>
+      <div className="display-nowrap">
+        <div className="p-15px">
+          <p>{popularity}</p>
+        </div>
+
+        <div className="photo-70px">
+          <img
+            src={photoProfile}
+            alt={nameAccount}
+            onError={(e) => {
+              e.currentTarget.src = "/images/avatar-default.png";
+            }}
+          />
+        </div>
+
+        <div className="pre-17px">
+          <pre>{nameAccount}</pre>
+        </div>
+      </div>
+
+      <div className="p-15px">
+        <p>nameAccount : {api?.nameAccount ?? "—"}</p>
+        <p>_id : {api?._id ?? "—"}</p>
+        <p>idUser : {api?.idUser ?? "—"}</p>
+        <p>idGroup : {api?.idGroup ?? "—"}</p>
+        <p>top : {api?.top ?? "—"}</p>
+        <p>admin : {api?.admin ?? "—"}</p>
+        <p>adminFlorinato : {api?.adminFlorinato ?? "—"}</p>
+      </div>
+    </>
+  );
 }
 
 
