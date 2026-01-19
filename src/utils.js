@@ -513,7 +513,7 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 export function ouvrirDB() {
   return new Promise((resolve, reject) => {
-    const requete = indexedDB.open("MessagesDB", 6);
+    const requete = indexedDB.open("MessagesDB", 7);
     const tables = ["conversations", "videos", "comptes", "followers"];
 
     requete.onupgradeneeded = (e) => {
@@ -544,6 +544,8 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   console.log("➡️ nomStockage :", nomStockage);
   console.log("➡️ donnees reçues :", donnees);
   console.log("➡️ nombre d'éléments :", donnees?.length); */
+  console.count(`🟢 Ouverture table : ${nomStockage}`);
+
 
   if (!Array.isArray(donnees)) {
     console.error("❌ donnees n'est PAS un tableau");
@@ -610,6 +612,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
   const db = await ouvrirDB();
   const tr = db.transaction(nomStockage, "readonly");
   const table = tr.objectStore(nomStockage);
+  console.count(`🟢 Ouverture table : ${nomStockage}`);
 
   return new Promise(resolve => {
     const requete = table.getAll();
