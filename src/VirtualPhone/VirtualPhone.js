@@ -35395,10 +35395,6 @@ async function DissadAA() {
 }, [apiMessageFA]); 
 
 
-const profilsFA = apiMessageFA.filter(api => api.type === "10");
-const { donneesAffichees: dataComptesFA } = useScrollIndexedDB({ nomStockage: "comptes", donnees:profilsFA });
-console.log("dataComptesFA", dataComptesFA);
-
 
 /* const profilMap = useMemo(() => {
   const map = {};
@@ -35447,83 +35443,42 @@ console.log("dataComptesFA", dataComptesFA);
   if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
 
 
-	const filterVideoFA = apiMessageFA.filter((api) => api.type ==="3");
-	const filterMesVideosFA = apiMessageFA.filter(api => api.type === "3" && api.idAccount === idPersonConnectedFA);
-
-	const filterConversationFA = apiMessageFA.filter(api => api.type === "30");
-	const filterFollowersFA = apiMessageFA.filter(api => api.type === "50");
-
-	
-	const { donneesAffichees: dataVideoFA, toutesDonnees, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterVideoFA, maRechercheVideo:maRechercheVideoFA });
-	const { donneesAffichees: dataMesVideosFA } = useScrollIndexedDB({ nomStockage: "videos", donnees:filterMesVideosFA });
-	
-	const { toutesDonnees:dataConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:filterConversationFA });
-	const { toutesDonnees:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:filterFollowersFA });
-	
-	const dataConversationFA = useMemo(() => {
-	  return [...dataConversations, ...dataFollowers]
-		.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-	}, [dataConversations, dataFollowers]);
-		
-	
-	/*console.log("dataConversationFA", dataConversationFA);
-	console.log("toutesDonneesConversationFA", dataConversations);
-	console.log("dataFollowers", dataFollowers);
-	console.log("filterConversationFA", filterConversationFA); *
+// toutes les vidéos (UNE SEULE SOURCE)
+const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] );
+const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
 
+const dataMesVideosFA = useMemo(() => toutesVideos.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
 
-/*
-    const [mySearchFA, setMySearchFA] = useLocalStorageState("mySearchFA"); //rechercher parmi les comptes
-	const [maRechercheVideoFA, setmaRechercheVideoFA] = useLocalStorageState("maRechercheVideoFA"); //rechercher parmi les videos
-    const [rechercheMesComptesFA, setrechercheMesComptesFA] = useLocalStorageState("rechercheMesComptesFA"); //rechercher parmi mes comptes (que jai creer)
-	 */
+const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
+const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys: ["message"] }), [videosR, maRechercheVideoFA] );
+const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : dataVideoFA;
 
-  /*
-  Pour gérer les caractères accentués comme "é" dans la recherche, vous pouvez utiliser une technique pour "normaliser" les chaînes de caractères en supprimant 
-  les accents. Ainsi, la recherche devient insensible aux accents.
-    voici comment faire :
-	
-	Utiliser la méthode normalize avec la forme "NFD" pour décomposer les caractères accentués.
-	Filtrer en comparant les chaînes normalisées et sans accents
-  */
-  
-  
-/*
-	const normalizeString = (str) => {
-	  return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
-	};
 
-	
-	const comptesRecherchables = apiMessageFA.filter(api => api.type === "10" && api.visible === "1" && api.nameAccount);
-	
-	const fuse = new Fuse(comptesRecherchables, {
-	  keys: [
-		{
-		  name: "nameAccount",
-		  getFn: (obj) => normalizeString(obj.nameAccount),
-		},
-	  ],
-	  threshold: 0.4, // tolérance (0 = strict, 1 = très large)
-	});
-	
-  const listAccountFA = mySearchFA? fuse.search(normalizeString(mySearchFA)).map(r => r.item): []; */
-  
-  //const verifyAccountFAnombre  = listAccountFA.length; // ici les comptes ont ete trouver
-  //const verifyAccountFA  = listAccountFA.length > 0; // ici les comptes ont ete trouver
+const mesVideosR = useMemo(() => dataMesVideosFA.filter(api => api.visible === "1" && api.message), [dataMesVideosFA] );
+const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
+const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : dataMesVideosFA;
+
+
+const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
+const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
+
+const { toutesDonnees:dataConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
+const { toutesDonnees:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
+
+
+const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
+
+const profilsFA = useMemo( () => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); 
+const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "comptes", donnees:profilsFA });
+
+useEffect(() => {
+  console.log("dataComptesFA changé :", dataComptesFA.length);
+}, [dataComptesFA]);
+
 
 	const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
 	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
-	
-	const videosR = toutesDonnees.filter((api) => api.type === "3" && api.visible === "1" && api.message); //
-	const videosRecherchees = rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }); // videosR = videos Recherche
-	const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : dataVideoFA;
-	
-	
-	const mesvideosR = toutesDonnees.filter((api) => api.type === "3" && api.visible === "1" && api.message && api.idAccount === idPersonConnectedFA); //rechercher parmis les videos publiersur mon compte
-	const mesvideosRecherchees = rechercherAvecFuse({ data:mesvideosR, search:maRechercheVideoFA, keys:["message"] }); 
-	const listMesVideosFA = maRechercheVideoFA ? mesvideosRecherchees.slice(0, dataMesVideosFA.length) : dataMesVideosFA;
-	
 
 	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
 	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });

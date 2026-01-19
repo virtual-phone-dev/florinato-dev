@@ -540,11 +540,7 @@ export function ouvrirDB() {
 
 
 export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
-  /*console.log("🟡 sauvegarderDansIndexedDB APPELÉE");
-  console.log("➡️ nomStockage :", nomStockage);
-  console.log("➡️ donnees reçues :", donnees);
-  console.log("➡️ nombre d'éléments :", donnees?.length); */
-  console.count(`🟢 Ouverture table : ${nomStockage}`);
+  console.log(`ecriture indexedDB : ${nomStockage}`);
 
 
   if (!Array.isArray(donnees)) {
@@ -609,10 +605,11 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
 
 
 export async function lireDepuisIndexedDB(nomStockage) {
+	console.log(`lecture indexedDB : ${nomStockage}`);
   const db = await ouvrirDB();
   const tr = db.transaction(nomStockage, "readonly");
   const table = tr.objectStore(nomStockage);
-  console.count(`🟢 Ouverture table : ${nomStockage}`);
+  
 
   return new Promise(resolve => {
     const requete = table.getAll();
@@ -626,6 +623,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
   const [donneesAffichees, setDonneesAffichees] = useState([]);
   const [lotActuel, setLotActuel] = useState(0);
   const dejaInitialise = useRef(false);
+  const syncEnCours = useRef(false);
 
 
 	// useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB)
@@ -647,21 +645,27 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	}, [nomStockage, visible, lot]);
 
 	
-	// useEffect 2 (agit quand les donnees mongodb arrive)
-	useEffect(() => {
-	  if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage) return;
+// useEffect 2 (agit quand les donnees mongodb arrive)
+useEffect(() => {
+  if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage || syncEnCours.current) return;
+  syncEnCours.current = true;
 
-	  async function syncIndexedDB() {
-		await sauvegarderDansIndexedDB(nomStockage, donnees);
+  async function syncIndexedDB() {
+    await sauvegarderDansIndexedDB(nomStockage, donnees);
+    const donneesLocales = await lireDepuisIndexedDB(nomStockage);
 
-		const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-		setToutesDonnees(donneesLocales);
-		//  NE PAS reset donneesAffichees ni lotActuel
-	  }
+    setToutesDonnees(prev => {
+      // évite de set si identique
+      if (prev.length === donneesLocales.length) return prev;
+      return donneesLocales;
+    });
 
-	  syncIndexedDB();
-	}, [donnees, visible, nomStockage]);
-	
+    syncEnCours.current = false;
+  }
+
+  syncIndexedDB();
+}, [donnees, visible, nomStockage]);
+
 	
 	useEffect(() => { //on reinitialise le lot , si maRechercheVideo change
 	  setLotActuel(lot);
