@@ -8976,28 +8976,6 @@ function EnfantApiAdmin({ api }) {
         const buttonActiver = "0";
         localStorage.setItem("https://alrani.com/buttonActiver", buttonActiver);
       });
-
-    //
-    /*const idPage = localStorage.getItem("https://alrani.com/idPage");
-    useEffect(() => {
-      async function get() {
-        await axios
-          .get(`${process.env.REACT_APP_BACKEND}/api/userAA/${idPage}`)
-          .then((res) => {
-            const visible = res.data.visible;
-            if (visible) {
-              localStorage.setItem("https://alrani.com/visible", visible);
-            }
-  
-            const buttonActiver = "0";
-            localStorage.setItem(
-              "https://alrani.com/buttonActiver",
-              buttonActiver
-            );
-          });
-      }
-      get();
-    }, [idPage]);*/
   }
 
   return (
@@ -10899,16 +10877,6 @@ dans le localStorage */
   /* avec la meme api, on va aussi profiter d'afficher les posts en attente et
    les posts rejeter */
   const [apiPosts, setApiPosts] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/postAA/`)
-        .then((res) => {
-          setApiPosts(res.data);
-        });
-    }
-    get();
-  }, []);
 
   // erreur
   const [erreur, setErreur] = useState(false);
@@ -11026,16 +10994,7 @@ dans le localStorage */
 
   // requete pour obtenir toutes les reactions
   const [apiReactionAA, setApiReactionAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/reactionAA`)
-        .then((res) => {
-          setApiReactionAA(res.data);
-        });
-    }
-    get();
-  }, []);
+
 
   //creer un id pour chaque reaction - AA
   const numberReactionAA = apiReactionAA.filter((api) => api._id); 
@@ -11048,16 +11007,6 @@ dans le localStorage */
 
   // requete pour obtenir toutes les navigations
   const [apiNavigationAA, setApiNavigationAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/navigationAA`)
-      .then((res) => {
-        setApiNavigationAA(res.data);
-      });
-    }
-    get(); 
-  }, []);
 
   //creer un id pour chaque navigation - AA
   const numberNavigationAA = apiNavigationAA.filter((api) => api._id);
@@ -11070,16 +11019,6 @@ dans le localStorage */
 
   // requete pour obtenir toutes les notifications
   const [apiNotificationAA, setApiNotificationAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/notificationAA`)
-      .then((res) => {
-        setApiNotificationAA(res.data);
-      });
-    }
-    get(); 
-  }, []);
 
   //creer un id pour chaque notification créer - AA
   const numberNotificationAA = apiNotificationAA.filter((api) => api.notification);
@@ -11095,7 +11034,7 @@ dans le localStorage */
 
   // requete pour obtenir tout les utilisateurs Alrani - AA
   const [apiUserAA, setApiUserAA] = useState([]);
-  useEffect(() => {
+  /* useEffect(() => {
     async function get() {
       //console.log("aa1");
       await axios
@@ -11130,7 +11069,7 @@ dans le localStorage */
       });
     }
     get();
-  }, []);
+  }, []); */
 
   // filtre dans l'apiUserAA (on affiche les infos de l'utilisateur connecter)
  const userConnectedAA = apiUserAA.filter((api) => api._id === idUserConnectedAA);
@@ -11264,16 +11203,6 @@ dans le localStorage */
 
   // requete pour obtenir tout les abonnés - AA
   const [apiFollowerAA, setApiFollowerAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/followerAA`)
-      .then((res) => {
-        setApiFollowerAA(res.data);
-      });
-    }
-    get();
-  }, []);
 
 
   // liste abonner
@@ -15494,16 +15423,6 @@ dans le localStorage */
   
   // requete pour obtenir toutes les langues - IA
   const [apiLanguageIA, setApiLanguageIA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/languageIA/`)
-        .then((res) => {
-          setApiLanguageIA(res.data);
-        });
-    }
-    get(); 
-  }, []);
 
   // langue selectionner (666 points retraits)
   const languageIA2 = localStorage.getItem("language");
@@ -15513,16 +15432,6 @@ dans le localStorage */
 
   // requete pour obtenir tout les pays - IA
   const [apiCountryIA, setApiCountryIA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/countryIA/`)
-        .then((res) => {
-          setApiCountryIA(res.data);
-        });
-    }
-    get(); 
-  }, []);
 
   // pays selectionner (666 points retraits)
   const countryIA2 = localStorage.getItem("country");
@@ -15533,16 +15442,7 @@ dans le localStorage */
 
   // requete pour afficher toutes les villes - IA
   const [apiCityIA, setApiCityIA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/cityIA/`)
-        .then((res) => {
-          setApiCityIA(res.data);
-        });
-    }
-    get(); 
-  }, []);
+
 
   // ville selectionner (666 points retraits)
   const cityIA2 = localStorage.getItem("city");
@@ -15553,16 +15453,6 @@ dans le localStorage */
 
   // requete pour afficher tout les quartiers - IA
   const [apiQuarterIA, setApiQuarterIA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/quarterIA/`)
-        .then((res) => {
-          setApiQuarterIA(res.data);
-        });
-    }
-    get(); 
-  }, []);
 
   // quartier selectionner (666 points retraits)
   const quarterIA2 = localStorage.getItem("quarter");
@@ -15608,16 +15498,6 @@ dans le localStorage */
 
   // requete pour obtenir tout les points retraits- IA
   const [apiWithdrawalPointIA, setApiWithdrawalPointIA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/withdrawalPointIA/`)
-        .then((res) => {
-          setApiWithdrawalPointIA(res.data);
-        });
-    }
-    get(); 
-  }, []);
 
   //on affiche les Points Retraits qui ont visible=1
   const filterWithdrawalPointIA = apiWithdrawalPointIA.filter((api) => api.visible === "1");
@@ -16504,16 +16384,7 @@ dans le localStorage */
   const idUserConnectedIA = localStorage.getItem("idUserConnectedIA");
    // requete pour obtenir tout les utilisateurs d'izocash - IA
    const [apiUserIA, setApiUserIA] = useState([]);
-   useEffect(() => {
-     async function get() {
-       await axios
-       .get(`${process.env.REACT_APP_UserAA}/api/userIA`)
-       .then((res) => {
-         setApiUserIA(res.data);
-       });
-      }
-      get();
-    }, []);
+
     const userConnectedIA = apiUserIA.filter((api) => api._id === idUserConnectedIA);
 
   const getblockIA = userConnectedIA.map((api) => api.block); // block 
@@ -20272,16 +20143,7 @@ const [writeSuperCodeIzocashDealsPageIA, setWriteSuperCodeIzocashDealsPageIA] = 
 
   // requete pour obtenir toutes les informations enregistrées lors de l'identification
   const [apiIdentificationIA, setApiIdentificationIA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/identificationIA`)
-        .then((res) => {
-          setApiIdentificationIA(res.data);
-        })
-      }
-      get();
-    }, [])
+
 
     const filterInfosIdentificationIA = apiIdentificationIA.filter((api) => api.idAccount === idPersonConnectedIA && api.type === "1");
 
@@ -22091,16 +21953,7 @@ const [writeSuperCodeIzocashDealsPageIA, setWriteSuperCodeIzocashDealsPageIA] = 
   }
   // cette requete c'est pour afficher toutes les notifications de l'utilisateur
   const [apiNotification, setApiNotification] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/notificationAA`)
-        .then((res) => {
-          setApiNotification(res.data);
-        });
-    }
-    get();
-  }, []);
+
   // on veut afficher les notifications par compte, on va filtrer par id
   const filtreApiNotification = apiNotification.filter(
     (api) => api.idDestinataire === idPersonConnectedAA
@@ -33445,16 +33298,6 @@ async function DissadAA() {
   // afficher tout les commentaires - AA
   // afficher tout les commentaires - AA
   const [apiCommentAA, setApiCommentAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/commentAA`)
-        .then((res) => {
-          setApiCommentAA(res.data);
-        })
-    }
-    get();
-  }, []);
 
 
   //creer un id pour chaque commentaire publié - AA
@@ -33546,17 +33389,6 @@ async function DissadAA() {
   // afficher toute les réponses du commentaire - AA
   // afficher toute les réponses du commentaire - AA
   const [apiReplyAA, setApiReplyAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/replyAA`)
-        .then((res) => {
-          setApiReplyAA(res.data);
-        })
-    }
-    get();
-  }, []);
-
 
   //creer un id pour chaque réponse (commentaire) publié - AA
   const numbersReplyAA = apiReplyAA.filter((api) => api._id);
@@ -36865,16 +36697,6 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   // conversation - AA
   // logique pour afficher toutes les conversations
   const [apiConversationAA, setApiConversationAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/conversationAA`)
-      .then((res) => {
-        setApiConversationAA(res.data);
-      });
-    }
-    get();
-  }, []);
 
    //creer un id pour chaque conversation - AA
   const numberConversationAA = apiConversationAA.filter((api) => api._id);
@@ -44988,308 +44810,6 @@ async function PostVideoFA() {
 
 
 
-// PageRedirection 666ChildApiMessageAA
-  /*async function PageRedirection666ChildApiMessageAA() {
-
-    // GoToDisplayPhotoXA (page pour afficher la photo sur laquelle on a cliquer)
-    const displayPhoto = localStorage.getItem("GoToDisplayPhotoXA");
-    if (displayPhoto === "1") { setDisplayPhotoXA(true) }
-  }*/
-
-
-  // message - AA
-  // on affiche les messages
-  /*const [messageAA, setMessageAA] = useState(false);
-  async function CloseMessageAA() {
-    setMessageAA(false);
-  }*/
-
-
-  // message - AA
-  // message - AA
-  // obtenir tout les messages envoyer sur Alrani
-  /*const [apiMessageAA, setApiMessageAA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/messageAA/`)
-        .then((res) => {
-          setApiMessageAA(res.data);
-        });
-    }
-    get();
-  }, []);*/
-
-  //creer un id pour chaque message envoyé - AA
-  /*const numberMessageAA = apiMessageAA.filter((api) => api._id);
-  const totalMessageAA = numberMessageAA.length;
-
-  const createIdMessageAA = totalMessageAA + 1;
-  if (createIdMessageAA) { localStorage.setItem("createIdMessageAA", createIdMessageAA) }
-
-
-  const idConversationAA = localStorage.getItem("idConversationAA");*/
-
-  
-  //const [myMessageAA, setMyMessageAA] = useState(""); // saisir le message
-
-  // logique pour envoyer un message - AA
-  /*async function SendMessageAA() {
-    if (idPersonConnectedAA) {
-
-    const block = localStorage.getItem("blockAA");
-    if (block === "0") { //block on applique ça uniquement aux personnes indesirables qui veulent detruire notre business
-
-      //on enregistre le message saisi dans le localStorage pour ensuite vider le textarea
-      localStorage.setItem("myMessageAA", myMessageAA)
-      //ici on vide le textarea
-      setMyMessageAA("");
-
-    //1ere requete
-    //1ere requete
-    // on envoie le message
-    async function premiereReq() {
-      const id = localStorage.getItem("createIdMessageAA");
-      const message = localStorage.getItem("myMessageAA");
-      const connection = "1";
-      const display = "1";
-      const visible = "1";
-      const hide = "0";
-      const deleted = "0";
-      const type = "1";
-
-      await axios({
-      method: "post",
-      url: `${process.env.REACT_APP_SendMessageAA}/api/messageAA/new`,
-      data: {
-        id,
-        idConversation: idConversationAA,
-        message,
-        idOwner: idPersonConnectedAA,
-        connection,
-        display,
-        hide,
-        deleted,
-        visible,
-        type,
-      },
-    })
-    .then((res) => {
-      const id = res.data._id; //id (cet id va etre utile lorsqu'on voudra mettre si le message a ete lu ou non)
-      if (id) { localStorage.getItem("idLastMessage", id); }
-
-      // 2e requete
-      // 2e requete
-      // cette requete c'est pour recuperer tout les messages de la bdd
-      async function deuxiemeReq() {
-        await axios
-        .get(`${process.env.REACT_APP_SendMessageAA}/api/messageAA`)
-        .then((res) => {
-          setApiMessageAA(res.data);
-
-        // 3e requete
-        // 3e requete
-        // cette requete c'est pour modifier le dernier message
-        async function troisiemeReq() {
-          const readLastMessage = "0";
-          const idLastMessage = localStorage.getItem("idLastMessage");
-
-          await axios({
-            method: "put",
-            url: `${process.env.REACT_APP_SendMessageAA}/api/conversationAA/update/${idConversationAA}`,
-            data: {
-              lastMessage: myMessageAA,
-              readLastMessage,
-              idLastMessage,
-            },
-          })
-          .then((res) => {
-
-        // 4e requete
-        // 4e requete
-        // cette requete c'est pour recuperer toutes les conversations de la bdd
-        async function quatriemeReq() {
-          await axios
-          .get(`${process.env.REACT_APP_SendMessageAA}/api/conversationAA`)
-          .then((res) => {
-            setApiConversationAA(res.data);
-
-        //5e requete
-        //5e requete
-        // on obtiens la localisation de l'utilisateur
-        async function cinquiemeReq() {
-          await axios
-          .get("https://ip.nf/me.json")
-          .then((res) => {
-            const getcountryip = res.data.ip.country; //country
-            if (getcountryip) { localStorage.setItem("countryIp", getcountryip) }
-
-            const getcityip = res.data.ip.city; //city
-            if (getcityip) { localStorage.setItem("cityIp", getcityip) }
-
-            const getuserip = res.data.ip.ip; //ip
-            if (getuserip) { localStorage.setItem("addressIp", getuserip) }
-
-        //6e requete
-        //6e requete
-        // on enregistre la localisation et la navigation de l'utilisateur
-        async function sixiemeReq() {
-          const id = localStorage.getItem("createIdNavigationAA");
-          const addressIp = localStorage.getItem("addressIp");
-          const countryIp = localStorage.getItem("countryIp");
-          const cityIp = localStorage.getItem("cityIp");
-          const page = "Message envoyé (il a envoyé un message)";
-
-          await axios({
-            method: "post",
-            url: `${process.env.REACT_APP_SendMessageAA}/api/navigationAA/new`,
-            data: {
-              id,
-              idAccount: idPersonConnectedAA,
-              nameAccount: namePersonConnectedAA,
-              addressIp,
-              countryIp,
-              cityIp,
-              page,
-            },
-          })
-          .then((res) => {
-          const online = res.data.createdAt; //on recupere la date de derniere connexion
-          if (online) { localStorage.setItem("onlineAA", online) }
-
-        //7e requete
-        //7e requete
-        // on enregistre la date de derniere connexion
-        async function septiemeReq() {
-          const online = localStorage.getItem("onlineAA");
-          await axios({
-            method: "put",
-            url: `${process.env.REACT_APP_SendMessageAA}/api/accountAA/update/${idPersonConnectedAA}`,
-            data: {
-              online,
-            },
-          })
-          }
-          septiemeReq();
-          //7e requete
-          })
-          }
-          sixiemeReq();*/
-          //6e requete
-
-                        // 5e requete
-                        // 5e requete
-                        //cette requete c'est pour creer une notification,
-                        //cela va permettre a l'autre d'etre informer
-                        // la notification va dire par exemple: David vous a envoyer un message
-                        /*async function cinquiemeReq() {
-                          await axios({
-                            method: "post",
-                            url: `${process.env.REACT_APP_BACKEND}/api/notificationAA/create`,
-                            data: {*/
-                          /* la notification est destiner au destinataire du message voila 
-                          pourquoi on prend les infos du destinataire du message */
-                          //idDestinataire: idDestinataireMessage,
-                          //nomDestinataire: nomDestinataireMessage,
-
-                          /* ici on prend les infos de la personneConnecter parce que c'est lui qui 
-                          informe */
-                          /*idDeLaPersonneQuiInforme: idPersonneConnecter,
-                          nomDeLaPersonneQuiInforme: nomPersonneConnecter,
-                          photoProfilDeLaPersonneQuiInforme: photoProfilPersonneConnecter,
-                          badgeVerifiedDeLaPersonneQuiInforme: badgeVerifiedPersonneConnecter,
-                          notification: notification,
-                          lu: lu,
-                          parle: parle,*/
-                          /* l'idConversation va permettre d'entrer dans message et d'afficher 
-                          la conversation lorsqu'on va cliquer sur Voir le message au niveau 
-                          des notifications */
-                          //idConversation: idConversation,
-                          //idInitieur: idInitieur,
-                        /*},
-                      })
-                        .then((res) => {*/
-
-                          // 6e requete
-                          // 6e requete
-                          /* cette requete c'est pour update le nom, photo, badge des 
-                          personnes qui echange dans la conversation */
-                          // a chaque message, on update, on remplace l'ancien par le nouveau
-                          /* cela va permettre par exemple si la personne a changer de photo de profil
-                    ou de nom, au niveau des conversations la nouvelle photo va etre afficher */
-
-                          /*
-                          if (idReceiverMessageAA === idPersonConnectedAA) {
-                            // si l'idInitieur=idPersonneConnecter,alors on update les infos de l'initieur
-                            //l'initieur c'est la personne qui avait initier la conversation pour la toute premiere fois
-                            //ici on va update ces infos, son nom, sa photo et son badge
-                            async function sixiemeReq() {
-                              await axios({
-                                method: "put",
-                                url: `${process.env.REACT_APP_BACKEND}/api/conversation/update/${idConversationAA}`,
-                                data: {
-                                  nomDestinataire: nameReceiverMessageAA,
-                                  photoProfilDestinataire: verifiedPhotoReceiverAA,
-                                  badgeVerifiedDestinataire: verifiedBadgeReceiverAA,
-                                },
-                              })
-                            }
-                            sixiemeReq();
-                            //6e requete
-                          } else {
-                            // ici c'est dans le cas ou c'est pas egale
-                            // alors on update les infos du destinataire
-                            async function sixiemeReq() {
-                              await axios({
-                                method: "put",
-                                url: `${process.env.REACT_APP_BACKEND}/api/conversation/update/${idConversationAA}`,
-                                data: {
-                                  nomInitieur: nameReceiverMessageAA,
-                                  photoProfilInitieur: verifiedPhotoReceiverAA,
-                                  badgeVerifiedInitieur: verifiedBadgeReceiverAA,
-                                },
-                              })
-                            }
-                            sixiemeReq();
-                            //6e requete
-                          }
-                          // le code du if s'arrete ici
-                          */
-
-                        /*})
-                        .catch((err) => {
-                          setErreur(true);
-                        });
-                      }
-                      cinquiemeReq();*/
-                      //5e requete
-                    /*})
-                    }
-                    cinquiemeReq();
-                    //5e requete
-                    })
-                    }
-                    quatriemeReq();
-                    //4e requete
-                    })
-                    }
-                    troisiemeReq();
-                    //3e requete
-                    })
-                    }
-                    deuxiemeReq();
-                    //2e requete
-                    })
-                  }
-                  premiereReq()
-                  //1ere requete
-                } 
-                // if (block === "0")
-              } 
-              // if(idPersonConnectedAA)
-            }*/
-
-
 
   // zimagic app
   // zimagic app
@@ -45324,16 +44844,6 @@ async function PostVideoFA() {
   // message - ZA
   // obtenir tout les messages envoyer sur Zimagic
   const [apiMessageZA, setApiMessageZA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/messageZA/`)
-        .then((res) => {
-          setApiMessageZA(res.data);
-        });
-    }
-    get();
-  }, []);
 
   //creer un id pour chaque message envoyé - ZA
   const numberMessageZA = apiMessageZA.filter((api) => api._id);
@@ -45879,31 +45389,11 @@ async function PostVideoFA() {
 
 
   // requete pour obtenir tout les comptes Donazia - DA
-  /*const [apiMessageDA, setApiMessageDA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_Donazia}/api/messageDA`)
-        .then((res) => {
-          setApiMessageDA(res.data);
-        });
-    }
-    get();
-  }, []);*/
+
 
 
    // requete pour obtenir tout les comptes Donazia - DA
-   /*const [apiAccountDA, setApiAccountDA] = useState([]);
-   useEffect(() => {
-     async function get() {
-       await axios
-         .get(`${process.env.REACT_APP_Donazia}/api/accountDA`)
-         .then((res) => {
-           setApiAccountDA(res.data);
-         });
-     }
-     get();
-   }, []);*/
+
    
   const idPersonConnectedDA = localStorage.getItem("idPersonConnectedDA");
 
@@ -45928,17 +45418,7 @@ async function PostVideoFA() {
 
   //const idPostAA = localStorage.getItem("idPostAA");  
   // requete pour obtenir tout les posts sur Donazia - DA
-  /*const [apiPostDA, setApiPostDA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_PostDA}/api/postDA`)
-        .then((res) => {
-          setApiPostDA(res.data);
-        });
-    }
-    get();
-  }, []);*/
+
 
   // page d'accueil de donazia (on affiche tout les posts sur la page d'accueil de donazia)
   //const getAllPostDA = apiPostDA.filter((api) => api.home === "1" && api.display === "1" && api.displayOther === "1" && api.approved === "1" && api.visible === "1");
@@ -46543,16 +46023,6 @@ async function PostVideoFA() {
 
   // requete pour obtenir tout les outils activer
   const [apiToolIA, setApiToolIA] = useState([]);
-  useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_BACKEND}/api/toolIA`)
-        .then((res) => {
-          setApiToolIA(res.data);
-        })
-      }
-      get();
-    }, [])
 
     const filterAccountIA = apiToolIA.filter((api) => api.idAccount === idPersonConnectedIA && api.type === "1" && api.visible === "1");
 
@@ -47939,17 +47409,7 @@ async function PostVideoFA() {
 
     //requete pour obtenir tout les favoris
     const [apiFavoriteVB, setApiFavoriteVB] = useState([]);
-    useEffect(() => {
-      async function get() {
-        await axios
-          .get(`${process.env.REACT_APP_PostVB}/api/favoriteVB`)
-          .then((res) => {
-            setApiFavoriteVB(res.data);
-          });
-      }
-      get();
-    }, []);
-    
+
     // Tout les favoris
     //const allFavoriteVB = apiFavoriteVB.filter((api) => api.idOwner === idUserConnectedVB && api.visible === "1"); 
 
