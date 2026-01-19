@@ -672,13 +672,19 @@ useEffect(() => {
 	}, [maRechercheVideo, lot]);
 
 
+useEffect(() => {
+  if (toutesDonnees.length === 0) return;
+  
+  setDonneesAffichees(toutesDonnees.slice(0, lotActuel || lot));
+}, [toutesDonnees]);
 
-	async function chargerPlus() { //pour scroller encore , scroller plus )
-		const prochainLot = lotActuel + lot;		
-		setDonneesAffichees(prev => prev.concat(toutesDonnees.slice(lotActuel, prochainLot)) );
-		setLotActuel(prochainLot);
-	};
-	
+
+function chargerPlus() { //pour scroller encore plus 
+  const prochainLot = lotActuel + lot;
+  setDonneesAffichees(toutesDonnees.slice(0, prochainLot));
+  setLotActuel(prochainLot);
+}
+
 	
 	async function gererScroll(e) {
 		const { scrollTop, scrollHeight, clientHeight } = e.target;
