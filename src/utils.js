@@ -620,71 +620,67 @@ export async function lireDepuisIndexedDB(nomStockage) {
 
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, maRechercheVideo }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
-  const [donneesAffichees, setDonneesAffichees] = useState([]);
-  const [lotActuel, setLotActuel] = useState(0);
+  const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
+  
+  const donneesAffichees = useMemo(() => { return toutesDonnees.slice(0, lotActuel); }, [toutesDonnees, lotActuel] ); // ✅ DONNEES A AFFICHER (DERIVEES de toutesDonnees, ca veut dire que : les donnees a afficher proviennent de toutesDonnees)
 
 
-	// useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB)
-	useEffect(() => {
-	  if (!visible || !nomStockage) return;
+  // useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB) 🔹 1) LECTURE INDEXEDDB (AFFICHAGE IMMEDIAT)
+  useEffect(() => {
+    if (!visible || !nomStockage) return;
 
-	  async function lireLocal() {
-		const donneesLocales = await lireDepuisIndexedDB(nomStockage);
+    async function lireLocal() {
+      const donneesLocales = await lireDepuisIndexedDB(nomStockage);
 
-		if (donneesLocales.length > 0 && !dejaInitialise.current) {
-		  setToutesDonnees(donneesLocales);
-		  setDonneesAffichees(donneesLocales.slice(0, lot)); // Charger le premier lot
-		  setLotActuel(lot);
-		  dejaInitialise.current = true; // 
-		}
-	  }
+      if (donneesLocales.length > 0 && !dejaInitialise.current) {
+        setToutesDonnees(donneesLocales);
+        setLotActuel(lot);
+        dejaInitialise.current = true;
+      }
+    }
 
-	  lireLocal();
-	}, [nomStockage, visible, lot]);
-
-	
-// useEffect 2 (agit quand les donnees mongodb arrive)
-useEffect(() => {
-  if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage || syncEnCours.current) return;
-  syncEnCours.current = true;
-
-  async function syncIndexedDB() {
-    await sauvegarderDansIndexedDB(nomStockage, donnees);
-    const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-
-    setToutesDonnees(prev => {
-      // évite de set si identique
-      if (prev.length === donneesLocales.length) return prev;
-      return donneesLocales;
-    });
-
-    syncEnCours.current = false;
-  }
-
-  syncIndexedDB();
-}, [donnees, visible, nomStockage]);
+    lireLocal();
+  }, [nomStockage, visible, lot]);
 
 	
-	useEffect(() => { //on reinitialise le lot , si maRechercheVideo change
+// useEffect 2 (agit quand les donnees mongodb arrive) 🔹 2) SYNC AVEC MONGODB
+  useEffect(() => {
+	if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage || syncEnCours.current) return;
+    syncEnCours.current = true;
+
+    async function syncIndexedDB() {
+      await sauvegarderDansIndexedDB(nomStockage, donnees);
+      const donneesLocales = await lireDepuisIndexedDB(nomStockage);
+
+      setToutesDonnees(prev => {
+        if (prev.length === donneesLocales.length) return prev;
+        return donneesLocales;
+      });
+
+      syncEnCours.current = false;
+    }
+
+    syncIndexedDB();
+  }, [donnees, visible, nomStockage]);
+	
+	
+	useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 RESET DU SCROLL LORS D’UNE RECHERCHE
 	  setLotActuel(lot);
 	}, [maRechercheVideo, lot]);
-
-
-useEffect(() => {
-  if (toutesDonnees.length === 0) return;
   
-  setDonneesAffichees(toutesDonnees.slice(0, lotActuel || lot));
-}, [toutesDonnees]);
 
-
-function chargerPlus() { //pour scroller encore plus 
+//pour scroller encore plus 
+/*function chargerPlus() { 
   const prochainLot = lotActuel + lot;
   setDonneesAffichees(toutesDonnees.slice(0, prochainLot));
   setLotActuel(prochainLot);
-}
+} */
 
+	function chargerPlus() {
+		setLotActuel(prev => prev + lot);
+	  }
 	
 	async function gererScroll(e) {
 		const { scrollTop, scrollHeight, clientHeight } = e.target;
