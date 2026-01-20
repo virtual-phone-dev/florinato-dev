@@ -50944,7 +50944,7 @@ son compte Vixinol store */
       {/* on affiche mon compte - FA */}
       {/* on affiche mon compte - FA */}
       {profilFA && (<>
-        <div className="profilFA" onScroll={gererScroll}>
+        <div className="profilFA">
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={CloseProfilFA}>
@@ -51113,13 +51113,13 @@ g
 				  <div onClick={() => setId(api._id)}>
 					  <ChildApi66profilFA api={api} video photo photocss="photo-70px-carre" clic svg verifierId/>
 				  </div>
-              </>))}  gererScroll={gererScroll} */}
+              </>))}   */}
               </div>
 			  
 			  
 			<VideoSearchBlock 
 				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video 
-				setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+				setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} gererScroll={gererScroll} />
 
 
               <div className="api2">
