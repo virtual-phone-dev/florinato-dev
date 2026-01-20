@@ -35299,7 +35299,7 @@ const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRe
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
-const mesVideosR = useMemo(() => toutesMesVideos.filter(api => api.visible === "1" && api.message), [dataMesVideosFA] );
+const mesVideosR = useMemo(() => toutesMesVideos.filter(api => api.visible === "1" && api.message), [toutesMesVideos] );
 const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
