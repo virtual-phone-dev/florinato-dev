@@ -51119,7 +51119,7 @@ g
 			  
 			<VideoSearchBlock 
 				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video 
-				setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} gererScroll={gererScroll} />
+				setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
               <div className="api2">

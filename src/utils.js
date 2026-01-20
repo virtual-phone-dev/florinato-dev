@@ -919,10 +919,10 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 // PopupDuBasTemplate 
 
 
-export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, clicVideo, voirVideo, video, gererScroll }) {
+export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, clicVideo, voirVideo, video }) {
   return (<>
 	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
-    <LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} gererScroll={gererScroll} video />
+    <LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
 </>)}
 
 
@@ -1168,9 +1168,9 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
 }
 
 
-export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video, gererScroll }) {
+export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
   return (
-<div className="video-grille" onScroll={gererScroll}>
+<div className="video-grille">
 	{data.map((api) => (
 	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} video />
