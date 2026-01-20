@@ -35290,8 +35290,9 @@ const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } 
 const dataMesVideosFA = useMemo(() => toutesVideos.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
 
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
-const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys: ["message"] }), [videosR, maRechercheVideoFA] );
-const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
+const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
+//const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
+//const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
 // 1️. base propre
@@ -35308,8 +35309,9 @@ const listVideoFA = useMemo(() => { return videosFiltrees.slice(0, dataVideoFA.l
 */
 
 const mesVideosR = useMemo(() => dataMesVideosFA.filter(api => api.visible === "1" && api.message), [dataMesVideosFA] );
-const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
-const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
+const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
+//const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
+//const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
 
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
