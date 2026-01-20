@@ -35289,7 +35289,7 @@ const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } 
 
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-const dataMesVideosFA = useMemo(() => dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
+const dataMesVideosFA = useMemo(() => dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA), [dataVideoFA, idPersonConnectedFA] );
 
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
@@ -50944,7 +50944,7 @@ son compte Vixinol store */
       {/* on affiche mon compte - FA */}
       {/* on affiche mon compte - FA */}
       {profilFA && (<>
-        <div className="profilFA">
+        <div className="profilFA" onScroll={gererScroll}>
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={CloseProfilFA}>
@@ -51113,11 +51113,13 @@ g
 				  <div onClick={() => setId(api._id)}>
 					  <ChildApi66profilFA api={api} video photo photocss="photo-70px-carre" clic svg verifierId/>
 				  </div>
-              </>))}  */}
+              </>))}  gererScroll={gererScroll} */}
               </div>
 			  
 			  
-			<VideoSearchBlock data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+			<VideoSearchBlock 
+				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video 
+				setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
               <div className="api2">
