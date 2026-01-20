@@ -35283,13 +35283,15 @@ async function DissadAA() {
   if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
 
 
-// toutes les vidéos (UNE SEULE SOURCE)
-const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] );
+const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
 const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-const dataMesVideosFA = useMemo(() => dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA), [dataVideoFA, idPersonConnectedFA] );
+const mesVideosSource = useMemo(() => videosSource.filter(api => api.idAccount === idPersonConnectedFA), [videosSource, idPersonConnectedFA] ); // seulement MES vidéos
+const { donneesAffichees:dataMesVideosFA, toutesDonnees:toutesMesVideos, gererScroll: gererScrollpourMesVideosFA } = useScrollIndexedDB({ nomStockage: "videos", donnees:mesVideosSource }); // scroll + pagination SUR MES VIDÉOS
+//const { donneesAffichees:dataMesVideosFA, toutesDonnees: toutesMesVideos, gererScroll: gererScrollMesVideosFA } = useScrollIndexedDB({ nomStockage: "videos", donnees:mesVideosSource }); // scroll + pagination SUR MES VIDÉOS
+
 
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
@@ -35297,21 +35299,7 @@ const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRe
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
-// 1️. base propre
-/*
-const videosR = useMemo(() => { return toutesVideos.filter(api => api.visible === "1" && api.message); }, [toutesVideos] );
-
-// 2. recherche
-const videosFiltrees = useMemo(() => { 
-if (!maRechercheVideoFA) return videosR; 
-return rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"], }); }, [videosR, maRechercheVideoFA] );
-
-// 3️. pagination (UNE SEULE FOIS)
-const listVideoFA = useMemo(() => { return videosFiltrees.slice(0, dataVideoFA.length); }, [videosFiltrees, dataVideoFA.length]);
-*/
-
-
-const mesVideosR = useMemo(() => dataMesVideosFA.filter(api => api.visible === "1" && api.message), [dataMesVideosFA] );
+const mesVideosR = useMemo(() => toutesMesVideos.filter(api => api.visible === "1" && api.message), [dataMesVideosFA] );
 const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
@@ -50944,7 +50932,7 @@ son compte Vixinol store */
       {/* on affiche mon compte - FA */}
       {/* on affiche mon compte - FA */}
       {profilFA && (<>
-        <div className="profilFA">
+        <div className="profilFA" onScroll={gererScrollpourMesVideosFA}>
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={CloseProfilFA}>
