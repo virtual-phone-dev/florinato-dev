@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { React, useState, useEffect, useRef } from 'react';
+import { React, useState, useEffect, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
 import { theme } from "./theme";
@@ -9,7 +9,6 @@ import "./utils.css";
 import "./darkmode.css";
 
 import investirPhoto from "./img/investir.jpg";
-
 
 
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
