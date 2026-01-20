@@ -35085,6 +35085,7 @@ async function DissadAA() {
   // OU version courte :
   const filterMessageFA = apiMessageFAA?.filter?.(api => api.idConversation === idConversation) || []; */
 
+
   async function SendMessageFAA() {
     if (!writeMessage66messageFA.trim()) return;
 	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
@@ -35286,8 +35287,12 @@ async function DissadAA() {
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] );
 const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
+const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+console.log("toutesVideosFA", toutesVideosFA);
+console.log("toutesVideos", toutesVideos);
 
-const dataMesVideosFA = useMemo(() => toutesVideos.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
+
+const dataMesVideosFA = useMemo(() => toutesVideosFA.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
 
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
@@ -35307,6 +35312,7 @@ return rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["mess
 // 3️. pagination (UNE SEULE FOIS)
 const listVideoFA = useMemo(() => { return videosFiltrees.slice(0, dataVideoFA.length); }, [videosFiltrees, dataVideoFA.length]);
 */
+
 
 const mesVideosR = useMemo(() => dataMesVideosFA.filter(api => api.visible === "1" && api.message), [dataMesVideosFA] );
 const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
@@ -50829,7 +50835,7 @@ son compte Vixinol store */
 		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={dataVideoFA} setId={setId} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
+			data={toutesVideosFA} setId={setId} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
