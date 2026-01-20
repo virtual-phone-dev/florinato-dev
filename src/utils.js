@@ -617,7 +617,6 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
-
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, maRechercheVideo }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
@@ -625,14 +624,28 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
   const syncEnCours = useRef(false);
 
 
-// ✅ DONNEES A AFFICHER (DERIVEES de toutesDonnees, ca veut dire que : les donnees a afficher proviennent de toutesDonnees)
+  const toutesDonneesTriees = useMemo(() => { //toutesDonnees, on affiche les^plus recent en haut
+    return [...toutesDonnees].sort((a, b) => {
+      const da = new Date(a.createdAt || 0);
+      const db = new Date(b.createdAt || 0);
+      return db - da;
+    });
+  }, [toutesDonnees]);
+
+
+  // ✅ DONNEES A AFFICHER (DERIVEES de toutesDonnees, ca veut dire que : les donnees a afficher proviennent de toutesDonnees)
+  const donneesAffichees = useMemo(() => {
+    return toutesDonneesTriees.slice(0, lotActuel);
+  }, [toutesDonneesTriees, lotActuel]);
+
+/*
 const donneesAffichees = useMemo(() => { return toutesDonnees
 .sort((a, b) => {
   const da = new Date(a.createdAt || 0);
   const db = new Date(b.createdAt || 0);
   return db - da;
 }).slice(0, lotActuel);
-}, [toutesDonnees, lotActuel] ); 
+}, [toutesDonnees, lotActuel] ); */
 
 
   // useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB) 🔹 1) LECTURE INDEXEDDB (AFFICHAGE IMMEDIAT)
