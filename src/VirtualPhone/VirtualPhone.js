@@ -15498,12 +15498,13 @@ dans le localStorage */
 
   // requete pour obtenir tout les points retraits- IA
   const [apiWithdrawalPointIA, setApiWithdrawalPointIA] = useState([]);
-  console.log("setApiCityIA", setApiCityIA);
-  console.log("setApiQuarterIA", setApiQuarterIA);
-  console.log("setApiWithdrawalPointIA", setApiWithdrawalPointIA);
-  console.log("setApiNavigationAA", setApiNavigationAA);
-  console.log("setApiLanguageIA", setApiLanguageIA);
-  console.log("setApiCountryIA", setApiCountryIA);
+  if (verifyPhotoSendIA === "3") {
+	  console.log("setApiCityIA", setApiCityIA);
+	  console.log("setApiQuarterIA", setApiQuarterIA);
+	  console.log("setApiWithdrawalPointIA", setApiWithdrawalPointIA);
+	  console.log("setApiNavigationAA", setApiNavigationAA);
+	  console.log("setApiLanguageIA", setApiLanguageIA);
+	  console.log("setApiCountryIA", setApiCountryIA); }
 
   //on affiche les Points Retraits qui ont visible=1
   const filterWithdrawalPointIA = apiWithdrawalPointIA.filter((api) => api.visible === "1");
@@ -35290,12 +35291,25 @@ const dataMesVideosFA = useMemo(() => toutesVideos.filter(api => api.idAccount =
 
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys: ["message"] }), [videosR, maRechercheVideoFA] );
-const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : dataVideoFA;
+const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
+
+// 1️. base propre
+/*
+const videosR = useMemo(() => { return toutesVideos.filter(api => api.visible === "1" && api.message); }, [toutesVideos] );
+
+// 2. recherche
+const videosFiltrees = useMemo(() => { 
+if (!maRechercheVideoFA) return videosR; 
+return rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"], }); }, [videosR, maRechercheVideoFA] );
+
+// 3️. pagination (UNE SEULE FOIS)
+const listVideoFA = useMemo(() => { return videosFiltrees.slice(0, dataVideoFA.length); }, [videosFiltrees, dataVideoFA.length]);
+*/
 
 const mesVideosR = useMemo(() => dataMesVideosFA.filter(api => api.visible === "1" && api.message), [dataMesVideosFA] );
 const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
-const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : dataMesVideosFA;
+const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
 
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
