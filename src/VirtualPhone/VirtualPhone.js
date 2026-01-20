@@ -35289,7 +35289,7 @@ const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } 
 
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-const dataMesVideosFA = useMemo(() => dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA), [dataVideoFA, idPersonConnectedFA] );
+const dataMesVideosFA = useMemo(() => dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
 
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
