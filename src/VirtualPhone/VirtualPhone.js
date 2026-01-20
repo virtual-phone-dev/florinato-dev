@@ -35287,16 +35287,8 @@ async function DissadAA() {
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] );
 const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
+console.log("dataVideoFA", dataVideoFA);
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-const toutesVideosFA = dataVideoFA.sort((a, b) => {
-  const da = new Date(a.createdAt || 0);
-  const db = new Date(b.createdAt || 0);
-  return db - da;
-});
-
-console.log("toutesVideosFA", toutesVideosFA);
-console.log("toutesVideos", toutesVideos);
-
 
 const dataMesVideosFA = useMemo(() => toutesVideos.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
 
@@ -50841,7 +50833,7 @@ son compte Vixinol store */
 		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={toutesVideosFA} setId={setId} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
+			data={dataVideoFA} setId={setId} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
