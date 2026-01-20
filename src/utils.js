@@ -617,11 +617,13 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
+
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, maRechercheVideo }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
+
 
 // ✅ DONNEES A AFFICHER (DERIVEES de toutesDonnees, ca veut dire que : les donnees a afficher proviennent de toutesDonnees)
 const donneesAffichees = useMemo(() => { return toutesDonnees

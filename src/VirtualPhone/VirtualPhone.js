@@ -35287,10 +35287,9 @@ async function DissadAA() {
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] );
 const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
-console.log("dataVideoFA", dataVideoFA);
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
-const dataMesVideosFA = useMemo(() => toutesVideos.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
+const dataMesVideosFA = useMemo(() => dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA), [toutesVideos, idPersonConnectedFA] );
 
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
