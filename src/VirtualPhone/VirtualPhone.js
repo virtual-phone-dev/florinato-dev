@@ -35288,7 +35288,7 @@ const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"),
 const { donneesAffichees:dataVideoFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-const toutesVideosFA = toutesVideos.sort((a, b) => {
+const toutesVideosFA = dataVideoFA.sort((a, b) => {
   const da = new Date(a.createdAt || 0);
   const db = new Date(b.createdAt || 0);
   return db - da;
