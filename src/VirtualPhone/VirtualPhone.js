@@ -15442,6 +15442,12 @@ dans le localStorage */
 
   // requete pour afficher toutes les villes - IA
   const [apiCityIA, setApiCityIA] = useState([]);
+  console.log("setApiCityIA", setApiCityIA);
+  console.log("setApiQuarterIA", setApiQuarterIA);
+  console.log("setApiWithdrawalPointIA", setApiWithdrawalPointIA);
+  console.log("setApiNavigationAA", setApiNavigationAA);
+  console.log("setApiLanguageIA", setApiLanguageIA);
+  console.log("setApiCountryIA", setApiCountryIA);
 
 
   // ville selectionner (666 points retraits)
