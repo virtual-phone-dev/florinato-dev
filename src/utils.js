@@ -650,6 +650,8 @@ const donneesAffichees = useMemo(() => { return toutesDonnees
 }, [toutesDonnees, lotActuel] ); 
 
 
+const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+
 const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 .filter(api => api.idAccount === idPersonConnectedFA)
 .sort((a, b) => {
@@ -659,7 +661,6 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 }).slice(0, lotActuel);
 }, [toutesDonnees, lotActuel, idPersonConnectedFA] ); 
 
-//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
 const toutesDonnees_moi = useMemo(() => {
   return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA);
