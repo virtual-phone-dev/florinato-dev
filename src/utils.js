@@ -659,6 +659,13 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 }).slice(0, lotActuel);
 }, [toutesDonnees, lotActuel, idPersonConnectedFA] ); 
 
+//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+
+const toutesDonnees_moi = useMemo(() => {
+  return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA);
+}, [toutesDonnees, idPersonConnectedFA]);
+
+
 
   // useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB) 🔹 1) LECTURE INDEXEDDB (AFFICHAGE IMMEDIAT)
   useEffect(() => {
@@ -723,7 +730,7 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_moi, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, donneesAffichees_moi, toutesDonnees_moi, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 

@@ -35284,7 +35284,7 @@ async function DissadAA() {
 
 
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
-const { donneesAffichees:dataVideoFA, donneesAffichees_moi: dataMesVideosFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
+const { donneesAffichees:dataVideoFA, donneesAffichees_moi:dataMesVideosFA, toutesDonnees_moi:toutesMesVideos, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 //const dataMesVideosFA = dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA)
@@ -35299,7 +35299,7 @@ const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRe
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
-const mesVideosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
+const mesVideosR = useMemo(() => toutesMesVideos.filter(api => api.visible === "1" && api.message), [toutesMesVideos] );
 const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
