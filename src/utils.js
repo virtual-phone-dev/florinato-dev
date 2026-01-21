@@ -664,7 +664,7 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 
 const toutesDonnees_moi = useMemo(() => {
   return toutesDonnees
-  .filter(api => api.idAccount === idPersonConnectedFA);
+  .filter(api => api.idAccount === idPersonConnectedFA)
   .sort((a, b) => {
 	  const da = new Date(a.createdAt || 0);
 	  const db = new Date(b.createdAt || 0);
