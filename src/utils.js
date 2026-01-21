@@ -665,12 +665,12 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 const toutesDonnees_moi = useMemo(() => {
   return toutesDonnees
   .filter(api => api.idAccount === idPersonConnectedFA)
-  .sort((a, b) => {
+  /*.sort((a, b) => {
 	  const da = new Date(a.createdAt || 0);
 	  const db = new Date(b.createdAt || 0);
 	  return db - da;
-	}).slice(0, lotActuel);
-}, [toutesDonnees, lotActuel, idPersonConnectedFA]);
+	}).slice(0, lotActuel);*/
+}, [toutesDonnees, idPersonConnectedFA]);
 
 
 
