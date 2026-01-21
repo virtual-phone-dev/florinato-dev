@@ -650,8 +650,6 @@ const donneesAffichees = useMemo(() => { return toutesDonnees
 }, [toutesDonnees, lotActuel] ); 
 
 
-const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-
 const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 .filter(api => api.idAccount === idPersonConnectedFA)
 .sort((a, b) => {
@@ -659,7 +657,7 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
   const db = new Date(b.createdAt || 0);
   return db - da;
 }).slice(0, lotActuel);
-}, [toutesDonnees, lotActuel] ); 
+}, [toutesDonnees, lotActuel, idPersonConnectedFA] ); 
 
 
   // useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB) 🔹 1) LECTURE INDEXEDDB (AFFICHAGE IMMEDIAT)
@@ -1304,7 +1302,7 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 		localStorage.setItem("gotoPhoto", photo);
 	}
 
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
   
   const afficherVideo = video && api.type === "3";

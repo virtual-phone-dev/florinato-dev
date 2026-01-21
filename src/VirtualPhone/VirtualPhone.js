@@ -35287,7 +35287,7 @@ const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"),
 const { donneesAffichees:dataVideoFA, donneesAffichees_moi: dataMesVideosFA, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
 //const toutesVideosFA = toutesVideos.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
-
+//const dataMesVideosFA = dataVideoFA.filter(api => api.idAccount === idPersonConnectedFA)
 
 //const mesVideosSource = useMemo(() => videosSource.filter(api => a), [videosSource, idPersonConnectedFA] ); // seulement MES vidéos
 //const { donneesAffichees:dataMesVideosFA, toutesDonnees:toutesMesVideos, gererScroll: gererScrollpourMesVideosFA } = useScrollIndexedDB({ donnees:mesVideosSource }); // scroll + pagination SUR MES VIDÉOS
