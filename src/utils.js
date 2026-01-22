@@ -1087,8 +1087,8 @@ export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
 
       <div className="p-15px">
         <p>nameAccount : {api?.nameAccount ?? "—"}</p>
-        <p>idAccount : {api?.idAccount ?? "—"}</p>
         <p>_id : {api?._id ?? "—"}</p>
+		<p>idAccount : {api?.idAccount ?? "—"}</p>
         <p>idUser : {api?.idUser ?? "—"}</p>
         <p>idGroup : {api?.idGroup ?? "—"}</p>
         <p>top : {api?.top ?? "—"}</p>
