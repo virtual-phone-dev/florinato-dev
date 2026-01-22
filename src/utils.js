@@ -663,13 +663,12 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 
 
 const toutesDonnees_moi = useMemo(() => {
-  return toutesDonnees
-  .sort((a, b) => {
+  return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA)
+  /* .sort((a, b) => {
 	  const da = new Date(a.createdAt || 0);
 	  const db = new Date(b.createdAt || 0);
 	  return db - da;
-	})
-	.filter(api => api.idAccount === idPersonConnectedFA)
+	}) */
 }, [toutesDonnees, idPersonConnectedFA]);
 
 
@@ -1088,6 +1087,7 @@ export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
 
       <div className="p-15px">
         <p>nameAccount : {api?.nameAccount ?? "—"}</p>
+        <p>idAccount : {api?.idAccount ?? "—"}</p>
         <p>_id : {api?._id ?? "—"}</p>
         <p>idUser : {api?.idUser ?? "—"}</p>
         <p>idGroup : {api?.idGroup ?? "—"}</p>
