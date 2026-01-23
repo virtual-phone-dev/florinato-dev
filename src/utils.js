@@ -11,11 +11,22 @@ import "./darkmode.css";
 import investirPhoto from "./img/investir.jpg";
 
 
-/*
+
+/* ezamaforkor
+https://www.youtube.com/shorts/k68cyq1OnVY
+https://www.youtube.com/shorts/O0wAl2gCZ7M
 https://www.youtube.com/watch?v=EJjd7IFAi8o
+https://www.youtube.com/shorts/TJRIklGPnV0
+https://www.youtube.com/watch?v=4umWen8On6Q
+https://www.youtube.com/watch?v=NbXa4u9wju4
+https://www.youtube.com/watch?v=01FYt_x3TJk
 https://www.youtube.com/watch?v=pCPZaADa1dQ
+https://www.youtube.com/watch?v=2wJPvGAlrQ8
 https://www.youtube.com/watch?v=qf7HjY_dRXY
 https://www.youtube.com/watch?v=uUJLAVTsWAc
+https://www.youtube.com/shorts/1jeyzS14C08
+https://www.youtube.com/shorts/_Nb9Tdpp9V0
+https://www.youtube.com/watch?v=5fOqGGe_qaE
 https://www.youtube.com/watch?v=f4WfuUzgF-Q
 https://www.youtube.com/shorts/z0NWNqT619M
 https://www.youtube.com/watch?v=TlCDufCFrOw
@@ -1022,16 +1033,6 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 }
 
 
-export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap }) {
-	if (!visible) return null;
-    return (<>
-	<div className="page-blanche">
-		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
-		<ListeDesComptes2 data={data} profilMap={profilMap} />
-    </div>
-    {/* page-blanche */}
- </>)}
-
 
 export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorinato }) {
   return (<>
@@ -1220,9 +1221,7 @@ export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
           <p>{popularity}</p>
         </div>
 
-        <div className="photo-70px">
-          <img src={photoProfile} alt={nameAccount} />
-        </div>
+        <div className="photo-70px"> <img src={photoProfile} alt={nameAccount}/> </div>
 
         <div className="pre-17px">
           <pre>{nameAccount}</pre>
@@ -1269,17 +1268,35 @@ export function ListeDesComptes({ data=[] }) {
     </>
   )}
 
+/*
+const idAccount = api.idAccount;
+    if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount);
+		console.log("idAccount enregistrer dans le localStorage :", idAccount);
+	} */
+	
+// <div onClick={() => { localStorage.setItem("idPersonConnectedFA", api.idAccount); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 
 export function ListeDesComptes2({ data=[], profilMap }) {
   return (
     <>
-	    {data.map((api) => {				
+	    {data.map((api) => {	
 			return (<PopularityAccountCard2 api={api} profilMap={profilMap} /> )} 
         )}
     </>
   )}
   
-  
+
+export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap }) {
+	if (!visible) return null;
+    return (<>
+	<div className="page-blanche">
+		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
+		<ListeDesComptes2 data={data} profilMap={profilMap} />
+    </div>
+    {/* page-blanche */}
+ </>)}
+
+
 export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cliccss="p-14px" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
