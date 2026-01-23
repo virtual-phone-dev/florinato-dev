@@ -18,9 +18,15 @@ https://www.youtube.com/shorts/O0wAl2gCZ7M
 https://www.youtube.com/watch?v=EJjd7IFAi8o
 https://www.youtube.com/shorts/TJRIklGPnV0
 https://www.youtube.com/watch?v=4umWen8On6Q
+https://www.youtube.com/watch?v=wv15GiQ4sVg
+https://www.youtube.com/watch?v=VtAGyCalE8w
 https://www.youtube.com/watch?v=NbXa4u9wju4
+
+https://www.youtube.com/watch?v=B1qzWGpdohQ
 https://www.youtube.com/watch?v=01FYt_x3TJk
 https://www.youtube.com/watch?v=pCPZaADa1dQ
+
+https://www.youtube.com/watch?v=2obJ7aCL46c
 https://www.youtube.com/watch?v=2wJPvGAlrQ8
 https://www.youtube.com/watch?v=qf7HjY_dRXY
 https://www.youtube.com/watch?v=uUJLAVTsWAc
@@ -1268,22 +1274,25 @@ export function ListeDesComptes({ data=[] }) {
     </>
   )}
 
-/*
-const idAccount = api.idAccount;
-    if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount);
-		console.log("idAccount enregistrer dans le localStorage :", idAccount);
-	} */
-	
-// <div onClick={() => { localStorage.setItem("idPersonConnectedFA", api.idAccount); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 
-export function ListeDesComptes2({ data=[], profilMap }) {
+export function ListeDesComptes2({ data = [], profilMap }) {
   return (
     <>
-	    {data.map((api) => {	
-			return (<PopularityAccountCard2 api={api} profilMap={profilMap} /> )} 
-        )}
+      {data.map((api) => (
+        <div
+          key={api._id}
+          onClick={() => {
+            localStorage.setItem("idPersonConnectedFA", api.idAccount);
+            console.log("idPersonConnectedFA enregistré :", api.idAccount);
+            console.log("nameAccount :", api.nameAccount);
+          }}
+        >
+          <PopularityAccountCard2 api={api} profilMap={profilMap} />
+        </div>
+      ))}
     </>
-  )}
+  );
+}
   
 
 export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap }) {
