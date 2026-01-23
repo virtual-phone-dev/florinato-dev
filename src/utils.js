@@ -11,6 +11,151 @@ import "./darkmode.css";
 import investirPhoto from "./img/investir.jpg";
 
 
+/*
+https://www.youtube.com/watch?v=EJjd7IFAi8o
+https://www.youtube.com/watch?v=pCPZaADa1dQ
+https://www.youtube.com/watch?v=qf7HjY_dRXY
+https://www.youtube.com/watch?v=uUJLAVTsWAc
+https://www.youtube.com/watch?v=f4WfuUzgF-Q
+https://www.youtube.com/shorts/z0NWNqT619M
+https://www.youtube.com/watch?v=TlCDufCFrOw
+https://www.youtube.com/shorts/dUdg-qJWTPw
+https://www.youtube.com/shorts/vT2Ove_jUGE
+https://www.youtube.com/shorts/sO-1AG43rCM
+https://www.youtube.com/shorts/yZTJQWNjQtg
+https://www.youtube.com/shorts/m3MKGwr_kOA
+https://www.youtube.com/watch?v=UlD1mJU_OYY
+https://www.youtube.com/watch?v=TWPGr6D1Ei0
+https://www.youtube.com/watch?v=yMcDmPgsv74&pp=ugUEEgJmctIHCQmHCgGHKiGM7w%3D%3D
+
+https://www.youtube.com/watch?v=KRtfNifnmzo
+
+
+https://www.youtube.com/watch?v=4Cd388VbxOY&list=RDEM4cyoUJCn0rZeViwW7wWtjQ&start_radio=1
+https://www.youtube.com/watch?v=zhDRff7ATbY
+https://www.youtube.com/watch?v=Qr5gvLJfEJI
+https://www.youtube.com/watch?v=LfFvIIOPpxg&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=-bWHKpPDh84&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=Iz6tVAC7K9Y&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=H1lBkyLASX0&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=CUM-PpU1mIE&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=3EQlvNOJzJ0&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=nEGpHfx_NiY&pp=ygURZmFuaWNrbyBzYXBvbG9naWXSBwkJhwoBhyohjO8%3D
+https://www.youtube.com/watch?v=zTrXHFz4DS4&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=eeKxVrWGQ8I&pp=0gcJCYcKAYcqIYzv
+https://www.youtube.com/shorts/PRVnaE-obwk
+https://www.youtube.com/shorts/S1A0QEYAE3k
+https://www.youtube.com/watch?v=_C6zBArwaAs
+https://www.youtube.com/watch?v=23UT5--vZVo
+https://www.youtube.com/watch?v=9aiTzXeXyXk
+https://www.youtube.com/shorts/Cl6vcYyAkaI
+
+https://www.youtube.com/watch?v=Nb4SV1DgjVw
+https://www.youtube.com/watch?v=700bQRCbEJk
+https://www.youtube.com/watch?v=eax31rcvpsQ
+https://www.youtube.com/shorts/vq9EuPLxWMk
+https://www.youtube.com/shorts/_nRXt2prV_w
+
+https://www.youtube.com/shorts/Xk1wr9NieAk
+
+https://www.youtube.com/watch?v=7H9qR8GMqDQ
+https://www.youtube.com/shorts/ClIHdWJ0XcY
+https://www.youtube.com/watch?v=u3c1wu9oK8Y
+https://www.youtube.com/shorts/sjc_Dhgfv_w
+https://www.youtube.com/watch?v=gZnC9rNj9N0
+https://www.youtube.com/shorts/4GdllTeW0tY
+https://www.youtube.com/shorts/PMGgbtL3kaQ
+https://www.youtube.com/shorts/EmWOqqi_Azo
+https://www.youtube.com/shorts/5QNHhzOoBJE
+https://www.youtube.com/watch?v=FCuqjvDXxgA
+https://www.youtube.com/watch?v=KUK5aoTpwlQ
+https://www.youtube.com/watch?v=arWDXiKW2FE
+
+https://www.youtube.com/watch?v=cwvKhGrUD_4
+https://www.youtube.com/watch?v=TP95HO11Wc4
+https://www.youtube.com/watch?v=skajRgiUNLY
+
+https://www.youtube.com/watch?v=I_sidDUbEnQ
+https://www.youtube.com/watch?v=OsOfpV2MnUY
+https://www.youtube.com/watch?v=p4ljo8KpBkM&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=BrD3MRNOdIg
+https://www.youtube.com/watch?v=zB1kV1xyPWc
+https://www.youtube.com/watch?v=CZ4YfeC34ko&pp=0gcJCYcKAYcqIYzv
+https://www.youtube.com/watch?v=CZ4YfeC34ko&pp=0gcJCYcKAYcqIYzv
+https://www.youtube.com/watch?v=FQRob-S6_WU&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=KfcUoq9vwqw&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=97l0l5MkRMg&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=fDSapcbf3_I&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=gW93lbDxPMI&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=Ls_C5GrKYQE&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=ClKqBalkjU0&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=OrPry8LnHZw&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/watch?v=U7aMtsKV6Lc
+https://www.youtube.com/watch?v=dGQ0T-iPhBA
+https://www.youtube.com/shorts/3UPa7m8DQHM
+https://www.youtube.com/watch?v=WFtcoimTdAs&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+
+https://www.youtube.com/watch?v=TY3E-fAQZ9Y&pp=ygURZmFuaWNrbyBzYXBvbG9naWU%3D
+https://www.youtube.com/shorts/uHWMkdBcMDM
+https://www.youtube.com/shorts/Uv1PyE8J38w
+
+https://www.youtube.com/shorts/LrwgPZV1BGk
+https://www.youtube.com/shorts/WHv4JQ0Yh3s
+https://www.youtube.com/shorts/_MRGZ8xd2wE
+https://www.youtube.com/shorts/CkJ4bZdPkhw
+https://www.youtube.com/watch?v=4Cd388VbxOY&list=RDEM4cyoUJCn0rZeViwW7wWtjQ&start_radio=1
+https://www.youtube.com/watch?v=0bOr4WcPk_c
+
+https://www.youtube.com/watch?v=8XmT30Ryr94
+https://www.youtube.com/shorts/hQUyhgacDdY
+https://www.youtube.com/watch?v=LUp7mfkrRZg
+https://www.youtube.com/watch?v=uH9UfcF382Y
+
+
+https://www.youtube.com/shorts/3Jou9cWy9eA
+https://www.youtube.com/watch?v=ZRQta6vl1ew
+https://www.youtube.com/watch?v=Azo_q-7Cl80
+https://www.youtube.com/watch?v=2gRaMeE4Wlg
+https://www.youtube.com/shorts/2cbwhmqQu-4
+https://www.youtube.com/watch?v=y8GpDwMxeM4
+https://www.youtube.com/shorts/fS4exIZyN5U
+https://www.youtube.com/watch?v=aMT42NQBKeY
+https://www.youtube.com/watch?v=fCZVL_8D048
+https://www.youtube.com/watch?v=0U0lAGgZ5J4
+https://www.youtube.com/shorts/3NwI-aPnRAQ
+https://www.youtube.com/watch?v=SHEGB8PICO0
+https://www.youtube.com/watch?v=3pvq_fqAwWs
+https://www.youtube.com/shorts/3NwI-aPnRAQ
+https://www.youtube.com/shorts/JgKaDio0gcg
+https://www.youtube.com/watch?v=pCPZaADa1dQ
+https://www.youtube.com/shorts/3NwI-aPnRAQ
+https://www.youtube.com/watch?v=kyl_k8F4Ui4
+https://www.youtube.com/watch?v=pE6k9F9vnCE
+https://www.youtube.com/watch?v=OKWYbUIx2Q0
+https://www.youtube.com/shorts/ZZjOjcGQsrE
+https://www.youtube.com/shorts/B85QXClDGKc
+https://www.youtube.com/watch?v=kyl_k8F4Ui4
+https://www.youtube.com/watch?v=IGUjGg4L5tQ
+https://www.youtube.com/watch?v=2bzUvBidIJ8
+https://www.youtube.com/watch?v=DMpG_DBX79k
+https://www.youtube.com/watch?v=1TqybjXXd5w
+https://www.youtube.com/watch?v=wlSJcbWwzds
+https://www.youtube.com/watch?v=EHE69KhXZlc
+
+https://www.youtube.com/watch?v=PZZmlO_DULI
+https://www.youtube.com/watch?v=uAoa2JywxBA
+https://www.youtube.com/watch?v=QWuTx0q_fyc
+https://www.youtube.com/watch?v=0G6D83v9kTo
+https://www.youtube.com/watch?v=IGUjGg4L5tQ
+https://www.youtube.com/watch?v=zZLTigQI0ZQ
+https://www.youtube.com/watch?v=v5nfmtFzvvk
+https://www.youtube.com/watch?v=lN2V93xElwY
+https://www.youtube.com/watch?v=ExGFv57phrk
+https://www.youtube.com/watch?v=baythHIaiS8
+
+*/
+
+
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
 
@@ -877,7 +1022,6 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 }
 
 
-
 export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap }) {
 	if (!visible) return null;
     return (<>
@@ -1054,6 +1198,12 @@ export function PopularityAccountCard({ api }) {
 
 
 export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
+	const idAccount = api.idAccount;
+    if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount);
+		console.log("idAccount enregistrer dans le localStorage :", idAccount);
+	}
+	
+
   // pour obtenir les informations du profil
   const idToUse = api?.idOther;
   const profil = idToUse ? profilMap?.[idToUse] : null;
@@ -1062,7 +1212,7 @@ export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
   const popularity = profil?.popularity ?? 0;
   const photoProfile = profil?.photoProfile ?? investirPhoto;
   const nameAccount = profil?.nameAccount ?? "Compte inconnu";
-
+  
   return (
     <>
       <div className="display-nowrap">
@@ -1071,13 +1221,7 @@ export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
         </div>
 
         <div className="photo-70px">
-          <img
-            src={photoProfile}
-            alt={nameAccount}
-            onError={(e) => {
-              e.currentTarget.src = "/images/avatar-default.png";
-            }}
-          />
+          <img src={photoProfile} alt={nameAccount} />
         </div>
 
         <div className="pre-17px">

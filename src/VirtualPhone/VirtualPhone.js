@@ -364,14 +364,11 @@ export function ChildApi266accountsFA({ api2 }) {
     if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
 
     const idGroup = api2.idGroup;
-    if(idGroup) { 
+    if(idGroup) {
 		localStorage.setItem("idGroupFA", idGroup); 
 		localStorage.setItem("idAccountChef", idAccount); 
 		localStorage.setItem("idGroupChef", idGroup); 
 	}
-
-    //console.log("idPersonConnectedFA", idAccount);
-    //console.log("idGroupFA", idGroup);
   }
 
   // date envoie message
@@ -51245,37 +51242,7 @@ g
 				<MesComptes 
 					data={apiMessageFA} cliquerSurMonCompte={DataFA} 
 					listMesComptes={listMesComptesFA} valeur={rechercheMesComptesFA} setValeur={setrechercheMesComptesFA} />
-				  
-		   {/*
-            {dataFA && (<>                                                                                                                
-            <div className="api">
-              {filterFA.map((api) => (<>
-                <ChildApi66accountsFA api={api} />
-              </>))}
-            </div>
-            {/* api 
-<
-            <div className="api2" onClick={DataFA}>
-              {filterFA.map((api2) => (<>
-                <ChildApi266accountsFA api2={api2} />
-              </>))}
-            </div> </>)} {/* dataFA && 
-            {/* api2 
-
-            {!dataFA && (<>
-            <div className="api">
-              {filterFA.map((api) => (<>
-                <ChildApi66accountsFA api={api} />
-              </>))}
-            </div>
-            {/* api 
-
-              <div className="api2" onClick={DataFA}>
-                {filterFA.map((api2) => (<>
-                  <ChildApi266accountsFA api2={api2} />
-                </>))}
-              </div> </>)} {/* !dataFA && */}
-              {/* api2 */}
+	
             </div>
             {/* body */}
           </div>
