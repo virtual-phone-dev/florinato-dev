@@ -12,10 +12,14 @@ import investirPhoto from "./img/investir.jpg";
 
 
 
-/* ezamaforkor
+/* 
 https://www.youtube.com/shorts/k68cyq1OnVY
 https://www.youtube.com/shorts/O0wAl2gCZ7M
 https://www.youtube.com/watch?v=EJjd7IFAi8o
+https://www.youtube.com/watch?v=Ai75TmyhPvI
+https://www.youtube.com/shorts/j-ZPL6VOzH4
+
+https://www.youtube.com/watch?v=CwuJcADQnK4
 https://www.youtube.com/shorts/TJRIklGPnV0
 https://www.youtube.com/shorts/gFmpYwwFDm8
 https://www.youtube.com/shorts/xU9o4suZbWo
@@ -1415,11 +1419,11 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
 }
 
 
-export function LesVideos({ data=[], setId, clicVideo, voirVideo, titrecss, cliccss, video }) {
+export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVideo, titrecss, cliccss, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
-	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
+	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); setIdAccountChef(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} video />
 	  </div>
 	  ))}

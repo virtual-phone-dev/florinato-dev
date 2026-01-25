@@ -34999,7 +34999,7 @@ async function DissadAA() {
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
   const idOther = localStorage.getItem("idAccountChef");
-  const idAccountChef = localStorage.getItem("idAccountChef");
+  const idAccountChefFA = localStorage.getItem("idAccountChef");
 
   
   // logique pour envoyer un message privé sur florinato
@@ -35049,16 +35049,16 @@ async function DissadAA() {
 
 	  const socket = socketRef.current;
 	  
-	  socket.on("receiveMessage", (msg) => {
+	  /* socket.on("receiveMessage", (msg) => {
 	  setApiMessageFA(prev => {
 		  if (prev.some(m => m._id === msg._id)) return prev;
 		  return [msg, ...prev];
 		});
-	  }); 
-	  
-	  /*socket.on("receiveMessage", (msg) => {
-		setApiMessageFA(prev => [msg, ...prev]);
 	  }); */
+	  
+	  socket.on("receiveMessage", (msg) => {
+		setApiMessageFA(prev => [msg, ...prev]);
+	  }); 
 
 	  return () => { socket.off("receiveMessage"); };
 	}, []);
@@ -35142,7 +35142,7 @@ async function DissadAA() {
 
     
     // filtre pour afficher les infos de l'autre - FA
-    const accountOther = apiMessageFA.filter((api) => api._id === idAccountChef);
+    const accountOther = apiMessageFA.filter((api) => api._id === idAccountChefFA);
     const nameOther = accountOther.map((api) => api.nameAccount); // name
     if (nameOther) { localStorage.setItem("nameOther", nameOther); }
 
@@ -35196,6 +35196,7 @@ async function DissadAA() {
   
   
 	const [idreq, setId] = useState(null);
+	const [idAccountChef, setIdAccountChef] = useState(null);
 	const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
 	console.log(`infosPostFA ici:`, infosPostFA); */
@@ -40265,7 +40266,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
 
   async function Chiffre1FA() {
-    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChef && api.type === "100" && api.visible === "0");
+    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChefFA && api.type === "100" && api.visible === "0");
     const getchiffre = filter.map((api) => api.typeOther); 
     localStorage.setItem("chiffre", getchiffre);
     const chiffre = localStorage.getItem("chiffre");
@@ -40284,7 +40285,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   // Chiffre1FA
 
   async function Chiffre2FA() { 
-    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChef && api.type === "100" && api.visible === "0");
+    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChefFA && api.type === "100" && api.visible === "0");
     const getchiffre = filter.map((api) => api.typeOther); 
     localStorage.setItem("chiffre", getchiffre);
     const chiffre = localStorage.getItem("chiffre");
@@ -40303,7 +40304,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   // Chiffre2FA
 
   async function Chiffre3FA() {
-    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChef && api.type === "100" && api.visible === "0");
+    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChefFA && api.type === "100" && api.visible === "0");
     const getchiffre = filter.map((api) => api.typeOther); 
     localStorage.setItem("chiffre", getchiffre);
     const chiffre = localStorage.getItem("chiffre");
@@ -40322,7 +40323,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   // Chiffre3FA
 
   async function Chiffre4FA() {
-    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChef && api.type === "100" && api.visible === "0");
+    const filter = apiMessageFA.filter((api) => api.idOther === idAccountChefFA && api.type === "100" && api.visible === "0");
     const getchiffre = filter.map((api) => api.typeOther); 
     localStorage.setItem("chiffre", getchiffre);
     const chiffre = localStorage.getItem("chiffre");
@@ -44317,18 +44318,14 @@ const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(f
 //logique pour envoyer ou publier une video
 async function EnvoyerVideoFAA() { 
 	setisLoading666EnvoyerVideoFAA(true);
-	const actions = { envoyerPhoto: true, publierVideo: true, allData: true, };
+	const actions = { envoyerPhoto: true, publierVideo: true };
 		
 	await Envoyer3({
 	    file: miniatureFA,
 		
-		id: 6000,
         message: ecrireTitre,
         urlVideo: lienGitLab,
 		idAccount: idPersonConnectedFA,
-		nameAccount: nameFA,
-        photoAccount: photoFA,
-        badgeAccount: badgeFA,
 		idAccountChef: localStorage.getItem("idAccountChef"),
         idGroupChef: localStorage.getItem("idGroupChef"),
         clic: 0,
@@ -44430,6 +44427,7 @@ const [modifierTitrePageFA , setmodifierTitrePageFA] = useState(false);
 async function ModifierTitrePageFA() { setmodifierTitrePageFA(true); }
 async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
 
+
 //logique pour changer le titre de la video - FA
 const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
 const [nouveauTitre, setNouveauTitre] = useState("");
@@ -44442,11 +44440,43 @@ const [commenterPageFA, setcommenterPageFA] = useState(false);
 async function CommenterPageFA() { setcommenterPageFA(true); }
 async function CloseCommenterPageFA() { setcommenterPageFA(false); }
 
-//logique pour commenter la vidéo - FA
+
+//logique pour commenter un post (commenter une video ou une photo ou n'importe qu'elle post) - FA
 const [isLoading666CommenterFA, setIsLoading666CommenterFA] = useState(false);
 const [ecrireCommentaireFA, setEcrireCommentaireFA] = useState("");
-async function CommenterFA() { await ExecuterActionFA({ dataPOST:{message: ecrireCommentaireFA}, id:idreq, loader:setIsLoading666CommenterFA, actions: ["post"] }); }
+async function CommenterFA() { await ExecuterActionFA({
+	actions: ["post"],
+	loader:setIsLoading666CommenterFA,
+	dataPOST:{
+		idPost:idreq,
+		idProprietairePost: idAccountChef,
+		
+		commentaire: ecrireCommentaireFA,
+		idProprietaireCommentaire: idPersonConnectedFA,
+        type:25,
+	}, 
+}); }
 
+
+//logique pour repondre a un commentaire - FA
+/*
+const [isLoading666RepondreFA, setIsLoading666RepondreFA] = useState(false);
+const [ecrireReponseFA, setEcrireReponseFA] = useState("");
+async function RepondreFA() { await ExecuterActionFA({
+	actions: ["post"],
+	loader:setIsLoading666RepondreFA,
+	dataPOST:{
+		idPost:idreq,
+		idProprietairePost: idAccountChef,
+		
+		idCommentaire,
+		idProprietaireCommentaire,
+		
+		reponse: ecrireReponseFA,		
+		idProprietaireReponse: idPersonConnectedFA,
+        type:26,
+	}, 
+}); } */
 
 
 //page pour enregistrer l'url modifier
@@ -52185,7 +52215,7 @@ g
 
 			<div className="overflow-x">
 			{dataVideoFA.map((api) => (<>
-			<div onClick={() => {setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId/>
 			</div>
 			</>))}
@@ -52195,14 +52225,14 @@ g
 			
 			<div className="overflow-x">
 			{dataVideoFA.map((api) => (<>
-			<div onClick={() => {setId(api._id); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={dataVideoFA} setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>
