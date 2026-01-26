@@ -18,6 +18,7 @@ https://www.youtube.com/shorts/O0wAl2gCZ7M
 https://www.youtube.com/watch?v=EJjd7IFAi8o
 https://www.youtube.com/watch?v=Ai75TmyhPvI
 https://www.youtube.com/shorts/j-ZPL6VOzH4
+https://www.youtube.com/watch?v=cLi5XzfYIBo&pp=ugUEEgJmcg%3D%3D
 
 https://www.youtube.com/watch?v=CwuJcADQnK4
 https://www.youtube.com/shorts/TJRIklGPnV0
@@ -1718,21 +1719,7 @@ export function GestionPage({ visible, AjouterAdmin, CloseGestionPage, Actualise
               <EnfantAdministrateurLombda api={api} />
             ))}
 
-            {roleAdmin === "1" && (
-              <>
-                <div className="ajouter-admin">
-                  <p onClick={AjouterAdmin}>Ajouter un administrateur</p>
-                </div>
-              </>
-            )}
-
-            {roleAdmin === "2" && (
-              <>
-                <div className="ajouter-admin">
-                  <p onClick={AjouterAdmin}>Ajouter un administrateur</p>
-                </div>
-              </>
-            )}
+			<div className="ajouter-admin"> <p onClick={AjouterAdmin}>Ajouter un administrateur</p> </div>
           </div>
           {/* gestion-opacity */}
 </>)}

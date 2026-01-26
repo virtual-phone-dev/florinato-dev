@@ -44324,9 +44324,9 @@ async function RepondreFA() { await ExecuterActionFA({
 	dataPOST:{
 		idPost:idreq,
 		idProprietairePost: idAccountChef,
-		
+		/*
 		idCommentaire,
-		idProprietaireCommentaire,
+		idProprietaireCommentaire, */
 		
 		reponse: ecrireReponseFA,		
 		idProprietaireReponse: idPersonConnectedFA,
