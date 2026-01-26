@@ -1535,7 +1535,7 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 
 
 // PopupDuBasTextarea Template
-export function PopupBasTextareaTemplate({ visible, titre, valeur, setValeur, texte="Écrire..", titrebtn, valider, isLoading, CloseAjouterZoneIAC, writeZone, setWriteZone, inEnglish, setInEnglish, SaveZoneIAC }) {
+export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setValeur, texte="Écrire..", titrebtn, valider, isLoading, writeZone, setWriteZone, inEnglish, setInEnglish, SaveZoneIAC }) {
   if (!visible) return null;
 
   return (<>
@@ -1548,7 +1548,7 @@ export function PopupBasTextareaTemplate({ visible, titre, valeur, setValeur, te
 
                   <div className="b">
                     <svg
-                      onClick={CloseAjouterZoneIAC}
+					  onClick={fermer}
                       xmlns="http://www.w3.org/2000/svg"
                       x="0"
                       y="0"
@@ -1614,14 +1614,14 @@ export function PopupBasTextareaTemplate({ visible, titre, valeur, setValeur, te
 
 
 // gestion de la page
-export function GestionPageTemplate({ visible, AjouterAdmin, CloseGestionPage, ActualiserPage, filtreApiAdmin, JustCloseGestionPage, nomPage }) {
+export function GestionPageTemplate({ visible, fermer, AjouterAdmin, ActualiserPage, filtreApiAdmin, JustCloseGestionPage, nomPage }) {
   if (!visible) return null;
   
   return (<>
           <div className="gestion-opacity">
             <div className="title">
               <svg
-                onClick={CloseGestionPage}
+				onClick={fermer}
                 xmlns="http://www.w3.org/2000/svg"
                 width="25px"
                 fill="#00cc00"
@@ -1692,19 +1692,18 @@ export function GestionPageTemplate({ visible, AjouterAdmin, CloseGestionPage, A
 
 
 //MenuBas
-export function MenuBasTemplate({ visible, PubliciterPage, BoosterPage }) {
+export function MenuBasTemplate({ visible, fermer }) {
   if (!visible) return null;
   
   return (<>
-{/* publiciter page */}
       {/* apres avoir cliquer sur Publiciter, on va afficher cette navbar bottom qui va 
       permettre a l'utilisateur de cliquer sur Booster la page */}
-          <div onClick={PubliciterPage} className="actualiser-page-opacity">
+          <div className="actualiser-page-opacity">
             <div className="align">
               <div className="card">
                 <div className="block">
                   <div className="a">
-                    <p onClick={BoosterPage}>Booster la Page</p>
+                    <p onClick={fermer}>Booster la Page</p>
                   </div>
 
                   <div className="b">
@@ -1725,20 +1724,19 @@ export function MenuBasTemplate({ visible, PubliciterPage, BoosterPage }) {
 
 
 // MenuAvecIcone
-export function MenuAvecIconeTemplate({ visible, MiniMenuPageAlrani, ClosePageAlrani, GestionPage, StatistiquePageAA, PublierPublication, PubliciterPage, Video }) {
+export function MenuAvecIconeTemplate({ visible, fermer, GestionPage, StatistiquePageAA, PublierPublication, PubliciterPage, Video }) {
   if (!visible) return null;
   
   return (<>
-      {/* mini Menu Page Alrani */}
       {/* ca c'est pour afficher le mini menu - page Alrani Business */}
-          <div onClick={MiniMenuPageAlrani} className="mini-menu-opacity">
+          <div className="mini-menu-opacity">
             <div className="align">
               <div className="card">
                 <div className="btn-lier-border">
                   <div className="btn-lier-center">
                     <div className="btn-lier-display">
                       <svg
-                        onClick={ClosePageAlrani}
+						onClick={fermer}
                         xmlns="http://www.w3.org/2000/svg"
                         x="0"
                         y="0"
@@ -1937,7 +1935,7 @@ export function MenuAvecIconeTemplate({ visible, MiniMenuPageAlrani, ClosePageAl
 	  
 
 //PagesGererTemplate
-export function PagesGererTemplate({ visible, ClosePagesGerer, PageAlrani, obtenirListeDesPages=[] }) {
+export function PagesGererTemplate({ visible, fermer, PageAlrani, obtenirListeDesPages=[] }) {
   if (!visible) return null;
   
   return (<>
@@ -1949,7 +1947,7 @@ export function PagesGererTemplate({ visible, ClosePagesGerer, PageAlrani, obten
               <div className="card">
                 <div className="title">
                   <svg
-                    onClick={ClosePagesGerer}
+					onClick={fermer}
                     xmlns="http://www.w3.org/2000/svg"
                     x="0"
                     y="0"
@@ -1987,20 +1985,20 @@ export function PagesGererTemplate({ visible, ClosePagesGerer, PageAlrani, obten
 
 
 //MenuPopup
-export function MenuPopupTemplate({ visible, Business, Presentation, PageGerer }) {
+export function MenuPopupTemplate({ visible, fermer }) {
   if (!visible) return null;
   
   return (<>
       {/* apres business */}
       {/* apres business */}
       {/* quand on clique sur l'onglet business, cette popup va etre declencher  */}
-          <div onClick={Business} className="business-opacity">
+          <div className="business-opacity">
             <div className="bottom">
               <div className="card">
                 <div className="block">
-                  <p onClick={Presentation}>Page Alrani Business</p>
+                  <p onClick={fermer}>Page Alrani Business</p>
 				  
-                  <p onClick={PageGerer}>Gestionnaire de Pages</p>
+                  <p>Gestionnaire de Pages</p>
                 </div>
                 {/* block */}
               </div>
