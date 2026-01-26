@@ -44319,8 +44319,6 @@ async function CloseRepondrePageFA() { setrepondrePageFA(false); }
 const [isLoading666RepondreFA, setIsLoading666RepondreFA] = useState(false);
 const [ecrireReponseFA, setEcrireReponseFA] = useState("");
 async function RepondreFA() { await ExecuterActionFA({
-	console.log(RepondrePageFA);
-	
 	actions: ["post"],
 	loader:setIsLoading666RepondreFA,
 	dataPOST:{
@@ -44334,7 +44332,7 @@ async function RepondreFA() { await ExecuterActionFA({
 		idProprietaireReponse: idPersonConnectedFA,
         type:26,
 	}, 
-}); } 
+}); console.log(RepondrePageFA); } 
 
 
 //page pour enregistrer l'url modifier
