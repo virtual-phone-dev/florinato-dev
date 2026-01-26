@@ -14120,32 +14120,33 @@ dans le localStorage */
     setBusiness(!business);
   }
   // on affiche la liste des Pages que vous gérer
-  const [pageGerer, setPageGerer] = useState(false);
+  /* const [pageGerer, setPageGerer] = useState(false);
   async function PageGerer() {
     setPageGerer(true);
   }
   async function ClosePageGerer() {
     setPageGerer(false);
     setBusiness(true);
-  }
+  }*/
+
 
   // presentation
   // ici c'est pour presenter c'est quoi une Page Alrani Business
   const [presentation, setPresentation] = useState(false);
-  async function Presentation() {
+  /* async function Presentation() {
     setPresentation(true);
     localStorage.setItem("https://alrani.com/idPage", idPersonConnectedAA);
     // on enregistre le roleAdmin
     /* ca va nous servir par exemple, si le proprietaire de la page veut voir les boutons
     Approuver/Rejeter ou encore le btn Approuver la publication, ces boutons sont visible
-    uniquement par l'admin suppreme(roleAdmin=2) et par le proprietaire de la page(roleAdmin=1) */
+    uniquement par l'admin suppreme(roleAdmin=2) et par le proprietaire de la page(roleAdmin=1) //
     const roleAdmin = "1";
     localStorage.setItem("https://alrani.com/roleAdmin", roleAdmin);
     /* ce postApprouverAdmin va etre utile dans le cas ou le proprietaire de la page veut
     publier une publication, la publication sera publier sans necessiter d'approbation
     car postApprouverAdmin=1, 
     (mais si postApprouverAdmin=3, là la publication va necessiter
-    une approbation, ca c'est dans le cas ou c'est l'admin lombda qui publie) */
+    une approbation, ca c'est dans le cas ou c'est l'admin lombda qui publie) //
     const postApprouverAdmin = "1";
     localStorage.setItem(
       "https://alrani.com/postApprouverAdmin",
@@ -14159,7 +14160,7 @@ dans le localStorage */
     le buttonActiver, on l'enregistre tout simplement pour dire que par defaut le btn
     Envoyer un message est desactiver, si le buttonActiver=0, cela veut dire que le btn
     Envoyer un message est desactiver sur le post, buttonActiver=1 cela veut dire que le
-    btn Envoyer un message est activé sur le post */
+    btn Envoyer un message est activé sur le post //
     const getIdPage = localStorage.getItem("https://alrani.com/idPage");
     await axios
       .get(`${process.env.REACT_APP_BACKEND}/api/userAA/${getIdPage}`)
@@ -14172,7 +14173,7 @@ dans le localStorage */
         const buttonActiver = "0";
         localStorage.setItem("https://alrani.com/buttonActiver", buttonActiver);
       });
-  }
+  } */
 
   // ca c'est pour fermer la page presentation
   async function ClosePresentation() {
@@ -14272,10 +14273,10 @@ dans le localStorage */
     setPageAlrani(true);
   }
   // ca c'est pour fermer la page Alrani Business
-  async function ClosePageAlrani() {
+  /* async function ClosePageAlrani() {
     setPageAlrani(false);
     setBusiness(true);
-  }
+  } */
   // ca c'est pour afficher un mini menu
   const [miniMenuPageAlrani, setMiniMenuPageAlrani] = useState(false);
   async function MiniMenuPageAlrani() {
@@ -14329,16 +14330,16 @@ dans le localStorage */
   //Statistiques de la page - AA
   //on affiche les Statistiques de la page - page Alrani Business
   const [statistiquePageAA, setStatistiquePageAA] = useState(false);
-  async function StatistiquePageAA() {
+  /* async function StatistiquePageAA() {
     setStatistiquePageAA(true);
-  }
+  } */
   //fermer
   async function CloseStatistiquePageAA() {
     setStatistiquePageAA(false);
   }
 
   // pour acceder a la partie Gestion de la Page
-  const [gestionPage, setGestionPage] = useState(false);
+  /* const [gestionPage, setGestionPage] = useState(false);
   async function GestionPage() {
     setGestionPage(true);
   }
@@ -14350,7 +14351,7 @@ dans le localStorage */
   // fermer uniquement Gestion de la Page
   async function JustCloseGestionPage() {
     setGestionPage(false);
-  }
+  } */
   
 
   //on clique pour afficher le prix dans une autre monnaie
@@ -21710,11 +21711,13 @@ const [writeSuperCodeIzocashDealsPageIA, setWriteSuperCodeIzocashDealsPageIA] = 
 
   // on affiche les auteurs en fonction de la page
   //const filtreApiAdmin = apiAdmin.filter((api) => api.idPage === idPage);
-  const filtreApiAdmin = localStorage.getItem("alrani");
+  //const filtreApiAdmin = localStorage.getItem("alrani");
   const idPage = localStorage.getItem("alrani");
+  
+  
   // on affiche la liste des pages ou je suis administrateur
   //const obtenirListeDesPages = apiAdmin.filter((api) => api.idAdmin === idPersonConnectedAA);
-  const obtenirListeDesPages = localStorage.getItem("alrani");
+  //const obtenirListeDesPages = localStorage.getItem("alrani");
 
   // un administrateur
   // page pour ajouter un administrateur supreme ou lombda
@@ -21872,7 +21875,7 @@ const [writeSuperCodeIzocashDealsPageIA, setWriteSuperCodeIzocashDealsPageIA] = 
 
   // roleAdmin ici nous permet de masquer certains choses a l'admin supreme/lombda
   /* par exemple on va masquer le btn ajouter un administrateur a l'admin lombda */
-  const roleAdmin = localStorage.getItem("https://alrani.com/roleAdmin");
+  //const roleAdmin = localStorage.getItem("https://alrani.com/roleAdmin");
 
   // sans etre connecter
   // ce code empeche l'utilisateur d'utiliser certaines fonctionnaliter sans etre connecter
@@ -34588,16 +34591,16 @@ async function DissadAA() {
   }
 
   //on affiche publiciter (c'est la page qui va permettre aux entreprises de gerer leur publiciter)
-  const [publiciterPage, setPubliciterPage] = useState(false);
+  /* const [publiciterPage, setPubliciterPage] = useState(false);
   async function PubliciterPage() {
     setPubliciterPage(!publiciterPage);
-  }
+  } */
 
   //on affiche booster la page (sur cette page, on va afficher les modeles que la personne va choisir ensuite il pourra booster sa page)
   const [boosterPage, setBoosterPage] = useState(false);
-  async function BoosterPage() {
+  /* async function BoosterPage() {
     setBoosterPage(true);
-  }
+  } */
   async function CloseBoosterPage() { //fermer
     setBoosterPage(false);
   }
@@ -34614,7 +34617,7 @@ async function DissadAA() {
     setPersonnaliserPubliciter(false);
     setMoyenDePaiementPP(false);
     setBoosterPage(false);
-    setPubliciterPage(false);
+    //setPubliciterPage(false);
     setAdSuccessAA(false);
   }
 
@@ -51008,7 +51011,7 @@ g
 	  
 	  
 	  <PopupDuBasTemplate 
-		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
+		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
 		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
   
     
