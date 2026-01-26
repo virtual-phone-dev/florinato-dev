@@ -9,7 +9,8 @@ import "../utils.css";
 
 import { 
 	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, VideoSearchBlock,
-	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
+	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, PopupDuBasTextarea,
+	VideoMiniatureTemplate, RechercheTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
 	useScrollIndexedDB,
 	} from "../utils";
@@ -8910,24 +8911,10 @@ function EnfantPublicationRejeter({ api }) {
   );
 }
 
+
 // on affiche la liste des pages que vous gerer
 // on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-// on affiche la liste des pages que vous gerer
-function EnfantApiAdmin({ api }) {
+export function EnfantApiAdmin({ api }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -9060,8 +9047,9 @@ function EnfantApiAdmin({ api }) {
   );
 }
 
+
 // lorsqu'on lance la recherche et apres on clique sur l'administrateur a ajouter
-function EnfantSearchAdministrateur({ api }) {
+export function EnfantSearchAdministrateur({ api }) {
   //const [opacity, setOpacity] = useState(false);
   const [erreur, setErreur] = useState(false);
   async function CloseErreur() {
@@ -9072,147 +9060,6 @@ function EnfantSearchAdministrateur({ api }) {
 
   async function Checked() {
     setChecked(!checked);
-    /*setOpacity(true);
-
-    const idAdmin = api._id;
-    localStorage.setItem("https://alrani.com/enAttenteIdAdmin", idAdmin);
-
-    const nomAdmin = api.nomAuteur;
-    localStorage.setItem("https://alrani.com/enAttenteNomAdmin", nomAdmin);
-
-    const badgeVerifiedAdmin = api.badgeVerified;
-    localStorage.setItem(
-      "https://alrani.com/enAttenteBadgeVerifiedAdmin",
-      badgeVerifiedAdmin
-    );
-
-    const getIdAdmin = localStorage.getItem(
-      "https://alrani.com/enAttenteIdAdmin"
-    );
-    const getNomAdmin = localStorage.getItem(
-      "https://alrani.com/enAttenteNomAdmin"
-    );
-    const roleAdmin = localStorage.getItem(
-      "https://alrani.com/enAttenteRoleAdmin"
-    );
-    const getBadgeVerifiedAdmin = localStorage.getItem(
-      "https://alrani.com/enAttenteBadgeVerifiedAdmin"
-    );
-    const postApprouverAdmin = localStorage.getItem(
-      "https://alrani.com/postApprouverAdmin"
-    );
-    const idPage = localStorage.getItem("https://alrani.com/idPage");
-    const nomPage = localStorage.getItem("https://alrani.com/nomPage");
-    const badgeVerifiedPage = localStorage.getItem(
-      "https://alrani.com/badgeVerifiedPage"
-    );
-    const photoProfilPage = localStorage.getItem(
-      "https://alrani.com/photoProfilPage"
-    );
-    const serviceOuOccupationPage = localStorage.getItem(
-      "https://alrani.com/serviceOuOccupation"
-    );*/
-
-    // 1ere requete
-    // 1ere requete
-    // on verifie si l'admin a déjà ete ajouter pour ne pas l'ajouter 2 fois
-    /*await axios
-      .get(`${process.env.REACT_APP_BACKEND}/api/`)
-      .then((res) => {
-        //console.log(res);
-        // setOpacity(false);
-        const api = res.data;
-        // on recherche si la page possede deja un admin
-        const filtreIdPage = api.filter((api) => api.idPage === idPage);*/
-        /* si la page possede deja un admin ou des admins, on compare, on prend l'id du 
-          nouveau Admin, on filtre avec les id de l'administrateur de la page pour voir si 
-          cava correspondre a un idAdmin, 
-          si ca correspond a un idAdmin, cela veut dire que celui qu'on veut ajouter comme
-          admin fait deja partie de la liste des admins de la page alors ca ne sert a rien
-          de l'ajouter pour une 2e fois */
-        // 2e etape
-        // 2e etape
-       /* const obtenirIdAdmin = filtreIdPage.filter(
-          (api) => api.idAdmin === getIdAdmin
-        );
-        const verified = obtenirIdAdmin.length > 0;
-
-        // 1ere etape
-        // 1ere etape
-        // bon! ici on verifie si celui qu'on veut ajouter comme admin est le proprietaire
-        /* si l'id de la personne qu'on veut ajouter correspond a l'idPage cela veut dire
-        que c'est le proprietaire qu'on veut ajouter comme admin */
-        /*const proprietaire = filtreIdPage((api) => api.idPage === getIdAdmin);
-        const verifiedProprietaire = proprietaire.length > 0;*/
-
-        // 1er if
-        // 1er if
-        /* s'il essaie d'ajouter le proprietaire de la page comme administrateur, on l'envoie
-        un message pour lui dire que 
-        la personne qu'il veut ajouter est le proprietaire de la page,
-        alors il ne peut pas etre ajouter comme administrateur */
-        //if (verifiedProprietaire) {
-          // ici on dit que le proprietaire de la page ne peut pas etre ajouter comme admin
-          /*console.log(
-            "le proprietaire de la page ne peut pas etre ajouter comme admin"
-          );*/
-         /* setOpacity(false);
-        } else {
-          // 2e if
-          // 2e if
-          // ici c'est dans le cas ou la personne qu'on veut ajouter n'est pas le proprietaire
-          if (verified) {*/
-            /* si ca correspond, on balance un message pour dire qu'il fait deja partie des
-            admins de la page */
-            /* console.log(
-              "l'administrateur fait déjà partie des administrateurs de la page"
-            );*/
-            /*setOpacity(false);
-          } else {
-            // si ca ne correspond alors on ajoute le nouvel administrateur a la page
-            // 2e requete
-            // 2e requete
-            // 2e requete c'est dans le 2e if
-            async function deuxiemeReq() {
-              await axios({
-                method: "post",
-                url: `${process.env.REACT_APP_BACKEND}/api/admi/create`,
-                data: {
-                  // admin
-                  idAdmin: getIdAdmin,
-                  nomAdmin: getNomAdmin,
-                  roleAdmin: roleAdmin,
-                  badgeVerifiedAdmin: getBadgeVerifiedAdmin,
-                  postApprouverAdmin: postApprouverAdmin,
-                  // page
-                  idPage: idPage,
-                  nomPage: nomPage,
-                  badgeVerifiedPage: badgeVerifiedPage,
-                  serviceOuOccupationPage: serviceOuOccupationPage,
-                  photoProfilPage: photoProfilPage,
-                },
-              })
-                .then((res) => {
-                  setOpacity(false);
-                  setAdministrateurSuccess(true);
-                })
-                .catch((err) => {
-                  setOpacity(false);
-                  setErreur(true);
-                });
-            }
-            deuxiemeReq();
-            // 2e requete c'est dans le 2e if
-          }
-          // 2e if
-        }
-        // 1er if
-      })
-      .catch((err) => {
-        setOpacity(false);
-        setErreur(true);
-      });*/
-    // 1ere requete
   }
 
   // Administrateur ajouter avec Success
@@ -9364,7 +9211,7 @@ function EnfantSearchAdministrateur({ api }) {
 // administrateur supreme
 // administrateur supreme
 // administrateur supreme
-function EnfantAdministrateurSupreme({ api }) {
+export function EnfantAdministrateurSupreme({ api }) {
   const [erreur, setErreur] = useState(false);
   async function CloseErreur() {
     setErreur(false);
@@ -9689,7 +9536,7 @@ function EnfantAdministrateurSupreme({ api }) {
 // administrateur lombda
 // administrateur lombda
 // administrateur lombda
-function EnfantAdministrateurLombda({ api }) {
+export function EnfantAdministrateurLombda({ api }) {
   const [erreur, setErreur] = useState(false);
   async function CloseErreur() {
     setErreur(false);
@@ -40128,7 +39975,13 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   const [menuFA, setMenuFA] = useState(false); 
   async function MenuFA() { setMenuFA(true); }
   async function CloseMenuFA() { setMenuFA(false); }
-  
+
+
+  // gestionnaireFA - listes des comptes ou vous avez été ajoutés
+  const [gestionnaireFA, setGestionnaireFA] = useState(false); 
+  async function GestionnaireFA() { setGestionnaireFA(true); }
+  async function CloseGestionnaireFA() { setGestionnaireFA(false); }
+
   
   // gestionDuCompteFA - listes des comptes qui pourront publier sur votre compte
   const [gestionDuCompteFA, setGestionDuCompteFA] = useState(false); 
@@ -44427,7 +44280,6 @@ const [modifierTitrePageFA , setmodifierTitrePageFA] = useState(false);
 async function ModifierTitrePageFA() { setmodifierTitrePageFA(true); }
 async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
 
-
 //logique pour changer le titre de la video - FA
 const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
 const [nouveauTitre, setNouveauTitre] = useState("");
@@ -44439,7 +44291,6 @@ async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: no
 const [commenterPageFA, setcommenterPageFA] = useState(false);
 async function CommenterPageFA() { setcommenterPageFA(true); }
 async function CloseCommenterPageFA() { setcommenterPageFA(false); }
-
 
 //logique pour commenter un post (commenter une video ou une photo ou n'importe qu'elle post) - FA
 const [isLoading666CommenterFA, setIsLoading666CommenterFA] = useState(false);
@@ -44456,13 +44307,20 @@ async function CommenterFA() { await ExecuterActionFA({
         type:25,
 	}, 
 }); }
+	  
+	  
 
+//page pour ecrire sa reponse
+const [repondrePageFA, setrepondrePageFA] = useState(false); 
+async function RepondrePageFA() { setrepondrePageFA(true); }
+async function CloseRepondrePageFA() { setrepondrePageFA(false); }
 
 //logique pour repondre a un commentaire - FA
-/*
 const [isLoading666RepondreFA, setIsLoading666RepondreFA] = useState(false);
 const [ecrireReponseFA, setEcrireReponseFA] = useState("");
 async function RepondreFA() { await ExecuterActionFA({
+	console.log(RepondrePageFA);
+	
 	actions: ["post"],
 	loader:setIsLoading666RepondreFA,
 	dataPOST:{
@@ -44476,7 +44334,7 @@ async function RepondreFA() { await ExecuterActionFA({
 		idProprietaireReponse: idPersonConnectedFA,
         type:26,
 	}, 
-}); } */
+}); } 
 
 
 //page pour enregistrer l'url modifier
@@ -51155,10 +51013,15 @@ g
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} 
 		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
   
-  
+    
+
 	  <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap}
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
+		  
+	<PageTemplate 
+		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap}
+		titre="Listes des comptes ou vous avez été ajouté(s)" photo={photoFA} />
 	  
 	  <PageTemplate 
 		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterTopFA} profilMap={profilMap}
@@ -51168,7 +51031,13 @@ g
 		  visible={adminFlorinato} fermer={CloseAdminFlorinato} data={filterAdminFlorinatoFA} profilMap={profilMap}
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
 		  
-		  	  
+		  
+		  
+		<PopupDuBasTextarea 
+		  visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
+		  valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
+	  		  	  
+
 
 	  <PopupDuBasTemplate 
 		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
@@ -57727,75 +57596,9 @@ g
       )}
       {/* theme */}
 
-      {/* apres business */}
-      {/* apres business */}
-      {/* quand on clique sur l'onglet business, cette popup va etre declencher  */}
-      {business && (
-        <>
-          <div onClick={Business} className="business-opacity">
-            <div className="bottom">
-              <div className="card">
-                <div className="block">
-                  <p onClick={Presentation}>Page Alrani Business</p>
 
-                  <p onClick={PageGerer}>Gestionnaire de Pages</p>
-                </div>
-                {/* block */}
-              </div>
-              {/* card */}
-            </div>
-            {/* bottom */}
-          </div>
-          {/* business-opacity */}
-        </>
-      )}
-      {/* apres business */}
 
-      {/* Pages gérer */}
-      {/* Pages gérer */}
-      {/* ici on affiche la liste des Pages que vous gérer */}
-      {pageGerer && (
-        <>
-          <div className="page-gerer-opacity">
-            <div className="align">
-              <div className="card">
-                <div className="title">
-                  <svg
-                    onClick={ClosePageGerer}
-                    xmlns="http://www.w3.org/2000/svg"
-                    x="0"
-                    y="0"
-                    width="20px"
-                    cursor="pointer"
-                    fill="#444"
-                    enableBackground="new 0 0 486.975 486.975"
-                    version="1.1"
-                    viewBox="0 0 486.975 486.975"
-                    xmlSpace="preserve"
-                  >
-                    <path d="M473.475 230.025h-427.4l116-116c5.3-5.3 5.3-13.8 0-19.1-5.3-5.3-13.8-5.3-19.1 0l-139 139c-5.3 5.3-5.3 13.8 0 19.1l139 139c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-116-116h427.5c7.5 0 13.5-6 13.5-13.5s-6-13.4-13.5-13.4z"></path>
-                  </svg>
-                  <p>Pages que vous gérer</p>
-                </div>
-                {/* title */}
-
-                {/* on affiche la liste des pages que vous gerer */}
-                {obtenirListeDesPages.map((api) => (
-                  <>
-                    <div onClick={PageAlrani}>
-                      <EnfantApiAdmin api={api} />
-                    </div>
-                  </>
-                ))}
-              </div>
-              {/* card */}
-            </div>
-            {/* align */}
-          </div>
-          {/* page-gerer-opacity" */}
-        </>
-      )}
-      {/* Pages gérer */}
+      
 
       {/* page theme */}
       {/* page theme */}
@@ -58323,214 +58126,7 @@ g
       )}
       {/* page Alrani Business */}
 
-      {/* mini Menu Page Alrani */}
-      {/* mini Menu Page Alrani */}
-      {/* ca c'est pour afficher le mini menu - page Alrani Business */}
-      {miniMenuPageAlrani && (
-        <>
-          <div onClick={MiniMenuPageAlrani} className="mini-menu-opacity">
-            <div className="align">
-              <div className="card">
-                <div className="btn-lier-border">
-                  <div className="btn-lier-center">
-                    <div className="btn-lier-display">
-                      <svg
-                        onClick={ClosePageAlrani}
-                        xmlns="http://www.w3.org/2000/svg"
-                        x="0"
-                        y="0"
-                        width="20px"
-                        height="10px"
-                        enableBackground="new 0 0 477.175 477.175"
-                        version="1.1"
-                        viewBox="0 0 477.175 477.175"
-                        xmlSpace="preserve"
-                      >
-                        <path d="M145.188 238.575l215.5-215.5c5.3-5.3 5.3-13.8 0-19.1s-13.8-5.3-19.1 0l-225.1 225.1c-5.3 5.3-5.3 13.8 0 19.1l225.1 225c2.6 2.6 6.1 4 9.5 4s6.9-1.3 9.5-4c5.3-5.3 5.3-13.8 0-19.1l-215.4-215.5z"></path>
-                      </svg>
-                      <p onClick={ClosePageAlrani}>Retour</p>
-                    </div>
-                    {/* btn-lier-display */}
-                  </div>
-                  {/* btn-lier-center */}
-                </div>
-                {/* btn-lier-border */}
-
-                <div className="admin">
-                  <svg
-                    onClick={GestionPage}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    viewBox="0 0 1920 1920"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M276.941 440.584v565.722c0 422.4 374.174 625.468 674.71 788.668l8.02 4.292 8.131-4.292c300.537-163.2 674.71-366.268 674.71-788.668V440.584l-682.84-321.657L276.94 440.584zm682.73 1479.529c-9.262 0-18.523-2.372-26.993-6.89l-34.9-18.974C588.095 1726.08 164 1495.906 164 1006.306V404.78c0-21.91 12.65-41.788 32.414-51.162L935.727 5.42c15.134-7.228 32.866-7.228 48 0l739.313 348.2c19.765 9.374 32.414 29.252 32.414 51.162v601.525c0 489.6-424.207 719.774-733.779 887.943l-34.899 18.975c-8.47 4.517-17.731 6.889-27.105 6.889zm467.158-547.652h-313.412l-91.595-91.482v-83.803H905.041v-116.78h-83.69l-58.503-58.504c-1.92.113-3.84.113-5.76.113-176.075 0-319.285-143.21-319.285-319.285 0-176.075 143.21-319.398 319.285-319.398 176.075 0 319.285 143.323 319.285 319.398 0 1.92 0 3.84-.113 5.647l350.57 350.682v313.412zm-266.654-112.941h153.713v-153.713L958.462 750.155l3.953-37.27c1.017-123.897-91.595-216.621-205.327-216.621S550.744 588.988 550.744 702.72c0 113.845 92.612 206.344 206.344 206.344l47.21-5.309 63.811 63.7h149.873v116.78h116.781v149.986l25.412 25.299zm-313.4-553.57c0 46.758-37.949 84.706-84.706 84.706-46.758 0-84.706-37.948-84.706-84.706s37.948-84.706 84.706-84.706c46.757 0 84.706 37.948 84.706 84.706"
-                    ></path>
-                  </svg>
-                  <p onClick={GestionPage}>Gestion du compte</p>
-                </div>
-                {/* admin */}
-
-                <div className="block">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="#222"
-                      d="M3.5 7.5c0-1.4 0-2.1.272-2.635a2.5 2.5 0 011.093-1.093C5.4 3.5 6.1 3.5 7.5 3.5h9c1.4 0 2.1 0 2.635.272a2.5 2.5 0 011.092 1.093C20.5 5.4 20.5 6.1 20.5 7.5v9c0 1.4 0 2.1-.273 2.635a2.5 2.5 0 01-1.092 1.092c-.535.273-1.235.273-2.635.273h-9c-1.4 0-2.1 0-2.635-.273a2.5 2.5 0 01-1.093-1.092C3.5 18.6 3.5 17.9 3.5 16.5v-9z"
-                    ></path>
-                    <path
-                      stroke="#222"
-                      d="M3.5 8.5h2.764c.97 0 1.455 0 1.866.197a2 2 0 01.36.222c.36.28.576.713 1.01 1.581v0c.434.868.65 1.302 1.01 1.58.113.087.233.162.36.223.41.197.896.197 1.866.197H17.5c.932 0 1.398 0 1.765-.152a2 2 0 001.083-1.083c.152-.367.152-.833.152-1.765v0"
-                    ></path>
-                    <path
-                      stroke="#222"
-                      strokeLinecap="round"
-                      d="M7 16h8"
-                    ></path>
-                  </svg>
-                  <p>Monétisation</p>
-                </div>
-                {/* block */}
-
-                <div className="block">
-                  <svg
-                    onClick={StatistiquePageAA}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="#222"
-                      d="M3.5 7.5c0-1.4 0-2.1.272-2.635a2.5 2.5 0 011.093-1.093C5.4 3.5 6.1 3.5 7.5 3.5h9c1.4 0 2.1 0 2.635.272a2.5 2.5 0 011.092 1.093C20.5 5.4 20.5 6.1 20.5 7.5v9c0 1.4 0 2.1-.273 2.635a2.5 2.5 0 01-1.092 1.092c-.535.273-1.235.273-2.635.273h-9c-1.4 0-2.1 0-2.635-.273a2.5 2.5 0 01-1.093-1.092C3.5 18.6 3.5 17.9 3.5 16.5v-9z"
-                    ></path>
-                    <path
-                      stroke="#222"
-                      d="M3.5 8.5h2.764c.97 0 1.455 0 1.866.197a2 2 0 01.36.222c.36.28.576.713 1.01 1.581v0c.434.868.65 1.302 1.01 1.58.113.087.233.162.36.223.41.197.896.197 1.866.197H17.5c.932 0 1.398 0 1.765-.152a2 2 0 001.083-1.083c.152-.367.152-.833.152-1.765v0"
-                    ></path>
-                    <path
-                      stroke="#222"
-                      strokeLinecap="round"
-                      d="M7 16h8"
-                    ></path>
-                  </svg>
-                  <p onClick={StatistiquePageAA}>Statistiques</p>
-                </div>
-                {/* block */}
-
-                <div className="block">
-                  <svg
-                    onClick={PublierPublication}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    fill="#000"
-                    cursor="pointer"
-                    version="1.1"
-                    viewBox="0 0 198.439 198.439"
-                    xmlSpace="preserve"
-                  >
-                    <path d="M197.762 169.999L177.324 5.262a5.995 5.995 0 00-6.693-5.215L5.893 20.484a6 6 0 00-5.261 5.955v166a6 6 0 006 6h166a6 6 0 006-6v-14.021l13.915-1.727a6 6 0 005.215-6.692zm-177.326 16.44h-7.805V123.53l7.805 62.909zM13.882 40.181a6.04 6.04 0 00-.546.096l-1.183-9.536 154.915-19.22 1.18 9.509L13.882 40.181zm152.75 146.258h-52.65l52.65-6.532v6.532zm-135.26-.783L14.805 52.124c.184-.006.368-.011.554-.034l154.365-19.151 16.563 133.497-154.915 19.22z"></path>
-                  </svg>
-                  <p onClick={PublierPublication}>Publication</p>
-                </div>
-                {/* block */}
-
-                <div className="block">
-                  <svg
-                    onClick={Video}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    fill="#000"
-                    version="1.1"
-                    viewBox="0 0 511.984 511.984"
-                    xmlSpace="preserve"
-                  >
-                    <path d="M256.144 101.928c-26.048 0-47.232 21.344-47.232 47.6 0 26.24 21.184 47.584 47.232 47.584s47.232-21.344 47.232-47.584c0-26.256-21.184-47.6-47.232-47.6zm0 79.2c-17.216 0-31.232-14.176-31.232-31.584 0-17.44 14.016-31.6 31.232-31.6s31.232 14.176 31.232 31.6c0 17.408-14.016 31.584-31.232 31.584zM299.504 216.408l-43.36 32.976-43.36-32.976c-53.376 16.16-52.704 70.672-52.704 70.672h192.128s.672-54.512-52.704-70.672z"></path>
-                    <path d="M466.976 43.976H45.152c-22.864 0-41.456 18.896-41.456 42.096v224.912c0 23.2 18.592 42.096 41.456 42.096h421.824v-.016c22.848 0 41.424-18.896 41.424-42.096V86.072c0-23.2-18.576-42.096-41.424-42.096zm25.408 267.008c0 14.384-11.408 26.096-25.424 26.096H45.152c-14.032-.016-25.456-11.712-25.456-26.112V86.072c0-14.384 11.424-26.096 25.456-26.096H466.96c14.016 0 25.424 11.696 25.424 26.096v224.912zM451.12 420.808c-3.664-17.808-19.296-31.184-38.032-31.184S378.72 403 375.056 420.808H0v16h375.056c3.664 17.808 19.296 31.2 38.032 31.2s34.368-13.392 38.032-31.2h60.864v-16H451.12zm-38.032 31.2c-12.608 0-22.848-10.4-22.848-23.2 0-12.784 10.256-23.2 22.848-23.2s22.848 10.4 22.848 23.2c.016 12.8-10.24 23.2-22.848 23.2z"></path>
-                  </svg>
-                  <p onClick={Video}>Publier une vidéo</p>
-                </div>
-                {/* block */}
-
-                <div className="block">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="#222"
-                      d="M3.5 7.5c0-1.4 0-2.1.272-2.635a2.5 2.5 0 011.093-1.093C5.4 3.5 6.1 3.5 7.5 3.5h9c1.4 0 2.1 0 2.635.272a2.5 2.5 0 011.092 1.093C20.5 5.4 20.5 6.1 20.5 7.5v9c0 1.4 0 2.1-.273 2.635a2.5 2.5 0 01-1.092 1.092c-.535.273-1.235.273-2.635.273h-9c-1.4 0-2.1 0-2.635-.273a2.5 2.5 0 01-1.093-1.092C3.5 18.6 3.5 17.9 3.5 16.5v-9z"
-                    ></path>
-                    <path
-                      stroke="#222"
-                      d="M3.5 8.5h2.764c.97 0 1.455 0 1.866.197a2 2 0 01.36.222c.36.28.576.713 1.01 1.581v0c.434.868.65 1.302 1.01 1.58.113.087.233.162.36.223.41.197.896.197 1.866.197H17.5c.932 0 1.398 0 1.765-.152a2 2 0 001.083-1.083c.152-.367.152-.833.152-1.765v0"
-                    ></path>
-                    <path
-                      stroke="#222"
-                      strokeLinecap="round"
-                      d="M7 16h8"
-                    ></path>
-                  </svg>
-                  <p>Description du compte</p>
-                </div>
-                {/* block */}
-
-                <div className="block">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    viewBox="0 0 1024 1024"
-                  >
-                    <path d="M576.464 154.522c217.884 6.73 391.585 185.551 391.585 404.111 0 223.288-181.008 404.296-404.296 404.296-218.734 0-397.646-173.973-404.131-392.053-.336-11.306-9.774-20.198-21.08-19.862s-20.198 9.774-19.862 21.08c7.143 240.202 204.175 431.796 445.073 431.796 245.909 0 445.256-199.346 445.256-445.256 0-240.706-191.294-437.639-431.281-445.051-11.305-.349-20.753 8.533-21.103 19.838s8.533 20.753 19.838 21.103z"></path>
-                    <path d="M51.673 466.014h414.339V51.675C241.899 62.055 62.053 241.901 51.673 466.014zm-41.433 20.48c0-263.03 213.222-476.252 476.252-476.252 11.311 0 20.48 9.169 20.48 20.48v455.772c0 11.311-9.169 20.48-20.48 20.48H30.72c-11.311 0-20.48-9.169-20.48-20.48z"></path>
-                    <path d="M551.537 134.526v405.586c0 5.585-4.655 10.24-10.24 10.24H140.145c-11.311 0-20.48 9.169-20.48 20.48s9.169 20.48 20.48 20.48h401.152c28.207 0 51.2-22.993 51.2-51.2V134.526c0-11.311-9.169-20.48-20.48-20.48s-20.48 9.169-20.48 20.48z"></path>
-                  </svg>
-                  <p>Service / Occupation</p>
-                </div>
-                {/* block */}
-
-                <div className="block">
-                  <svg
-                    onClick={PubliciterPage}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="1.5"
-                      d="M22 16.74V4.67c0-1.2-.98-2.09-2.17-1.99h-.06c-2.1.18-5.29 1.25-7.07 2.37l-.17.11c-.29.18-.77.18-1.06 0l-.25-.15C9.44 3.9 6.26 2.84 4.16 2.67 2.97 2.57 2 3.47 2 4.66v12.08c0 .96.78 1.86 1.74 1.98l.29.04c2.17.29 5.52 1.39 7.44 2.44l.04.02c.27.15.7.15.96 0 1.92-1.06 5.28-2.17 7.46-2.46l.33-.04c.96-.12 1.74-1.02 1.74-1.98zM12 5.49v15M7.75 8.49H5.5M8.5 11.49h-3"
-                    ></path>
-                  </svg>
-                  <p onClick={PubliciterPage}>Publicité</p>
-                </div>
-                {/* block */}
-              </div>
-              {/* card */}
-            </div>
-            {/* align */}
-          </div>
-          {/* mini-menu-opacity */}
-        </>
-      )}
-      {/* mini Menu Page Alrani */}
+      
 
       {/* Statistiques de la page - AA */}
       {/* Statistiques de la page - AA */}
@@ -58714,34 +58310,7 @@ g
       )}
       {/* j'ai un lien - page */}
 
-      {/* publiciter page */}
-      {/* apres avoir cliquer sur Publiciter, on va afficher cette navbar bottom qui va 
-      permettre a l'utilisateur de cliquer sur Booster la page */}
-      {publiciterPage && (
-        <>
-          <div onClick={PubliciterPage} className="actualiser-page-opacity">
-            <div className="align">
-              <div className="card">
-                <div className="block">
-                  <div className="a">
-                    <p onClick={BoosterPage}>Booster la Page</p>
-                  </div>
-
-                  <div className="b">
-                    <p>Gestionnaire de Publicité</p>
-                  </div>
-                  {/* b */}
-                </div>
-                {/* block */}
-              </div>
-              {/* card */}
-            </div>
-            {/* align */}
-          </div>
-          {/* actualiser-page-opacity */}
-        </>
-      )}
-      {/* publiciter page */}
+      
 
       {/* booster la page - page */}
       {/* ici on va afficher les modeles que la personne va choisir ensuite il pourra
@@ -62689,97 +62258,6 @@ g
       )}
       {/* selectionner le sexe */}
 
-      {/* gestion de la page */}
-      {/* gestion de la page */}
-      {/* gestion de la page */}
-      {gestionPage && (
-        <>
-          <div className="gestion-opacity">
-            <div className="title">
-              <svg
-                onClick={CloseGestionPage}
-                xmlns="http://www.w3.org/2000/svg"
-                width="25px"
-                fill="#00cc00"
-                cursor="pointer"
-                viewBox="0 0 1920 1920"
-              >
-                <path
-                  fillRule="evenodd"
-                  d="M276.941 440.584v565.722c0 422.4 374.174 625.468 674.71 788.668l8.02 4.292 8.131-4.292c300.537-163.2 674.71-366.268 674.71-788.668V440.584l-682.84-321.657L276.94 440.584zm682.73 1479.529c-9.262 0-18.523-2.372-26.993-6.89l-34.9-18.974C588.095 1726.08 164 1495.906 164 1006.306V404.78c0-21.91 12.65-41.788 32.414-51.162L935.727 5.42c15.134-7.228 32.866-7.228 48 0l739.313 348.2c19.765 9.374 32.414 29.252 32.414 51.162v601.525c0 489.6-424.207 719.774-733.779 887.943l-34.899 18.975c-8.47 4.517-17.731 6.889-27.105 6.889zm467.158-547.652h-313.412l-91.595-91.482v-83.803H905.041v-116.78h-83.69l-58.503-58.504c-1.92.113-3.84.113-5.76.113-176.075 0-319.285-143.21-319.285-319.285 0-176.075 143.21-319.398 319.285-319.398 176.075 0 319.285 143.323 319.285 319.398 0 1.92 0 3.84-.113 5.647l350.57 350.682v313.412zm-266.654-112.941h153.713v-153.713L958.462 750.155l3.953-37.27c1.017-123.897-91.595-216.621-205.327-216.621S550.744 588.988 550.744 702.72c0 113.845 92.612 206.344 206.344 206.344l47.21-5.309 63.811 63.7h149.873v116.78h116.781v149.986l25.412 25.299zm-313.4-553.57c0 46.758-37.949 84.706-84.706 84.706-46.758 0-84.706-37.948-84.706-84.706s37.948-84.706 84.706-84.706c46.757 0 84.706 37.948 84.706 84.706"
-                ></path>
-              </svg>
-              <p onClick={CloseGestionPage}>Gestion de la page</p>
-            </div>
-            {/* title */}
-
-            <div className="actualiser-page">
-              <div className="card">
-                <div className="center">
-                  <svg
-                    onClick={ActualiserPage}
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20px"
-                    cursor="pointer"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke="#000"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M19 13a1 1 0 100-2 1 1 0 000 2zM12 13a1 1 0 100-2 1 1 0 000 2zM5 13a1 1 0 100-2 1 1 0 000 2z"
-                    ></path>
-                  </svg>
-                </div>
-                {/* center */}
-              </div>
-              {/* card */}
-            </div>
-            {/* actualiser-page */}
-
-            <div className="proprietaire">
-              <div className="a">
-                <p onClick={JustCloseGestionPage}>{nomPage}</p>
-              </div>
-
-              <div className="b">
-                <p>(Propriétaire)</p>
-              </div>
-            </div>
-            {/* proprietaire */}
-
-            {/* Administrateur Supreme */}
-            {filtreApiAdmin.map((api) => (
-              <EnfantAdministrateurSupreme api={api} />
-            ))}
-
-            {/* Administrateur lombda */}
-            {filtreApiAdmin.map((api) => (
-              <EnfantAdministrateurLombda api={api} />
-            ))}
-
-            {roleAdmin === "1" && (
-              <>
-                <div className="ajouter-admin">
-                  <p onClick={AjouterAdmin}>Ajouter un administrateur</p>
-                </div>
-              </>
-            )}
-
-            {roleAdmin === "2" && (
-              <>
-                <div className="ajouter-admin">
-                  <p onClick={AjouterAdmin}>Ajouter un administrateur</p>
-                </div>
-              </>
-            )}
-          </div>
-          {/* gestion-opacity */}
-        </>
-      )}
-      {/* gestion de la page */}
 
       {/* actualiser page */}
       {/* apres avoir retirer un administrateur, on vient ici pour actualiser la page
