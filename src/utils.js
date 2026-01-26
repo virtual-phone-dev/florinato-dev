@@ -958,8 +958,8 @@ const toutesDonnees_moi = useMemo(() => {
 //useScrollIndexedDB
 
 
-export function SpeedMessages({ visible, fermer, data=[] }) {	  
-	//const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = utiliserScrollIndexedDB({ nomStockage: "messages", donnees:data, lot:20, visible});
+
+export function SpeedMessages({ visible, fermer, data=[], MenuPopup, PagesGererTemplate, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
 	const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
 	
 	async function logMessages() {
@@ -967,55 +967,19 @@ export function SpeedMessages({ visible, fermer, data=[] }) {
 	  console.log("data ici :", data);
 	}	
 
-/*
-  const [messages, setMessages] = useState([]); // Tous les messages chargés
-  const [afficherMessages, setAfficherMessages] = useState([]); // Messages affichés
-  const [currentIndex, setCurrentIndex] = useState(0); // Index pour le lot actuel
-  const lot = 20; // Taille du lot
-  
-  async function logMessages() {
-	  console.log("messages de SpeedMessages ici :", messages);
-	  console.log("data ici :", data);
-	}	
-
-  
-    useEffect(() => {
-		if (!visible) return;
-
-		async function init() {
-		  if (data.length) { await saveMessagesToIndexedDB(data); }	// 1. Sauvegarder la data en provenance de MongoDB → IndexedDB
-		  
-		  const allMessages = await getMessagesFromIndexedDB(); // 2. Lire depuis IndexedDB
-		  setMessages(allMessages);
-		  
-		  setAfficherMessages(allMessages.slice(0, lot)); // Charger le premier lot
-		  setCurrentIndex(lot);
-		}
-		init();
-  }, [visible, data]);
-  
-  
-  const loadMore = () => {
-    const nextIndex = currentIndex + lot;
-    setAfficherMessages(prev => prev.concat(messages.slice(currentIndex, nextIndex)));
-    setCurrentIndex(nextIndex);
-  };
-  
-
-  // Gérer le scroll pour charger plus
-  const handleScroll = (e) => {
-    const { scrollTop, scrollHeight, clientHeight } = e.target;
-    if (scrollTop + clientHeight >= scrollHeight - 10) {
-      // Si on arrive en bas, charger plus
-      loadMore();
-    }
-  }; */
-  
   if (!visible) return null;
-  
-  return (
+    return (
     <div className="page-blanche" onScroll={gererScroll}>
-      <Close fermer={fermer} />
+        <Close fermer={fermer} />
+	    <div className="p-14px">
+			<p onClick={MenuPopup}>MenuPopup</p>
+			<p onClick={PagesGererTemplate}>PagesGererTemplate</p>
+			<p onClick={MenuAvecIcone}>MenuAvecIcone</p>
+			<p onClick={MenuBas}>MenuBas</p>
+			<p onClick={GestionPage}>GestionPage</p>
+			<p onClick={PopupBasTextarea}>PopupBasTextarea</p>
+		</div>
+
 	  
 	  {/* Bouton pour charger plus */}
       <button onClick={chargerPlus}>Charger plus</button>
@@ -1571,7 +1535,7 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 
 
 // PopupDuBasTextarea Template
-export function PopupDuBasTextarea({ visible, titre, valeur, setValeur, texte="Écrire..", titrebtn, valider, isLoading, CloseAjouterZoneIAC, writeZone, setWriteZone, inEnglish, setInEnglish, SaveZoneIAC }) {
+export function PopupBasTextareaTemplate({ visible, titre, valeur, setValeur, texte="Écrire..", titrebtn, valider, isLoading, CloseAjouterZoneIAC, writeZone, setWriteZone, inEnglish, setInEnglish, SaveZoneIAC }) {
   if (!visible) return null;
 
   return (<>
@@ -1650,7 +1614,7 @@ export function PopupDuBasTextarea({ visible, titre, valeur, setValeur, texte="�
 
 
 // gestion de la page
-export function GestionPage({ visible, AjouterAdmin, CloseGestionPage, ActualiserPage, filtreApiAdmin, JustCloseGestionPage, nomPage }) {
+export function GestionPageTemplate({ visible, AjouterAdmin, CloseGestionPage, ActualiserPage, filtreApiAdmin, JustCloseGestionPage, nomPage }) {
   if (!visible) return null;
   
   return (<>
@@ -1725,10 +1689,10 @@ export function GestionPage({ visible, AjouterAdmin, CloseGestionPage, Actualise
           {/* gestion-opacity */}
 </>)}
 // gestion de la page
- 
+
 
 //MenuBas
-export function MenuBas({ visible, PubliciterPage, BoosterPage }) {
+export function MenuBasTemplate({ visible, PubliciterPage, BoosterPage }) {
   if (!visible) return null;
   
   return (<>
@@ -1761,7 +1725,7 @@ export function MenuBas({ visible, PubliciterPage, BoosterPage }) {
 
 
 // MenuAvecIcone
-export function MenuAvecIcone({ visible, MiniMenuPageAlrani, ClosePageAlrani, GestionPage, StatistiquePageAA, PublierPublication, PubliciterPage, Video }) {
+export function MenuAvecIconeTemplate({ visible, MiniMenuPageAlrani, ClosePageAlrani, GestionPage, StatistiquePageAA, PublierPublication, PubliciterPage, Video }) {
   if (!visible) return null;
   
   return (<>
@@ -1973,7 +1937,7 @@ export function MenuAvecIcone({ visible, MiniMenuPageAlrani, ClosePageAlrani, Ge
 	  
 
 //PagesGererTemplate
-export function PagesGererTemplate({ visible, ClosePageGerer, PageAlrani, obtenirListeDesPages=[] }) {
+export function PagesGererTemplate({ visible, ClosePagesGerer, PageAlrani, obtenirListeDesPages=[] }) {
   if (!visible) return null;
   
   return (<>
@@ -1985,7 +1949,7 @@ export function PagesGererTemplate({ visible, ClosePageGerer, PageAlrani, obteni
               <div className="card">
                 <div className="title">
                   <svg
-                    onClick={ClosePageGerer}
+                    onClick={ClosePagesGerer}
                     xmlns="http://www.w3.org/2000/svg"
                     x="0"
                     y="0"
@@ -2023,7 +1987,7 @@ export function PagesGererTemplate({ visible, ClosePageGerer, PageAlrani, obteni
 
 
 //MenuPopup
-export function MenuPopup({ visible, Business, Presentation, PageGerer }) {
+export function MenuPopupTemplate({ visible, Business, Presentation, PageGerer }) {
   if (!visible) return null;
   
   return (<>

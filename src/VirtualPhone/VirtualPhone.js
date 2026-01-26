@@ -9,12 +9,12 @@ import "../utils.css";
 
 import { 
 	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, VideoSearchBlock,
-	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, PopupDuBasTextarea,
-	VideoMiniatureTemplate, RechercheTemplate,
+	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
+	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
 	useScrollIndexedDB,
 	} from "../utils";
-		
+  
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
 
@@ -41789,6 +41789,32 @@ async function PageRedirection66groupOtherFA() {
   const [speedMessagesPagesFA, setSpeedMessagesPagesFA] = useState(false); 
   async function SpeedMessagesPagesFA() { setSpeedMessagesPagesFA(true); }
   async function CloseSpeedMessagesPagesFA() { setSpeedMessagesPagesFA(false); }
+  
+  
+  const [menuPopup, setMenuPopup] = useState(false); 
+  async function MenuPopup() { setMenuPopup(true); }
+  async function CloseMenuPopup() { setMenuPopup(false); }
+ 
+  const [pagesGerer, setPagesGerer] = useState(false); 
+  async function PagesGerer() { setPagesGerer(true); }
+  async function ClosePagesGerer() { setPagesGerer(false); }
+  
+  const [menuAvecIcone, setMenuAvecIcone] = useState(false); 
+  async function MenuAvecIcone() { setMenuAvecIcone(true); }
+  async function CloseMenuAvecIcone() { setMenuAvecIcone(false); }
+  
+  const [menuBas, setMenuBas] = useState(false); 
+  async function MenuBas() { setMenuBas(true); }
+  async function CloseMenuBas() { setMenuBas(false); }
+  
+  const [gestionPage, setGestionPage] = useState(false); 
+  async function GestionPage() { setGestionPagep(true); }
+  async function CloseGestionPage() { setGestionPage(false); }
+  
+  const [popupBasTextarea, setPopupBasTextarea] = useState(false); 
+  async function PopupBasTextarea() { setPopupBasTextarea(true); }
+  async function ClosePopupBasTextarea() { setPopupBasTextarea(false); }
+  
 
   // Listes de tout les comptes (par ordre de comptes recents) - FA 
   const [comptesRecentsPageFA, setComptesRecentsPageFA] = useState(false); 
@@ -50710,9 +50736,20 @@ son compte Vixinol store */
 			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
-		<SpeedMessages visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} />
 		
+		<SpeedMessages 
+			visible={speedMessagesPagesFA} data={comptesRecentsFA} fermer={CloseSpeedMessagesPagesFA} 
+			MenuPopup={MenuPopup} PagesGerer={PagesGerer} MenuAvecIcone={MenuAvecIcone} MenuBas={MenuBas} 
+			GestionPage={GestionPage} PopupBasTextarea={PopupBasTextarea} />
 		
+		<MenuPopupTemplate visible={menuPopup} fermer={CloseMenuPopup} />
+		<PagesGererTemplate visible={pagesGerer} fermer={ClosePagesGerer} />
+		<MenuAvecIconeTemplate visible={menuAvecIcone} fermer={CloseMenuAvecIcone} />
+		<MenuBasTemplate visible={menuBas} fermer={CloseMenuBas} />
+		<GestionPageTemplate visible={gestionPage} fermer={CloseGestionPage} />
+		<PopupBasTextareaTemplate visible={popupBasTextarea} fermer={ClosePopupBasTextarea} />
+  
+
       {/* rencontre - FA */}
       {rencontreFA && (<>
         <div className="rencontreFA">
@@ -51034,7 +51071,7 @@ g
 		  
 		  
 		  
-		<PopupDuBasTextarea 
+		<PopupBasTextareaTemplate 
 		  visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
 		  valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
 	  		  	  
