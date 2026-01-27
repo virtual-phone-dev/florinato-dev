@@ -1936,7 +1936,7 @@ export function MenuAvecIconeTemplate({ visible, fermer, GestionPage, Statistiqu
 	  
 
 //PagesGererTemplate
-export function PagesGererTemplate({ visible, fermer, PageAlrani, obtenirListeDesPages=[] }) {
+export function PagesGererTemplate({ visible, fermer }) {
   if (!visible) return null;
   
   return (<>
@@ -1965,14 +1965,14 @@ export function PagesGererTemplate({ visible, fermer, PageAlrani, obtenirListeDe
                 </div>
                 {/* title */}
 
-                {/* on affiche la liste des pages que vous gerer */}
+                {/* on affiche la liste des pages que vous gerer 
                 {obtenirListeDesPages.map((api) => (
                   <>
                     <div onClick={PageAlrani}>
                       <EnfantApiAdmin api={api} />
                     </div>
                   </>
-                ))}
+                ))} */}
               </div>
               {/* card */}
             </div>
