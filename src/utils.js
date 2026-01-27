@@ -1422,6 +1422,8 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  
               {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
               ):(<div className="btn-bleu"> <button onClick={Valider}>Valider</button> </div> )}
+			  
+			  <CommentaireTemplate />
             </div>
             {/* a */}
           </div>
@@ -1453,6 +1455,23 @@ export function AutoTextarea({ valeur, setValeur, texte="..", maxHeight=160, cla
 )}  
 
 
+//CommentaireTemplate
+export default function CommentaireTemplate({ commentaire, onRepondre }) {
+  return (<>  
+  {/*
+	<div className="display-nowrap">
+      <div className="p-15px"><p>{api.popularity}</p></div>
+      <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
+      <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
+    </div> */}
+	
+	<div className="display-nowrap">
+      <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
+      <div className="pre-17px"><pre>NGanon Koné</pre></div>
+    </div>
+	
+</>)}
+//CommentaireTemplate
 
 //ChildApi 66profilFA
 export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", clicVideo, verifierId, photo, video, clic, svg }) {
