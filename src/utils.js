@@ -1734,9 +1734,8 @@ export function MenuAvecIconeTemplate({ visible, fermer, GestionPage, Statistiqu
               <div className="card">
                 <div className="btn-lier-border">
                   <div className="btn-lier-center">
-                    <div className="btn-lier-display">
+                    <div className="btn-lier-display" onClick={fermer}>
                       <svg
-						onClick={fermer}
                         xmlns="http://www.w3.org/2000/svg"
                         x="0"
                         y="0"
