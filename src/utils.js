@@ -1583,7 +1583,7 @@ export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setVa
                   </div>
 
                   <div className="b">
-					<AutoTextarea valeur={valeur} setValeur={setValeur} texte={texte} />
+					{/*  <AutoTextarea valeur={valeur} setValeur={setValeur} texte={texte} /> */} 
 				  
                     <input
                       type="text"
@@ -1599,11 +1599,6 @@ export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setVa
                       <p>{titrebtn}</p>
                       <hr />
                     </button> )}
-					
-					<button onClick={valider}>
-                      <p>{titrebtn}</p>
-                      <hr />
-                    </button>
                   </div>
                   {/* b */} 
                 </div>
