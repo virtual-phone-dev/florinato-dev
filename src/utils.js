@@ -960,7 +960,7 @@ const toutesDonnees_moi = useMemo(() => {
 
 
 
-export function SpeedMessages({ visible, fermer, data=[], MenuPopup, PagesGererTemplate, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
+export function SpeedMessages({ visible, fermer, data=[], MenuPopup, PagesGerer, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
 	const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
 	
 	async function logMessages() {
@@ -974,10 +974,10 @@ export function SpeedMessages({ visible, fermer, data=[], MenuPopup, PagesGererT
         <Close fermer={fermer} />
 	    <div className="p-14px">
 			<p onClick={MenuPopup}>MenuPopup</p>
-			<p onClick={PagesGererTemplate}>PagesGererTemplate</p>
+			<p onClick={PagesGerer}>Pages Gerer</p>
 			<p onClick={MenuAvecIcone}>MenuAvecIcone</p>
 			<p onClick={MenuBas}>MenuBas</p>
-			<p onClick={GestionPage}>GestionPage</p>
+			<p onClick={GestionPage}>Gestion Page</p>
 			<p onClick={PopupBasTextarea}>PopupBasTextarea</p>
 		</div>
 
