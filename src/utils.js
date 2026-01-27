@@ -26,10 +26,10 @@ https://www.youtube.com/shorts/8Od8xBHr8fQ
 https://www.youtube.com/shorts/vs_WQGQrlzs
 https://www.youtube.com/watch?v=MqNwFXjmS-o
 
-
+https://www.youtube.com/watch?v=aM0KcEMLrGQ
 
 https://www.youtube.com/shorts/LKOfggO_PMw
-
+https://www.youtube.com/watch?v=QqITVwkDJ8s
 
 https://www.youtube.com/shorts/H-wdQKLJ7AQ
 https://www.youtube.com/watch?v=epF0MxnsOrE
@@ -1478,7 +1478,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
       <div className="align">
         <div className="card">
           <div className="block">
-            <div className="a">
+            <div className="p-16px-center">
               <p style={{ color: "blue" }} onClick={fermer}>{titre}</p>
 			  			  
 			  {changerUrl && (<>
