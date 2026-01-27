@@ -16,8 +16,21 @@ import investirPhoto from "./img/investir.jpg";
 https://www.youtube.com/shorts/k68cyq1OnVY
 https://www.youtube.com/shorts/O0wAl2gCZ7M
 https://www.youtube.com/watch?v=EJjd7IFAi8o
+https://www.youtube.com/shorts/wd7ITzcl6H0
+https://www.youtube.com/shorts/FxdXt8M0cvA
+https://www.youtube.com/shorts/DF3_7a2k_lw
+https://www.youtube.com/shorts/3sj0i7AoN78
+https://www.youtube.com/shorts/i7gIGJUu2LE
+https://www.youtube.com/shorts/8Od8xBHr8fQ
+https://www.youtube.com/shorts/vs_WQGQrlzs
+
+
+https://www.youtube.com/shorts/Edo8oU3TCbw
+https://www.youtube.com/shorts/jLAVEuWVz44
+https://www.youtube.com/shorts/GtfaUTPgwiY
 https://www.youtube.com/watch?v=Ai75TmyhPvI
 https://www.youtube.com/watch?v=7Z0CM85jr3A
+https://www.youtube.com/shorts/mal_wfGXn7Y
 https://www.youtube.com/shorts/j-ZPL6VOzH4
 https://www.youtube.com/watch?v=cLi5XzfYIBo&pp=ugUEEgJmcg%3D%3D
 
@@ -1393,11 +1406,10 @@ export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVid
 )}
 
 
-export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire,
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire, profilMap,
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 		
 	if (!visible) return null;
-	//const urlVideo = localStorage.getItem("urlVideo");
   return (
     <div className="page-opacity">
       <div className="align">
@@ -1426,7 +1438,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  
 			  {data.map((api) => (
 			  <div onClick={() => { setIdCommentaire(api._id); setIdProprietaireCommentaire(api.idProprietaireCommentaire); }}>
-				<CommentaireTemplate api={api} />
+				<CommentaireTemplate api={api} profilMap={profilMap} />
 			  </div>
 			  ))}
             </div>
@@ -1443,19 +1455,23 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 
 
 //CommentaireTemplate
-export default function CommentaireTemplate({ api }) {
-  return (<>  
+export default function CommentaireTemplate({ api, profilMap={} }) {
+  // pour obtenir les informations du profil
+  const idaUtiliser = api?.idProprietaireCommentaire;
+  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
+  
+  return (<>
 	<div className="display-nowrap">
-      <div className="p-15px"><p>{api.popularity}</p></div>
-      <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
-      <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
+      <div className="photo-70px"><img src={profil.photoProfile} alt="" /></div>
+      <div className="pre-17px"><pre>{profil.nameAccount}</pre></div>
     </div>
 	<div className="pre-17px"><pre>{api.commentaire}</pre></div>
 	
+	{/* test
 	<div className="display-nowrap">
       <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
       <div className="pre-17px"><pre>NGanon Koné</pre></div>
-    </div>
+    </div> */}
 	
 </>)}
 //CommentaireTemplate

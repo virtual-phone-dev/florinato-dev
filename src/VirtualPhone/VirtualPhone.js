@@ -52272,24 +52272,24 @@ g
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
 		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideoFA}
-		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl/>
+		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl />
 		
 	
 	<ModifierTemplate 
 		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
-		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} 
-		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl/>
+		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} profilMap={profilMap} 
+		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl />
 		
 		
 	<ModifierTemplate 
 		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={titreFA} 
-		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl/>
+		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl />
 		
 	
 	<ModifierTemplate 
 		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
 		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
-		titre="Changer la miniature de la vidéo" changerMiniature/>
+		titre="Changer la miniature de la vidéo" changerMiniature />
 
 
       {/* voir la miniature- FA  */}
