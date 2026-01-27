@@ -1544,12 +1544,11 @@ export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setVa
 	<div className="ajouterQuartierIAC">
             <div className="align">
               <div className="card">
-                <div className="close">
+                <div className="close" onClick={fermer}>
                   <div className="a"> <p>{titre}</p> </div>
 
                   <div className="b">
                     <svg
-					  onClick={fermer}
                       xmlns="http://www.w3.org/2000/svg"
                       x="0"
                       y="0"
@@ -1600,6 +1599,11 @@ export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setVa
                       <p>{titrebtn}</p>
                       <hr />
                     </button> )}
+					
+					<button onClick={valider}>
+                      <p>{titrebtn}</p>
+                      <hr />
+                    </button>
                   </div>
                   {/* b */} 
                 </div>
