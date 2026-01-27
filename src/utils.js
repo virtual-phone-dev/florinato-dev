@@ -17,6 +17,7 @@ https://www.youtube.com/shorts/k68cyq1OnVY
 https://www.youtube.com/shorts/O0wAl2gCZ7M
 https://www.youtube.com/watch?v=EJjd7IFAi8o
 https://www.youtube.com/watch?v=Ai75TmyhPvI
+https://www.youtube.com/watch?v=7Z0CM85jr3A
 https://www.youtube.com/shorts/j-ZPL6VOzH4
 https://www.youtube.com/watch?v=cLi5XzfYIBo&pp=ugUEEgJmcg%3D%3D
 
@@ -1614,7 +1615,7 @@ export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setVa
 
 
 // gestion de la page
-export function GestionPageTemplate({ visible, fermer, AjouterAdmin, ActualiserPage, filtreApiAdmin, JustCloseGestionPage, nomPage }) {
+export function GestionPageTemplate({ visible, fermer, AjouterAdmin, ActualiserPage, JustCloseGestionPage, nomPage }) {
   if (!visible) return null;
   
   return (<>
@@ -1674,15 +1675,15 @@ export function GestionPageTemplate({ visible, fermer, AjouterAdmin, ActualiserP
             </div>
             {/* proprietaire */} 
 
-            {/* Administrateur Supreme */}
+            {/* Administrateur Supreme
             {filtreApiAdmin.map((api) => (
               <EnfantAdministrateurSupreme api={api} />
-            ))}
+            ))}  */}
 
-            {/* Administrateur lombda */}
+            {/* Administrateur lombda 
             {filtreApiAdmin.map((api) => (
               <EnfantAdministrateurLombda api={api} />
-            ))}
+            ))}  */}
 
 			<div className="ajouter-admin"> <p onClick={AjouterAdmin}>Ajouter un administrateur</p> </div>
           </div>
@@ -1939,7 +1940,6 @@ export function PagesGererTemplate({ visible, fermer, PageAlrani, obtenirListeDe
   if (!visible) return null;
   
   return (<>
-{/* Pages gérer */}
       {/* Pages gérer */}
       {/* ici on affiche la liste des Pages que vous gérer */}
           <div className="page-gerer-opacity">
