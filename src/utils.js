@@ -1536,7 +1536,7 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 
 
 // PopupDuBasTextarea Template
-export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setValeur, texte="Écrire..", titrebtn, valider, isLoading, writeZone, setWriteZone, inEnglish, setInEnglish, SaveZoneIAC }) {
+export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setValeur, texte="Écrire..", titrebtn="valider", valider, isLoading, writeZone, setWriteZone, inEnglish, setInEnglish, SaveZoneIAC }) {
   if (!visible) return null;
 
   return (<>
