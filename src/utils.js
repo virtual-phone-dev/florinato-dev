@@ -292,6 +292,19 @@ https://www.youtube.com/watch?v=baythHIaiS8
 */
 
 
+// date envoie message
+  const dateParser = (date) => {
+    let newDate = new Date(date).toLocaleDateString("fr-FR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    });
+    return newDate;
+  };
+
+
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
 
@@ -1460,7 +1473,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires }) {
 		
 	if (!visible) return null;
-  return (
+	return (
     <div className="page-opacity">
       <div className="align">
         <div className="card">
@@ -1516,6 +1529,8 @@ export default function CommentaireTemplate({ api, profilMap={} }) {
       <div className="p-14px"><p>{profil.nameAccount}</p></div>
     </div>
 	<div className="pre-17px"><pre>{api.commentaire}</pre></div>
+	<div className="p-14px"> <p>{dateParser(api.createdAt)}</p> </div>
+
 	
 	{/* test
 	<div className="display-nowrap">
