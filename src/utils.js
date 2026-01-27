@@ -27,10 +27,23 @@ https://www.youtube.com/shorts/vs_WQGQrlzs
 https://www.youtube.com/watch?v=MqNwFXjmS-o
 
 https://www.youtube.com/watch?v=aM0KcEMLrGQ
+https://www.youtube.com/shorts/CH_2dlb1Iic
+https://www.youtube.com/watch?v=OxtXP8qgK94
+https://www.youtube.com/watch?v=-valtePLiHk
 
+https://www.youtube.com/shorts/7LDPFYWQfmU
+
+
+https://www.youtube.com/watch?v=hXPgfdxFIlg
+https://www.youtube.com/shorts/Bv1JGnSX37g
+https://www.youtube.com/watch?v=s0DZV6XAMY0
+https://www.youtube.com/watch?v=MP-_lcqi1E0
+https://www.youtube.com/watch?v=stMurle0pEg
+https://www.youtube.com/watch?v=LoL_PSDSoh0
+https://www.youtube.com/watch?v=Pb4XRuuGOhI
 https://www.youtube.com/shorts/LKOfggO_PMw
 https://www.youtube.com/watch?v=QqITVwkDJ8s
-
+https://www.youtube.com/watch?v=3yeiWthwQbQ
 https://www.youtube.com/shorts/H-wdQKLJ7AQ
 https://www.youtube.com/watch?v=epF0MxnsOrE
 https://www.youtube.com/watch?v=iWCz7IHYNG4
@@ -104,12 +117,19 @@ https://www.youtube.com/shorts/nFFzjvT868w
 https://www.youtube.com/shorts/XSil7uOvf8E
 https://www.youtube.com/watch?v=swXnYqaPkWI
 https://www.youtube.com/watch?v=4winezoJmJc
+https://www.youtube.com/watch?v=wtnoCLyCaC8
 
 https://www.youtube.com/watch?v=CQmWRLZo-Xk
 https://www.youtube.com/shorts/d_cRn3wa6A4
 https://www.youtube.com/shorts/3C31qzW3mqE
 
+
+
+https://www.youtube.com/shorts/OG89POAZOc4
 https://www.youtube.com/shorts/eXz4JFbevjM
+https://www.youtube.com/shorts/OR_-vPoRl9M
+https://www.youtube.com/watch?v=Q3RR6ffTTBw
+https://www.youtube.com/watch?v=Srvt_6up-0o
 https://www.youtube.com/shorts/5l0z35dJLUs
 https://www.youtube.com/shorts/Bw7zuDXkit8
 https://www.youtube.com/shorts/tHrM2GqP06o
@@ -1478,8 +1498,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
       <div className="align">
         <div className="card">
           <div className="block">
-            <div className="p-16px-center">
-              <p style={{ color: "blue" }} onClick={fermer}>{titre}</p>
+              <p className="p-16px-center" onClick={fermer}>{titre}</p>
 			  			  
 			  {changerUrl && (<>
 			  <pre className="pre-15px-center">{infos}</pre> 
@@ -1504,8 +1523,6 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 				<CommentaireTemplate api={api} profilMap={profilMap} />
 			  </div>
 			  ))} </>)}
-            </div>
-            {/* a */}
           </div>
           {/* block */}
         </div> 
