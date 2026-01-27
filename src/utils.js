@@ -1116,25 +1116,27 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 // PopupDuBasTemplate 
 
 
-export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, clicVideo, voirVideo, video }) {
+export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, setIdAccountChef, clicVideo, voirVideo, video }) {
   return (<>
 	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
-    <LesVideos data={data} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video />
+    <LesVideos data={data} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} video />
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, setId, setIdAccountChef, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche" onScroll={gererScroll}> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
 			
-			<VideoSearchBlock data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
+			<VideoSearchBlock 
+				data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} 
+				setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
 		</div>
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, setIdAccountChef, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -1179,7 +1181,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			))}
 			</div>
 			
-			<LesVideos data={listVideo} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
+			<LesVideos data={listVideo} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
 	</>);
 }
 

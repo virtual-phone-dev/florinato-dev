@@ -50731,9 +50731,9 @@ son compte Vixinol store */
 	  
 		
 		<VideosPageTemplate
-			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} 
-			data={dataVideoFA} setId={setId} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} photocss="photo-200px-carre" video 
-			listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
+			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} video
+			data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
+			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
 
 		<ComptesRecentsTemplate visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesRecentsFA} listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} />
 		
@@ -51030,7 +51030,7 @@ g
 			  
 			<VideoSearchBlock 
 				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video 
-				setId={setId} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+				setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
               <div className="api2">
