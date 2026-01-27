@@ -35047,6 +35047,9 @@ async function DissadAA() {
   
 	const [idreq, setId] = useState(null);
 	const [idAccountChef, setIdAccountChef] = useState(null);
+	const [idCommentaire, setIdCommentaire] = useState(null);
+	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
+	
 	const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
 	console.log(`infosPostFA ici:`, infosPostFA); */
@@ -35115,6 +35118,9 @@ async function DissadAA() {
   
   //filtre pour afficher les comptes creer.
   const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
+  
+  //filtre pour afficher les commentaires d'un post (video, photo, ...)
+  const filterCommentaireFA = apiMessageFA.filter((api) => api.type ==="25");
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
   const [mySearchFA, setMySearchFA] = useState("");
@@ -35209,6 +35215,327 @@ useEffect(() => {
     const zero = "0";
     localStorage.setItem("idConversation", zero); 
   }
+  
+  
+  
+  
+// url pour tomber directement sur la page
+// url pour tomber directement sur la page
+
+	const location = useLocation();
+	// const navigate = useNavigate();
+
+  // État pour gérer l’ouverture du popup
+	useEffect(() => {
+	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
+	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
+	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
+	  const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
+	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
+	  
+	  // petite logique pour recuperer l'id qui est dans l'url
+	    let id = null;
+
+		// URL du style /profile/12345
+		//const match = location.pathname.match(/^\/profile\/([^\/]+)$/);
+		const match = location.pathname.match(/^\/profile\/([^/]+)$/);
+		if (match) {
+		  id = match[1]; // Récupère l'ID dans la partie après /profile/
+		  console.log("id trouver dans l'url ", id);
+		  localStorage.setItem("idAccountChef", id);
+		  console.log("idAccountChef deja enregistrer : ", id);
+		}
+	  
+	  if (profilePage) {
+		// const id = isProfilePage[1];
+		// ouvre la popup avec cet ID
+		setProfilOtherFA(true);
+		setPopularityAccountsPageFA(true);
+		
+		setFlorinatoApp(true);
+        setTelephoneVirtuel(false);
+        setInscriptionPageAA(false);
+	  }
+	  
+	  if (messagePage) {
+		setMessageFA(true);
+		
+		setFlorinatoApp(true);
+        setTelephoneVirtuel(false);
+        setInscriptionPageAA(false);
+	  }
+	  
+	  if (videoPage) {
+		setSeeVideoFA(true);
+		setProfilOtherFA(true);
+		setPopularityAccountsPageFA(true);
+		
+		setFlorinatoApp(true);
+        setTelephoneVirtuel(false);
+        setInscriptionPageAA(false);
+	  }
+	  
+	  
+	  async function fetchData() {
+		await ObtenirLesDonneesFA();
+	  }
+	  fetchData();
+	  
+	}, [location]);
+
+/*
+const closePopup = () => {
+    navigate.push('/'); // revenir à la page d'accueil
+	// navigate.goBack(); 
+  }; */
+
+
+// lier une video a une photo - FA
+const [addVideoPageFA, setAddVideoPageFA] = useState(false);
+async function AddVideoPageFA() { 
+  setAddVideoPageFA(true);
+}
+async function CloseAddVideoPageFA() { //fermer
+  setAddVideoPageFA(false);
+}
+
+
+//logique pour GenererMiniatureVideo
+const [miniatureFA, setMiniatureFA] = useState();
+const [fileVideoFAA, setFileVideoFAA] = useState();
+const [second, setSecond] = useState(10);
+
+
+// useEffect affiche la miniature immédiatement après sa génération sans délai
+  useEffect(() => {
+	async function GenererMiniature() {
+		if (fileVideoFAA) {
+			// Supposons que vous avez votre fichier vidéo dans `file`
+			await GenererMiniatureVideo({ file: fileVideoFAA, setMiniature: setMiniatureFA, second: second });
+		}
+	}
+	GenererMiniature();
+}, [fileVideoFAA, second]);
+
+
+
+/* voir la miniature- FA  */
+const [voirMiniature, setVoirMiniature] = useState(false);
+const [photoUrl, setPhotoUrl] = useState();
+
+async function CloseVoirMiniature() { //fermer
+  setVoirMiniature(false);
+} 
+
+
+async function transVoirMiniatureFA(url) { //transmettre VoirMiniature (on transmet la miniature a l'autre composant (au modal))
+  setPhotoUrl(url);
+  setVoirMiniature(true);
+} 
+  
+  
+//logique pour ajouter les liens de la video (lien de chaque service ou la video est heberger)
+const [lienDropbox, setLienDropbox] = useState("");
+const [lienGitHub, setLienGitHub] = useState("");
+const [lienGitLab, setLienGitLab] = useState("");
+const [ecrireTitre, setecrireTitre] = useState(""); //titre de la video
+const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
+
+
+//logique pour envoyer ou publier une video
+async function EnvoyerVideoFAA() { 
+	setisLoading666EnvoyerVideoFAA(true);
+	const actions = { envoyerPhoto: true, publierVideo: true };
+		
+	await Envoyer3({
+	    file: miniatureFA,
+		
+        message: ecrireTitre,
+        urlVideo: lienGitLab,
+		idAccount: idPersonConnectedFA,
+		idAccountChef: localStorage.getItem("idAccountChef"),
+        idGroupChef: localStorage.getItem("idGroupChef"),
+        clic: 0,
+        comment: 0,
+        account: 1,
+        group: 1,
+        visible: 1,		
+	    type: 3, 
+	    actions,
+		url: "/api/messageFA/new",
+	});
+	
+	//if (actions.allData) { await ObtenirLesDonneesFA(); }
+	  
+	setisLoading666EnvoyerVideoFAA(false);
+}
+// EnvoyerVideoFAA
+
+
+const [isLoading666AjouterAdminFA, setIsLoading666AjouterAdminFA] = useState(false);
+const [isLoading666AjouterAdminFlorinato, setIsLoading666AjouterAdminFlorinato] = useState(false);
+const [isLoading666MettreEnAvantFA, setIsLoading666MettreEnAvantFA] = useState(false);
+
+
+// toutes les donnees FA
+async function ObtenirLesDonneesFA() {
+  const data = await getAllData();
+  if (data === null) { return; }
+  setApiMessageFA(data);
+}
+
+
+async function ExecuterActionFA({ actions = ["post"], id, file, loader, dataPOST={}, dataPUT={} }) {
+	try { if (loader) loader(true);
+		
+	    for (const action of actions) {
+		  if (action === "post") { await envoyerPOST({ dataPOST }); }
+		  if (action === "put") { await ValiderModificationLogique({ id, file, dataPUT }) }
+		}
+
+		//await ObtenirLesDonneesFA();
+
+	} finally { if (loader) loader(false); }
+}
+
+
+// il verifie s'il faut faire un post ou un put
+async function verificationAvantExecuterActionFA({ loader, type, dataPUT, dataPOST2 }) { 
+  const filterInfos = apiMessageFA.filter((api) => api.idAccount === idAccount && api.idOther === idreq && api.type === type);
+  const idInfos = filterInfos.map((api) => api._id);
+  const existe = filterInfos.length > 0;
+
+  if (existe) { await ExecuterActionFA({ dataPUT, id:idInfos, loader, actions: ["put"] }); } // donnees existe deja , alors on fait un put
+  else { await ExecuterActionFA({ dataPOST: {...dataPOST2, idAccount, idOther:idreq, visible:1, type }, loader }); } // donnees n'existe pas , alors on fait un post
+}
+
+
+
+//logique pour ajouter un admin qui pourra publier sur un compte florinato
+async function AjouterAdminFA() {
+	await verificationAvantExecuterActionFA({ dataPUT:{admin:1}, dataPOST2:{admin:1}, loader:setIsLoading666AjouterAdminFA, type:81 });
+}
+
+//logique pour ajouter un admin florinato
+async function AjouterAdminFlorinato() {
+	await verificationAvantExecuterActionFA({ dataPUT:{adminFlorinato:1}, dataPOST2:{adminFlorinato:1}, loader:setIsLoading666AjouterAdminFlorinato, type:80 });
+}
+
+//logique pour mettre en avant un compte - FA
+async function MettreEnAvantFA() {
+	await verificationAvantExecuterActionFA({ dataPUT:{top:1}, dataPOST2:{top:1}, loader:setIsLoading666MettreEnAvantFA, type:82 });
+}
+
+
+// clic de la video
+async function ClicVideoFAA({ id, idOther, nombreClic }) {	
+	const clic = (Number(nombreClic) || 0) + 1; //type:204 il a cliqué sur la video 
+	console.log("nombreClic ", nombreClic);
+	console.log("clic ", clic);
+	//console.log("idOther ", idOther);
+	//console.log("id ", id); 
+	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther, visible:1, id, type:204}, id, actions: ["post", "put"] });
+}
+		
+
+//page pour changer la miniature de la video - FA
+const [changerMiniaturePage, setChangerMiniaturePage] = useState(false);
+async function ChangerMiniaturePage() { setChangerMiniaturePage(true); }
+async function CloseChangerMiniaturePage() { setChangerMiniaturePage(false); }
+
+//logique pour changer la miniature de la video - FA
+const [isLoading666ChangerMiniatureFA, setIsLoading666ChangerMiniatureFA] = useState(false);
+async function ChangerMiniatureFA() { await ExecuterActionFA({ id:idreq, file: miniatureFA, loader:setIsLoading666ChangerMiniatureFA, actions: ["put"] }); }
+	
+	
+	
+//page pour changer le titre de la video - FA
+const [modifierTitrePageFA , setmodifierTitrePageFA] = useState(false);
+async function ModifierTitrePageFA() { setmodifierTitrePageFA(true); }
+async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
+
+//logique pour changer le titre de la video - FA
+const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
+const [nouveauTitre, setNouveauTitre] = useState("");
+async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idreq, loader:setIsLoading666ModifierTitreFA, actions: ["put"] }); }
+
+
+
+//page pour commenter la vidéo- FA
+const [commenterPageFA, setcommenterPageFA] = useState(false);
+async function CommenterPageFA() { setcommenterPageFA(true); }
+async function CloseCommenterPageFA() { setcommenterPageFA(false); }
+
+//logique pour commenter un post (commenter une video ou une photo ou n'importe qu'elle post) - FA
+const [isLoading666CommenterFA, setIsLoading666CommenterFA] = useState(false);
+const [ecrireCommentaireFA, setEcrireCommentaireFA] = useState("");
+async function CommenterFA() { await ExecuterActionFA({
+	actions: ["post"],
+	loader:setIsLoading666CommenterFA,
+	dataPOST:{
+		idPost:idreq,
+		idProprietairePost: idAccountChef,
+		
+		commentaire: ecrireCommentaireFA,
+		idProprietaireCommentaire: idPersonConnectedFA,
+        type:25,
+	}, 
+}); }
+	  
+	  
+
+//page pour ecrire sa reponse
+const [repondrePageFA, setrepondrePageFA] = useState(false); 
+async function RepondrePageFA() { setrepondrePageFA(true); }
+async function CloseRepondrePageFA() { setrepondrePageFA(false); }
+
+//logique pour repondre a un commentaire - FA
+const [isLoading666RepondreFA, setIsLoading666RepondreFA] = useState(false);
+const [ecrireReponseFA, setEcrireReponseFA] = useState("");
+async function RepondreFA() { await ExecuterActionFA({
+	actions: ["post"],
+	loader:setIsLoading666RepondreFA,
+	dataPOST:{
+		idPost:idreq,
+		idProprietairePost: idAccountChef,
+
+		idCommentaire,
+		idProprietaireCommentaire,
+		
+		reponse: ecrireReponseFA,		
+		idProprietaireReponse: idPersonConnectedFA,
+        type:26,
+	}, 
+}); console.log(RepondrePageFA); } 
+
+
+//page pour enregistrer l'url modifier
+const [modifierUrlPage, setmodifierUrlPage] = useState(false);
+async function ModifierUrlPage() { setmodifierUrlPage(true); }
+async function CloseModifierUrlPage() { setmodifierUrlPage(false); }
+
+//logique pour enregistrer l'url modifier
+const [isLoading666ValiderUrl, setisLoading666ValideUrl] = useState(false);
+const [ecrire666modifierUrl, setecrire666modifierUrl] = useState("");
+
+async function ValiderUrl() {
+	setisLoading666ValideUrl(true);
+	const idPost = localStorage.getItem("idPost");
+	
+	const actions = { modifier: true, allData: true };
+		
+	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
+	setisLoading666ValideUrl(false);
+	
+	/* if (actions.allData) {
+		const data = await getAllData();
+		if (data === null) { return; }
+		setApiMessageFA(data);
+		setApiMessageFAA(data);
+	  } */
+}
+// ValiderUrl
+	
 
 
   // application florinato
@@ -44073,324 +44400,6 @@ async function SendMessagetype42() {
 // SendMessagetype42
 
 
-  
-// url pour tomber directement sur la page
-// url pour tomber directement sur la page
-
-	const location = useLocation();
-	// const navigate = useNavigate();
-
-  // État pour gérer l’ouverture du popup
-	useEffect(() => {
-	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
-	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
-	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
-	  const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
-	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
-	  
-	  // petite logique pour recuperer l'id qui est dans l'url
-	    let id = null;
-
-		// URL du style /profile/12345
-		//const match = location.pathname.match(/^\/profile\/([^\/]+)$/);
-		const match = location.pathname.match(/^\/profile\/([^/]+)$/);
-		if (match) {
-		  id = match[1]; // Récupère l'ID dans la partie après /profile/
-		  console.log("id trouver dans l'url ", id);
-		  localStorage.setItem("idAccountChef", id);
-		  console.log("idAccountChef deja enregistrer : ", id);
-		}
-	  
-	  if (profilePage) {
-		// const id = isProfilePage[1];
-		// ouvre la popup avec cet ID
-		setProfilOtherFA(true);
-		setPopularityAccountsPageFA(true);
-		
-		setFlorinatoApp(true);
-        setTelephoneVirtuel(false);
-        setInscriptionPageAA(false);
-	  }
-	  
-	  if (messagePage) {
-		setMessageFA(true);
-		
-		setFlorinatoApp(true);
-        setTelephoneVirtuel(false);
-        setInscriptionPageAA(false);
-	  }
-	  
-	  if (videoPage) {
-		setSeeVideoFA(true);
-		setProfilOtherFA(true);
-		setPopularityAccountsPageFA(true);
-		
-		setFlorinatoApp(true);
-        setTelephoneVirtuel(false);
-        setInscriptionPageAA(false);
-	  }
-	  
-	  
-	  async function fetchData() {
-		await ObtenirLesDonneesFA();
-	  }
-	  fetchData();
-	  
-	}, [location]);
-
-/*
-const closePopup = () => {
-    navigate.push('/'); // revenir à la page d'accueil
-	// navigate.goBack(); 
-  }; */
-
-
-// lier une video a une photo - FA
-const [addVideoPageFA, setAddVideoPageFA] = useState(false);
-async function AddVideoPageFA() { 
-  setAddVideoPageFA(true);
-}
-async function CloseAddVideoPageFA() { //fermer
-  setAddVideoPageFA(false);
-}
-
-
-//logique pour GenererMiniatureVideo
-const [miniatureFA, setMiniatureFA] = useState();
-const [fileVideoFAA, setFileVideoFAA] = useState();
-const [second, setSecond] = useState(10);
-
-
-// useEffect affiche la miniature immédiatement après sa génération sans délai
-  useEffect(() => {
-	async function GenererMiniature() {
-		if (fileVideoFAA) {
-			// Supposons que vous avez votre fichier vidéo dans `file`
-			await GenererMiniatureVideo({ file: fileVideoFAA, setMiniature: setMiniatureFA, second: second });
-		}
-	}
-	GenererMiniature();
-}, [fileVideoFAA, second]);
-
-
-
-/* voir la miniature- FA  */
-const [voirMiniature, setVoirMiniature] = useState(false);
-const [photoUrl, setPhotoUrl] = useState();
-
-async function CloseVoirMiniature() { //fermer
-  setVoirMiniature(false);
-} 
-
-
-async function transVoirMiniatureFA(url) { //transmettre VoirMiniature (on transmet la miniature a l'autre composant (au modal))
-  setPhotoUrl(url);
-  setVoirMiniature(true);
-} 
-  
-  
-//logique pour ajouter les liens de la video (lien de chaque service ou la video est heberger)
-const [lienDropbox, setLienDropbox] = useState("");
-const [lienGitHub, setLienGitHub] = useState("");
-const [lienGitLab, setLienGitLab] = useState("");
-const [ecrireTitre, setecrireTitre] = useState(""); //titre de la video
-const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
-
-
-//logique pour envoyer ou publier une video
-async function EnvoyerVideoFAA() { 
-	setisLoading666EnvoyerVideoFAA(true);
-	const actions = { envoyerPhoto: true, publierVideo: true };
-		
-	await Envoyer3({
-	    file: miniatureFA,
-		
-        message: ecrireTitre,
-        urlVideo: lienGitLab,
-		idAccount: idPersonConnectedFA,
-		idAccountChef: localStorage.getItem("idAccountChef"),
-        idGroupChef: localStorage.getItem("idGroupChef"),
-        clic: 0,
-        comment: 0,
-        account: 1,
-        group: 1,
-        visible: 1,		
-	    type: 3, 
-	    actions,
-		url: "/api/messageFA/new",
-	});
-	
-	//if (actions.allData) { await ObtenirLesDonneesFA(); }
-	  
-	setisLoading666EnvoyerVideoFAA(false);
-}
-// EnvoyerVideoFAA
-
-
-const [isLoading666AjouterAdminFA, setIsLoading666AjouterAdminFA] = useState(false);
-const [isLoading666AjouterAdminFlorinato, setIsLoading666AjouterAdminFlorinato] = useState(false);
-const [isLoading666MettreEnAvantFA, setIsLoading666MettreEnAvantFA] = useState(false);
-
-
-// toutes les donnees FA
-async function ObtenirLesDonneesFA() {
-  const data = await getAllData();
-  if (data === null) { return; }
-  setApiMessageFA(data);
-}
-
-
-async function ExecuterActionFA({ actions = ["post"], id, file, loader, dataPOST={}, dataPUT={} }) {
-	try { if (loader) loader(true);
-		
-	    for (const action of actions) {
-		  if (action === "post") { await envoyerPOST({ dataPOST }); }
-		  if (action === "put") { await ValiderModificationLogique({ id, file, dataPUT }) }
-		}
-
-		//await ObtenirLesDonneesFA();
-
-	} finally { if (loader) loader(false); }
-}
-
-
-// il verifie s'il faut faire un post ou un put
-async function verificationAvantExecuterActionFA({ loader, type, dataPUT, dataPOST2 }) { 
-  const filterInfos = apiMessageFA.filter((api) => api.idAccount === idAccount && api.idOther === idreq && api.type === type);
-  const idInfos = filterInfos.map((api) => api._id);
-  const existe = filterInfos.length > 0;
-
-  if (existe) { await ExecuterActionFA({ dataPUT, id:idInfos, loader, actions: ["put"] }); } // donnees existe deja , alors on fait un put
-  else { await ExecuterActionFA({ dataPOST: {...dataPOST2, idAccount, idOther:idreq, visible:1, type }, loader }); } // donnees n'existe pas , alors on fait un post
-}
-
-
-
-//logique pour ajouter un admin qui pourra publier sur un compte florinato
-async function AjouterAdminFA() {
-	await verificationAvantExecuterActionFA({ dataPUT:{admin:1}, dataPOST2:{admin:1}, loader:setIsLoading666AjouterAdminFA, type:81 });
-}
-
-//logique pour ajouter un admin florinato
-async function AjouterAdminFlorinato() {
-	await verificationAvantExecuterActionFA({ dataPUT:{adminFlorinato:1}, dataPOST2:{adminFlorinato:1}, loader:setIsLoading666AjouterAdminFlorinato, type:80 });
-}
-
-//logique pour mettre en avant un compte - FA
-async function MettreEnAvantFA() {
-	await verificationAvantExecuterActionFA({ dataPUT:{top:1}, dataPOST2:{top:1}, loader:setIsLoading666MettreEnAvantFA, type:82 });
-}
-
-
-// clic de la video
-async function ClicVideoFAA({ id, idOther, nombreClic }) {	
-	const clic = (Number(nombreClic) || 0) + 1; //type:204 il a cliqué sur la video 
-	console.log("nombreClic ", nombreClic);
-	console.log("clic ", clic);
-	//console.log("idOther ", idOther);
-	//console.log("id ", id); 
-	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther, visible:1, id, type:204}, id, actions: ["post", "put"] });
-}
-		
-
-//page pour changer la miniature de la video - FA
-const [changerMiniaturePage, setChangerMiniaturePage] = useState(false);
-async function ChangerMiniaturePage() { setChangerMiniaturePage(true); }
-async function CloseChangerMiniaturePage() { setChangerMiniaturePage(false); }
-
-//logique pour changer la miniature de la video - FA
-const [isLoading666ChangerMiniatureFA, setIsLoading666ChangerMiniatureFA] = useState(false);
-async function ChangerMiniatureFA() { await ExecuterActionFA({ id:idreq, file: miniatureFA, loader:setIsLoading666ChangerMiniatureFA, actions: ["put"] }); }
-	
-	
-	
-//page pour changer le titre de la video - FA
-const [modifierTitrePageFA , setmodifierTitrePageFA] = useState(false);
-async function ModifierTitrePageFA() { setmodifierTitrePageFA(true); }
-async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
-
-//logique pour changer le titre de la video - FA
-const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
-const [nouveauTitre, setNouveauTitre] = useState("");
-async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idreq, loader:setIsLoading666ModifierTitreFA, actions: ["put"] }); }
-
-
-
-//page pour commenter la vidéo- FA
-const [commenterPageFA, setcommenterPageFA] = useState(false);
-async function CommenterPageFA() { setcommenterPageFA(true); }
-async function CloseCommenterPageFA() { setcommenterPageFA(false); }
-
-//logique pour commenter un post (commenter une video ou une photo ou n'importe qu'elle post) - FA
-const [isLoading666CommenterFA, setIsLoading666CommenterFA] = useState(false);
-const [ecrireCommentaireFA, setEcrireCommentaireFA] = useState("");
-async function CommenterFA() { await ExecuterActionFA({
-	actions: ["post"],
-	loader:setIsLoading666CommenterFA,
-	dataPOST:{
-		idPost:idreq,
-		idProprietairePost: idAccountChef,
-		
-		commentaire: ecrireCommentaireFA,
-		idProprietaireCommentaire: idPersonConnectedFA,
-        type:25,
-	}, 
-}); }
-	  
-	  
-
-//page pour ecrire sa reponse
-const [repondrePageFA, setrepondrePageFA] = useState(false); 
-async function RepondrePageFA() { setrepondrePageFA(true); }
-async function CloseRepondrePageFA() { setrepondrePageFA(false); }
-
-//logique pour repondre a un commentaire - FA
-const [isLoading666RepondreFA, setIsLoading666RepondreFA] = useState(false);
-const [ecrireReponseFA, setEcrireReponseFA] = useState("");
-async function RepondreFA() { await ExecuterActionFA({
-	actions: ["post"],
-	loader:setIsLoading666RepondreFA,
-	dataPOST:{
-		idPost:idreq,
-		idProprietairePost: idAccountChef,
-		/*
-		idCommentaire,
-		idProprietaireCommentaire, */
-		
-		reponse: ecrireReponseFA,		
-		idProprietaireReponse: idPersonConnectedFA,
-        type:26,
-	}, 
-}); console.log(RepondrePageFA); } 
-
-
-//page pour enregistrer l'url modifier
-const [modifierUrlPage, setmodifierUrlPage] = useState(false);
-async function ModifierUrlPage() { setmodifierUrlPage(true); }
-async function CloseModifierUrlPage() { setmodifierUrlPage(false); }
-
-//logique pour enregistrer l'url modifier
-const [isLoading666ValiderUrl, setisLoading666ValideUrl] = useState(false);
-const [ecrire666modifierUrl, setecrire666modifierUrl] = useState("");
-
-async function ValiderUrl() {
-	setisLoading666ValideUrl(true);
-	const idPost = localStorage.getItem("idPost");
-	
-	const actions = { modifier: true, allData: true };
-		
-	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
-	setisLoading666ValideUrl(false);
-	
-	/* if (actions.allData) {
-		const data = await getAllData();
-		if (data === null) { return; }
-		setApiMessageFA(data);
-		setApiMessageFAA(data);
-	  } */
-}
-// ValiderUrl
-	
 	
 //logique pour ajouter une photo de couverture a la video
 const [isLoading66addVideoPageFA, setIsLoading66addVideoPageFA] = useState(false);
@@ -52146,7 +52155,8 @@ g
       {/* seeVideoFA */}
       </>)}
       {/* voir la video - FA */}
-
+	  
+	  
 
       {/* voir la photo (lors de la requete) - FA */}
       {/* voir la photo (lors de la requete) - FA */}
@@ -52267,7 +52277,8 @@ g
 	
 	<ModifierTemplate 
 		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
-		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} changerUrl/>
+		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} 
+		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} changerUrl/>
 		
 		
 	<ModifierTemplate 
@@ -52281,7 +52292,7 @@ g
 		titre="Changer la miniature de la vidéo" changerMiniature/>
 
 
-
+<CommentaireTemplate  />
       {/* voir la miniature- FA  */}
 	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
       

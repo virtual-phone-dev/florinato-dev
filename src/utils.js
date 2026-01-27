@@ -1393,7 +1393,7 @@ export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVid
 )}
 
 
-export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos,
+export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire,
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
 		
 	if (!visible) return null;
@@ -1423,7 +1423,12 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
               {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
               ):(<div className="btn-bleu"> <button onClick={Valider}>Valider</button> </div> )}
 			  
-			  <CommentaireTemplate />
+			  
+			  {data.map((api) => (
+			  <div onClick={() => { setIdCommentaire(api._id); setIdProprietaireCommentaire(api.idProprietaireCommentaire); }}>
+				<CommentaireTemplate api={api} />
+			  </div>
+			  ))}
             </div>
             {/* a */}
           </div>
@@ -1435,6 +1440,25 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
     </div>
   );
 }
+
+
+//CommentaireTemplate
+export default function CommentaireTemplate({ api }) {
+  return (<>  
+	<div className="display-nowrap">
+      <div className="p-15px"><p>{api.popularity}</p></div>
+      <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
+      <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
+    </div>
+	<div className="pre-17px"><pre>{api.commentaire}</pre></div>
+	
+	<div className="display-nowrap">
+      <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
+      <div className="pre-17px"><pre>NGanon Koné</pre></div>
+    </div>
+	
+</>)}
+//CommentaireTemplate
 
 
 export function AutoTextarea({ valeur, setValeur, texte="..", maxHeight=160, className="textarea-css", rows=1, }) {
@@ -1454,24 +1478,6 @@ export function AutoTextarea({ valeur, setValeur, texte="..", maxHeight=160, cla
     <textarea ref={textareaRef} value={valeur} rows={rows} placeholder={texte} className={className} onChange={(e) => setValeur(e.target.value)} />
 )}  
 
-
-//CommentaireTemplate
-export default function CommentaireTemplate({ commentaire, onRepondre }) {
-  return (<>  
-  {/*
-	<div className="display-nowrap">
-      <div className="p-15px"><p>{api.popularity}</p></div>
-      <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
-      <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
-    </div> */}
-	
-	<div className="display-nowrap">
-      <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
-      <div className="pre-17px"><pre>NGanon Koné</pre></div>
-    </div>
-	
-</>)}
-//CommentaireTemplate
 
 //ChildApi 66profilFA
 export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", clicVideo, verifierId, photo, video, clic, svg }) {
