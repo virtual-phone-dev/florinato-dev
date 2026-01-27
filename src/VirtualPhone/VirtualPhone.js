@@ -52278,7 +52278,7 @@ g
 	<ModifierTemplate 
 		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
 		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} 
-		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} changerUrl/>
+		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl/>
 		
 		
 	<ModifierTemplate 
@@ -52292,7 +52292,6 @@ g
 		titre="Changer la miniature de la vidéo" changerMiniature/>
 
 
-<CommentaireTemplate  />
       {/* voir la miniature- FA  */}
 	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
       
