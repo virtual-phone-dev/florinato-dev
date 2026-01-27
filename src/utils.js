@@ -15,6 +15,7 @@ import investirPhoto from "./img/investir.jpg";
 /* 
 https://www.youtube.com/shorts/k68cyq1OnVY
 https://www.youtube.com/shorts/O0wAl2gCZ7M
+https://www.youtube.com/shorts/kEzowVZgxRE
 https://www.youtube.com/watch?v=EJjd7IFAi8o
 https://www.youtube.com/shorts/wd7ITzcl6H0
 https://www.youtube.com/shorts/FxdXt8M0cvA
@@ -23,8 +24,57 @@ https://www.youtube.com/shorts/3sj0i7AoN78
 https://www.youtube.com/shorts/i7gIGJUu2LE
 https://www.youtube.com/shorts/8Od8xBHr8fQ
 https://www.youtube.com/shorts/vs_WQGQrlzs
+https://www.youtube.com/watch?v=MqNwFXjmS-o
 
 
+
+https://www.youtube.com/shorts/LKOfggO_PMw
+
+
+https://www.youtube.com/shorts/H-wdQKLJ7AQ
+https://www.youtube.com/watch?v=epF0MxnsOrE
+https://www.youtube.com/watch?v=iWCz7IHYNG4
+https://www.youtube.com/watch?v=jxj37D2aYHk
+https://www.youtube.com/watch?v=xUOsrKJbU5I
+https://www.youtube.com/shorts/YxZca-ZmhOc
+https://www.youtube.com/shorts/nnFK8xyX2ew
+https://www.youtube.com/watch?v=6XsHRk3TG7o
+https://www.youtube.com/shorts/a4NSjAIYSgI
+https://www.youtube.com/watch?v=gNjQASc0SD8
+https://www.youtube.com/shorts/EC9nCTb3jtQ
+https://www.youtube.com/watch?v=9jQ0mSjMX3A
+https://www.youtube.com/shorts/giqAqwSJzBs
+https://www.youtube.com/watch?v=evWVTFkH1R4
+https://www.youtube.com/watch?v=qG1oEmz2Z50
+https://www.youtube.com/shorts/FNAURrYWYw4
+https://www.youtube.com/shorts/2DE0DZPp4sU
+https://www.youtube.com/shorts/8DcCqzpqEk4
+https://www.youtube.com/shorts/IEYLTnhHroI
+https://www.youtube.com/watch?v=tQbuJP53d88
+https://www.youtube.com/watch?v=gprquMmCoUM
+https://www.youtube.com/watch?v=l46TJ2vdafk
+https://www.youtube.com/shorts/YJMMMGSfOLc
+https://www.youtube.com/watch?v=PSZ5zBfQ6N8
+https://www.youtube.com/watch?v=5zaeAcjTito
+https://www.youtube.com/shorts/_HjRCaAInQk
+https://www.youtube.com/watch?v=GRahVs8YFUA
+https://www.youtube.com/watch?v=PjnQbD_wBc0
+https://www.youtube.com/shorts/Ov9tjM1fn1s
+https://www.youtube.com/shorts/qJE8Eu3gOiA
+https://www.youtube.com/watch?v=2ZyuHEL2npo
+https://www.youtube.com/watch?v=0ChcPRoQFhI
+https://www.youtube.com/watch?v=YhVazUdVLkk&pp=0gcJCXwKAYcqIYzv
+https://www.youtube.com/shorts/_7x5Zo2PWP0
+https://www.youtube.com/watch?v=QgafJijgYcg
+https://www.youtube.com/watch?v=rqEVjZHJhFc
+https://www.youtube.com/watch?v=2ZyuHEL2npo
+https://www.youtube.com/watch?v=zHP9oIUsVSo
+https://www.youtube.com/watch?v=rWwKfuV5ayQ
+https://www.youtube.com/shorts/uN3JTmXIllE
+https://www.youtube.com/watch?v=wbwZbDVr-m4
+https://www.youtube.com/shorts/R9cGwKp-lW4
+https://www.youtube.com/watch?v=9ojYmnpN6fU
+https://www.youtube.com/shorts/OrAthCHJfek
 https://www.youtube.com/shorts/Edo8oU3TCbw
 https://www.youtube.com/shorts/jLAVEuWVz44
 https://www.youtube.com/shorts/GtfaUTPgwiY
@@ -52,7 +102,7 @@ https://www.youtube.com/shorts/XhM5DQDNIPQ
 https://www.youtube.com/shorts/d-FS9lpHCnM
 https://www.youtube.com/shorts/nFFzjvT868w
 https://www.youtube.com/shorts/XSil7uOvf8E
-
+https://www.youtube.com/watch?v=swXnYqaPkWI
 https://www.youtube.com/watch?v=4winezoJmJc
 
 https://www.youtube.com/watch?v=CQmWRLZo-Xk
@@ -1407,7 +1457,7 @@ export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVid
 
 
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire, profilMap,
-	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
+	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires }) {
 		
 	if (!visible) return null;
   return (
@@ -1435,12 +1485,12 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
               {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
               ):(<div className="btn-bleu"> <button onClick={Valider}>Valider</button> </div> )}
 			  
-			  
+			  {lesCommentaires && (<>
 			  {data.map((api) => (
 			  <div onClick={() => { setIdCommentaire(api._id); setIdProprietaireCommentaire(api.idProprietaireCommentaire); }}>
 				<CommentaireTemplate api={api} profilMap={profilMap} />
 			  </div>
-			  ))}
+			  ))} </>)}
             </div>
             {/* a */}
           </div>
@@ -1462,8 +1512,8 @@ export default function CommentaireTemplate({ api, profilMap={} }) {
   
   return (<>
 	<div className="display-nowrap">
-      <div className="photo-70px"><img src={profil.photoProfile} alt="" /></div>
-      <div className="pre-17px"><pre>{profil.nameAccount}</pre></div>
+      <div className="photo-25px"><img src={profil.photoProfile} alt="" /></div>
+      <div className="p-14px"><p>{profil.nameAccount}</p></div>
     </div>
 	<div className="pre-17px"><pre>{api.commentaire}</pre></div>
 	
