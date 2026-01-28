@@ -40225,6 +40225,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
       setInscriptionPageAA(false);
       // vu que la personne est connecté, alors on lui appel les nouvelles données
 
+		/*
       async function get1() { //get1 (obtenir de nouvelles données)
         await axios
         .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
@@ -40245,7 +40246,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
             get2();
         });
         }
-        get1();
+        get1(); */
         //get1
                 
       } else {
@@ -52088,12 +52089,6 @@ g
 
         <div className="body"> 
 			<img src={urlPhoto} alt="" /> 
-		
-			{/* {filterFA.map((api) => (<>
-			<div onClick={() => setId(api._id)}>
-				<ChildApi66profilFA api={api} video photocss="photo-70px-carre" />
-			</div>
-			</>))} */}
 		</div>
         {/* body*/}
       </div>

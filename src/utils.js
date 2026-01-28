@@ -1151,14 +1151,11 @@ export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
 }
 
 
-export function VideoData({ data = [], setId, video, voirVideo, clicVideo, photocss }) {
+export function VideoData({ data = [], setId, setIdAccountChef, video, voirVideo, clicVideo, photocss }) {
   return (<>
 	
       {data.map((api) => (
-      <div onClick={() => { setId(api._id); voirVideo(api);
-		  clicVideo({ id:api._id, idOther:api.idAccountChef })
-		  }}>
-		  
+      <div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
 		<ChildApi66profilFA api={api} photocss={photocss} video />
       </div>
       ))}
@@ -1256,7 +1253,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, setIdAccountChef, clicVideo, voirVideo, video }) {
   return (<>
-	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} clicVideo={clicVideo} voirVideo={voirVideo} />
+	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} />
     <LesVideos data={data} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} video />
 </>)}
 
