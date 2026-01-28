@@ -1375,7 +1375,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} }) {
   const profil_idAccount = idAccountUtiliser? profilMap?.[idAccountUtiliser] : null;
 
   const populariteProprietaire = profil_idAccount?.popularity ?? 0;
-  const photoProprietaire Profile = profil_idAccount?.photoProfile ?? investirPhoto;
+  const photoProprietaire = profil_idAccount?.photoProfile ?? investirPhoto;
   const nomProprietaire = profil_idAccount?.nameAccount ?? "Compte inconnu";
   
   return (
