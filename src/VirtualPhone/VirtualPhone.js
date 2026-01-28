@@ -51190,11 +51190,10 @@ g
             </div>
             {/* head */}
 						
-
             <div className="body">
 				<MesComptes 
 					data={dataMesComptesFA} cliquerSurMonCompte={DataFA} gererScroll={gererScrollComptes}
-					listMesComptes={listMesComptesFA} valeur={rechercheMesComptesFA} setValeur={setrechercheMesComptesFA} />
+					listMesComptes={listMesComptesFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} />
 	
             </div>
             {/* body */}
