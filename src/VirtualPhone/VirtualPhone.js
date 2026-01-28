@@ -35154,9 +35154,6 @@ const profilsFA = useMemo( () => apiMessageFA.filter(api => api.type === "10"), 
 const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "comptes", donnees:profilsFA });
 */
 
-/* useEffect(() => {
-  console.log("dataComptesFA changé :", dataComptesFA.length);
-}, [dataComptesFA]); */
 
 
 /*
@@ -35172,7 +35169,7 @@ const visitesSource = useMemo(() => apiMessageFA.filter(api => api.type === "200
 const { donneesAffichees_idAccount:dataMesVisitesFA, gererScroll:gererScrollVisites } = useScrollIndexedDB({ nomStockage: "visites", donnees:visitesSource });
 
 
-// videos
+// comptes
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
 const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, toutesDonnees_idUser:toutMesComptes, toutesDonnees:toutComptes, gererScroll:gererScrollComptes } = useScrollIndexedDB({ nomStockage: "comptes", donnees:comptesSource, rechercherUnCompte: rechercherUnCompteFA });
 
@@ -35187,6 +35184,21 @@ const listAccountFA = useMemo(() => rechercherAvecFuse({ data:toutComptes, searc
 const filtreComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.message), [toutMesComptes] );
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreComptesRechercher, rechercherUnCompteFA] );
 
+
+
+useEffect(() => {
+  console.log("dataComptesFA", dataComptesFA);
+  console.log("visitesSource ", visitesSource);
+  console.log("dataMesVisitesFA ", dataMesVisitesFA);
+  console.log("comptesSource ", comptesSource);
+  console.log("dataComptesFA ", dataComptesFA);
+  console.log("dataMesComptesFA ", dataMesComptesFA);
+  console.log("toutMesComptes ", toutMesComptes);
+  console.log("toutComptes ", toutComptes);
+  console.log("filtreComptesRechercher ", filtreComptesRechercher);
+  console.log("listMesComptesFA :", listMesComptesFA);
+  console.log("listAccountFA ", listAccountFA);
+}, [dataComptesFA, listMesComptesFA, listAccountFA, filtreComptesRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataComptesFA, dataMesComptesFA, toutMesComptes, toutComptes]);
 
 
    // filtre pour obtenir tout les favoris
