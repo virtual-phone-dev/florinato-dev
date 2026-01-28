@@ -86,12 +86,17 @@
 }
 
 
+.p-12px-gris {
+  font-size: 12px;
+  color: #6B7280;
+}
+
 .p-14px-eee {
   font-size: 14px;
   color: #A1A1AA;
 }
 
-.p-14px p {
+.p-14px {
   font-size: 14px;
   color: #000;
 }
