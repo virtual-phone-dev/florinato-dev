@@ -1574,10 +1574,11 @@ export default function CommentaireTemplate({ api, profilMap={} }) {
   return (<>
 	<div className="display-nowrap">
       <div className="photo-25px"> <img src={profil.photoProfile} alt=""/> </div>
-      <div className="pre-12px"> <pre>{profil.nameAccount}</pre> </div>
+      <div className="pre-14px-gris"> <pre>{profil.nameAccount}</pre> </div>
     </div>
-	<div className="pre-17px"> <pre>{api.commentaire}</pre> </div>
-	<div className="p-12px-espace"> <p>{dateParser(api.createdAt)}</p> </div>
+	<pre className="pre-17px">{api.commentaire}</pre>
+	<p className="p-12px-top3">{dateParser(api.createdAt)}</p>
+	<p className="p-12px-espace">Répondre</p>
 
 	
 	{/* test
