@@ -92,9 +92,10 @@
 }
 
 
-.p-12px-gris {
+.p-12px-espace {
   font-size: 12px;
   color: #6B7280;
+  padding-bottom: 15px;
 }
 
 .p-14px-eee {

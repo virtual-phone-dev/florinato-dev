@@ -1577,7 +1577,7 @@ export default function CommentaireTemplate({ api, profilMap={} }) {
       <div className="pre-12px"> <pre>{profil.nameAccount}</pre> </div>
     </div>
 	<div className="pre-17px"> <pre>{api.commentaire}</pre> </div>
-	<div className="p-12px-gris"> <p>{dateParser(api.createdAt)}</p> </div>
+	<div className="p-12px-espace"> <p>{dateParser(api.createdAt)}</p> </div>
 
 	
 	{/* test
