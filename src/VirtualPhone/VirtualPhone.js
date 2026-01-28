@@ -35180,6 +35180,13 @@ const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "co
 	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
 */
 
+// visites
+/*
+const visitesSource = useMemo(() => apiMessageFA.filter(api => api.type === "200"), [apiMessageFA] ); // toutes mes visites
+const { donneesAffichees_idAccount:dataMesVisitesFA, gererScroll:gererScrollVisites } = useScrollIndexedDB({ nomStockage: "visites", donnees:visitesSource });
+*/
+
+// videos
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
 const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, toutesDonnees_idUser:toutMesComptes, toutesDonnees:toutComptes, gererScroll:gererScrollComptes } = useScrollIndexedDB({ nomStockage: "comptes", donnees:comptesSource, rechercherUnCompte: rechercherUnCompteFA });
 
