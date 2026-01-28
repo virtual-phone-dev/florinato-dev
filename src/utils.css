@@ -158,9 +158,9 @@
   word-wrap: break-word;
 }
 
-.pre-14px-gris pre {
+.pre-14px-espace pre {
   font-size: 14px;
-  margin: 0;
+  margin-left: 2px;
   padding: 0;
   color: #6B7280;
   white-space: pre-wrap;
