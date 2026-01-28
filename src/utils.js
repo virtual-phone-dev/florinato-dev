@@ -998,8 +998,7 @@ const donneesAffichees = useMemo(() => { return toutesDonnees
 const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 
-const donneesAffichees_moi = useMemo(() => { return toutesDonnees
-.filter(api => api.idAccount === idPersonConnectedFA)
+const donneesAffichees_idAccount = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA)
 .sort((a, b) => {
   const da = new Date(a.createdAt || 0);
   const db = new Date(b.createdAt || 0);
@@ -1008,8 +1007,7 @@ const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 }, [toutesDonnees, lotActuel, idPersonConnectedFA] ); 
 
 
-const toutesDonnees_moi = useMemo(() => {
-  return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA)
+const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA)
   /* .sort((a, b) => {
 	  const da = new Date(a.createdAt || 0);
 	  const db = new Date(b.createdAt || 0);
@@ -1020,8 +1018,7 @@ const toutesDonnees_moi = useMemo(() => {
 
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
-const donneesAffichees_idUser = useMemo(() => { return toutesDonnees
-.filter(api => api.idAccount === idUserConnectedFA)
+const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idUserConnectedFA)
 .sort((a, b) => {
   const da = new Date(a.createdAt || 0);
   const db = new Date(b.createdAt || 0);
@@ -1097,7 +1094,7 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_moi, toutesDonnees_moi, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 

@@ -946,31 +946,18 @@ function ChildApi66groupOtherFA({ api }) {
 
 
 //ChildApi2 66profilFA
-function ChildApi266profilFA({ api2 }) {
+function ChildApi266profilFA({ api2, gererScrollVisites }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
   }
-
-  // date envoie message
-  const dateParser = (date) => {
-    let newDate = new Date(date).toLocaleDateString("fr-FR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return newDate;
-  };
-
 
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const id = api2.idAccountChef === idPersonConnectedFA
 
   return (
     <>
-    <div className="child" onClick={Checked}>
+    <div className="child" onClick={Checked} onScroll={gererScrollVisites}>
             {api2.type === "200" && id && (<> {/* type=200 , xxx a visité votre compte */}
             <div className="type200">
               <div className="a"> <img src={api2.photoAccount} alt=""/> </div>
@@ -35138,7 +35125,7 @@ async function DissadAA() {
 
 
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
-const { donneesAffichees:dataVideoFA, donneesAffichees_moi:dataMesVideosFA, toutesDonnees_moi:toutesMesVideos, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
+const { donneesAffichees:dataVideoFA, donneesAffichees_idAccount:dataMesVideosFA, toutesDonnees_idAccount:toutesMesVideos, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:maRechercheVideoFA, keys:["message"] }), [toutesVideos, maRechercheVideoFA] );
@@ -35181,10 +35168,9 @@ const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "co
 */
 
 // visites
-/*
 const visitesSource = useMemo(() => apiMessageFA.filter(api => api.type === "200"), [apiMessageFA] ); // toutes mes visites
 const { donneesAffichees_idAccount:dataMesVisitesFA, gererScroll:gererScrollVisites } = useScrollIndexedDB({ nomStockage: "visites", donnees:visitesSource });
-*/
+
 
 // videos
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
@@ -51067,8 +51053,8 @@ g
 
 
               <div className="api2">
-              {filterFA.map((api2) => (<>
-                <ChildApi266profilFA api2={api2} />
+              {dataMesVisitesFA.map((api2) => (<>
+                <ChildApi266profilFA api2={api2} gererScrollVisites={gererScrollVisites} />
               </>))}
               </div>
             </div>

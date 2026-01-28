@@ -15809,6 +15809,12 @@
   padding-bottom: 50px;
 }
 
+/*
+.profilFA .api .child {
+	max-height: 300px;
+	overflow-y: auto;
+} */
+
 .profilFA .api .child .type3 {
   height: 70px;
   width: 70px;
