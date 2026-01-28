@@ -962,7 +962,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
-export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, maRechercheVideo }) {
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, maRechercheVideo, rechercherUnCompte }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
@@ -996,6 +996,7 @@ const donneesAffichees = useMemo(() => { return toutesDonnees
 
 
 const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 
 const donneesAffichees_moi = useMemo(() => { return toutesDonnees
 .filter(api => api.idAccount === idPersonConnectedFA)
@@ -1015,6 +1016,21 @@ const toutesDonnees_moi = useMemo(() => {
 	  return db - da;
 	}) */
 }, [toutesDonnees, idPersonConnectedFA]);
+
+
+
+//filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
+const donneesAffichees_idUser = useMemo(() => { return toutesDonnees
+.filter(api => api.idAccount === idUserConnectedFA)
+.sort((a, b) => {
+  const da = new Date(a.createdAt || 0);
+  const db = new Date(b.createdAt || 0);
+  return db - da;
+}).slice(0, lotActuel);
+}, [toutesDonnees, lotActuel, idUserConnectedFA] ); 
+
+
+const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idUserConnectedFA) }, [toutesDonnees, idUserConnectedFA]);
 
 
 
@@ -1059,7 +1075,7 @@ const toutesDonnees_moi = useMemo(() => {
 	
 	useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 RESET DU SCROLL LORS D’UNE RECHERCHE
 	  setLotActuel(lot);
-	}, [maRechercheVideo, lot]);
+	}, [maRechercheVideo, rechercherUnCompte, lot]);
   
 
 //pour scroller encore plus 
@@ -1081,17 +1097,16 @@ const toutesDonnees_moi = useMemo(() => {
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_moi, toutesDonnees_moi, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, donneesAffichees_moi, toutesDonnees_moi, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
 
 
-export function SpeedMessages({ visible, fermer, data=[], MenuPopup, PagesGerer, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
-	const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
+export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup, PagesGerer, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
+	//const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
 	
 	async function logMessages() {
-	  console.log("messages de SpeedMessages ici :", afficherMessages);
 	  console.log("data ici :", data);
 	}	
 
@@ -1107,13 +1122,9 @@ export function SpeedMessages({ visible, fermer, data=[], MenuPopup, PagesGerer,
 			<p onClick={GestionPage}>Gestion Page</p>
 			<p onClick={PopupBasTextarea}>PopupBasTextarea</p>
 		</div>
-
-	  
-	  {/* Bouton pour charger plus */}
-      <button onClick={chargerPlus}>Charger plus</button>
 	  <button onClick={logMessages}>console log</button>
 	  
-      {afficherMessages.map((api) => (
+      {data.map((api) => (
         <div key={api._id}>
           <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
           <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
@@ -1313,9 +1324,9 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
+export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte, gererScroll }) {
   return (
-    <>
+    <div onScroll={gererScroll}>
       <div className="api">
         {data.map((api) => (
           <ChildApi66accountsFA api={api} />
@@ -1329,7 +1340,7 @@ export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquer
           <ChildApi266accountsFA api2={api} />
         ))}
       </div>
-    </>
+    </div>
   )}
 
 
@@ -1394,11 +1405,11 @@ export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
 }
 
 
-export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation }) {
+export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation, gererScroll }) {
   if (!visible) return null;
 
   return (<>
-      <div className="page-blanche">
+      <div className="page-blanche" onScroll={gererScroll}>
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  
