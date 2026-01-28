@@ -1335,7 +1335,7 @@ export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquer
 
 export function PopularityAccountCard({ api }) {
   return (<>
-    <div className="display-nowrap">
+    <div className="display-nowrap-espace">
       <div className="p-15px"><p>{api.popularity}</p></div>
       <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
       <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
@@ -1366,7 +1366,7 @@ export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
   
   return (
     <>
-      <div className="display-nowrap">
+      <div className="display-nowrap-espace">
         <div className="p-15px">
           <p>{popularity}</p>
         </div>
@@ -1581,7 +1581,7 @@ export default function CommentaireTemplate({ api, profilMap={} }) {
 
 	
 	{/* test
-	<div className="display-nowrap">
+	<div className="display-nowrap-espace">
       <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
       <div className="pre-17px"><pre>NGanon Koné</pre></div>
     </div> */}

@@ -63,7 +63,13 @@
   display: flex;
   flex-wrap: nowrap;
   align-items: center;
- /* padding-bottom: 15px; */
+}
+
+.display-nowrap-espace {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  padding-bottom: 15px;
 }
 
 .display-flex {
