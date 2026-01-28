@@ -108,6 +108,7 @@
   margin-top: 2px;
   margin-bottom: 25px;
   cursor: pointer; 
+  display: inline;
 }
 
 .p-14px-gris {
