@@ -51077,14 +51077,8 @@ g
 		<PageTemplate 
 		  visible={adminFlorinato} fermer={CloseAdminFlorinato} data={filterAdminFlorinatoFA} profilMap={profilMap}
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
-		  
-		  
-		  
-		<PopupBasTextareaTemplate 
-		  visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
-		  valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
-	  		  	  
-
+		
+		
 
 	  <PopupDuBasTemplate 
 		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
@@ -52292,6 +52286,12 @@ g
 		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
 		titre="Changer la miniature de la vidéo" changerMiniature />
 
+	
+	
+	<PopupBasTextareaTemplate 
+		visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
+		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
+	  		  	  
 
       {/* voir la miniature- FA  */}
 	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
