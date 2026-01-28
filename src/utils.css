@@ -105,8 +105,8 @@
 .p-14px-espace p {
   font-size: 14px;
   color: #6B7280;
-  padding-top: 2px;
-  padding-bottom: 25px;
+  margin-top: 2px;
+  margin-bottom: 25px;
   cursor: pointer; 
 }
 
