@@ -107,6 +107,10 @@
   color: #6B7280;
   padding-top: 2px;
   padding-bottom: 25px;
+  /*cursor: pointer; */ 
+}
+
+.cursor {
   cursor: pointer;
 }
 
