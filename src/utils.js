@@ -1359,29 +1359,39 @@ export function PopularityAccountCard({ api }) {
 }
 
 
-export function PopularityAccountCard2({ api = {}, profilMap = {} }) {
+export function PopularityAccountCard2({ api={}, profilMap={} }) {
   // pour obtenir les informations du profil
-  const idToUse = api?.idOther;
-  const profil = idToUse ? profilMap?.[idToUse] : null;
+  // idOther
+  const idOtherUtiliser = api?.idOther;
+  const profil_idOther = idOtherUtiliser? profilMap?.[idOtherUtiliser] : null;
 
-  // Valeurs sûres
-  const popularity = profil?.popularity ?? 0;
-  const photoProfile = profil?.photoProfile ?? investirPhoto;
-  const nameAccount = profil?.nameAccount ?? "Compte inconnu";
+  const populariteGestionnaire = profil_idOther?.popularity ?? 0;
+  const photoGestionnaire = profil_idOther?.photoProfile ?? investirPhoto;
+  const nomGestionnaire = profil_idOther?.nameAccount ?? "Compte inconnu";
+  
+  
+  // idAccount
+  const idAccountUtiliser = api?.idAccount;
+  const profil_idAccount = idAccountUtiliser? profilMap?.[idAccountUtiliser] : null;
+
+  const populariteProprietaire = profil_idAccount?.popularity ?? 0;
+  const photoProprietaire Profile = profil_idAccount?.photoProfile ?? investirPhoto;
+  const nomProprietaire = profil_idAccount?.nameAccount ?? "Compte inconnu";
   
   return (
     <>
-      <div className="display-nowrap-espace">
-        <div className="p-15px">
-          <p>{popularity}</p>
-        </div>
-
-        <div className="photo-70px"> <img src={photoProfile} alt={nameAccount}/> </div>
-
-        <div className="pre-17px">
-          <pre>{nameAccount}</pre>
-        </div>
-      </div>
+	<div className="display-nowrap-espace">
+      <div className="p-15px"> <p>{populariteGestionnaire}</p> </div>
+      <div className="photo-70px"> <img src={photoGestionnaire} alt={nomGestionnaire}/> </div>
+      <div className="pre-17px"> <pre>nomGestionnaire {nomGestionnaire}</pre> </div>
+    </div>
+	
+	<div className="display-nowrap-espace">
+      <div className="p-15px"> <p>{populariteProprietaire}</p> </div>
+      <div className="photo-70px"> <img src={photoProprietaire} alt={nomProprietaire}/> </div>
+      <div className="pre-17px"> <pre>nomProprietaire {nomProprietaire}</pre> </div>
+    </div>
+	
 
       <div className="p-15px">
         <p>nameAccount : {api?.nameAccount ?? "—"}</p>
