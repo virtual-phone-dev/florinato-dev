@@ -35181,7 +35181,7 @@ const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "co
 */
 
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
-const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, toutesDonnees_idUser:toutMesComptes, toutesDonnees:toutComptes, gererScrollComptes } = useScrollIndexedDB({ nomStockage: "comptes", donnees:comptesSource, rechercherUnCompte: rechercherUnCompteFA });
+const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, toutesDonnees_idUser:toutMesComptes, toutesDonnees:toutComptes, gererScroll:gererScrollComptes } = useScrollIndexedDB({ nomStockage: "comptes", donnees:comptesSource, rechercherUnCompte: rechercherUnCompteFA });
 
 /*
 const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
@@ -35189,7 +35189,10 @@ const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRe
 */
 
 const listAccountFA = useMemo(() => rechercherAvecFuse({ data:toutComptes, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [toutComptes, rechercherUnCompteFA] );
-const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:toutMesComptes, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [toutMesComptes, rechercherUnCompteFA] );
+
+
+const filtreComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.message), [toutMesComptes] );
+const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreComptesRechercher, rechercherUnCompteFA] );
 
 
 
