@@ -93,7 +93,7 @@
 
 
 .p-12px-gris {
-  font-size: 11px;
+  font-size: 12px;
   color: #777;
 }
 
@@ -143,10 +143,10 @@
 }
 
 .pre-12px pre {
-  font-size: 14px;
+  font-size: 13px;
   margin: 0;
   padding: 0;
-  color: #444;
+  color: #000;
   white-space: pre-wrap;
   word-wrap: break-word;
 } 
