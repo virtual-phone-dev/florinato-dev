@@ -91,29 +91,23 @@
   padding-left: 10px;
 }
 
-
 .p-12px-top3 {
   font-size: 12px;
   color: #6B7280;
   padding-top: 3px;
 }
 
-.p-12px-espace {
-  font-size: 12px;
+.p-14px {
+  font-size: 14px;
+  color: #000;
+}
+
+.p-14px-espace p {
+  font-size: 14px;
   color: #6B7280;
   padding-top: 2px;
   padding-bottom: 25px;
   cursor: pointer;
-}
-
-.p-14px-eee {
-  font-size: 14px;
-  color: #A1A1AA;
-}
-
-.p-14px {
-  font-size: 14px;
-  color: #000;
 }
 
 .p-14px-gris {
@@ -122,6 +116,11 @@
   
   /* bleu
   color: #2563EB; */
+}
+
+.p-14px-eee {
+  font-size: 14px;
+  color: #A1A1AA;
 }
 
 .p-14px-ccc-esp {
@@ -146,7 +145,6 @@
   font-size: 16px;
 }
 
-
 .p-17px p {
   font-size: 17px;
 }
@@ -166,6 +164,7 @@
   color: #6B7280;
   white-space: pre-wrap;
   word-wrap: break-word;
+  cursor: pointer;
 } 
 
 .pre-16px {
