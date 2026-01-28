@@ -166,6 +166,7 @@
   word-wrap: break-word;
 }
 
+/*
 .pre-17px {
   font-size: 17px;
   margin: 0;
@@ -173,9 +174,8 @@
   color: #000;
   white-space: pre-wrap;
   word-wrap: break-word;
-}
+} */
 
-/*
 .pre-17px pre {
   font-size: 17px;
   margin: 0;
@@ -183,7 +183,7 @@
   color: #000;
   white-space: pre-wrap;
   word-wrap: break-word;
-} */
+} 
 
 .pre-17px-white {
   font-size: 17px;
