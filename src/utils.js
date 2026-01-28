@@ -1521,7 +1521,7 @@ export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVid
 
 
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire, profilMap,
-	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires }) {
+	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires, RepondrePage }) {
 		
 	if (!visible) return null;
 	return (
@@ -1551,7 +1551,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  {lesCommentaires && (<>
 			  {data.map((api) => (
 			  <div onClick={() => { setIdCommentaire(api._id); setIdProprietaireCommentaire(api.idProprietaireCommentaire); }}>
-				<CommentaireTemplate api={api} profilMap={profilMap} />
+				<CommentaireTemplate api={api} profilMap={profilMap} RepondrePage={RepondrePage} />
 			  </div>
 			  ))} </>)}
           </div>
@@ -1566,7 +1566,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 
 
 //CommentaireTemplate
-export default function CommentaireTemplate({ api, profilMap={} }) {
+export default function CommentaireTemplate({ api, profilMap={}, RepondrePage }) {
   // pour obtenir les informations du profil
   const idaUtiliser = api?.idProprietaireCommentaire;
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
@@ -1578,7 +1578,7 @@ export default function CommentaireTemplate({ api, profilMap={} }) {
     </div>
 	<pre className="pre-17px">{api.commentaire}</pre>
 	<p className="p-12px-top3">{dateParser(api.createdAt)}</p>
-	<div className="p-14px-espace"> <p>Répondre</p> </div>
+	<div className="p-14px-espace" onClick={RepondrePage}> <p>Répondre</p> </div>
 
 	
 	{/* test
@@ -1760,6 +1760,12 @@ export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setVa
                   {/* b */} 
                 </div>
                 {/* block-un */}
+				
+				<div className="display-nowrap-espace">
+				  <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
+				  <div className="pre-17px"><pre>NGanon Koné</pre></div>
+				</div>
+				
               </div>
               {/* card */}
             </div>

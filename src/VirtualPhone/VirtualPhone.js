@@ -35506,7 +35506,7 @@ async function RepondreFA() { await ExecuterActionFA({
 		idProprietaireReponse: idPersonConnectedFA,
         type:26,
 	}, 
-}); console.log(RepondrePageFA); } 
+}); } 
 
 
 //page pour enregistrer l'url modifier
@@ -52278,7 +52278,8 @@ g
 	<ModifierTemplate 
 		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
 		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} profilMap={profilMap} 
-		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl lesCommentaires />
+		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl lesCommentaires 
+		RepondrePage={RepondrePageFA} />
 		
 		
 	<ModifierTemplate 
