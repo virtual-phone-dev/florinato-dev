@@ -1330,9 +1330,9 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte, gererScroll }) {
+export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
   return (
-    <div onScroll={gererScroll}>
+    <>
       <div className="api">
         {data.map((api) => (
           <ChildApi66accountsFA api={api} />
@@ -1346,7 +1346,7 @@ export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquer
           <ChildApi266accountsFA api2={api} />
         ))}
       </div>
-    </div>
+    </>
   )}
 
 

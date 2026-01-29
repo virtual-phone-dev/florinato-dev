@@ -51192,7 +51192,7 @@ g
       {/* mes comptes Florinato */}
       {/* mes comptes Florinato */}
       {accountsFA && (<>
-        <div className="accountsFA">
+        <div className="accountsFA" onScroll={gererScrollComptes}>
           <div className="align">
             <div className="head">
               <div className="close">
@@ -51205,7 +51205,7 @@ g
 						
             <div className="body">
 				<MesComptes 
-					data={dataMesComptesFA} cliquerSurMonCompte={DataFA} gererScroll={gererScrollComptes}
+					data={dataMesComptesFA} cliquerSurMonCompte={DataFA} 
 					listMesComptes={listMesComptesFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} />
 	
             </div>
