@@ -1410,14 +1410,14 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
   
 		
   return (<>
-	{proprietaireCompte && (<> {/* le proprietaire du compte voit le gestionnaire qui va publier sur son compte */}
+	{gestionnaireCompte && (<> {/* le proprietaire voit le gestionnaire du compte */}
 	<div className="display-nowrap-espace">
       <div className="p-15px"> <p>{populariteGestionnaire}</p> </div>
       <div className="photo-70px"> <img src={photoGestionnaire} alt={nomGestionnaire}/> </div>
       <div className="pre-17px"> <pre>nomGestionnaire {nomGestionnaire}</pre> </div>
     </div> </>)}
 	
-	{gestionnaireCompte && (<> {/* le gestionnaire voit le compte ou il va publier (il va publier sur le compte du proprietaire ) */}
+	{proprietaireCompte && (<> {/* le gestionnaire va publier sur ce compte */}
 	<div className="display-nowrap-espace">
       <div className="p-15px"> <p>{populariteProprietaire}</p> </div>
       <div className="photo-70px"> <img src={photoProprietaire} alt={nomProprietaire}/> </div>

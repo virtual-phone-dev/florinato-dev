@@ -52128,7 +52128,7 @@ g
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
 			{/* on a ajouter cette protection dataVideoFA.length, car si ya pas de videos, il affichait des div vides dans le dom, (avec ca, il va plus afficher des div dans le DOM ) */}
-			{dataVideoFA.length > 0 && ( 
+			{dataVideoFA.length > 0 && (
 			<div className="overflow-x">
 			{dataVideoFA.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
