@@ -35178,11 +35178,12 @@ const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && 
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 */
 
-const listAccountFA = useMemo(() => rechercherAvecFuse({ data:toutComptes, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [toutComptes, rechercherUnCompteFA] );
+const filtreComptesRechercher = useMemo(() => toutComptes.filter(api => api.message), [toutComptes] );
+const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtreComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [toutComptes, rechercherUnCompteFA] );
 
 
-const filtreComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.message), [toutMesComptes] );
-const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreComptesRechercher, rechercherUnCompteFA] );
+const filtreMesComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.message), [toutMesComptes] );
+const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreMesComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreComptesRechercher, rechercherUnCompteFA] );
 
 
 useEffect(() => {
