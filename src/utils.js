@@ -1330,11 +1330,11 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
+export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
   return (
     <>
       <div className="api">
-        {data.map((api) => (
+        {dataCompteConnecté.map((api) => (
           <ChildApi66accountsFA api={api} />
         ))}
       </div>

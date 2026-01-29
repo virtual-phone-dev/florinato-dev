@@ -51201,7 +51201,7 @@ g
 						
             <div className="body">
 				<MesComptes 
-					data={dataMesComptesFA} cliquerSurMonCompte={DataFA} 
+					data={dataMesComptesFA} dataCompteConnecté={toutMesComptes} cliquerSurMonCompte={DataFA}
 					listMesComptes={listMesComptesFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} />
 	
             </div>
