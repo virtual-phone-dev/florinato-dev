@@ -35146,11 +35146,11 @@ const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && 
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 */
 
-const filtreComptesRechercher = useMemo(() => toutComptes.filter(api => api.message), [toutComptes] );
+const filtreComptesRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
 const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtreComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreComptesRechercher, rechercherUnCompteFA] );
 
 
-const filtreMesComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.message), [toutMesComptes] );
+const filtreMesComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.nameAccount), [toutMesComptes] );
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreMesComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreMesComptesRechercher, rechercherUnCompteFA] );
 
 
