@@ -1207,8 +1207,8 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, Gestionnaire }) {
   return (<>
 		<div className="list">
-            <div className="b" onClick={Gestionnaire}> <p>Gestionnaire</p> </div>
-            <div className="b" onClick={GestionDuCompte}> <p>Gestion du compte</p> </div>
+            <div className="b" onClick={GestionDuCompte}> <p>Mon Compte</p> </div>
+			<div className="b" onClick={Gestionnaire}> <p>Gestionnaire</p> </div>
             <div className="b" onClick={MettreEnAvantCompte}> <p>Mettre en avant un compte</p> </div>
             <div className="b" onClick={AdminFlorinato}> <p>Ajouter un compte comme Admin Florinato</p> </div>
         </div>
@@ -1350,6 +1350,32 @@ export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, va
   )}
 
 
+export function InfosDev({ api }) {
+  return (<>
+	<div className="p-15px">
+        <p>nameAccount : {api?.nameAccount ?? "—"}</p>
+        <p>_id : {api?._id ?? "—"}</p>
+		<p>idAccount : {api?.idAccount ?? "—"}</p>
+		<p>idOther : {api?.idOther ?? "—"}</p>
+        <p>idUser : {api?.idUser ?? "—"}</p>
+        <p>idGroup : {api?.idGroup ?? "—"}</p>
+        <p>top : {api?.top ?? "—"}</p>
+        <p>admin : {api?.admin ?? "—"}</p>
+        <p>adminFlorinato : {api?.adminFlorinato ?? "—"}</p>
+      </div>
+	  
+	{/* <div className="p-15px">
+		<p>nameAccount {api.nameAccount}</p>
+		<p>_id, idPersonConnectedFA, idAccount, idAccountChef {api._id}</p>
+		<p>idUser, idUserConnectedFA {api.idUser}</p>
+		<p>idGroup, idGroupChef {api.idGroup}</p>
+		<p>top {api.top}</p>
+		<p>admin {api.admin}</p>
+		<p>adminFlorinato {api.adminFlorinato}</p> 
+	</div>  */}
+</>)}
+
+
 export function PopularityAccountCard({ api }) {
   return (<>
     <div className="display-nowrap-espace">
@@ -1358,20 +1384,12 @@ export function PopularityAccountCard({ api }) {
       <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
     </div>
 	
-	<div className="p-15px">
-		<p>nameAccount {api.nameAccount}</p>
-		<p>_id, idPersonConnectedFA, idAccount, idAccountChef {api._id}</p>
-		<p>idUser, idUserConnectedFA {api.idUser}</p>
-		<p>idGroup, idGroupChef {api.idGroup}</p>
-		<p>top {api.top}</p>
-		<p>admin {api.admin}</p>
-		<p>adminFlorinato {api.adminFlorinato}</p>
-	</div>
+	<InfosDev api={api} />
   </>);
 }
 
 
-export function PopularityAccountCard2({ api={}, profilMap={} }) {
+export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireCompte, gestionnaireCompte }) {
   // pour obtenir les informations du profil
   // idOther
   const idOtherUtiliser = api?.idOther;
@@ -1390,35 +1408,24 @@ export function PopularityAccountCard2({ api={}, profilMap={} }) {
   const photoProprietaire = profil_idAccount?.photoProfile ?? investirPhoto;
   const nomProprietaire = profil_idAccount?.nameAccount ?? "Compte inconnu";
   
-  return (
-    <>
+		
+  return (<>
+	{proprietaireCompte && (<> {/* le proprietaire du compte voit le gestionnaire qui va publier sur son compte */}
 	<div className="display-nowrap-espace">
       <div className="p-15px"> <p>{populariteGestionnaire}</p> </div>
       <div className="photo-70px"> <img src={photoGestionnaire} alt={nomGestionnaire}/> </div>
       <div className="pre-17px"> <pre>nomGestionnaire {nomGestionnaire}</pre> </div>
-    </div>
+    </div> </>)}
 	
+	{gestionnaireCompte && (<> {/* le gestionnaire voit le compte ou il va publier (il va publier sur le compte du proprietaire ) */}
 	<div className="display-nowrap-espace">
       <div className="p-15px"> <p>{populariteProprietaire}</p> </div>
       <div className="photo-70px"> <img src={photoProprietaire} alt={nomProprietaire}/> </div>
       <div className="pre-17px"> <pre>nomProprietaire {nomProprietaire}</pre> </div>
-    </div>
+    </div> </>)}
 	
-
-      <div className="p-15px">
-        <p>nameAccount : {api?.nameAccount ?? "—"}</p>
-        <p>_id : {api?._id ?? "—"}</p>
-		<p>idAccount : {api?.idAccount ?? "—"}</p>
-		<p>idOther : {api?.idOther ?? "—"}</p>
-        <p>idUser : {api?.idUser ?? "—"}</p>
-        <p>idGroup : {api?.idGroup ?? "—"}</p>
-        <p>top : {api?.top ?? "—"}</p>
-        <p>admin : {api?.admin ?? "—"}</p>
-        <p>adminFlorinato : {api?.adminFlorinato ?? "—"}</p>
-      </div>
-    </>
-  );
-}
+	<InfosDev api={api} />
+</>)}
 
 
 export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation, gererScroll }) {
@@ -1447,7 +1454,7 @@ export function ListeDesComptes({ data=[] }) {
   )}
 
 
-export function ListeDesComptes2({ data = [], profilMap }) {
+export function ListeDesComptes2({ data=[], profilMap, proprietaireCompte, gestionnaireCompte }) {
   return (
     <>
       {data.map((api) => (
@@ -1458,7 +1465,7 @@ export function ListeDesComptes2({ data = [], profilMap }) {
             console.log("idPersonConnectedFA enregistré :", api.idAccount);
           }}
         >
-          <PopularityAccountCard2 api={api} profilMap={profilMap} />
+          <PopularityAccountCard2 api={api} profilMap={profilMap} proprietaireCompte gestionnaireCompte />
         </div>
       ))}
     </>
@@ -1466,12 +1473,12 @@ export function ListeDesComptes2({ data = [], profilMap }) {
 }
   
 
-export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap }) {
+export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap, proprietaireCompte, gestionnaireCompte }) {
 	if (!visible) return null;
     return (<>
 	<div className="page-blanche">
 		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
-		<ListeDesComptes2 data={data} profilMap={profilMap} />
+		<ListeDesComptes2 data={data} profilMap={profilMap} proprietaireCompte gestionnaireCompte />
     </div>
     {/* page-blanche */}
  </>)}

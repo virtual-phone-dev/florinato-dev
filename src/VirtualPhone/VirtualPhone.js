@@ -51066,12 +51066,12 @@ g
     
 
 	  <PageTemplate 
-		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap}
-		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
+		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} />
 		  
 	<PageTemplate 
-		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap}
-		titre="Listes des comptes ou vous avez été ajouté(s)" photo={photoFA} />
+		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap} proprietaireCompte
+		titre="Gestionnaire - Listes des comptes ou vous avez été ajouté(s)" photo={photoFA} />
 	  
 	  <PageTemplate 
 		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterTopFA} profilMap={profilMap}
