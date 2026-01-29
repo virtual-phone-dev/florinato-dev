@@ -34920,7 +34920,7 @@ async function DissadAA() {
   async function SendMessageFAA() {
     if (!writeMessage66messageFA.trim()) return;
 	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
-	const idPersonConnectedFA = obtenirIdOuCreerIdentifiant();
+	const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 	
 	
     const messageData = {
@@ -35238,58 +35238,8 @@ useEffect(() => {
   
   
 // on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
-const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
+//const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
 
-// génère la partie lisible : jennifer135, ciel_42, etc.
-function genererIdentifiantInvite() {
-  const nom = nomsHumains[Math.floor(Math.random() * nomsHumains.length)];
-
-  const styles = [
-    () => `${nom}${Math.floor(Math.random() * 1000)}`,       // jennifer135
-    () => `${nom}_${Math.floor(Math.random() * 100)}`,      // jennifer_42
-    () => `${nom}.${Math.floor(Math.random() * 100)}`,      // jennifer.42
-    () => `${nom}${Math.floor(Math.random() * 10)}.${Math.floor(Math.random() * 10)}`, // jennifer1.6
-    () => `${nom}_${Date.now().toString().slice(-3)}`       // jennifer_736
-  ];
-
-  const resultat = styles[Math.floor(Math.random() * styles.length)]();
-
-  console.log("Identifiant lisible généré :", resultat);
-  return resultat;
-}
-
-
-function obtenirIdOuCreerIdentifiant() {
-  // 1️. utilisateur connecté ?
-  const idConnected = localStorage.getItem("idPersonConnectedFA");
-  if (idConnected) {
-    console.log("Utilisateur connecté → id utilisé :", idConnected);
-    return idConnected;
-  }
-  
-  // 2️. invité : a-t-il déjà un id ?
-  let identifiantInvite = localStorage.getItem("identifiantFA");
-
-  if (identifiantInvite) {
-    console.log("Invité existant → id utilisé :", identifiantInvite);
-    return identifiantInvite;
-  }
-
-  // 3. invité (cest un NOUVEAU → création)  
-  const lisible = genererIdentifiantInvite();
-  const unique = Math.random().toString(36).slice(2, 6); // partie unique (anti-collision), ex: x9a2
-  identifiantInvite = `${lisible}-${unique}`; // ex: jennifer135-x9a2
-  console.log("Identifiant FA créé :", identifiantInvite);
-
-  localStorage.setItem("identifiantFA", identifiantInvite);
-  localStorage.setItem("isGuestFA", "1");
-
-  return identifiantInvite;
-}
-
-
-const id = obtenirIdOuCreerIdentifiant();
-console.log("🎯 Identifiant utilisé :", id);
 
 
 
