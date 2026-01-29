@@ -51066,11 +51066,11 @@ g
     
 
 	  <PageTemplate 
-		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte={true}
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} proprietaireCompte={false} />
 		  
 	<PageTemplate 
-		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap} proprietaireCompte={true}
+		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap} proprietaireCompte
 		titre="Gestionnaire - Listes des comptes ou vous avez été ajoutés" photo={photoFA} gestionnaireCompte={false} />
 	  
 	  <PageTemplate 
@@ -52119,26 +52119,29 @@ g
 				listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA}
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
+			{dataVideoFA.length > 0 && ( {/* on a ajouter cette protection, car si ya pas de videos, il affichait des div vides dans le dom, (avec ca, il va plus afficher des div dans le DOM ) */}
 			<div className="overflow-x">
 			{dataVideoFA.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId/>
 			</div>
 			</>))}
-			</div>
+			</div> )}
 			{/* overflow-x */}
-			
-			
+
+
+			{dataVideoFA.length > 0 && (
 			<div className="overflow-x">
 			{dataVideoFA.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}
-			</div>
+			</div> )}
 			{/* overflow-x */}
 
-			<LesVideos data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			{dataVideoFA.length > 0 && (
+			<LesVideos data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video /> )}
         </div>
         {/* body */}
       </div>
