@@ -22,6 +22,9 @@ https://www.youtube.com/shorts/g2MSorj92CI
 https://www.youtube.com/watch?v=9dahgYU_dUc&pp=0gcJCXwKAYcqIYzv
 https://www.youtube.com/shorts/m7JVF0hHdtk
 
+
+https://www.youtube.com/watch?v=2W72s7yPyrA
+https://www.youtube.com/watch?v=SuSj5xGRXxU
 https://www.youtube.com/watch?v=LvhUfqys7Us
 https://www.youtube.com/watch?v=YXo0qJUpqlI
 https://www.youtube.com/shorts/Obwgcu_URfc
