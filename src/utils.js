@@ -1691,10 +1691,9 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
   const afficherVideo = video && api.type === "3";
   const afficherPhoto = photo && api.type === "2";
 
-  return (
-    <>
-    <div className="child" onClick={Checked}>
+  return (<>
       {afficherPhoto && (!verifierId || id) && (<> 
+	  <div className="child" onClick={Checked}>
       <div className="type3">
         <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
 		{clic && (<>
@@ -1702,17 +1701,16 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 		
 		<div className={titrecss}> <pre>{api.message}</pre> </div>
 		<div className={cliccss}> <p>{api.clic}</p> </div>
-      </div> </>)}
+      </div> </div> </>)}
 
       {afficherVideo && (!verifierId || id) && (<> 
+	  <div className="child" onClick={Checked}>
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
 		<div className={titrecss}> <pre>{api.message}</pre> </div>
 		<div className={cliccss}> <p>{api.clic}</p> </div>
-	  </div> 
+	  </div> </div>
       </>)}
-
-    </div>
     </>
   );
 }
