@@ -35556,7 +35556,7 @@ async function ValiderUrl() {
 
   // application florinato
   const [florinatoApp, setFlorinatoApp] = useState(false);
-  async function CloseFlorinatoApp() { setTelephoneVirtuel(true); }
+  async function CloseFlorinatoApp() { setTelephoneVirtuel(true); setFlorinatoApp(false); }
 
   const [dataFA, setDataFA] = useState(false);
   async function DataFA() { setDataFA(!dataFA); }
@@ -40383,12 +40383,13 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   const [profilFA, setProfilFA] = useState(false); 
   async function ProfilFA() {
     setProfilFA(true);
+	setFlorinatoApp(false);
 	
 	if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
 	if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
   }
   
-  async function CloseProfilFA() { setProfilFA(false); }
+  async function CloseProfilFA() { setProfilFA(false); setFlorinatoApp(true); }
   
   
   const [seePhotoFA, setSeePhotoFA] = useState(false); //voir la photo 
@@ -42131,8 +42132,8 @@ async function PageRedirection66groupOtherFA() {
 
   // speedMessagesPagesFA (optimiser , juste 20 messages)
   const [speedMessagesPagesFA, setSpeedMessagesPagesFA] = useState(false); 
-  async function SpeedMessagesPagesFA() { setSpeedMessagesPagesFA(true); }
-  async function CloseSpeedMessagesPagesFA() { setSpeedMessagesPagesFA(false); }
+  async function SpeedMessagesPagesFA() { setSpeedMessagesPagesFA(true); setFlorinatoApp(false); }
+  async function CloseSpeedMessagesPagesFA() { setSpeedMessagesPagesFA(false); setFlorinatoApp(true); }
   
   
   const [menuPopup, setMenuPopup] = useState(false); 
@@ -42162,8 +42163,8 @@ async function PageRedirection66groupOtherFA() {
 
   // Listes de tout les comptes (par ordre de comptes recents) - FA 
   const [comptesRecentsPageFA, setComptesRecentsPageFA] = useState(false); 
-  async function ComptesRecentsPageFA() { setComptesRecentsPageFA(true); }
-  async function CloseComptesRecentsPageFA() { setComptesRecentsPageFA(false); }
+  async function ComptesRecentsPageFA() { setComptesRecentsPageFA(true); setFlorinatoApp(false); }
+  async function CloseComptesRecentsPageFA() { setComptesRecentsPageFA(false); setFlorinatoApp(true); }
   
   // ajouter un autre compte a la gestion du compte florinato - FA 
   //const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
@@ -42173,14 +42174,15 @@ async function PageRedirection66groupOtherFA() {
   
   // page ou on affiche toutes les videos - FA 
   const [videosPageFA, setVideosPageFA] = useState(false); 
-  async function VideosPageFA() { setVideosPageFA(true); }
-  async function CloseVideosPageFA() { setVideosPageFA(false); }
+  async function VideosPageFA() { setVideosPageFA(true); setFlorinatoApp(false); }
+  async function CloseVideosPageFA() { setVideosPageFA(false); setFlorinatoApp(true); }
   
   
   // Les comptes les plus populaires sur florinato - FA 
   const [popularityAccountsPageFA, setPopularityAccountsPageFA] = useState(false); 
   async function PopularityAccountsPageFA() {
     setPopularityAccountsPageFA(true);
+	setFlorinatoApp(false);
 
     async function get() {
       await axios
@@ -42205,26 +42207,7 @@ async function PageRedirection66groupOtherFA() {
 
   async function ClosePopularityAccountsPageFA() { //fermer
     setPopularityAccountsPageFA(false);
-
-    async function get() {
-      await axios
-      .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
-      .then((res) => {
-        setApiMessageFA(res.data);
-      })
-      .catch((err) => {
-
-      async function get2() {
-        await axios
-        .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-        })
-        }
-        get2();
-    });
-    }
-    get();
+	setFlorinatoApp(true);
   }
 
     
