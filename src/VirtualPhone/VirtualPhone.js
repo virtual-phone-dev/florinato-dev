@@ -942,7 +942,7 @@ function ChildApi66groupOtherFA({ api }) {
 
 
 //ChildApi2 66profilFA
-function ChildApi266profilFA({ api2, gererScrollVisites }) {
+function ChildApi266profilFA({ api2 }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -953,7 +953,7 @@ function ChildApi266profilFA({ api2, gererScrollVisites }) {
 
   return (
     <>
-    <div className="child" onClick={Checked} onScroll={gererScrollVisites}>
+    <div className="child" onClick={Checked}>
             {api2.type === "200" && id && (<> {/* type=200 , xxx a visité votre compte */}
             <div className="type200">
               <div className="a"> <img src={api2.photoAccount} alt=""/> </div>
@@ -50884,9 +50884,9 @@ son compte Vixinol store */
 	  
 
       {/* on affiche mon compte - FA */}
-      {/* on affiche mon compte - FA */}
+      {/* on affiche mon compte - FA */} 
       {profilFA && (<>
-        <div className="profilFA" onScroll={gererScroll}>
+        <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={CloseProfilFA}>
@@ -51066,7 +51066,7 @@ g
 
               <div className="api2">
               {dataMesVisitesFA.map((api2) => (<>
-                <ChildApi266profilFA api2={api2} gererScrollVisites={gererScrollVisites} />
+                <ChildApi266profilFA api2={api2} />
               </>))}
               </div>
             </div>
