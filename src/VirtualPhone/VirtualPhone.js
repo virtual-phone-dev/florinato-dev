@@ -35142,8 +35142,8 @@ const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos,
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
 const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
 
-const { donneesAffichees:dataConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
-const { donneesAffichees:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
+const { donneesAffichees_idAccount:dataConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
+const { donneesAffichees_idAccount:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
 
 //const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
@@ -35185,7 +35185,6 @@ const filtreComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.m
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreComptesRechercher, rechercherUnCompteFA] );
 
 
-
 useEffect(() => {
   console.log("dataComptesFA", dataComptesFA);
   console.log("visitesSource ", visitesSource);
@@ -35198,7 +35197,11 @@ useEffect(() => {
   console.log("filtreComptesRechercher ", filtreComptesRechercher);
   console.log("listMesComptesFA :", listMesComptesFA);
   console.log("listAccountFA ", listAccountFA);
-}, [dataComptesFA, listMesComptesFA, listAccountFA, filtreComptesRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+  console.log("dataConversations ", dataConversations);
+  console.log("dataFollowers", dataFollowers);
+  console.log("dataConversationFA ", dataConversationFA);
+}, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, listMesComptesFA, listAccountFA, filtreComptesRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+
 
 
    // filtre pour obtenir tout les favoris
