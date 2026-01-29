@@ -1465,20 +1465,18 @@ export function ListeDesComptes2({ data=[], profilMap, proprietaireCompte, gesti
             console.log("idPersonConnectedFA enregistré :", api.idAccount);
           }}
         >
-          <PopularityAccountCard2 api={api} profilMap={profilMap} proprietaireCompte gestionnaireCompte />
+          <PopularityAccountCard2 api={api} profilMap={profilMap} proprietaireCompte={proprietaireCompte} gestionnaireCompte={gestionnaireCompte} />
         </div>
       ))}
-    </>
-  );
-}
-  
+</>)}
+
 
 export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, profilMap, proprietaireCompte, gestionnaireCompte }) {
 	if (!visible) return null;
     return (<>
 	<div className="page-blanche">
 		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
-		<ListeDesComptes2 data={data} profilMap={profilMap} proprietaireCompte gestionnaireCompte />
+		<ListeDesComptes2 data={data} profilMap={profilMap} proprietaireCompte={proprietaireCompte} gestionnaireCompte={gestionnaireCompte} />
     </div>
     {/* page-blanche */}
  </>)}
