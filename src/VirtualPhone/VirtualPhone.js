@@ -35119,22 +35119,10 @@ const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos,
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
 
-const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
-const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
-
-const { donneesAffichees_idAccount:dataConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
-const { donneesAffichees_idAccount:dataFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
-
-
-//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
-const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
-
 /*
 const profilsFA = useMemo( () => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); 
 const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "comptes", donnees:profilsFA });
 */
-
-
 
 /*
 	const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
@@ -35166,6 +35154,17 @@ const filtreMesComptesRechercher = useMemo(() => toutMesComptes.filter(api => ap
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreMesComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreMesComptesRechercher, rechercherUnCompteFA] );
 
 
+// conversations
+const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
+const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
+
+const { donneesAffichees_idAccount:dataConversations, gererScroll: gererScrollConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
+const { donneesAffichees_idAccount:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
+
+//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
+const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
+
+
 useEffect(() => {
   console.log("dataComptesFA", dataComptesFA);
   console.log("visitesSource ", visitesSource);
@@ -35186,7 +35185,8 @@ useEffect(() => {
 
   // Créer une map pour accéder rapidement aux profils par id
   const { filterFA, profilMap } = useMemo(() => {
-	  const sorted = [...toutComptes].sort((a, b) => b.id - a.id);
+	  //const sorted = [...toutComptes].sort((a, b) => b.id - a.id);
+	  const sorted = [...toutComptes];
 	  const map = {};
 
 	  sorted.forEach(item => {
@@ -50696,7 +50696,7 @@ son compte Vixinol store */
       {/* application florinato */}
       {/* application florinato */}
       {florinatoApp && (<>
-        <div className="florinatoApp">
+        <div className="florinatoApp" onScroll={(e) => { gererScrollConversations(e); gererScrollFollowers(e); }}>
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={ProfilFA}>
@@ -50727,8 +50727,8 @@ son compte Vixinol store */
 
           <div className="body">
             <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
-              {dataConversationFA.map((api) => {				
-				return ( <ChildApi66florinatoApp api={api} profilMap={profilMap} /> )} 
+              {dataConversationFA.map((api) => {
+				return ( <ChildApi66florinatoApp api={api} profilMap={profilMap} /> )}
               )}
             </div> 
           </div>
