@@ -26,7 +26,7 @@ https://www.youtube.com/watch?v=LvhUfqys7Us
 https://www.youtube.com/watch?v=YXo0qJUpqlI
 https://www.youtube.com/shorts/Obwgcu_URfc
 https://www.youtube.com/watch?v=D8hT1FDfxEU
-
+https://www.youtube.com/watch?v=eWgyRwCGKTE
 https://www.youtube.com/shorts/LPt-Jv8Zeh4
 https://www.youtube.com/watch?v=w0fWZqxyLLM
 https://www.youtube.com/watch?v=SvLXd2hN9SI
@@ -857,8 +857,8 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 export function ouvrirDB() {
   return new Promise((resolve, reject) => {
-    const requete = indexedDB.open("MessagesDB", 1);
-    const tables = ["conversations", "videos", "comptes", "followers", "visites"];
+    const requete = indexedDB.open("MessagesDB", 2);
+    const tables = ["conversations", "comptes", "followers", "messages", "videos", "visites"];
 
     requete.onupgradeneeded = (e) => {
       const base = e.target.result;
