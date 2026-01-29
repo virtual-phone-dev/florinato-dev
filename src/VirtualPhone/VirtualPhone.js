@@ -40379,7 +40379,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   
   
   
-  // on affiche son compte - FA 
+  // on affiche son compte - FA
   const [profilFA, setProfilFA] = useState(false); 
   async function ProfilFA() {
     setProfilFA(true);
@@ -40389,7 +40389,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 	if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
   }
   
-  async function CloseProfilFA() { setProfilFA(false); setFlorinatoApp(true); }
+  async function CloseProfilFA() { setFlorinatoApp(true); setProfilFA(false); }
   
   
   const [seePhotoFA, setSeePhotoFA] = useState(false); //voir la photo 
@@ -42164,7 +42164,7 @@ async function PageRedirection66groupOtherFA() {
   // Listes de tout les comptes (par ordre de comptes recents) - FA 
   const [comptesRecentsPageFA, setComptesRecentsPageFA] = useState(false); 
   async function ComptesRecentsPageFA() { setComptesRecentsPageFA(true); setFlorinatoApp(false); }
-  async function CloseComptesRecentsPageFA() { setComptesRecentsPageFA(false); setFlorinatoApp(true); }
+  async function CloseComptesRecentsPageFA() { setFlorinatoApp(true); setComptesRecentsPageFA(false);  }
   
   // ajouter un autre compte a la gestion du compte florinato - FA 
   //const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
@@ -42175,7 +42175,7 @@ async function PageRedirection66groupOtherFA() {
   // page ou on affiche toutes les videos - FA 
   const [videosPageFA, setVideosPageFA] = useState(false); 
   async function VideosPageFA() { setVideosPageFA(true); setFlorinatoApp(false); }
-  async function CloseVideosPageFA() { setVideosPageFA(false); setFlorinatoApp(true); }
+  async function CloseVideosPageFA() { setFlorinatoApp(true);setVideosPageFA(false); }
   
   
   // Les comptes les plus populaires sur florinato - FA 
@@ -42206,8 +42206,8 @@ async function PageRedirection66groupOtherFA() {
   }
 
   async function ClosePopularityAccountsPageFA() { //fermer
-    setPopularityAccountsPageFA(false);
 	setFlorinatoApp(true);
+    setPopularityAccountsPageFA(false);
   }
 
     
