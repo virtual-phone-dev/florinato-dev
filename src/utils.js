@@ -1408,7 +1408,6 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
   const photoProprietaire = profil_idAccount?.photoProfile ?? investirPhoto;
   const nomProprietaire = profil_idAccount?.nameAccount ?? "Compte inconnu";
   
-		
   return (<>
 	{gestionnaireCompte && (<> {/* le proprietaire voit le gestionnaire du compte */}
 	<div className="display-nowrap-espace">

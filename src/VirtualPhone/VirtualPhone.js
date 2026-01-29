@@ -35239,8 +35239,74 @@ useEffect(() => {
   
 // on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
 //const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
+/*
+async function SendMessageFAA() {
+  if (!writeMessage66messageFA.trim()) return;
+  if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
 
+  let idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  let nameFA = localStorage.getItem("nameAccountFA") || "Invité";
 
+  // ✅ 1. Si pas d'identifiant → créer un document invité
+  if (!idPersonConnectedFA) {
+    try {
+      // choisir un nom humain lisible
+      const nomHumain = nomsHumains[Math.floor(Math.random() * nomsHumains.length)];
+
+      // POST pour créer le document invité
+      const response = await fetch("/api/invite", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ nomHumain })
+      });
+      const invite = await response.json(); // retourne le document créé avec _id
+
+      // créer l'identifiant unique lisible : nomHumain + _id
+      const identifiant = `${nomHumain}_${invite._id.slice(-12)}`; // ex: jennifer_6e25fg25yhh
+
+      // PUT pour mettre à jour le document avec identifiant
+      await fetch(`/api/invite/${invite._id}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ identifiant })
+      });
+
+      // enregistrer localement pour réutilisation
+      localStorage.setItem("idPersonConnectedFA", invite._id);
+      localStorage.setItem("identifiantFA", identifiant);
+      localStorage.setItem("nameAccountFA", nomHumain);
+      localStorage.setItem("isGuestFA", "1");
+
+      idPersonConnectedFA = invite._id;
+      nameFA = nomHumain;
+
+      console.log("Identifiant invité créé :", identifiant);
+    } catch (error) {
+      console.error("Erreur création identifiant invité :", error);
+      return;
+    }
+  }
+
+  // ✅ 2. Envoyer le message
+  const messageData = {
+    idConversation,
+    idOther,
+    idAccount: idPersonConnectedFA,
+    nameAccount: nameFA,
+    photoAccount: photoFA,
+    badgeAccount: badgeFA,
+    message: writeMessage66messageFA,
+    type: "1",
+    visible: "1",
+    createdAt: new Date().toISOString()
+  };
+
+  console.log("Envoi du message :", messageData);
+
+  socketRef.current.emit("sendMessage", messageData);
+  setWriteMessage66messageFA("");
+}
+*/
 
 
 // url pour tomber directement sur la page
