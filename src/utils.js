@@ -869,7 +869,7 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 export function ouvrirDB() {
   return new Promise((resolve, reject) => {
-    const requete = indexedDB.open("MessagesDB", 2);
+    const requete = indexedDB.open("MessagesDB", 10);
     const tables = ["conversations", "comptes", "followers", "messages", "videos", "visites"];
 
     requete.onupgradeneeded = (e) => {
@@ -1030,7 +1030,7 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
-const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idUserConnectedFA)
+const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idUser === idUserConnectedFA)
 .sort((a, b) => {
   const da = new Date(a.createdAt || 0);
   const db = new Date(b.createdAt || 0);
@@ -1039,7 +1039,7 @@ const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api 
 }, [toutesDonnees, lotActuel, idUserConnectedFA] ); 
 
 
-const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idUserConnectedFA) }, [toutesDonnees, idUserConnectedFA]);
+const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idUser === idUserConnectedFA) }, [toutesDonnees, idUserConnectedFA]);
 
 
 
