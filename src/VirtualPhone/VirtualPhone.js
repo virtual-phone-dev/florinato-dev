@@ -35054,22 +35054,6 @@ async function DissadAA() {
   //const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
 	
 	
-  // Créer une map pour accéder rapidement aux profils par id
-  const { filterFA, profilMap } = useMemo(() => {
-	  const sorted = [...apiMessageFA].sort((a, b) => b.id - a.id);
-	  const map = {};
-
-	  sorted.forEach(item => {
-		if (item.type === "10") {
-		  map[item._id] = item;
-		}
-	  });
-
-	  return { filterFA: sorted, profilMap: map };
-}, [apiMessageFA]); 
-
-
-
 /* const profilMap = useMemo(() => {
   const map = {};
   dataComptesFA.forEach(profil => { map[profil._id] = profil; });
@@ -35199,6 +35183,20 @@ useEffect(() => {
   console.log("dataConversationFA ", dataConversationFA);
 }, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, listMesComptesFA, listAccountFA, filtreComptesRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
 
+
+  // Créer une map pour accéder rapidement aux profils par id
+  const { filterFA, profilMap } = useMemo(() => {
+	  const sorted = [...toutComptes].sort((a, b) => b.id - a.id);
+	  const map = {};
+
+	  sorted.forEach(item => {
+		if (item.type === "10") {
+		  map[item._id] = item;
+		}
+	  });
+
+	  return { filterFA: sorted, profilMap: map };
+}, [toutComptes]); 
 
 
    // filtre pour obtenir tout les favoris
