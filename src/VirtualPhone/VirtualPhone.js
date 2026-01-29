@@ -324,11 +324,9 @@ export function ChildApi66accountsFA({ api }) {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const id2 = api._id === idPersonConnectedFA;
 
-  return (
-    <>
+  return (<>
+    {id2 && api.type === "10" && id && (<> {/* on affiche mon compte florinato connecté */}
     <div className="child" onClick={Checked}>
-      {id2 && api.type === "10" && id && (<> {/* on affiche mon compte florinato connecté */}
-      
       <div className="type10">
         <div className="connecter"> <p>Connecté</p> <SvgMark1/> </div>
 
@@ -345,13 +343,11 @@ export function ChildApi66accountsFA({ api }) {
         {/* block */}
       </div>
       {/* type10 */}
-      </>)} 
-      {/* on affiche mon compte florinato connecté */}
     </div>
     {/* child */}
-    </>
-  );
-} 
+	</>)}
+	
+</>)}
 //ChildApi66accountsFA
 
 
