@@ -35172,24 +35172,6 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 //const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
 
 
-const conversationsTrier = useMemo(() => {
-  return [...dataConversations]
-  .sort((a, b) => {
-    const msgA = messageMap[a._id];
-    const msgB = messageMap[b._id];
-
-    if (!msgA && !msgB) return 0; // aucune conversation n’a de message
-    if (!msgA) return 1; // msgA n’a pas de message → en bas
-    if (!msgB) return -1; // msgB n’a pas de message → en bas
-
-    return new Date(msgB.createdAt) - new Date(msgA.createdAt); // la plus récente en haut
-  });
-}, [dataConversations, messageMap]);
-
-
-const dataConversationFA = useMemo(() => { return [...conversationsTrier, ...dataFollowers]; }, [conversationsTrier, dataFollowers]);
-
-
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
 //const { donneesAffichees:dataMessagesFA, toutesDonnees:toutMessages, gererScroll:gererScrollMessages 
@@ -35283,6 +35265,41 @@ const messageMap = useMemo(() => {
 	}
 	
 */
+
+
+
+
+const conversationsTrierParDate = useMemo(() => {
+  return [...dataConversations]
+  .sort((a, b) => {
+    const msgA = messageMap[a._id];
+    const msgB = messageMap[b._id];
+
+    if (!msgA && !msgB) return 0; // Les deux conversations n’ont aucun message . on ne change pas leur ordre
+    if (!msgA) return 1; // msgA n’a pas de message . msgB en a peut-être . msgA descend en bas
+    if (!msgB) return -1; // msgB n’a pas de message ; msgA en a un ; msgA monte en haut
+
+    return new Date(msgB.createdAt) - new Date(msgA.createdAt); // la plus récente en haut
+	/* Compare les dates
+	la plus récente doit être au-dessus
+	Si :
+	msgB est plus récent → B passe avant A
+	msgA est plus récent → A passe avant B */
+  });
+}, [dataConversations, messageMap]);
+
+
+/* RÉSUMÉ SIMPLE
+
+a/b → conversations
+msgA → dernier message de la conversation A
+msgB → dernier message de la conversation B
+on compare leurs dates
+la conversation avec le message le plus récent monte */
+
+
+const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers]; }, [conversationsTrierParDate, dataFollowers]);
+
 
 
    // filtre pour obtenir tout les favoris
