@@ -35169,7 +35169,24 @@ const { donneesAffichees_account_other:dataConversations, gererScroll: gererScro
 const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
 //const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
-const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
+//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
+
+
+const conversationsTrier = useMemo(() => {
+  return [...dataConversations].sort((a, b) => {
+    const msgA = messageMap[a._id];
+    const msgB = messageMap[b._id];
+
+    if (!msgA && !msgB) return 0;
+    if (!msgA) return 1;
+    if (!msgB) return -1;
+
+    return new Date(msgB.createdAt) - new Date(msgA.createdAt);
+  });
+}, [dataConversations, messageMap]);
+
+
+const dataConversationFA = useMemo(() => { return [...conversationsTrier, ...dataFollowers]; }, [conversationsTriees, dataFollowers]);
 
 
 // messages
