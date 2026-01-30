@@ -52210,30 +52210,26 @@ g
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
-			{/* on a ajouter cette protection dataVideoFA.length, car si ya pas de videos, il affichait des div vides dans le dom, (avec ca, il va plus afficher des div dans le DOM ) */}
-			{dataVideoFA.length > 0 && (
 			<div className="overflow-x">
 			{dataMesVideosFA.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>
 			</>))}
-			</div> )}
+			</div>
 			{/* overflow-x */}
 
 
-			{dataVideoFA.length > 0 && (
 			<div className="overflow-x">
 			{dataVideoFA.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}
-			</div> )}
+			</div>
 			{/* overflow-x */}
 
-			{dataVideoFA.length > 0 && (
-			<LesVideos data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video /> )}
+			<LesVideos data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>

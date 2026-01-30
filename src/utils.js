@@ -1698,7 +1698,8 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 
   return (<>
 	<div className="child" onClick={Checked}>
-      {afficherPhoto && (!verifierId || id) && (<> 
+      {/* {afficherPhoto && (!verifierId || id) && (<> */}
+      {afficherPhoto && (
       <div className="type3">
         <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
 		{clic && (<>
@@ -1706,14 +1707,16 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 		
 		<div className={titrecss}> <pre>{api.message}</pre> </div>
 		<div className={cliccss}> <p>{api.clic}</p> </div>
-      </div> </>)}
+      </div> )}
 
-      {afficherVideo && (!verifierId || id) && (<> 
+
+      {/* {afficherVideo && (!verifierId || id) && (<> */}
+      {afficherVideo && (
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
 		<div className={titrecss}> <pre>{api.message}</pre> </div>
 		<div className={cliccss}> <p>{api.clic}</p> </div>
-	  </div> </>)}
+	  </div> )}
 	  
 	</div>
 </>)}
