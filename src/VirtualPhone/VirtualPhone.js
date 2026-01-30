@@ -50857,7 +50857,7 @@ son compte Vixinol store */
           <div className="body">
             <div className="api">
                 {dataConversationFA.map((api) => (
-			    <div onClick={(e) => { if (api.type === 30) {setIdConversation(api._id); PageRedirection66ChildApi66florinatoApp(e); } }} >
+			    <div onClick={() => { if (api.type === "30") {setIdConversation(api._id); PageRedirection66ChildApi66florinatoApp(); } }} >
 					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} /> 
 				</div> 
 				))}
