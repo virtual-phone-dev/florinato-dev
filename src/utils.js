@@ -1691,7 +1691,7 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 	}
 
   //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
+  //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
   
   const afficherVideo = video && api.type === "3";
   const afficherPhoto = photo && api.type === "2";
