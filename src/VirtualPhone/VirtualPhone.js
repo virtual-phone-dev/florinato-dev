@@ -35210,8 +35210,8 @@ useEffect(() => {
 
 const filterMessageFA = useMemo(() => {
   if (!idConversation) return []; //Si idConversation peut être null / undefined au début . Ça évite les faux résultats au premier render.
-  return dataMessagesFA.filter(api => api.idConversation === idConversation);
-}, [dataMessagesFA, idConversation]);
+  return toutMessages.filter(api => api.idConversation === idConversation);
+}, [toutMessages, idConversation]);
 
 console.log("idConversation ", idConversation);
 console.log("filterMessageFA ", filterMessageFA);
@@ -50857,7 +50857,7 @@ son compte Vixinol store */
           <div className="body">
             <div className="api">
                 {dataConversationFA.map((api) => (
-			    <div onClick={() => { if (api.type === "30") {setIdConversation(api._id); PageRedirection66ChildApi66florinatoApp(); } }} >
+			    <div onClick={() => { if (api.type === "30") {setIdConversation(api._id);} PageRedirection66ChildApi66florinatoApp(); }} >
 					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} /> 
 				</div> 
 				))}
