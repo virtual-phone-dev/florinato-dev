@@ -34810,7 +34810,7 @@ async function DissadAA() {
   const nameGroupFA = localStorage.getItem("nameGroupFA");
   const photoGroupFA = localStorage.getItem("photoGroupFA");
   const popularityFA = localStorage.getItem("popularityFA");
-  const idConversation = localStorage.getItem("idConversation");
+  const idConversationFA = localStorage.getItem("idConversation");
   const message = localStorage.getItem("message"); 
   const type = localStorage.getItem("type"); 
   const urlPhoto = localStorage.getItem("urlPhoto"); 
@@ -34911,7 +34911,7 @@ async function DissadAA() {
   // filtre pour obtenir tout les messages de la discussion - FA
   //console.log("apiMessageFAA cool", apiMessageFAA);
   
-  const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversation);
+  const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
   //console.log("filterMessageFA bb", filterMessageFA);
   
   /*
