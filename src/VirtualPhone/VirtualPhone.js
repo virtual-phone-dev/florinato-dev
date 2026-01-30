@@ -35162,8 +35162,8 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 });
 
 
-const filtrerLeCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
-const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtrerLeCompteRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtrerLeCompteRechercher, rechercherUnCompteFA] );
+const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
+const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtrerUnCompteRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtrerUnCompteRechercher, rechercherUnCompteFA] );
 
 const filtrerMonCompteRechercher = useMemo(() => toutMesComptes.filter(api => api.nameAccount), [toutMesComptes] );
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompteRechercher, search:rechercherMonCompteFA, keys: ["nameAccount"] }), [filtrerMonCompteRechercher, rechercherMonCompteFA] );
@@ -35190,13 +35190,15 @@ useEffect(() => {
   console.log("dataMesComptesFA ", dataMesComptesFA);
   console.log("toutMesComptes ", toutMesComptes);
   console.log("toutComptes ", toutComptes);
-  console.log("filtreComptesRechercher ", filtreComptesRechercher);
+  console.log("filtrerUnCompteRechercher ", filtrerUnCompteRechercher);
+  console.log("filtrerMonCompteRechercher ", filtrerMonCompteRechercher);
   console.log("listMesComptesFA :", listMesComptesFA);
   console.log("listAccountFA ", listAccountFA);
   console.log("dataConversations ", dataConversations);
   console.log("dataFollowers", dataFollowers);
   console.log("dataConversationFA ", dataConversationFA);
-}, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, listMesComptesFA, listAccountFA, filtreComptesRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+}, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+
 
 
   // Créer une map pour accéder rapidement aux profils par id
