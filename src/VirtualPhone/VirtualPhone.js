@@ -35187,7 +35187,7 @@ const conversationsTrier = useMemo(() => {
 }, [dataConversations, messageMap]);
 
 
-const dataConversationFA = useMemo(() => { return [...conversationsTrier, ...dataFollowers]; }, [conversationsTriees, dataFollowers]);
+const dataConversationFA = useMemo(() => { return [...conversationsTrier, ...dataFollowers]; }, [conversationsTrier, dataFollowers]);
 
 
 // messages
@@ -35276,7 +35276,6 @@ const messageMap = useMemo(() => {
 	map[idConv] = msg → on garde toujours le message le plus récent pour chaque conversation.
 	À la fin, messageMap ressemble à ça
 
-	
 	{
 	  "idConv1": { _id: "...", message: "Salut", createdAt: "2026-01-30" },
 	  "idConv2": { _id: "...", message: "Hello", createdAt: "2026-01-29" },
