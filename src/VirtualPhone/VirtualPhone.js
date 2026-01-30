@@ -50904,7 +50904,7 @@ son compte Vixinol store */
           <div className="body">
             <div className="api">
                 {dataConversationFA.map((api) => (
-			    <div onClick={() => { if (api.type === 30) {setIdConversation(api._id);} PageRedirection66ChildApi66florinatoApp(); }} >
+			    <div onClick={() => { if (api.type === 30) {setIdConversation(api._id); PageRedirection66ChildApi66florinatoApp(); } }} >
 					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} /> 
 				</div> 
 				))}
@@ -50917,9 +50917,7 @@ son compte Vixinol store */
       {/* application florinato */}
 	  
 	  			
-		
-			
-
+				
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} video
 			data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
