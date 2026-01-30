@@ -1010,6 +1010,9 @@ const donneesAffichees = useMemo(() => { return toutesDonnees
 const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 
+le vrai probleme cest ici , le truc, il maffiche juste les conversations basee sur api.idAccount === idPersonConnectedFA , 
+or jaimerais quil maffiche aussi les conversations basee sur api.idOther === idPersonConnectedFA
+
 const donneesAffichees_idAccount = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA)
 .sort((a, b) => {
   const da = new Date(a.createdAt || 0);
@@ -1026,6 +1029,16 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 	  return db - da;
 	}) */
 }, [toutesDonnees, idPersonConnectedFA]);
+
+
+const donneesAffichees_account_other = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
+    .sort((a, b) => {
+      const da = new Date(a.createdAt || 0);
+      const db = new Date(b.createdAt || 0);
+      return db - da;
+    })
+    .slice(0, lotActuel);
+}, [toutesDonnees, lotActuel, idPersonConnectedFA]);
 
 
 
@@ -1106,7 +1119,7 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
