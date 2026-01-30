@@ -35173,15 +35173,16 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 
 
 const conversationsTrier = useMemo(() => {
-  return [...dataConversations].sort((a, b) => {
+  return [...dataConversations]
+  .sort((a, b) => {
     const msgA = messageMap[a._id];
     const msgB = messageMap[b._id];
 
-    if (!msgA && !msgB) return 0;
-    if (!msgA) return 1;
-    if (!msgB) return -1;
+    if (!msgA && !msgB) return 0; // aucune conversation n’a de message
+    if (!msgA) return 1; // msgA n’a pas de message → en bas
+    if (!msgB) return -1; // msgB n’a pas de message → en bas
 
-    return new Date(msgB.createdAt) - new Date(msgA.createdAt);
+    return new Date(msgB.createdAt) - new Date(msgA.createdAt); // la plus récente en haut
   });
 }, [dataConversations, messageMap]);
 
@@ -35390,7 +35391,7 @@ async function SendMessageFAA() {
 }
 */
 
-
+'
 // url pour tomber directement sur la page
 // url pour tomber directement sur la page
 
