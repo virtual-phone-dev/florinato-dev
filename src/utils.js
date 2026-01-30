@@ -980,23 +980,6 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
 
-/*
-  const toutesDonneesTriees = useMemo(() => { //toutesDonnees, on affiche les^plus recent en haut
-    return [...toutesDonnees]
-	.filter(api => api.idAccount === idPersonConnectedFA)
-	.sort((a, b) => {
-      const da = new Date(a.createdAt || 0);
-      const db = new Date(b.createdAt || 0);
-      return db - da;
-    });
-  }, [toutesDonnees]);
-
-
-  // ✅ DONNEES A AFFICHER (DERIVEES de toutesDonnees, ca veut dire que : les donnees a afficher proviennent de toutesDonnees)
-  const donneesAffichees_moi = useMemo(() => {
-    return toutesDonneesTriees.slice(0, lotActuel);
-  }, [toutesDonneesTriees, lotActuel]); */
-  
 
 const donneesAffichees = useMemo(() => { return toutesDonnees
 .sort((a, b) => {
@@ -1009,9 +992,6 @@ const donneesAffichees = useMemo(() => { return toutesDonnees
 
 const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
-
-le vrai probleme cest ici , le truc, il maffiche juste les conversations basee sur api.idAccount === idPersonConnectedFA , 
-or jaimerais quil maffiche aussi les conversations basee sur api.idOther === idPersonConnectedFA
 
 const donneesAffichees_idAccount = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA)
 .sort((a, b) => {

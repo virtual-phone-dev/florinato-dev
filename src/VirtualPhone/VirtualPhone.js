@@ -105,7 +105,7 @@ const dateParserLong = (date) => {
 
 
 //ChildApi 66florinatoApp
-function ChildApi66florinatoApp({ api, profilMap }) {
+function ChildApi66florinatoApp({ api, profilMap, messageMap }) {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
   const [checked, setChecked] = useState(false);
@@ -140,7 +140,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
   }
 
   // date envoie message
-  const dateParser = (date) => {
+  /* const dateParser = (date) => {
     let newDate = new Date(date).toLocaleDateString("fr-FR", {
       year: "numeric",
       month: "long",
@@ -149,7 +149,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
       minute: "numeric",
     });
     return newDate;
-  };
+  }; */
 
   // afficher le groupe
   async function GoTogroupOtherFA() {
@@ -175,6 +175,16 @@ function ChildApi66florinatoApp({ api, profilMap }) {
   const idToUse = idAccount ? api.idOther:idOther ? api.idAccount : null;
   const profil = idToUse ? profilMap[idToUse] : null;
   
+
+  // On récupère le message récent pour chaque conversation
+  const messageRecent = api._id ? messageMap[api._id] : null;
+  
+  /*
+    api._id = l’ID de la conversation
+	messageMap[api._id] = le dernier message lié à cette conversation
+	messageRecent.message = le texte à afficher */
+	
+
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
   
 	/*console.log("idToUse icii ", idToUse);
@@ -191,7 +201,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
 
         <div className="B">
           <div className="a"> <p>{api.nameOther}</p> </div>
-          <div className="b"> <p>{api.lastMessage}</p> </div>
+          <div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
         </div>
         {/* B */}
       </div></>)}
@@ -205,7 +215,7 @@ function ChildApi66florinatoApp({ api, profilMap }) {
 
         <div className="B">
           <div className="a"> <p>{api.nameAccount}</p> </div>
-          <div className="b"> <p>{api.lastMessage}</p> </div>
+          <div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
         </div>
         {/* B */}
       </div></>)}
@@ -35035,6 +35045,7 @@ async function DissadAA() {
 	const [idreq, setId] = useState(null);
 	const [idAccountChef, setIdAccountChef] = useState(null);
 	const [idCommentaire, setIdCommentaire] = useState(null);
+	const [idConversation, setIdConversation] = useState(null);
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	
 	const [infosPostFA, setInfosPostFA] = useState([]);
@@ -35173,14 +35184,26 @@ const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompt
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
 const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
 
-const { donneesAffichees_account_other: dataConversations, gererScroll: gererScrollConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
-const { donneesAffichees_account_other: dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
+const { donneesAffichees_account_other:dataConversations, gererScroll: gererScrollConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
+const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
 //const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
 const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
 
 
+// messages
+const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
+const { donneesAffichees:dataMessagesFA, toutesDonnees:toutMessages, gererScroll:gererScrollMessages 
+} = useScrollIndexedDB({
+	nomStockage: "messages", 
+	donnees:messagesSource, 
+});
+
+
 useEffect(() => {
+  console.log("dataMessagesFA", dataMessagesFA);
+  console.log("toutMessages", toutMessages);
+  console.log("messagesSource", messagesSource);
   console.log("dataComptesFA", dataComptesFA);
   console.log("visitesSource ", visitesSource);
   console.log("dataMesVisitesFA ", dataMesVisitesFA);
@@ -35196,7 +35219,7 @@ useEffect(() => {
   console.log("dataConversations ", dataConversations);
   console.log("dataFollowers", dataFollowers);
   console.log("dataConversationFA ", dataConversationFA);
-}, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+}, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
 
 
 
@@ -35214,6 +35237,40 @@ useEffect(() => {
 
 	  return { filterFA: sorted, profilMap: map };
 }, [toutComptes]); 
+
+
+
+// On crée un map de messages récents par conversation
+const messageMap = useMemo(() => {
+  const map = {};
+
+  toutMessages.forEach(msg => {
+    if (msg.type !== "1") return; // on ne prend que les messages ( type=1 )
+
+    const idConv = msg.idConversation;
+    const exist = map[idConv];
+
+    // si pas encore défini ou si message plus récent, on met à jour
+    if (!exist || new Date(msg.createdAt) > new Date(exist.createdAt)) {
+      map[idConv] = msg;
+    }
+  });
+
+  return map;
+}, [toutMessages]);
+
+/*
+	useMemo permet de recalculer messageMap uniquement quand toutMessages change, pas à chaque render → performant.
+	map[idConv] = msg → on garde toujours le message le plus récent pour chaque conversation.
+	À la fin, messageMap ressemble à ça
+	
+	{
+	  "idConv1": { _id: "...", message: "Salut", createdAt: "..." },
+	  "idConv2": { _id: "...", message: "Hello", createdAt: "..." },
+	  ...
+	}
+	
+*/
 
 
    // filtre pour obtenir tout les favoris
@@ -50814,10 +50871,12 @@ son compte Vixinol store */
           {/* head */}
 
           <div className="body">
-            <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
-              {dataConversationFA.map((api) => {
-				return (<ChildApi66florinatoApp api={api} profilMap={profilMap} /> )}
-              )}
+            <div className="api">
+                {dataConversationFA.map((api) => (
+			    <div onClick={() => { if (api.type === 30) {setIdConversation(api._id);} PageRedirection66ChildApi66florinatoApp(); }} >
+					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} /> 
+				</div> 
+				))}
             </div> 
           </div>
           {/* body */}
