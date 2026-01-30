@@ -35092,9 +35092,7 @@ async function DissadAA() {
   //filtre pour afficher les commentaires d'un post (video, photo, ...)
   const filterCommentaireFA = apiMessageFA.filter((api) => api.type ==="25");
 
-  // logique pour obtenir, afficher les resultats de la recherche - FA
-  const [mySearchFA, setMySearchFA] = useState("");
-  
+  // effectuer une recherche - FA  
   const [rechercherUnCompteFA, setRechercherUnCompteFA] = useState("");
   const [rechercherMonCompteFA, setRechercherMonCompteFA] = useState("");
   
@@ -52215,9 +52213,9 @@ g
 			{/* on a ajouter cette protection dataVideoFA.length, car si ya pas de videos, il affichait des div vides dans le dom, (avec ca, il va plus afficher des div dans le DOM ) */}
 			{dataVideoFA.length > 0 && (
 			<div className="overflow-x">
-			{dataVideoFA.map((api) => (<>
+			{dataMesVideosFA.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId/>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>
 			</>))}
 			</div> )}

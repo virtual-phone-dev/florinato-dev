@@ -1481,7 +1481,7 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, pro
  </>)}
 
 
-export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cliccss="p-14px" }) {
+export function ChildApi66LesVideos({ api, verifierId, photo, video, titrecss="pre-16px", cliccss="p-14px" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
@@ -1521,8 +1521,9 @@ export function ChildApi66LesVideos({ api, photo, video, titrecss="pre-16px", cl
 
   return (
     <>
-		{/* {afficherVideo && (!verifierId || id) && (<> */}
-		{afficherVideo && (<> 
+		{/* {afficherVideo && (<>  
+		{afficherVideo && (!verifierId || id) && (<> */}
+		{afficherVideo && (<>
 		<div className="video-card">
 		<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} /> 
 		<pre className={titrecss}>{gettitre}</pre>
@@ -1641,7 +1642,7 @@ export function AutoTextarea({ valeur, setValeur, texte="..", maxHeight=160, cla
 
 
 //ChildApi 66profilFA
-export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", clicVideo, verifierId, photo, video, clic, svg }) {
+export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss="p-15px", clicVideo, photo, video, clic, svg }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
