@@ -35172,11 +35172,11 @@ const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompt
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
 const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
 
-const { donneesAffichees_idAccount:dataConversations, gererScroll: gererScrollConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
+const { donneesAffichees_idAccount:dataConversations, toutesDonnees_idAccount:toutesMesConversations, gererScroll: gererScrollConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
 const { donneesAffichees_idAccount:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
-const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
-//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
+//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
+const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
 
 
 useEffect(() => {
@@ -35193,9 +35193,10 @@ useEffect(() => {
   console.log("listMesComptesFA :", listMesComptesFA);
   console.log("listAccountFA ", listAccountFA);
   console.log("dataConversations ", dataConversations);
+  console.log("toutesMesConversations ", toutesMesConversations);
   console.log("dataFollowers", dataFollowers);
   console.log("dataConversationFA ", dataConversationFA);
-}, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+}, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, toutesMesConversations, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
 
 
 
@@ -50815,7 +50816,7 @@ son compte Vixinol store */
           <div className="body">
             <div className="api" onClick={PageRedirection66ChildApi66florinatoApp}>
               {dataConversationFA.map((api) => {
-				return ( <ChildApi66florinatoApp api={api} profilMap={profilMap} /> )}
+				return (<ChildApi66florinatoApp api={api} profilMap={profilMap} /> )}
               )}
             </div> 
           </div>
