@@ -35206,7 +35206,13 @@ useEffect(() => {
 
 // filtre pour obtenir tout les messages de la discussion - FA
 //const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
-const filterMessageFA = useMemo(() => dataMessagesFA.filter(api => api.idConversation === idConversation), [dataMessagesFA, idConversation] );
+//const filterMessageFA = useMemo(() => dataMessagesFA.filter(api => api.idConversation === idConversation), [dataMessagesFA, idConversation] );
+
+const filterMessageFA = useMemo(() => {
+  if (!idConversation) return []; //Si idConversation peut être null / undefined au début . Ça évite les faux résultats au premier render.
+  return dataMessagesFA.filter(api => api.idConversation === idConversation);
+}, [dataMessagesFA, idConversation]);
+
 console.log("idConversation ", idConversation);
 console.log("filterMessageFA ", filterMessageFA);
 
