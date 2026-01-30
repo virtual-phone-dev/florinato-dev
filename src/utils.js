@@ -25,6 +25,12 @@ https://www.youtube.com/watch?v=P8NnZMRvizo&pp=ugUEEgJmcg%3D%3D
 
 
 https://www.youtube.com/watch?v=IspALet_GcE
+https://www.youtube.com/shorts/zPHLpPHwFlw
+
+https://www.youtube.com/shorts/JTs4YXPDkfY
+https://www.youtube.com/shorts/gwd8nVQ8ynY
+https://www.youtube.com/shorts/ezTsWB6346g
+https://www.youtube.com/shorts/vXunZerqk8M
 https://www.youtube.com/watch?v=m9DvATf0t4g
 https://www.youtube.com/watch?v=vJu2mrTkL8c
 https://www.youtube.com/watch?v=shBvNxJFP9I
@@ -1021,7 +1027,7 @@ const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees]
 	
 	return new Date(b.createdAt) - new Date(a.createdAt);
 }).slice(0, lotActuel); 
-}, [toutesDonnees, lotActuel, idPersonConnectedFA, idConversation]);
+}, [toutesDonnees, lotActuel, idPersonConnectedFA]);
 
 
 const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filter(api => api.idConversation === idConversation)
