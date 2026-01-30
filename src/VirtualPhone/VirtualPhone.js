@@ -35275,10 +35275,11 @@ const messageMap = useMemo(() => {
 	useMemo permet de recalculer messageMap uniquement quand toutMessages change, pas à chaque render → performant.
 	map[idConv] = msg → on garde toujours le message le plus récent pour chaque conversation.
 	À la fin, messageMap ressemble à ça
+
 	
 	{
-	  "idConv1": { _id: "...", message: "Salut", createdAt: "..." },
-	  "idConv2": { _id: "...", message: "Hello", createdAt: "..." },
+	  "idConv1": { _id: "...", message: "Salut", createdAt: "2026-01-30" },
+	  "idConv2": { _id: "...", message: "Hello", createdAt: "2026-01-29" },
 	  ...
 	}
 	
