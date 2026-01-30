@@ -35193,7 +35193,8 @@ const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers
 
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
-const { donneesAffichees:dataMessagesFA, toutesDonnees:toutMessages, gererScroll:gererScrollMessages 
+//const { donneesAffichees:dataMessagesFA, toutesDonnees:toutMessages, gererScroll:gererScrollMessages 
+const { donneesAffichees:dataMessagesFA, toutesDonnees:toutMessages
 } = useScrollIndexedDB({
 	nomStockage: "messages", 
 	donnees:messagesSource, 
