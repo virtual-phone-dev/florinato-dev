@@ -34810,7 +34810,7 @@ async function DissadAA() {
   const nameGroupFA = localStorage.getItem("nameGroupFA");
   const photoGroupFA = localStorage.getItem("photoGroupFA");
   const popularityFA = localStorage.getItem("popularityFA");
-  const idConversationFA = localStorage.getItem("idConversation");
+  //const idConversationFA = localStorage.getItem("idConversation");
   const message = localStorage.getItem("message"); 
   const type = localStorage.getItem("type"); 
   const urlPhoto = localStorage.getItem("urlPhoto"); 
@@ -34906,25 +34906,6 @@ async function DissadAA() {
 
 	  return () => { socket.off("receiveMessage"); };
 	}, []);
-
-
-  // filtre pour obtenir tout les messages de la discussion - FA
-  //console.log("apiMessageFAA cool", apiMessageFAA);
-  
-  const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
-  //console.log("filterMessageFA bb", filterMessageFA);
-  
-  /*
-  // important
-  // important
-  
-  Solution 2 (sécurité React, fortement recommandée)
-  Toujours protéger les .filter()
-  
-  const filterMessageFA = Array.isArray(apiMessageFAA)? apiMessageFAA.filter(api => api.idConversation === idConversation) : [];
-  
-  // OU version courte :
-  const filterMessageFA = apiMessageFAA?.filter?.(api => api.idConversation === idConversation) || []; */
 
 
 
@@ -35222,6 +35203,12 @@ useEffect(() => {
   console.log("dataConversationFA ", dataConversationFA);
 }, [dataComptesFA, dataFollowers, dataConversations, dataConversationFA, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
 
+
+// filtre pour obtenir tout les messages de la discussion - FA
+//const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
+const filterMessageFA = useMemo(() => dataMessagesFA.filter(api => api.idConversation === idConversation), [dataMessagesFA, idConversation] );
+console.log("idConversation ", idConversation);
+console.log("filterMessageFA ", filterMessageFA);
 
 
   // Créer une map pour accéder rapidement aux profils par id
