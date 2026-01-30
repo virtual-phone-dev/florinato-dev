@@ -35288,14 +35288,12 @@ const conversationsTrierParDate = useMemo(() => {
   });
 }, [dataConversations, messageMap]);
 
-
-/* RÉSUMÉ SIMPLE
-
-a/b → conversations
-msgA → dernier message de la conversation A
-msgB → dernier message de la conversation B
-on compare leurs dates
-la conversation avec le message le plus récent monte */
+	/* RÉSUMÉ SIMPLE
+	a/b → conversations
+	msgA → dernier message de la conversation A
+	msgB → dernier message de la conversation B
+	on compare leurs dates
+	la conversation avec le message le plus récent monte en haut */
 
 
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers]; }, [conversationsTrierParDate, dataFollowers]);
@@ -35742,57 +35740,12 @@ async function ValiderUrl() {
   async function PageRedirection66ChildApi66florinatoApp() {
     //page pour afficher le groupe que j'ai cliqué
     const groupOther = localStorage.getItem("GoTogroupOtherFA");
-    if (groupOther === "1") { 
-      setGroupOtherFA(true); 
-
-      async function get() {
-      await axios
-      .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
-      .then((res) => {
-        setApiMessageFA(res.data);
-      })
-      .catch((err) => {
-
-        async function get2() {
-        await axios
-        .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-        })
-        }
-        get2();
-      });
-      }
-      get();
-    }//if (groupOther === "1")
+    if (groupOther === "1") { setGroupOtherFA(true); }//if (groupOther === "1")
 
     //aller vers la page du message
     const GoTomessageFA = localStorage.getItem("GoTomessageFA"); 
-    if (GoTomessageFA === "1") { 
-      setMessageFA(true); 
-
-      async function get() {
-      await axios
-      .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
-      .then((res) => {
-        setApiMessageFA(res.data);
-      })
-      .catch((err) => {
-
-        async function get2() {
-        await axios
-        .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-        })
-        }
-        get2();
-      });
-      }
-      get();
-    } //if (GoTomessageFA === "1")
+    if (GoTomessageFA === "1") { setMessageFA(true); } //if (GoTomessageFA === "1")
   }
-  // PageRedirection 66ChildApi66florinatoApp
 
 
   // rencontre - FA
@@ -50904,7 +50857,7 @@ son compte Vixinol store */
           <div className="body">
             <div className="api">
                 {dataConversationFA.map((api) => (
-			    <div onClick={() => { if (api.type === 30) {setIdConversation(api._id); PageRedirection66ChildApi66florinatoApp(); } }} >
+			    <div onClick={(e) => { if (api.type === 30) {setIdConversation(api._id); PageRedirection66ChildApi66florinatoApp(e); } }} >
 					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} /> 
 				</div> 
 				))}
