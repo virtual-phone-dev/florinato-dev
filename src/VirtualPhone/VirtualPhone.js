@@ -35094,8 +35094,12 @@ async function DissadAA() {
 
   // logique pour obtenir, afficher les resultats de la recherche - FA
   const [mySearchFA, setMySearchFA] = useState("");
-  const [maRechercheVideoFA, setmaRechercheVideoFA] = useState("");
+  
   const [rechercherUnCompteFA, setRechercherUnCompteFA] = useState("");
+  const [rechercherMonCompteFA, setRechercherMonCompteFA] = useState("");
+  
+  const [rechercherUneVideoFA, setRechercherUneVideoFA] = useState("");
+  const [rechercherMaVideoFA, setRechercherMaVideoFA] = useState("");
   
   /* const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
   const [maRechercheVideoFA, setmaRechercheVideoFA] = useState(() => localStorage.getItem("maRechercheVideoFA") || "");
@@ -35108,16 +35112,23 @@ async function DissadAA() {
 
 
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
-const { donneesAffichees:dataVideoFA, donneesAffichees_idAccount:dataMesVideosFA, toutesDonnees_idAccount:toutesMesVideos, toutesDonnees:toutesVideos, gererScroll } = useScrollIndexedDB({ nomStockage: "videos", donnees:videosSource, maRechercheVideo: maRechercheVideoFA });
+const { donneesAffichees:dataVideoFA, donneesAffichees_idAccount:dataMesVideosFA, toutesDonnees_idAccount:toutesMesVideos, toutesDonnees:toutesVideos, gererScroll 
+} = useScrollIndexedDB({ 
+	nomStockage: "videos", 
+	donnees:videosSource, 
+	rechercherMaVideo: rechercherMaVideoFA,
+	rechercherUneVideo: rechercherUneVideoFA,
+});
+
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
-const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:maRechercheVideoFA, keys:["message"] }), [toutesVideos, maRechercheVideoFA] );
+const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
 //const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
 //const mesVideosR = useMemo(() => toutesMesVideos.filter(api => api.visible === "1" && api.message), [toutesMesVideos] );
-const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos, search:maRechercheVideoFA, keys: ["message"] }), [toutesMesVideos, maRechercheVideoFA] );
+const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos, search:rechercherMaVideoFA, keys: ["message"] }), [toutesMesVideos, rechercherMaVideoFA] );
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
@@ -35142,19 +35153,21 @@ const { donneesAffichees_idAccount:dataMesVisitesFA, gererScroll:gererScrollVisi
 
 // comptes
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
-const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, toutesDonnees_idUser:toutMesComptes, toutesDonnees:toutComptes, gererScroll:gererScrollComptes } = useScrollIndexedDB({ nomStockage: "comptes", donnees:comptesSource, rechercherUnCompte: rechercherUnCompteFA });
-
-/*
-const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
-const listVideoFA = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
-*/
-
-const filtreComptesRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
-const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtreComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreComptesRechercher, rechercherUnCompteFA] );
+const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, toutesDonnees_idUser:toutMesComptes, toutesDonnees:toutComptes, gererScroll:gererScrollComptes 
+} = useScrollIndexedDB({
+	nomStockage: "comptes", 
+	donnees:comptesSource, 
+	rechercherUnCompte: rechercherUnCompteFA,
+	rechercherMonCompte: rechercherMonCompteFA,
+});
 
 
-const filtreMesComptesRechercher = useMemo(() => toutMesComptes.filter(api => api.nameAccount), [toutMesComptes] );
-const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtreMesComptesRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtreMesComptesRechercher, rechercherUnCompteFA] );
+const filtrerLeCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
+const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtrerLeCompteRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtrerLeCompteRechercher, rechercherUnCompteFA] );
+
+const filtrerMonCompteRechercher = useMemo(() => toutMesComptes.filter(api => api.nameAccount), [toutMesComptes] );
+const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompteRechercher, search:rechercherMonCompteFA, keys: ["nameAccount"] }), [filtrerMonCompteRechercher, rechercherMonCompteFA] );
+  
 
 
 // conversations
@@ -35164,8 +35177,8 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 const { donneesAffichees_idAccount:dataConversations, gererScroll: gererScrollConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
 const { donneesAffichees_idAccount:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
-//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
-const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
+const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
+//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
 
 
 useEffect(() => {
@@ -50812,15 +50825,18 @@ son compte Vixinol store */
       </>)}
       {/* application florinato */}
 	  
+	  			
 		
+			
+
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} photo={photoFA} video
 			data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
-			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} />
+			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
 
 		<ComptesRecentsTemplate 
 			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} 
-			valeur={mySearchFA} setValeur={setMySearchFA} gererScroll={gererScrollComptes} />
+			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} />
 		
 		<SpeedMessages 
 			visible={speedMessagesPagesFA} data={dataComptesFA} fermer={CloseSpeedMessagesPagesFA} 
@@ -51115,7 +51131,7 @@ g
 			  
 			  
 			<VideoSearchBlock 
-				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA} video 
+				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} video 
 				setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
@@ -51156,18 +51172,18 @@ g
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
 		
 		
-
+		
 	  <PopupDuBasTemplate 
 		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} search/>
+		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} search/>
 	  
 	  <PopupDuBasTemplate 
 		  visible={mettreEnAvantFApb} fermer={CloseMettreEnAvantFApb} photo={photoFA} titre="Choisir le compte à mettre en avant" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={MettreEnAvantFAconfp} setId={setId} search/>
+		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={MettreEnAvantFAconfp} setId={setId} search/>
 	  
 	  <PopupDuBasTemplate 
 		  visible={adminFlorinatopb} fermer={CloseAdminFlorinatopb} photo={photoFA} titre="Ajouter un compte qui sera admin Florinato" 
-		  listAccount={listAccountFA} valeur={mySearchFA} setValeur={setMySearchFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} search/>
+		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} search/>
 		  
 		  
 	  
@@ -51253,11 +51269,12 @@ g
               {/* close */}
             </div>
             {/* head */}
+			
 						
             <div className="body">
 				<MesComptes 
 					data={dataMesComptesFA} dataCompteConnecté={toutMesComptes} cliquerSurMonCompte={DataFA}
-					listMesComptes={listMesComptesFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} />
+					listMesComptes={listMesComptesFA} valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} />
 	
             </div>
             {/* body */}
@@ -52164,7 +52181,7 @@ g
       {/* voir la video - FA */}
       {/* voir la video - FA */}
       {seeVideoFA && (<>
-      <div className="seeVideoFA">
+      <div className="seeVideoFA" onScroll={gererScroll}>
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
@@ -52178,7 +52195,7 @@ g
 			</div>
 			
 			<div className="display-flex"> 
-				<p onClick={CommenterPageFA} className="p-14px-ccc-esp">Commenter</p>
+				<p onClick={CommenterPageFA} className="p-14px-ccc-esp">Commentaire</p>
 				<p onClick={ModifierTitrePageFA} className="p-14px-ccc-esp">Modifier le Titre</p>
 				<p onClick={ChangerMiniaturePage} className="p-14px-ccc-esp">Changer la Miniature</p>
 				<p onClick={ModifierUrlPage} className="p-14px-ccc-esp">Modifier l'url</p>
@@ -52187,10 +52204,10 @@ g
 			
 			<pre className="pre-17px-white">{titreFA}</pre>
 			<p className="p-14px-eee">{clicFA} clic</p>
-			
+
 			
 			<RechercheTemplate 
-				listVideo={listVideoFA} valeur={maRechercheVideoFA} setValeur={setmaRechercheVideoFA}
+				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
 			{/* on a ajouter cette protection dataVideoFA.length, car si ya pas de videos, il affichait des div vides dans le dom, (avec ca, il va plus afficher des div dans le DOM ) */}
