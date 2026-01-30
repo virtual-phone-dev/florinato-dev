@@ -35175,10 +35175,11 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
 //const { donneesAffichees:dataMessagesFA, toutesDonnees:toutMessages, gererScroll:gererScrollMessages 
-const { donneesAffichees:dataMessagesFA, toutesDonnees:toutMessages
+const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages
 } = useScrollIndexedDB({
 	nomStockage: "messages", 
 	donnees:messagesSource, 
+	idConversation
 });
 
 
@@ -35210,8 +35211,8 @@ useEffect(() => {
 
 const filterMessageFA = useMemo(() => {
   if (!idConversation) return []; //Si idConversation peut être null / undefined au début . Ça évite les faux résultats au premier render.
-  return toutMessages.filter(api => api.idConversation === idConversation);
-}, [toutMessages, idConversation]);
+  return dataMessagesFA.filter(api => api.idConversation === idConversation);
+}, [dataMessagesFA, idConversation]);
 
 console.log("idConversation ", idConversation);
 console.log("filterMessageFA ", filterMessageFA);
@@ -35270,8 +35271,8 @@ const messageMap = useMemo(() => {
 
 
 const conversationsTrierParDate = useMemo(() => {
-  //return [...dataConversations]
-  return [...toutesConversations]
+  return [...dataConversations]
+  //return [...toutesConversations] 
   .sort((a, b) => {
     const msgA = messageMap[a._id];
     const msgB = messageMap[b._id];
@@ -35287,7 +35288,7 @@ const conversationsTrierParDate = useMemo(() => {
 	msgB est plus récent → B passe avant A
 	msgA est plus récent → A passe avant B */
   });
-}, [toutesConversations, messageMap]);
+}, [dataConversations, messageMap]);
 
 	/* RÉSUMÉ SIMPLE
 	a/b → conversations

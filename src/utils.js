@@ -974,18 +974,20 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
-export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, idConversation, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
 
 
-const donneesAffichees = useMemo(() => { return toutesDonnees
+const donneesAffichees = useMemo(() => { return [...toutesDonnees]
 .sort((a, b) => {
-  const da = new Date(a.createdAt || 0);
-  const db = new Date(b.createdAt || 0);
-  return db - da;
+	if (!a.createdAt && !b.createdAt) return 0;
+	if (!a.createdAt) return 1;
+	if (!b.createdAt) return -1;
+	
+	return new Date(b.createdAt) - new Date(a.createdAt);
 }).slice(0, lotActuel);
 }, [toutesDonnees, lotActuel] ); 
 
@@ -1011,16 +1013,26 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 }, [toutesDonnees, idPersonConnectedFA]);
 
 
-const donneesAffichees_account_other = useMemo(() => { return toutesDonnees.filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
-    .sort((a, b) => {
-      const da = new Date(a.createdAt || 0);
-      const db = new Date(b.createdAt || 0);
-      return db - da;
-    })
-    .slice(0, lotActuel);
-}, [toutesDonnees, lotActuel, idPersonConnectedFA]);
+const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
+.sort((a, b) => {
+	if (!a.createdAt && !b.createdAt) return 0;
+	if (!a.createdAt) return 1;
+	if (!b.createdAt) return -1;
+	
+	return new Date(b.createdAt) - new Date(a.createdAt);
+}).slice(0, lotActuel); 
+}, [toutesDonnees, lotActuel, idPersonConnectedFA, idConversation]);
 
 
+const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filter(api => api.idConversation === idConversation)
+.sort((a, b) => {
+	if (!a.createdAt && !b.createdAt) return 0;
+	if (!a.createdAt) return 1;
+	if (!b.createdAt) return -1;
+	
+	return new Date(b.createdAt) - new Date(a.createdAt);
+}).slice(0, lotActuel);
+}, [toutesDonnees, lotActuel, idConversation] ); 
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
 const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idUser === idUserConnectedFA)
@@ -1099,7 +1111,7 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
