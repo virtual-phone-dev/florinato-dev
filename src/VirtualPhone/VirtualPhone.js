@@ -35185,7 +35185,10 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages
 });
 
 
+const lotConversations = useMemo(() => dataConversations.slice(0, lotActuel), [dataConversations, lotActuel] ); // 
+
 useEffect(() => {
+  console.log("lotConversations", lotConversations);
   console.log("dataMessagesFA", dataMessagesFA);
   console.log("toutMessages", toutMessages);
   console.log("messagesSource", messagesSource);
@@ -35204,7 +35207,7 @@ useEffect(() => {
   console.log("dataConversations ", dataConversations);
   console.log("dataFollowers", dataFollowers);
   //console.log("dataConversationFA ", dataConversationFA);
-}, [dataComptesFA, dataFollowers, dataConversations, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+}, [dataComptesFA, dataFollowers, dataConversations, lotConversations, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
 
 
 // filtre pour obtenir tout les messages de la discussion - FA
