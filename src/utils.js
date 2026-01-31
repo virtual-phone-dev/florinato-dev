@@ -3,8 +3,8 @@ import { React, useState, useEffect, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
 import { theme } from "./theme";
-import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2 } from "./Svg/Svg";
-import { ChildApi266accountsFA, ChildApi66accountsFA } from "./VirtualPhone/VirtualPhone";
+import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal } from "./Svg/Svg";
+import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
 
@@ -2233,9 +2233,12 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 
 //ProfilTemplate
-export function ProfilTemplate({ visible, fermer }) {
+export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, dataMesVideosFA, listMesVideosFA, video,
+	rechercherMaVideoFA, setRechercherMaVideoFA, setId, setIdAccountChef, ClicVideoFAA, SeeVideoFA, dataMesVisitesFA,
+	PageRedirection66ChildApi66profilFA, getPopularity, getName, getPhoto, SeePhoto66profilFA, gererScroll, gererScrollVisites,
+	}) {
+		
   if (!visible) return null;
-  
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
           <div className="head">
@@ -2244,7 +2247,7 @@ export function ProfilTemplate({ visible, fermer }) {
                 <div className="a"> <SvgLeft/> </div>
                 <div className="b"> <pre>{getName}</pre> </div>
               </div>
-              {/* block-un */}
+              {/* block-un */} 
 
               <div className="display-flex-nowrap"> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 

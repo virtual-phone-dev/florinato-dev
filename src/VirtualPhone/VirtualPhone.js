@@ -952,7 +952,7 @@ function ChildApi66groupOtherFA({ api }) {
 
 
 //ChildApi2 66profilFA
-function ChildApi266profilFA({ api2 }) {
+export function ChildApi266profilFA({ api2 }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -50984,10 +50984,22 @@ son compte Vixinol store */
         {/* popularityAccountsPageFA */}
       </>)}
       {/* Les comptes les plus populaires sur florinato */}
-	  
-	  
+	
+
+  
 		{/* on affiche mon compte - FA */}
-		<ProfilTemplate visible={ProfilFA} fermer={CloseProfilFA} />
+		<ProfilTemplate 
+			visible={ProfilFA} fermer={CloseProfilFA} video
+			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
+			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
+			setId={setId} setIdAccountChef={setIdAccountChef} ClicVideoFAA={ClicVideoFAA} 
+			rechercherMaVideoFA={rechercherMaVideoFA} 
+			setRechercherMaVideoFA={setRechercherMaVideoFA} 
+			dataMesVisitesFA={dataMesVisitesFA} 
+			dataMesVideosFA={dataMesVideosFA} 
+			listMesVideosFA={listMesVideosFA} 
+			SeeVideoFA={SeeVideoFA} 
+			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} />
 
 	  
 	  <PopupDuBasTemplate 
