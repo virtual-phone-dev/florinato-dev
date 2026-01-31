@@ -33,7 +33,7 @@ import {
   SvgVirtualNumber, SvgVirtualNumber2, SvgValidate3, SvgValidate4, SvgValidate5, SvgValidate6, SvgVertical, SvgVideo3, SvgVideo5, SvgVideo6, SvgVideo7, SvgVideo8, 
   SvgVideo9, SvgVideo10, SvgVolumeOn2, SvgVolumeOff2
 } from "../Svg/Svg";
-</>
+
 
 // image, logo
 import tictac from "../img/tictac.jpg";
