@@ -3,7 +3,7 @@ import { React, useState, useEffect, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
 import { theme } from "./theme";
-import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal } from "./Svg/Svg";
+import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 } from "./Svg/Svg";
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
@@ -1387,16 +1387,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
                     <div className="marge-bottom25px">
                       <div className="display-flex">
                         <div className="a">
-                          <label for="css">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              width="20px"
-                              cursor="pointer"
-                              viewBox="0 0 30 30"
-                            >
-                              <path d="M10.5 17a.506.506 0 00-.344.15L.64 26.652c-.896.893-.776 2.134-.105 2.81.67.674 1.913.795 2.81-.103l9.49-9.49c.492-.472-.25-1.182-.706-.708l-9.49 9.49c-.58.58-1.07.43-1.396.104-.326-.328-.47-.826.102-1.397l9.517-9.503c.326-.318.084-.857-.363-.857zm8.45-14.93a8 8 0 00-4.39 2.063c-.49.453.21 1.17.68.734a6.999 6.999 0 018.022-1.06c.58.332 1.053-.603.465-.885a7.994 7.994 0 00-4.776-.852zM20 0c-5.517 0-10 4.483-10 10s4.483 10 10 10 10-4.483 10-10S25.517 0 20 0zm0 1c4.976 0 9 4.024 9 9s-4.024 9-9 9-9-4.024-9-9 4.024-9 9-9z"></path>
-                            </svg>
-                          </label>
+                          <label for="css"> <SvgSearch5/> </label>
                         </div>
                         {/* a */}
 

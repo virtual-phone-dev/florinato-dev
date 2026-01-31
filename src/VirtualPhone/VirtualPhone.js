@@ -28,12 +28,12 @@ import {
   SvgMessage11, SvgNewOnglet, SvgNotification,
   SvgPopularity, SvgPointsHorizontal, SvgPointsHorizontal2, SvgPointsVertical, SvgProfil, SvgProfil2, SvgProfil3, SvgProfil4, SvgProfil5, SvgPay, SvgPlay2, SvgPlay3, 
   SvgPlay6, SvgPause2, SvgPhoneNumber, SvgPencil3, Svg1Photo3, Svg3Photo3, SvgQuestionMark3,
-  SvgRefresh, SvgRight, SvgRight2, SvgRight3, SvgRight4, SvgRight5, SvgSearch, SvgSearch2, SvgSearch3, SvgSad, SvgSend, SvgShare, SvgSettings, SvgSurprisedAA,
+  SvgRefresh, SvgRight, SvgRight2, SvgRight3, SvgRight4, SvgRight5, SvgSearch, SvgSearch2, SvgSearch3, SvgSearch5, SvgSad, SvgSend, SvgShare, SvgSettings, SvgSurprisedAA,
   SvgTranslation, SvgTranslate, SvgToggleActive, SvgToggleInactive, SvgText, SvgText3,
   SvgVirtualNumber, SvgVirtualNumber2, SvgValidate3, SvgValidate4, SvgValidate5, SvgValidate6, SvgVertical, SvgVideo3, SvgVideo5, SvgVideo6, SvgVideo7, SvgVideo8, 
   SvgVideo9, SvgVideo10, SvgVolumeOn2, SvgVolumeOff2
 } from "../Svg/Svg";
-
+</>
 
 // image, logo
 import tictac from "../img/tictac.jpg";
@@ -50833,10 +50833,10 @@ son compte Vixinol store */
       
               <div className="block-deux">
                 {dev && (<><div className="a" onClick={RencontreFA}> <SvgLove2/> </div></>)}
-				
+
                 <div className="b" onClick={VideosPageFA}> <SvgVideo6/> </div>
                 <div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div>
-                <div className="b" onClick={ComptesRecentsPageFA}> <SvgAdd/> </div>
+                <div className="b" onClick={ComptesRecentsPageFA}> <SvgSearch5/> </div>
                 <div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div>
                 <div className="c" onClick={CloseFlorinatoApp}> <SvgExit/> </div>
               </div>

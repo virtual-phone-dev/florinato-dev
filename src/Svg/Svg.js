@@ -117,6 +117,7 @@ export { default as SvgRight5 } from "./SvgRight5";
 export { default as SvgSearch } from "./SvgSearch";
 export { default as SvgSearch2 } from "./SvgSearch2";
 export { default as SvgSearch3 } from "./SvgSearch3";
+export { default as SvgSearch5 } from "./SvgSearch5";
 
 export { default as SvgSad } from "./SvgSad";
 export { default as SvgSend } from "./SvgSend";
