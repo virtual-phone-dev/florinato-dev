@@ -35301,6 +35301,8 @@ const conversationsTrierParDate = useMemo(() => {
 
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers]; }, [conversationsTrierParDate, dataFollowers]);
 
+console.log("conversationsTrierParDate ", conversationsTrierParDate);
+console.log("dataConversationFA ", dataConversationFA);
 
 
    // filtre pour obtenir tout les favoris
