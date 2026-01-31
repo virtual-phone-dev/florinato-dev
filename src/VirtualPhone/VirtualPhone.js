@@ -35165,11 +35165,13 @@ const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompt
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
 const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
 
-const { donneesAffichees_account_other:dataConversations, gererScroll: gererScrollConversations } = useScrollIndexedDB({ nomStockage: "conversations", donnees:conversationsSource }); 
-const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
+const { donneesAffichees_account_other: dataConversations, lotActuel, gererScroll: gererScrollConversations 
+} = useScrollIndexedDB({ 
+	nomStockage: "conversations", 
+	donnees:conversationsSource 
+}); 
 
-//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers].sort( (a, b) => new Date(b.createdAt) - new Date(a.createdAt) ), [dataConversations, dataFollowers] );
-//const dataConversationFA = useMemo(() => [...dataConversations, ...dataFollowers], [dataConversations, dataFollowers] );
+const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
 
 // messages
@@ -35268,8 +35270,6 @@ const messageMap = useMemo(() => {
 */
 
 
-
-
 const conversationsTrierParDate = useMemo(() => {
   return [...dataConversations]
   //return [...toutesConversations] 
@@ -35287,8 +35287,9 @@ const conversationsTrierParDate = useMemo(() => {
 	Si :
 	msgB est plus récent → B passe avant A
 	msgA est plus récent → A passe avant B */
-  });
-}, [dataConversations, messageMap]);
+  })
+  .slice(0, lotActuel);
+}, [dataConversations, lotActuel, messageMap]);
 
 	/* RÉSUMÉ SIMPLE
 	a/b → conversations

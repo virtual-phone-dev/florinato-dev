@@ -24,9 +24,10 @@ https://www.youtube.com/shorts/m7JVF0hHdtk
 https://www.youtube.com/watch?v=P8NnZMRvizo&pp=ugUEEgJmcg%3D%3D
 
 
+https://www.youtube.com/shorts/77irzKkZLeU
 https://www.youtube.com/watch?v=IspALet_GcE
 https://www.youtube.com/shorts/zPHLpPHwFlw
-
+https://www.youtube.com/watch?v=fv-R4nX5ezY
 https://www.youtube.com/shorts/JTs4YXPDkfY
 https://www.youtube.com/shorts/gwd8nVQ8ynY
 https://www.youtube.com/shorts/ezTsWB6346g
@@ -60,7 +61,7 @@ https://www.youtube.com/watch?v=hsYbe1RxUxM
 https://www.youtube.com/watch?v=zmyGF8YnICU
 https://www.youtube.com/watch?v=ty2advRiWJM
 https://www.youtube.com/watch?v=jDzGyI-uTus
-
+https://www.youtube.com/watch?v=ymUDfU9t_Hc
 https://www.youtube.com/shorts/X8ISIFlwAw4
 https://www.youtube.com/watch?v=6LjPr646tUo
 https://www.youtube.com/watch?v=kHX4vr4k7H8
@@ -1019,6 +1020,7 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 }, [toutesDonnees, idPersonConnectedFA]);
 
 
+
 const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
 .sort((a, b) => {
 	if (!a.createdAt && !b.createdAt) return 0;
@@ -1026,8 +1028,8 @@ const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees]
 	if (!b.createdAt) return -1;
 	
 	return new Date(b.createdAt) - new Date(a.createdAt);
-}).slice(0, lotActuel); 
-}, [toutesDonnees, lotActuel, idPersonConnectedFA]);
+});
+}, [toutesDonnees, idPersonConnectedFA]);
 
 
 const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filter(api => api.idConversation === idConversation)
