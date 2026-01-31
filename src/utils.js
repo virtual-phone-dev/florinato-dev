@@ -1176,6 +1176,7 @@ export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
 }
 
 
+/*
 export function VideoData({ data = [], setId, setIdAccountChef, video, voirVideo, clicVideo, photocss }) {
   return (<>
 	
@@ -1185,7 +1186,7 @@ export function VideoData({ data = [], setId, setIdAccountChef, video, voirVideo
       </div>
       ))}
 	  
-    </>)}
+    </>)} */
 	
 		   
 export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn }) {	
@@ -1348,11 +1349,11 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 }
 
 
-export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
+export function LesVideos({ data=[], setId, setIdProprietairePost, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
-	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); setIdAccountChef(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
+	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} video />
 	  </div>
 	  ))}
@@ -1360,14 +1361,14 @@ export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVid
 )}
 
 
-export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setId, setIdAccountChef, clicVideo, voirVideo, video }) {
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setId, setIdProprietairePost, clicVideo, voirVideo, video }) {
   return (<>
-	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} />
-    <LesVideos data={data} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
+	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} />
+    <LesVideos data={data} setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, setId, setIdAccountChef, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, setId, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche" onScroll={gererScroll}> 
@@ -1375,14 +1376,14 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, se
 			
 			<VideoSearchBlock 
 				data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
-				setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
+				setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
 		</div>
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, setId, setIdAccountChef, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, setId, setIdProprietairePost, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
   return (<>
-		{/* rechercher un compte */}
+		{/* input pour effectuer une recherche */}
                   <div>
                     <div className="marge-bottom25px">
                       <div className="display-flex">
@@ -1416,7 +1417,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			))}
 			</div>
 			
-			<LesVideos data={listVideo} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
+			<LesVideos data={listVideo} setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
 	</>);
 }
 
@@ -2225,7 +2226,7 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 //ProfilTemplate
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, dataMesVideosFA, listMesVideosFA, video,
-	rechercherMaVideoFA, setRechercherMaVideoFA, setId, setIdAccountChef, ClicVideoFAA, SeeVideoFA, dataMesVisitesFA,
+	rechercherMaVideoFA, setRechercherMaVideoFA, setId, setIdProprietairePost, ClicVideoFAA, SeeVideoFA, dataMesVisitesFA,
 	PageRedirection66ChildApi66profilFA, getPopularity, getName, getPhoto, SeePhoto66profilFA, gererScroll, gererScrollVisites,
 	}) {
 		
@@ -2270,7 +2271,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 			  
 			<VideoSearchBlock 
 				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} video 
-				setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+				setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
               <div className="api2">

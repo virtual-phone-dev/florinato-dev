@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, VideoSearchBlock,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
@@ -35024,7 +35024,6 @@ async function DissadAA() {
   
   
 	const [idreq, setId] = useState(null);
-	const [idAccountChef, setIdAccountChef] = useState(null);
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
@@ -35682,7 +35681,7 @@ async function CommenterFA() { await ExecuterActionFA({
 	loader:setIsLoading666CommenterFA,
 	dataPOST:{
 		idPost:idreq,
-		idProprietairePost: idAccountChef,
+		idProprietairePost,
 		
 		commentaire: ecrireCommentaireFA,
 		idProprietaireCommentaire: idPersonConnectedFA,
@@ -35705,7 +35704,7 @@ async function RepondreFA() { await ExecuterActionFA({
 	loader:setIsLoading666RepondreFA,
 	dataPOST:{
 		idPost:idreq,
-		idProprietairePost: idAccountChef,
+		idProprietairePost,
 
 		idCommentaire,
 		idProprietaireCommentaire,
@@ -50865,7 +50864,7 @@ son compte Vixinol store */
 				
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFA} profilMap={profilMap} photo={photoFA} video
-			setId={setId} setIdAccountChef={setIdAccountChef} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
+			setId={setId} setIdProprietairePost={setIdProprietairePost} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
 
 		<ComptesRecentsTemplate 
@@ -50989,10 +50988,10 @@ son compte Vixinol store */
   
 		{/* on affiche mon compte - FA */}
 		<ProfilTemplate 
-			visible={ProfilFA} fermer={CloseProfilFA} video
+			visible={profilFA} fermer={CloseProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
-			setId={setId} setIdAccountChef={setIdAccountChef} ClicVideoFAA={ClicVideoFAA} 
+			setId={setId} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			dataMesVisitesFA={dataMesVisitesFA} 
@@ -51065,7 +51064,7 @@ son compte Vixinol store */
               <div className="block-deux"> <input type="text" value={writeCountryAF} onChange={(e) => setWriteCountryAF(e.target.value)} placeholder="Pays" /> </div>
               <div className="block-deux"> <input type="text" value={writeSexAF} onChange={(e) => setWriteSexAF(e.target.value)} placeholder="Sexe" /> </div>
 
-              {isLoading66delivrerNumeroVirtuel ? (<><div className="loader-display-flex"> <Loader /> </div></>):(<>
+              {isLoading66delivrerNumeroVirtuel ? (<><div className="loader-display-flex" onClick={DelivrerNumeroVirtuel}> <Loader /> </div></>):(<>
               <div className="block-trois">
                 <button onClick={Delivrer}>
                   <p>Délivrer</p>
@@ -52068,7 +52067,7 @@ son compte Vixinol store */
 
 			<div className="overflow-x">
 			{dataMesVideosFA.map((api) => (<>
-			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>
 			</>))}
@@ -52078,14 +52077,14 @@ son compte Vixinol store */
 
 			<div className="overflow-x">
 			{dataVideoFA.map((api) => (<>
-			<div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={dataVideoFA} setId={setId} setIdAccountChef={setIdAccountChef} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos data={dataVideoFA} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>
