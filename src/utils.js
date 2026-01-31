@@ -1023,7 +1023,7 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 
 
 
-const donneesAffichees_account_other1 = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
+const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
 .sort((a, b) => {
 	if (!a.createdAt && !b.createdAt) return 0;
 	if (!a.createdAt) return 1;
@@ -1033,8 +1033,6 @@ const donneesAffichees_account_other1 = useMemo(() => { return [...toutesDonnees
 });
 }, [toutesDonnees, idPersonConnectedFA]);
 
-
-const donneesAffichees_account_other = useMemo(() => donneesAffichees_account_other1.slice(0, lotActuel), [donneesAffichees_account_other1, lotActuel] ); // 
 
 
 const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filter(api => api.idConversation === idConversation)
@@ -1278,27 +1276,111 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 // PopupDuBasTemplate 
 
 
-export function VideoSearchBlock({ data=[], listVideo=[], valeur, setValeur, setId, setIdAccountChef, clicVideo, voirVideo, video }) {
+
+export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, titrecss="pre-16px", cliccss="p-14px" }) {
+	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+    //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
+	
+	const imgRef = useRef(null);
+	const [nombreLettre, setnombreLettre] = useState(40);
+
+  useEffect(() => {
+    const img = imgRef.current;
+    if (!img) return;
+
+    function calculerRatio() {
+      const ratio = img.naturalWidth / img.naturalHeight;
+
+      //console.log("ratio image :", ratio);
+
+      if (ratio < 0.8) {
+        setnombreLettre(15);       // portrait (image étroite)
+      } else if (ratio < 1.3) {
+        setnombreLettre(30);       // carré
+      } else {
+        setnombreLettre(50);       // paysage
+      }
+    }
+
+    if (img.complete) {
+      calculerRatio();
+    } else {
+      img.onload = calculerRatio;
+    }
+  }, []);
+
+  const titre = api.message || "";
+  const gettitre = titre.length > nombreLettre ? titre.slice(0, nombreLettre) + ". . ." : titre;
+
+    const afficherVideo = video && api.type === "3";
+    const afficherPhoto = photo && api.type === "2";
+	
+  const idAccountUtiliser = api?.idAccountChef;
+  const profil = idAccountUtiliser? profilMap?.[idAccountUtiliser] : null;
+
+  const photoProprietairePost = profil?.photoProfile ?? investirPhoto;
+  const nomProprietairePost = profil?.nameAccount ?? "Compte inconnu";	
+
+  return (
+    <>
+		{/* {afficherVideo && (<>  
+		{afficherVideo && (!verifierId || id) && (<> */}
+		{afficherVideo && (<>
+		<div className="video-card">
+			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} /> 
+			<pre className={titrecss}>{gettitre}</pre>
+			<p className={cliccss}>{api.clic} clic</p> 
+			
+			<div className="display-nowrap-espace">
+			  <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost}/> </div>
+			  <pre className="pre-13px-blanc-gris">{nomProprietairePost}</pre>
+			</div>				
+		</div></>)}
+		
+		{/* {afficherPhoto && (!verifierId || id) && (<> */}
+		{afficherPhoto && (<> 
+		<div className="video-card">
+		<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} />
+		<pre className={titrecss}>{gettitre}</pre>
+		<p className={cliccss}>{api.clic} clic</p> </div></>)}
+    </>
+  );
+}
+
+
+export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
+  return (
+<div className="video-grille">
+	{data.map((api) => (
+	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); setIdAccountChef(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
+		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} video />
+	  </div>
+	  ))}
+</div>
+)}
+
+
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setId, setIdAccountChef, clicVideo, voirVideo, video }) {
   return (<>
 	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} />
-    <LesVideos data={data} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} video />
+    <LesVideos data={data} setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, setId, setIdAccountChef, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, setId, setIdAccountChef, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche" onScroll={gererScroll}> 
 			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
 			
 			<VideoSearchBlock 
-				data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} 
+				data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
 				setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
 		</div>
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, cliquer, cliquerSurMonCompte, setId, setIdAccountChef, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, setId, setIdAccountChef, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
   return (<>
 		{/* rechercher un compte */}
                   <div>
@@ -1331,7 +1413,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 
 				  
 			{listAccount.map((api) => (<>
-			<div onClick={() => { cliquer(api); setId(api._id); }}>	
+			<div onClick={() => { cliquer(api); setId(api._id); ouvrirMessagePage(); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
@@ -1403,8 +1485,7 @@ export function PopularityAccountCard({ api }) {
     </div>
 	
 	<InfosDev api={api} />
-  </>);
-}
+</>)}
 
 
 export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireCompte, gestionnaireCompte }) {
@@ -1432,7 +1513,15 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
       <div className="p-15px"> <p>{populariteGestionnaire}</p> </div>
       <div className="photo-70px"> <img src={photoGestionnaire} alt={nomGestionnaire}/> </div>
       <div className="pre-17px"> <pre>nomGestionnaire {nomGestionnaire}</pre> </div>
-    </div> </>)}
+    </div> 
+	
+	<div className="display-nowrap-espace">
+      <div className="p-15px"> <p>gere : </p> </div>
+      <div className="photo-25px"> <img src={photoProprietaire} alt={nomProprietaire}/> </div>
+      <div className="pre-13px"> <pre>{nomProprietaire}</pre> </div>
+    </div>
+	</>)}
+	
 	
 	{proprietaireCompte && (<> {/* le gestionnaire va publier sur ce compte */}
 	<div className="display-nowrap-espace">
@@ -1445,46 +1534,39 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 </>)}
 
 
-export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirGestionCompteConfirmation, gererScroll }) {
+export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirMessagePage, gererScroll }) {
   if (!visible) return null;
-
+  
   return (<>
       <div className="page-blanche" onScroll={gererScroll}>
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  
-			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirGestionCompteConfirmation={ouvrirGestionCompteConfirmation} />
-			  <ListeDesComptes data={data} />
+			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirMessagePage={ouvrirMessagePage} />
+			  <ListeDesComptes data={data} ouvrirMessagePage={ouvrirMessagePage} />
 		 </div>
 	 </div>
  </>)}
  
 
 			  
-export function ListeDesComptes({ data=[] }) {
-  return (
-    <>
+export function ListeDesComptes({ data=[], ouvrirMessagePage }) {
+  return (<>
       {data.map((api) => (
-        <PopularityAccountCard key={api._id} api={api} />
+		<div onClick={() => { ouvrirMessagePage(); }}>	
+			<PopularityAccountCard api={api} />
+		</div>
       ))}
-    </>
-  )}
+</>)}
 
 
 export function ListeDesComptes2({ data=[], profilMap, proprietaireCompte, gestionnaireCompte }) {
-  return (
-    <>
-      {data.map((api) => (
-        <div
-          key={api._id}
-          onClick={() => {
-            localStorage.setItem("idPersonConnectedFA", api.idAccount);
-            console.log("idPersonConnectedFA enregistré :", api.idAccount);
-          }}
-        >
+  return (<>
+		{data.map((api) => (
+        <div key={api._id} onClick={() => { localStorage.setItem("idPersonConnectedFA", api.idAccount); console.log("idPersonConnectedFA enregistré :", api.idAccount); }}>
           <PopularityAccountCard2 api={api} profilMap={profilMap} proprietaireCompte={proprietaireCompte} gestionnaireCompte={gestionnaireCompte} />
         </div>
-      ))}
+		))}
 </>)}
 
 
@@ -1499,77 +1581,6 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, pro
  </>)}
 
 
-export function ChildApi66LesVideos({ api, verifierId, photo, video, titrecss="pre-16px", cliccss="p-14px" }) {
-	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-    //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
-	
-	const imgRef = useRef(null);
-	const [nombreLettre, setnombreLettre] = useState(40);
-
-  useEffect(() => {
-    const img = imgRef.current;
-    if (!img) return;
-
-    function calculerRatio() {
-      const ratio = img.naturalWidth / img.naturalHeight;
-
-      //console.log("ratio image :", ratio);
-
-      if (ratio < 0.8) {
-        setnombreLettre(15);       // portrait (image étroite)
-      } else if (ratio < 1.3) {
-        setnombreLettre(30);       // carré
-      } else {
-        setnombreLettre(50);       // paysage
-      }
-    }
-
-    if (img.complete) {
-      calculerRatio();
-    } else {
-      img.onload = calculerRatio;
-    }
-  }, []);
-
-  const titre = api.message || "";
-  const gettitre = titre.length > nombreLettre ? titre.slice(0, nombreLettre) + ". . ." : titre;
-
-    const afficherVideo = video && api.type === "3";
-    const afficherPhoto = photo && api.type === "2";
-
-  return (
-    <>
-		{/* {afficherVideo && (<>  
-		{afficherVideo && (!verifierId || id) && (<> */}
-		{afficherVideo && (<>
-		<div className="video-card">
-		<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} /> 
-		<pre className={titrecss}>{gettitre}</pre>
-		<p className={cliccss}>{api.clic} clic</p> </div></>)}
-		
-		{/* {afficherPhoto && (!verifierId || id) && (<> */}
-		{afficherPhoto && (<> 
-		<div className="video-card">
-		<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} />
-		<pre className={titrecss}>{gettitre}</pre>
-		<p className={cliccss}>{api.clic} clic</p> </div></>)}
-    </>
-  );
-}
-
-
-export function LesVideos({ data=[], setId, setIdAccountChef, clicVideo, voirVideo, titrecss, cliccss, video }) {
-  return (
-<div className="video-grille">
-	{data.map((api) => (
-	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); setIdAccountChef(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
-		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} video />
-	  </div>
-	  ))}
-</div>
-)}
-
-
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire, profilMap,
 	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires, RepondrePage }) {
 		
@@ -1582,7 +1593,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
               <p className="p-16px-center" onClick={fermer}>{titre}</p>
 			  			  
 			  {changerUrl && (<>
-			  <pre className="pre-15px-center">{infos}</pre> 
+			  <pre className="pre-13px-center">{infos}</pre> 
 			  
 			  <AutoTextarea valeur={valeur} setValeur={setValeur} texte={texte} />
 			  
@@ -2217,11 +2228,70 @@ export function MenuPopupTemplate({ visible, fermer }) {
             {/* bottom */}
           </div>
           {/* business-opacity */}
-        </>
-      )}
+</>)}
 //MenuPopup
 
-	  
+
+//ProfilTemplate
+export function ProfilTemplate({ visible, fermer }) {
+  if (!visible) return null;
+  
+  return (<>
+        <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
+          <div className="head">
+            <div className="close">
+              <div className="block-un" onClick={fermer}> 
+                <div className="a"> <SvgLeft/> </div>
+                <div className="b"> <pre>{getName}</pre> </div>
+              </div>
+              {/* block-un */}
+
+              <div className="display-flex-nowrap"> 
+				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
+				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div> 
+				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div> 
+			  </div>
+            </div>
+            {/* close */} 
+          </div>
+          {/* head */}
+
+      <div className="body">
+        <div className="block-un">
+          <div className="a"> <img onClick={SeePhoto66profilFA} src={getPhoto} alt=""/> </div>
+          <div className="b"> <pre>{getName}</pre> </div>
+          <div className="c"> <SvgPopularity/> <p>Popularité</p> </div>
+          <div className="d"> <p>{getPopularity} visites</p> </div>
+        </div>
+        {/* block-un */}
+
+              <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
+               {/* {filterFA.map((api) => (<>
+				  <div onClick={() => setId(api._id)}>
+					  <ChildApi66profilFA api={api} video photo photocss="photo-70px-carre" clic svg verifierId/>
+				  </div>
+              </>))}   */}
+              </div>
+			  
+			  
+			<VideoSearchBlock 
+				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} video 
+				setId={setId} setIdAccountChef={setIdAccountChef} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+
+
+              <div className="api2">
+              {dataMesVisitesFA.map((api2) => (<>
+                <ChildApi266profilFA api2={api2} />
+              </>))}
+              </div>
+            </div>
+            {/* body */}
+        </div>
+        {/* profilFA */}
+</>)}
+//ProfilTemplate	  
+	 
+	 
 export function MissionTemplate({ visible, valeur, setValeur, envoyer, message, nomMembre, titre, titre2, titre3, titre4, titre5, titre7, titre8, titre9 }) {
   if (!visible) return null;
 

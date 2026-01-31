@@ -119,6 +119,12 @@
   color: #2563EB; */
 }
 
+.p-14px-center-gris p {
+  text-align: center;
+  color: #a6a6a6;
+  font-size: 14px;
+}
+
 .p-14px-eee {
   font-size: 14px;
   color: #A1A1AA;
@@ -150,7 +156,24 @@
   font-size: 17px;
 }
 
-.pre-15px-center {
+.pre-13px {
+  font-size: 13px;
+  padding: 0px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.pre-13px-blanc-gris {
+  font-size: 13px;
+  color: #A1A1AA;
+  padding: 0;
+  color: #6B7280;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+
+.pre-13px-center {
   font-size: 13px;
   align-items: center;
   padding: 0px;
