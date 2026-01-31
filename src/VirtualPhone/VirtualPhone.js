@@ -51392,7 +51392,7 @@ son compte Vixinol store */
               <div className="a" onClick={CloseMessageFA}> <SvgLeft/> </div>
               <div className="b" onClick={CloseMessageFA}> <img src={photoOther} alt=""/> </div>
 
-              <div className="c" onClick={OuvrirUnProfilFA}>
+              <div className="c" onClick={ProfilFA}>
                 <div className="aa">
                   <p>{nameOther}</p>
                   {badgeOther === "1" && (<><SvgBadge/></>)}
