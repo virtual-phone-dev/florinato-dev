@@ -35288,8 +35288,7 @@ const conversationsTrierParDate = useMemo(() => {
 	msgB est plus récent → B passe avant A
 	msgA est plus récent → A passe avant B */
   })
-  .slice(0, lotActuel);
-}, [dataConversations, lotActuel, messageMap]);
+}, [dataConversations, messageMap]);
 
 	/* RÉSUMÉ SIMPLE
 	a/b → conversations
@@ -35299,7 +35298,7 @@ const conversationsTrierParDate = useMemo(() => {
 	la conversation avec le message le plus récent monte en haut */
 
 
-const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers]; }, [conversationsTrierParDate, dataFollowers]);
+const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers].slice(0, lotActuel); }, [conversationsTrierParDate, lotActuel, dataFollowers]);
 
 console.log("conversationsTrierParDate ", conversationsTrierParDate);
 console.log("dataConversationFA ", dataConversationFA);
