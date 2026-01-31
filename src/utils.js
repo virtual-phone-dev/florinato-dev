@@ -1023,7 +1023,7 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 
 
 
-const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
+const donneesAffichees_account_other1 = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
 .sort((a, b) => {
 	if (!a.createdAt && !b.createdAt) return 0;
 	if (!a.createdAt) return 1;
@@ -1032,6 +1032,9 @@ const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees]
 	return new Date(b.createdAt) - new Date(a.createdAt);
 });
 }, [toutesDonnees, idPersonConnectedFA]);
+
+
+const donneesAffichees_account_other = useMemo(() => donneesAffichees_account_other1.slice(0, lotActuel), [donneesAffichees_account_other1, lotActuel] ); // 
 
 
 const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filter(api => api.idConversation === idConversation)
