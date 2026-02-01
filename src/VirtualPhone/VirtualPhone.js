@@ -105,7 +105,7 @@ const dateParserLong = (date) => {
 
 
 //ChildApi 66florinatoApp
-function ChildApi66florinatoApp({ api, profilMap, messageMap }) {
+function ChildApi66florinatoApp({ api, onlineUsers, profilMap, messageMap }) {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
   const [checked, setChecked] = useState(false);
@@ -50832,9 +50832,9 @@ son compte Vixinol store */
 
           <div className="body">
             <div className="api">
-                {dataConversationFA.map((api) => (
+                {dataConversationFA.map((api) => ( 
 			    <div onClick={() => { if (api.type === "30") {setIdConversation(api._id);} PageRedirection66ChildApi66florinatoApp(); }} >
-					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} /> 
+					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} onlineUsers={onlineUsers} /> 
 				</div> 
 				))}
             </div> 
