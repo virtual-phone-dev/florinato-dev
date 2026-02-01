@@ -34857,19 +34857,26 @@ async function DissadAA() {
 const socketRef = useRef(null);
 const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
+
 useEffect(() => {
   if (!socketRef.current) {
     socketRef.current = io("https://api2florinato.onrender.com", {
       transports: ["websocket"],
+      reconnection: true,
     });
   }
 
   const socket = socketRef.current;
-
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  if (idPersonConnectedFA) {
-    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
-  }
+
+  // 🔵 À CHAQUE connexion / reconnexion
+  socket.on("connect", () => {
+    console.log("Socket connecté :", socket.id);
+
+    if (idPersonConnectedFA) {
+      socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
+    }
+  });
 
   socket.on("users:online", (users) => {
     setOnlineUsers(users);
@@ -34878,21 +34885,13 @@ useEffect(() => {
   socket.on("receiveMessage", (msg) => {
     setApiMessageFA(prev => [msg, ...prev]);
   });
-  
-/* socket.on("receiveMessage", (msg) => {
-	  setApiMessageFA(prev => {
-		  if (prev.some(m => m._id === msg._id)) return prev;
-		  return [msg, ...prev];
-		});
-	  }); */
 
   return () => {
+    socket.off("connect");
     socket.off("users:online");
     socket.off("receiveMessage");
   };
 }, []);
-
-
 
 
   async function SendMessageFAA() {
