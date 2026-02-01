@@ -34978,13 +34978,24 @@ Le socket envoie écriture:debut
 Si tu t’arrêtes 1,5 s → écriture:fin */
 
 
-
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
 useEffect(() => {
   const socket = socketRef.current;
-
+  if (!socket) return;
+  
+	socket.on("message:misAJour", (message) => { // data modification reussi , (ce code recoit le nouveau document modifié)
+		console.log("element reçu modifié :", message);
+		
+	  setApiMessageFA(prev =>
+		prev.map(m =>
+		  m._id === message._id ? message : m // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés
+		)
+	  );
+	});
+	
+	
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
     setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
       ...prev,
@@ -35003,6 +35014,7 @@ useEffect(() => {
   return () => {
     socket.off("ecrire:debut");
     socket.off("ecrire:fin");
+	socket.off("message:misAJour");
   };
 }, []);
 
@@ -35013,6 +35025,7 @@ useEffect(() => {
 ✔️ estEnTrainDecrire pour éviter le spam
 ✔️ séparation émetteur / récepteur 
 ✔️ logique PRO (niveau WhatsApp) */
+
 
 
 
