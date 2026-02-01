@@ -112,8 +112,8 @@ function ChildApi66florinatoApp({ api, profilMap, messageMap }) {
   async function Checked() {
     setChecked(!checked);
 
-    const id = api._id; // id
-    if(id) { localStorage.setItem("idConversation", id); }
+    //const id = api._id; // id
+    //if(id) { localStorage.setItem("idConversation", id); }
 
     const idOther = api.idOther;
     if(idOther) { 
@@ -171,9 +171,9 @@ function ChildApi66florinatoApp({ api, profilMap, messageMap }) {
   const idAccount = api.idAccount === idPersonConnectedFA;
   const idOther = api.idOther === idPersonConnectedFA;
   
-  // pour obtenir les informations du profil, (logique pour savoir si c'est l'id de l'expediteur ou du destinataire)
-  const idToUse = idAccount ? api.idOther:idOther ? api.idAccount : null;
-  const profil = idToUse ? profilMap[idToUse] : null;
+  // pour obtenir les informations du profil
+  const idUtiliser = idAccount ? api.idOther:idOther ? api.idAccount : null; // logique pour savoir si c'est l'id de l'expediteur ou du destinataire
+  const profil = idUtiliser ? profilMap[idUtiliser] : null;
   
 
   // On récupère le message récent pour chaque conversation
@@ -187,10 +187,8 @@ function ChildApi66florinatoApp({ api, profilMap, messageMap }) {
 
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
   
-	/*console.log("idToUse icii ", idToUse);
-	console.log("profil icii ", profil);
-	console.log("profilMap icii ", profilMap);*/
-	
+  const isOnline = onlineUsers.includes(idUtiliser);
+  
   return (<>
     <div className="child" onClick={Checked}>
       {api.type === "30" && idAccount && (<> {/* type=30 , (conversation que j'ai envoyé à Other) */}
@@ -202,6 +200,7 @@ function ChildApi66florinatoApp({ api, profilMap, messageMap }) {
         <div className="B">
           <div className="a"> <p>{api.nameOther}</p> </div>
           <div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
+          <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div>
         </div>
         {/* B */}
       </div></>)}
@@ -214,8 +213,9 @@ function ChildApi66florinatoApp({ api, profilMap, messageMap }) {
 		</>) : (<><p>Profil non trouvé</p> </>)}
 
         <div className="B">
-          <div className="a"> <p>{api.nameAccount}</p> </div>
-          <div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
+			<div className="a"> <p>{api.nameAccount}</p> </div>
+			<div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
+		    <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div>
         </div>
         {/* B */}
       </div></>)}
@@ -34850,62 +34850,46 @@ async function DissadAA() {
   const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
   
-  /* useEffect(() => {
-    async function get() {
-      await axios.get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-      .then((res) => {
-        setApiMessageFAA(res.data);
-        setApiMessageFA(res.data);
-      })
-      .catch((err) => {
-		console.log("apiMessageFAA, impossible de recevoir les messages");
-		console.log(err);
-	  });
-    }
-    get();
-  }, []);
+  
 
-  const socket = io("https://api2florinato.onrender.com", {
-	  transports: ["websocket"],
-	});
-	
-	
-  useEffect(() => {	  
-	  // Temps réel
-	  socket.on("receiveMessage", (msg) => {
-		setApiMessageFAA((prev) => [msg, ...prev]);
-		setApiMessageFA((prev) => [msg, ...prev]);
-	  });
+const socketRef = useRef(null);
+const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
-	  return () => socket.off("receiveMessage");
-	}, [socket]);
-*/
+useEffect(() => {
+  if (!socketRef.current) {
+    socketRef.current = io("https://api2florinato.onrender.com", {
+      transports: ["websocket"],
+    });
+  }
 
+  const socket = socketRef.current;
 
-	const socketRef = useRef(null);
+  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  if (idPersonConnectedFA) {
+    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
+  }
 
-	useEffect(() => {
-	  if (!socketRef.current) {
-		socketRef.current = io("https://api2florinato.onrender.com", {
-		  transports: ["websocket"],
-		});
-	  }
+  socket.on("users:online", (users) => {
+    setOnlineUsers(users);
+  });
 
-	  const socket = socketRef.current;
-	  
-	  /* socket.on("receiveMessage", (msg) => {
+  socket.on("receiveMessage", (msg) => {
+    setApiMessageFA(prev => [msg, ...prev]);
+  });
+  
+/* socket.on("receiveMessage", (msg) => {
 	  setApiMessageFA(prev => {
 		  if (prev.some(m => m._id === msg._id)) return prev;
 		  return [msg, ...prev];
 		});
 	  }); */
-	  
-	  socket.on("receiveMessage", (msg) => {
-		setApiMessageFA(prev => [msg, ...prev]);
-	  }); 
 
-	  return () => { socket.off("receiveMessage"); };
-	}, []);
+  return () => {
+    socket.off("users:online");
+    socket.off("receiveMessage");
+  };
+}, []);
+
 
 
 
@@ -34932,6 +34916,7 @@ async function DissadAA() {
 	socketRef.current.emit("sendMessage", messageData);
     setWriteMessage66messageFA("");
   };
+  
 
 
   // filtre pour obtenir quelques infos de l'utilisateur connecter
