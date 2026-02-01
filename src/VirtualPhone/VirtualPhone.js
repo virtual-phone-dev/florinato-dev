@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, sauvegarderDansIndexedDB,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
@@ -34986,15 +34986,22 @@ useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
   
-	socket.on("message:misAJour", (message) => { // data modification reussi , (ce code recoit le nouveau document modifié)
-		console.log("element reçu modifié :", message);
-		
-	  setApiMessageFA(prev =>
-		prev.map(m =>
-		  m._id === message._id ? message : m // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés
-		)
-	  );
-	});
+  
+//const typeDeTable = { "10":"comptes", "30":"conversations", "50":"followers", "1":"messages", "3":"videos", };
+const typeDeTable = { "3":"videos" };
+
+socket.on("message:misAJour", (element) => { // data modification reussi , (ce code recoit le nouveau document modifié)
+	console.log("element reçu modifié :", element);
+	
+    const table = typeDeTable[element.type];
+
+  setApiMessageFA(prev =>
+	prev.map(m => 
+		m._id === element._id ? element : m  // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages (ou element) du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés  
+	));
+
+  sauvegarderDansIndexedDB(table, [element]).catch(err => console.error("Erreur IndexedDB :", err));
+});
 	
 	
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
