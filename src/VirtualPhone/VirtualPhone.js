@@ -34942,7 +34942,9 @@ const gererChangementMessage = (e) => { // Quand l’utilisateur tape dans le te
 	const texte = e.target.value;
 	console.log("L'utilisateur écrit :", texte); // Tu verras le texte s’afficher dans la console à chaque frappe
 	setWriteMessage66messageFA(texte); // On met à jour le texte (normal) . Juste pour afficher ce que l’utilisateur tape
-
+	
+  if (!socketRef.current) return;
+  
   if (!estEnTrainDecrire) { // S’il commence JUSTE à écrire . Ah, il n’écrivait pas avant → là il commence → j’envoie UNE fois . Le if évite le spam socket
     setEstEnTrainDecrire(true);
 
