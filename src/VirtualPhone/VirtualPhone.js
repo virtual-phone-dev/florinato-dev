@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
@@ -105,7 +105,7 @@ const dateParserLong = (date) => {
 
 
 //ChildApi 66florinatoApp
-function ChildApi66florinatoApp({ api, onlineUsers, profilMap, messageMap }) {
+function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, profilMap, messageMap }) {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
   const [checked, setChecked] = useState(false);
@@ -188,6 +188,8 @@ function ChildApi66florinatoApp({ api, onlineUsers, profilMap, messageMap }) {
   const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
   
   const isOnline = onlineUsers.includes(idUtiliser);
+  const idConversation = api._id;
+  
   
   return (<>
     <div className="child" onClick={Checked}>
@@ -201,6 +203,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, profilMap, messageMap }) {
           <div className="a"> <p>{api.nameOther}</p> </div>
           <div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
           <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div>
+		  {utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
         </div>
         {/* B */}
       </div></>)}
@@ -216,6 +219,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, profilMap, messageMap }) {
 			<div className="a"> <p>{api.nameAccount}</p> </div>
 			<div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
 		    <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div>
+			{utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
         </div>
         {/* B */}
       </div></>)}
@@ -34850,8 +34854,6 @@ async function DissadAA() {
   const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
   
-  
-
 const socketRef = useRef(null);
 const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
@@ -34903,9 +34905,6 @@ useEffect(() => {
 	  idConversation,
 	  idOther,
       idAccount: idPersonConnectedFA,
-      nameAccount: nameFA,
-      photoAccount: photoFA,
-      badgeAccount: badgeFA,
       message: writeMessage66messageFA,
       type: "1",
       visible: "1",
@@ -34917,6 +34916,104 @@ useEffect(() => {
     setWriteMessage66messageFA("");
   };
   
+
+
+// Ce code gère la fonctionnalité d'indicateur d'écriture dans une messagerie en temps réel, en utilisant React et Socket.IO.
+
+
+/* PRINCIPE (1 phrase)
+
+Quand l’utilisateur commence à écrire, le client prévient le serveur.
+Le serveur prévient l’autre personne uniquement.
+Quand il arrête, on enlève l’indicateur. */
+
+
+/* Le typing indicator, c’est juste ça :
+
+✍️ quand je commence à taper → je préviens
+⏸️ quand j’arrête de taper → je préviens aussi
+et chez l’autre personne, on affiche ou enlève “en train d’écrire…” */
+
+const [estEnTrainDecrire, setEstEnTrainDecrire] = useState(false); // il n’écrivait pas -> false , il est déjà en train d’écrire -> true
+const timerEcriture = useRef(null); //Ça sert à savoir quand l’utilisateur s’est arrêté d’écrire.
+
+//Quand l’utilisateur écrit . Quand l’utilisateur écrit dans le textarea
+const gererChangementMessage = (e) => { // Quand l’utilisateur tape dans le textarea . Cette fonction est appelée à CHAQUE lettre
+	const texte = e.target.value;
+	console.log("L'utilisateur écrit :", texte); // Tu verras le texte s’afficher dans la console à chaque frappe
+	setWriteMessage66messageFA(texte); // On met à jour le texte (normal) . Juste pour afficher ce que l’utilisateur tape
+
+  if (!estEnTrainDecrire) { // S’il commence JUSTE à écrire . Ah, il n’écrivait pas avant → là il commence → j’envoie UNE fois . Le if évite le spam socket
+    setEstEnTrainDecrire(true);
+
+    socketRef.current.emit("ecrire:debut", { // l'utilisateur commence à écrire . Quand un utilisateur commence à taper dans le message, le client envoie un signal au serveur (ecrire:debut) pour prévenir l'autre personne
+      idConversation,
+      idExpediteur: idPersonConnectedFA,
+      idDestinataire,
+    });
+  }
+ 
+  clearTimeout(timerEcriture.current); // On reset le timer à chaque frappe . À chaque lettre, on dit: non, il ne s’est pas encore arrêté”
+
+	// Si l'utilisateur ne tape plus pendant 1,5 seconde, le timer se déclenche automatiquement : On met estEnTrainDecrire à false . On envoie ecrire:fin via le socket pour prévenir l'autre utilisateur.
+  timerEcriture.current = setTimeout(() => { // S’il ne tape plus pendant 1.5s . on enlève l’indicateur chez l’autre personne
+    setEstEnTrainDecrire(false);
+
+    socketRef.current.emit("ecrire:fin", { // Quand il arrête d'écrire pendant 1,5 seconde, le client envoie un signal (ecrire:fin) pour indiquer qu'il a arrêté
+      idConversation,
+      idExpediteur: idPersonConnectedFA,
+      idDestinataire,
+    });
+  }, 1500); // 1.5s sans écrire
+};
+// Sur le côté réception, chaque utilisateur voit qui est en train d'écrire grâce à ces signaux ci-dessus
+
+
+/* CE QUI SE PASSE CONCRÈTEMENT
+
+Tu tapes une lettre
+onChange se déclenche
+gererChangementMessage(e) est appelée
+Le socket envoie écriture:debut
+Si tu t’arrêtes 1,5 s → écriture:fin */
+
+
+
+// Écouter l'écriture (côté RECEVEUR) 
+const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
+
+useEffect(() => {
+  const socket = socketRef.current;
+
+  socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
+    setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
+      ...prev,
+      [idConversation]: idExpediteur,
+    }));
+  });
+
+  socket.on("ecrire:fin", ({ idConversation }) => { // Quand il arrête . On enlève l’indicateur pour cette conversation
+    setUtilisateursQuiEcrivent(prev => { // Quand il arrête (ecrire:fin), on supprime cette information
+      const copie = { ...prev };
+      delete copie[idConversation];
+      return copie;
+    });
+  });
+
+  return () => {
+    socket.off("ecrire:debut");
+    socket.off("ecrire:fin");
+  };
+}, []);
+
+
+/* CE QUE TU AS BIEN FAIT
+
+✔️ useRef pour le timer
+✔️ estEnTrainDecrire pour éviter le spam
+✔️ séparation émetteur / récepteur 
+✔️ logique PRO (niveau WhatsApp) */
+
 
 
   // filtre pour obtenir quelques infos de l'utilisateur connecter
@@ -35011,6 +35108,7 @@ useEffect(() => {
 	const [idreq, setId] = useState(null);
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
+	const [idDestinataire, setIdDestinataire] = useState(null);
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
 	
@@ -35035,6 +35133,7 @@ useEffect(() => {
 	const photoProprietairePost = infosProprietairePost.map((api) => api.photoProfile);
 	const nomProprietairePost = infosProprietairePost.map((api) => api.nameAccount);
 	
+	console.log(`idDestinataire`, idDestinataire);
 	console.log(`idProprietairePost`, idProprietairePost);
 	console.log(`infosProprietairePost`, infosProprietairePost);
 	console.log(`photoProprietairePost`, photoProprietairePost);
@@ -35161,7 +35260,7 @@ const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompt
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
 const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
 
-const { donneesAffichees_account_other: dataConversations, lotActuel, gererScroll: gererScrollConversations 
+const { donneesAffichees_account_other: dataConversations, gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
 	donnees:conversationsSource 
@@ -35291,9 +35390,8 @@ const conversationsTrierParDate = useMemo(() => {
 	la conversation avec le message le plus récent monte en haut */
 
 
-const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers].slice(0, lotActuel); }, [conversationsTrierParDate, lotActuel, dataFollowers]);
+const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
 
-console.log("lotActuel ", lotActuel);
 console.log("messageMap ", messageMap);
 console.log("idConversation ", idConversation);
 console.log("filterMessageFA ", filterMessageFA);
@@ -50830,11 +50928,12 @@ son compte Vixinol store */
           </div>
           {/* head */}
 
-          <div className="body">
+
+          <div className="body"> 
             <div className="api">
                 {dataConversationFA.map((api) => ( 
-			    <div onClick={() => { if (api.type === "30") {setIdConversation(api._id);} PageRedirection66ChildApi66florinatoApp(); }} >
-					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} onlineUsers={onlineUsers} /> 
+			    <div onClick={() => { if (api.type === "30") {setIdConversation(api._id); setIdDestinataire(api.idOther); } PageRedirection66ChildApi66florinatoApp(); }} >
+					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} onlineUsers={onlineUsers} utilisateursQuiEcrivent={utilisateursQuiEcrivent} /> 
 				</div> 
 				))}
             </div> 
@@ -51410,7 +51509,8 @@ son compte Vixinol store */
 
             {/* ecrire message (ca c'est l'input pour ecrire un message) */}
             <div className="write">
-              <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={(e) => setWriteMessage66messageFA(e.target.value)}></textarea> </div>
+              {/* <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={(e) => setWriteMessage66messageFA(e.target.value)}></textarea> </div> */}
+              <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={gererChangementMessage} texte="Écrire un message..." /> </div>
               {verifyConversation1 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
               {verifyConversation2 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
 
