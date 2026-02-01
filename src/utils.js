@@ -1652,22 +1652,27 @@ export default function CommentaireTemplate({ api, profilMap={}, RepondrePage })
 //CommentaireTemplate
 
 
-export function AutoTextarea({ valeur, setValeur, texte="..", maxHeight=160, className="textarea-css", rows=1, }) {
+export function AutoTextarea({ valeur, setValeur, texte="..", hauteurMax=160, className="textarea-css", lignes=1, ecrire=null }) { // ecrire est facultatif , si on ne lappelle ya aucun souci , car ca va prendre la valeur null
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    const el = textareaRef.current;
+    const el = textareaRef.current; // el = element
     if (!el) return;
 
     el.style.height = "auto";
-    el.style.height = Math.min(el.scrollHeight, maxHeight) + "px";
+    el.style.height = Math.min(el.scrollHeight, hauteurMax) + "px";
     el.style.overflowY =
-      el.scrollHeight > maxHeight ? "auto" : "hidden";
-  }, [valeur, maxHeight]);
+      el.scrollHeight > hauteurMax ? "auto" : "hidden";
+  }, [valeur, hauteurMax]);
+
+  const gererChangement = (e) => {
+    setValeur(e.target.value); // toujours mettre à jour la valeur locale
+    if (ecrire) { ecrire(e); } // déclenche typing indicator si fourni 
+  }; // ecrire , ecriture encore appeler typing
 
   return (
-    <textarea ref={textareaRef} value={valeur} rows={rows} placeholder={texte} className={className} onChange={(e) => setValeur(e.target.value)} />
-)}  
+    <textarea ref={textareaRef} value={valeur} rows={lignes} placeholder={texte} className={className} onChange={gererChangement} />
+)}
 
 
 //ChildApi 66profilFA

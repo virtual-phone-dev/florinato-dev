@@ -51528,11 +51528,13 @@ son compte Vixinol store */
             </div>
 
             <p style={{ paddingTop: "100px" }}></p>
+		
 
             {/* ecrire message (ca c'est l'input pour ecrire un message) */}
             <div className="write">
-              <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={gererChangementMessage}></textarea> </div>
-              <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={gererChangementMessage} texte="Écrire un message..." /> </div>
+              {/* <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={gererChangementMessage}></textarea> </div> */}
+              <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
+			  
               {verifyConversation1 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
               {verifyConversation2 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
 
