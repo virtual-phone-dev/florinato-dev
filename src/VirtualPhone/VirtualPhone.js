@@ -35210,10 +35210,17 @@ useEffect(() => {
 
 
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
-const { donneesAffichees:dataVideoFA, donneesAffichees_idAccount:dataMesVideosFA, toutesDonnees_idAccount:toutesMesVideos, toutesDonnees:toutesVideos, gererScroll 
+const { 
+	donneesAffichees: dataVideoFA, 
+	donneesAffichees_idAccount: dataMesVideosFA, 
+	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
+	toutesDonnees_idAccount: toutesMesVideos, 
+	toutesDonnees: toutesVideos, 
+	gererScroll 
 } = useScrollIndexedDB({ 
 	nomStockage: "videos", 
 	donnees:videosSource, 
+	idProprietairePost,
 	rechercherMaVideo: rechercherMaVideoFA,
 	rechercherUneVideo: rechercherUneVideoFA,
 });
@@ -35310,8 +35317,9 @@ useEffect(() => {
   console.log("listAccountFA ", listAccountFA);
   console.log("dataConversations ", dataConversations);
   console.log("dataFollowers", dataFollowers);
+  console.log("dataVideoIdProprietairePost", dataVideoIdProprietairePost);
   //console.log("dataConversationFA ", dataConversationFA);
-}, [dataComptesFA, dataFollowers, dataConversations, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+}, [dataComptesFA, dataFollowers, dataConversations, dataVideoIdProprietairePost, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
 
 
 // filtre pour obtenir tout les messages de la discussion - FA
@@ -52163,7 +52171,7 @@ son compte Vixinol store */
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
 			<div className="overflow-x">
-			{dataMesVideosFA.map((api) => (<>
+			{dataVideoIdProprietairePost.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>

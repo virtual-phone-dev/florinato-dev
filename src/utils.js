@@ -983,7 +983,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
-export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, idConversation, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, idConversation, idProprietairePost, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
@@ -1021,6 +1021,14 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 	}) */
 }, [toutesDonnees, idPersonConnectedFA]);
 
+
+const donneesAffichees_idProprietairePost = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idProprietairePost)
+.sort((a, b) => {
+  const da = new Date(a.createdAt || 0);
+  const db = new Date(b.createdAt || 0);
+  return db - da;
+}).slice(0, lotActuel);
+}, [toutesDonnees, lotActuel, idProprietairePost] ); 
 
 
 const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
@@ -1122,7 +1130,7 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
