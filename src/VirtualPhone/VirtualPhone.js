@@ -204,7 +204,9 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
         <div className="B">
           <div className="a"> <p>{api.nameOther}</p> </div>
           <div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
-          <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div>
+          {/* <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div> */}
+		  {isOnline && (
+		  <div className="connecter"> <p>Connecté</p> <SvgMark1/> </div>)}
 		  {utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
         </div>
         {/* B */}
@@ -220,7 +222,9 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
         <div className="B">
 			<div className="a"> <p>{api.nameAccount}</p> </div>
 			<div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
-		    <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div>
+		    {/* <div className="b"> <p>{isOnline ? "utilisateur en ligne" : "utilisateur non connecté"}</p> </div> */}
+			{isOnline && (
+			<div className="connecter"> <p>Connecté</p> <SvgMark1/> </div>)}
 			{utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
         </div>
         {/* B */}
