@@ -1197,11 +1197,6 @@ export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) 
   const [dernierCurseur, setDernierCurseur] = useState(null);
   const [peutChargerPlus, setPeutChargerPlus] = useState(true);
 
-  // Chargement initial
-  useEffect(() => {
-    chargerPremierLot();
-  }, [chargerPremierLot]);
-  
 
   const chargerPremierLot = useCallback(async () => {
     const premierLot = await table
@@ -1220,7 +1215,12 @@ export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) 
   }, [table, tailleLot]);
 
 
-
+  // Chargement initial
+  useEffect(() => {
+    chargerPremierLot();
+  }, [chargerPremierLot]);
+  
+  
   const chargerLotSuivant = useCallback(async () => {
     if (!peutChargerPlus || !dernierCurseur) return;
 
