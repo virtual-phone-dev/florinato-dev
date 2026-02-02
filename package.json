@@ -8,6 +8,8 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.6.2",
+    "dexie": "^4.3.0",
+    "dexie-react-hooks": "^4.2.0",
     "eslint": "^8.31.0",
     "fuse.js": "^7.1.0",
     "i18next": "^23.7.6",

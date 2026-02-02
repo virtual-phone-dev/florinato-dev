@@ -1146,6 +1146,22 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 
 
 
+// dexie
+// dexie
+// dexie
+
+import Dexie from "dexie";
+
+export const dexieDB = new Dexie("FlorinatoDB");
+
+dexieDB.version(1).stores({
+  messages: "_id, idConversation, createdAt",
+  videos: "_id, idAccount, createdAt",
+  /* commentaires: "_id, idPost, createdAt",
+  bio: "_id", */
+});
+
+
 export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup, PagesGerer, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
 	//const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
 	

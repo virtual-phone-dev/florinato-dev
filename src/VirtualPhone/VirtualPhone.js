@@ -5,10 +5,12 @@ import Loader from "../Loader/Loader";
 import axios from "axios";
 import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
+import { useLiveQuery } from "dexie-react-hooks";
+
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, sauvegarderDansIndexedDB,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, sauvegarderDansIndexedDB, dexieDB,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
@@ -34823,7 +34825,7 @@ async function DissadAA() {
   const urlPhotoreq = localStorage.getItem("urlPhotoreq");
   const urlVideoreq = localStorage.getItem("urlVideoreq");
 
-  //requete pour obtenir tout les messages
+  //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
   useEffect(() => {
 	async function fetchData() {
@@ -34982,6 +34984,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
+/*
 useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
@@ -35030,7 +35033,7 @@ socket.on("message:misAJour", (element) => { // data modification reussi , (ce c
 	socket.off("message:misAJour");
   };
 }, []);
-
+*/
 
 /* CE QUE TU AS BIEN FAIT
 
@@ -35039,6 +35042,90 @@ socket.on("message:misAJour", (element) => { // data modification reussi , (ce c
 ✔️ séparation émetteur / récepteur 
 ✔️ logique PRO (niveau WhatsApp) */
 
+
+
+
+// dexie
+// dexie
+// dexie
+
+useEffect(() => {
+  const socket = socketRef.current;
+  if (!socket) return;
+
+
+socket.on("message:misAJour", async (element) => {
+  const tableParType = {
+    "1": "messages",
+    "3": "videos",
+  };
+
+  const table = tableParType[element.type];
+  if (!table) return;
+
+  // 1️⃣ Met à jour IndexedDB
+  await dexieDB[table].put(element);
+  console.log(`table ${table} mis à jour en temps réel`);
+
+  // 2️⃣ Met à jour l’API state (optionnel mais OK)
+  setApiMessageFA(prev =>
+    prev.map(m => m._id === element._id ? element : m)
+  );
+});
+
+		
+  socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
+    setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
+      ...prev,
+      [idConversation]: idExpediteur,
+    }));
+  });
+
+  socket.on("ecrire:fin", ({ idConversation }) => { // Quand il arrête . On enlève l’indicateur pour cette conversation
+    setUtilisateursQuiEcrivent(prev => { // Quand il arrête (ecrire:fin), on supprime cette information
+      const copie = { ...prev };
+      delete copie[idConversation];
+      return copie;
+    });
+  });
+
+  return () => {
+    socket.off("ecrire:debut");
+    socket.off("ecrire:fin");
+	socket.off("message:misAJour");
+  };
+}, []);
+
+
+
+// Sauvegarde des donnees de apiMessageFA dans IndexedDB (en passant par dexie)
+useEffect(() => {
+  if (!apiMessageFA || apiMessageFA.length === 0) return;
+
+  async function syncApiVersDexie() {
+    const videos = apiMessageFA.filter(e => e.type === "3");
+    const messages = apiMessageFA.filter(e => e.type === "1");
+
+    await dexieDB.transaction("rw",
+      dexieDB.videos,
+      dexieDB.messages,
+      async () => {
+        if (videos.length) await dexieDB.videos.bulkPut(videos);
+        if (messages.length) await dexieDB.messages.bulkPut(messages);
+      }
+    );
+
+    console.log("✅ API → Dexie synchronisé");
+  }
+
+  syncApiVersDexie();
+}, [apiMessageFA]);
+
+
+const dataVideoFAA = useLiveQuery(() => dexieDB.videos.orderBy("createdAt").reverse().toArray(), []);
+
+console.log("dataVideoFAA", dataVideoFAA);
+console.log("dexieDB", dexieDB);
 
 
   // filtre pour obtenir quelques infos de l'utilisateur connecter
@@ -52207,7 +52294,7 @@ son compte Vixinol store */
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={dataVideoFA} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos data={dataVideoFAA} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>
