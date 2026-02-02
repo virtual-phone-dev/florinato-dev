@@ -2,6 +2,8 @@ import axios from 'axios';
 import { React, useState, useEffect, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
+import Dexie from "dexie";
+
 import { theme } from "./theme";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 } from "./Svg/Svg";
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -1149,9 +1151,6 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 // dexie
 // dexie
 // dexie
-
-import Dexie from "dexie";
-
 export const dexieDB = new Dexie("FlorinatoDB");
 
 dexieDB.version(1).stores({
