@@ -10,7 +10,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, sauvegarderDansIndexedDB, dexieDB,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, dexieDB,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
