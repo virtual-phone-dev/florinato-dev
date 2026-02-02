@@ -35317,6 +35317,7 @@ console.log("dexieDB", dexieDB);
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
 const { 
 	donneesAffichees: dataVideoFA, 
+	donneesAffichees_byClic: dataVideoFAbyClic, 
 	donneesAffichees_idAccount: dataMesVideosFA, 
 	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
 	toutesDonnees_idAccount: toutesMesVideos, 
@@ -35330,9 +35331,10 @@ const {
 	rechercherUneVideo: rechercherUneVideoFA,
 });
 
+console.log("dataVideoFAbyClic", dataVideoFAbyClic);
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
-const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
+const listVideoFA = useMemo(() => rechercherAvecFuse({ data:dataVideoFAA, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
 //const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
@@ -51074,7 +51076,7 @@ son compte Vixinol store */
 	  			
 				
 		<VideosPageTemplate
-			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFA} profilMap={profilMap} photo={photoFA} video
+			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
 			setId={setId} setIdProprietairePost={setIdProprietairePost} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
 

@@ -1013,6 +1013,29 @@ const donneesAffichees = useMemo(() => { return [...toutesDonnees]
 }, [toutesDonnees, lotActuel] ); 
 
 
+
+const donneesAffichees_byClic = useMemo(() => {
+  return [...toutesDonnees]
+    .sort((a, b) => {
+      const clicA = a.clic ?? 0;
+      const clicB = b.clic ?? 0;
+
+      // 1️. priorité a ceux qui ont moins de clics (on les met en haut)
+      if (clicA !== clicB) {
+        return clicA - clicB;
+      }
+
+      // 2️. à clic égal → le plus récent en haut
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+
+      return dateB - dateA;
+    })
+    .slice(0, lotActuel);
+}, [toutesDonnees, lotActuel]);
+
+
+
 const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 
@@ -1032,6 +1055,7 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 	  return db - da;
 	}) */
 }, [toutesDonnees, idPersonConnectedFA]);
+
 
 
 const donneesAffichees_idProprietairePost = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idProprietairePost)
@@ -1064,6 +1088,8 @@ const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filt
 	return new Date(b.createdAt) - new Date(a.createdAt);
 }).slice(0, lotActuel);
 }, [toutesDonnees, lotActuel, idConversation] ); 
+
+
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
 const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idUser === idUserConnectedFA)
@@ -1142,7 +1168,7 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
