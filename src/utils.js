@@ -1161,6 +1161,12 @@ dexieDB.version(1).stores({
   bio: "_id", */
 });
 
+dexieDB.open().then(() => {
+  console.log("Dexie DB ouverte");
+}).catch(err => {
+  console.error("🔴 Erreur ouverture Dexie", err);
+});
+
 
 export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup, PagesGerer, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
 	//const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
