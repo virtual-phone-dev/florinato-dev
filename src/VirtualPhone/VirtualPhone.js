@@ -40764,9 +40764,9 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   
 
   const [seeVideoFAreq, setSeeVideoFAreq] = useState(false); 
-  async function SeeVideoFAreq() { setSeeVideoFAreq(true); } //voir la video (lors de la requete)
-  async function CloseSeeVideoFAreq() { setSeeVideoFAreq(false); }
-  
+  async function SeeVideoFAreq() { setSeeVideoFAreq(true); setVideosPageFA(false); } //voir la video (lors de la requete)
+  async function CloseSeeVideoFAreq() { setVideosPageFA(true); setSeeVideoFAreq(false); }
+
   
   const [seePhotoOther, setSeePhotoOther] = useState(false); 
   async function SeePhotoOther() { setSeePhotoOther(true); } //afficher la photo de l'autre 
@@ -42505,7 +42505,7 @@ async function PageRedirection66groupOtherFA() {
   // page ou on affiche toutes les videos - FA 
   const [videosPageFA, setVideosPageFA] = useState(false); 
   async function VideosPageFA() { setVideosPageFA(true); setFlorinatoApp(false); }
-  async function CloseVideosPageFA() { setFlorinatoApp(true);setVideosPageFA(false); }
+  async function CloseVideosPageFA() { setFlorinatoApp(true); setVideosPageFA(false); }
   
   
   // Les comptes les plus populaires sur florinato - FA 
