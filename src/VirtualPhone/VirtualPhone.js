@@ -35306,7 +35306,7 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 });
 
 
-
+/*
 useEffect(() => {
   console.log("dataMessagesFA", dataMessagesFA);
   console.log("toutMessages", toutMessages);
@@ -35329,6 +35329,7 @@ useEffect(() => {
   //console.log("dataConversationFA ", dataConversationFA);
 }, [dataComptesFA, dataFollowers, dataConversations, dataVideoIdProprietairePost, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
 
+*/
 
 // filtre pour obtenir tout les messages de la discussion - FA
 //const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
