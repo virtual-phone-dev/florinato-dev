@@ -35126,6 +35126,63 @@ useEffect(() => {
 }, [apiMessageFA]);
 
 
+// ici on essaye de faire le charger plus par lot , avec dexie
+const [videosAffichees, setVideosAffichees] = useState([]);
+const [dernierCreatedAt, setDernierCreatedAt] = useState(null);
+const [peutChargerPlus, setPeutChargerPlus] = useState(true);
+const TAILLE_LOT = 20;
+
+const chargerPremierLotVideos = async () => { // Charger le PREMIER lot
+  const premierLot = await dexieDB.videos
+    .orderBy("createdAt")
+    .reverse() // les plus récents en haut
+    .limit(TAILLE_LOT)
+    .toArray();
+
+  setVideosAffichees(premierLot);
+
+  if (premierLot.length < TAILLE_LOT) {
+    setPeutChargerPlus(false);
+  } else {
+    setDernierCreatedAt(
+      premierLot[premierLot.length - 1].createdAt
+    );
+  }
+};
+
+
+const chargerLotSuivantVideos = async () => { // Charger le lot SUIVANT (scroll)
+  if (!peutChargerPlus || !dernierCreatedAt) return;
+
+  const lotSuivant = await dexieDB.videos
+    .where("createdAt")
+    .below(dernierCreatedAt) // 👈 après la dernière vidéo affichée
+    .reverse()
+    .limit(TAILLE_LOT)
+    .toArray();
+
+  if (!lotSuivant.length) {
+    setPeutChargerPlus(false);
+    return;
+  }
+
+  setVideosAffichees(videosPrecedentes => [
+    ...videosPrecedentes,
+    ...lotSuivant
+  ]);
+
+  setDernierCreatedAt(
+    lotSuivant[lotSuivant.length - 1].createdAt
+  );
+};
+
+
+// Lancer le premier chargement
+useEffect(() => {
+  chargerPremierLotVideos();
+}, []);
+
+
 const dataVideoFAA = useLiveQuery(() => dexieDB.videos.orderBy("createdAt").reverse().toArray(), []);
 
 console.log("dataVideoFAA", dataVideoFAA);
@@ -35334,7 +35391,8 @@ const {
 console.log("dataVideoFAbyClic", dataVideoFAbyClic);
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
-const listVideoFA = useMemo(() => rechercherAvecFuse({ data:dataVideoFAA, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
+//const listVideoFA = useMemo(() => rechercherAvecFuse({ data:dataVideoFAA, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
+const listVideoFA = useMemo(() => rechercherAvecFuse({ data:dataVideoFAA, search:rechercherUneVideoFA, keys:["message"] }), [dataVideoFAA, rechercherUneVideoFA] );
 //const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
