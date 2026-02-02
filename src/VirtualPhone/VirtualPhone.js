@@ -40754,8 +40754,8 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   
   
   const [seeVideoFA, setSeeVideoFA] = useState(false); //voir la video
-  async function SeeVideoFA() { setSeeVideoFA(true); }
-  async function CloseSeeVideoFA() { setSeeVideoFA(false); }
+  async function SeeVideoFA() { setSeeVideoFA(true); setVideosPageFA(false); }
+  async function CloseSeeVideoFA() { setVideosPageFA(true); setSeeVideoFA(false); }
   
 
   const [seePhotoFAreq, setSeePhotoFAreq] = useState(false); 
@@ -40764,8 +40764,8 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   
 
   const [seeVideoFAreq, setSeeVideoFAreq] = useState(false); 
-  async function SeeVideoFAreq() { setSeeVideoFAreq(true); setVideosPageFA(false); } //voir la video (lors de la requete)
-  async function CloseSeeVideoFAreq() { setVideosPageFA(true); setSeeVideoFAreq(false); }
+  async function SeeVideoFAreq() { setSeeVideoFAreq(true); } //voir la video (lors de la requete)
+  async function CloseSeeVideoFAreq() { setSeeVideoFAreq(false); }
 
   
   const [seePhotoOther, setSeePhotoOther] = useState(false); 
