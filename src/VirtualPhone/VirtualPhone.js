@@ -35322,11 +35322,11 @@ console.log("dexieDB", dexieDB);
 
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
 const { 
-	donneesAffichees: dataVideoFA, 
+	//donneesAffichees: dataVideoFA, 
 	donneesAffichees_byClic: dataVideoFAbyClic, 
 	donneesAffichees_idAccount: dataMesVideosFA, 
 	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
-	toutesDonnees_idAccount: toutesMesVideos, 
+	//toutesDonnees_idAccount: toutesMesVideos, 
 	toutesDonnees: toutesVideos, 
 	gererScroll 
 } = useScrollIndexedDB({ 
@@ -35338,7 +35338,7 @@ const {
 });
 
 console.log("dataVideoFAbyClic", dataVideoFAbyClic);
-console.log("toutesVideos", toutesVideos);
+//console.log("toutesVideos", toutesVideos);
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 //const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );

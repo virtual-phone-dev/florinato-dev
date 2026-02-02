@@ -1200,7 +1200,7 @@ export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) 
   // Chargement initial
   useEffect(() => {
     chargerPremierLot();
-  }, []);
+  }, [chargerPremierLot]);
   
 
   const chargerPremierLot = useCallback(async () => {
