@@ -958,9 +958,9 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
     try {
       const req = table.put(msg);
 
-      req.onsuccess = () => {
+      /* req.onsuccess = () => {
         console.log(`✅ PUT OK (_id=${msg._id})`);
-      }; 
+      }; */
 
       req.onerror = (e) => {
         console.error(`❌ PUT ERROR (_id=${msg._id})`, e.target.error);
@@ -972,7 +972,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
 
   return new Promise(resolve => {
     transaction.oncomplete = () => {
-	console.log("🏁 TRANSACTION TERMINÉE AVEC SUCCÈS");
+	//console.log("🏁 TRANSACTION TERMINÉE AVEC SUCCÈS");
       resolve(true);
     };
   });
