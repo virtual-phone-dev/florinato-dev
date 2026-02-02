@@ -15,6 +15,14 @@ import investirPhoto from "./img/investir.jpg";
 /* 
 https://www.youtube.com/shorts/k68cyq1OnVY
 https://www.youtube.com/shorts/O0wAl2gCZ7M
+https://www.youtube.com/shorts/B85QXClDGKc
+https://www.youtube.com/watch?v=yrh0Zqv3huA
+https://www.youtube.com/shorts/oxLJdommnXI
+
+https://www.youtube.com/shorts/x1qL_LJDd1w
+https://www.youtube.com/watch?v=pPatqbZOoYc
+https://www.youtube.com/watch?v=GI6yN4eZGb8
+https://www.youtube.com/shorts/lTDkaRITK1I
 https://www.youtube.com/shorts/kEzowVZgxRE
 https://www.youtube.com/watch?v=EJjd7IFAi8o
 https://www.youtube.com/shorts/wd7ITzcl6H0
