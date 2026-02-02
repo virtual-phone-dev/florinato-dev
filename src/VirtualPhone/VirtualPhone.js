@@ -35158,11 +35158,12 @@ socket.on("message:misAJour", (element) => { // data modification reussi , (ce c
 	const photoProprietairePost = infosProprietairePost.map((api) => api.photoProfile);
 	const nomProprietairePost = infosProprietairePost.map((api) => api.nameAccount);
 	
+	/*
 	console.log(`idDestinataire`, idDestinataire);
 	console.log(`idProprietairePost`, idProprietairePost);
 	console.log(`infosProprietairePost`, infosProprietairePost);
 	console.log(`photoProprietairePost`, photoProprietairePost);
-	console.log(`nomProprietairePost`, nomProprietairePost);
+	console.log(`nomProprietairePost`, nomProprietairePost); */
 
 	
 
@@ -35426,12 +35427,13 @@ const conversationsTrierParDate = useMemo(() => {
 
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
 
+/*
 console.log("messageMap ", messageMap);
 console.log("idConversation ", idConversation);
 console.log("filterMessageFA ", filterMessageFA);
 
 console.log("conversationsTrierParDate ", conversationsTrierParDate);
-console.log("dataConversationFA ", dataConversationFA);
+console.log("dataConversationFA ", dataConversationFA); */
 
 
    // filtre pour obtenir tout les favoris
