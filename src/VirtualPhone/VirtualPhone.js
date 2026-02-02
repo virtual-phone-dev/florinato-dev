@@ -41042,8 +41042,8 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
   // page pour envoyer un message personnel - FA 
   const [messageFA, setMessageFA] = useState(false); 
-  async function MessageFA() { setMessageFA(true); }
-  async function CloseMessageFA() { setMessageFA(false); }
+  async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); }
 
 
   //PageRedirection 66ChildApi66messageFA
