@@ -1,9 +1,8 @@
 import axios from 'axios';
-import { React, useState, useEffect, useRef, useMemo } from 'react';
+import { React, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
 import Dexie from "dexie";
-
 import { theme } from "./theme";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 } from "./Svg/Svg";
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -1173,15 +1172,14 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 //useScrollIndexedDB
 
 
-
 // dexie
 // dexie
 // dexie
 export const dexieDB = new Dexie("FlorinatoDB");
 
-dexieDB.version(1).stores({
+dexieDB.version(2).stores({
   messages: "_id, idConversation, createdAt",
-  videos: "_id, idAccount, createdAt",
+  videos: "_id, [clic+createdAt], createdAt",
   /* commentaires: "_id, idPost, createdAt",
   bio: "_id", */
 });
@@ -1191,6 +1189,79 @@ dexieDB.open().then(() => {
 }).catch(err => {
   console.error("🔴 Erreur ouverture Dexie", err);
 });
+
+
+
+export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) {
+  const [donnees, setDonnees] = useState([]);
+  const [dernierCurseur, setDernierCurseur] = useState(null);
+  const [peutChargerPlus, setPeutChargerPlus] = useState(true);
+
+  // Chargement initial
+  useEffect(() => {
+    chargerPremierLot();
+  }, []);
+  
+
+  const chargerPremierLot = useCallback(async () => {
+    const premierLot = await table
+      .orderBy("[clic+createdAt]")
+      .limit(tailleLot)
+      .toArray();
+
+    setDonnees(premierLot);
+
+    if (premierLot.length < tailleLot) {
+      setPeutChargerPlus(false);
+    } else {
+      const last = premierLot[premierLot.length - 1];
+      setDernierCurseur([last.clic ?? 0, last.createdAt]);
+    }
+  }, [table, tailleLot]);
+
+
+
+  const chargerLotSuivant = useCallback(async () => {
+    if (!peutChargerPlus || !dernierCurseur) return;
+
+    const lotSuivant = await table
+      .where("[clic+createdAt]")
+      .above(dernierCurseur)
+      .limit(tailleLot)
+      .toArray();
+
+    if (!lotSuivant.length) {
+      setPeutChargerPlus(false);
+      return;
+    }
+
+    setDonnees(prev => [...prev, ...lotSuivant]);
+
+    const last = lotSuivant[lotSuivant.length - 1];
+    setDernierCurseur([last.clic ?? 0, last.createdAt]);
+  }, [table, tailleLot, dernierCurseur, peutChargerPlus]);
+
+  // 👇 overflow , la direction du scroll vient de l’appelant
+  const gererScroll = useScrollInfini(chargerLotSuivant, overflow, marge);
+
+  return { donnees, gererScroll };
+}
+
+
+export function useScrollInfini(chargerPlus, overflow='y', marge=50) {
+  return (e) => {
+    const el = e.currentTarget;
+    let estArriveFin = false;
+
+    if (overflow === 'y') {
+      estArriveFin = el.scrollHeight - el.scrollTop <= el.clientHeight + marge;
+    } else if (overflow === 'x') {
+      estArriveFin = el.scrollWidth - el.scrollLeft <= el.clientWidth + marge;
+    }
+
+    if (estArriveFin) chargerPlus();
+  };
+}
 
 
 export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup, PagesGerer, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {

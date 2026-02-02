@@ -10,7 +10,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, dexieDB,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, dexieDB, useDexieScroll,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
@@ -35067,11 +35067,11 @@ socket.on("message:misAJour", async (element) => {
   const table = tableParType[element.type];
   if (!table) return;
 
-  // 1️⃣ Met à jour IndexedDB
+  // 1️. Met à jour IndexedDB
   await dexieDB[table].put(element);
   console.log(`table ${table} mis à jour en temps réel`);
 
-  // 2️⃣ Met à jour l’API state (optionnel mais OK)
+  // 2️. Met à jour l’API state (optionnel mais OK)
   setApiMessageFA(prev =>
     prev.map(m => m._id === element._id ? element : m)
   );
@@ -35126,66 +35126,15 @@ useEffect(() => {
 }, [apiMessageFA]);
 
 
-// ici on essaye de faire le charger plus par lot , avec dexie
-const [videosAffichees, setVideosAffichees] = useState([]);
-const [dernierCreatedAt, setDernierCreatedAt] = useState(null);
-const [peutChargerPlus, setPeutChargerPlus] = useState(true);
-const TAILLE_LOT = 20;
 
-const chargerPremierLotVideos = async () => { // Charger le PREMIER lot
-  const premierLot = await dexieDB.videos
-    .orderBy("createdAt")
-    .reverse() // les plus récents en haut
-    .limit(TAILLE_LOT)
-    .toArray();
-
-  setVideosAffichees(premierLot);
-
-  if (premierLot.length < TAILLE_LOT) {
-    setPeutChargerPlus(false);
-  } else {
-    setDernierCreatedAt(
-      premierLot[premierLot.length - 1].createdAt
-    );
-  }
-};
-
-
-const chargerLotSuivantVideos = async () => { // Charger le lot SUIVANT (scroll)
-  if (!peutChargerPlus || !dernierCreatedAt) return;
-
-  const lotSuivant = await dexieDB.videos
-    .where("createdAt")
-    .below(dernierCreatedAt) // 👈 après la dernière vidéo affichée
-    .reverse()
-    .limit(TAILLE_LOT)
-    .toArray();
-
-  if (!lotSuivant.length) {
-    setPeutChargerPlus(false);
-    return;
-  }
-
-  setVideosAffichees(videosPrecedentes => [
-    ...videosPrecedentes,
-    ...lotSuivant
-  ]);
-
-  setDernierCreatedAt(
-    lotSuivant[lotSuivant.length - 1].createdAt
-  );
-};
-
-
-// Lancer le premier chargement
-useEffect(() => {
-  chargerPremierLotVideos();
-}, []);
-
+const { donnees: videosAffichees, gererScroll: gererScrollVideo } = useDexieScroll({ table: dexieDB.videos, tailleLot: 20 });
+const { donnees: videosAfficheesOverflow, gererScroll: gererScrollVideoOverflow } = useDexieScroll({ table: dexieDB.videos, tailleLot: 20, overflow: 'x', });
 
 const dataVideoFAA = useLiveQuery(() => dexieDB.videos.orderBy("createdAt").reverse().toArray(), []);
 
-console.log("dataVideoFAA", dataVideoFAA);
+console.log("videosAffichees dexie", videosAffichees);
+console.log("videosAfficheesOverflow", videosAfficheesOverflow);
+console.log("dataVideoFAA dexie", dataVideoFAA);
 console.log("dexieDB", dexieDB);
 
 
@@ -35389,9 +35338,10 @@ const {
 });
 
 console.log("dataVideoFAbyClic", dataVideoFAbyClic);
+console.log("toutesVideos", toutesVideos);
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
-//const listVideoFA = useMemo(() => rechercherAvecFuse({ data:dataVideoFAA, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
+//const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:dataVideoFAA, search:rechercherUneVideoFA, keys:["message"] }), [dataVideoFAA, rechercherUneVideoFA] );
 //const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
@@ -52306,7 +52256,8 @@ son compte Vixinol store */
       {/* voir la video - FA */}
       {/* voir la video - FA */}
       {seeVideoFA && (<>
-      <div className="seeVideoFA" onScroll={gererScroll}>
+      {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
+      <div className="seeVideoFA" onScroll={gererScrollVideo}>
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
@@ -52349,8 +52300,8 @@ son compte Vixinol store */
 			{/* overflow-x */}
 
 
-			<div className="overflow-x">
-			{dataVideoFA.map((api) => (<>
+			<div className="overflow-x" onScroll={gererScrollVideoOverflow}>
+			{videosAfficheesOverflow.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
@@ -52358,7 +52309,7 @@ son compte Vixinol store */
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={dataVideoFAA} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos data={videosAffichees} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>
