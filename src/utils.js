@@ -1177,7 +1177,7 @@ const toutesDonnees_byId = useMemo(() => {
     lireLocal();
   }, [nomStockage, visible, lot]);
 
-	
+
 // useEffect 2 (agit quand les donnees mongodb arrive) 🔹 2) SYNC AVEC MONGODB
   useEffect(() => {
 	if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage || syncEnCours.current) return;
@@ -1186,12 +1186,8 @@ const toutesDonnees_byId = useMemo(() => {
     async function syncIndexedDB() {
       await sauvegarderDansIndexedDB(nomStockage, donnees);
       const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-
-      setToutesDonnees(prev => {
-        if (prev.length === donneesLocales.length) return prev;
-        return donneesLocales;
-      });
-
+	  setToutesDonnees(donneesLocales);
+	  
       syncEnCours.current = false;
     }
 
