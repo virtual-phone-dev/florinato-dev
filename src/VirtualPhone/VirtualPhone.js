@@ -10,7 +10,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, 
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, useScrollInfini,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
@@ -35177,7 +35177,7 @@ const {
 	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
 	toutesDonnees_idAccount: toutesMesVideos, 
 	toutesDonnees_all: toutesVideos, 
-	setToutesDonnees,
+	setToutesDonnees, chargerPlus,
 	gererScroll 
 } = useScrollIndexedDB({ 
 	nomStockage: "videos", 
@@ -35186,6 +35186,12 @@ const {
 	rechercherMaVideo: rechercherMaVideoFA,
 	rechercherUneVideo: rechercherUneVideoFA,
 });
+
+
+// scroller
+const scrollHorizontal = useScrollInfini(chargerPlus, 'x'); // overflow-x
+const scrollVertical = useScrollInfini(chargerPlus, 'y');
+
 
 //console.log("dataVideoFAbyClic", dataVideoFAbyClic);
 //console.log("toutesVideos", toutesVideos);
@@ -51006,7 +51012,7 @@ son compte Vixinol store */
 		{/* voir la video - FA */}
       {seeVideoFA && (<>
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
-      <div className="seeVideoFA" onScroll={gererScrollVideo}>
+      <div className="seeVideoFA" onScroll={scrollVertical}>
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
@@ -51039,7 +51045,7 @@ son compte Vixinol store */
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
 				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
-			<div className="overflow-x">
+			<div className="overflow-x" onScroll={scrollHorizontal}>
 			{dataVideoIdProprietairePost.map((api) => (<>
 			<div onClick={() => { setId(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
@@ -51049,7 +51055,7 @@ son compte Vixinol store */
 			{/* overflow-x */} 
 
 
-			<div className="overflow-x" onScroll={gererScrollVideoOverflow}>
+			<div className="overflow-x" onScroll={scrollHorizontal}>
 			{dataVideoFAbyClic.map((api) => (<>
 			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
