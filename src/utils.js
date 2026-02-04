@@ -15,6 +15,16 @@ import investirPhoto from "./img/investir.jpg";
 
 /* 
 https://www.youtube.com/shorts/k68cyq1OnVY
+
+https://www.youtube.com/watch?v=oK_EeR6aB4o
+https://www.youtube.com/watch?v=0Q_FWl9c-l8
+
+https://www.youtube.com/shorts/04rE8ScGmrQ
+https://www.youtube.com/shorts/a-f6xGGG_S0
+https://www.youtube.com/watch?v=_WtjhbExpc0
+https://www.youtube.com/watch?v=2wdXAM6JCms
+https://www.youtube.com/shorts/QCl1bAL5O8Y
+https://www.youtube.com/watch?v=c4pZQtpecbo
 https://www.youtube.com/shorts/O0wAl2gCZ7M
 https://www.youtube.com/shorts/B85QXClDGKc
 https://www.youtube.com/watch?v=yrh0Zqv3huA
@@ -1201,6 +1211,7 @@ export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) 
   const chargerPremierLot = useCallback(async () => {
     const premierLot = await table
       .orderBy("[clic+createdAt]")
+	  .reverse()
       .limit(tailleLot)
       .toArray();
 
@@ -1226,7 +1237,8 @@ export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) 
 
     const lotSuivant = await table
       .where("[clic+createdAt]")
-      .above(dernierCurseur)
+	  .below(dernierCurseur) // 👈 PAS above
+	  .reverse()
       .limit(tailleLot)
       .toArray();
 

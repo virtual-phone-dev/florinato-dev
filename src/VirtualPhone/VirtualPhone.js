@@ -35132,10 +35132,11 @@ const { donnees: videosAfficheesOverflow, gererScroll: gererScrollVideoOverflow 
 
 const dataVideoFAA = useLiveQuery(() => dexieDB.videos.orderBy("createdAt").reverse().toArray(), []);
 
+/*
 console.log("videosAffichees dexie", videosAffichees);
 console.log("videosAfficheesOverflow", videosAfficheesOverflow);
 console.log("dataVideoFAA dexie", dataVideoFAA);
-console.log("dexieDB", dexieDB);
+console.log("dexieDB", dexieDB); */
 
 
   // filtre pour obtenir quelques infos de l'utilisateur connecter
@@ -35337,7 +35338,7 @@ const {
 	rechercherUneVideo: rechercherUneVideoFA,
 });
 
-console.log("dataVideoFAbyClic", dataVideoFAbyClic);
+//console.log("dataVideoFAbyClic", dataVideoFAbyClic);
 //console.log("toutesVideos", toutesVideos);
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
