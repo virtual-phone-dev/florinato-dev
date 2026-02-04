@@ -52296,7 +52296,7 @@ son compte Vixinol store */
 			
 	<div className="display-nowrap-espace">
       <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost}/> </div>
-      <pre className="pre-13px-blanc-gris">{nomProprietairePost}</pre>
+      <pre className="pre-14px-eee">{nomProprietairePost}</pre>
     </div>			
 
 			<RechercheTemplate 
@@ -52405,16 +52405,16 @@ son compte Vixinol store */
                 </div>
                 {/* block */}
 				
-				<div className="p-14px-center-gris"> <p>Mettez le Lien de la vidéo pour publier la vidéo</p> </div> 
+				<div className="p-14px-center-espace-gris"> <p>Mettez le Lien de la vidéo pour publier la vidéo</p> </div> 
 				
-				<div className="p-14px-center-gris"> <p>{lienDropbox}</p> </div> 
+				<div className="pre-14px-center-gris"> <pre>{lienDropbox}</pre> </div> 
 				<Input texte="Lien de la vidéo.." valeur={lienDropbox} setValeur={setLienDropbox} />
 				  
 				  {dev && (<>
 				  <Input texte="Lien github" valeur={lienGitHub} setValeur={setLienGitHub} /> 
 				  <Input texte="Lien gitlab" valeur={lienGitLab} setValeur={setLienGitLab} /> </>)}
 				  
-				<div className="p-14px-center-gris"> <p>{ecrireTitre}</p> </div> 
+				<div className="pre-14px-center-gris"> <pre>{ecrireTitre}</pre> </div> 
 				<Input texte="Titre de la vidéo (facultatif)" valeur={ecrireTitre} setValeur={setecrireTitre} />
 				  
 				  
