@@ -35079,24 +35079,26 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	const [idConversation, setIdConversation] = useState(null);
 	const [idDestinataire, setIdDestinataire] = useState(null);
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
+	const [idPost, setIdPost] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
+	
 	
 	const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
 	console.log(`infosPostFA ici:`, infosPostFA); */	
 
-	useEffect(() => {
+	/* useEffect(() => {
 	  if (!idreq) return;
 	  const result = apiMessageFA.filter(api => api._id === idreq);
 	  setInfosPostFA(result);
-	}, [idreq, apiMessageFA]);
+	}, [idreq, apiMessageFA]); */
   
 	// filtre pour obtenir les infos du post - FA
     //const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
 	
-    const clicFA = infosPostFA.map((api) => api.clic); // clic
-    const titreFA = infosPostFA.map((api) => api.message); // message
+    //const clicFA = infosPostFA.map((api) => api.clic); // clic
+    //const titreFA = infosPostFA.map((api) => api.message); // message
 	
 	
 	const infosProprietairePost = apiMessageFA.filter((api) => api._id === idProprietairePost);
@@ -35175,6 +35177,7 @@ const {
 	donneesAffichees_idAccount: dataMesVideosFA, 
 	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
 	toutesDonnees_idAccount: toutesMesVideos, 
+	toutesDonnees_byId: toutesVideosbyId, 
 	toutesDonnees_all: toutesVideos, 
 	setToutesDonnees, chargerPlus,
 	gererScroll 
@@ -35182,6 +35185,7 @@ const {
 	nomStockage: "videos", 
 	donnees:videosSource, 
 	idProprietairePost,
+	id: idPost,
 	rechercherMaVideo: rechercherMaVideoFA,
 	rechercherUneVideo: rechercherUneVideoFA,
 });
@@ -35206,6 +35210,30 @@ const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos,
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
+
+
+// filtre pour obtenir les infos du post (video, photo, ..) - FA
+const clicFA = toutesVideosbyId.map((api) => api.clic); // clic
+const titreFA = toutesVideosbyId.map((api) => api.message); // message
+
+console.log("clicFA", clicFA);
+console.log("titreFA", titreFA);
+console.log("toutesVideosbyId", toutesVideosbyId);
+
+
+/*  useEffect(() => {
+	  if (!idreq) return;
+	  const result = apiMessageFA.filter(api => api._id === idreq);
+	  setInfosPostFA(result);
+	}, [idreq, apiMessageFA]); */
+  
+	// filtre pour obtenir les infos du post - FA
+    //const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
+	
+    //const clicFA = infosPostFA.map((api) => api.clic); // clic
+    //const titreFA = infosPostFA.map((api) => api.message); // message
+	
+	
 
 /*
 const profilsFA = useMemo( () => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); 
@@ -51021,7 +51049,7 @@ son compte Vixinol store */
         <div className="body">
 			{/* on affiche la video */}
 			<div className="block-video">
-				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideoFA} type="video/mp4"/> </video>
+				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
 			
 			<div className="display-flex"> 
@@ -51042,11 +51070,11 @@ son compte Vixinol store */
 
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
-				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+				setIdPost={setIdPost} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
 			<div className="overflow-x" onScroll={scrollHorizontal}>
 			{dataVideoIdProprietairePost.map((api) => (<>
-			<div onClick={() => { setId(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>
 			</>))}
@@ -51056,14 +51084,14 @@ son compte Vixinol store */
 
 			<div className="overflow-x" onScroll={scrollHorizontal}>
 			{dataVideoFAbyClic.map((api) => (<>
-			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={dataVideoFAbyClic} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>
@@ -51075,7 +51103,7 @@ son compte Vixinol store */
 				
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
-			setId={setId} setIdProprietairePost={setIdProprietairePost} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
 
 		<ComptesRecentsTemplate 
@@ -51116,7 +51144,7 @@ son compte Vixinol store */
 			visible={profilFA} fermer={CloseProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
-			setId={setId} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
+			setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			dataMesVisitesFA={dataMesVisitesFA} 

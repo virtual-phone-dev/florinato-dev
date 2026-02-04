@@ -1007,7 +1007,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
-export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, idConversation, idProprietairePost, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, idConversation, idProprietairePost, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
@@ -1145,8 +1145,8 @@ const toutesDonnees_all = useMemo(() => {
 
 
 
-const toutesDonnees_idAccount = useMemo(() => {
-  return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA)
+const toutesDonnees_byId = useMemo(() => {
+  return [...toutesDonnees].filter(api => api._id === id)
     .sort((a, b) => {
       const clicA = a.clic ?? 0;
       const clicB = b.clic ?? 0;
@@ -1156,7 +1156,7 @@ const toutesDonnees_idAccount = useMemo(() => {
       const dateB = b.createdAt ? new Date(b.createdAt) : 0;
       return dateB - dateA;
     })
-}, [toutesDonnees, idPersonConnectedFA]);
+}, [toutesDonnees, id]);
 
 
 
@@ -1223,7 +1223,7 @@ const toutesDonnees_idAccount = useMemo(() => {
 		}
 	};
 
-	return { toutesDonnees, toutesDonnees_all, setToutesDonnees, chargerPlus, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, toutesDonnees_all, toutesDonnees_byId, setToutesDonnees, chargerPlus, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
@@ -1291,18 +1291,6 @@ export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
   );
 }
 
-
-/*
-export function VideoData({ data = [], setId, setIdAccountChef, video, voirVideo, clicVideo, photocss }) {
-  return (<>
-	
-      {data.map((api) => (
-      <div onClick={() => { setId(api._id); setIdAccountChef(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef }) }}>
-		<ChildApi66profilFA api={api} photocss={photocss} video />
-      </div>
-      ))}
-	  
-    </>)} */
 	
 		   
 export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn }) {	
@@ -1462,14 +1450,14 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 		<p className={cliccss}>{api.clic} clic</p> </div></>)}
     </>
   );
-}
+} 
 
 
-export function LesVideos({ data=[], setId, setIdProprietairePost, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
+export function LesVideos({ data=[], setId, setIdPost, setUrlVideo, setIdProprietairePost, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
-	  <div onClick={() => { localStorage.setItem("urlVideo", api.urlVideo); setId(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
+	  <div onClick={() => { setUrlVideo(api.urlVideo); setIdPost(api._id); setId(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} video />
 	  </div>
 	  ))}
@@ -1477,14 +1465,14 @@ export function LesVideos({ data=[], setId, setIdProprietairePost, clicVideo, vo
 )}
 
 
-export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setId, setIdProprietairePost, clicVideo, voirVideo, video }) {
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setUrlVideo, setId, setIdPost, setIdProprietairePost, clicVideo, voirVideo, video }) {
   return (<>
 	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} />
-    <LesVideos data={data} setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
+    <LesVideos data={data} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, setId, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
+export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, setIdPost, setUrlVideo, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche" onScroll={gererScroll}> 
@@ -1492,12 +1480,12 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, se
 			
 			<VideoSearchBlock 
 				data={data} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
-				setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
+				setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} video={video} />
 		</div>
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, setId, setIdProprietairePost, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, setId, setIdPost, setIdProprietairePost, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
   return (<>
 		{/* input pour effectuer une recherche */}
                   <div>
@@ -1533,7 +1521,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			))}
 			</div>
 			
-			<LesVideos data={listVideo} setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
+			<LesVideos data={listVideo} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} /> 
 	</>);
 }
 
@@ -2413,7 +2401,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 //ProfilTemplate
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, dataMesVideosFA, listMesVideosFA, video,
-	rechercherMaVideoFA, setRechercherMaVideoFA, setId, setIdProprietairePost, ClicVideoFAA, SeeVideoFA, dataMesVisitesFA,
+	rechercherMaVideoFA, setRechercherMaVideoFA, setUrlVideo, setIdProprietairePost, ClicVideoFAA, SeeVideoFA, dataMesVisitesFA,
 	PageRedirection66ChildApi66profilFA, getPopularity, getName, getPhoto, SeePhoto66profilFA, gererScroll, gererScrollVisites,
 	}) {
 		
@@ -2458,7 +2446,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 			  
 			<VideoSearchBlock 
 				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} video 
-				setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+				setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
 
 
               <div className="api2">
