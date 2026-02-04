@@ -19,6 +19,9 @@ https://www.youtube.com/shorts/k68cyq1OnVY
 https://www.youtube.com/watch?v=oK_EeR6aB4o
 https://www.youtube.com/watch?v=0Q_FWl9c-l8
 
+
+https://www.youtube.com/watch?v=8eYQ6rHKJOE&pp=ugUHEgVmci1GUg%3D%3D
+https://www.youtube.com/watch?v=XKYuuGiMZcQ&pp=ugUEEgJmcg%3D%3D
 https://www.youtube.com/shorts/04rE8ScGmrQ
 https://www.youtube.com/shorts/a-f6xGGG_S0
 https://www.youtube.com/watch?v=_WtjhbExpc0
@@ -1177,7 +1180,7 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 		}
 	};
 
-	return { toutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
@@ -1252,7 +1255,7 @@ export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) 
     const last = lotSuivant[lotSuivant.length - 1];
     setDernierCurseur([last.clic ?? 0, last.createdAt]);
   }, [table, tailleLot, dernierCurseur, peutChargerPlus]);
-
+  
   // 👇 overflow , la direction du scroll vient de l’appelant
   const gererScroll = useScrollInfini(chargerLotSuivant, overflow, marge);
 

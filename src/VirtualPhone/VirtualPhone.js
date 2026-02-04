@@ -34988,7 +34988,6 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
-/*
 useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
@@ -35005,7 +35004,7 @@ socket.on("message:misAJour", (element) => { // data modification reussi , (ce c
     const table = typeDeTable[element.type];
 	console.log("🗂️ table choisie :", table);
 
-  setApiMessageFA(prev =>
+  setToutesDonnees(prev =>
 	prev.map(m => 
 		m._id === element._id ? element : m  // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages (ou element) du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés  
 	));
@@ -35037,7 +35036,6 @@ socket.on("message:misAJour", (element) => { // data modification reussi , (ce c
 	socket.off("message:misAJour");
   };
 }, []);
-*/
 
 /* CE QUE TU AS BIEN FAIT
 
@@ -35053,6 +35051,7 @@ socket.on("message:misAJour", (element) => { // data modification reussi , (ce c
 // dexie
 // dexie
 
+/*
 useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
@@ -35100,7 +35099,7 @@ socket.on("message:misAJour", async (element) => {
   };
 }, []);
 
-
+*/
 
 // Sauvegarde des donnees de apiMessageFA dans IndexedDB (en passant par dexie)
 useEffect(() => {
@@ -35329,6 +35328,7 @@ const {
 	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
 	toutesDonnees_idAccount: toutesMesVideos, 
 	//toutesDonnees: toutesVideos, 
+	setToutesDonnees,
 	gererScroll 
 } = useScrollIndexedDB({ 
 	nomStockage: "videos", 
