@@ -35083,6 +35083,10 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
+	console.log("urlVideo", urlVideo);
+	console.log("idPost", idPost);
+	console.log("idProprietairePost", idProprietairePost);
+	
 	
 	//const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
