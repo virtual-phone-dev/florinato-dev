@@ -34985,73 +34985,6 @@ Le socket envoie écriture:debut
 Si tu t’arrêtes 1,5 s → écriture:fin */
 
 
-// Écouter l'écriture (côté RECEVEUR) 
-const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
-
-useEffect(() => {
-  const socket = socketRef.current;
-  if (!socket) return;
-  
-  
-//const typeDeTable = { "10":"comptes", "30":"conversations", "50":"followers", "1":"messages", "3":"videos", };
-//const typeDeTable = { "3":"videos" };
-
-socket.on("message:misAJour", (element) => {
-    setToutesDonnees(prev =>
-      prev.map(m => m._id === element._id ? element : m)
-    );
-  });
-  
- 
-/* socket.on("message:misAJour", (element) => { // data modification reussi , (ce code recoit le nouveau document modifié)
-	console.log("element reçu modifié :", element); */
-  /* console.log("➡️ element.type :", element?.type, typeof element?.type);
-	
-	
-    const table = typeDeTable[element.type];
-	console.log("🗂️ table choisie :", table); */
-
-  /* setToutesDonnees(prev =>
-	prev.map(m => 
-		m._id === element._id ? element : m  // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages (ou element) du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés  
-	)); */
-
-  /* sauvegarderDansIndexedDB(table, [element])
-    .then(() => console.log("✅ Sauvegardé dans", table))
-    .catch(err => console.error("❌ Erreur IndexedDB :", err)); */
-//});
-	
-	
-  socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
-    setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
-      ...prev,
-      [idConversation]: idExpediteur,
-    }));
-  });
-
-  socket.on("ecrire:fin", ({ idConversation }) => { // Quand il arrête . On enlève l’indicateur pour cette conversation
-    setUtilisateursQuiEcrivent(prev => { // Quand il arrête (ecrire:fin), on supprime cette information
-      const copie = { ...prev };
-      delete copie[idConversation];
-      return copie;
-    });
-  });
-
-  return () => {
-    socket.off("ecrire:debut");
-    socket.off("ecrire:fin");
-	socket.off("message:misAJour");
-  };
-}, [setToutesDonnees]);
-
-/* CE QUE TU AS BIEN FAIT
-
-✔️ useRef pour le timer
-✔️ estEnTrainDecrire pour éviter le spam
-✔️ séparation émetteur / récepteur 
-✔️ logique PRO (niveau WhatsApp) */
-
-
 
 
 // dexie
@@ -35421,6 +35354,7 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 });
 
 
+
 /*
 useEffect(() => {
   console.log("dataMessagesFA", dataMessagesFA);
@@ -35449,6 +35383,76 @@ useEffect(() => {
 // filtre pour obtenir tout les messages de la discussion - FA
 //const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
 //const filterMessageFA = useMemo(() => dataMessagesFA.filter(api => api.idConversation === idConversation), [dataMessagesFA, idConversation] );
+
+
+
+// Écouter l'écriture (côté RECEVEUR) 
+const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
+
+useEffect(() => {
+  const socket = socketRef.current;
+  if (!socket) return;
+  
+  
+//const typeDeTable = { "10":"comptes", "30":"conversations", "50":"followers", "1":"messages", "3":"videos", };
+//const typeDeTable = { "3":"videos" };
+
+socket.on("message:misAJour", (element) => {
+    setToutesDonnees(prev =>
+      prev.map(m => m._id === element._id ? element : m)
+    );
+  });
+  
+ 
+/* socket.on("message:misAJour", (element) => { // data modification reussi , (ce code recoit le nouveau document modifié)
+	console.log("element reçu modifié :", element); */
+  /* console.log("➡️ element.type :", element?.type, typeof element?.type);
+	
+	
+    const table = typeDeTable[element.type];
+	console.log("🗂️ table choisie :", table); */
+
+  /* setToutesDonnees(prev =>
+	prev.map(m => 
+		m._id === element._id ? element : m  // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages (ou element) du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés  
+	)); */
+
+  /* sauvegarderDansIndexedDB(table, [element])
+    .then(() => console.log("✅ Sauvegardé dans", table))
+    .catch(err => console.error("❌ Erreur IndexedDB :", err)); */
+//});
+	
+	
+  socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
+    setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
+      ...prev,
+      [idConversation]: idExpediteur,
+    }));
+  });
+
+  socket.on("ecrire:fin", ({ idConversation }) => { // Quand il arrête . On enlève l’indicateur pour cette conversation
+    setUtilisateursQuiEcrivent(prev => { // Quand il arrête (ecrire:fin), on supprime cette information
+      const copie = { ...prev };
+      delete copie[idConversation];
+      return copie;
+    });
+  });
+
+  return () => {
+    socket.off("ecrire:debut");
+    socket.off("ecrire:fin");
+	socket.off("message:misAJour");
+  };
+}, [setToutesDonnees]);
+
+/* CE QUE TU AS BIEN FAIT
+
+✔️ useRef pour le timer
+✔️ estEnTrainDecrire pour éviter le spam
+✔️ séparation émetteur / récepteur 
+✔️ logique PRO (niveau WhatsApp) */
+
+
 
 const filterMessageFA = useMemo(() => {
   if (!idConversation) return []; //Si idConversation peut être null / undefined au début . Ça évite les faux résultats au premier render.
