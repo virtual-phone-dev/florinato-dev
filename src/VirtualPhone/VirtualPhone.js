@@ -10,7 +10,7 @@ import { useLiveQuery } from "dexie-react-hooks";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, dexieDB, useDexieScroll,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, 
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
@@ -34986,98 +34986,6 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 
 
 
-
-// dexie
-// dexie
-// dexie
-
-/*
-useEffect(() => {
-  const socket = socketRef.current;
-  if (!socket) return;
-
-
-socket.on("message:misAJour", async (element) => {
-  const tableParType = {
-    "1": "messages",
-    "3": "videos",
-  };
-
-  const table = tableParType[element.type];
-  if (!table) return;
-
-  // 1️. Met à jour IndexedDB
-  await dexieDB[table].put(element);
-  console.log(`table ${table} mis à jour en temps réel`);
-
-  // 2️. Met à jour l’API state (optionnel mais OK)
-  setApiMessageFA(prev =>
-    prev.map(m => m._id === element._id ? element : m)
-  );
-});
-
-		
-  socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
-    setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
-      ...prev,
-      [idConversation]: idExpediteur,
-    }));
-  });
-
-  socket.on("ecrire:fin", ({ idConversation }) => { // Quand il arrête . On enlève l’indicateur pour cette conversation
-    setUtilisateursQuiEcrivent(prev => { // Quand il arrête (ecrire:fin), on supprime cette information
-      const copie = { ...prev };
-      delete copie[idConversation];
-      return copie;
-    });
-  });
-
-  return () => {
-    socket.off("ecrire:debut");
-    socket.off("ecrire:fin");
-	socket.off("message:misAJour");
-  };
-}, []);
-
-*/
-
-// Sauvegarde des donnees de apiMessageFA dans IndexedDB (en passant par dexie)
-useEffect(() => {
-  if (!apiMessageFA || apiMessageFA.length === 0) return;
-
-  async function syncApiVersDexie() {
-    const videos = apiMessageFA.filter(e => e.type === "3");
-    const messages = apiMessageFA.filter(e => e.type === "1");
-
-    await dexieDB.transaction("rw",
-      dexieDB.videos,
-      dexieDB.messages,
-      async () => {
-        if (videos.length) await dexieDB.videos.bulkPut(videos);
-        if (messages.length) await dexieDB.messages.bulkPut(messages);
-      }
-    );
-
-    console.log("✅ API → Dexie synchronisé");
-  }
-
-  syncApiVersDexie();
-}, [apiMessageFA]);
-
-
-
-const { donnees: videosAffichees, gererScroll: gererScrollVideo } = useDexieScroll({ table: dexieDB.videos, tailleLot: 20 });
-const { donnees: videosAfficheesOverflow, gererScroll: gererScrollVideoOverflow } = useDexieScroll({ table: dexieDB.videos, tailleLot: 20, overflow: 'x', });
-
-const dataVideoFAA = useLiveQuery(() => dexieDB.videos.orderBy("createdAt").reverse().toArray(), []);
-
-/*
-console.log("videosAffichees dexie", videosAffichees);
-console.log("videosAfficheesOverflow", videosAfficheesOverflow);
-console.log("dataVideoFAA dexie", dataVideoFAA);
-console.log("dexieDB", dexieDB); */
-
-
   // filtre pour obtenir quelques infos de l'utilisateur connecter
   const userConnectedFA = apiMessageFA.filter((api) => api._id === idUserConnectedFA);
   const getblockFA = userConnectedFA.map((api) => api.block); // block
@@ -51078,7 +50986,6 @@ son compte Vixinol store */
           </div>
           {/* head */}
 
-
           <div className="body"> 
             <div className="api">
                 {dataConversationFA.map((api) => ( 
@@ -51094,7 +51001,73 @@ son compte Vixinol store */
       </>)}
       {/* application florinato */}
 	  
-	  			
+	  
+	  
+	    {/* voir la video - FA */}
+		{/* voir la video - FA */}
+      {seeVideoFA && (<>
+      {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
+      <div className="seeVideoFA" onScroll={gererScrollVideo}>
+        <div className="close">
+          <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
+          <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
+        </div>
+        {/* close */}
+
+        <div className="body">
+			{/* on affiche la video */}
+			<div className="block-video">
+				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideoFA} type="video/mp4"/> </video>
+			</div>
+			
+			<div className="display-flex"> 
+				<p onClick={CommenterPageFA} className="p-14px-ccc-esp">Commentaire</p>
+				<p onClick={ModifierTitrePageFA} className="p-14px-ccc-esp">Modifier le Titre</p>
+				<p onClick={ChangerMiniaturePage} className="p-14px-ccc-esp">Changer la Miniature</p>
+				<p onClick={ModifierUrlPage} className="p-14px-ccc-esp">Modifier l'url</p>
+				<p className="p-14px-ccc-esp">Supprimer le post</p>
+			</div>
+			
+			<pre className="pre-17px-white">{titreFA}</pre>
+			<p className="p-14px-eee">{clicFA} clic</p>
+			
+	<div className="display-nowrap-espace">
+      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost}/> </div>
+      <pre className="pre-14px-eee">{nomProprietairePost}</pre>
+    </div>			
+
+			<RechercheTemplate 
+				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
+				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+
+			<div className="overflow-x">
+			{dataVideoIdProprietairePost.map((api) => (<>
+			<div onClick={() => { setId(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
+			</div>
+			</>))}
+			</div>
+			{/* overflow-x */} 
+
+
+			<div className="overflow-x" onScroll={gererScrollVideoOverflow}>
+			{dataVideoFAbyClic.map((api) => (<>
+			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+			</div>
+			</>))}
+			</div>
+			{/* overflow-x */}
+
+			<LesVideos data={dataVideoFAbyClic} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+        </div>
+        {/* body */}
+      </div>
+      {/* seeVideoFA */}
+      </>)}
+      {/* voir la video - FA */}
+	  
+	  
 				
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
@@ -52220,72 +52193,6 @@ son compte Vixinol store */
       {/* seePhotoFA */}
       </>)}
       {/* page pour voir la photo - FA */}
-	  
-
-
-      {/* voir la video - FA */}
-      {/* voir la video - FA */}
-      {seeVideoFA && (<>
-      {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
-      <div className="seeVideoFA" onScroll={gererScrollVideo}>
-        <div className="close">
-          <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
-          <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
-        </div>
-        {/* close */}
-
-        <div className="body">
-			{/* on affiche la video */}
-			<div className="block-video">
-				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideoFA} type="video/mp4"/> </video>
-			</div>
-			
-			<div className="display-flex"> 
-				<p onClick={CommenterPageFA} className="p-14px-ccc-esp">Commentaire</p>
-				<p onClick={ModifierTitrePageFA} className="p-14px-ccc-esp">Modifier le Titre</p>
-				<p onClick={ChangerMiniaturePage} className="p-14px-ccc-esp">Changer la Miniature</p>
-				<p onClick={ModifierUrlPage} className="p-14px-ccc-esp">Modifier l'url</p>
-				<p className="p-14px-ccc-esp">Supprimer le post</p>
-			</div>
-			
-			<pre className="pre-17px-white">{titreFA}</pre>
-			<p className="p-14px-eee">{clicFA} clic</p>
-			
-	<div className="display-nowrap-espace">
-      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost}/> </div>
-      <pre className="pre-14px-eee">{nomProprietairePost}</pre>
-    </div>			
-
-			<RechercheTemplate 
-				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
-				setId={setId} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
-
-			<div className="overflow-x">
-			{dataVideoIdProprietairePost.map((api) => (<>
-			<div onClick={() => { setId(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
-			</div>
-			</>))}
-			</div>
-			{/* overflow-x */} 
-
-
-			<div className="overflow-x" onScroll={gererScrollVideoOverflow}>
-			{videosAfficheesOverflow.map((api) => (<>
-			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
-			</div>
-			</>))}
-			</div>
-			{/* overflow-x */}
-
-			<LesVideos data={videosAffichees} setId={setId} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
-        </div>
-        {/* body */}
-      </div>
-      {/* seeVideoFA */}
-      </>)}
-      {/* voir la video - FA */}
 	  
 	  
 

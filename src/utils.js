@@ -2,7 +2,6 @@ import axios from 'axios';
 import { React, useState, useEffect, useCallback, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
-import Dexie from "dexie";
 import { theme } from "./theme";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 } from "./Svg/Svg";
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -1206,84 +1205,6 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 	return { toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
-
-
-// dexie
-// dexie
-// dexie
-export const dexieDB = new Dexie("FlorinatoDB");
-
-dexieDB.version(2).stores({
-  messages: "_id, idConversation, createdAt",
-  videos: "_id, [clic+createdAt], createdAt",
-  /* commentaires: "_id, idPost, createdAt",
-  bio: "_id", */
-});
-
-dexieDB.open().then(() => {
-  console.log("Dexie DB ouverte");
-}).catch(err => {
-  console.error("🔴 Erreur ouverture Dexie", err);
-});
-
-
-
-export function useDexieScroll({ table, tailleLot=20, overflow="y", marge=50 }) {
-  const [donnees, setDonnees] = useState([]);
-  const [dernierCurseur, setDernierCurseur] = useState(null);
-  const [peutChargerPlus, setPeutChargerPlus] = useState(true);
-
-
-  const chargerPremierLot = useCallback(async () => {
-    const premierLot = await table
-      .orderBy("[clic+createdAt]")
-	  .reverse()
-      .limit(tailleLot)
-      .toArray();
-
-    setDonnees(premierLot);
-
-    if (premierLot.length < tailleLot) {
-      setPeutChargerPlus(false);
-    } else {
-      const last = premierLot[premierLot.length - 1];
-      setDernierCurseur([last.clic ?? 0, last.createdAt]);
-    }
-  }, [table, tailleLot]);
-
-
-  // Chargement initial
-  useEffect(() => {
-    chargerPremierLot();
-  }, [chargerPremierLot]);
-  
-  
-  const chargerLotSuivant = useCallback(async () => {
-    if (!peutChargerPlus || !dernierCurseur) return;
-
-    const lotSuivant = await table
-      .where("[clic+createdAt]")
-	  .below(dernierCurseur) // 👈 PAS above
-	  .reverse()
-      .limit(tailleLot)
-      .toArray();
-
-    if (!lotSuivant.length) {
-      setPeutChargerPlus(false);
-      return;
-    }
-
-    setDonnees(prev => [...prev, ...lotSuivant]);
-
-    const last = lotSuivant[lotSuivant.length - 1];
-    setDernierCurseur([last.clic ?? 0, last.createdAt]);
-  }, [table, tailleLot, dernierCurseur, peutChargerPlus]);
-  
-  // 👇 overflow , la direction du scroll vient de l’appelant
-  const gererScroll = useScrollInfini(chargerLotSuivant, overflow, marge);
-
-  return { donnees, gererScroll };
-}
 
 
 export function useScrollInfini(chargerPlus, overflow='y', marge=50) {
