@@ -1455,7 +1455,7 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 } 
 
 
-export function LesVideos({ data=[], setIdPost, setUrlVideo, setIdProprietairePost, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
+export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, clicVideo=()=>{}, voirVideo=()=>{}, titrecss, cliccss, profilMap, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
