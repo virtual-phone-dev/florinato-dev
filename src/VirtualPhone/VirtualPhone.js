@@ -35814,8 +35814,8 @@ async function MettreEnAvantFA() {
 // clic de la video
 async function ClicVideoFAA({ id, idOther, nombreClic }) {	
 	const clic = (Number(nombreClic) || 0) + 1; //type:204 il a cliqué sur la video 
-	console.log("nombreClic ", nombreClic);
-	console.log("clic ", clic);
+	/* console.log("nombreClic ", nombreClic);
+	console.log("clic ", clic); */
 	//console.log("idOther ", idOther);
 	//console.log("id ", id); 
 	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther, visible:1, id, type:204}, id, actions: ["post", "put"] });
@@ -35829,7 +35829,7 @@ async function CloseChangerMiniaturePage() { setChangerMiniaturePage(false); }
 
 //logique pour changer la miniature de la video - FA
 const [isLoading666ChangerMiniatureFA, setIsLoading666ChangerMiniatureFA] = useState(false);
-async function ChangerMiniatureFA() { await ExecuterActionFA({ id:idreq, file: miniatureFA, loader:setIsLoading666ChangerMiniatureFA, actions: ["put"] }); }
+async function ChangerMiniatureFA() { await ExecuterActionFA({ id:idPost, file: miniatureFA, loader:setIsLoading666ChangerMiniatureFA, actions: ["put"] }); }
 	
 	
 	
@@ -35841,7 +35841,7 @@ async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
 //logique pour changer le titre de la video - FA
 const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
 const [nouveauTitre, setNouveauTitre] = useState("");
-async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idreq, loader:setIsLoading666ModifierTitreFA, actions: ["put"] }); }
+async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idPost, loader:setIsLoading666ModifierTitreFA, actions: ["put"] }); }
 
 
 
@@ -35857,7 +35857,7 @@ async function CommenterFA() { await ExecuterActionFA({
 	actions: ["post"],
 	loader:setIsLoading666CommenterFA,
 	dataPOST:{
-		idPost:idreq,
+		idPost,
 		idProprietairePost,
 		
 		commentaire: ecrireCommentaireFA,
@@ -35880,7 +35880,7 @@ async function RepondreFA() { await ExecuterActionFA({
 	actions: ["post"],
 	loader:setIsLoading666RepondreFA,
 	dataPOST:{
-		idPost:idreq,
+		idPost,
 		idProprietairePost,
 
 		idCommentaire,
@@ -35904,7 +35904,7 @@ const [ecrire666modifierUrl, setecrire666modifierUrl] = useState("");
 
 async function ValiderUrl() {
 	setisLoading666ValideUrl(true);
-	const idPost = localStorage.getItem("idPost");
+	//const idPost = localStorage.getItem("idPost");
 	
 	const actions = { modifier: true, allData: true };
 		
@@ -51206,6 +51206,93 @@ son compte Vixinol store */
 	  <ConfirmationTemplate 
 		  visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} 
 		  isLoading={isLoading666AjouterAdminFlorinato} Validerbtn={AjouterAdminFlorinato} />
+		  
+		  
+		  
+		{/* choisir la video a ajouter à la photo - FA  */}
+		{/* choisir la video a ajouter à la photo - FA  */}
+		{addVideoPageFA && (<>
+          <div className="publier-video-opacity">
+            <div className="align">
+              <div className="card">
+				<div className="photo-25px" onClick={SeePhoto66profilFA}> <img src={getPhoto} alt=""/> </div>
+				
+                <div onClick={CloseAddVideoPageFA} className="block">
+                  <div className="a"> <SvgVideo9 /> </div>
+                  <div className="b"> <p>Lien de la vidéo</p> </div>
+                </div>
+                {/* block */}
+				
+				<div className="p-14px-center-espace-gris"> <p>Mettez le Lien de la vidéo pour publier la vidéo</p> </div> 
+				
+				<div className="pre-14px-center-gris"> <pre>{lienDropbox}</pre> </div> 
+				<Input texte="Lien de la vidéo.." valeur={lienDropbox} setValeur={setLienDropbox} />
+				  
+				  {dev && (<>
+				  <Input texte="Lien github" valeur={lienGitHub} setValeur={setLienGitHub} /> 
+				  <Input texte="Lien gitlab" valeur={lienGitLab} setValeur={setLienGitLab} /> </>)}
+				  
+				<div className="pre-14px-center-gris"> <pre>{ecrireTitre}</pre> </div> 
+				<Input texte="Titre de la vidéo (facultatif)" valeur={ecrireTitre} setValeur={setecrireTitre} />
+				  
+				  
+				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
+				
+				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
+				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div> )}
+					
+				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
+
+                <div className="block-quatre"> 
+					<p>Important :</p>
+					<p>**Uploader les Petits fichiers sur : Dropbox, Gitlab, ou Github (taille maximale 25mb)</p>
+					<p>**Uploader les Gros fichiers sur : Dropbox</p>
+				</div> 	
+                {/* block-quatre */}
+              </div>
+              {/* card */}
+            </div>
+            {/* align */}
+          </div>
+          {/* publier-video-opacity */}
+        </>)}
+      {/* choisir la video a ajouter à la phot
+
+	  
+
+    {/* page pour modifier l'url  */}
+	<ModifierTemplate 
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideoFA}
+		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl />
+		
+	
+	<ModifierTemplate 
+		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
+		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} profilMap={profilMap} 
+		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl lesCommentaires 
+		RepondrePage={RepondrePageFA} />
+		
+		
+	<ModifierTemplate 
+		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={titreFA} 
+		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl />
+		
+	
+	<ModifierTemplate 
+		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
+		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
+		titre="Changer la miniature de la vidéo" changerMiniature />
+
+	
+	
+	<PopupBasTextareaTemplate 
+		visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
+		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
+	  		  	  
+
+      {/* voir la miniature- FA  */}
+	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
+      
 	  
 	  
       {/* rencontre - FA */}
@@ -52289,90 +52376,7 @@ son compte Vixinol store */
       {/* afficher la photo de l'autre - FA */}
 
 
-      {/* choisir la video a ajouter à la photo - FA  */}
-      {/* choisir la video a ajouter à la photo - FA  */}
-      {addVideoPageFA && (<>
-          <div className="publier-video-opacity">
-            <div className="align">
-              <div className="card">
-				<div className="photo-25px" onClick={SeePhoto66profilFA}> <img src={getPhoto} alt=""/> </div>
-				
-                <div onClick={CloseAddVideoPageFA} className="block">
-                  <div className="a"> <SvgVideo9 /> </div>
-                  <div className="b"> <p>Lien de la vidéo</p> </div>
-                </div>
-                {/* block */}
-				
-				<div className="p-14px-center-espace-gris"> <p>Mettez le Lien de la vidéo pour publier la vidéo</p> </div> 
-				
-				<div className="pre-14px-center-gris"> <pre>{lienDropbox}</pre> </div> 
-				<Input texte="Lien de la vidéo.." valeur={lienDropbox} setValeur={setLienDropbox} />
-				  
-				  {dev && (<>
-				  <Input texte="Lien github" valeur={lienGitHub} setValeur={setLienGitHub} /> 
-				  <Input texte="Lien gitlab" valeur={lienGitLab} setValeur={setLienGitLab} /> </>)}
-				  
-				<div className="pre-14px-center-gris"> <pre>{ecrireTitre}</pre> </div> 
-				<Input texte="Titre de la vidéo (facultatif)" valeur={ecrireTitre} setValeur={setecrireTitre} />
-				  
-				  
-				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
-				
-				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
-				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div> )}
-					
-				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
-
-                <div className="block-quatre"> 
-					<p>Important :</p>
-					<p>**Uploader les Petits fichiers sur : Dropbox, Gitlab, ou Github (taille maximale 25mb)</p>
-					<p>**Uploader les Gros fichiers sur : Dropbox</p>
-				</div> 	
-                {/* block-quatre */}
-              </div>
-              {/* card */}
-            </div>
-            {/* align */}
-          </div>
-          {/* publier-video-opacity */}
-        </>)}
-      {/* choisir la video a ajouter à la phot
-
-	  
-
-    {/* page pour modifier l'url  */}
-	<ModifierTemplate 
-		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideoFA}
-		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl />
-		
-	
-	<ModifierTemplate 
-		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
-		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} profilMap={profilMap} 
-		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl lesCommentaires 
-		RepondrePage={RepondrePageFA} />
-		
-		
-	<ModifierTemplate 
-		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={titreFA} 
-		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl />
-		
-	
-	<ModifierTemplate 
-		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
-		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
-		titre="Changer la miniature de la vidéo" changerMiniature />
-
-	
-	
-	<PopupBasTextareaTemplate 
-		visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
-		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
-	  		  	  
-
-      {/* voir la miniature- FA  */}
-	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
-      
+     
 
       {/* on affiche les messages privés dans l'application x */}
       {/* on affiche les messages privés dans l'application x */}
