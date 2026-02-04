@@ -1467,10 +1467,10 @@ export function LesVideos({ data=[], setId, setIdPost, setUrlVideo, setIdProprie
 )}
 
 
-export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setUrlVideo, setId, setIdPost, setIdProprietairePost, clicVideo, voirVideo, video }) {
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setUrlVideo, setIdPost, setIdProprietairePost, clicVideo, voirVideo, video }) {
   return (<>
-	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setId={setId} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} />
-    <LesVideos data={data} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
+	<RechercheTemplate listVideo={listVideo} valeur={valeur} setValeur={setValeur} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} />
+    <LesVideos data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
 </>)}
 
 
