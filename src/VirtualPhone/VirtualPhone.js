@@ -12622,7 +12622,7 @@ dans le localStorage */
     setLienVideo(!lienVideo);
   }
 
-  const [urlVideoo, setUrlVideo] = useState("");
+  //const [urlVideoo, setUrlVideo] = useState("");
   // quand on clique ca va rediriger l'utilisateur dans /video
   async function CollerLienContinuer(e) {
     e.preventDefault();
@@ -58513,7 +58513,7 @@ son compte Vixinol store */
                       type="text"
                       placeholder="coller le lien de la vidéo ici.."
                       value={urlVideo}
-                      onChange={(e) => setUrlVideo(e.target.value)}
+                      {/* onChange={(e) => setUrlVideo(e.target.value)} */}
                     />
                   </div>
                   {/* display */}
