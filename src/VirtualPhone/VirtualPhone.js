@@ -12628,7 +12628,7 @@ dans le localStorage */
     e.preventDefault();
     setOpacity(true);
     // avant de rediriger, ca va d'abord enregistrer le lien dans le localstorage
-    localStorage.setItem("https://alrani.com/urlVideo", urlVideoo);
+    //localStorage.setItem("https://alrani.com/urlVideo", urlVideoo);
     // postStyle de la video
     /* le postStyle c'est 10 car c'est une urlVideo, mais si c'est une urlPhotoCouvertureVideo
     là le postStyle sera 20 */

@@ -1069,14 +1069,36 @@ const toutesDonnees_idAccount = useMemo(() => { return toutesDonnees.filter(api 
 }, [toutesDonnees, idPersonConnectedFA]);
 
 
-
+/*
 const donneesAffichees_idProprietairePost = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idProprietairePost)
 .sort((a, b) => {
   const da = new Date(a.createdAt || 0);
   const db = new Date(b.createdAt || 0);
   return db - da;
 }).slice(0, lotActuel);
-}, [toutesDonnees, lotActuel, idProprietairePost] ); 
+}, [toutesDonnees, lotActuel, idProprietairePost] ); */
+
+
+const donneesAffichees_idProprietairePost = useMemo(() => {
+  return [...toutesDonnees].filter(api => api.idAccount === idProprietairePost)
+    .sort((a, b) => {
+      const clicA = a.clic ?? 0;
+      const clicB = b.clic ?? 0;
+
+      // 1️. priorité a ceux qui ont moins de clics (on les met en haut)
+      if (clicA !== clicB) {
+        return clicA - clicB;
+      }
+
+      // 2️. à clic égal → le plus récent en haut
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+
+      return dateB - dateA;
+    })
+    .slice(0, lotActuel);
+}, [toutesDonnees, lotActuel, idProprietairePost]);
+
 
 
 const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
