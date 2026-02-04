@@ -5,7 +5,6 @@ import Loader from "../Loader/Loader";
 import axios from "axios";
 import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
-import { useLiveQuery } from "dexie-react-hooks";
 
 import "../utils.css"; 
 
