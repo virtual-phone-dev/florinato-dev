@@ -1455,11 +1455,11 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 } 
 
 
-export function LesVideos({ data=[], setId, setIdPost, setUrlVideo, setIdProprietairePost, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
+export function LesVideos({ data=[], setIdPost, setUrlVideo, setIdProprietairePost, clicVideo, voirVideo, titrecss, cliccss, profilMap, video }) {
   return (
 <div className="video-grille">
 	{data.map((api) => (
-	  <div onClick={() => { setUrlVideo(api.urlVideo); setIdPost(api._id); setId(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
+	  <div onClick={() => { setUrlVideo(api.urlVideo); setIdPost(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} video />
 	  </div>
 	  ))}
