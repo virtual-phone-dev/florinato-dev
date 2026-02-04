@@ -5,11 +5,12 @@ import Loader from "./Loader/Loader";
 import Dexie from "dexie";
 import { theme } from "./theme";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 } from "./Svg/Svg";
-import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
+import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
 
 import investirPhoto from "./img/investir.jpg";
+
 
 
 
@@ -2400,6 +2401,72 @@ export function MenuPopupTemplate({ visible, fermer }) {
           {/* business-opacity */}
 </>)}
 //MenuPopup
+
+
+
+// MessageTemplate
+export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA, PageRedirection66ChildApi66messageFA, filterMessageFA,
+	nameOther, badgeOther, onlineOther, Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
+	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage
+	}) {
+	if (!visible) return null;
+	
+	return (<>
+        <div className="messageFA" onScroll={gererScrollMessages}>
+          <div className="close">
+            <div className="block-un">
+              <div className="a" onClick={fermer}> <SvgLeft/> </div>
+              <div className="b" onClick={fermer}> <img src={photoOther} alt=""/> </div>
+
+              <div className="c" onClick={ProfilFA}>
+                <div className="aa">
+                  <p>{nameOther}</p>
+                  {badgeOther === "1" && (<><SvgBadge/></>)}
+                </div>
+
+                <div className="bb"> <p>{dateParser(onlineOther)} (Dernière connexion)</p> </div>
+              </div>
+              {/* c */}
+            </div>
+            {/* block-un */}
+
+            <div className="block-deux">
+              <div className="a" onClick={Favorite66messageFA}> <SvgFile/> </div>
+              <div className="b" onClick={EnvoyerContactFA}> <SvgPointsVertical/> </div>
+              {dev && (<><div className="b"> <SvgPointsVertical/> </div></>)}
+            </div>
+            {/* block-deux */}
+          </div>
+          {/* close */}
+
+            {/* ici c'est pour mettre l'espacement entre le navbar top et les donnees de l'api */}
+            <div className="espacement-navbar-top-et-donnees-api"></div>
+
+            <div className="api" onClick={PageRedirection66ChildApi66messageFA}>
+            {filterMessageFA.map((api) => (<>
+              <ChildApi66messageFA api={api} />
+            </>))}
+            </div>
+
+            <p style={{ paddingTop: "100px" }}></p>
+		
+
+            {/* ecrire message (ca c'est l'input pour ecrire un message) */}
+            <div className="write">
+              {/* <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={gererChangementMessage}></textarea> </div> */}
+              <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
+			  
+              {verifyConversation1 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
+              {verifyConversation2 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
+
+              {isLoading66messageFA ? (<><div className="b" onClick={SendMessageFA}> <SvgSend/> </div></>):(<>
+              {!verifyConversation1 && !verifyConversation2 && (<><div className="b" onClick={BeginConversationFA}> <SvgSend/> </div></>)} </>)}
+            </div>
+            {/* write */}
+        </div>
+        {/* messageAA */}
+</>)}
+// MessageTemplate
 
 
 //ProfilTemplate

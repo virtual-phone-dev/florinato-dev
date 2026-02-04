@@ -10,9 +10,9 @@ import { useLiveQuery } from "dexie-react-hooks";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, AutoTextarea, dexieDB, useDexieScroll,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, dexieDB, useDexieScroll,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
-	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
+	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
 	useScrollIndexedDB,
 	} from "../utils";
@@ -1163,7 +1163,7 @@ function ChildApi66popularityAccountsPageFA({ api }) {
 
 
 //on affiche les messages
-function ChildApi66messageFA({ api }) {
+export function ChildApi66messageFA({ api }) {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const [checked, setChecked] = useState(false);
   async function Checked() {
@@ -51117,8 +51117,90 @@ son compte Vixinol store */
 		<MenuBasTemplate visible={menuBas} fermer={CloseMenuBas} />
 		<GestionPageTemplate visible={gestionPage} fermer={CloseGestionPage} />
 		<PopupBasTextareaTemplate visible={popupBasTextarea} fermer={ClosePopupBasTextarea} />
-  
 
+
+  		
+		<MessageTemplate 
+			visible={messageFA} fermer={CloseMessageFA}
+			gererScrollMessages={gererScrollMessages} ProfilFA={ProfilFA} gererChangementMessage={gererChangementMessage} 
+			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
+			filterMessageFA={filterMessageFA} 
+			Favorite66messageFA={Favorite66messageFA} 
+			EnvoyerContactFA={EnvoyerContactFA} 
+			onlineOther={onlineOther} 
+			badgeOther={badgeOther} 
+			nameOther={nameOther} 
+			dev={dev} verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
+			isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
+			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
+		
+		
+		
+		{/* on affiche mon compte - FA */}
+		<ProfilTemplate 
+			visible={profilFA} fermer={CloseProfilFA} video
+			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
+			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
+			setId={setId} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
+			rechercherMaVideoFA={rechercherMaVideoFA} 
+			setRechercherMaVideoFA={setRechercherMaVideoFA} 
+			dataMesVisitesFA={dataMesVisitesFA} 
+			dataMesVideosFA={dataMesVideosFA} 
+			listMesVideosFA={listMesVideosFA} 
+			SeeVideoFA={SeeVideoFA} 
+			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} />
+
+	  
+	  <PopupDuBasTemplate 
+		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
+		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
+  
+    
+	  <PageTemplate 
+		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
+		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} proprietaireCompte={false} />
+		  
+	<PageTemplate 
+		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap} proprietaireCompte
+		titre="Gestionnaire - Listes des comptes ou vous avez été ajoutés" photo={photoFA} gestionnaireCompte={false} />
+	  
+	  <PageTemplate 
+		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterTopFA} profilMap={profilMap}
+		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mis en avant" photo={photoFA} />
+		  
+		<PageTemplate 
+		  visible={adminFlorinato} fermer={CloseAdminFlorinato} data={filterAdminFlorinatoFA} profilMap={profilMap}
+		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
+		
+		
+		
+	  <PopupDuBasTemplate 
+		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
+		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} search/>
+	  
+	  <PopupDuBasTemplate 
+		  visible={mettreEnAvantFApb} fermer={CloseMettreEnAvantFApb} photo={photoFA} titre="Choisir le compte à mettre en avant" 
+		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={MettreEnAvantFAconfp} setId={setId} search/>
+	  
+	  <PopupDuBasTemplate 
+		  visible={adminFlorinatopb} fermer={CloseAdminFlorinatopb} photo={photoFA} titre="Ajouter un compte qui sera admin Florinato" 
+		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} search/>
+		  
+		  
+	  
+	  <ConfirmationTemplate 
+		  visible={publierSurVotreCompteFAconfp} fermer={ClosePublierSurVotreCompteFAconfp} 
+		  isLoading={isLoading666AjouterAdminFA} Validerbtn={AjouterAdminFA} />
+	  
+	  <ConfirmationTemplate 
+		  visible={mettreEnAvantFAconfp} fermer={CloseMettreEnAvantFAconfp} 
+		  isLoading={isLoading666MettreEnAvantFA} Validerbtn={MettreEnAvantFA} />
+	  
+	  <ConfirmationTemplate 
+		  visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} 
+		  isLoading={isLoading666AjouterAdminFlorinato} Validerbtn={AjouterAdminFlorinato} />
+	  
+	  
       {/* rencontre - FA */}
       {rencontreFA && (<>
         <div className="rencontreFA">
@@ -51219,72 +51301,6 @@ son compte Vixinol store */
       {/* Les comptes les plus populaires sur florinato */}
 	
 
-  
-		{/* on affiche mon compte - FA */}
-		<ProfilTemplate 
-			visible={profilFA} fermer={CloseProfilFA} video
-			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
-			setId={setId} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
-			rechercherMaVideoFA={rechercherMaVideoFA} 
-			setRechercherMaVideoFA={setRechercherMaVideoFA} 
-			dataMesVisitesFA={dataMesVisitesFA} 
-			dataMesVideosFA={dataMesVideosFA} 
-			listMesVideosFA={listMesVideosFA} 
-			SeeVideoFA={SeeVideoFA} 
-			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} />
-
-	  
-	  <PopupDuBasTemplate 
-		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
-		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
-  
-    
-	  <PageTemplate 
-		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
-		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} proprietaireCompte={false} />
-		  
-	<PageTemplate 
-		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap} proprietaireCompte
-		titre="Gestionnaire - Listes des comptes ou vous avez été ajoutés" photo={photoFA} gestionnaireCompte={false} />
-	  
-	  <PageTemplate 
-		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterTopFA} profilMap={profilMap}
-		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mis en avant" photo={photoFA} />
-		  
-		<PageTemplate 
-		  visible={adminFlorinato} fermer={CloseAdminFlorinato} data={filterAdminFlorinatoFA} profilMap={profilMap}
-		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
-		
-		
-		
-	  <PopupDuBasTemplate 
-		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
-		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} search/>
-	  
-	  <PopupDuBasTemplate 
-		  visible={mettreEnAvantFApb} fermer={CloseMettreEnAvantFApb} photo={photoFA} titre="Choisir le compte à mettre en avant" 
-		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={MettreEnAvantFAconfp} setId={setId} search/>
-	  
-	  <PopupDuBasTemplate 
-		  visible={adminFlorinatopb} fermer={CloseAdminFlorinatopb} photo={photoFA} titre="Ajouter un compte qui sera admin Florinato" 
-		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} search/>
-		  
-		  
-	  
-	  <ConfirmationTemplate 
-		  visible={publierSurVotreCompteFAconfp} fermer={ClosePublierSurVotreCompteFAconfp} 
-		  isLoading={isLoading666AjouterAdminFA} Validerbtn={AjouterAdminFA} />
-	  
-	  <ConfirmationTemplate 
-		  visible={mettreEnAvantFAconfp} fermer={CloseMettreEnAvantFAconfp} 
-		  isLoading={isLoading666MettreEnAvantFA} Validerbtn={MettreEnAvantFA} />
-	  
-	  <ConfirmationTemplate 
-		  visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} 
-		  isLoading={isLoading666AjouterAdminFlorinato} Validerbtn={AjouterAdminFlorinato} />
-	  
-	  
 	  
       {/* délivrer un numéro virtuel (admin florinato) */}
       {/* délivrer un numéro virtuel (admin florinato) */}
@@ -51615,66 +51631,7 @@ son compte Vixinol store */
       {/* on affiche le groupe de l'autre - FA */}
 
 
-      {/* message - FA */}
-      {/* message - FA */}
-      {/* on affiche les messages */}
-      {messageFA && (<>
-        <div className="messageFA" onScroll={gererScrollMessages}>
-          <div className="close">
-            <div className="block-un">
-              <div className="a" onClick={CloseMessageFA}> <SvgLeft/> </div>
-              <div className="b" onClick={CloseMessageFA}> <img src={photoOther} alt=""/> </div>
-
-              <div className="c" onClick={ProfilFA}>
-                <div className="aa">
-                  <p>{nameOther}</p>
-                  {badgeOther === "1" && (<><SvgBadge/></>)}
-                </div>
-
-                <div className="bb"> <p>{dateParser(onlineOther)} (Dernière connexion)</p> </div>
-              </div>
-              {/* c */}
-            </div>
-            {/* block-un */}
-
-            <div className="block-deux">
-              <div className="a" onClick={Favorite66messageFA}> <SvgFile/> </div>
-              <div className="b" onClick={EnvoyerContactFA}> <SvgPointsVertical/> </div>
-              {dev && (<><div className="b"> <SvgPointsVertical/> </div></>)}
-            </div>
-            {/* block-deux */}
-          </div>
-          {/* close */}
-
-            {/* ici c'est pour mettre l'espacement entre le navbar top et les donnees de l'api */}
-            <div className="espacement-navbar-top-et-donnees-api"></div>
-
-            <div className="api" onClick={PageRedirection66ChildApi66messageFA}>
-            {filterMessageFA.map((api) => (<>
-              <ChildApi66messageFA api={api} />
-            </>))}
-            </div>
-
-            <p style={{ paddingTop: "100px" }}></p>
-		
-
-            {/* ecrire message (ca c'est l'input pour ecrire un message) */}
-            <div className="write">
-              {/* <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={gererChangementMessage}></textarea> </div> */}
-              <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
-			  
-              {verifyConversation1 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
-              {verifyConversation2 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
-
-              {isLoading66messageFA ? (<><div className="b" onClick={SendMessageFA}> <SvgSend/> </div></>):(<>
-              {!verifyConversation1 && !verifyConversation2 && (<><div className="b" onClick={BeginConversationFA}> <SvgSend/> </div></>)} </>)}
-            </div>
-            {/* write */}
-        </div>
-        {/* messageAA */}
-      </>)}
-      {/* message - FA */} 
-
+      
 
       {/* on affiche les favoris au niveau des messages */}
       {/* on affiche les favoris au niveau des messages */}
