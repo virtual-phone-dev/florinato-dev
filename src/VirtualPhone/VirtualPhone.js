@@ -35176,7 +35176,7 @@ const {
 	donneesAffichees_idAccount: dataMesVideosFA, 
 	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
 	toutesDonnees_idAccount: toutesMesVideos, 
-	//toutesDonnees: toutesVideos, 
+	toutesDonnees_all: toutesVideos, 
 	setToutesDonnees,
 	gererScroll 
 } = useScrollIndexedDB({ 
@@ -35191,8 +35191,7 @@ const {
 //console.log("toutesVideos", toutesVideos);
 
 //const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
-//const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
-const listVideoFA = useMemo(() => rechercherAvecFuse({ data:dataVideoFAA, search:rechercherUneVideoFA, keys:["message"] }), [dataVideoFAA, rechercherUneVideoFA] );
+const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
 //const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
@@ -51100,9 +51099,7 @@ son compte Vixinol store */
 			filterMessageFA={filterMessageFA} 
 			Favorite66messageFA={Favorite66messageFA} 
 			EnvoyerContactFA={EnvoyerContactFA} 
-			onlineOther={onlineOther} 
-			badgeOther={badgeOther} 
-			nameOther={nameOther} 
+			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
 			dev={dev} verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
 			isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
 			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />

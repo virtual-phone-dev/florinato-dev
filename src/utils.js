@@ -1138,6 +1138,27 @@ const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api 
 const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idUser === idUserConnectedFA) }, [toutesDonnees, idUserConnectedFA]);
 
 
+const toutesDonnees_all = useMemo(() => {
+  return [...toutesDonnees]
+    .sort((a, b) => {
+      const clicA = a.clic ?? 0;
+      const clicB = b.clic ?? 0;
+
+      // 1️. priorité a ceux qui ont moins de clics (on les met en haut)
+      if (clicA !== clicB) {
+        return clicA - clicB;
+      }
+
+      // 2️. à clic égal → le plus récent en haut
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+
+      return dateB - dateA;
+    })
+    //.slice(0, lotActuel);
+}, [toutesDonnees]);
+
+
 
   // useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB) 🔹 1) LECTURE INDEXEDDB (AFFICHAGE IMMEDIAT)
   useEffect(() => {
@@ -1202,7 +1223,7 @@ const toutesDonnees_idUser = useMemo(() => { return toutesDonnees.filter(api => 
 		}
 	};
 
-	return { toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, toutesDonnees_all, setToutesDonnees, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
@@ -2327,7 +2348,7 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 // MessageTemplate
 export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA, PageRedirection66ChildApi66messageFA, filterMessageFA,
-	nameOther, badgeOther, onlineOther, Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
+	nameOther, badgeOther, onlineOther, photoOther, Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
 	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage
 	}) {
 	if (!visible) return null;
