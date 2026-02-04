@@ -34824,7 +34824,7 @@ async function DissadAA() {
   const message = localStorage.getItem("message"); 
   const type = localStorage.getItem("type"); 
   const urlPhoto = localStorage.getItem("urlPhoto"); 
-  const urlVideo = localStorage.getItem("urlVideo"); 
+  //const urlVideo = localStorage.getItem("urlVideo"); 
 
   const urlPhotoreq = localStorage.getItem("urlPhotoreq");
   const urlVideoreq = localStorage.getItem("urlVideoreq");
@@ -35173,6 +35173,7 @@ console.log("dexieDB", dexieDB); */
 	const [idDestinataire, setIdDestinataire] = useState(null);
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
+	const [urlVideo, setUrlVideo] = useState(null);
 	
 	const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
@@ -52279,7 +52280,7 @@ son compte Vixinol store */
         <div className="body">
 			{/* on affiche la video */}
 			<div className="block-video">
-				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
+				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideoFA} type="video/mp4"/> </video>
 			</div>
 			
 			<div className="display-flex"> 
@@ -52304,12 +52305,12 @@ son compte Vixinol store */
 
 			<div className="overflow-x">
 			{dataVideoIdProprietairePost.map((api) => (<>
-			<div onClick={() => { setId(api._id); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setId(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>
 			</>))}
 			</div>
-			{/* overflow-x */}
+			{/* overflow-x */} 
 
 
 			<div className="overflow-x" onScroll={gererScrollVideoOverflow}>
