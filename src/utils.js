@@ -1179,25 +1179,28 @@ const toutesDonnees_byId = useMemo(() => {
 
 
 // useEffect 2 (agit quand les donnees mongodb arrive) 🔹 2) SYNC AVEC MONGODB
-  useEffect(() => {
-	if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage || syncEnCours.current) return;
-    syncEnCours.current = true;
+useEffect(() => {
+  if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage || syncEnCours.current) return;
+  syncEnCours.current = true;
 
-    async function syncIndexedDB() {
+  async function syncIndexedDB() {
+    try {
       await sauvegarderDansIndexedDB(nomStockage, donnees);
       const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-	  setToutesDonnees(donneesLocales);
-	  
+      setToutesDonnees(donneesLocales);
+    } finally {
       syncEnCours.current = false;
     }
+  }
 
-    syncIndexedDB();
-  }, [donnees, visible, nomStockage]);
+  syncIndexedDB();
+}, [donnees, visible, nomStockage]);
+
 	
 	
-	useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 RESET DU SCROLL LORS D’UNE RECHERCHE
-	  setLotActuel(lot);
-	}, [rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte, lot]);
+useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 RESET DU SCROLL LORS D’UNE RECHERCHE
+  setLotActuel(lot);
+}, [rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte, lot]);
   
 
 //pour scroller encore plus 
