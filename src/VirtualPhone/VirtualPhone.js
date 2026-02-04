@@ -35196,8 +35196,8 @@ const {
 
 
 // scroller
-const scrollHorizontal = useScrollInfini(chargerPlus, 'x'); // overflow-x
-const scrollVertical = useScrollInfini(chargerPlus, 'y');
+const scrollX = useScrollInfini(chargerPlus, 'x'); // scrollHorizontal , overflow-x 
+const scrollY = useScrollInfini(chargerPlus, 'y'); // scroll Vertical
 
 
 //console.log("dataVideoFAbyClic", dataVideoFAbyClic);
@@ -51043,7 +51043,7 @@ son compte Vixinol store */
 		{/* voir la video - FA */}
       {seeVideoFA && (<>
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
-      <div className="seeVideoFA" onScroll={scrollVertical}>
+      <div className="seeVideoFA" onScroll={scrollY}>
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
           <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
@@ -51076,7 +51076,7 @@ son compte Vixinol store */
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
 				setIdPost={setIdPost} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
-			<div className="overflow-x" onScroll={scrollHorizontal}>
+			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoIdProprietairePost.map((api) => (<>
 			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
@@ -51086,7 +51086,7 @@ son compte Vixinol store */
 			{/* overflow-x */} 
 
 
-			<div className="overflow-x" onScroll={scrollHorizontal}>
+			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoFAbyClic.map((api) => (<>
 			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
@@ -51107,7 +51107,7 @@ son compte Vixinol store */
 				
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} gererScroll={gererScroll} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
 
 		<ComptesRecentsTemplate 
