@@ -35084,7 +35084,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	const [urlVideo, setUrlVideo] = useState(null);
 	
 	
-	const [infosPostFA, setInfosPostFA] = useState([]);
+	//const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
 	console.log(`infosPostFA ici:`, infosPostFA); */	
 
@@ -51127,7 +51127,7 @@ son compte Vixinol store */
   		
 		<MessageTemplate 
 			visible={messageFA} fermer={CloseMessageFA}
-			gererScrollMessages={gererScrollMessages} ProfilFA={ProfilFA} gererChangementMessage={gererChangementMessage} 
+			gererScrollMessages={gererScrollMessages} ProfilFA={ProfilFA} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
 			filterMessageFA={filterMessageFA} 
 			Favorite66messageFA={Favorite66messageFA} 

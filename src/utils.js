@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { React, useState, useEffect, useCallback, useRef, useMemo } from 'react';
+import { React, useState, useEffect, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
 import { theme } from "./theme";
@@ -1223,7 +1223,7 @@ const toutesDonnees_byId = useMemo(() => {
 		}
 	};
 
-	return { toutesDonnees, toutesDonnees_all, toutesDonnees_byId, setToutesDonnees, chargerPlus, donneesAffichees, donneesAffichees_messages, 
+	return { toutesDonnees, toutesDonnees_all, toutesDonnees_byId, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
 	donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount,
 	donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
