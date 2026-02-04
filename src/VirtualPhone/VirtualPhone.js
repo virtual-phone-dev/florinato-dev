@@ -34994,24 +34994,24 @@ useEffect(() => {
   
   
 //const typeDeTable = { "10":"comptes", "30":"conversations", "50":"followers", "1":"messages", "3":"videos", };
-const typeDeTable = { "3":"videos" };
+//const typeDeTable = { "3":"videos" };
 
 socket.on("message:misAJour", (element) => { // data modification reussi , (ce code recoit le nouveau document modifié)
 	console.log("element reçu modifié :", element);
-  console.log("➡️ element.type :", element?.type, typeof element?.type);
+  /* console.log("➡️ element.type :", element?.type, typeof element?.type);
 	
 	
     const table = typeDeTable[element.type];
-	console.log("🗂️ table choisie :", table);
+	console.log("🗂️ table choisie :", table); */
 
   setToutesDonnees(prev =>
 	prev.map(m => 
 		m._id === element._id ? element : m  // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages (ou element) du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés  
 	));
 
-  sauvegarderDansIndexedDB(table, [element])
+  /* sauvegarderDansIndexedDB(table, [element])
     .then(() => console.log("✅ Sauvegardé dans", table))
-    .catch(err => console.error("❌ Erreur IndexedDB :", err));
+    .catch(err => console.error("❌ Erreur IndexedDB :", err)); */
 });
 	
 	
