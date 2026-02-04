@@ -35177,7 +35177,7 @@ console.log("dexieDB", dexieDB); */
 	
 	const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
-	console.log(`infosPostFA ici:`, infosPostFA); */
+	console.log(`infosPostFA ici:`, infosPostFA); */	
 
 	useEffect(() => {
 	  if (!idreq) return;
@@ -58513,7 +58513,6 @@ son compte Vixinol store */
                       type="text"
                       placeholder="coller le lien de la vidéo ici.."
                       value={urlVideo}
-                      {/* onChange={(e) => setUrlVideo(e.target.value)} */}
                     />
                   </div>
                   {/* display */}
