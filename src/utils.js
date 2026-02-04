@@ -1848,7 +1848,7 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 		<div className="b"> <button onClick={GotoPhoto}><SvgPlay2/></button> </div></>)}
 		
 		<div className={titrecss}> <pre>{api.message}</pre> </div>
-		<div className={cliccss}> <p>{api.clic}</p> </div>
+		<div className={cliccss}> <p>{api.clic} clic</p> </div>
       </div> )}
 
 
@@ -1857,7 +1857,7 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
 		<div className={titrecss}> <pre>{api.message}</pre> </div>
-		<div className={cliccss}> <p>{api.clic}</p> </div>
+		<div className={cliccss}> <p>{api.clic} clic</p> </div>
 	  </div> )}
 	  
 	</div>
