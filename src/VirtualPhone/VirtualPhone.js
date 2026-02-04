@@ -35176,8 +35176,8 @@ const {
 	donneesAffichees_byClic: dataVideoFAbyClic, 
 	donneesAffichees_idAccount: dataMesVideosFA, 
 	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
-	toutesDonnees_idAccount: toutesMesVideos, 
-	toutesDonnees_byId: toutesVideosbyId, 
+	toutesDonnees_byId: toutesMesVideos, 
+	//toutesDonnees_byId: toutesVideosbyId, 
 	toutesDonnees_all: toutesVideos, 
 	setToutesDonnees, chargerPlus,
 	gererScroll 
@@ -35213,12 +35213,12 @@ const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos,
 
 
 // filtre pour obtenir les infos du post (video, photo, ..) - FA
-const clicFA = toutesVideosbyId.map((api) => api.clic); // clic
-const titreFA = toutesVideosbyId.map((api) => api.message); // message
+const clicFA = toutesMesVideos.map((api) => api.clic); // clic
+const titreFA = toutesMesVideos.map((api) => api.message); // message
 
 console.log("clicFA", clicFA);
 console.log("titreFA", titreFA);
-console.log("toutesVideosbyId", toutesVideosbyId);
+console.log("toutesVideosbyId", toutesMesVideos);
 
 
 /*  useEffect(() => {

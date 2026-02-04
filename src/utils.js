@@ -1223,7 +1223,9 @@ const toutesDonnees_byId = useMemo(() => {
 		}
 	};
 
-	return { toutesDonnees, toutesDonnees_all, toutesDonnees_byId, setToutesDonnees, chargerPlus, donneesAffichees, donneesAffichees_messages, donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount, toutesDonnees_idAccount, donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { toutesDonnees, toutesDonnees_all, toutesDonnees_byId, setToutesDonnees, chargerPlus, donneesAffichees, donneesAffichees_messages, 
+	donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount,
+	donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
 
@@ -1485,7 +1487,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, se
 )}
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, setId, setIdPost, setIdProprietairePost, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, setId, setIdPost, setUrlVideo, setIdProprietairePost, clicVideo, voirVideo=()=>{}, titrecss, cliccss }) {	
   return (<>
 		{/* input pour effectuer une recherche */}
                   <div>
