@@ -1191,8 +1191,8 @@ useEffect(() => {
   async function syncIndexedDB() {
     try {
       await sauvegarderDansIndexedDB(nomStockage, donnees);
-      //const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-      setToutesDonnees(donnees);
+      const donneesLocales = await lireDepuisIndexedDB(nomStockage);
+      setToutesDonnees(donneesLocales);
     } finally {
       syncEnCours.current = false;
     }
