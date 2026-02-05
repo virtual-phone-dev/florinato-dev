@@ -51154,7 +51154,7 @@ son compte Vixinol store */
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataMesVideosFA} 
 			listMesVideosFA={listMesVideosFA} 
-			SeeVideoFA={SeeVideoFA} 
+			voirVideo={SeeVideoFA} 
 			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} />
 
 	  

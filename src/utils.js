@@ -2425,7 +2425,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 //ProfilTemplate
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, dataMesVideosFA, listMesVideosFA, video,
-	rechercherMaVideoFA, setRechercherMaVideoFA, setIdPost, setUrlVideo, setIdProprietairePost, ClicVideoFAA, SeeVideoFA, dataMesVisitesFA,
+	rechercherMaVideoFA, setRechercherMaVideoFA, setIdPost, setUrlVideo, setIdProprietairePost, ClicVideoFAA, voirVideo, dataMesVisitesFA,
 	PageRedirection66ChildApi66profilFA, getPopularity, getName, getPhoto, SeePhoto66profilFA, gererScroll, gererScrollVisites,
 	}) {
 		
@@ -2470,7 +2470,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 			  
 			<VideoSearchBlock 
 				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} video 
-				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} />
+				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} />
 
 
               <div className="api2">
