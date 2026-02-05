@@ -1614,7 +1614,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 	<div className="display-nowrap-espace">
       <div className="p-15px"> <p>{populariteGestionnaire}</p> </div>
       <div className="photo-70px"> <img src={photoGestionnaire} alt={nomGestionnaire}/> </div>
-      <div className="pre-17px"> <pre>nomGestionnaire {nomGestionnaire}</pre> </div>
+      <div className="pre-17px"> <pre>{nomGestionnaire}</pre> </div>
     </div> 
 	
 	<div className="display-nowrap-espace">
@@ -1629,10 +1629,11 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 	<div className="display-nowrap-espace">
       <div className="p-15px"> <p>{populariteProprietaire}</p> </div>
       <div className="photo-70px"> <img src={photoProprietaire} alt={nomProprietaire}/> </div>
-      <div className="pre-17px"> <pre>nomProprietaire {nomProprietaire}</pre> </div>
+      <div className="pre-17px"> <pre>{nomProprietaire}</pre> </div>
     </div> </>)}
 	
-	<InfosDev api={api} />
+	{/*
+	<InfosDev api={api} /> */}
 </>)}
 
 
