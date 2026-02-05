@@ -19,7 +19,12 @@ https://www.youtube.com/shorts/k68cyq1OnVY
 https://www.youtube.com/watch?v=oK_EeR6aB4o
 https://www.youtube.com/watch?v=0Q_FWl9c-l8
 
-
+https://www.youtube.com/watch?v=RrpTpyW_IWo
+https://www.youtube.com/watch?v=os36ZPGuH-c
+https://www.youtube.com/watch?v=Yne_1fkfqps
+https://www.youtube.com/watch?v=45AwQCVruNY
+https://www.youtube.com/watch?v=x4sB6h1HNjs
+https://www.youtube.com/watch?v=iUuGF77I3nE
 https://www.youtube.com/watch?v=8eYQ6rHKJOE&pp=ugUHEgVmci1GUg%3D%3D
 https://www.youtube.com/watch?v=XKYuuGiMZcQ&pp=ugUEEgJmcg%3D%3D
 https://www.youtube.com/shorts/04rE8ScGmrQ
@@ -1186,8 +1191,8 @@ useEffect(() => {
   async function syncIndexedDB() {
     try {
       await sauvegarderDansIndexedDB(nomStockage, donnees);
-      const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-      setToutesDonnees(donneesLocales);
+      //const donneesLocales = await lireDepuisIndexedDB(nomStockage);
+      setToutesDonnees(donnees);
     } finally {
       syncEnCours.current = false;
     }
