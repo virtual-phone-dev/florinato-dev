@@ -51262,7 +51262,7 @@ son compte Vixinol store */
 
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
-		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideoFA}
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideo}
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl />
 		
 	
