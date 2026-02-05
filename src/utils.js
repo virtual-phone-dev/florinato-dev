@@ -1191,8 +1191,22 @@ useEffect(() => {
   async function syncIndexedDB() {
     try {
       await sauvegarderDansIndexedDB(nomStockage, donnees);
-      const donneesLocales = await lireDepuisIndexedDB(nomStockage);
-      setToutesDonnees(donneesLocales);
+      //const donneesLocales = await lireDepuisIndexedDB(nomStockage);
+      //setToutesDonnees(donneesLocales);
+	  
+	  setToutesDonnees(prev => {
+	  const map = new Map(prev.map(e => [e._id, e]));
+
+	  donneesLocales.forEach(el => {
+		const existant = map.get(el._id);
+		// 👉 On ne remplace QUE si plus récent
+		if (!existant || new Date(el.updatedAt || el.createdAt) > new Date(existant.updatedAt || existant.createdAt)) {
+		  map.set(el._id, el);
+		}
+	  });
+	  return Array.from(map.values());
+	});
+
     } finally {
       syncEnCours.current = false;
     }
