@@ -51258,12 +51258,12 @@ son compte Vixinol store */
 				<p className="p-14px-ccc-esp">Supprimer le post</p>
 			</div>
 			
-			<pre className="pre-17px-white">{titreFA}</pre>
+			<pre className="pre-17px-white">{titreFA}</pre> 
 			<p className="p-14px-eee">{clicFA} clic</p>
 			
 	<div className="display-nowrap-espace">
-      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost}/> </div>
-      <pre className="pre-14px-eee">{nomProprietairePost}</pre>
+      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost} onClick={PremierProfilFA}/> </div>
+      <pre className="pre-14px-eee" onClick={PremierProfilFA}>{nomProprietairePost}</pre>
     </div>			
 
 			<RechercheTemplate 
@@ -51296,6 +51296,23 @@ son compte Vixinol store */
       {/* seeVideoFA */}
       </>)}
       {/* voir la video - FA */}
+	  
+	  
+	  
+	  {/* on affiche mon compte - FA */}
+		<ProfilTemplate 
+			visible={premierProfilFA} fermer={ClosePremierProfilFA} video
+			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
+			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
+			rechercherMaVideoFA={rechercherMaVideoFA} 
+			setRechercherMaVideoFA={setRechercherMaVideoFA} 
+			dataMesVisitesFA={dataMesVisitesFA} 
+			dataMesVideosFA={dataMesVideosFA} 
+			listMesVideosFA={listMesVideosFA} 
+			voirVideo={SeeVideoFA} 
+			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA}
+			scrollX={scrollX} />
 	  
       
 	  

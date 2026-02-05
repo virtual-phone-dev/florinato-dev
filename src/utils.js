@@ -1479,9 +1479,12 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 } 
 
 
-export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, clicVideo=()=>{}, voirVideo=()=>{}, titrecss, cliccss, profilMap, video }) {
+export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, clicVideo=()=>{}, voirVideo=()=>{}, 
+	titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX
+	}) {
+		
   return (
-<div className="video-grille">
+<div className={affichagecss} onScroll={scrollX || undefined}>
 	{data.map((api) => (
 	  <div onClick={() => { setUrlVideo(api.urlVideo); setIdPost(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} video />
@@ -1491,12 +1494,19 @@ export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setId
 )}
 
 
-export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, setUrlVideo, setIdPost, setIdProprietairePost, clicVideo, voirVideo, video }) {
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, 
+	setUrlVideo, setIdPost, setIdProprietairePost, clicVideo, voirVideo, video, affichagecss, scrollX, overflow }) {
+		
   return (<>
 	<RechercheTemplate 
 		listVideo={listVideo} valeur={valeur} setValeur={setValeur} 
 		setIdPost={setIdPost} setIdProprietairePost={setIdProprietairePost} setUrlVideo={setUrlVideo} clicVideo={clicVideo} voirVideo={voirVideo} />
 		
+	{overflow && (<>	
+    <LesVideos 
+		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} video
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} /> </>)}
+	
     <LesVideos data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
 </>)}
 
@@ -2430,7 +2440,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 
 //ProfilTemplate
-export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, dataMesVideosFA, listMesVideosFA, video,
+export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, dataMesVideosFA, listMesVideosFA, video, scrollX,
 	rechercherMaVideoFA, setRechercherMaVideoFA, setIdPost, setUrlVideo, setIdProprietairePost, ClicVideoFAA, voirVideo, dataMesVisitesFA,
 	PageRedirection66ChildApi66profilFA, getPopularity, getName, getPhoto, SeePhoto66profilFA, gererScroll, gererScrollVisites,
 	}) {
@@ -2475,8 +2485,9 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 			  
 			  
 			<VideoSearchBlock 
-				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} video 
-				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} />
+				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
+				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} 
+				video overflow scrollX={scrollX} affichagecss="overflow-x" />
 
 
               <div className="api2">
