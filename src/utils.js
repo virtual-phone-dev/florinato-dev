@@ -1078,7 +1078,7 @@ const donneesAffichees_idAccount = useMemo(() => {
       const dateB = b.createdAt ? new Date(b.createdAt) : 0;
       return dateB - dateA;
     }).slice(0, lotActuel);
-}, [toutesDonnees]);
+}, [toutesDonnees, lotActuel, idPersonConnectedFA]);
 
 
 
