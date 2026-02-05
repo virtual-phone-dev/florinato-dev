@@ -34848,7 +34848,7 @@ async function DissadAA() {
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   //const idAccountFA = localStorage.getItem("idPersonConnectedFA");
-  const urlVideoFA = localStorage.getItem("urlVideo");
+  //const urlVideoFA = localStorage.getItem("urlVideo");
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
   const idOther = localStorage.getItem("idAccountChef");
