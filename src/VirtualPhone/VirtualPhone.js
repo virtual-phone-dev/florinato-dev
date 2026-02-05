@@ -51148,7 +51148,7 @@ son compte Vixinol store */
 			visible={profilFA} fermer={CloseProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
-			setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			dataMesVisitesFA={dataMesVisitesFA} 
