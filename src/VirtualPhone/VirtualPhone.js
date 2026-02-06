@@ -6262,7 +6262,7 @@ function EnfantApiNotification({ api }) {
 
   // avec dateParser on affiche la date a laquelle la personne a mis la photo sur son profil
   // là c'est au niveau des notifications qu'on va afficher cette date
-  const dateParser = (date) => {
+  /* const dateParser = (date) => {
     let newDate = new Date(date).toLocaleDateString("fr-FR", {
       year: "numeric",
       month: "long",
@@ -6271,7 +6271,7 @@ function EnfantApiNotification({ api }) {
       minute: "numeric",
     });
     return newDate;
-  };
+  }; */
 
   return (
     <>
@@ -19059,16 +19059,6 @@ const [writeSuperCodeIzocashDealsPageIA, setWriteSuperCodeIzocashDealsPageIA] = 
     //1ere requete
   }
 
-  const dateParser = (date) => {
-    let newDate = new Date(date).toLocaleDateString("fr-FR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return newDate;
-  };
 
   const dateParserNumeric = (date) => {
     let newDate = new Date(date).toLocaleDateString("fr-FR", {

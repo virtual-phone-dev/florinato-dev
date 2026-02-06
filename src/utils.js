@@ -12,6 +12,29 @@ import investirPhoto from "./img/investir.jpg";
 
 
 
+const dateParser = (date) => {
+  let newDate = new Date(date).toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+  });
+  return newDate;
+};
+
+
+const dateParserLong = (date) => {
+  let newDate = new Date(date).toLocaleDateString("fr-FR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "numeric",
+    minute: "numeric",
+  });
+  return newDate;
+};
+
+
+
 
 /* 
 https://www.youtube.com/shorts/k68cyq1OnVY
@@ -391,19 +414,6 @@ https://www.youtube.com/watch?v=ExGFv57phrk
 https://www.youtube.com/watch?v=baythHIaiS8
 
 */
-
-
-// date envoie message
-  const dateParser = (date) => {
-    let newDate = new Date(date).toLocaleDateString("fr-FR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return newDate;
-  };
 
 
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
@@ -1408,7 +1418,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 
 
-export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, titrecss="pre-16px", cliccss="p-14px" }) {
+export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, dateParser = dateParser, titrecss="pre-16px", cliccss="p-14px" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
@@ -1481,15 +1491,15 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 } 
 
 
-export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, clicVideo=()=>{}, voirVideo=()=>{}, 
-	titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX
+export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, clicVideo=()=>{}, voirVideo=()=>{}, dateParser,
+	titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX 
 	}) {
 		
   return (
 <div className={affichagecss} onScroll={scrollX || undefined}>
 	{data.map((api) => (
 	  <div onClick={() => { setUrlVideo(api.urlVideo); setIdPost(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
-		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} video />
+		<ChildApi66LesVideos api={api} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} dateParser={dateParser} video />
 	  </div>
 	  ))}
 </div>
@@ -1507,7 +1517,7 @@ export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, set
 	{overflow && (<>	
     <LesVideos 
 		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} video
-		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} /> </>)}
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} /> </>)}
 	
     <LesVideos data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} video />
 </>)}
@@ -1776,7 +1786,7 @@ export default function CommentaireTemplate({ api, profilMap={}, RepondrePage })
       <div className="pre-14px-espace"> <pre>{profil.nameAccount}</pre> </div>
     </div>
 	<pre className="pre-17px">{api.commentaire}</pre>
-	<p className="p-12px-top3">{dateParser(api.createdAt)}</p>
+	<p className="p-12px-top3">{dateParserLong(api.createdAt)}</p>
 	<div className="p-14px-espace" onClick={RepondrePage}> <p>Répondre</p> </div>
 
 	
@@ -2396,7 +2406,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
                   {badgeOther === "1" && (<><SvgBadge/></>)}
                 </div>
 
-                <div className="bb"> <p>{dateParser(onlineOther)} (Dernière connexion)</p> </div>
+                <div className="bb"> <p>{dateParserLong(onlineOther)} (Dernière connexion)</p> </div>
               </div>
               {/* c */}
             </div>
