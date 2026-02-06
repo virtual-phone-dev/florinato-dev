@@ -35136,16 +35136,16 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
   //filtre pour afficher les comptes les plus populaires sur Florinato
   const filterPopularityAccountsFA = apiMessageFA.filter((api) => api.top ==="1");
 
-  const filterTopFA = apiMessageFA.filter((api) => api.top ==="1");
-  const filterAdminFA = apiMessageFA.filter((api) => api.admin ==="1");
-  const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.adminFlorinato ==="1");
+  const filterTopFA = apiMessageFA.filter((api) => api.top ==="1" && api.idUser === idUserConnectedFA);
+  const filterAdminFA = apiMessageFA.filter((api) => api.admin ==="1" && api.idUser === idUserConnectedFA);
+  const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.adminFlorinato ==="1" && api.idUser === idUserConnectedFA);
     
   
   //filtre pour afficher les comptes creer.
   //const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
   
   //filtre pour afficher les commentaires d'un post (video, photo, ...)
-  const filterCommentaireFA = apiMessageFA.filter((api) => api.type ==="25");
+  const filterCommentaireFA = apiMessageFA.filter((api) => api.type ==="25" && api.idPost === idPost);
 
   // effectuer une recherche - FA  
   const [rechercherUnCompteFA, setRechercherUnCompteFA] = useState("");
