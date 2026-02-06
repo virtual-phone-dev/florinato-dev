@@ -51094,7 +51094,8 @@ son compte Vixinol store */
 			dataMesVideosFA={dataMesVideosFA} 
 			listMesVideosFA={listMesVideosFA} 
 			voirVideo={SeeVideoFA} 
-			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} />
+			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} 
+			scrollX={scrollX} />
 
 	  
 	  <PopupDuBasTemplate 
