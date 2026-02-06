@@ -51076,10 +51076,12 @@ son compte Vixinol store */
 		<ProfilTemplate 
 			visible={profilFA} fermer={CloseProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
+			SeePhoto66profilFA={SeePhoto66profilFA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idPersonConnectedFA}
+			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
+			data={apiMessageFA}
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataMesVideosFA} 
 			listMesVideosFA={listMesVideosFA} 
@@ -51297,9 +51299,11 @@ son compte Vixinol store */
 		<ProfilTemplate 
 			visible={premierProfilFA} fermer={ClosePremierProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto66profilFA} getPhoto={getPhoto} getName={getName} getPopularity={getPopularity} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} ClicVideoFAA={ClicVideoFAA} 
+			SeePhoto66profilFA={SeePhoto66profilFA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idProprietairePost}
+			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
+			data={apiMessageFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataMesVideosFA} 

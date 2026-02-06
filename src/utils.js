@@ -1418,7 +1418,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 
 
-export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, nomEtphoto, dateParser = dateParser, titrecss="pre-16px", cliccss="p-14px" }) {
+export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, titrecss="pre-16px", cliccss="p-14px" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
@@ -1478,7 +1478,7 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 			  <pre className="pre-13px-blanc-gris">{nomProprietairePost}</pre>
 			</div> </>)}
 
-			<div className="display-nowrap-espace"> <pre className="pre-13px-blanc-gris">{dateParser(api.createdAt)}</pre> </div>
+			<div className="display-nowrap-espace"> <pre className="pre-13px-blanc-gris">{dateAfficher(api.createdAt)}</pre> </div>
 		</div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
@@ -1500,7 +1500,7 @@ export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setId
 <div className={affichagecss} onScroll={scrollX || undefined}>
 	{data.map((api) => (
 	  <div onClick={() => { setUrlVideo(api.urlVideo); setIdPost(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
-		<ChildApi66LesVideos api={api} nomEtphoto={nomEtphoto} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} dateParser={dateParser} video />
+		<ChildApi66LesVideos api={api} nomEtphoto={nomEtphoto} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} dateAfficher={dateParser} video />
 	  </div>
 	  ))}
 </div>
@@ -2459,19 +2459,31 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 
 //ProfilTemplate
-export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, dataMesVideosFA, listMesVideosFA, video, scrollX,
-	rechercherMaVideoFA, setRechercherMaVideoFA, setIdPost, setUrlVideo, setIdProprietairePost, ClicVideoFAA, voirVideo, dataMesVisitesFA,
-	PageRedirection66ChildApi66profilFA, getPopularity, getName, getPhoto, SeePhoto66profilFA, gererScroll, gererScrollVisites,
+export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[],
+	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, gererScroll, gererScrollVisites, scrollX,
+	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
 	}) {
 		
   if (!visible) return null;
+  
+  // 🔹 on récupère le bon profil (personne connecté OU un autre utilisateur)
+  const profile = data.find(api => api._id === idCompte);
+
+  if (!profile) {
+    console.warn("Profil introuvable :", idCompte);
+    return null;
+  }
+
+  // 🔹 infos du profil
+  const { nameAccount, photoProfile, popularity, badge, } = profile;
+  
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={fermer}> 
                 <div className="a"> <SvgLeft/> </div>
-                <div className="b"> <pre>{getName}</pre> </div>
+                <div className="b"> <pre>{nameAccount}</pre> </div>
               </div>
               {/* block-un */} 
 
@@ -2487,10 +2499,10 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 
       <div className="body">
         <div className="block-un">
-          <div className="a"> <img onClick={SeePhoto66profilFA} src={getPhoto} alt=""/> </div>
-          <div className="b"> <pre>{getName}</pre> </div>
+          <div className="a"> <img onClick={SeePhoto66profilFA} src={photoProfile} alt=""/> </div>
+          <div className="b"> <pre>{nameAccount}</pre> </div>
           <div className="c"> <SvgPopularity/> <p>Popularité</p> </div>
-          <div className="d"> <p>{getPopularity} visites</p> </div>
+          <div className="d"> <p>{popularity} visites</p> </div>
         </div>
         {/* block-un */}
 
