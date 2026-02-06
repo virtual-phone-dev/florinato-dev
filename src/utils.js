@@ -1465,7 +1465,9 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 			<div className="display-nowrap-espace">
 			  <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost}/> </div>
 			  <pre className="pre-13px-blanc-gris">{nomProprietairePost}</pre>
-			</div>				
+			</div>	
+
+			<div className="display-nowrap-espace"> <pre className="pre-13px-blanc-gris">{dateParser(api.createdAt)}</pre> </div>
 		</div></>)}
 		
 		{/* {afficherPhoto && (!verifierId || id) && (<> */}
