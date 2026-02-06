@@ -2400,6 +2400,18 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 	}) {
 	if (!visible) return null;
 	
+	
+	// 🔹 on récupère le bon profil (personne connecté OU un autre utilisateur)
+  /* const profile = data.find(api => api._id === idCompte);
+
+  if (!profile) {
+    console.warn("Profil introuvable :", idCompte);
+    return null;
+  }
+
+  // 🔹 infos du profil
+  const { nameAccount, photoProfile, popularity, } = profile; */
+	
 	return (<>
         <div className="messageFA" onScroll={gererScrollMessages}>
           <div className="close">
@@ -2475,7 +2487,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   }
 
   // 🔹 infos du profil
-  const { nameAccount, photoProfile, popularity, badge, } = profile;
+  const { nameAccount, photoProfile, popularity, } = profile;
   
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
