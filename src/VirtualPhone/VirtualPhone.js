@@ -35674,14 +35674,17 @@ const closePopup = () => {
   }; */
 
 
+
+// afficher le profil de l'autre - FA
+const [premierProfilFA, setPremierProfilFA] = useState(false);
+async function PremierProfilFA() { setPremierProfilFA(true); }
+async function ClosePremierProfilFA() { setPremierProfilFA(false); }
+
+
 // lier une video a une photo - FA
 const [addVideoPageFA, setAddVideoPageFA] = useState(false);
-async function AddVideoPageFA() { 
-  setAddVideoPageFA(true);
-}
-async function CloseAddVideoPageFA() { //fermer
-  setAddVideoPageFA(false);
-}
+async function AddVideoPageFA() { setAddVideoPageFA(true); }
+async function CloseAddVideoPageFA() { setAddVideoPageFA(false); } 
 
 
 //logique pour GenererMiniatureVideo
