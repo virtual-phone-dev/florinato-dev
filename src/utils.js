@@ -1535,7 +1535,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 			
 			<VideoSearchBlock 
 				data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
-				setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} video={video} nomEtphoto=true />
+				setIdProprietairePost={setIdProprietairePost} clicVideo={clicVideo} voirVideo={voirVideo} video={video} nomEtphoto />
 		</div>
 )}
 
