@@ -2552,7 +2552,8 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   const { nameAccount, photoProfile, popularity, } = profile;
   
   return (<>
-        <div className="profilFA" {/* onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }} */}>
+        <div className="profilFA">
+        {/* <div className="profilFA"  onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }} > */}
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={fermer}> 
