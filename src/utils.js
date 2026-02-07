@@ -2532,11 +2532,14 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 // MessageTemplate
 
 
-//ProfilTemplate gererScroll, gererScrollVisites, 
+
+//ProfilTemplate 
+export function ProfilTemplate({ visible, fermer, data, idCompte, MenuFA, AddVideoPageFA, AccountsFA, SeePhoto66profilFA }) {
+	/*
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[],
-	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX,
+	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
-	}) {
+	}) { */
 		
   if (!visible) return null;
   
@@ -2582,27 +2585,19 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
           <div className="d"> <p>{popularity} visites</p> </div>
         </div>
         {/* block-un */}
-
-              <div className="api" onClick={PageRedirection66ChildApi66profilFA}>
-               {/* {filterFA.map((api) => (<>
-				  <div onClick={() => setId(api._id)}>
-					  <ChildApi66profilFA api={api} video photo photocss="photo-70px-carre" clic svg verifierId/>
-				  </div>
-              </>))}   */}
-              </div>
 			  
 			  
-			<VideoSearchBlock 
+			{/* <VideoSearchBlock 
 				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
 				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} 
-				video overflow scrollX={scrollX} affichagecss="overflow-x" />
+				video overflow scrollX={scrollX} affichagecss="overflow-x" />  */}
 
 
-              <div className="api2">
+              {/* <div className="api2">
               {dataMesVisitesFA.map((api2) => (<>
                 <ChildApi266profilFA api2={api2} />
               </>))}
-              </div>
+              </div> */}
             </div>
             {/* body */}
         </div>
