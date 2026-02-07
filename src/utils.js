@@ -2691,10 +2691,83 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
         </div>
         {/* profilFA */}
 </>)}
-//ProfilTemplate	  
+//ProfilTemplate	
 
 
 
+// SeeVideoTemplate
+export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
+	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo,
+	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, CloseSeeVideoFA, FullScreen, ClicVideoFAA,
+	}) {
+	if (!visible) return null;
+	
+	return (<>
+      {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
+      <div className="seeVideoFA" onScroll={scrollY}>
+        <div className="close">
+          <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
+          <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
+        </div>
+        {/* close */}
+
+        <div className="body">
+			{/* on affiche la video */}
+			<div className="block-video">
+				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
+			</div>
+			
+			<div className="display-flex"> 
+				<p onClick={CommenterPageFA} className="p-14px-ccc-esp">Commentaire</p>
+				
+				{dev && (<>
+				<p onClick={ModifierTitrePageFA} className="p-14px-ccc-esp">Modifier le Titre</p>
+				<p onClick={ChangerMiniaturePage} className="p-14px-ccc-esp">Changer la Miniature</p>
+				<p onClick={ModifierUrlPage} className="p-14px-ccc-esp">Modifier l'url</p>
+				<p className="p-14px-ccc-esp">Supprimer le post</p> </>)}
+			</div>
+			
+			<pre className="pre-17px-white">{titreFA}</pre> 
+			<p className="p-14px-eee">{clicFA} clic</p>
+			
+	<div className="display-nowrap-espace">
+      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost} onClick={PremierProfilFA}/> </div>
+      <pre className="pre-14px-eee" onClick={PremierProfilFA}>{nomProprietairePost}</pre>
+    </div>			
+
+			<RechercheTemplate 
+				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
+				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+
+			<div className="overflow-x" onScroll={scrollX}>
+			{dataVideoByIdCompte.map((api) => (<>
+			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
+			</div>
+			</>))}
+			</div>
+			{/* overflow-x */} 
+			
+
+			<div className="overflow-x" onScroll={scrollX}>
+			{dataVideoFAbyClic.map((api) => (<>
+			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+			</div>
+			</>))}
+			</div>
+			{/* overflow-x */}
+
+			<LesVideos 
+				data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
+				titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+        </div>
+        {/* body */}
+      </div>
+      {/* seeVideoFA */}
+</>)}
+// SeeVideoTemplate
+	 
 	 
 export function MissionTemplate({ visible, valeur, setValeur, envoyer, message, nomMembre, titre, titre2, titre3, titre4, titre5, titre7, titre8, titre9 }) {
   if (!visible) return null;

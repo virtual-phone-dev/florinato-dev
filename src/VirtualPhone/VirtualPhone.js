@@ -12,6 +12,7 @@ import {
 	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, useScrollInfini,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
+	SeeVideoTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
 	useScrollIndexedDB,
 	} from "../utils";
@@ -40725,6 +40726,12 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   async function CloseProfilFA() { setFlorinatoApp(true); setProfilFA(false); }
   
   
+  
+  const [profilFA2e, setProfilFA2e] = useState(false); 
+  async function ProfilFA2e() { setProfilFA2e(true); }
+  async function CloseProfilFA2e() { setProfilFA2e(false); }
+  
+  
   const [seePhotoFA, setSeePhotoFA] = useState(false); //voir la photo 
   async function SeePhotoFA() { setSeePhotoFA(true); }
   async function CloseSeePhotoFA() { setSeePhotoFA(false); }
@@ -40733,6 +40740,11 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   const [seeVideoFA, setSeeVideoFA] = useState(false); //voir la video
   async function SeeVideoFA() { setSeeVideoFA(true); setVideosPageFA(false); }
   async function CloseSeeVideoFA() { setVideosPageFA(true); setSeeVideoFA(false); }
+  
+  
+  const [seeVideoFA2e, setSeeVideoFA2e] = useState(false); 
+  async function SeeVideoFA2e() { setSeeVideoFA2e(true); }
+  async function CloseSeeVideoFA2e() { setSeeVideoFA2e(false); }
   
 
   const [seePhotoFAreq, setSeePhotoFAreq] = useState(false); 
@@ -40757,14 +40769,14 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
 
 
   // PageRedirection 66ChildApi66profilFA
-  async function PageRedirection66ChildApi66profilFA() {
+  /* async function PageRedirection66ChildApi66profilFA() {
 	  
 	const gotoVideo = localStorage.getItem("gotoVideo");
     if (gotoVideo === "1") { setSeeVideoFA(true); }
 	
 	const gotoPhoto = localStorage.getItem("gotoPhoto");
     if (gotoPhoto === "1") { setSeePhotoFA(true); }
-  }
+  } */
   
 
   // on affiche le compte de l'autre - FA 
@@ -51092,7 +51104,7 @@ son compte Vixinol store */
 	
 		{/* on affiche mon compte - FA data={apiMessageFA} */}
 		<ProfilTemplate 
-			visible={profilFA} fermer={CloseProfilFA} video
+			visible={profilFA} fermer={CloseProfilFA} voirVideo={SeeVideoFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto66profilFA} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idPersonConnectedFA}
@@ -51106,8 +51118,6 @@ son compte Vixinol store */
 			dataOverflow={dataVideoRecenteByIdCompteConnecter}
 			
 			listMesVideosFA={listMesVideosFA} 
-			voirVideo={SeeVideoFA} 
-			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} 
 			scrollX={scrollX} />
 
 	  
@@ -51280,8 +51290,18 @@ son compte Vixinol store */
       {/* seeVideoFA */}
       </>)}
       {/* voir la video - FA */}
-
 	  
+
+
+	<SeeVideoTemplate 
+		visible={seeVideoFA} fermer={CloseSeeVideoFA} dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
+		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
+		clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
+		profil={ProfilFA2e} FullScreen={FullScreen}
+		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
+		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
+
+
 
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
@@ -51320,7 +51340,7 @@ son compte Vixinol store */
 	  
 	  {/* on affiche ton compte - FA  */}
 		<ProfilTemplate 
-			visible={premierProfilFA} fermer={ClosePremierProfilFA} video
+			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto66profilFA} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
@@ -51334,11 +51354,19 @@ son compte Vixinol store */
 			dataOverflow={dataVideoRecenteByIdCompte} 
 			
 			listMesVideosFA={listMesVideosFA} 
-			voirVideo={SeeVideoFA} 
-			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA}
 			scrollX={scrollX} />
+			
+	
 	  
-      
+    <SeeVideoTemplate 
+		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} 
+		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
+		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
+		clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
+		profil={ProfilFA} FullScreen={FullScreen}
+		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
+		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
+		
 	  
       {/* rencontre - FA */}
       {rencontreFA && (<>
