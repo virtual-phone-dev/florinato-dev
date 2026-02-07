@@ -35063,6 +35063,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
   const messageEpinglerFA = filterMessageEpinglerFA.map((api) => api.message); // messageEpingler
   
   
+  
 	const [idreq, setId] = useState(null);
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
@@ -35070,6 +35071,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	const [idPost, setIdPost] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
+	const [idCompte, setIdCompte] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
 	console.log("urlVideo", urlVideo);
@@ -35615,7 +35617,7 @@ async function SendMessageFAA() {
 		if (match) {
 		  id = match[1]; // Récupère l'ID dans la partie après /profile/
 		  console.log("id trouver dans l'url ", id);
-		  setIdProprietairePost(id);
+		  setIdCompte(id);
 		  
 		  // localStorage.setItem("idAccountChef", id);
 		  // console.log("idAccountChef deja enregistrer : ", id);
@@ -51035,11 +51037,11 @@ son compte Vixinol store */
 	  
 	  
 	  
-	  
 				
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
+			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
 
 		<ComptesRecentsTemplate 
@@ -51191,47 +51193,10 @@ son compte Vixinol store */
           </div>
           {/* publier-video-opacity */}
         </>)}
-      {/* choisir la video a ajouter à la phot
-
-	  
-
-    {/* page pour modifier l'url  */}
-	<ModifierTemplate 
-		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideo}
-		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl />
-		
-	
-	<ModifierTemplate 
-		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
-		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} profilMap={profilMap} 
-		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl lesCommentaires 
-		RepondrePage={RepondrePageFA} />
-		
-		
-	<ModifierTemplate 
-		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={titreFA} 
-		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl />
-		
-	
-	<ModifierTemplate 
-		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
-		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
-		titre="Changer la miniature de la vidéo" changerMiniature />
-
-	
-	
-	<PopupBasTextareaTemplate 
-		visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
-		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
-	  		  	  
-
-      {/* voir la miniature- FA  */}
-	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
+      {/* choisir la video a ajouter à la phot */}
 	  
 	  
-	
-	
-	
+	  
 	    {/* voir la video - FA */}
 		{/* voir la video - FA */}
       {seeVideoFA && (<>
@@ -51269,11 +51234,11 @@ son compte Vixinol store */
 
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA}
-				setIdPost={setIdPost} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
+				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
 			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoIdProprietairePost.map((api) => (<>
-			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>
 			</>))}
@@ -51283,20 +51248,59 @@ son compte Vixinol store */
 
 			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoFAbyClic.map((api) => (<>
-			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
+			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */}
 
-			<LesVideos data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+			<LesVideos 
+				data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
+				titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
         </div>
         {/* body */}
       </div>
       {/* seeVideoFA */}
       </>)}
       {/* voir la video - FA */}
+
+	  
+
+    {/* page pour modifier l'url  */}
+	<ModifierTemplate 
+		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideo}
+		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl />
+		
+	
+	<ModifierTemplate 
+		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
+		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} profilMap={profilMap} 
+		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl lesCommentaires 
+		RepondrePage={RepondrePageFA} />
+		
+		
+	<ModifierTemplate 
+		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={titreFA} 
+		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl />
+		
+	
+	<ModifierTemplate 
+		visible={changerMiniaturePage} fermer={CloseChangerMiniaturePage} Valider={ChangerMiniatureFA} isLoading={isLoading666ChangerMiniatureFA} 
+		transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} 
+		titre="Changer la miniature de la vidéo" changerMiniature />
+
+	
+	
+	<PopupBasTextareaTemplate 
+		visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
+		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
+	  		  	  
+
+      {/* voir la miniature- FA  */}
+	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
+	  
+	  
 	  
 	  
 	  
@@ -51305,7 +51309,7 @@ son compte Vixinol store */
 			visible={premierProfilFA} fermer={ClosePremierProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto66profilFA} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idProprietairePost}
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
 			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			data={apiMessageFA} 
