@@ -1569,18 +1569,18 @@ export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setId
 
 
 export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto,
-	setUrlVideo, setIdPost, setIdProprietairePost, setIdCompte, clicVideo, voirVideo, video, affichagecss, scrollX, overflow }) {
+	setUrlVideo, setIdPost, setIdProprietairePost, setIdCompte, clicVideo, voirVideo, video, affichagecss, scrollX,  }) {
 		
   return (<>
 	<RechercheTemplate 
 		listVideo={listVideo} valeur={valeur} setValeur={setValeur} clicVideo={clicVideo} voirVideo={voirVideo} nomEtphoto={nomEtphoto}
 		setIdPost={setIdPost} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} />
-		
+	{/* 	
 	{overflow && (<>	
-	{/* 
+	
     <LesVideos 
 		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
-		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} />*/} </>)}
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} /> </>)} */} 
 	
     <LesVideos 
 		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
@@ -2532,9 +2532,9 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 // MessageTemplate
 
 
-//ProfilTemplate
+//ProfilTemplate gererScroll, gererScrollVisites, 
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[],
-	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, gererScroll, gererScrollVisites, scrollX,
+	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX,
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
 	}) {
 		
@@ -2552,7 +2552,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   const { nameAccount, photoProfile, popularity, } = profile;
   
   return (<>
-        <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
+        <div className="profilFA" {/* onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }} */}>
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={fermer}> 
