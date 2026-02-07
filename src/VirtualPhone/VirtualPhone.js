@@ -2097,8 +2097,7 @@ function ChildApiMessageAA({ api }) {
  
   const dev = localStorage.getItem("dev");
 
-  return (
-    <>
+  return (<>
     <div onClick={Checked}>
 
         {/* son message (message que j'ai recu) */}
@@ -35616,8 +35615,10 @@ async function SendMessageFAA() {
 		if (match) {
 		  id = match[1]; // Récupère l'ID dans la partie après /profile/
 		  console.log("id trouver dans l'url ", id);
-		  localStorage.setItem("idAccountChef", id);
-		  console.log("idAccountChef deja enregistrer : ", id);
+		  setIdProprietairePost(id);
+		  
+		  // localStorage.setItem("idAccountChef", id);
+		  // console.log("idAccountChef deja enregistrer : ", id);
 		}
 	  
 	  if (profilePage) {
