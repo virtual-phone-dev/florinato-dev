@@ -35623,7 +35623,7 @@ async function SendMessageFAA() {
 	  if (profilePage) {
 		// const id = isProfilePage[1];
 		// ouvre la popup avec cet ID
-		setProfilFA(true);
+		setPremierProfilFA(true);
 		
 		setFlorinatoApp(false);
         setTelephoneVirtuel(false);
@@ -38912,6 +38912,9 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     setInscriptionPageAA(true);
     setConnexionPageAA(false);
   }
+  
+  async function CloseInscriptionPageAA() { setInscriptionPageAA(false); }
+
 
   // connexion Page - AA
   // connexion Page - AA
@@ -38921,6 +38924,9 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     setConnexionPageAA(true);
     setInscriptionPageAA(false);
   }
+  
+  async function CloseConnexionPageAA() { setConnexionPageAA(false); }
+
 
   // signup - AA
   // signup - AA
@@ -51293,7 +51299,7 @@ son compte Vixinol store */
 	  
 	  
 	  
-	  {/* on affiche mon compte - FA */}
+	  {/* on affiche ton compte - FA */}
 		<ProfilTemplate 
 			visible={premierProfilFA} fermer={ClosePremierProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
@@ -52459,21 +52465,20 @@ son compte Vixinol store */
       {/* on affiche les messages privés dans l'application x */}
 
 
-       {/* inscription Page - AA */}
-      {/* inscription Page - AA */}
-      {inscriptionPageAA && (
-        <>
-          <div className="connexionPageAA">
+		{/* inscription Page - AA */}
+		{/* inscription Page - AA */}
+		{inscriptionPageAA && (<>
+        <div className="connexionPageAA">
             <div className="display">
               <div className="card-un">
                 <div className=""> <p>{t("--welcome to")}</p> </div>
-                <div className="a"> <p>Florinato.</p> </div>
+                <div className="a"> <p onClick={CloseInscriptionPageAA}>Florinato.</p> </div>
                 <div className=""> <p>{t("--if you have not registered")}</p> </div>
               </div>
               {/* card-un */}
 
               <div className="card-deux">
-                <div className="block-un"> <p>{t("--registration")}</p> </div>
+                <div className="block-un"> <p onClick={CloseInscriptionPageAA}>{t("--registration")}</p> </div>
                 {/* block-un */}
 
                 {rtl && (<>
@@ -52547,21 +52552,21 @@ son compte Vixinol store */
       {/* on ajoute une photo de profil lors de l'inscription sur florinato */}
 
 
-      {/* connexion Page - AA */}
-      {/* connexion Page - AA */}
-      {connexionPageAA && (
-        <>
-          <div className="connexionPageAA">
+
+		{/* connexion Page - AA */}
+		{/* connexion Page - AA */}
+		{connexionPageAA && (<>
+        <div className="connexionPageAA">
             <div className="display">
               <div className="card-un">
-                <div className="a"> <p>Florinato</p> </div>
+                <div className="a"> <p onClick={CloseConnexionPageAA}>Florinato</p> </div>
                 <div className=""> <p>{t("--it is your house")}.</p> </div>
                 <div className=""> <p>{t("--log in")}</p> </div>
               </div>
               {/* card-un */}
 
               <div className="card-deux">
-                <div className="block-un"> <p>{t("--connection")}</p> </div>
+                <div className="block-un"> <p onClick={CloseConnexionPageAA}>{t("--connection")}</p> </div>
                 {/* block-un */}
 
                 {rtl && (<>
