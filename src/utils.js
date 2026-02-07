@@ -1577,9 +1577,10 @@ export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, set
 		setIdPost={setIdPost} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} />
 		
 	{overflow && (<>	
+	{/* 
     <LesVideos 
 		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
-		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} /> </>)}
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} />*/} </>)}
 	
     <LesVideos 
 		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
