@@ -1659,19 +1659,18 @@ export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setId
 )}
 
 
-export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto, dataOverflow,
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto, dataOverflow, overflow,
 	setUrlVideo, setIdPost, setIdProprietairePost, setIdCompte, clicVideo, voirVideo, video, affichagecss, scrollX,  }) {
 		
   return (<>
 	<RechercheTemplate 
 		listVideo={listVideo} valeur={valeur} setValeur={setValeur} clicVideo={clicVideo} voirVideo={voirVideo} nomEtphoto={nomEtphoto}
 		setIdPost={setIdPost} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} />
-	{/* 	
+
 	{overflow && (<>	
-	
     <LesVideos 
 		data={dataOverflow} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
-		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} /> </>)} */} 
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} /> </>)}
 	
     <LesVideos 
 		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
@@ -2694,8 +2693,6 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 </>)}
 //ProfilTemplate	  
 
-
-// SeeVideoTemplate
 
 
 	 
