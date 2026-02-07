@@ -2626,13 +2626,12 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 
 //ProfilTemplate 
-export function ProfilTemplate({ visible, fermer, data=[], idCompte, MenuFA, AddVideoPageFA, AccountsFA, SeePhoto66profilFA }) {
-	/*
+//export function ProfilTemplate({ visible, fermer, data=[], idCompte, MenuFA, AddVideoPageFA, AccountsFA, SeePhoto66profilFA }) {
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, 
 	data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
-	}) { */
+	}) { 
 		
   if (!visible) return null;
   
@@ -2648,8 +2647,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   const { nameAccount, photoProfile, popularity, } = profile;
   
   return (<>
-        <div className="profilFA">
-        {/* <div className="profilFA"  onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }} > */}
+        <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={fermer}> 
@@ -2679,17 +2677,17 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
         {/* block-un */}
 			  
 			  
-			{/* <VideoSearchBlock 
+			<VideoSearchBlock 
 				data={dataMesVideosFA} dataOverflow={dataOverflow} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
 				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} 
-				video overflow scrollX={scrollX} affichagecss="overflow-x" />  */}
+				video overflow scrollX={scrollX} affichagecss="overflow-x" /> 
 
 
-              {/* <div className="api2">
+              <div className="api2">
               {dataMesVisitesFA.map((api2) => (<>
                 <ChildApi266profilFA api2={api2} />
               </>))}
-              </div> */}
+              </div>
             </div>
             {/* body */}
         </div>
