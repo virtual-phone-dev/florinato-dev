@@ -1144,6 +1144,7 @@ const donneesAffichees_idCompte = useMemo(() => {
 }, [toutesDonnees, lotActuel, idCompte]); */
 
 
+/*
 function filtrerParCompte(source, accountId, lotActuel) {
   if (!accountId) return [];
 
@@ -1170,6 +1171,86 @@ const donneesAffichees_idCompteConnecter = useMemo(() => { return filtrerParComp
 
 const donneesAffichees_idCompte = useMemo(() => { return filtrerParCompte(toutesDonnees, idCompte, lotActuel); 
 }, [toutesDonnees, idCompte, lotActuel]);
+*/
+
+
+// filtrage
+// filtrage
+// filtrage
+// filtrage
+
+function filtrerEtTrier(source, { key=null, value=null, lot=null, triRecent=false } = {}) {
+  let result = [...source]; // on clone le tableau pour ne pas modifier l'original
+
+  // 🔹 Filtrage si clé et valeur fournies
+  if (key && value !== null && value !== undefined) {
+    result = result.filter(item => item[key] === value);
+  }
+
+  // 🔹 Tri
+  result.sort((a, b) => {
+    if (triRecent) {
+      // seulement par date récente
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+      return dateB - dateA; // le plus récent en premier
+    } else {
+      // tri normal : moins de clics d'abord, puis plus récent
+      const clicA = a.clic ?? 0;
+      const clicB = b.clic ?? 0;
+      if (clicA !== clicB) return clicA - clicB;
+
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+      return dateB - dateA;
+    }
+  });
+
+  // 🔹 Limite du nombre de résultats si lot précisé
+  if (lot !== null) {
+    result = result.slice(0, lot);
+  }
+
+  return result;
+}
+
+
+// par clic , les plus recents en haut (compte)
+const donneesAffichees_byClic_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: idCompte, lot:lotActuel }),
+[toutesDonnees, idCompte, lotActuel]);
+
+
+// par clic , les plus recents en haut (compte connecter)
+const donneesAffichees_byClic_idAccountConnecter = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: idCompteConnecter, lot:lotActuel }), 
+[toutesDonnees, idCompteConnecter, lotActuel]);
+
+
+// les plus recents en fonction de l'idAccount (idAccount d'un utilisateur)
+const donneesAffichees_recent_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: idCompte, lot:lotActuel, triRecent: true }),
+[toutesDonnees, idCompte, lotActuel]);
+
+
+// les plus recents en fonction de l'idAccount connecter (idAccount de la personne connecter)
+const donneesAffichees_recent_idAccountConnecter = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: idCompteConnecter, lot:lotActuel, triRecent: true }),
+[toutesDonnees, idCompteConnecter, lotActuel]);
+
+
+const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idCompte }), [toutesDonnees, idCompte]);
+
+//const toutesDonnees_all = useMemo(() => filtrerEtTrier(toutesDonnees), [toutesDonnees]); // Toutes les données triées par clic + date
+
+/*
+const toutesDonnees_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: idCompte }),
+[toutesDonnees, idCompte]);
+
+// Données filtrées par user et tri uniquement par date récente
+const toutesDonnees_idUserRecent = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idUser", value: idUserConnectedFA, triRecent: true }),
+[toutesDonnees, idUserConnectedFA]);
+
+// Données limitées à un lot
+const donneesAffichees_idCompteConnecter = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: idCompteConnecter, lot: lotActuel }),
+[toutesDonnees, idCompteConnecter, lotActuel]); */
+
 
 
 const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
@@ -1315,15 +1396,25 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
 		}
 	};
 
-	return { toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
-	donneesAffichees_byClic, donneesAffichees_account_other, 
-	donneesAffichees_idCompte,
-	donneesAffichees_idCompteConnecter,
-	toutesDonnees_byIdAccount,
-	toutesDonnees_all,
-	donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
+	return { 
+		toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
+		donneesAffichees_byClic, 
+		donneesAffichees_account_other, 
+		
+		donneesAffichees_byClic_idAccount,
+		donneesAffichees_byClic_idAccountConnecter,
+		
+		donneesAffichees_recent_idAccount,
+		donneesAffichees_recent_idAccountConnecter,
+		
+		toutesDonnees_byIdAccount,
+		toutesDonnees_all,
+		toutesDonnees_id,
+		donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll 
+	};
 }
 //useScrollIndexedDB
+
 
 
 export function useScrollInfini(chargerPlus, overflow='y', marge=150) {
@@ -1569,7 +1660,7 @@ export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setId
 )}
 
 
-export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto,
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto, dataOverflow,
 	setUrlVideo, setIdPost, setIdProprietairePost, setIdCompte, clicVideo, voirVideo, video, affichagecss, scrollX,  }) {
 		
   return (<>
@@ -1580,7 +1671,7 @@ export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, set
 	{overflow && (<>	
 	
     <LesVideos 
-		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
+		data={dataOverflow} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
 		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} /> </>)} */} 
 	
     <LesVideos 
@@ -2537,7 +2628,8 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 //ProfilTemplate 
 export function ProfilTemplate({ visible, fermer, data, idCompte, MenuFA, AddVideoPageFA, AccountsFA, SeePhoto66profilFA }) {
 	/*
-export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[],
+export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, 
+	data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
 	}) { */
@@ -2589,7 +2681,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 			  
 			  
 			{/* <VideoSearchBlock 
-				data={dataMesVideosFA} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
+				data={dataMesVideosFA} dataOverflow={dataOverflow} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
 				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} 
 				video overflow scrollX={scrollX} affichagecss="overflow-x" />  */}
 

@@ -35171,8 +35171,11 @@ const {
 	//donneesAffichees: dataVideoFA, 
 	donneesAffichees_byClic: dataVideoFAbyClic, 
 	
-	donneesAffichees_idCompte: dataVideoByIdCompte, 
-	donneesAffichees_idCompteConnecter: dataVideoByIdCompteConnecter, 
+	donneesAffichees_byClic_idAccount: dataVideoByIdCompte, 
+	donneesAffichees_byClic_idAccountConnecter: dataVideoByIdCompteConnecter, 
+	
+	donneesAffichees_recent_idAccount: dataVideoRecenteByIdCompte, 
+	donneesAffichees_recent_idAccountConnecter: dataVideoRecenteByIdCompteConnecter, 
 	
 	toutesDonnees_byIdAccount: toutesMesVideos, 
 	toutesDonnees_all: toutesVideos, 
@@ -35252,9 +35255,14 @@ const visitesSource = useMemo(() => apiMessageFA.filter(api => api.type === "200
 const { donneesAffichees_idCompteConnecter:dataMesVisitesFA, gererScroll:gererScrollVisites } = useScrollIndexedDB({ nomStockage: "visites", donnees:visitesSource });
 
 
+
 // comptes
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
-const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, toutesDonnees_idUser:toutMesComptes, toutesDonnees:toutComptes, gererScroll:gererScrollComptes 
+const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, 
+	toutesDonnees_idUser: toutMesComptes, 
+	toutesDonnees: toutComptes, 
+	toutesDonnees_id: dataCompteById, 
+	gererScroll: gererScrollComptes 
 } = useScrollIndexedDB({
 	nomStockage: "comptes", 
 	donnees:comptesSource, 
@@ -51080,6 +51088,8 @@ son compte Vixinol store */
 			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
 		
+		
+	
 		{/* on affiche mon compte - FA data={apiMessageFA} */}
 		<ProfilTemplate 
 			visible={profilFA} fermer={CloseProfilFA} video
@@ -51090,8 +51100,11 @@ son compte Vixinol store */
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			
+			data={dataCompteById}
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompteConnecter} 
+			dataOverflow={dataVideoRecenteByIdCompteConnecter}
+			
 			listMesVideosFA={listMesVideosFA} 
 			voirVideo={SeeVideoFA} 
 			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} 
@@ -51305,9 +51318,7 @@ son compte Vixinol store */
 	  
 	  
 	  
-	  
-	  
-	  {/* on affiche ton compte - FA data={apiMessageFA}  */}
+	  {/* on affiche ton compte - FA  */}
 		<ProfilTemplate 
 			visible={premierProfilFA} fermer={ClosePremierProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
@@ -51315,10 +51326,13 @@ son compte Vixinol store */
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
 			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
-			
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
+			
+			data={dataCompteById}
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompte} 
+			dataOverflow={dataVideoRecenteByIdCompte} 
+			
 			listMesVideosFA={listMesVideosFA} 
 			voirVideo={SeeVideoFA} 
 			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA}
