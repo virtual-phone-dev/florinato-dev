@@ -51080,7 +51080,7 @@ son compte Vixinol store */
 			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
 		
-		{/* on affiche mon compte - FA */}
+		{/* on affiche mon compte - FA data={apiMessageFA} */}
 		<ProfilTemplate 
 			visible={profilFA} fermer={CloseProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
@@ -51089,7 +51089,7 @@ son compte Vixinol store */
 			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
-			data={apiMessageFA}
+			
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompteConnecter} 
 			listMesVideosFA={listMesVideosFA} 
@@ -51307,7 +51307,7 @@ son compte Vixinol store */
 	  
 	  
 	  
-	  {/* on affiche ton compte - FA */}
+	  {/* on affiche ton compte - FA data={apiMessageFA}  */}
 		<ProfilTemplate 
 			visible={premierProfilFA} fermer={ClosePremierProfilFA} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
@@ -51315,7 +51315,7 @@ son compte Vixinol store */
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
 			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
-			data={apiMessageFA} 
+			
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompte} 
