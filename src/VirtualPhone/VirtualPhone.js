@@ -35602,7 +35602,7 @@ async function SendMessageFAA() {
   // État pour gérer l’ouverture du popup
 	useEffect(() => {
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
-	  const profilePage = location.pathname.startsWith('/p'); // Vérifier si l'URL correspond à la page profil
+	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
 	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
 	  const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
 	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
@@ -35638,7 +35638,7 @@ async function SendMessageFAA() {
 	  }
 	  
 	  if (videoPage) {
-		setVideosPage(true);
+		setVideosPageFA(true);
 		
 		setFlorinatoApp(false);
         setTelephoneVirtuel(false);
@@ -51000,9 +51000,9 @@ son compte Vixinol store */
                 {dev && (<><div className="a" onClick={RencontreFA}> <SvgLove2/> </div></>)}
 
                 <div className="b" onClick={VideosPageFA}> <SvgVideo6/> </div>
-                <div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div>
+                {dev && (<><div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div></>)}
                 <div className="b" onClick={ComptesRecentsPageFA}> <SvgSearch5/> </div>
-                <div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div>
+                {dev && (<><div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div></>)}
                 <div className="c" onClick={CloseFlorinatoApp}> <SvgExit/> </div>
               </div>
               {/* block-deux */}
@@ -51244,10 +51244,12 @@ son compte Vixinol store */
 			
 			<div className="display-flex"> 
 				<p onClick={CommenterPageFA} className="p-14px-ccc-esp">Commentaire</p>
+				
+				{dev && (<>
 				<p onClick={ModifierTitrePageFA} className="p-14px-ccc-esp">Modifier le Titre</p>
 				<p onClick={ChangerMiniaturePage} className="p-14px-ccc-esp">Changer la Miniature</p>
 				<p onClick={ModifierUrlPage} className="p-14px-ccc-esp">Modifier l'url</p>
-				<p className="p-14px-ccc-esp">Supprimer le post</p>
+				<p className="p-14px-ccc-esp">Supprimer le post</p> </>)}
 			</div>
 			
 			<pre className="pre-17px-white">{titreFA}</pre> 
@@ -52648,6 +52650,7 @@ son compte Vixinol store */
               <p onClick={EcranDemarrageIA}>izocash</p>
             </div>
 			
+			{dev && (<>
 			{/* newApp1 */}
 			<div className="application">
               <img onClick={NewApp} src={donaziaLogo} alt=""/>
@@ -52658,7 +52661,7 @@ son compte Vixinol store */
             <div className="application">
               <img onClick={MissionApp} src={officialLogo} alt="" />
               <p onClick={MissionApp}>Missions</p>
-            </div>
+            </div> </>)}
 
              {/* donazia */}
              {dev && (<>

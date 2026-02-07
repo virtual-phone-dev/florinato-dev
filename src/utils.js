@@ -2528,8 +2528,10 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 
               <div className="display-flex-nowrap"> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
-				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div> 
-				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div> 
+				  
+				  {dev && (<>
+				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  </>)}
+				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
 			  </div>
             </div>
             {/* close */} 
