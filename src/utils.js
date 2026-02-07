@@ -4,7 +4,8 @@ import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
 import { theme } from "./theme";
 import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 } from "./Svg/Svg";
-import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
+//import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
+import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
 
