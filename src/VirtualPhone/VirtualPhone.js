@@ -35164,22 +35164,26 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
   if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
   if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
 
-
+	
+	
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
 const { 
 	//donneesAffichees: dataVideoFA, 
 	donneesAffichees_byClic: dataVideoFAbyClic, 
-	donneesAffichees_idAccount: dataMesVideosFA, 
-	donneesAffichees_idProprietairePost: dataVideoIdProprietairePost, 
-	toutesDonnees_byId: toutesMesVideos, 
-	//toutesDonnees_byId: toutesVideosbyId, 
+	
+	donneesAffichees_idCompte: dataVideoByIdCompte, 
+	donneesAffichees_idCompteConnecter: dataVideoByIdCompteConnecter, 
+	
+	toutesDonnees_byIdAccount: toutesMesVideos, 
 	toutesDonnees_all: toutesVideos, 
+	
 	setToutesDonnees, chargerPlus,
 	gererScroll 
 } = useScrollIndexedDB({ 
 	nomStockage: "videos", 
 	donnees:videosSource, 
-	idProprietairePost,
+	idCompte,
+	idCompteConnecter: idPersonConnectedFA,
 	id: idPost,
 	rechercherMaVideo: rechercherMaVideoFA,
 	rechercherUneVideo: rechercherUneVideoFA,
@@ -35211,9 +35215,9 @@ const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos,
 const clicFA = toutesMesVideos.map((api) => api.clic); // clic
 const titreFA = toutesMesVideos.map((api) => api.message); // message
 
-console.log("clicFA", clicFA);
+/* console.log("clicFA", clicFA);
 console.log("titreFA", titreFA);
-console.log("toutesVideosbyId", toutesMesVideos);
+console.log("toutesVideosbyId", toutesMesVideos); */
 
 
 /*  useEffect(() => {
@@ -35245,7 +35249,7 @@ const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "co
 
 // visites
 const visitesSource = useMemo(() => apiMessageFA.filter(api => api.type === "200"), [apiMessageFA] ); // toutes mes visites
-const { donneesAffichees_idAccount:dataMesVisitesFA, gererScroll:gererScrollVisites } = useScrollIndexedDB({ nomStockage: "visites", donnees:visitesSource });
+const { donneesAffichees_idCompteConnecter:dataMesVisitesFA, gererScroll:gererScrollVisites } = useScrollIndexedDB({ nomStockage: "visites", donnees:visitesSource });
 
 
 // comptes
@@ -51076,7 +51080,6 @@ son compte Vixinol store */
 			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
 		
-		
 		{/* on affiche mon compte - FA */}
 		<ProfilTemplate 
 			visible={profilFA} fermer={CloseProfilFA} video
@@ -51088,7 +51091,7 @@ son compte Vixinol store */
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			data={apiMessageFA}
 			dataMesVisitesFA={dataMesVisitesFA} 
-			dataMesVideosFA={dataMesVideosFA} 
+			dataMesVideosFA={dataVideoByIdCompteConnecter} 
 			listMesVideosFA={listMesVideosFA} 
 			voirVideo={SeeVideoFA} 
 			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA} 
@@ -51237,14 +51240,14 @@ son compte Vixinol store */
 				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
 			<div className="overflow-x" onScroll={scrollX}>
-			{dataVideoIdProprietairePost.map((api) => (<>
+			{dataVideoByIdCompte.map((api) => (<>
 			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
 				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-eee" verifierId />
 			</div>
 			</>))}
 			</div>
 			{/* overflow-x */} 
-
+			
 
 			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoFAbyClic.map((api) => (<>
@@ -51315,14 +51318,13 @@ son compte Vixinol store */
 			data={apiMessageFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			dataMesVisitesFA={dataMesVisitesFA} 
-			dataMesVideosFA={dataMesVideosFA} 
+			dataMesVideosFA={dataVideoByIdCompte} 
 			listMesVideosFA={listMesVideosFA} 
 			voirVideo={SeeVideoFA} 
 			PageRedirection66ChildApi66profilFA={PageRedirection66ChildApi66profilFA}
 			scrollX={scrollX} />
 	  
       
-	  
 	  
       {/* rencontre - FA */}
       {rencontreFA && (<>

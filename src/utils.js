@@ -1051,7 +1051,9 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
-export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, idConversation, idProprietairePost, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, 
+	idConversation, idCompte, idCompteConnecter, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+		
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
@@ -1105,9 +1107,8 @@ const donneesAffichees_idAccount = useMemo(() => { return toutesDonnees.filter(a
 }, [toutesDonnees, lotActuel, idPersonConnectedFA] ); */
 
 
-
-const donneesAffichees_idAccount = useMemo(() => {
-  return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA)
+/*
+const donneesAffichees_idCompteConnecter = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA)
     .sort((a, b) => {
       const clicA = a.clic ?? 0;
       const clicB = b.clic ?? 0;
@@ -1121,8 +1122,8 @@ const donneesAffichees_idAccount = useMemo(() => {
 
 
 
-const donneesAffichees_idProprietairePost = useMemo(() => {
-  return [...toutesDonnees].filter(api => api.idAccount === idProprietairePost)
+const donneesAffichees_idCompte = useMemo(() => {
+  return [...toutesDonnees].filter(api => api.idAccount === idCompte)
     .sort((a, b) => {
       const clicA = a.clic ?? 0;
       const clicB = b.clic ?? 0;
@@ -1139,8 +1140,35 @@ const donneesAffichees_idProprietairePost = useMemo(() => {
       return dateB - dateA;
     })
     .slice(0, lotActuel);
-}, [toutesDonnees, lotActuel, idProprietairePost]);
+}, [toutesDonnees, lotActuel, idCompte]); */
 
+
+function filtrerParCompte(source, accountId, lotActuel) {
+  if (!accountId) return [];
+
+  return [...source]
+    .filter(api => api.idAccount === accountId)
+    .sort((a, b) => {
+      const clicA = a.clic ?? 0;
+      const clicB = b.clic ?? 0;
+
+      // 1️. priorité a ceux qui ont moins de clics (on les met en haut)
+      if (clicA !== clicB) return clicA - clicB;
+
+	  // 2️. à clic égal → le plus récent en haut
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+      return dateB - dateA;
+    })
+    .slice(0, lotActuel);
+}
+
+
+const donneesAffichees_idCompteConnecter = useMemo(() => { return filtrerParCompte(toutesDonnees, idCompteConnecter, lotActuel);
+}, [toutesDonnees, idCompteConnecter, lotActuel]);
+
+const donneesAffichees_idCompte = useMemo(() => { return filtrerParCompte(toutesDonnees, idCompte, lotActuel); 
+}, [toutesDonnees, idCompte, lotActuel]);
 
 
 const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
@@ -1195,8 +1223,8 @@ const toutesDonnees_all = useMemo(() => {
 
 
 
-const toutesDonnees_byId = useMemo(() => {
-  return [...toutesDonnees].filter(api => api._id === id)
+const toutesDonnees_byIdAccount = useMemo(() => {
+  return [...toutesDonnees].filter(api => api._idAccount === idCompte)
     .sort((a, b) => {
       const clicA = a.clic ?? 0;
       const clicB = b.clic ?? 0;
@@ -1206,7 +1234,7 @@ const toutesDonnees_byId = useMemo(() => {
       const dateB = b.createdAt ? new Date(b.createdAt) : 0;
       return dateB - dateA;
     })
-}, [toutesDonnees, id]);
+}, [toutesDonnees, idCompte]);
 
 
 
@@ -1286,8 +1314,12 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
 		}
 	};
 
-	return { toutesDonnees, toutesDonnees_all, toutesDonnees_byId, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
-	donneesAffichees_byClic, donneesAffichees_idProprietairePost, donneesAffichees_account_other, donneesAffichees_idAccount,
+	return { toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
+	donneesAffichees_byClic, donneesAffichees_account_other, 
+	donneesAffichees_idCompte,
+	donneesAffichees_idCompteConnecter,
+	toutesDonnees_byIdAccount,
+	toutesDonnees_all,
 	donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll };
 }
 //useScrollIndexedDB
