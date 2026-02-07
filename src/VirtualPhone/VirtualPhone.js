@@ -35602,7 +35602,7 @@ async function SendMessageFAA() {
   // État pour gérer l’ouverture du popup
 	useEffect(() => {
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
-	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
+	  const profilePage = location.pathname.startsWith('/p'); // Vérifier si l'URL correspond à la page profil
 	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
 	  const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
 	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
@@ -35623,28 +35623,24 @@ async function SendMessageFAA() {
 	  if (profilePage) {
 		// const id = isProfilePage[1];
 		// ouvre la popup avec cet ID
-		setProfilOtherFA(true);
-		setPopularityAccountsPageFA(true);
+		setProfilFA(true);
 		
-		setFlorinatoApp(true);
+		setFlorinatoApp(false);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
 	  }
 	  
 	  if (messagePage) {
 		setMessageFA(true);
-		
 		setFlorinatoApp(true);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
 	  }
 	  
 	  if (videoPage) {
-		setSeeVideoFA(true);
-		setProfilOtherFA(true);
-		setPopularityAccountsPageFA(true);
+		setVideosPage(true);
 		
-		setFlorinatoApp(true);
+		setFlorinatoApp(false);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
 	  }
