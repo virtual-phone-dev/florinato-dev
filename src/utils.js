@@ -2626,7 +2626,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 
 //ProfilTemplate 
-export function ProfilTemplate({ visible, fermer, data, idCompte, MenuFA, AddVideoPageFA, AccountsFA, SeePhoto66profilFA }) {
+export function ProfilTemplate({ visible, fermer, data=[], idCompte, MenuFA, AddVideoPageFA, AccountsFA, SeePhoto66profilFA }) {
 	/*
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, 
 	data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[], dataOverflow=[],
@@ -2656,15 +2656,14 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
                 <div className="a"> <SvgLeft/> </div>
                 <div className="b"> <pre>{nameAccount}</pre> </div>
               </div>
-              {/* block-un */} 
+              {/* block-un */}
 
+				{dev && (<>
               <div className="display-flex-nowrap"> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
-				  
-				  {dev && (<>
-				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  </>)}
+				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
-			  </div>
+			  </div> </>)}
             </div>
             {/* close */} 
           </div>
