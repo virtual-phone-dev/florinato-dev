@@ -3,7 +3,12 @@ import { React, useState, useEffect, useRef, useMemo } from 'react';
 import Fuse from "fuse.js";
 import Loader from "./Loader/Loader";
 import { theme } from "./theme";
-import { SvgAdd, SvgBadge, SvgBottom5, SvgFile, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 } from "./Svg/Svg";
+
+import { 
+	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, 
+	SvgFile, SvgFullScreen2, SvgLeft, SvgLeft2, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 
+} from "./Svg/Svg";
+	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
@@ -2694,11 +2699,11 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 //ProfilTemplate	
 
 
-
+		
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
-	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo,
-	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, CloseSeeVideoFA, FullScreen, ClicVideoFAA,
+	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo, photoProprietairePost, nomProprietairePost,
+	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, CloseSeeVideoFA, FullScreen, ClicVideoFAA
 	}) {
 	if (!visible) return null;
 	
@@ -2731,8 +2736,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, u
 			<p className="p-14px-eee">{clicFA} clic</p>
 			
 	<div className="display-nowrap-espace">
-      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost} onClick={PremierProfilFA}/> </div>
-      <pre className="pre-14px-eee" onClick={PremierProfilFA}>{nomProprietairePost}</pre>
+      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost} onClick={profil}/> </div>
+      <pre className="pre-14px-eee" onClick={profil}>{nomProprietairePost}</pre>
     </div>			
 
 			<RechercheTemplate 

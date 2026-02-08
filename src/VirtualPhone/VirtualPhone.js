@@ -40732,6 +40732,11 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   async function CloseProfilFA2e() { setProfilFA2e(false); }
   
   
+  const [profilFA3e, setProfilFA3e] = useState(false); 
+  async function ProfilFA3e() { setProfilFA3e(true); }
+  async function CloseProfilFA3e() { setProfilFA3e(false); }
+  
+  
   const [seePhotoFA, setSeePhotoFA] = useState(false); //voir la photo 
   async function SeePhotoFA() { setSeePhotoFA(true); }
   async function CloseSeePhotoFA() { setSeePhotoFA(false); }
@@ -40745,6 +40750,11 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   const [seeVideoFA2e, setSeeVideoFA2e] = useState(false); 
   async function SeeVideoFA2e() { setSeeVideoFA2e(true); }
   async function CloseSeeVideoFA2e() { setSeeVideoFA2e(false); }
+  
+  
+  const [seeVideoFA3e, setSeeVideoFA3e] = useState(false); 
+  async function SeeVideoFA3e() { setSeeVideoFA3e(true); }
+  async function CloseSeeVideoFA3e() { setSeeVideoFA3e(false); }
   
 
   const [seePhotoFAreq, setSeePhotoFAreq] = useState(false); 
@@ -51294,10 +51304,13 @@ son compte Vixinol store */
 
 
 	<SeeVideoTemplate 
-		visible={seeVideoFA} fermer={CloseSeeVideoFA} dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
-		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
-		clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
-		profil={ProfilFA2e} FullScreen={FullScreen}
+		visible={seeVideoFA} fermer={CloseSeeVideoFA} profil={ProfilFA2e} 
+		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
+		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} FullScreen={FullScreen}
+		clicFA={clicFA} titreFA={titreFA} 
+		nomProprietairePost={nomProprietairePost} 
+		photoProprietairePost={photoProprietairePost}
+		videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
 		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
 		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
 
@@ -51338,7 +51351,7 @@ son compte Vixinol store */
 	  
 	  
 	  
-	  {/* on affiche ton compte - FA  */}
+		{/* 2e profil , et seevideo (on affiche ton compte) - FA */}
 		<ProfilTemplate 
 			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
@@ -51359,15 +51372,50 @@ son compte Vixinol store */
 	
 	  
     <SeeVideoTemplate 
-		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} 
+		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} profil={ProfilFA3e} 
 		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
 		clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
-		profil={ProfilFA} FullScreen={FullScreen}
+		FullScreen={FullScreen} 
+		nomProprietairePost={nomProprietairePost} 
+		photoProprietairePost={photoProprietairePost}
 		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
 		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
 		
-	  
+	
+	
+		{/* 3e profil , et seevideo - FA */}
+		<ProfilTemplate 
+			visible={profilFA3e} fermer={CloseProfilFA3e} voirVideo={SeeVideoFA3e} video
+			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
+			SeePhoto66profilFA={SeePhoto66profilFA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
+			ClicVideoFAA={ClicVideoFAA} 
+			rechercherMaVideoFA={rechercherMaVideoFA} 
+			setRechercherMaVideoFA={setRechercherMaVideoFA} 
+			
+			data={dataCompteById}
+			dataMesVisitesFA={dataMesVisitesFA} 
+			dataMesVideosFA={dataVideoByIdCompte} 
+			dataOverflow={dataVideoRecenteByIdCompte} 
+			
+			listMesVideosFA={listMesVideosFA} 
+			scrollX={scrollX} />
+		
+	
+		<SeeVideoTemplate 
+			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} profil={CloseSeeVideoFA3e} 
+			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
+			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
+			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
+			FullScreen={FullScreen}
+			nomProprietairePost={nomProprietairePost} 
+			photoProprietairePost={photoProprietairePost}
+			CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
+			
+		
+		
       {/* rencontre - FA */}
       {rencontreFA && (<>
         <div className="rencontreFA">
