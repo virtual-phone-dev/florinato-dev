@@ -35173,14 +35173,13 @@ const {
 	donneesAffichees_recent_idAccountConnecter: dataVideoRecenteByIdCompteConnecter, 
 	
 	toutesDonnees_idAccount: videoByIdAccount, // obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche)
-	toutesDonnees_all: toutesVideos, 
-	toutesDonnees_id: dataOneVideo, // obtenir les infos dun post , dun compte, en fonction de leur _id
-	
+	toutesDonnees_all: toutesVideos, 	
 	infosCompte_by_id: infosCompteById,
 	infosPost_by_id: infosPostById,
 	
-	allVideo_by_idAccount: allVideoByIdAccount,
-
+	toutesVideoPar_idAccount: toutesVideoParIdAccount,
+	toutesVideoCompteConnecterPar_idAccount : toutesVideoCompteConnecterParIdAccount,
+	
 	setToutesDonnees, chargerPlus,
 	gererScroll 
 } = useScrollIndexedDB({ 
@@ -35208,9 +35207,14 @@ const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
-const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:allVideoByIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), [allVideoByIdAccount, rechercherMaVideoFA] );
+const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesVideoCompteConnecterParIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), 
+[toutesVideoCompteConnecterParIdAccount, rechercherMaVideoFA]);
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
+
+
+const listTesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesVideoParIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), 
+[toutesVideoParIdAccount, rechercherMaVideoFA]);
 
 
 // filtre pour obtenir les infos du post (video, photo, ..) - FA
@@ -51295,8 +51299,7 @@ son compte Vixinol store */
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompte} 
 			dataOverflow={dataVideoRecenteByIdCompte} 
-			
-			listMesVideosFA={listMesVideosFA} 
+			listMesVideosFA={listTesVideosFA} 
 			scrollX={scrollX} />
 			
 			

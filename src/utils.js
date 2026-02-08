@@ -1252,18 +1252,19 @@ const donneesAffichees_recent_idAccountConnecter = useMemo(() => filtrerEtTrier(
 // [toutesDonnees, idCompte, idCompteConnecter, idPost, idProprietairePost]);
 
 
-// obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche) . meme chose : obtenir toutes les messages qui contient cet idAccount 
-const allVideo_by_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
+// obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche)
+const toutesVideoPar_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
 [toutesDonnees, idCompte, idProprietairePost]);
+
+
+const toutesVideoCompteConnecterPar_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompteConnecter] }), 
+[toutesDonnees, idCompteConnecter]);
 
 
 const infosPost_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun post
 
-
 const infosCompte_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idCompteConnecter, idProprietairePost], }), 
 [toutesDonnees, idCompte, idCompteConnecter, idProprietairePost]); // obtenir les infos dun post
-
-//const post_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun post
 
 
 
@@ -1436,12 +1437,12 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
 		donneesAffichees_byClic_idAccountConnecter,
 		donneesAffichees_recent_idAccount,
 		donneesAffichees_recent_idAccountConnecter,
-		
 		toutesDonnees_all,
 		infosPost_by_id,
 		infosCompte_by_id,
 		
-		allVideo_by_idAccount,
+		toutesVideoPar_idAccount,
+		toutesVideoCompteConnecterPar_idAccount,
 		
 		donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll 
 	};
