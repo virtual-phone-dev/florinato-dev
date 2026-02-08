@@ -1056,8 +1056,9 @@ export async function lireDepuisIndexedDB(nomStockage) {
 }
 
 
+
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, 
-	idConversation, idCompte, idPost, idProprietairePost, idCompteConnecter, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+	idConversation, idCompte, idCompteConnecter, idPost, idProprietairePost, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
@@ -1247,7 +1248,8 @@ const donneesAffichees_recent_idAccountConnecter = useMemo(() => filtrerEtTrier(
 
 
 // obtenir les infos dun post , dun compte, en fonction de leur _id
-const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idPost] }), [toutesDonnees, idCompte, idPost]);
+const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idCompteConnecter, idPost] }), 
+[toutesDonnees, idCompte, idCompteConnecter, idPost]);
 
 // obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche) . meme chose : obtenir toutes les messages qui contient cet idAccount 
 const toutesDonnees_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
@@ -2642,7 +2644,6 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 
 //ProfilTemplate 
-//export function ProfilTemplate({ visible, fermer, data=[], idCompte, MenuFA, AddVideoPageFA, AccountsFA, SeePhoto66profilFA }) {
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, 
 	data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
