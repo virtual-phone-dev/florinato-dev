@@ -35096,9 +35096,6 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
     //const titreFA = infosPostFA.map((api) => api.message); // message
 	
 	
-	const infosProprietairePost = apiMessageFA.filter((api) => api._id === idProprietairePost);
-	const photoProprietairePost = infosProprietairePost.map((api) => api.photoProfile);
-	const nomProprietairePost = infosProprietairePost.map((api) => api.nameAccount);
 	
 	/*
 	console.log(`idDestinataire`, idDestinataire);
@@ -35219,8 +35216,18 @@ console.log("listMesVideosFA", listMesVideosFA);
 const clicFA = dataOneVideo.map((api) => api.clic); // clic
 const titreFA = dataOneVideo.map((api) => api.message); // message
 
-/* console.log("clicFA", clicFA);
-console.log("titreFA", titreFA); */
+
+// filtre pour obtenir les infos du compte
+const photoProprietairePost = dataOneVideo.map((api) => api.photoProfile); // photoProfile
+const nomProprietairePost = dataOneVideo.map((api) => api.nameAccount); // nameAccount
+
+/*
+const infosProprietairePost = apiMessageFA.filter((api) => api._id === idProprietairePost);
+const photoProprietairePost = infosProprietairePost.map((api) => api.photoProfile);
+const nomProprietairePost = infosProprietairePost.map((api) => api.nameAccount); */
+	
+console.log("photoProprietairePost", photoProprietairePost);
+console.log("nomProprietairePost", nomProprietairePost); 
 
 
 /*  useEffect(() => {
@@ -52358,7 +52365,7 @@ son compte Vixinol store */
           </div>
           {/* close */}
   
-          <div className="body"> <img src={photoFA} ref={videoRef} alt=""/> </div>
+          <div className="body"> <img src={photoFA} alt=""/> </div>
           {/* body*/}
         </div>
         {/* seePhotoFA */}

@@ -1248,8 +1248,8 @@ const donneesAffichees_recent_idAccountConnecter = useMemo(() => filtrerEtTrier(
 
 
 // obtenir les infos dun post , dun compte, en fonction de leur _id
-const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idCompteConnecter, idPost] }), 
-[toutesDonnees, idCompte, idCompteConnecter, idPost]);
+const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idCompteConnecter, idPost, idProprietairePost] }), 
+[toutesDonnees, idCompte, idCompteConnecter, idPost, idProprietairePost]);
 
 // obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche) . meme chose : obtenir toutes les messages qui contient cet idAccount 
 const toutesDonnees_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
