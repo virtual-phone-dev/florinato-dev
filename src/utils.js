@@ -2711,7 +2711,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
 	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo, photoProprietairePost, nomProprietairePost,
-	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, CloseSeeVideoFA, FullScreen, ClicVideoFAA
+	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, ClicVideoFAA
 	}) {
 	if (!visible) return null;
 	
@@ -2720,7 +2720,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, u
       <div className="seeVideoFA" onScroll={scrollY}>
         <div className="close">
           <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
-          <div className="b" onClick={CloseSeeVideoFA}> <SvgClose2 /> </div>
+          <div className="b" onClick={fermer}> <SvgClose2 /> </div>
         </div>
         {/* close */}
 
