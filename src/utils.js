@@ -2664,7 +2664,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
 
 
 //ProfilTemplate 
-export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, monCompte,
+export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, connecter,
 	data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
@@ -2688,7 +2688,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
               </div>
               {/* block-un */}
 
-				{monCompte && (<>
+				{connecter && (<>
 				<div className="display-flex-nowrap"> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
@@ -2794,7 +2794,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, u
 
 			<LesVideos 
 				data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
-				titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video />
+				titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} video nomEtphoto />
         </div>
         {/* body */}
       </div>
