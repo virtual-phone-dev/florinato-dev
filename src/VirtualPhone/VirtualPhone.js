@@ -9,12 +9,11 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, LesVideos, MesComptes, ChildApi66profilFA, useScrollInfini,
-	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, RechercheTemplate,
+	Page, Close, Input, MissionTemplate, SeePhotoModal, MesComptes, useScrollInfini,
+	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	SeeVideoTemplate,
-	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse,
-	useScrollIndexedDB,
+	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse, useScrollIndexedDB,
 	} from "../utils";
   
 import { missions } from "../missions";
@@ -35171,15 +35170,14 @@ const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"),
 const { 
 	//donneesAffichees: dataVideoFA, 
 	donneesAffichees_byClic: dataVideoFAbyClic, 
-	
 	donneesAffichees_byClic_idAccount: dataVideoByIdCompte, 
 	donneesAffichees_byClic_idAccountConnecter: dataVideoByIdCompteConnecter, 
-	
 	donneesAffichees_recent_idAccount: dataVideoRecenteByIdCompte, 
 	donneesAffichees_recent_idAccountConnecter: dataVideoRecenteByIdCompteConnecter, 
 	
-	toutesDonnees_byIdAccount: toutesMesVideos, 
+	toutesDonnees_idAccount: videoByIdAccount, // obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche)
 	toutesDonnees_all: toutesVideos, 
+	toutesDonnees_id: dataOneVideo, // obtenir les infos dun post , dun compte, en fonction de leur _id
 	
 	setToutesDonnees, chargerPlus,
 	gererScroll 
@@ -35188,7 +35186,8 @@ const {
 	donnees:videosSource, 
 	idCompte,
 	idCompteConnecter: idPersonConnectedFA,
-	id: idPost,
+	idProprietairePost,
+	idPost,
 	rechercherMaVideo: rechercherMaVideoFA,
 	rechercherUneVideo: rechercherUneVideoFA,
 });
@@ -35202,26 +35201,23 @@ const scrollY = useScrollInfini(chargerPlus, 'y'); // scroll Vertical
 //console.log("dataVideoFAbyClic", dataVideoFAbyClic);
 //console.log("toutesVideos", toutesVideos);
 
-//const videosR = useMemo(() => toutesVideos.filter(api => api.visible === "1" && api.message), [toutesVideos] );
 const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search:rechercherUneVideoFA, keys:["message"] }), [toutesVideos, rechercherUneVideoFA] );
 //const videosRecherchees = useMemo(() => rechercherAvecFuse({ data:videosR, search:maRechercheVideoFA, keys:["message"] }), [videosR, maRechercheVideoFA] );
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
-//const mesVideosR = useMemo(() => toutesMesVideos.filter(api => api.visible === "1" && api.message), [toutesMesVideos] );
-const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesMesVideos, search:rechercherMaVideoFA, keys: ["message"] }), [toutesMesVideos, rechercherMaVideoFA] );
+const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:videoByIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), [videoByIdAccount, rechercherMaVideoFA] );
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
 
 
 // filtre pour obtenir les infos du post (video, photo, ..) - FA
-const clicFA = toutesMesVideos.map((api) => api.clic); // clic
-const titreFA = toutesMesVideos.map((api) => api.message); // message
+const clicFA = dataOneVideo.map((api) => api.clic); // clic
+const titreFA = dataOneVideo.map((api) => api.message); // message
 
 /* console.log("clicFA", clicFA);
-console.log("titreFA", titreFA);
-console.log("toutesVideosbyId", toutesMesVideos); */
+console.log("titreFA", titreFA); */
 
 
 /*  useEffect(() => {

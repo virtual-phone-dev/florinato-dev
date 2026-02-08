@@ -1057,7 +1057,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 
 
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, 
-	idConversation, idCompte, idCompteConnecter, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+	idConversation, idCompte, idPost, idProprietairePost, idCompteConnecter, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
@@ -1187,8 +1187,15 @@ function filtrerEtTrier(source, { key=null, value=null, lot=null, triRecent=fals
   let result = [...source]; // on clone le tableau pour ne pas modifier l'original
 
   // 🔹 Filtrage si clé et valeur fournies
-  if (key && value !== null && value !== undefined) {
-    result = result.filter(item => item[key] === value);
+  // 🔹 FILTRAGE (1 valeur OU plusieurs valeurs)
+  if (cle && valeur !== null && valeur !== undefined) {
+    if (Array.isArray(valeur)) {
+      // plusieurs valeurs possibles
+      result = result.filter(item => valeur.includes(item[cle]));
+    } else {
+      // une seule valeur
+      result = result.filter(item => item[cle] === valeur);
+    }
   }
 
   // 🔹 Tri
@@ -1239,7 +1246,27 @@ const donneesAffichees_recent_idAccountConnecter = useMemo(() => filtrerEtTrier(
 [toutesDonnees, idCompteConnecter, lotActuel]);
 
 
-const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idCompte }), [toutesDonnees, idCompte]);
+// obtenir les infos dun post , dun compte, en fonction de leur _id
+const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idPost] }), [toutesDonnees, idCompte, idPost]);
+
+// obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche)
+const toutesDonnees_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
+[toutesDonnees, idCompte, idProprietairePost]);
+
+
+/*
+const toutesDonnees_byIdAccount = useMemo(() => {
+  return [...toutesDonnees].filter(api => api._idAccount === idCompte)
+    .sort((a, b) => {
+      const clicA = a.clic ?? 0;
+      const clicB = b.clic ?? 0;
+      if (clicA !== clicB) { return clicA - clicB; } // 1️. priorité a ceux qui ont moins de clics (on les met en haut)
+      
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0; // 2️. à clic égal → le plus récent en haut
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+      return dateB - dateA;
+    })
+}, [toutesDonnees, idCompte]); */
 
 //const toutesDonnees_all = useMemo(() => filtrerEtTrier(toutesDonnees), [toutesDonnees]); // Toutes les données triées par clic + date
 
@@ -1308,19 +1335,6 @@ const toutesDonnees_all = useMemo(() => {
 }, [toutesDonnees]);
 
 
-
-const toutesDonnees_byIdAccount = useMemo(() => {
-  return [...toutesDonnees].filter(api => api._idAccount === idCompte)
-    .sort((a, b) => {
-      const clicA = a.clic ?? 0;
-      const clicB = b.clic ?? 0;
-      if (clicA !== clicB) { return clicA - clicB; } // 1️. priorité a ceux qui ont moins de clics (on les met en haut)
-      
-      const dateA = a.createdAt ? new Date(a.createdAt) : 0; // 2️. à clic égal → le plus récent en haut
-      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
-      return dateB - dateA;
-    })
-}, [toutesDonnees, idCompte]);
 
 
 
@@ -1407,13 +1421,12 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
 		
 		donneesAffichees_byClic_idAccount,
 		donneesAffichees_byClic_idAccountConnecter,
-		
 		donneesAffichees_recent_idAccount,
 		donneesAffichees_recent_idAccountConnecter,
 		
-		toutesDonnees_byIdAccount,
 		toutesDonnees_all,
 		toutesDonnees_id,
+		toutesDonnees_idAccount,
 		donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll 
 	};
 }
