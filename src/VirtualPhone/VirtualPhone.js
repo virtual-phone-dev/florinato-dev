@@ -35626,7 +35626,7 @@ async function SendMessageFAA() {
 		const match = location.pathname.match(/^\/profile\/([^/]+)$/);
 		if (match) {
 		  id = match[1]; // Récupère l'ID dans la partie après /profile/
-		  console.log("id trouver dans l'url ", id);
+		  //console.log("id trouver dans l'url ", id);
 		  setIdCompte(id);
 		  
 		  // localStorage.setItem("idAccountChef", id);
@@ -35636,7 +35636,7 @@ async function SendMessageFAA() {
 	  if (profilePage) {
 		// const id = isProfilePage[1];
 		// ouvre la popup avec cet ID
-		setProfilFA2e(true);
+		setProfilFA0e(true);
 		
 		setFlorinatoApp(false);
         setTelephoneVirtuel(false);
@@ -40699,6 +40699,11 @@ async function CloseConnexionPageAA() {
   
   
   
+  const [profilFA0e, setProfilFA0e] = useState(false); 
+  //async function ProfilFA0e() { setProfilFA0e(true); }
+  async function CloseProfilFA0e() { setVideosPageFA(true); setProfilFA0e(false); }
+  
+  
   const [profilFA2e, setProfilFA2e] = useState(false); 
   async function ProfilFA2e() { setProfilFA2e(true); }
   async function CloseProfilFA2e() { setProfilFA2e(false); }
@@ -40717,6 +40722,11 @@ async function CloseConnexionPageAA() {
   const [seeVideoFA, setSeeVideoFA] = useState(false); //voir la video
   async function SeeVideoFA() { setSeeVideoFA(true); setVideosPageFA(false); }
   async function CloseSeeVideoFA() { setVideosPageFA(true); setSeeVideoFA(false); }
+  
+  
+  const [seeVideoFA0e, setSeeVideoFA0e] = useState(false); 
+  async function SeeVideoFA0e() { setSeeVideoFA0e(true); }
+  async function CloseSeeVideoFA0e() { setSeeVideoFA0e(false); }
   
   
   const [seeVideoFA2e, setSeeVideoFA2e] = useState(false); 
@@ -51253,6 +51263,39 @@ son compte Vixinol store */
 	  
 	  
 	  
+		{/* Pour la personne non connecter  - FA */}
+		<ProfilTemplate 
+			visible={profilFA0e} fermer={CloseProfilFA0e} voirVideo={SeeVideoFA0e} video
+			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
+			SeePhoto66profilFA={SeePhoto66profilFA} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
+			ClicVideoFAA={ClicVideoFAA} 
+			rechercherMaVideoFA={rechercherMaVideoFA} 
+			setRechercherMaVideoFA={setRechercherMaVideoFA} 
+			
+			data={dataCompteById}
+			dataMesVisitesFA={dataMesVisitesFA} 
+			dataMesVideosFA={dataVideoByIdCompte} 
+			dataOverflow={dataVideoRecenteByIdCompte} 
+			
+			listMesVideosFA={listMesVideosFA} 
+			scrollX={scrollX} />
+			
+			
+		<SeeVideoTemplate 
+			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} profil={ProfilFA2e} 
+			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
+			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
+			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
+			FullScreen={FullScreen} 
+			nomProprietairePost={nomProprietairePost} 
+			photoProprietairePost={photoProprietairePost}
+			CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
+			
+		
+		
+		
 		{/* 2e profil , et seevideo (on affiche ton compte) - FA */}
 		<ProfilTemplate 
 			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video
