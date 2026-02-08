@@ -35263,6 +35263,7 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 } = useScrollIndexedDB({
 	nomStockage: "comptes", 
 	donnees:comptesSource, 
+	idCompte: idPersonConnectedFA,
 	rechercherUnCompte: rechercherUnCompteFA,
 	rechercherMonCompte: rechercherMonCompteFA,
 });
