@@ -1712,7 +1712,7 @@ export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, set
   return (<>
 	<RechercheTemplate 
 		listVideo={listVideo} valeur={valeur} setValeur={setValeur} clicVideo={clicVideo} voirVideo={voirVideo} voirProfil={voirProfil} nomEtphoto={nomEtphoto}
-		setIdPost={setIdPost} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} />
+		setIdPost={setIdPost} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} profilMap={profilMap} />
 
 	{overflow && (<>	
     <LesVideos 
@@ -1741,7 +1741,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, voirProfil,
-	setId, setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, voirVideo=()=>{}, titrecss, cliccss, nomEtphoto }) {	
+	setId, setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, voirVideo=()=>{}, profilMap, titrecss, cliccss, nomEtphoto }) {	
   return (<>
 		{/* input pour effectuer une recherche */}
                   <div>
@@ -1779,7 +1779,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			
 			<LesVideos 
 				data={listVideo} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
-				clicVideo={clicVideo} voirVideo={voirVideo} titrecss={titrecss} cliccss={cliccss} nomEtphoto={nomEtphoto} voirProfil={voirProfil} /> 
+				clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} titrecss={titrecss} cliccss={cliccss} nomEtphoto={nomEtphoto} voirProfil={voirProfil} /> 
 	</>);
 }
 
@@ -2739,7 +2739,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 		
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
-	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo, photoProprietairePost, nomProprietairePost,
+	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo, photoProprietairePost, nomProprietairePost,
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, ClicVideoFAA, voirProfil
 	}) {
 	if (!visible) return null;
@@ -2778,9 +2778,15 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, u
     </div>			
 
 			<RechercheTemplate 
-				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} voirProfil={voirProfil}
+				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} voirProfil={voirProfil} profilMap={profilMap} nomEtphoto
 				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={ClicVideoFAA} />
 
+
+    <LesVideos 
+		data={dataVideoByIdCompte} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" nomEtphoto /> 
+	
+	
 			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoByIdCompte.map((api) => (<>
 			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); ClicVideoFAA({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
