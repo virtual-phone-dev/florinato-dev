@@ -1188,13 +1188,13 @@ function filtrerEtTrier(source, { key=null, value=null, lot=null, triRecent=fals
 
   // 🔹 Filtrage si clé et valeur fournies
   // 🔹 FILTRAGE (1 valeur OU plusieurs valeurs)
-  if (cle && valeur !== null && valeur !== undefined) {
-    if (Array.isArray(valeur)) {
+  if (key && value !== null && value !== undefined) {
+    if (Array.isArray(value)) {
       // plusieurs valeurs possibles
-      result = result.filter(item => valeur.includes(item[cle]));
+      result = result.filter(item => value.includes(item[key]));
     } else {
       // une seule valeur
-      result = result.filter(item => item[cle] === valeur);
+      result = result.filter(item => item[key] === value);
     }
   }
 
