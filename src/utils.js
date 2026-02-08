@@ -2652,15 +2652,10 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   if (!visible) return null;
   
   // 🔹 on récupère le bon profil (personne connecté OU un autre utilisateur)
-  const profile = data.find(api => api._id === idCompte);
-
-  /* if (!profile) {
-    console.warn("Profil introuvable :", idCompte);
-    return null;
-  } */
+  const profile = data.find(api => api._id === idCompte) || {};
 
   // 🔹 infos du profil
-  const { nameAccount, photoProfile, popularity, } = profile;
+  const { nameAccount="Compte inconnu", photoProfile=investirPhoto, popularity=0, } = profile;
   
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
