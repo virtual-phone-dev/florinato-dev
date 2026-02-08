@@ -35227,7 +35227,10 @@ const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); //
 const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
 
 console.log("rechercherMaVideoFA", rechercherMaVideoFA);
-console.log("allVideoByIdAccount", allVideoByIdAccount);
+console.log("toutesVideoCompteConnecterParIdAccount", toutesVideoCompteConnecterParIdAccount);
+console.log("listTesVideosFA", listTesVideosFA);
+
+console.log("toutesVideoParIdAccount", toutesVideoParIdAccount);
 console.log("listMesVideosFA", listMesVideosFA);
 
 console.log("photoProprietairePost", photoProprietairePost);
