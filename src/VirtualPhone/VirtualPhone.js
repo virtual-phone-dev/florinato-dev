@@ -38921,7 +38921,10 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     setConnexionPageAA(false);
   }
   
-  async function CloseInscriptionPageAA() { setInscriptionPageAA(false); }
+async function CloseInscriptionPageAA() { 
+	setTelephoneVirtuel(true); 
+	setInscriptionPageAA(false); 
+}
 
 
   // connexion Page - AA
@@ -38933,8 +38936,10 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
     setInscriptionPageAA(false);
   }
   
-  async function CloseConnexionPageAA() { setConnexionPageAA(false); }
-
+async function CloseConnexionPageAA() { 
+	setTelephoneVirtuel(true); 
+	setConnexionPageAA(false); 
+}
 
   // signup - AA
   // signup - AA
