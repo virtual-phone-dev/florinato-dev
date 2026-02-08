@@ -987,7 +987,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   }
 
   if (!donnees.length) {
-    console.warn("⚠️ donnees est un tableau VIDE");
+    //console.warn("⚠️ donnees est un tableau VIDE");
     return;
   }
 
@@ -1014,7 +1014,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
   donnees.forEach((msg, index) => {
     //console.log(`🔍 élément ${index}`, msg);
     if (!msg || !msg._id) {
-      console.warn("⚠️ IGNORÉ (pas de _id)", msg);
+      //console.warn("⚠️ IGNORÉ (pas de _id)", msg);
       return;
     }
 
@@ -1249,7 +1249,7 @@ const donneesAffichees_recent_idAccountConnecter = useMemo(() => filtrerEtTrier(
 // obtenir les infos dun post , dun compte, en fonction de leur _id
 const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idPost] }), [toutesDonnees, idCompte, idPost]);
 
-// obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche)
+// obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche) . meme chose : obtenir toutes les messages qui contient cet idAccount 
 const toutesDonnees_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
 [toutesDonnees, idCompte, idProprietairePost]);
 
@@ -2654,10 +2654,10 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   // 🔹 on récupère le bon profil (personne connecté OU un autre utilisateur)
   const profile = data.find(api => api._id === idCompte);
 
-  if (!profile) {
+  /* if (!profile) {
     console.warn("Profil introuvable :", idCompte);
     return null;
-  }
+  } */
 
   // 🔹 infos du profil
   const { nameAccount, photoProfile, popularity, } = profile;
