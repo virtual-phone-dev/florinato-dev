@@ -1248,12 +1248,23 @@ const donneesAffichees_recent_idAccountConnecter = useMemo(() => filtrerEtTrier(
 
 
 // obtenir les infos dun post , dun compte, en fonction de leur _id
-const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idCompteConnecter, idPost, idProprietairePost] }), 
-[toutesDonnees, idCompte, idCompteConnecter, idPost, idProprietairePost]);
+// const toutesDonnees_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idCompteConnecter, idPost, idProprietairePost] }), 
+// [toutesDonnees, idCompte, idCompteConnecter, idPost, idProprietairePost]);
+
 
 // obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche) . meme chose : obtenir toutes les messages qui contient cet idAccount 
-const toutesDonnees_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
+const allVideo_by_idAccount = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "idAccount", value: [idCompte, idProprietairePost] }), 
 [toutesDonnees, idCompte, idProprietairePost]);
+
+
+const infosPost_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun post
+
+
+const infosCompte_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: [idCompte, idCompteConnecter, idProprietairePost], }), 
+[toutesDonnees, idCompte, idCompteConnecter, idProprietairePost]); // obtenir les infos dun post
+
+//const post_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun post
+
 
 
 /*
@@ -1427,8 +1438,11 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
 		donneesAffichees_recent_idAccountConnecter,
 		
 		toutesDonnees_all,
-		toutesDonnees_id,
-		toutesDonnees_idAccount,
+		infosPost_by_id,
+		infosCompte_by_id,
+		
+		allVideo_by_idAccount,
+		
 		donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll 
 	};
 }

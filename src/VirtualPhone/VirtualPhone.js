@@ -35176,6 +35176,11 @@ const {
 	toutesDonnees_all: toutesVideos, 
 	toutesDonnees_id: dataOneVideo, // obtenir les infos dun post , dun compte, en fonction de leur _id
 	
+	infosCompte_by_id: infosCompteById,
+	infosPost_by_id: infosPostById,
+	
+	allVideo_by_idAccount: allVideoByIdAccount,
+
 	setToutesDonnees, chargerPlus,
 	gererScroll 
 } = useScrollIndexedDB({ 
@@ -35203,31 +35208,33 @@ const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
-const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:videoByIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), [videoByIdAccount, rechercherMaVideoFA] );
+const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:allVideoByIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), [videoByIdAccount, rechercherMaVideoFA] );
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
-console.log("rechercherMaVideoFA", rechercherMaVideoFA);
-console.log("videoByIdAccount", videoByIdAccount);
-console.log("listMesVideosFA", listMesVideosFA);
-
 
 // filtre pour obtenir les infos du post (video, photo, ..) - FA
-const clicFA = dataOneVideo.map((api) => api.clic); // clic
-const titreFA = dataOneVideo.map((api) => api.message); // message
+const clicFA = infosPostById.map((api) => api.clic); // clic
+const titreFA = infosPostById.map((api) => api.message); // message
 
 
 // filtre pour obtenir les infos du compte
-const photoProprietairePost = dataOneVideo.map((api) => api.photoProfile); // photoProfile
-const nomProprietairePost = dataOneVideo.map((api) => api.nameAccount); // nameAccount
+const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); // photoProfile
+const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
+
+console.log("rechercherMaVideoFA", rechercherMaVideoFA);
+console.log("allVideoByIdAccount", allVideoByIdAccount);
+console.log("listMesVideosFA", listMesVideosFA);
+
+console.log("photoProprietairePost", photoProprietairePost);
+console.log("nomProprietairePost", nomProprietairePost); 
 
 /*
 const infosProprietairePost = apiMessageFA.filter((api) => api._id === idProprietairePost);
 const photoProprietairePost = infosProprietairePost.map((api) => api.photoProfile);
 const nomProprietairePost = infosProprietairePost.map((api) => api.nameAccount); */
 	
-console.log("photoProprietairePost", photoProprietairePost);
-console.log("nomProprietairePost", nomProprietairePost); 
+
 
 
 /*  useEffect(() => {
