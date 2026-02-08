@@ -51082,7 +51082,6 @@ son compte Vixinol store */
       {/* application florinato */}
 	  
 	  
-	  
 				
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} voirProfil={ProfilFA2e} 
@@ -51090,6 +51089,7 @@ son compte Vixinol store */
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
 			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
+
 
 		<ComptesRecentsTemplate 
 			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}

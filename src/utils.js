@@ -1610,7 +1610,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 
 
-export function ChildApi66LesVideos({ api, verifierId, voirProfil=()=>{}, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, titrecss="pre-16px", cliccss="p-14px" }) {
+export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirProfil=()=>{}, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, titrecss="pre-16px", cliccss="p-14px" }) {
 	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
     //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
 	
@@ -1657,10 +1657,10 @@ export function ChildApi66LesVideos({ api, verifierId, voirProfil=()=>{}, photo,
   return (
     <>
 		{/* {afficherVideo && (<>  
-		{afficherVideo && (!verifierId || id) && (<> */}
+		{afficherVideo && (!verifierId || id) && (<> */} 
 		{afficherVideo && (<>
 		<div className="video-card">
-			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} /> 
+			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} onClick={() => { voirVideo(api); }} /> 
 			<pre className={titrecss}>{gettitre}</pre>
 			<p className={cliccss}>{api.clic} clic</p> 
 			
@@ -1686,25 +1686,28 @@ export function ChildApi66LesVideos({ api, verifierId, voirProfil=()=>{}, photo,
 
 
 export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, clicVideo=()=>{}, 
-	voirVideo=()=>{}, voirProfil, dateParser, titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX, nomEtphoto
+	voirVideo, voirProfil, dateParser, titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX, nomEtphoto
 	}) {
 		
   return (
 <div className={affichagecss} onScroll={scrollX || undefined}>
 	{data.map((api) => (
+	
 	  <div onClick={() => {
 		setUrlVideo(api.urlVideo); setIdPost(api._id); setIdProprietairePost(api.idAccountChef); 
-		setIdCompte(api.idAccountChef); voirVideo(api); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
+		setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 		
-		<ChildApi66LesVideos api={api} nomEtphoto={nomEtphoto} voirProfil={voirProfil} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} dateAfficher={dateParser} video />
+		<ChildApi66LesVideos 
+			api={api} nomEtphoto={nomEtphoto} voirVideo={voirVideo} voirProfil={voirProfil} titrecss={titrecss} cliccss={cliccss} profilMap={profilMap} dateAfficher={dateParser} video />
 	  </div>
+	  
 	  ))}
 </div>
 )}
 
 
 export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto, dataOverflow, overflow,
-	setUrlVideo, setIdPost, setIdProprietairePost, setIdCompte, clicVideo, voirVideo, voirProfil, video, affichagecss, scrollX,  }) {
+	setUrlVideo, setIdPost, setIdProprietairePost, setIdCompte, clicVideo, voirVideo, voirProfil, video, affichagecss, scrollX, }) {
 		
   return (<>
 	<RechercheTemplate 
