@@ -40558,35 +40558,10 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
       setFlorinatoApp(true);
       setTelephoneVirtuel(false);
       setInscriptionPageAA(false);
-      // vu que la personne est connecté, alors on lui appel les nouvelles données
-
-		/*
-      async function get1() { //get1 (obtenir de nouvelles données)
-        await axios
-        .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-          console.log(res);
-        })
-        .catch((err) => {
-          
-          async function get2() { // get2
-            await axios
-            .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-            .then((res) => {
-              setApiMessageFA(res.data);
-              console.log(res);
-            })
-            }
-            get2();
-        });
-        }
-        get1(); */
-        //get1
-                
-      } else {
+    } else {
+		setInscriptionPageAA(true);
         setTelephoneVirtuel(false);
-      }
+    }
   }
 
   /*async function CloseXApp() {
