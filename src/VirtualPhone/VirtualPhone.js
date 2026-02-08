@@ -12,7 +12,7 @@ import {
 	Page, Close, Input, MissionTemplate, SeePhotoModal, MesComptes, useScrollInfini,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
-	SeeVideoTemplate,
+	SeeVideoTemplate, SeePhotoTemplate,
 	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse, useScrollIndexedDB,
 	} from "../utils";
   
@@ -51393,7 +51393,7 @@ son compte Vixinol store */
 		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />
 		
 		
-		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProprietaireCompte} />
+		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProprietairePost} />
 		
 		
       {/* rencontre - FA */}
