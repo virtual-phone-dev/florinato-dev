@@ -35210,6 +35210,9 @@ const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:videoByIdAccount
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
+console.log("rechercherMaVideoFA", rechercherMaVideoFA);
+console.log("videoByIdAccount", videoByIdAccount);
+console.log("listMesVideosFA", listMesVideosFA);
 
 
 // filtre pour obtenir les infos du post (video, photo, ..) - FA
