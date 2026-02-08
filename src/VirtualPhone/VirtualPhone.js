@@ -51126,7 +51126,7 @@ son compte Vixinol store */
 	
 		{/* on affiche mon compte - FA data={apiMessageFA} */}
 		<ProfilTemplate 
-			visible={profilFA} fermer={CloseProfilFA} voirVideo={SeeVideoFA} video
+			visible={profilFA} fermer={CloseProfilFA} voirVideo={SeeVideoFA} video monCompte
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto66profilFA} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idPersonConnectedFA}
