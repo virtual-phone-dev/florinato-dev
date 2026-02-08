@@ -51085,7 +51085,8 @@ son compte Vixinol store */
 	  
 				
 		<VideosPageTemplate
-			visible={videosPageFA} fermer={CloseVideosPageFA} data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
+			visible={videosPageFA} fermer={CloseVideosPageFA} voirProfil={ProfilFA2e} 
+			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
 			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
