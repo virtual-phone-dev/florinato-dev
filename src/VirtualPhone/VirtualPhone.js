@@ -35174,7 +35174,7 @@ const {
 	
 	//toutesDonnees_idAccount: videoByIdAccount, // obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche)
 	toutesDonnees_all: toutesVideos, 	
-	infosCompte_by_id: infosCompteById,
+	//infosCompte_by_id: infosCompteById,
 	infosPost_by_id: infosPostById,
 	
 	toutesVideoPar_idAccount: toutesVideoParIdAccount,
