@@ -51246,7 +51246,7 @@ son compte Vixinol store */
 	  
 
 	<SeeVideoTemplate 
-		visible={seeVideoFA} fermer={CloseSeeVideoFA} profil={ProfilFA2e} 
+		visible={seeVideoFA} fermer={CloseSeeVideoFA} profil={ProfilFA2e} voirProfil={ProfilFA2e} 
 		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} FullScreen={FullScreen}
 		clicFA={clicFA} titreFA={titreFA} 
@@ -51312,7 +51312,7 @@ son compte Vixinol store */
 			
 			
 		<SeeVideoTemplate 
-			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} profil={ProfilFA2e} 
+			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} profil={ProfilFA2e} voirProfil={ProfilFA2e} 
 			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
 			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
@@ -51346,7 +51346,7 @@ son compte Vixinol store */
 	
 	  
     <SeeVideoTemplate 
-		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} profil={ProfilFA3e} 
+		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} profil={ProfilFA3e} voirProfil={ProfilFA3e} 
 		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
 		clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
@@ -51378,7 +51378,7 @@ son compte Vixinol store */
 		
 	
 		<SeeVideoTemplate 
-			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} profil={CloseSeeVideoFA3e} 
+			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} profil={CloseSeeVideoFA3e} voirProfil={ProfilFA3e} 
 			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
 			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
