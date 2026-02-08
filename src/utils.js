@@ -1267,6 +1267,11 @@ const infosCompte_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_i
 [toutesDonnees, idCompte, idCompteConnecter, idProprietairePost]); // obtenir les infos dun post
 
 
+//const infosCompte_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun compte
+
+//const infosCompteConnecter_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun compte connecter
+
+
 
 /*
 const toutesDonnees_byIdAccount = useMemo(() => {
@@ -2796,7 +2801,25 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, u
       {/* seeVideoFA */}
 </>)}
 // SeeVideoTemplate
-	 
+
+
+// SeePhotoTemplate
+export function SeePhotoTemplate({ visible, fermer, urlPhoto, FullScreen, }) {
+	if (!visible) return null;
+	
+	return (<>
+        <div className="seePhotoFA">
+          <div className="close">
+            <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
+            <div className="b" onClick={fermer}> <SvgClose2/> </div>
+          </div>
+  
+          <div className="body"> <img src={urlPhoto} alt=""/> </div>
+        </div>
+        {/* seePhotoFA */}
+</>)}
+// SeePhotoTemplate
+  
 	 
 export function MissionTemplate({ visible, valeur, setValeur, envoyer, message, nomMembre, titre, titre2, titre3, titre4, titre5, titre7, titre8, titre9 }) {
   if (!visible) return null;

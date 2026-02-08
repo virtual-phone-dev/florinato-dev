@@ -35221,20 +35221,15 @@ const listTesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesVideoParId
 const clicFA = infosPostById.map((api) => api.clic); // clic
 const titreFA = infosPostById.map((api) => api.message); // message
 
-
-// filtre pour obtenir les infos du compte
-const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); // photoProfile
-const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
-
+/*
 console.log("rechercherMaVideoFA", rechercherMaVideoFA);
 console.log("toutesVideoCompteConnecterParIdAccount", toutesVideoCompteConnecterParIdAccount);
 console.log("listTesVideosFA", listTesVideosFA);
 
 console.log("toutesVideoParIdAccount", toutesVideoParIdAccount);
-console.log("listMesVideosFA", listMesVideosFA);
+console.log("listMesVideosFA", listMesVideosFA); */
 
-console.log("photoProprietairePost", photoProprietairePost);
-console.log("nomProprietairePost", nomProprietairePost); 
+
 
 /*
 const infosProprietairePost = apiMessageFA.filter((api) => api._id === idProprietairePost);
@@ -35282,7 +35277,9 @@ const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"
 const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, 
 	toutesDonnees_idUser: toutMesComptes, 
 	toutesDonnees: toutComptes, 
-	infosCompte_by_id: dataCompteById, 
+	
+	infosCompte_by_id: infosCompteById, 
+	
 	gererScroll: gererScrollComptes 
 } = useScrollIndexedDB({
 	nomStockage: "comptes", 
@@ -35300,8 +35297,14 @@ const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtrerUnCompteRec
 const filtrerMonCompteRechercher = useMemo(() => toutMesComptes.filter(api => api.nameAccount), [toutMesComptes] );
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompteRechercher, search:rechercherMonCompteFA, keys: ["nameAccount"] }), [filtrerMonCompteRechercher, rechercherMonCompteFA] );
   
+// filtre pour obtenir les infos du compte
+const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); // photoProfile
+const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
 
-console.log("dataCompteById", dataCompteById);
+console.log("photoProprietairePost", photoProprietairePost);
+console.log("nomProprietairePost", nomProprietairePost); 
+
+console.log("infosCompteById", infosCompteById);
 
 // conversations
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
@@ -43395,12 +43398,13 @@ async function PageRedirection66groupOtherFA() {
 
   // afficher la photo de la personne connecté - FA
   const [seePhoto66profilFA, setSeePhoto66profilFA] = useState(false); 
-  async function SeePhoto66profilFA() {
-    setSeePhoto66profilFA(true);
-  }
-  async function CloseSeePhoto66profilFA() {
-    setSeePhoto66profilFA(false);
-  }
+  async function SeePhoto66profilFA() { setSeePhoto66profilFA(true); }
+  async function CloseSeePhoto66profilFA() { setSeePhoto66profilFA(false); }
+
+
+  const [seePhoto2e, setSeePhoto2e] = useState(false); 
+  async function SeePhoto2e() { setSeePhoto2e(true); }
+  async function CloseSeePhoto2e() { setSeePhoto2e(false); }
 
 
   // favoris - page
@@ -51130,7 +51134,7 @@ son compte Vixinol store */
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			
-			data={dataCompteById}
+			data={infosCompteById}
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompteConnecter} 
 			dataOverflow={dataVideoRecenteByIdCompteConnecter}
@@ -51289,17 +51293,17 @@ son compte Vixinol store */
 	  
 	  
 	  
-		{/* Pour la personne non connecter  - FA */}
+		{/* Pour la personne non connecter  - FA */} 
 		<ProfilTemplate 
 			visible={profilFA0e} fermer={CloseProfilFA0e} voirVideo={SeeVideoFA0e} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto66profilFA} 
+			SeePhoto66profilFA={SeePhoto2e} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
 			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			
-			data={dataCompteById}
+			data={infosCompteById}
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompte} 
 			dataOverflow={dataVideoRecenteByIdCompte} 
@@ -51325,13 +51329,13 @@ son compte Vixinol store */
 		<ProfilTemplate 
 			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto66profilFA} 
+			SeePhoto66profilFA={SeePhoto2e} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
 			ClicVideoFAA={ClicVideoFAA} 
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			
-			data={dataCompteById}
+			data={infosCompteById}
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompte} 
 			dataOverflow={dataVideoRecenteByIdCompte} 
@@ -51364,7 +51368,7 @@ son compte Vixinol store */
 			rechercherMaVideoFA={rechercherMaVideoFA} 
 			setRechercherMaVideoFA={setRechercherMaVideoFA} 
 			
-			data={dataCompteById}
+			data={infosCompteById}
 			dataMesVisitesFA={dataMesVisitesFA} 
 			dataMesVideosFA={dataVideoByIdCompte} 
 			dataOverflow={dataVideoRecenteByIdCompte} 
@@ -51384,6 +51388,12 @@ son compte Vixinol store */
 			CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
 			
+	
+
+		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />
+		
+		
+		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProprietaireCompte} />
 		
 		
       {/* rencontre - FA */}
@@ -52369,23 +52379,7 @@ son compte Vixinol store */
       {/* page pour ecrire un message et envoyer la photo - FA */}
 
 
-      {/* afficher la photo de la personne connecté - FA */}
-      {/* afficher la photo de la personne connecté - FA */}
-      {seePhoto66profilFA && (<>
-        <div className="seePhotoFA">
-          <div className="close">
-            <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
-            <div className="b" onClick={CloseSeePhoto66profilFA}> <SvgClose2/> </div>
-          </div>
-          {/* close */}
-  
-          <div className="body"> <img src={photoFA} alt=""/> </div>
-          {/* body*/}
-        </div>
-        {/* seePhotoFA */}
-      </>)}
-      {/* afficher la photo de la personne connecté - FA */}
-  
+      
 
       {/* page pour voir la photo - FA */}
       {/* page pour voir la photo - FA */}
