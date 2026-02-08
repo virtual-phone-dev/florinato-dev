@@ -35208,7 +35208,7 @@ const listVideoFA = useMemo(() => rechercherAvecFuse({ data:toutesVideos, search
 //const listVideoFA = maRechercheVideoFA ? videosRecherchees.slice(0, dataVideoFA.length) : [];
 
 
-const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:allVideoByIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), [videoByIdAccount, rechercherMaVideoFA] );
+const listMesVideosFA = useMemo(() => rechercherAvecFuse({ data:allVideoByIdAccount, search:rechercherMaVideoFA, keys: ["message"] }), [allVideoByIdAccount, rechercherMaVideoFA] );
 //const mesVideosRecherchees = useMemo(() => rechercherAvecFuse({ data:mesVideosR, search:maRechercheVideoFA, keys: ["message"] }), [mesVideosR, maRechercheVideoFA] );
 //const listMesVideosFA = maRechercheVideoFA ? mesVideosRecherchees.slice(0, dataMesVideosFA.length) : [];
 
