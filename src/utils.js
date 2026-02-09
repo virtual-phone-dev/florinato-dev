@@ -2740,7 +2740,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
 	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo, photoProprietairePost, nomProprietairePost,
-	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil
+	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirVideo
 	}) {
 	if (!visible) return null;
 	
