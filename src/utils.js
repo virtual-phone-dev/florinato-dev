@@ -2594,15 +2594,15 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 
 // MessageTemplate
-export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA, PageRedirection66ChildApi66messageFA, data, filterMessageFA, idCompte,
-	badgeOther, onlineOther, Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
+export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProfil, PageRedirection66ChildApi66messageFA, data, filterMessageFA, idCompte,
+	Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
 	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage
 	}) {
 	if (!visible) return null;
 	
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=investirPhoto } = profile; // infos du profil
+	const { nameAccount="Compte inconnu", photoProfile=investirPhoto, online, badge } = profile; // infos du profil
 	
 	
 	return (<>
@@ -2612,13 +2612,13 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA
               <div className="a" onClick={fermer}> <SvgLeft/> </div>
               <div className="b" onClick={fermer}> <img src={photoProfile} alt={nameAccount} /> </div>
 
-              <div className="c" onClick={ProfilFA}>
+              <div className="c" onClick={voirProfil}>
                 <div className="aa">
                   <p>{nameAccount}</p>
-                  {badgeOther === "1" && (<><SvgBadge/></>)}
+                  {badge === "1" && (<><SvgBadge/></>)}
                 </div>
 
-                <div className="bb"> <p>{dateParserLong(onlineOther)} (Dernière connexion)</p> </div>
+                <div className="bb"> <p>{dateParserLong(online)} (Dernière connexion)</p> </div>
               </div>
               {/* c */}
             </div>
@@ -2731,7 +2731,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 
 		
 // SeeVideoTemplate
-export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
+export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirVideo
 	}) {

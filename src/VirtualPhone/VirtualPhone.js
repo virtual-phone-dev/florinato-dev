@@ -51113,7 +51113,7 @@ son compte Vixinol store */
   		
 		<MessageTemplate 
 			visible={messageFA} fermer={CloseMessageFA}
-			gererScrollMessages={gererScrollMessages} ProfilFA={ProfilFA} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
+			gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
 			data={infosCompteById} filterMessageFA={filterMessageFA} idCompte={idCompte}
 			Favorite66messageFA={Favorite66messageFA} 
