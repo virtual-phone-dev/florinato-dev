@@ -35303,13 +35303,14 @@ const filtrerMonCompteRechercher = useMemo(() => toutMesComptes.filter(api => ap
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompteRechercher, search:rechercherMonCompteFA, keys: ["nameAccount"] }), [filtrerMonCompteRechercher, rechercherMonCompteFA] );
   
 // filtre pour obtenir les infos du compte
-const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); // photoProfile
-const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
+//const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); // photoProfile
+//const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
 
 /* console.log("photoProprietairePost", photoProprietairePost);
 console.log("nomProprietairePost", nomProprietairePost); 
-
 console.log("infosCompteById", infosCompteById); */
+
+
 
 // conversations
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
