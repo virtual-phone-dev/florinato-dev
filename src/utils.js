@@ -2732,10 +2732,13 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 		
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
-	dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, setIdCompte, setUrlVideo, photoProprietairePost, nomProprietairePost,
+	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirVideo
 	}) {
 	if (!visible) return null;
+	
+	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
+	const { nameAccount="Compte inconnu", photoProfile=investirPhoto } = profile; // infos du profil
 	
 	return (<>
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
@@ -2766,8 +2769,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, u
 			<p className="p-14px-eee">{clicFA} clic</p>
 			
 	<div className="display-nowrap-espace">
-      <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost} onClick={profil}/> </div>
-      <pre className="pre-14px-eee" onClick={profil}>{nomProprietairePost}</pre>
+      <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={profil}/> </div>
+      <pre className="pre-14px-eee" onClick={profil}>{nameAccount}</pre>
     </div>			
 
 			<RechercheTemplate 
