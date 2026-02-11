@@ -35651,7 +35651,7 @@ async function SendMessageFAA() {
 	  if (profilePage) {
 		// const id = isProfilePage[1];
 		// ouvre la popup avec cet ID
-		setProfilFA0e(true);
+		setTonProfilPourNonConnecter(true);
 		
 		setFlorinatoApp(false);
         setTelephoneVirtuel(false);
@@ -40713,10 +40713,9 @@ async function CloseConnexionPageAA() {
   async function CloseProfilFA() { setFlorinatoApp(true); setProfilFA(false); }
   
   
-  
-  const [profilFA0e, setProfilFA0e] = useState(false); 
-  //async function ProfilFA0e() { setProfilFA0e(true); }
-  async function CloseProfilFA0e() { setVideosPageFA(true); setProfilFA0e(false); }
+  const [tonProfilPourNonConnecter, setTonProfilPourNonConnecter] = useState(false); 
+  //async function ProfilFA0e() { setTonProfilPourNonConnecter(true); }
+  async function CloseTonProfilPourNonConnecter() { setVideosPageFA(true); setTonProfilPourNonConnecter(false); }
   
   
   const [profilFA2e, setProfilFA2e] = useState(false); 
@@ -40738,10 +40737,10 @@ async function CloseConnexionPageAA() {
   async function SeeVideoFA() { setSeeVideoFA(true); setVideosPageFA(false); }
   async function CloseSeeVideoFA() { setVideosPageFA(true); setSeeVideoFA(false); }
   
-  
-  const [seeVideoFA0e, setSeeVideoFA0e] = useState(false); 
-  async function SeeVideoFA0e() { setSeeVideoFA0e(true); }
-  async function CloseSeeVideoFA0e() { setSeeVideoFA0e(false); }
+
+  const [seeVideoFAPourNonConnecter, setSeeVideoFAPourNonConnecter] = useState(false); 
+  async function SeeVideoFAPourNonConnecter() { setSeeVideoFAPourNonConnecter(true); }
+  async function CloseSeeVideoFAPourNonConnecter() { setSeeVideoFAPourNonConnecter(false); }
   
   
   const [seeVideoFA2e, setSeeVideoFA2e] = useState(false); 
@@ -51273,11 +51272,11 @@ son compte Vixinol store */
 		visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
 		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
 	  	
-	  
-	  
+
+
 		{/* Pour la personne non connecter  - FA */} 
 		<ProfilTemplate 
-			visible={profilFA0e} fermer={CloseProfilFA0e} voirVideo={SeeVideoFA0e} video
+			visible={tonProfilPourNonConnecter} fermer={CloseTonProfilPourNonConnecter} voirVideo={SeeVideoFAPourNonConnecter} video
 			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
 			SeePhoto66profilFA={SeePhoto2e} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
@@ -51294,10 +51293,11 @@ son compte Vixinol store */
 			
 			
 		<SeeVideoTemplate 
-			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} voirProfil={ProfilFA2e}
+			visible={seeVideoFAPourNonConnecter} fermer={CloseSeeVideoFAPourNonConnecter} voirProfil={ProfilFA2e}
 			{...SeeVideoTemplatePropsCommun} />
 		
 		
+  
 		{/* 2e profil , et seevideo (on affiche ton compte) - FA */}
 		<ProfilTemplate 
 			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video
@@ -51351,7 +51351,9 @@ son compte Vixinol store */
 
 		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />		
 		
+		
 		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProfileFA} />
+		
 		
 		<SeePhotoTemplate visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} />
 		
