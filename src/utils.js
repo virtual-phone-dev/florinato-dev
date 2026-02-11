@@ -1741,8 +1741,9 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, voirProfil,
-	setId, setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, voirVideo=()=>{}, profilMap, titrecss, cliccss, nomEtphoto }) {	
-  return (<>
+	setId=()=>{}, setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, clicVideo, voirVideo=()=>{}, profilMap, titrecss, cliccss, nomEtphoto }) {	
+	
+	return (<>
 		{/* input pour effectuer une recherche */}
                   <div>
                     <div className="marge-bottom25px">
@@ -1759,7 +1760,6 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
                     </div>
                     {/* marge-bottom25px */}
 
-                    {/* on affiche les donnees de la recherche dans l'enfant api */}
                     <div className="hr-15px"> <hr /> </div>
                   </div>
 
@@ -2731,7 +2731,8 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 
 		
 // SeeVideoTemplate
-export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, videoRef, urlVideo, scrollX, scrollY, profil, rechercherUneVideoFA, setRechercherUneVideoFA, 
+export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, videoRef, urlVideo, scrollX, scrollY,
+	rechercherUneVideoFA, setRechercherUneVideoFA, 
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirVideo
 	}) {
@@ -2769,8 +2770,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			<p className="p-14px-eee">{clicFA} clic</p>
 			
 	<div className="display-nowrap-espace">
-      <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={profil}/> </div>
-      <pre className="pre-14px-eee" onClick={profil}>{nameAccount}</pre>
+      <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
+      <pre className="pre-14px-eee" onClick={voirProfil}>{nameAccount}</pre>
 	  
 	  <div className="photo-25px"> <img src={photoCouvertureVideo} alt="" /> </div>
     </div>			
