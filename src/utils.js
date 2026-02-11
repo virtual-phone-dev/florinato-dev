@@ -857,22 +857,6 @@ export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileV
 )}
 
 
-/*
-export function SeePhotoModal({ visible, fermer, url, title }) {
-  if (!visible) return null; // n'affiche rien si pas visible
-
-  return (
-    <div className="noir">
-      <div className="flex">
-        <div onClick={fermer} className="a"> <SvgLeft2 /> </div>
-        <div className="b"> <p>{title || ""}</p> </div>
-      </div>
-
-      <div className="cadre"> <img src={url} alt={title || "photo"} className="photo"/> </div>
-    </div>
-  );
-} */
-
 
 export function Close({ fermer }) {
   return (<>
@@ -1506,7 +1490,7 @@ export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup
 
 export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
   return (
-    <div className="flex">
+    <div className="flex m-15">
       <div className="display-flex-nowrap" onClick={fermer}>
         {left && (<div> <SvgLeft/> </div>)}
         {titre && (<div> <p>{titre}</p> </div>)}
@@ -2776,7 +2760,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			<pre className="pre-17px-white">{titreFA}</pre> 
 			<p className="p-14px-a1a1aa">{clicFA} clic</p>
 			
-	<div className="space-between-espace">
+	<div className="between m-0-15">
 		<div className="a">
 		  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
 		  <pre className="pre-14px-a1a1aa" onClick={voirProfil}>{nameAccount}</pre>

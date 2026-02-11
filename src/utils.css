@@ -66,18 +66,20 @@
   padding-right: 20px;
 }
 
-.space-between-espace {
+.between {
   display: flex;
   justify-content: space-between;
-  margin: 0px 15px;
 }
 
 
-.flex {
-  display: flex;
-  justify-content: space-between;
-  margin: 15px 15px;
-}
+.flex { display: flex; }
+
+
+.m-0-15 { margin: 0px 15px; }
+
+.m-15 { margin: 15px 15px; }
+
+
 
 .display-nowrap {
   display: flex;
