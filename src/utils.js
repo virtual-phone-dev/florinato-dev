@@ -2726,7 +2726,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	
 	const propsVideosCommunes = {
 	  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, profilMap,
-	  titrecss: "pre-16px-white tc", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", cliccss: "p-14px-a1a1aa tc",
+	  titrecss: "pre-16px-white tc", cliccss: "p-14px-a1a1aa tc", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", 
 	};
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
@@ -2763,7 +2763,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	<div className="between m-0-15">
 		<div className="flex">
 		  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
-		  <pre className="pre-14px-a1a1aa" onClick={voirProfil}>{nameAccount}</pre>
+		  <pre className="pre f-15px ml-5px c-a1a1aa" onClick={voirProfil}>{nameAccount}</pre>
 		</div>
 	  
 		<div> <img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> </div> 

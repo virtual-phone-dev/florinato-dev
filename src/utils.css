@@ -194,6 +194,10 @@
 
 .f-13px { font-size: 13px; }
 .f-14px { font-size: 14px; }
+.f-15px { font-size: 15px; }
+
+
+.ml-5px { margin-left: 5px; }
 
 
 .pre-13px-center {
@@ -213,14 +217,6 @@
   word-wrap: break-word;
 }
 
-.pre-14px-a1a1aa {
-  font-size: 14px;
-  color: #a1a1aa;
-  padding: 0px 3px;
-  cursor: pointer;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
 
 .pre-14px-espace pre {
   font-size: 14px;
