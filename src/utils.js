@@ -2784,7 +2784,13 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 		data={dataVideoByIdCompte} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" video
 		{...propsVideosCommunes} />
 		
-
+		
+	<LesVideos 
+		data={dataVideoFAbyClic} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" video nomEtphoto
+		{...propsVideosCommunes} />
+		
+		
+		{/* 
 			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoFAbyClic.map((api) => (<>
 			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
@@ -2792,7 +2798,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			</div>
 			</>))}
 			</div>
-			{/* overflow-x */}
+			overflow-x */}
 			
 			
 			<LesVideos 

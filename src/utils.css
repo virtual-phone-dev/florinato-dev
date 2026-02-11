@@ -1,4 +1,26 @@
 
+
+
+.pre {
+  padding: 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  cursor: pointer;
+}
+
+.c-6b7280 { color: #6b7280; }
+
+.c-a1a1aa { color: #a1a1aa; }
+
+.f-13px { font-size: 13px; }
+.f-14px { font-size: 14px; }
+.f-15px { font-size: 15px; }
+
+
+.ml-5px { margin-left: 5px; }
+
+
+
 .noir {
   background-color: #000;
   height: 100%;
@@ -179,25 +201,6 @@
 .p-17px p {
   font-size: 17px;
 }
-
-
-.pre {
-  padding: 0;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-  cursor: pointer;
-}
-
-.c-6b7280 { color: #6b7280; }
-
-.c-a1a1aa { color: #a1a1aa; }
-
-.f-13px { font-size: 13px; }
-.f-14px { font-size: 14px; }
-.f-15px { font-size: 15px; }
-
-
-.ml-5px { margin-left: 5px; }
 
 
 .pre-13px-center {
