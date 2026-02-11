@@ -35174,7 +35174,6 @@ const {
 	
 	//toutesDonnees_idAccount: videoByIdAccount, // obtenir toutes les videos qui contient cet idAccount (ici , ideale pour la recherche)
 	toutesDonnees_all: toutesVideos, 	
-	//infosCompte_by_id: infosCompteById,
 	infosPost_by_id: infosPostById,
 	
 	toutesVideoPar_idAccount: toutesVideoParIdAccount,
@@ -35292,6 +35291,11 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 });
 
 
+// filtre pour obtenir les infos du compte - FA 
+const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
+
+
+
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
 const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtrerUnCompteRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtrerUnCompteRechercher, rechercherUnCompteFA] );
 
@@ -35302,10 +35306,10 @@ const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompt
 const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); // photoProfile
 const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
 
-console.log("photoProprietairePost", photoProprietairePost);
+/* console.log("photoProprietairePost", photoProprietairePost);
 console.log("nomProprietairePost", nomProprietairePost); 
 
-console.log("infosCompteById", infosCompteById);
+console.log("infosCompteById", infosCompteById); */
 
 // conversations
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
@@ -51397,7 +51401,7 @@ son compte Vixinol store */
 		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />
 		
 		
-		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProprietairePost} />
+		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProfileFA} />
 		
 		
       {/* rencontre - FA */}
