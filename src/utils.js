@@ -1641,7 +1641,7 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
 		{/* {afficherVideo && (<>  
 		{afficherVideo && (!verifierId || id) && (<> */} 
 		{afficherVideo && (<>
-		<div className="video-card pb-15px">
+		<div className="video-card pb-30px">
 			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} onClick={() => { voirVideo(api); }} /> 
 			<pre className={titrecss}>{gettitre}</pre>
 			<p className={cliccss}>{api.clic} clic</p> 
@@ -2774,42 +2774,21 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} 
 				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" clicVideo={clicVideo} />
 
- {/*
-    <LesVideos 
-		data={dataVideoByIdCompte} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
-		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} scrollX={scrollX} dateParser={dateParserLong} 
-		titrecss="pre-16px-white" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" affichagecss="overflow-x" /> */}
 	
 	<LesVideos 
-		data={dataVideoByIdCompte} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" video
+		data={dataVideoByIdCompte} scrollX={scrollX} affichagecss="overflow-x" video
 		{...propsVideosCommunes} />
 		
 		
 	<LesVideos 
-		data={dataVideoFAbyClic} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" video nomEtphoto
+		data={dataVideoFAbyClic} scrollX={scrollX} affichagecss="overflow-x" video nomEtphoto
 		{...propsVideosCommunes} />
-		
-		
-		{/* 
-			<div className="overflow-x" onScroll={scrollX}>
-			{dataVideoFAbyClic.map((api) => (<>
-			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" clicVideo={clicVideo} />
-			</div>
-			</>))}
-			</div>
-			overflow-x */}
-			
+
 			
 			<LesVideos 
 				data={dataVideoFAbyClic} voirProfil={voirProfil} nomEtphoto video 
 				{...propsVideosCommunes} />
 
-{/*
-			<LesVideos 
-				data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
-				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" 
-				clicVideo={clicVideo} voirProfil={voirProfil} profilMap={profilMap} video nomEtphoto />  */}
         </div>
         {/* body */}
       </div>
