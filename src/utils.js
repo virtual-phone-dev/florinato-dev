@@ -2807,7 +2807,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 
 			<LesVideos 
 				data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
-				titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={clicVideo} voirProfil={voirProfil} video nomEtphoto />
+				titrecss="pre-16px-white" cliccss="p-14px-eee" clicVideo={clicVideo} voirProfil={voirProfil} profilMap={profilMap} video nomEtphoto />
         </div>
         {/* body */}
       </div>

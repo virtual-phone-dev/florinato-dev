@@ -51248,7 +51248,7 @@ son compte Vixinol store */
 	  
 
 	<SeeVideoTemplate 
-		visible={seeVideoFA} fermer={CloseSeeVideoFA} profil={ProfilFA2e} voirProfil={ProfilFA2e} 
+		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} 
 		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 		data={infosCompteById} idCompte={idCompte}
 		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} FullScreen={FullScreen} 
