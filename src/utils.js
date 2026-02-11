@@ -2781,7 +2781,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 
     <LesVideos 
 		data={dataVideoByIdCompte} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
-		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" nomEtphoto /> 
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" /> 
 	
 	
 			<div className="overflow-x" onScroll={scrollX}>

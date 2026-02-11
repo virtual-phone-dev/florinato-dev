@@ -35336,15 +35336,6 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 
 
 
-const SeeVideoTemplatePropsCommun = {
-  voirProfil: ProfilFA2e, voirPhoto: SeePhoto2e,
-  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
-  rechercherUneVideoFA, setRechercherUneVideoFA,
-  profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
-  CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, FullScreen, clicVideo: ClicVideoFAA,
-  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
-};
-
 
 
 // filtre pour obtenir tout les messages de la discussion - FA
@@ -35507,13 +35498,17 @@ const conversationsTrierParDate = useMemo(() => {
 
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
 
-/*
-console.log("messageMap ", messageMap);
-console.log("idConversation ", idConversation);
-console.log("filterMessageFA ", filterMessageFA);
 
-console.log("conversationsTrierParDate ", conversationsTrierParDate);
-console.log("dataConversationFA ", dataConversationFA); */
+
+const SeeVideoTemplatePropsCommun = {
+  voirProfil: ProfilFA2e, voirPhoto: SeePhoto2e,
+  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
+  rechercherUneVideoFA, setRechercherUneVideoFA,
+  profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
+  CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, FullScreen, clicVideo: ClicVideoFAA,
+  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
+};
+
 
 
    // filtre pour obtenir tout les favoris
