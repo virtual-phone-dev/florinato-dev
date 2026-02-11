@@ -2787,7 +2787,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 				{...propsVideosCommunes} />
 
 					
-			LesVideos 
+			<LesVideos 
 				data={dataVideoFAbyClic} voirProfil={voirProfil} nomEtphoto video 
 				{...propsVideosCommunes} />
 
