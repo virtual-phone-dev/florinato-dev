@@ -2729,14 +2729,6 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 </>)}
 //ProfilTemplate	
 
-
-const propsVideosCommunes = {
-  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, profilMap,
-
-  // CSS commun
-  titrecss: "pre-16px-white", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", cliccss: "p-14px-a1a1aa",
-};
-
  
  
 // SeeVideoTemplate
@@ -2746,6 +2738,12 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirPhoto
 	}) {
 	if (!visible) return null;
+
+	
+	const propsVideosCommunes = {
+	  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, profilMap,
+	  titrecss: "pre-16px-white", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", cliccss: "p-14px-a1a1aa",
+	};
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
 	const { nameAccount="Compte inconnu", photoProfile=investirPhoto } = profile; // infos du profil
