@@ -35220,6 +35220,7 @@ const listTesVideosFA = useMemo(() => rechercherAvecFuse({ data:toutesVideoParId
 // filtre pour obtenir les infos du post (video, photo, ..) - FA
 const clicFA = infosPostById.map((api) => api.clic); // clic
 const titreFA = infosPostById.map((api) => api.message); // message
+const photoCouvertureVideo = infosPostById.map((api) => api.urlPhoto);
 
 /*
 console.log("rechercherMaVideoFA", rechercherMaVideoFA);
@@ -51251,7 +51252,7 @@ son compte Vixinol store */
 		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 		data={infosCompteById} idCompte={idCompte}
 		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} FullScreen={FullScreen} profilMap={profilMap}
-		clicFA={clicFA} titreFA={titreFA}
+		clicFA={clicFA} titreFA={titreFA} photoCouvertureVideo={photoCouvertureVideo} 
 		nomProprietairePost={nomProprietairePost} 
 		photoProprietairePost={photoProprietairePost}
 		videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 

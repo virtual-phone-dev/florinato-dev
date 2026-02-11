@@ -2771,6 +2771,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, videoRef, u
 	<div className="display-nowrap-espace">
       <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={profil}/> </div>
       <pre className="pre-14px-eee" onClick={profil}>{nameAccount}</pre>
+	  
+	  <div className="photo-25px"> <img src={photoCouvertureVideo} alt="" /> </div>
     </div>			
 
 			<RechercheTemplate 
