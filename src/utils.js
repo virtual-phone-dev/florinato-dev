@@ -857,6 +857,7 @@ export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileV
 )}
 
 
+/*
 export function SeePhotoModal({ visible, fermer, url, title }) {
   if (!visible) return null; // n'affiche rien si pas visible
 
@@ -870,7 +871,7 @@ export function SeePhotoModal({ visible, fermer, url, title }) {
       <div className="cadre"> <img src={url} alt={title || "photo"} className="photo"/> </div>
     </div>
   );
-}
+} */
 
 
 export function Close({ fermer }) {

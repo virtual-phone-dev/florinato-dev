@@ -35499,9 +35499,8 @@ const conversationsTrierParDate = useMemo(() => {
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
 
 
-
 const SeeVideoTemplatePropsCommun = {
-  voirProfil: ProfilFA2e, voirPhoto: SeePhoto2e,
+  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
   rechercherUneVideoFA, setRechercherUneVideoFA,
   profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
@@ -43392,6 +43391,12 @@ async function PageRedirection66groupOtherFA() {
   const [seePhoto2e, setSeePhoto2e] = useState(false); 
   async function SeePhoto2e() { setSeePhoto2e(true); }
   async function CloseSeePhoto2e() { setSeePhoto2e(false); }
+  
+  
+  const [seePhotoCouvertureVideo, setSeePhotoCouvertureVideo] = useState(false); 
+  async function SeePhotoCouvertureVideo() { setSeePhotoCouvertureVideo(true); }
+  async function CloseSeePhotoCouvertureVideo() { setSeePhotoCouvertureVideo(false); }
+
 
 
   // favoris - page
@@ -51234,7 +51239,7 @@ son compte Vixinol store */
 	  
 
 	<SeeVideoTemplate 
-		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} voirPhoto={SeePhoto2e} 
+		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e}
 		{...SeeVideoTemplatePropsCommun} />
 
 
@@ -51267,11 +51272,7 @@ son compte Vixinol store */
 	<PopupBasTextareaTemplate 
 		visible={repondrePageFA} fermer={CloseRepondrePageFA} titre="Écrivez votre réponse" isLoading={isLoading666RepondreFA}
 		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
-	  		  	  
-
-      {/* voir la miniature- FA  */}
-	  <SeePhotoModal visible={voirMiniature} fermer={CloseVoirMiniature} url={photoUrl} />
-	  
+	  	
 	  
 	  
 		{/* Pour la personne non connecter  - FA */} 
@@ -51293,7 +51294,7 @@ son compte Vixinol store */
 			
 			
 		<SeeVideoTemplate 
-			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} voirProfil={ProfilFA2e} voirPhoto={SeePhoto2e} 
+			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} voirProfil={ProfilFA2e}
 			{...SeeVideoTemplatePropsCommun} />
 		
 		
@@ -51317,7 +51318,7 @@ son compte Vixinol store */
 			
 	
 	<SeeVideoTemplate 
-		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e} voirPhoto={SeePhoto2e} 
+		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e}
 		{...SeeVideoTemplatePropsCommun} />
 		
 			
@@ -51343,16 +51344,24 @@ son compte Vixinol store */
 		
 			
 		<SeeVideoTemplate 
-			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} voirPhoto={SeePhoto2e} 
+			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e}
 			{...SeeVideoTemplatePropsCommun} />
 			
 
-		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />
-		
+
+		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />		
 		
 		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProfileFA} />
 		
+		<SeePhotoTemplate visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} />
 		
+		
+		
+		{/* voir la miniature - FA  */}
+		<SeePhotoTemplate visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} />
+		
+
+
       {/* rencontre - FA */}
       {rencontreFA && (<>
         <div className="rencontreFA">
