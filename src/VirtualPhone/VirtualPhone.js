@@ -35340,7 +35340,7 @@ const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhoto2e,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
   rechercherUneVideoFA, setRechercherUneVideoFA,
-  profilMap, clicFA, titreFA, photoCouvertureVideo, videoRef, urlVideo, scrollY, scrollX,
+  profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, FullScreen, clicVideo: ClicVideoFAA,
   setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
 };
@@ -51238,7 +51238,9 @@ son compte Vixinol store */
 	  
 	  
 
-	<SeeVideoTemplate visible={seeVideoFA} fermer={CloseSeeVideoFA} {...SeeVideoTemplatePropsCommun} />
+	<SeeVideoTemplate 
+		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} voirPhoto={SeePhoto2e} 
+		{...SeeVideoTemplatePropsCommun} />
 
 
 

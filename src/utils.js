@@ -2729,7 +2729,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 
 		
 // SeeVideoTemplate
-export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, videoRef, urlVideo, scrollX, scrollY,
+export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY,
 	rechercherUneVideoFA, setRechercherUneVideoFA, 
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirPhoto, voirVideo
@@ -2751,7 +2751,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
         <div className="body">
 			{/* on affiche la video */}
 			<div className="block-video">
-				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
+				<video autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
 			
 			<div className="display-flex"> 
