@@ -1722,8 +1722,10 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 )}
 
 
+
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, voirProfil,
-	setId=()=>{}, setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, clicVideo, voirVideo=()=>{}, profilMap, titrecss, cliccss, nomEtphoto }) {	
+	setId=()=>{}, setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, clicVideo, voirVideo=()=>{}, profilMap, nomEtphoto,
+	titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
 		{/* input pour effectuer une recherche */}
@@ -1761,7 +1763,8 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			
 			<LesVideos 
 				data={listVideo} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
-				clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} titrecss={titrecss} cliccss={cliccss} nomEtphoto={nomEtphoto} voirProfil={voirProfil} /> 
+				clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} 
+				titrecss={titrecss} cliccss={cliccss} nomcss={nomcss} datecss={datecss} nomEtphoto={nomEtphoto} voirProfil={voirProfil} /> 
 	</>);
 }
 
@@ -2760,7 +2763,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	<div className="between m-0-15">
 		<div className="flex">
 		  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
-		  <pre className="pre f-15px ml-5px c-a1a1aa" onClick={voirProfil}>{nameAccount}</pre>
+		  <pre className="pre c-a1a1aa ml-5px f-15px" onClick={voirProfil}>{nameAccount}</pre>
 		</div>
 	  
 		<div> <img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> </div> 
@@ -2769,7 +2772,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} voirProfil={voirProfil} profilMap={profilMap} nomEtphoto
 				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} 
-				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px ml-5px" datecss="c-a1a1aa f-13px ml-5px" clicVideo={clicVideo} />
+				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa ml-5px f-14px" datecss="c-a1a1aa f-13px" clicVideo={clicVideo} />
 
 	
 	<LesVideos 
