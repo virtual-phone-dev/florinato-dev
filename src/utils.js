@@ -1749,7 +1749,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 
 				  
 			{listAccount.map((api) => (<>
-			<div onClick={() => { cliquer(api); setId(api._id); setIdCompte(api._id); ouvrirMessagePage(); }}>	
+			<div onClick={() => { cliquer(api); setId(api._id); setIdCompte(api._id); ouvrirMessagePage(api); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
