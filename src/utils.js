@@ -2726,7 +2726,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	
 	const propsVideosCommunes = {
 	  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, profilMap,
-	  titrecss: "pre-16px-white", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", cliccss: "p-14px-a1a1aa",
+	  titrecss: "pre-16px-white tc", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", cliccss: "p-14px-a1a1aa tc",
 	};
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
