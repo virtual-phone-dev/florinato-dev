@@ -1594,7 +1594,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 		
 export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirProfil=()=>{}, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, 
-	nomcss="pre c-6b7280 f-14px", datecss="c-6b7280 f-13px", titrecss="pre-16px", cliccss="p-14px" }) {
+	nomcss="pre c-6b7280 f-14px ml-5px", datecss="c-6b7280 f-13px", titrecss="pre-16px", cliccss="p-14px" }) {
 
 	const imgRef = useRef(null);
 	const [nombreLettre, setnombreLettre] = useState(40);
@@ -1636,10 +1636,7 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
   const photoProprietairePost = profil?.photoProfile ?? investirPhoto;
   const nomProprietairePost = profil?.nameAccount ?? "Compte inconnu";	
 
-  return (
-    <>
-		{/* {afficherVideo && (<>  
-		{afficherVideo && (!verifierId || id) && (<> */} 
+	return (<>
 		{afficherVideo && (<>
 		<div className="video-card pb-30px">
 			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} onClick={() => { voirVideo(api); }} /> 
@@ -2726,7 +2723,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	
 	const propsVideosCommunes = {
 	  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, profilMap,
-	  titrecss: "pre-16px-white tc", cliccss: "p-14px-a1a1aa tc", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", 
+	  titrecss: "pre-16px-white tc", cliccss: "p-14px-a1a1aa tc", nomcss: "pre c-a1a1aa ml-5px f-14px", datecss: "c-a1a1aa f-13px", 
 	};
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
@@ -2772,7 +2769,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} voirProfil={voirProfil} profilMap={profilMap} nomEtphoto
 				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} 
-				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" clicVideo={clicVideo} />
+				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px ml-5px" datecss="c-a1a1aa f-13px ml-5px" clicVideo={clicVideo} />
 
 	
 	<LesVideos 
