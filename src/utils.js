@@ -452,13 +452,25 @@ https://www.youtube.com/watch?v=baythHIaiS8
 
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
-
+/*
 export function normaliserTexte(str="") {
   return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
-} 
+} */
+
+export function normaliserTexte(str = "") {
+  return str
+    .normalize("NFKD")                       // plus fort que NFD
+    .replace(/[\u0300-\u036f]/g, "")         // accents
+    .replace(/[：]/g, ":")                   // deux-points chinois
+    .replace(/[’‘´`]/g, "'")                 // apostrophes exotiques
+    .replace(/[^a-zA-Z0-9\s]/g, " ")         // ponctuation
+    .replace(/\s+/g, " ")                    // espaces multiples
+    .toLowerCase()
+    .trim();
+}
 
 
-export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.4, }) {
+export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.5, }) {
   if (!search) return [];
 
   const fuse = new Fuse(data, {
@@ -471,20 +483,6 @@ export function rechercherAvecFuse({ data=[], search="", keys=[], threshold=0.4,
 
   return fuse.search(normaliserTexte(search)).map((r) => r.item);
 }
-
-
-
-/* export function useLocalStorageState(key, initialValue="") { 
-  const [value, setValue] = useState(() => {
-    return localStorage.getItem(key) || initialValue;
-  });
-
-  useEffect(() => {
-    localStorage.setItem(key, value);
-  }, [key, value]);
-
-  return [value, setValue];  
-} */
 
 
 
