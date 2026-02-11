@@ -2732,7 +2732,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, videoRef, urlVideo, scrollX, scrollY,
 	rechercherUneVideoFA, setRechercherUneVideoFA, 
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
-	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirVideo
+	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirPhoto, voirVideo
 	}) {
 	if (!visible) return null;
 	
@@ -2771,7 +2771,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
       <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
       <pre className="pre-14px-eee" onClick={voirProfil}>{nameAccount}</pre>
 	  
-	  <div className="photo-25px"> <img src={photoCouvertureVideo} alt="" /> </div>
+	  <div className="photo-25px"> <img src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> </div> 
     </div>			
 
 			<RechercheTemplate 

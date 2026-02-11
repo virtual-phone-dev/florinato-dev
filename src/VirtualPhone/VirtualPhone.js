@@ -51252,14 +51252,12 @@ son compte Vixinol store */
 	  
 
 	<SeeVideoTemplate 
-		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} 
+		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} voirPhoto={SeePhoto2e} 
 		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 		data={infosCompteById} idCompte={idCompte}
 		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} FullScreen={FullScreen} 
-		profilMap={profilMap}
+		profilMap={profilMap} 
 		clicFA={clicFA} titreFA={titreFA} photoCouvertureVideo={photoCouvertureVideo} 
-		nomProprietairePost={nomProprietairePost} 
-		photoProprietairePost={photoProprietairePost}
 		videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
 		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
 		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
@@ -51320,13 +51318,11 @@ son compte Vixinol store */
 			
 			
 		<SeeVideoTemplate 
-			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} profil={ProfilFA2e} voirProfil={ProfilFA2e} 
+			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} voirProfil={ProfilFA2e} voirPhoto={SeePhoto2e} 
 			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
 			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
 			FullScreen={FullScreen} 
-			nomProprietairePost={nomProprietairePost} 
-			photoProprietairePost={photoProprietairePost}
 			CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
 			
@@ -51354,13 +51350,11 @@ son compte Vixinol store */
 	
 	  
     <SeeVideoTemplate 
-		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} profil={ProfilFA3e} voirProfil={ProfilFA3e} 
+		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e} voirPhoto={SeePhoto2e} 
 		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
 		clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
 		FullScreen={FullScreen} 
-		nomProprietairePost={nomProprietairePost} 
-		photoProprietairePost={photoProprietairePost}
 		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
 		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
 		
@@ -51386,13 +51380,11 @@ son compte Vixinol store */
 		
 	
 		<SeeVideoTemplate 
-			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} profil={CloseSeeVideoFA3e} voirProfil={ProfilFA3e} 
+			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} voirPhoto={SeePhoto2e} 
 			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
 			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
 			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
 			FullScreen={FullScreen}
-			nomProprietairePost={nomProprietairePost} 
-			photoProprietairePost={photoProprietairePost}
 			CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
 			
