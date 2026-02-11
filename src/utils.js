@@ -1765,7 +1765,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 
 				  
 			{listAccount.map((api) => (<>
-			<div onClick={() => { cliquer(api); setId(api._id); ouvrirMessagePage(); }}>	
+			<div onClick={() => { cliquer(api); setId(api._id); setIdCompte(api._id); ouvrirMessagePage(); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
 			</>))}
@@ -1889,7 +1889,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 </>)}
 
 
-export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, ouvrirMessagePage, gererScroll }) {
+export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, setIdCompte, ouvrirMessagePage, gererScroll }) {
   if (!visible) return null;
   
   return (<>
@@ -1897,18 +1897,18 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  
-			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} ouvrirMessagePage={ouvrirMessagePage} />
-			  <ListeDesComptes data={data} ouvrirMessagePage={ouvrirMessagePage} />
+			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
+			  <ListeDesComptes data={data} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
 		 </div>
 	 </div>
  </>)}
  
 
 			  
-export function ListeDesComptes({ data=[], ouvrirMessagePage }) {
+export function ListeDesComptes({ data=[], setIdCompte, ouvrirMessagePage }) {
   return (<>
       {data.map((api) => (
-		<div onClick={() => { ouvrirMessagePage(); }}>	
+		<div onClick={() => { ouvrirMessagePage(); setIdCompte(api._id); }}>	
 			<PopularityAccountCard api={api} />
 		</div>
       ))}
@@ -1918,7 +1918,7 @@ export function ListeDesComptes({ data=[], ouvrirMessagePage }) {
 export function ListeDesComptes2({ data=[], profilMap, proprietaireCompte, gestionnaireCompte }) {
   return (<>
 		{data.map((api) => (
-        <div key={api._id} onClick={() => { localStorage.setItem("idPersonConnectedFA", api.idAccount); console.log("idPersonConnectedFA enregistré :", api.idAccount); }}>
+        <div onClick={() => { localStorage.setItem("idPersonConnectedFA", api.idAccount); }}>
           <PopularityAccountCard2 api={api} profilMap={profilMap} proprietaireCompte={proprietaireCompte} gestionnaireCompte={gestionnaireCompte} />
         </div>
 		))}
@@ -2594,34 +2594,27 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 
 // MessageTemplate
-export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA, PageRedirection66ChildApi66messageFA, filterMessageFA,
-	nameOther, badgeOther, onlineOther, photoOther, Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
+export function MessageTemplate({ visible, fermer, gererScrollMessages, ProfilFA, PageRedirection66ChildApi66messageFA, data, filterMessageFA, idCompte,
+	badgeOther, onlineOther, Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
 	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage
 	}) {
 	if (!visible) return null;
 	
 	
-	// 🔹 on récupère le bon profil (personne connecté OU un autre utilisateur)
-  /* const profile = data.find(api => api._id === idCompte);
-
-  if (!profile) {
-    console.warn("Profil introuvable :", idCompte);
-    return null;
-  }
-
-  // 🔹 infos du profil
-  const { nameAccount, photoProfile, popularity, } = profile; */
+	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
+	const { nameAccount="Compte inconnu", photoProfile=investirPhoto } = profile; // infos du profil
+	
 	
 	return (<>
         <div className="messageFA" onScroll={gererScrollMessages}>
           <div className="close">
             <div className="block-un">
               <div className="a" onClick={fermer}> <SvgLeft/> </div>
-              <div className="b" onClick={fermer}> <img src={photoOther} alt=""/> </div>
+              <div className="b" onClick={fermer}> <img src={photoProfile} alt={nameAccount} /> </div>
 
               <div className="c" onClick={ProfilFA}>
                 <div className="aa">
-                  <p>{nameOther}</p>
+                  <p>{nameAccount}</p>
                   {badgeOther === "1" && (<><SvgBadge/></>)}
                 </div>
 

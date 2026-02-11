@@ -51093,7 +51093,7 @@ son compte Vixinol store */
 
 		<ComptesRecentsTemplate 
 			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
-			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} />
+			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} />
 		
 		<SpeedMessages 
 			visible={speedMessagesPagesFA} data={dataComptesFA} fermer={CloseSpeedMessagesPagesFA} 
@@ -51114,7 +51114,7 @@ son compte Vixinol store */
 			visible={messageFA} fermer={CloseMessageFA}
 			gererScrollMessages={gererScrollMessages} ProfilFA={ProfilFA} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-			filterMessageFA={filterMessageFA} 
+			data={infosCompteById} filterMessageFA={filterMessageFA} idCompte={idCompte}
 			Favorite66messageFA={Favorite66messageFA} 
 			EnvoyerContactFA={EnvoyerContactFA} 
 			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
