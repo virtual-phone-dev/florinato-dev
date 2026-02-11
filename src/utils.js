@@ -1641,7 +1641,7 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
 		{/* {afficherVideo && (<>  
 		{afficherVideo && (!verifierId || id) && (<> */} 
 		{afficherVideo && (<>
-		<div className="video-card">
+		<div className="video-card mb-15px">
 			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} onClick={() => { voirVideo(api); }} /> 
 			<pre className={titrecss}>{gettitre}</pre>
 			<p className={cliccss}>{api.clic} clic</p> 
