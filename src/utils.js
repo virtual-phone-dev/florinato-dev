@@ -2757,8 +2757,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 				<p className="p-14px-ccc-esp">Supprimer le post</p> </>)}
 			</div>
 			
-			<pre className="pre-17px-white">{titreFA}</pre> 
-			<p className="p-14px-a1a1aa">{clicFA} clic</p>
+			<pre className="pre-17px-white tc">{titreFA}</pre> 
+			<p className="p-14px-a1a1aa tc">{clicFA} clic</p>
 			
 	<div className="between m-0-15">
 		<div className="flex">
