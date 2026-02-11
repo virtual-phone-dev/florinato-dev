@@ -2730,12 +2730,20 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 //ProfilTemplate	
 
 
-		
+const propsVideosCommunes = {
+  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, profilMap,
+
+  // CSS commun
+  titrecss: "pre-16px-white", nomcss: "pre c-a1a1aa f-14px", datecss: "c-a1a1aa f-13px", cliccss: "p-14px-a1a1aa",
+};
+
+ 
+ 
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY,
 	rechercherUneVideoFA, setRechercherUneVideoFA, 
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
-	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirPhoto, voirVideo
+	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirPhoto
 	}) {
 	if (!visible) return null;
 	
@@ -2784,13 +2792,18 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} 
 				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" clicVideo={clicVideo} />
 
-
+ {/*
     <LesVideos 
 		data={dataVideoByIdCompte} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
 		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} scrollX={scrollX} dateParser={dateParserLong} 
-		titrecss="pre-16px-white" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" affichagecss="overflow-x" /> 
+		titrecss="pre-16px-white" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" affichagecss="overflow-x" /> */}
 	
+	<LesVideos 
+		data={dataVideoByIdCompte} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" video
+		{...propsVideosCommunes} />
+		
 	
+
 			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoByIdCompte.map((api) => (<>
 			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
@@ -2809,11 +2822,17 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			</>))}
 			</div>
 			{/* overflow-x */}
+			
+			
+			<LesVideos 
+				data={dataVideoFAbyClic} voirProfil={voirProfil} nomEtphoto video 
+				{...propsVideosCommunes} />
 
+{/*
 			<LesVideos 
 				data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
 				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" 
-				clicVideo={clicVideo} voirProfil={voirProfil} profilMap={profilMap} video nomEtphoto />
+				clicVideo={clicVideo} voirProfil={voirProfil} profilMap={profilMap} video nomEtphoto />  */}
         </div>
         {/* body */}
       </div>
