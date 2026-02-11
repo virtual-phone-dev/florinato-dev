@@ -176,22 +176,21 @@
   font-size: 17px;
 }
 
-.pre-13px {
-  font-size: 13px;
-  padding: 0px;
-  white-space: pre-wrap;
-  word-wrap: break-word;
-}
 
-.pre-13px-blanc-gris {
-  font-size: 13px;
-  color: #A1A1AA;
+.pre {
   padding: 0;
-  color: #6B7280;
   white-space: pre-wrap;
   word-wrap: break-word;
   cursor: pointer;
 }
+
+.c-6b7280 { color: #6b7280; }
+
+.c-a1a1aa { color: #a1a1aa; }
+
+.f-13px { font-size: 13px; }
+.f-14px { font-size: 14px; }
+
 
 .pre-13px-center {
   font-size: 13px;
@@ -318,6 +317,15 @@
 }
 
 .photo-25px img {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.photo-25px {
   height: 25px;
   width: 25px;
   border-radius: 50%;

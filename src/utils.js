@@ -1608,11 +1608,10 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 // PopupDuBasTemplate 
 
 
+		
+export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirProfil=()=>{}, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, 
+	nomcss="pre c-6b7280 f-14px", datecss="c-6b7280 f-13px", titrecss="pre-16px", cliccss="p-14px" }) {
 
-export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirProfil=()=>{}, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, titrecss="pre-16px", cliccss="p-14px" }) {
-	//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-    //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
-	
 	const imgRef = useRef(null);
 	const [nombreLettre, setnombreLettre] = useState(40);
 
@@ -1666,10 +1665,10 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
 			{nomEtphoto && (<>
 			<div className="display-nowrap-espace">
 			  <div className="photo-25px"> <img src={photoProprietairePost} alt={nomProprietairePost} onClick={() => { voirProfil(api); }} /> </div>
-			  <pre className="pre-13px-blanc-gris" onClick={() => { voirProfil(api); }}>{nomProprietairePost}</pre>
+			  <pre className={nomcss} onClick={() => { voirProfil(api); }}>{nomProprietairePost}</pre>
 			</div> </>)}
 
-			<div className="display-nowrap-espace"> <pre className="pre-13px-blanc-gris">{dateAfficher(api.createdAt)}</pre> </div>
+			<pre className={datecss}>{dateAfficher(api.createdAt)}</pre>
 		</div></>)}
 		
 		
@@ -1684,7 +1683,8 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
 } 
 
 
-export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, clicVideo=()=>{}, 
+
+export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, clicVideo=()=>{}, nomcss, datecss,
 	voirVideo, voirProfil, dateParser, titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX, nomEtphoto
 	}) {
 		
@@ -1697,7 +1697,7 @@ export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setId
 			setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 			
 			<ChildApi66LesVideos 
-				api={api} nomEtphoto={nomEtphoto} voirVideo={voirVideo} voirProfil={voirProfil} titrecss={titrecss} cliccss={cliccss} 
+				api={api} nomEtphoto={nomEtphoto} voirVideo={voirVideo} voirProfil={voirProfil} titrecss={titrecss} cliccss={cliccss} nomcss={nomcss} datecss={datecss} 
 				profilMap={profilMap} dateAfficher={dateParser} video />
 				
 		  </div>
@@ -1873,7 +1873,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 	<div className="display-nowrap-espace">
       <div className="p-15px"> <p>gere : </p> </div>
       <div className="photo-25px"> <img src={photoProprietaire} alt={nomProprietaire}/> </div>
-      <div className="pre-13px"> <pre>{nomProprietaire}</pre> </div>
+      <div className="pre fs-13px"> <pre>{nomProprietaire}</pre> </div>
     </div>
 	</>)}
 	
@@ -2781,12 +2781,14 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 
 			<RechercheTemplate 
 				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} voirProfil={voirProfil} profilMap={profilMap} nomEtphoto
-				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" clicVideo={clicVideo} />
+				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} 
+				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" clicVideo={clicVideo} />
 
 
     <LesVideos 
 		data={dataVideoByIdCompte} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} video
-		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" /> 
+		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} scrollX={scrollX} dateParser={dateParserLong} 
+		titrecss="pre-16px-white" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" affichagecss="overflow-x" /> 
 	
 	
 			<div className="overflow-x" onScroll={scrollX}>
@@ -2810,13 +2812,15 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 
 			<LesVideos 
 				data={dataVideoFAbyClic} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
-				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" clicVideo={clicVideo} voirProfil={voirProfil} profilMap={profilMap} video nomEtphoto />
+				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa f-14px" datecss="c-a1a1aa f-13px" 
+				clicVideo={clicVideo} voirProfil={voirProfil} profilMap={profilMap} video nomEtphoto />
         </div>
         {/* body */}
       </div>
       {/* seeVideoFA */}
 </>)}
 // SeeVideoTemplate
+
 
 
 // SeePhotoTemplate
