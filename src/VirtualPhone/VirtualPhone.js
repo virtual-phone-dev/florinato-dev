@@ -35336,30 +35336,16 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 
 
 
-/*
-useEffect(() => {
-  console.log("dataMessagesFA", dataMessagesFA);
-  console.log("toutMessages", toutMessages);
-  console.log("messagesSource", messagesSource);
-  console.log("dataComptesFA", dataComptesFA);
-  console.log("visitesSource ", visitesSource);
-  console.log("dataMesVisitesFA ", dataMesVisitesFA);
-  console.log("comptesSource ", comptesSource);
-  console.log("dataComptesFA ", dataComptesFA);
-  console.log("dataMesComptesFA ", dataMesComptesFA);
-  console.log("toutMesComptes ", toutMesComptes);
-  console.log("toutComptes ", toutComptes);
-  console.log("filtrerUnCompteRechercher ", filtrerUnCompteRechercher);
-  console.log("filtrerMonCompteRechercher ", filtrerMonCompteRechercher);
-  console.log("listMesComptesFA :", listMesComptesFA);
-  console.log("listAccountFA ", listAccountFA);
-  console.log("dataConversations ", dataConversations);
-  console.log("dataFollowers", dataFollowers);
-  console.log("dataVideoIdProprietairePost", dataVideoIdProprietairePost);
-  //console.log("dataConversationFA ", dataConversationFA);
-}, [dataComptesFA, dataFollowers, dataConversations, dataVideoIdProprietairePost, messagesSource, toutMessages, dataMessagesFA, listMesComptesFA, listAccountFA, filtrerUnCompteRechercher, filtrerMonCompteRechercher, visitesSource, dataMesVisitesFA, comptesSource, dataMesComptesFA, toutMesComptes, toutComptes]);
+const SeeVideoTemplatePropsCommun = {
+  voirProfil: ProfilFA2e, voirPhoto: SeePhoto2e,
+  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
+  rechercherUneVideoFA, setRechercherUneVideoFA,
+  profilMap, clicFA, titreFA, photoCouvertureVideo, videoRef, urlVideo, scrollY, scrollX,
+  CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, FullScreen, clicVideo: ClicVideoFAA,
+  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
+};
 
-*/
+
 
 // filtre pour obtenir tout les messages de la discussion - FA
 //const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
@@ -51252,16 +51238,7 @@ son compte Vixinol store */
 	  
 	  
 
-	<SeeVideoTemplate 
-		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} voirPhoto={SeePhoto2e} 
-		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
-		data={infosCompteById} idCompte={idCompte}
-		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} FullScreen={FullScreen} 
-		profilMap={profilMap} 
-		clicFA={clicFA} titreFA={titreFA} photoCouvertureVideo={photoCouvertureVideo} 
-		videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
-		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
-		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
+	<SeeVideoTemplate visible={seeVideoFA} fermer={CloseSeeVideoFA} {...SeeVideoTemplatePropsCommun} />
 
 
 
@@ -51320,14 +51297,7 @@ son compte Vixinol store */
 			
 		<SeeVideoTemplate 
 			visible={seeVideoFA0e} fermer={CloseSeeVideoFA0e} voirProfil={ProfilFA2e} voirPhoto={SeePhoto2e} 
-			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
-			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
-			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
-			FullScreen={FullScreen} 
-			CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
-			
-		
+			{...SeeVideoTemplatePropsCommun} />
 		
 		
 		{/* 2e profil , et seevideo (on affiche ton compte) - FA */}
@@ -51349,17 +51319,11 @@ son compte Vixinol store */
 			scrollX={scrollX} />
 			
 	
-	  
-    <SeeVideoTemplate 
+	<SeeVideoTemplate 
 		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e} voirPhoto={SeePhoto2e} 
-		dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
-		rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
-		clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
-		FullScreen={FullScreen} 
-		CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
-		setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
+		{...SeeVideoTemplatePropsCommun} />
 		
-	
+			
 	
 		{/* 3e profil , et seevideo - FA */}
 		<ProfilTemplate 
@@ -51379,17 +51343,12 @@ son compte Vixinol store */
 			listMesVideosFA={listMesVideosFA} 
 			scrollX={scrollX} />
 		
-	
+		
+			
 		<SeeVideoTemplate 
 			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} voirPhoto={SeePhoto2e} 
-			dataVideoFAbyClic={dataVideoFAbyClic} dataVideoByIdCompte={dataVideoByIdCompte} listVideoFA={listVideoFA} 
-			rechercherUneVideoFA={rechercherUneVideoFA} setRechercherUneVideoFA={setRechercherUneVideoFA} 
-			clicFA={clicFA} titreFA={titreFA} videoRef={videoRef} urlVideo={urlVideo} scrollY={scrollY} scrollX={scrollX} 
-			FullScreen={FullScreen}
-			CommenterPageFA={CommenterPageFA} ModifierUrlPage={ModifierUrlPage} ModifierTitrePageFA={ModifierTitrePageFA} ChangerMiniaturePage={ChangerMiniaturePage} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={ClicVideoFAA} />
+			{...SeeVideoTemplatePropsCommun} />
 			
-	
 
 		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />
 		
