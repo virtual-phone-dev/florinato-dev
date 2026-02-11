@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 import { 
-	Page, Close, Input, MissionTemplate, SeePhotoModal, MesComptes, useScrollInfini,
+	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	SeeVideoTemplate, SeePhotoTemplate,

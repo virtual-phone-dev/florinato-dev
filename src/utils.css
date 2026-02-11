@@ -66,6 +66,13 @@
   padding-right: 20px;
 }
 
+.space-between-espace {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 15px;
+}
+
+
 .flex {
   display: flex;
   justify-content: space-between;
@@ -138,9 +145,9 @@
   font-size: 14px;
 }
 
-.p-14px-eee {
+.p-14px-a1a1aa {
   font-size: 14px;
-  color: #A1A1AA;
+  color: #a1a1aa;
 }
 
 .p-14px-ccc-esp {
@@ -203,10 +210,10 @@
   word-wrap: break-word;
 }
 
-.pre-14px-eee {
+.pre-14px-a1a1aa {
   font-size: 14px;
-  color: #A1A1AA;
-  padding: 0px;
+  color: #a1a1aa;
+  padding: 0px 3px;
   cursor: pointer;
   white-space: pre-wrap;
   word-wrap: break-word;
