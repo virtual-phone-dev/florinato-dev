@@ -1723,8 +1723,8 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquer, cliquerSurMonCompte, voirProfil,
-	setId=()=>{}, setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, clicVideo, voirVideo=()=>{}, profilMap, nomEtphoto,
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
+	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, clicVideo, voirVideo=()=>{}, profilMap, nomEtphoto,
 	titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
@@ -1746,13 +1746,13 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 
                     <div className="hr-15px"> <hr /> </div>
                   </div>
-
 				  
-			{listAccount.map((api) => (<>
-			<div onClick={() => { cliquer(api); setId(api._id); setIdCompte(api._id); ouvrirMessagePage(api); }}>	
+
+			{listAccount.map((api) => (
+			<div onClick={() => { setIdCompte(api._id); ouvrirMessagePage(api); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
-			</>))}
+			))}
 			
 			
 			<div className="api2" onClick={cliquerSurMonCompte}>
@@ -2729,6 +2729,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	  titrecss: "pre-16px-white tc", cliccss: "p-14px-a1a1aa tc", nomcss: "pre c-a1a1aa ml-5px f-14px", datecss: "c-a1a1aa f-13px", 
 	};
 	
+	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
 	const { nameAccount="Compte inconnu", photoProfile=investirPhoto } = profile; // infos du profil
 	
@@ -2760,39 +2761,40 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			<pre className="pre-17px-white tc">{titreFA}</pre> 
 			<p className="p-14px-a1a1aa tc">{clicFA} clic</p>
 			
-	<div className="between m-0-15">
-		<div className="flex">
-		  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
-		  <pre className="pre c-a1a1aa ml-5px f-15px" onClick={voirProfil}>{nameAccount}</pre>
-		</div>
-	  
-		<div> <img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> </div> 
-    </div>			
+			
+			<div className="between m-0-15">
+				<div className="flex">
+				  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
+				  <pre className="pre c-a1a1aa ml-5px f-15px" onClick={voirProfil}>{nameAccount}</pre>
+				</div>
+			  
+				<div> <img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> </div> 
+			</div>			
+
 
 			<RechercheTemplate 
-				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} voirProfil={voirProfil} profilMap={profilMap} nomEtphoto
-				setIdPost={setIdPost} setIdCompte={setIdCompte} setUrlVideo={setUrlVideo} 
-				titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" nomcss="pre c-a1a1aa ml-5px f-14px" datecss="c-a1a1aa f-13px" clicVideo={clicVideo} />
-
+				listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} voirProfil={voirProfil} nomEtphoto
+				{...propsVideosCommunes} />
+		
 	
-	<LesVideos 
-		data={dataVideoByIdCompte} scrollX={scrollX} affichagecss="overflow-x" video
-		{...propsVideosCommunes} />
-		
-		
-	<LesVideos 
-		data={dataVideoFAbyClic} scrollX={scrollX} affichagecss="overflow-x" video nomEtphoto
-		{...propsVideosCommunes} />
-
-			
 			<LesVideos 
+				data={dataVideoByIdCompte} scrollX={scrollX} affichagecss="overflow-x" video
+				{...propsVideosCommunes} />
+				
+				
+			<LesVideos 
+				data={dataVideoFAbyClic} scrollX={scrollX} affichagecss="overflow-x" video nomEtphoto
+				{...propsVideosCommunes} />
+
+					
+			LesVideos 
 				data={dataVideoFAbyClic} voirProfil={voirProfil} nomEtphoto video 
 				{...propsVideosCommunes} />
 
         </div>
         {/* body */}
-      </div>
-      {/* seeVideoFA */}
+	</div>
+	{/* seeVideoFA */}
 </>)}
 // SeeVideoTemplate
 
