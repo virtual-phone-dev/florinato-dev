@@ -2784,17 +2784,6 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 		data={dataVideoByIdCompte} scrollX={scrollX} dateParser={dateParserLong} affichagecss="overflow-x" video
 		{...propsVideosCommunes} />
 		
-	
-
-			<div className="overflow-x" onScroll={scrollX}>
-			{dataVideoByIdCompte.map((api) => (<>
-			<div onClick={() => { setIdPost(api._id); setUrlVideo(api.urlVideo); setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }); }}>
-				<ChildApi66profilFA api={api} video photocss="photo-200px-carre" titrecss="pre-16px-white" cliccss="p-14px-a1a1aa" verifierId />
-			</div>
-			</>))}
-			</div>
-			{/* overflow-x */} 
-			
 
 			<div className="overflow-x" onScroll={scrollX}>
 			{dataVideoFAbyClic.map((api) => (<>

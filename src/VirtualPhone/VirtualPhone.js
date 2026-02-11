@@ -35499,6 +35499,9 @@ const conversationsTrierParDate = useMemo(() => {
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
 
 
+
+const videoRef = useRef(null);
+
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
@@ -46702,7 +46705,7 @@ async function PostVideoFA() {
   }
 
   //lecteur video personnaliser - VB
-  const videoRef = useRef(null);
+  
   const [isPlaying, setIsPlaying] = useState(false);
   
   
