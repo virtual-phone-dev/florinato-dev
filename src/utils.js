@@ -2761,12 +2761,12 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			<p className="p-14px-a1a1aa">{clicFA} clic</p>
 			
 	<div className="between m-0-15">
-		<div className="a">
+		<div className="flex">
 		  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
 		  <pre className="pre-14px-a1a1aa" onClick={voirProfil}>{nameAccount}</pre>
 		</div>
 	  
-		<div className="b"> <img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> </div> 
+		<div> <img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> </div> 
     </div>			
 
 			<RechercheTemplate 
