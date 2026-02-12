@@ -2655,9 +2655,12 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
+	//setIdPost, setUrlVideo, setIdProprietairePost, idCompte, nom="", photoProfile=photoBlanche, popularity
 	}) { 
 		
   if (!visible) return null;
+  
+  console.log("dataVideos xx", dataVideos);
   
 
   // 🔹 infos du profil
