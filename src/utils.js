@@ -2651,7 +2651,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 
 //ProfilTemplate 
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, connecter,
-	data=[], dataMesVideosFA=[], dataMesVisitesFA=[], listMesVideosFA=[], dataOverflow=[],
+	data=[], dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
 	}) { 
@@ -2662,7 +2662,8 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   const profile = data.find(api => api._id === idCompte) || {};
 
   // 🔹 infos du profil
-  const { nameAccount="Compte inconnu", photoProfile=investirPhoto, popularity=0, } = profile;
+  //const { nameAccount="Compte inconnu", photoProfile=investirPhoto, popularity=0, } = profile;
+  const { nameAccount="Compte inconnu", photoProfile=investirPhoto, popularity, } = profile;
   
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
@@ -2696,7 +2697,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 			  
 			  
 			<VideoSearchBlock 
-				data={dataMesVideosFA} dataOverflow={dataOverflow} listVideo={listMesVideosFA} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
+				data={dataVideos} dataOverflow={dataOverflow} listVideo={listVideo} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
 				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} 
 				video overflow scrollX={scrollX} affichagecss="overflow-x" /> 
 
@@ -2801,7 +2802,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 
 
 // SeePhotoTemplate
-export function SeePhotoTemplate({ visible, fermer, urlPhoto, FullScreen, }) {
+export function SeePhotoTemplate({ visible, fermer, urlPhoto, FullScreen, videoRef }) {
 	if (!visible) return null;
 	
 	return (<>
@@ -2811,7 +2812,7 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto, FullScreen, }) {
             <div className="b" onClick={fermer}> <SvgClose2/> </div>
           </div>
   
-          <div className="body"> <img src={urlPhoto} alt=""/> </div>
+          <div className="body"> <img src={urlPhoto} alt="" ref={videoRef} /> </div>
         </div>
         {/* seePhotoFA */}
 </>)}

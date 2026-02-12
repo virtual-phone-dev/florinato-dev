@@ -35294,6 +35294,9 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 // filtre pour obtenir les infos du compte - FA 
 const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
 
+console.log("photoProfileFA ", photoProfileFA);
+console.log("infosCompteById ", infosCompteById);
+
 
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
@@ -35509,6 +35512,16 @@ const SeeVideoTemplatePropsCommun = {
   profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, FullScreen, clicVideo: ClicVideoFAA,
   setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
+};
+
+
+const SeePhotoTemplatePropsCommun = { FullScreen, videoRef };
+
+
+const profilPropsCommun = {
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte,
+	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
+	data: infosCompteById, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
 };
 
 
@@ -51117,26 +51130,14 @@ son compte Vixinol store */
 			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
 		
-		
 	
-		{/* on affiche mon compte - FA data={apiMessageFA} */}
+		{/* on affiche mon compte - FA */}
 		<ProfilTemplate 
-			visible={profilFA} fermer={CloseProfilFA} voirVideo={SeeVideoFA} video connecter={idPersonConnectedFA}
-			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto66profilFA} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idPersonConnectedFA}
-			ClicVideoFAA={ClicVideoFAA} 
-			rechercherMaVideoFA={rechercherMaVideoFA} 
-			setRechercherMaVideoFA={setRechercherMaVideoFA} 
-			
-			data={infosCompteById}
-			dataMesVisitesFA={dataMesVisitesFA} 
-			dataMesVideosFA={dataVideoByIdCompteConnecter} 
-			dataOverflow={dataVideoRecenteByIdCompteConnecter}
-			
-			listMesVideosFA={listMesVideosFA} 
-			scrollX={scrollX} />
-
+			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} 
+			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} listVideo={listMesVideosFA} 
+			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} 
+			{...profilPropsCommun} />
+		
 	  
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
@@ -51278,21 +51279,10 @@ son compte Vixinol store */
 
 
 		{/* Pour la personne non connecter  - FA */} 
-		<ProfilTemplate 
-			visible={tonProfilPourNonConnecter} fermer={CloseTonProfilPourNonConnecter} voirVideo={SeeVideoFAPourNonConnecter} video
-			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto2e} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
-			ClicVideoFAA={ClicVideoFAA} 
-			rechercherMaVideoFA={rechercherMaVideoFA} 
-			setRechercherMaVideoFA={setRechercherMaVideoFA} 
-			
-			data={infosCompteById}
-			dataMesVisitesFA={dataMesVisitesFA} 
-			dataMesVideosFA={dataVideoByIdCompte} 
-			dataOverflow={dataVideoRecenteByIdCompte} 
-			listMesVideosFA={listTesVideosFA} 
-			scrollX={scrollX} />
+		<ProfilTemplate
+			visible={tonProfilPourNonConnecter} fermer={CloseTonProfilPourNonConnecter} video
+			SeePhoto66profilFA={SeePhoto2e} voirVideo={SeeVideoFAPourNonConnecter}
+			{...profilPropsCommun} />
 			
 			
 		<SeeVideoTemplate 
@@ -51301,69 +51291,42 @@ son compte Vixinol store */
 		
 		
   
-		{/* 2e profil , et seevideo (on affiche ton compte) - FA */}
+		{/* 2e profil (on affiche ton compte) - FA */}
 		<ProfilTemplate 
-			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video
-			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto2e} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
-			ClicVideoFAA={ClicVideoFAA} 
-			rechercherMaVideoFA={rechercherMaVideoFA} 
-			setRechercherMaVideoFA={setRechercherMaVideoFA} 
-			
-			data={infosCompteById}
-			dataMesVisitesFA={dataMesVisitesFA} 
-			dataMesVideosFA={dataVideoByIdCompte} 
-			dataOverflow={dataVideoRecenteByIdCompte} 
-			
-			listMesVideosFA={listMesVideosFA} 
-			scrollX={scrollX} />
-			
-	
-	<SeeVideoTemplate 
-		visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e}
-		{...SeeVideoTemplatePropsCommun} />
+			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video SeePhoto66profilFA={SeePhoto2e}
+			{...profilPropsCommun} />
+				
+				
+		<SeeVideoTemplate 
+			visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e}
+			{...SeeVideoTemplatePropsCommun} />
 		
 			
 	
-		{/* 3e profil , et seevideo - FA */}
+		{/* 3e profil - FA */}
 		<ProfilTemplate 
-			visible={profilFA3e} fermer={CloseProfilFA3e} voirVideo={SeeVideoFA3e} video
-			MenuFA={MenuFA} AddVideoPageFA={AddVideoPageFA} AccountsFA={AccountsFA} gererScroll={gererScroll} gererScrollVisites={gererScrollVisites} 
-			SeePhoto66profilFA={SeePhoto66profilFA} 
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} idCompte={idCompte}
-			ClicVideoFAA={ClicVideoFAA} 
-			rechercherMaVideoFA={rechercherMaVideoFA} 
-			setRechercherMaVideoFA={setRechercherMaVideoFA} 
-			
-			data={infosCompteById}
-			dataMesVisitesFA={dataMesVisitesFA} 
-			dataMesVideosFA={dataVideoByIdCompte} 
-			dataOverflow={dataVideoRecenteByIdCompte} 
-			
-			listMesVideosFA={listMesVideosFA} 
-			scrollX={scrollX} />
-		
-		
-			
+			visible={profilFA3e} fermer={CloseProfilFA3e} voirVideo={SeeVideoFA3e} video SeePhoto66profilFA={SeePhoto66profilFA}
+			{...profilPropsCommun} />
+
+
 		<SeeVideoTemplate 
 			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e}
 			{...SeeVideoTemplatePropsCommun} />
 			
 
 
-		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} />		
+		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} {...SeePhotoTemplatePropsCommun} />		
 		
 		
-		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProfileFA} />
+		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProfileFA} {...SeePhotoTemplatePropsCommun} />
 		
 		
-		<SeePhotoTemplate visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} />
+		<SeePhotoTemplate visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} {...SeePhotoTemplatePropsCommun} />
 		
 		
 		
 		{/* voir la miniature - FA  */}
-		<SeePhotoTemplate visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} />
+		<SeePhotoTemplate visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} {...SeePhotoTemplatePropsCommun} />
 		
 
 
