@@ -35192,6 +35192,7 @@ const {
 	rechercherUneVideo: rechercherUneVideoFA,
 });
 
+console.log("dataVideoByIdCompteConnecter", dataVideoByIdCompteConnecter);
 
 // scroller
 const scrollX = useScrollInfini(chargerPlus, 'x'); // scrollHorizontal , overflow-x 
