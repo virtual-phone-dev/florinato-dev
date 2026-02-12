@@ -51154,8 +51154,12 @@ son compte Vixinol store */
 			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecter} listVideo={listMesVideosFA} 
 			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} />
 
+		<SeeVideoTemplate 
+			{...SeeVideoTemplatePropsCommun}
+			visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} />
 
-	  
+
+
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
 		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
@@ -51258,11 +51262,6 @@ son compte Vixinol store */
 	  
 	  
 
-	<SeeVideoTemplate 
-		visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e}
-		{...SeeVideoTemplatePropsCommun} />
-
-
 
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
@@ -51297,50 +51296,55 @@ son compte Vixinol store */
 		
 		{/* compte non connecté - FA */}
 		<ProfilTemplate
+			{...profilPropsCommun}
 			visible={tonProfilPourNonConnecter} fermer={CloseTonProfilPourNonConnecter} video
-			SeePhoto66profilFA={SeePhoto2e} voirVideo={SeeVideoFAPourNonConnecter}
-			{...profilPropsCommun} />
-			
+			SeePhoto66profilFA={SeePhoto2e} voirVideo={SeeVideoFAPourNonConnecter} />
 			
 		<SeeVideoTemplate 
-			visible={seeVideoFAPourNonConnecter} fermer={CloseSeeVideoFAPourNonConnecter} voirProfil={ProfilFA2e}
-			{...SeeVideoTemplatePropsCommun} />
+			{...SeeVideoTemplatePropsCommun}
+			visible={seeVideoFAPourNonConnecter} fermer={CloseSeeVideoFAPourNonConnecter} voirProfil={ProfilFA2e} />
 		
 		
   
 		{/* 2e profil (on affiche ton compte) - FA */}
 		<ProfilTemplate 
-			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video SeePhoto66profilFA={SeePhoto2e}
-			{...profilPropsCommun} />
-				
+			{...profilPropsCommun}
+			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video SeePhoto66profilFA={SeePhoto2e} />
 				
 		<SeeVideoTemplate 
-			visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e}
-			{...SeeVideoTemplatePropsCommun} />
+			{...SeeVideoTemplatePropsCommun}
+			visible={seeVideoFA2e} fermer={CloseSeeVideoFA2e} voirProfil={ProfilFA3e} />
 		
 			
 	
 		{/* 3e profil - FA */}
 		<ProfilTemplate 
-			visible={profilFA3e} fermer={CloseProfilFA3e} voirVideo={SeeVideoFA3e} video SeePhoto66profilFA={SeePhoto66profilFA}
-			{...profilPropsCommun} />
-
+			{...profilPropsCommun}
+			visible={profilFA3e} fermer={CloseProfilFA3e} voirVideo={SeeVideoFA3e} video SeePhoto66profilFA={SeePhoto66profilFA} />
 
 		<SeeVideoTemplate 
-			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e}
-			{...SeeVideoTemplatePropsCommun} />
+			{...SeeVideoTemplatePropsCommun}
+			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} />
+			
 			
 
-		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoCompteConnecter} {...SeePhotoTemplatePropsCommun} />		
+		<SeePhotoTemplate 
+			{...SeePhotoTemplatePropsCommun}
+			visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoCompteConnecter} />		
 		
-		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoTonCompteFA} {...SeePhotoTemplatePropsCommun} />
+		<SeePhotoTemplate 
+			{...SeePhotoTemplatePropsCommun}
+			visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoTonCompteFA} />
 		
-		<SeePhotoTemplate visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} {...SeePhotoTemplatePropsCommun} />
-		
+		<SeePhotoTemplate 
+			{...SeePhotoTemplatePropsCommun}
+			visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} />
 		
 		
 		{/* voir la miniature - FA  */}
-		<SeePhotoTemplate visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} {...SeePhotoTemplatePropsCommun} />
+		<SeePhotoTemplate 
+			{...SeePhotoTemplatePropsCommun}
+			visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} />
 		
 
 
