@@ -35297,15 +35297,15 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 // filtre pour obtenir les infos du compte - FA 
 const infosCompte = infosCompteById?.[0] ?? {};
 //const infosCompte = infosCompteById[0];
-//const photoTonCompteFA = infosCompte.photoProfile || null;
-const photoTonCompteFA = infosCompte?.photoProfile ?? photoBlanche;
+const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
+//const photoTonCompteFA = infosCompte?.photoProfile ?? photoBlanche;
 
 //const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
 //const photoCompteConnecter = infosCompteConnecterById.map((api) => api.photoProfile); // photo de profile
 
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
-//const photoCompteConnecter = infosCompteConnecter.photoProfile || null;
-const photoCompteConnecter = infosCompteConnecter?.photoProfile ?? photoBlanche;
+const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
+//const photoCompteConnecter = infosCompteConnecter?.photoProfile ?? photoBlanche;
 
 
 //const nomProfil   = profilConnecter?.nameAccount ?? "Compte inconnu";
