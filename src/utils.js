@@ -2651,21 +2651,16 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 
 //ProfilTemplate 
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, connecter,
-	data=[], dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
+	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
 	}) { 
 		
   if (!visible) return null;
   
-  // 🔹 on récupère le bon profil (personne connecté OU un autre utilisateur)
-  const profile = data.find(api => api._id === idCompte) || {};
-  console.log("data profile", data);
-  console.log("profile", profile);
 
   // 🔹 infos du profil
-  //const { nameAccount="Compte inconnu", photoProfile=investirPhoto, popularity=0, } = profile;
-  const { nameAccount="Compte inconnu", photoProfile=investirPhoto, popularity, } = profile;
+  const { nameAccount="Compte inconnu", photoProfile, popularity=0, } = data;
   
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>

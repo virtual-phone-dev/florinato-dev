@@ -35294,11 +35294,19 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 
 
 // filtre pour obtenir les infos du compte - FA 
-const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
-const photoCompteConnecter = infosCompteConnecterById.map((api) => api.photoProfile); // photo de profile
+const infosCompte = infosCompteById?.[0] ?? null;
+const photoTonCompteFA = infosCompte.photoProfile;
+
+//const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
+//const photoCompteConnecter = infosCompteConnecterById.map((api) => api.photoProfile); // photo de profile
+
+const infosCompteConnecter = infosCompteConnecterById?.[0] ?? null;
+const photoCompteConnecter = infosCompteConnecter.photoProfile;
+//const photoCompteConnecter = profilConnecter?.photoProfile ?? investirPhoto;
+//const nomProfil   = profilConnecter?.nameAccount ?? "Compte inconnu";
 
 console.log("photoCompteConnecter ", photoCompteConnecter);
-console.log("infosCompteConnecterById ", infosCompteConnecterById);
+console.log("infosCompteConnecter ", infosCompteConnecter);
 
 
 
@@ -35524,8 +35532,9 @@ const SeePhotoTemplatePropsCommun = { FullScreen, videoRef };
 const profilPropsCommun = {
 	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte,
 	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
-	data: infosCompteById, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
+	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
 };
+
 
 
 
@@ -51137,10 +51146,11 @@ son compte Vixinol store */
 		{/* compte connecté - FA */}
 		<ProfilTemplate  
 			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} 
-			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecterById} listVideo={listMesVideosFA} 
+			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecter} listVideo={listMesVideosFA} 
 			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA}
 			{...profilPropsCommun} />
-		
+
+
 	  
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
@@ -51317,12 +51327,9 @@ son compte Vixinol store */
 			{...SeeVideoTemplatePropsCommun} />
 			
 
-
-		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoFA} {...SeePhotoTemplatePropsCommun} />		
+		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoCompteConnecter} {...SeePhotoTemplatePropsCommun} />		
 		
-		
-		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoProfileFA} {...SeePhotoTemplatePropsCommun} />
-		
+		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoTonCompteFA} {...SeePhotoTemplatePropsCommun} />
 		
 		<SeePhotoTemplate visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} {...SeePhotoTemplatePropsCommun} />
 		
