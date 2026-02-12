@@ -2660,6 +2660,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   
   // 🔹 on récupère le bon profil (personne connecté OU un autre utilisateur)
   const profile = data.find(api => api._id === idCompte) || {};
+  console.log("profile", profile);
 
   // 🔹 infos du profil
   //const { nameAccount="Compte inconnu", photoProfile=investirPhoto, popularity=0, } = profile;
