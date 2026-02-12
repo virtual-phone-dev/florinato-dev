@@ -35279,6 +35279,7 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 	toutesDonnees: toutComptes, 
 	
 	infosCompte_by_id: infosCompteById, 
+	infosCompteConnecter_by_id: infosCompteConnecterById, 
 	
 	gererScroll: gererScrollComptes 
 } = useScrollIndexedDB({
@@ -51131,11 +51132,11 @@ son compte Vixinol store */
 		
 		
 	
-		{/* on affiche mon compte - FA */}
-		<ProfilTemplate 
+		{/* compte connecté - FA */}
+		<ProfilTemplate  
 			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} 
-			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} listVideo={listMesVideosFA} 
-			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} 
+			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecterById} listVideo={listMesVideosFA} 
+			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA}
 			{...profilPropsCommun} />
 		
 	  
@@ -51277,7 +51278,8 @@ son compte Vixinol store */
 		valeur={ecrireReponseFA} setValeur={setEcrireReponseFA} titrebtn="Répondre" valider={RepondreFA} />
 	  	
 
-
+		
+		{/* compte non connecté - FA */}
 		{/* Pour la personne non connecter  - FA */} 
 		<ProfilTemplate
 			visible={tonProfilPourNonConnecter} fermer={CloseTonProfilPourNonConnecter} video
