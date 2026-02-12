@@ -37,6 +37,7 @@ import {
 
 
 // image, logo
+import photoBlanche from "../img/photoBlanche.jpg";
 import tictac from "../img/tictac.jpg";
 import chaussure from "../img/chaussure.jpg";
 import hotel from "../img/hotel.jpg";
@@ -35296,19 +35297,21 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 // filtre pour obtenir les infos du compte - FA 
 const infosCompte = infosCompteById?.[0] ?? {};
 //const infosCompte = infosCompteById[0];
-const photoTonCompteFA = infosCompte.photoProfile;
+//const photoTonCompteFA = infosCompte.photoProfile || null;
+const photoTonCompteFA = infosCompte?.photoProfile ?? photoBlanche;
 
 //const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
 //const photoCompteConnecter = infosCompteConnecterById.map((api) => api.photoProfile); // photo de profile
 
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
-const photoCompteConnecter = infosCompteConnecter.photoProfile;
-//const photoCompteConnecter = profilConnecter?.photoProfile ?? investirPhoto;
+//const photoCompteConnecter = infosCompteConnecter.photoProfile || null;
+const photoCompteConnecter = infosCompteConnecter?.photoProfile ?? photoBlanche;
+
+
 //const nomProfil   = profilConnecter?.nameAccount ?? "Compte inconnu";
 
 console.log("photoCompteConnecter ", photoCompteConnecter);
 console.log("infosCompteConnecter ", infosCompteConnecter);
-
 
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );

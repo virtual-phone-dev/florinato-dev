@@ -14,6 +14,7 @@ import "./utils.css";
 import "./darkmode.css";
 
 import investirPhoto from "./img/investir.jpg";
+import photoBlanche from "./img/photoBlanche.jpg";
 
 
 
@@ -2660,7 +2661,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   
 
   // 🔹 infos du profil
-  const { nameAccount="Compte inconnu", photoProfile, popularity=0, } = data;
+  const { nameAccount="Compte inconnu", photoProfile=photoBlanche, popularity=0, } = data;
   
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
