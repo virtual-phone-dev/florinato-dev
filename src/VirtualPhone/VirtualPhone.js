@@ -51149,10 +51149,10 @@ son compte Vixinol store */
 	
 		{/* compte connecté - FA */}
 		<ProfilTemplate  
+			{...profilPropsCommun}
 			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} 
 			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecter} listVideo={listMesVideosFA} 
-			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA}
-			{...profilPropsCommun} />
+			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} />
 
 
 	  
