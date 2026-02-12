@@ -1133,7 +1133,54 @@ const donneesAffichees_idCompte = useMemo(() => {
 }, [toutesDonnees, lotActuel, idCompte]); */
 
 
-/*
+/* nouveau filtrerParCompte
+
+function filtrerParCompte( source, accountId, lotActuel = null, options = { triRecent: false } ) {
+  if (!accountId) return [];
+
+  let result = [...source].filter(api => String(api.idAccount) === String(accountId));
+
+  result.sort((a, b) => {
+    if (options.triRecent) {
+      const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+      const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+      return dateB - dateA; // plus récent en premier
+    }
+
+    const clicA = a.clic ?? 0;
+    const clicB = b.clic ?? 0;
+
+    if (clicA !== clicB) return clicA - clicB;
+
+    const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+    const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+    return dateB - dateA;
+  });
+
+  if (lotActuel !== null) result = result.slice(0, lotActuel);
+
+  return result;
+}
+
+
+
+const donneesAffichees_idCompteConnecter = useMemo(
+  () => filtrerParCompte(toutesDonnees, idCompteConnecter, lotActuel),
+  [toutesDonnees, idCompteConnecter, lotActuel]
+);
+
+const donneesAffichees_idCompte = useMemo(
+  () => filtrerParCompte(toutesDonnees, idCompte, lotActuel),
+  [toutesDonnees, idCompte, lotActuel]
+);
+
+
+*/
+
+
+
+/* ancien filtrerParCompte
+
 function filtrerParCompte(source, accountId, lotActuel) {
   if (!accountId) return [];
 
@@ -2715,15 +2762,48 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 </>)}
 //ProfilTemplate	
 
- 
+
+
+// plein ecran
+export async function goFullScreen(mediaRef) {
+  if (!mediaRef?.current) return;
+
+  //API Fullscreen standard
+  if (mediaRef.current.requestFullscreen) {
+    await mediaRef.current.requestFullscreen();
+  } 
+  //Safari
+  else if (mediaRef.current.webkitRequestFullscreen) {
+    await mediaRef.current.webkitRequestFullscreen();
+  } 
+  //Firefox
+  else if (mediaRef.current.mozRequestFullScreen) {
+    await mediaRef.current.mozRequestFullScreen();
+  } 
+  //IE/Edge
+  else if (mediaRef.current.msRequestFullscreen) {
+    await mediaRef.current.msRequestFullscreen();
+  }
+}
+
  
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY,
-	rechercherUneVideoFA, setRechercherUneVideoFA, videoRef,
+	rechercherUneVideoFA, setRechercherUneVideoFA,
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
-	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, FullScreen, clicVideo, voirProfil, voirPhoto
+	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
 	}) {
 	if (!visible) return null;
+	
+	
+	const videoRef = useRef(null);
+	
+	useEffect(() => { //Recharge la vidéo dès que l'URL change
+	  if (videoRef.current) {
+		videoRef.current.load(); // recharge la nouvelle vidéo
+		videoRef.current.play(); // relance la lecture automatiquement
+	  }
+	}, [urlVideo]); // à chaque changement de urlVideo
 
 	
 	const propsVideosCommunes = {
@@ -2739,7 +2819,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
       <div className="seeVideoFA" onScroll={scrollY}>
         <div className="close">
-          <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
+          <div className="a" onClick={() => goFullScreen(videoRef)}>Plein écran <SvgFullScreen2/></div>
           <div className="b" onClick={fermer}> <SvgClose2 /> </div>
         </div>
         {/* close */}
@@ -2803,17 +2883,19 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 
 
 // SeePhotoTemplate
-export function SeePhotoTemplate({ visible, fermer, urlPhoto, FullScreen, videoRef }) {
+export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
 	if (!visible) return null;
+	
+	const imgRef = useRef(null); // ou mediaRef
 	
 	return (<>
         <div className="seePhotoFA">
           <div className="close">
-            <div className="a" onClick={FullScreen}>Plein écran <SvgFullScreen2/></div>
+            <div className="a" onClick={() => goFullScreen(imgRef)}>Plein écran <SvgFullScreen2/></div>
             <div className="b" onClick={fermer}> <SvgClose2/> </div>
           </div>
   
-          <div className="body"> <img src={urlPhoto} alt="" ref={videoRef} /> </div>
+          <div className="body"> <img src={urlPhoto} alt="" ref={imgRef} /> </div>
         </div>
         {/* seePhotoFA */}
 </>)}

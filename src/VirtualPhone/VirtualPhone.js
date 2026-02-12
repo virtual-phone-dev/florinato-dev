@@ -35518,19 +35518,14 @@ const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate,
 
 
 
-const videoRef = useRef(null);
-
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
-  rechercherUneVideoFA, setRechercherUneVideoFA, videoRef,
+  rechercherUneVideoFA, setRechercherUneVideoFA,
   profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
-  CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, FullScreen, clicVideo: ClicVideoFAA,
+  CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
   setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
 };
-
-
-const SeePhotoTemplatePropsCommun = { FullScreen, videoRef };
 
 
 const profilPropsCommun = {
@@ -46734,7 +46729,7 @@ async function PostVideoFA() {
   }
 
   //lecteur video personnaliser - VB
-  
+  const videoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(false);
   
   
@@ -46745,6 +46740,10 @@ async function PostVideoFA() {
 		videoRef.current.play();   // lance la lecture
 	  }
 	}, [urlVideo]);
+
+
+//logique pour mettre la video en mode plein ecran - VB
+async function FullScreen() { videoRef.current.requestFullscreen(); }
 
 
   //ca c'est le bouton play - VB
@@ -46826,11 +46825,7 @@ async function PostVideoFA() {
     setSon(false);
   }
 
-  //logique pour mettre la video en mode plein ecran - VB
-  async function FullScreen() {
-    videoRef.current.requestFullscreen();
-  }
-
+  
   /* quand la video est terminer, cette logique va changer le bouton pause en play, cela va
  permettre a l'utilisateur de cliquer et de regarder la video a nouveau s'il veut - VB */
   async function LectureVideoTerminer() {
@@ -51328,23 +51323,15 @@ son compte Vixinol store */
 			
 			
 
-		<SeePhotoTemplate 
-			{...SeePhotoTemplatePropsCommun}
-			visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoCompteConnecter} />		
+		<SeePhotoTemplate visible={seePhoto66profilFA} fermer={CloseSeePhoto66profilFA} urlPhoto={photoCompteConnecter} />		
 		
-		<SeePhotoTemplate 
-			{...SeePhotoTemplatePropsCommun}
-			visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoTonCompteFA} />
+		<SeePhotoTemplate visible={seePhoto2e} fermer={CloseSeePhoto2e} urlPhoto={photoTonCompteFA} />
 		
-		<SeePhotoTemplate 
-			{...SeePhotoTemplatePropsCommun}
-			visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} />
+		<SeePhotoTemplate visible={seePhotoCouvertureVideo} fermer={CloseSeePhotoCouvertureVideo} urlPhoto={photoCouvertureVideo} />
 		
 		
 		{/* voir la miniature - FA  */}
-		<SeePhotoTemplate 
-			{...SeePhotoTemplatePropsCommun}
-			visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} />
+		<SeePhotoTemplate visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} />
 		
 
 
