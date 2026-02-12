@@ -2793,10 +2793,9 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
 	}) {
+	const videoRef = useRef(null);
 	if (!visible) return null;
 	
-	
-	const videoRef = useRef(null);
 	
 	useEffect(() => { //Recharge la vidéo dès que l'URL change
 	  if (videoRef.current) {
@@ -2884,10 +2883,9 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 
 // SeePhotoTemplate
 export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
+	const imgRef = useRef(null);
 	if (!visible) return null;
-	
-	const imgRef = useRef(null); // ou mediaRef
-	
+		
 	return (<>
         <div className="seePhotoFA">
           <div className="close">
