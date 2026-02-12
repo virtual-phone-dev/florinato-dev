@@ -2661,7 +2661,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
   
 
   // 🔹 infos du profil
-  const { nameAccount="Compte inconnu", photoProfile=photoBlanche, popularity=0, } = data;
+  const { nameAccount="", photoProfile=photoBlanche, popularity, } = data;
   
   return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
