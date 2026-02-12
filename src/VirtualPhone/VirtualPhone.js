@@ -35295,13 +35295,13 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 
 // filtre pour obtenir les infos du compte - FA 
 //const infosCompte = infosCompteById?.[0] ?? null;
-const infosCompte = infosCompteById.[0];
+const infosCompte = infosCompteById[0];
 const photoTonCompteFA = infosCompte.photoProfile;
 
 //const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
 //const photoCompteConnecter = infosCompteConnecterById.map((api) => api.photoProfile); // photo de profile
 
-const infosCompteConnecter = infosCompteConnecterById.[0];
+const infosCompteConnecter = infosCompteConnecterById[0];
 const photoCompteConnecter = infosCompteConnecter.photoProfile;
 //const photoCompteConnecter = profilConnecter?.photoProfile ?? investirPhoto;
 //const nomProfil   = profilConnecter?.nameAccount ?? "Compte inconnu";
