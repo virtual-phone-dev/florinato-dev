@@ -35294,9 +35294,10 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 
 // filtre pour obtenir les infos du compte - FA 
 const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
+const photoCompteConnecter = infosCompteConnecterById.map((api) => api.photoProfile); // photo de profile
 
-console.log("photoProfileFA ", photoProfileFA);
-console.log("infosCompteById ", infosCompteById);
+console.log("photoCompteConnecter ", photoCompteConnecter);
+console.log("infosCompteConnecterById ", infosCompteConnecterById);
 
 
 
@@ -51280,7 +51281,6 @@ son compte Vixinol store */
 
 		
 		{/* compte non connecté - FA */}
-		{/* Pour la personne non connecter  - FA */} 
 		<ProfilTemplate
 			visible={tonProfilPourNonConnecter} fermer={CloseTonProfilPourNonConnecter} video
 			SeePhoto66profilFA={SeePhoto2e} voirVideo={SeeVideoFAPourNonConnecter}
