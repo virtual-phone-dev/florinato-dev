@@ -1918,7 +1918,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 </>)}
 
 
-export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, valeur, setValeur, setIdCompte, ouvrirMessagePage, gererScroll }) {
+export function ComptesRecentsTemplate({ visible, fermer, data, onlineUsers, listAccount, valeur, setValeur, setIdCompte, ouvrirMessagePage, gererScroll }) {
   if (!visible) return null;
   
   return (<>
@@ -1927,20 +1927,25 @@ export function ComptesRecentsTemplate({ visible, data, fermer, listAccount, val
 			  <Close fermer={fermer} />
 			  
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
-			  <ListeDesComptes data={data} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
+			  <ListeDesComptes data={data} onlineUsers={onlineUsers} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
 		 </div>
 	 </div>
  </>)}
  
 
 			  
-export function ListeDesComptes({ data=[], setIdCompte, ouvrirMessagePage }) {
+export function ListeDesComptes({ data=[], onlineUsers, setIdCompte, ouvrirMessagePage }) {
   return (<>
-      {data.map((api) => (
+      {data.map((api) => {
+	  const isOnline = onlineUsers.includes(api._id);
+	  console.log("isOnline", isOnline);
+	  
+	  return (
 		<div onClick={() => { ouvrirMessagePage(); setIdCompte(api._id); }}>	
-			<PopularityAccountCard api={api} />
+			<PopularityAccountCard api={api} isOnline={isOnline} />
 		</div>
-      ))}
+	  );
+      })}
 </>)}
 
 

@@ -35309,8 +35309,12 @@ const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 
 
 const comptesOnline = useMemo(() => {
-	return dataComptesFA.filter(compte => onlineUsers.includes(compte._id));
-}, [dataComptesFA, onlineUsers]);
+	return comptesSource.filter(compte => onlineUsers.includes(compte._id));
+}, [comptesSource, onlineUsers]);
+
+console.log("comptesSource", comptesSource);
+console.log("comptesOnline", comptesOnline);
+console.log("onlineUsers", onlineUsers);
 
 
 
@@ -51121,7 +51125,7 @@ son compte Vixinol store */
 
 
 		<ComptesRecentsTemplate 
-			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesOnline} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
+			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesOnline} onlineUsers={onlineUsers} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
 			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} />
 		
 		<SpeedMessages 
