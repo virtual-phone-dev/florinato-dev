@@ -2794,8 +2794,6 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
 	}) {
 	const videoRef = useRef(null);
-	if (!visible) return null;
-	
 	
 	useEffect(() => { //Recharge la vidéo dès que l'URL change
 	  if (videoRef.current) {
@@ -2803,6 +2801,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 		videoRef.current.play(); // relance la lecture automatiquement
 	  }
 	}, [urlVideo]); // à chaque changement de urlVideo
+	
+	if (!visible) return null;
 
 	
 	const propsVideosCommunes = {
