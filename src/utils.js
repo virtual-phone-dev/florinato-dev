@@ -1845,7 +1845,7 @@ export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, se
 
       <div className="api2">
 		{data.map((api) => (
-		<div onClick={() => { setIdPersonConnectedFA(api._id); cliquerSurMonCompte(); }}>
+		<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); cliquerSurMonCompte(); }}>
 			<ChildApi266accountsFA api2={api} />
 		</div>
         ))}
