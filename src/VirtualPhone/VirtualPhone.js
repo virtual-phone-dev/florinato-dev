@@ -34925,12 +34925,17 @@ const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(
 //const socketRef = useRef(null); 
 
 useEffect(() => {
-  if (!socketRef.current) {
+	if (!socketRef.current) return;
+ /* if (socketRef.current) {
+    socketRef.current.disconnect();
+  }*/
+  
+
     socketRef.current = io("https://api2florinato.onrender.com", {
       transports: ["websocket"],
       reconnection: true,
     });
-  }
+
   const socket = socketRef.current;
   
 	// À CHAQUE connexion / reconnexion
@@ -34945,11 +34950,13 @@ useEffect(() => {
   // 🔵 Si l'ID change, renvoyer au serveur le nouvel ID
   if (idPersonConnectedFA) {
     socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
-  }
+  } 
+
 
   socket.on("users:online", (users) => {
     setOnlineUsers(users);
-  });
+  }); 
+  
 
   socket.on("receiveMessage", (msg) => {
     setApiMessageFA(prev => [msg, ...prev]);
@@ -34959,6 +34966,7 @@ useEffect(() => {
     socket.off("connect");
     socket.off("users:online");
     socket.off("receiveMessage");
+	socket.disconnect();
   };
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
