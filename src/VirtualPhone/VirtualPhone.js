@@ -34835,11 +34835,12 @@ async function DissadAA() {
   
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
-  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   //const idAccountFA = localStorage.getItem("idPersonConnectedFA");
   //const urlVideoFA = localStorage.getItem("urlVideo");
-  const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
+  
+  //const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
 
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
@@ -34847,7 +34848,7 @@ async function DissadAA() {
   const idAccountChefFA = localStorage.getItem("idAccountChef");
 
 
-  
+  /*
 useEffect(() => {
   const handleStorage = (event) => {
     if (event.key === "idPersonConnectedFA") {
@@ -34856,7 +34857,7 @@ useEffect(() => {
   };
   window.addEventListener("storage", handleStorage);
   return () => window.removeEventListener("storage", handleStorage);
-}, []);
+}, []); */
 
 /* Explication
 
