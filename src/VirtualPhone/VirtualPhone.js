@@ -35278,9 +35278,10 @@ const { donneesAffichees_idCompteConnecter:dataMesVisitesFA, gererScroll:gererSc
 // comptes
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
 const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, 
+	donneesAffichees_CompteEnLigne: comptesOnline,
+	
 	toutesDonnees_idUser: toutMesComptes, 
 	toutesDonnees: toutComptes, 
-	
 	infosCompte_by_id: infosCompteById, 
 	infosCompteConnecter_by_id: infosCompteConnecterById, 
 	
@@ -35288,6 +35289,7 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 } = useScrollIndexedDB({
 	nomStockage: "comptes", 
 	donnees:comptesSource, 
+	onlineUsers,
 	idCompte,
 	idCompteConnecter: idPersonConnectedFA,
 	rechercherUnCompte: rechercherUnCompteFA,
@@ -35308,13 +35310,9 @@ const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 
 
-const comptesOnline = useMemo(() => {
-	return comptesSource.filter(compte => onlineUsers.includes(compte._id));
-}, [comptesSource, onlineUsers]);
 
-console.log("comptesSource", comptesSource);
 console.log("comptesOnline", comptesOnline);
-console.log("onlineUsers", onlineUsers);
+console.log("onlineUsers", onlineUsers); 
 
 
 

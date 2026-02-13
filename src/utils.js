@@ -1037,7 +1037,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 
 
 
-export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, 
+export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, onlineUsers=null,
 	idConversation, idCompte, idCompteConnecter, idPost, idProprietairePost, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
@@ -1293,9 +1293,28 @@ const infosCompteConnecter_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, {
 [toutesDonnees, idCompteConnecter]); // obtenir les infos dun post
 
 
-//const infosCompte_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun compte
 
-//const infosCompteConnecter_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun compte connecter
+
+const donneesAffichees_CompteEnLigne = useMemo(() => {
+  let source = [...toutesDonnees];
+
+  // 🔹 si onlineUsers fourni → filtrer uniquement les comptes en ligne
+  if (onlineUsers) {
+    const onlineSet = new Set(onlineUsers); // optimisation O(1)
+    source = source.filter(compte => onlineSet.has(compte._id));
+  }
+
+  // 🔹 trier par date récente
+  source.sort((a, b) => {
+    const dateA = a.createdAt ? new Date(a.createdAt) : 0;
+    const dateB = b.createdAt ? new Date(b.createdAt) : 0;
+    return dateB - dateA;
+  });
+
+  // 🔹 limiter au lot actuel
+  return source.slice(0, lotActuel);
+}, [toutesDonnees, lotActuel, onlineUsers]);
+
 
 
 
@@ -1350,7 +1369,6 @@ const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filt
 	return new Date(b.createdAt) - new Date(a.createdAt);
 }).slice(0, lotActuel);
 }, [toutesDonnees, lotActuel, idConversation] ); 
-
 
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
@@ -1463,6 +1481,7 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
 		toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
 		donneesAffichees_byClic, 
 		donneesAffichees_account_other, 
+		donneesAffichees_CompteEnLigne,
 		
 		donneesAffichees_byClic_idAccount,
 		donneesAffichees_byClic_idAccountConnecter,
