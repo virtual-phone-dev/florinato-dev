@@ -35080,6 +35080,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	console.log("idProprietairePost", idProprietairePost);
 	
 	
+	
 	//const [infosPostFA, setInfosPostFA] = useState([]);
 	/* console.log(`idreq ici:`, idreq);
 	console.log(`infosPostFA ici:`, infosPostFA); */	
@@ -51089,7 +51090,13 @@ son compte Vixinol store */
                 {dataConversationFA.map((api) => ( 
 			    <div onClick={() => {
 					if (api.type === "30") {
-					setIdConversation(api._id); setIdDestinataire(api.idOther); setIdCompte(api.idOther); 
+						setIdConversation(api._id);
+						
+						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); } 
+						else {
+						  setIdDestinataire(api.idAccount); setIdCompte(api.idAccount);
+						  //setIdProprietaireCompte(api.idAccountChef);
+						}
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
 					

@@ -453,10 +453,6 @@ https://www.youtube.com/watch?v=baythHIaiS8
 
 export const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
-/*
-export function normaliserTexte(str="") {
-  return str.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
-} */
 
 export function normaliserTexte(str = "") {
   return str
