@@ -34846,7 +34846,29 @@ async function DissadAA() {
   const idOther = localStorage.getItem("idAccountChef");
   const idAccountChefFA = localStorage.getItem("idAccountChef");
 
+
   
+useEffect(() => {
+  const handleStorage = (event) => {
+    if (event.key === "idPersonConnectedFA") {
+      setIdPersonConnectedFA(event.newValue);
+    }
+  };
+  window.addEventListener("storage", handleStorage);
+  return () => window.removeEventListener("storage", handleStorage);
+}, []);
+
+/* Explication
+
+window.addEventListener("storage", ...) : c’est un écouteur d’événement du navigateur.
+Il se déclenche quand une autre fenêtre ou un autre onglet change localStorage.
+event.key est la clé qui a changé. On ne veut écouter que les changements sur "idPersonConnectedFA".
+setIdPersonConnectedFA(event.newValue) : on met à jour le state React pour que tout ce qui dépend de idPersonConnectedFA (comme ton socket ou 
+le filtrage des comptes en ligne) se mette automatiquement à jour.
+Le return dans useEffect retire l’écouteur quand le composant est démonté, pour éviter les fuites de mémoire. */
+
+
+
   // logique pour envoyer un message privé sur florinato
   const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
@@ -34894,20 +34916,11 @@ useEffect(() => {
 /*
 const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(
   localStorage.getItem("idPersonConnectedFA")
-);
+); */
 
-useEffect(() => {
-  const handleStorage = (event) => {
-    if (event.key === "idPersonConnectedFA") {
-      setIdPersonConnectedFA(event.newValue);
-    }
-  };
-  window.addEventListener("storage", handleStorage);
-  return () => window.removeEventListener("storage", handleStorage);
-}, []);
 
 // Socket
-const socketRef = useRef(null); */
+//const socketRef = useRef(null); 
 
 useEffect(() => {
   if (!socketRef.current) {
