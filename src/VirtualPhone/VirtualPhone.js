@@ -51600,7 +51600,7 @@ son compte Vixinol store */
 						
             <div className="body">
 				<MesComptes 
-					data={dataMesComptesFA} data={dataMesComptesFA} setIdPersonConnectedFA={setIdPersonConnectedFA} cliquerSurMonCompte={DataFA}
+					data={dataMesComptesFA} setIdPersonConnectedFA={setIdPersonConnectedFA} cliquerSurMonCompte={DataFA}
 					listMesComptes={listMesComptesFA} valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} />
 	
             </div>
