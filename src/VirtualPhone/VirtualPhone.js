@@ -34835,10 +34835,12 @@ async function DissadAA() {
   
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   //const idAccountFA = localStorage.getItem("idPersonConnectedFA");
   //const urlVideoFA = localStorage.getItem("urlVideo");
+  const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
+
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
   const idOther = localStorage.getItem("idAccountChef");
@@ -34849,10 +34851,10 @@ async function DissadAA() {
   const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
   
   
-const socketRef = useRef(null);
+const socketRef = useRef(null); // Socket
 const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
-
+/*
 useEffect(() => {
   if (!socketRef.current) {
     socketRef.current = io("https://api2florinato.onrender.com", {
@@ -34886,7 +34888,65 @@ useEffect(() => {
     socket.off("users:online");
     socket.off("receiveMessage");
   };
+}, []); */
+
+
+/*
+const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(
+  localStorage.getItem("idPersonConnectedFA")
+);
+
+useEffect(() => {
+  const handleStorage = (event) => {
+    if (event.key === "idPersonConnectedFA") {
+      setIdPersonConnectedFA(event.newValue);
+    }
+  };
+  window.addEventListener("storage", handleStorage);
+  return () => window.removeEventListener("storage", handleStorage);
 }, []);
+
+// Socket
+const socketRef = useRef(null); */
+
+useEffect(() => {
+  if (!socketRef.current) {
+    socketRef.current = io("https://api2florinato.onrender.com", {
+      transports: ["websocket"],
+      reconnection: true,
+    });
+  }
+  const socket = socketRef.current;
+  
+	// À CHAQUE connexion / reconnexion
+	// 🔵 Écoute la connexion et renvoie le bon idPersonConnectedFA
+  socket.on("connect", () => {
+    console.log("Socket connecté :", socket.id);
+    if (idPersonConnectedFA) {
+      socket.emit("user:online", idPersonConnectedFA);
+    }
+  });
+
+  // 🔵 Si l'ID change, renvoyer au serveur le nouvel ID
+  if (idPersonConnectedFA) {
+    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
+  }
+
+  socket.on("users:online", (users) => {
+    setOnlineUsers(users);
+  });
+
+  socket.on("receiveMessage", (msg) => {
+    setApiMessageFA(prev => [msg, ...prev]);
+  });
+
+  return () => {
+    socket.off("connect");
+    socket.off("users:online");
+    socket.off("receiveMessage");
+  };
+}, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
+
 
 
   async function SendMessageFAA() {
@@ -35310,9 +35370,9 @@ const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 
 
-
+/*
 console.log("comptesOnline", comptesOnline);
-console.log("onlineUsers", onlineUsers); 
+console.log("onlineUsers", onlineUsers); */
 
 
 
