@@ -13,7 +13,7 @@ import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, Child
 import "./utils.css"; 
 import "./darkmode.css";
 
-import investirPhoto from "./img/investir.jpg";
+// import investirPhoto from "./img/investir.jpg";
 import photoBlanche from "./img/photoBlanche.jpg";
 
 
@@ -1681,7 +1681,7 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
   const idAccountUtiliser = api?.idAccountChef;
   const profil = idAccountUtiliser? profilMap?.[idAccountUtiliser] : null;
 
-  const photoProprietairePost = profil?.photoProfile ?? investirPhoto;
+  const photoProprietairePost = profil?.photoProfile ?? photoBlanche;
   const nomProprietairePost = profil?.nameAccount ?? "Compte inconnu";	
 
 	return (<>
@@ -1882,7 +1882,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
   const profil_idOther = idOtherUtiliser? profilMap?.[idOtherUtiliser] : null;
 
   const populariteGestionnaire = profil_idOther?.popularity ?? 0;
-  const photoGestionnaire = profil_idOther?.photoProfile ?? investirPhoto;
+  const photoGestionnaire = profil_idOther?.photoProfile ?? photoBlanche;
   const nomGestionnaire = profil_idOther?.nameAccount ?? "Compte inconnu";
   
   
@@ -1891,7 +1891,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
   const profil_idAccount = idAccountUtiliser? profilMap?.[idAccountUtiliser] : null;
 
   const populariteProprietaire = profil_idAccount?.popularity ?? 0;
-  const photoProprietaire = profil_idAccount?.photoProfile ?? investirPhoto;
+  const photoProprietaire = profil_idAccount?.photoProfile ?? photoBlanche;
   const nomProprietaire = profil_idAccount?.nameAccount ?? "Compte inconnu";
   
   return (<>
@@ -2032,7 +2032,7 @@ export default function CommentaireTemplate({ api, profilMap={}, RepondrePage })
 	
 	{/* test
 	<div className="display-nowrap-espace">
-      <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
+      <div className="photo-70px"><img src={photoBlanche} alt="" /></div>
       <div className="pre-17px"><pre>NGanon Koné</pre></div>
     </div> */}
 	
@@ -2215,8 +2215,8 @@ export function PopupBasTextareaTemplate({ visible, fermer, titre, valeur, setVa
                 {/* block-un */}
 				
 				<div className="display-nowrap-espace">
-				  <div className="photo-70px"><img src={investirPhoto} alt="" /></div>
-				  <div className="pre-17px"><pre>NGanon Koné</pre></div>
+				  <div className="photo-70px"><img src={photoBlanche} alt="" /></div>
+				  <div className="pre-17px"><pre>Compte inconnu</pre></div>
 				</div>
 				
               </div>
@@ -2635,7 +2635,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 	
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=investirPhoto, online, badge } = profile; // infos du profil
+	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, online, badge } = profile; // infos du profil
 	
 	
 	return (<>
@@ -2812,7 +2812,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=investirPhoto } = profile; // infos du profil
+	const { nameAccount="Compte inconnu", photoProfile=photoBlanche } = profile; // infos du profil
 	
 	return (<>
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
