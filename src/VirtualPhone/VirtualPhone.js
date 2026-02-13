@@ -35306,13 +35306,12 @@ const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
 
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
-//const photoCompteConnecter = infosCompteConnecter?.photoProfile ?? photoBlanche;
 
 
-//const nomProfil   = profilConnecter?.nameAccount ?? "Compte inconnu";
+const comptesOnline = useMemo(() => {
+	return dataComptesFA.filter(compte => onlineUsers.includes(compte._id));
+}, [dataComptesFA, onlineUsers]);
 
-console.log("photoCompteConnecter ", photoCompteConnecter);
-console.log("infosCompteConnecter ", infosCompteConnecter);
 
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
@@ -51122,7 +51121,7 @@ son compte Vixinol store */
 
 
 		<ComptesRecentsTemplate 
-			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
+			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesOnline} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
 			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} />
 		
 		<SpeedMessages 
