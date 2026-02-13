@@ -35148,9 +35148,9 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	const [idCompte, setIdCompte] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
-	console.log("urlVideo", urlVideo);
-	console.log("idPost", idPost);
-	console.log("idProprietairePost", idProprietairePost);
+	//console.log("urlVideo", urlVideo);
+	//console.log("idPost", idPost);
+	//console.log("idProprietairePost", idProprietairePost);
 	
 	
 	
@@ -35267,7 +35267,7 @@ const {
 	rechercherUneVideo: rechercherUneVideoFA,
 });
 
-console.log("dataVideoByIdCompteConnecter", dataVideoByIdCompteConnecter);
+//console.log("dataVideoByIdCompteConnecter", dataVideoByIdCompteConnecter);
 
 // scroller
 const scrollX = useScrollInfini(chargerPlus, 'x'); // scrollHorizontal , overflow-x 
@@ -35381,6 +35381,10 @@ const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
 
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
+
+//const idDestinataire = state.idDestinataire; // récupéré depuis ton state
+const destinataireOnline = onlineUsers.includes(idDestinataire);
+
 
 
 /*
@@ -51218,7 +51222,7 @@ son compte Vixinol store */
 			visible={messageFA} fermer={CloseMessageFA}
 			gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-			data={infosCompteById} filterMessageFA={filterMessageFA} idCompte={idCompte}
+			data={infosCompteById} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
 			Favorite66messageFA={Favorite66messageFA} 
 			EnvoyerContactFA={EnvoyerContactFA} 
 			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 

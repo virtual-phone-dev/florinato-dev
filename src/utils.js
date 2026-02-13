@@ -2648,7 +2648,7 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 // MessageTemplate
 export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProfil, PageRedirection66ChildApi66messageFA, data, filterMessageFA, idCompte,
-	Favorite66messageFA, EnvoyerContactFA, dev, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
+	Favorite66messageFA, EnvoyerContactFA, dev, destinataireOnline, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
 	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage
 	}) {
 	if (!visible) return null;
@@ -2671,7 +2671,9 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
                   {badge === "1" && (<><SvgBadge/></>)}
                 </div>
 
-                <div className="bb"> <p>{dateParserLong(online)} (Dernière connexion)</p> </div>
+				{destinataireOnline ? (
+                <div className="bb"> <p>En Ligne</p> </div> ):(
+                <div className="bb"> <p>{dateParserLong(online)} (Dernière connexion)</p> </div>)}
               </div>
               {/* c */}
             </div>
