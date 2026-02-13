@@ -34835,12 +34835,13 @@ async function DissadAA() {
   
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
   //const idAccountFA = localStorage.getItem("idPersonConnectedFA");
   //const urlVideoFA = localStorage.getItem("urlVideo");
   
-  //const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
+  const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
+  console.log("idPersonConnectedFA", idPersonConnectedFA);
 
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
@@ -51599,11 +51600,11 @@ son compte Vixinol store */
 						
             <div className="body">
 				<MesComptes 
-					data={dataMesComptesFA} dataCompteConnecté={toutMesComptes} cliquerSurMonCompte={DataFA}
+					data={dataMesComptesFA} data={dataMesComptesFA} setIdPersonConnectedFA={setIdPersonConnectedFA} cliquerSurMonCompte={DataFA}
 					listMesComptes={listMesComptesFA} valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} />
 	
             </div>
-            {/* body */}
+            {/* body */} 
           </div>
           {/* align */}
         </div>

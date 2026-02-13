@@ -1832,7 +1832,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, valeur, setValeur, cliquerSurMonCompte }) {
+export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, setIdPersonConnectedFA, valeur, setValeur, cliquerSurMonCompte }) {
   return (
     <>
       <div className="api">
@@ -1843,9 +1843,11 @@ export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, va
 	  
 	  	<RechercheTemplate listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
 
-      <div className="api2" onClick={cliquerSurMonCompte}>
-        {data.map((api) => (
-          <ChildApi266accountsFA api2={api} />
+      <div className="api2">
+		{data.map((api) => (
+		<div onClick={() => { setIdPersonConnectedFA(api._id); cliquerSurMonCompte(); }}>
+			<ChildApi266accountsFA api2={api} />
+		</div>
         ))}
       </div>
     </>
@@ -1936,25 +1938,20 @@ export function ComptesRecentsTemplate({ visible, fermer, data, onlineUsers, lis
 			  <Close fermer={fermer} />
 			  
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
-			  <ListeDesComptes data={data} onlineUsers={onlineUsers} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
+			  <ListeDesComptes data={data} onlineUsers={onlineUsers} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} online />
 		 </div>
 	 </div>
  </>)}
  
 
 			  
-export function ListeDesComptes({ data=[], onlineUsers, setIdCompte, ouvrirMessagePage }) {
+export function ListeDesComptes({ data=[], online, setIdCompte, ouvrirMessagePage }) {
   return (<>
-      {data.map((api) => {
-	  const isOnline = onlineUsers.includes(api._id);
-	  console.log("isOnline", isOnline);
-	  
-	  return (
+      {data.map((api) => (
 		<div onClick={() => { ouvrirMessagePage(); setIdCompte(api._id); }}>	
-			<PopularityAccountCard api={api} isOnline={isOnline} />
+			<PopularityAccountCard api={api} online={online} />
 		</div>
-	  );
-      })}
+      ))}
 </>)}
 
 
@@ -1966,15 +1963,17 @@ export function ListeDesComptes2({ data=[], profilMap, proprietaireCompte, gesti
         </div>
 		))}
 </>)}
-
-
-export function PopularityAccountCard({ api }) {
+	
+	
+export function PopularityAccountCard({ api, online }) {
   return (<>
     <div className="display-nowrap-espace">
       {/* <div className="p-15px"><p>{api.popularity}</p></div> */}
       <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
       <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
     </div>
+	
+	{online && (<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)}
 	
 	{/*
 	<InfosDev api={api} /> */}
