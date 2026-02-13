@@ -1878,16 +1878,6 @@ export function InfosDev({ api }) {
 </>)}
 
 
-export function PopularityAccountCard({ api }) {
-  return (<>
-    <div className="display-nowrap-espace">
-      <div className="p-15px"><p>{api.popularity}</p></div>
-      <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
-      <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
-    </div>
-	
-	<InfosDev api={api} />
-</>)}
 
 
 export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireCompte, gestionnaireCompte }) {
@@ -1975,6 +1965,19 @@ export function ListeDesComptes2({ data=[], profilMap, proprietaireCompte, gesti
           <PopularityAccountCard2 api={api} profilMap={profilMap} proprietaireCompte={proprietaireCompte} gestionnaireCompte={gestionnaireCompte} />
         </div>
 		))}
+</>)}
+
+
+export function PopularityAccountCard({ api }) {
+  return (<>
+    <div className="display-nowrap-espace">
+      {/* <div className="p-15px"><p>{api.popularity}</p></div> */}
+      <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
+      <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
+    </div>
+	
+	{/*
+	<InfosDev api={api} /> */}
 </>)}
 
 
@@ -2672,7 +2675,8 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
                 </div>
 
 				{destinataireOnline ? (
-                <div className="bb"> <p>En Ligne</p> </div> ):(
+                <div className="bb"> <p>En Ligne</p> <SvgMark1/> </div> 
+				<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div> ):(
                 <div className="bb"> <p>{dateParserLong(online)} (Dernière connexion)</p> </div>)}
               </div>
               {/* c */}
