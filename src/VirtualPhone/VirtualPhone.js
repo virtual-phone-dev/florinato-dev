@@ -373,7 +373,7 @@ export function ChildApi66accountsFA({ api }) {
 
 //ChildApi266accountsFA
 export function ChildApi266accountsFA({ api2, idPersonConnectedFA }) {
-	console.log("idPersonConnectedFA dans ChildApi266accountsFA", idPersonConnectedFA);
+	//console.log("idPersonConnectedFA dans ChildApi266accountsFA", idPersonConnectedFA);
 	
   const [checked, setChecked] = useState(false);
   async function Checked() {
@@ -35399,6 +35399,8 @@ const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 //const idDestinataire = state.idDestinataire; // récupéré depuis ton state
 const destinataireOnline = onlineUsers.includes(idDestinataire);
 
+console.log("infosCompteConnecterById", infosCompteConnecterById);
+
 
 
 /*
@@ -51608,8 +51610,9 @@ son compte Vixinol store */
 			
 						
             <div className="body">
-				<MesComptes 
-					data={dataMesComptesFA} setIdPersonConnectedFA={setIdPersonConnectedFA} idPersonConnectedFA={idPersonConnectedFA} cliquerSurMonCompte={DataFA}
+				<MesComptes  
+					data={dataMesComptesFA} dataCompteConnecté={infosCompteConnecterById} 
+					setIdPersonConnectedFA={setIdPersonConnectedFA} idPersonConnectedFA={idPersonConnectedFA} cliquerSurMonCompte={DataFA}
 					listMesComptes={listMesComptesFA} valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} />
 	
             </div>

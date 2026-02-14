@@ -1835,10 +1835,9 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 
 
 export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, setIdPersonConnectedFA, idPersonConnectedFA, valeur, setValeur, cliquerSurMonCompte }) {
-		console.log("idPersonConnectedFA dans MesComptes", idPersonConnectedFA);
+		//console.log("idPersonConnectedFA dans MesComptes", idPersonConnectedFA);
 
-  return (
-    <>
+  return (<>
       <div className="api">
         {dataCompteConnecté.map((api) => (
           <ChildApi66accountsFA api={api} />
