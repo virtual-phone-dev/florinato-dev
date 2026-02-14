@@ -373,11 +373,13 @@ export function ChildApi66accountsFA({ api }) {
 
 //ChildApi266accountsFA
 export function ChildApi266accountsFA({ api2, idPersonConnectedFA }) {
+	console.log("idPersonConnectedFA dans ChildApi266accountsFA", idPersonConnectedFA);
+	
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
 
-    const idAccount = api2._id;
+    /*const idAccount = api2._id;
     if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
 
     const idGroup = api2.idGroup;
@@ -385,7 +387,7 @@ export function ChildApi266accountsFA({ api2, idPersonConnectedFA }) {
 		localStorage.setItem("idGroupFA", idGroup); 
 		localStorage.setItem("idAccountChef", idAccount); 
 		localStorage.setItem("idGroupChef", idGroup); 
-	}
+	} */
   }
 
   // date envoie message
