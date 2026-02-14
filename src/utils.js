@@ -2731,7 +2731,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 		
   if (!visible) return null;
   
-  console.log("dataVideos xx", dataVideos);
+  //console.log("dataVideos xx", dataVideos);
   
 
   // 🔹 infos du profil
@@ -2813,7 +2813,7 @@ export async function goFullScreen(mediaRef) {
  
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY,
-	rechercherUneVideoFA, setRechercherUneVideoFA,
+	rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage,
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
 	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
 	}) {
@@ -2874,7 +2874,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 				</div>
 			  
 				<div className="flex"> 
-					<button className="btn-transparent c-fff m-0-15">Publier une vidéo</button>
+					<button className="btn-transparent c-fff m-0-15" onClick={publierVideoPage}>Publier une vidéo</button>
 					<img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> 
 				</div> 
 			</div>			

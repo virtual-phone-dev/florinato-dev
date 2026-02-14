@@ -35612,7 +35612,7 @@ const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate,
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
-  rechercherUneVideoFA, setRechercherUneVideoFA,
+  rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA,
   profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
   setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
@@ -51308,54 +51308,7 @@ son compte Vixinol store */
 		  
 		  
 		  
-		{/* choisir la video a ajouter à la photo - FA  */}
-		{/* choisir la video a ajouter à la photo - FA  */}
-		{addVideoPageFA && (<>
-          <div className="publier-video-opacity">
-            <div className="align">
-              <div className="card">
-				<div className="photo-25px" onClick={SeePhoto66profilFA}> <img src={getPhoto} alt=""/> </div>
-				
-                <div onClick={CloseAddVideoPageFA} className="block">
-                  <div className="a"> <SvgVideo9 /> </div>
-                  <div className="b"> <p>Publier une vidéo</p> </div>
-                </div>
-                {/* block */}
-				
-				<div className="p-14px-center-espace-gris"> <p>Héberger votre vidéo sur Dropbox et mettez le lien ici</p> </div> 
-				
-				<div className="pre-14px-center-gris"> <pre>{lienDropbox}</pre> </div> 
-				<Input texte="Lien de la vidéo.." valeur={lienDropbox} setValeur={setLienDropbox} />
-				  
-				  {dev && (<>
-				  <Input texte="Lien github" valeur={lienGitHub} setValeur={setLienGitHub} /> 
-				  <Input texte="Lien gitlab" valeur={lienGitLab} setValeur={setLienGitLab} /> </>)}
-				  
-				<div className="pre-14px-center-gris"> <pre>{ecrireTitre}</pre> </div> 
-				<Input texte="Titre de la vidéo (facultatif)" valeur={ecrireTitre} setValeur={setecrireTitre} />
-				  
-				  
-				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
-				
-				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
-				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Publier</button> </div> )}
-					
-				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
-
-                <div className="block-quatre"> <p>Dropbox , Gitlab , Github</p></div> 	
-                {/* block-quatre */}
-              </div>
-              {/* card */}
-            </div>
-            {/* align */}
-          </div>
-          {/* publier-video-opacity */}
-        </>)}
-      {/* choisir la video a ajouter à la phot */}
-	  
-	  
-
-
+		  
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
 		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideo}
@@ -51418,6 +51371,54 @@ son compte Vixinol store */
 		<SeeVideoTemplate 
 			{...SeeVideoTemplatePropsCommun}
 			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} />
+		
+		
+		
+		
+		{/* choisir la video a ajouter à la photo - FA  */}
+		{/* choisir la video a ajouter à la photo - FA  */}
+		{addVideoPageFA && (<>
+          <div className="publier-video-opacity">
+            <div className="align">
+              <div className="card">
+				<div className="photo-25px" onClick={SeePhoto66profilFA}> <img src={getPhoto} alt=""/> </div>
+				
+                <div onClick={CloseAddVideoPageFA} className="block">
+                  <div className="a"> <SvgVideo9 /> </div>
+                  <div className="b"> <p>Publier une vidéo</p> </div>
+                </div>
+                {/* block */}
+				
+				<div className="p-14px-center-espace-gris"> <p>Héberger votre vidéo sur Dropbox et mettez le lien ici</p> </div> 
+				
+				<div className="pre-14px-center-gris"> <pre>{lienDropbox}</pre> </div> 
+				<Input texte="Lien de la vidéo.." valeur={lienDropbox} setValeur={setLienDropbox} />
+				  
+				  {dev && (<>
+				  <Input texte="Lien github" valeur={lienGitHub} setValeur={setLienGitHub} /> 
+				  <Input texte="Lien gitlab" valeur={lienGitLab} setValeur={setLienGitLab} /> </>)}
+				  
+				<div className="pre-14px-center-gris"> <pre>{ecrireTitre}</pre> </div> 
+				<Input texte="Titre de la vidéo (facultatif)" valeur={ecrireTitre} setValeur={setecrireTitre} />
+				  
+				  
+				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
+				
+				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
+				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Publier</button> </div> )}
+					
+				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
+
+                <div className="block-quatre"> <p>Dropbox , Gitlab , ou Github</p></div> 	
+                {/* block-quatre */}
+              </div>
+              {/* card */}
+            </div>
+            {/* align */}
+          </div>
+          {/* publier-video-opacity */}
+        </>)}
+      {/* choisir la video a ajouter à la photo */}
 			
 			
 
