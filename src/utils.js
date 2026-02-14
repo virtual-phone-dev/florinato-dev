@@ -1787,8 +1787,8 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
-	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, clicVideo, voirVideo=()=>{}, profilMap, nomEtphoto,
-	titrecss, cliccss, nomcss, datecss }) {	
+	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo=()=>{}, 
+	profilMap, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
 		{/* input pour effectuer une recherche */}
@@ -1818,9 +1818,11 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			))}
 			
 			
-			<div className="api2" onClick={cliquerSurMonCompte}>
+			<div className="api2">
 			{listMesComptes.map((api) => (
-				<ChildApi266accountsFA api2={api} />
+			<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); cliquerSurMonCompte(); }}>
+				<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
+			</div>
 			))}
 			</div>
 			
@@ -1832,7 +1834,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, setIdPersonConnectedFA, valeur, setValeur, cliquerSurMonCompte }) {
+export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, setIdPersonConnectedFA, idPersonConnectedFA, valeur, setValeur, cliquerSurMonCompte }) {
   return (
     <>
       <div className="api">
@@ -1841,12 +1843,14 @@ export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, se
         ))}
       </div>
 	  
-	  	<RechercheTemplate listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} cliquerSurMonCompte={cliquerSurMonCompte} />
+	  	<RechercheTemplate 
+			listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} 
+			setIdPersonConnectedFA={setIdPersonConnectedFA} idPersonConnectedFA={idPersonConnectedFA} cliquerSurMonCompte={cliquerSurMonCompte} />
 
       <div className="api2">
 		{data.map((api) => (
 		<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); cliquerSurMonCompte(); }}>
-			<ChildApi266accountsFA api2={api} />
+			<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
 		</div>
         ))}
       </div>

@@ -372,7 +372,7 @@ export function ChildApi66accountsFA({ api }) {
 
 
 //ChildApi266accountsFA
-export function ChildApi266accountsFA({ api2 }) {
+export function ChildApi266accountsFA({ api2, idPersonConnectedFA }) {
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
@@ -403,7 +403,7 @@ export function ChildApi266accountsFA({ api2 }) {
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const id = api2.idUser === idUserConnectedFA;
 
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const id2 = api2._id === idPersonConnectedFA;
 
   return (
@@ -51607,7 +51607,7 @@ son compte Vixinol store */
 						
             <div className="body">
 				<MesComptes 
-					data={dataMesComptesFA} setIdPersonConnectedFA={setIdPersonConnectedFA} cliquerSurMonCompte={DataFA}
+					data={dataMesComptesFA} setIdPersonConnectedFA={setIdPersonConnectedFA} idPersonConnectedFA={idPersonConnectedFA} cliquerSurMonCompte={DataFA}
 					listMesComptes={listMesComptesFA} valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} />
 	
             </div>
