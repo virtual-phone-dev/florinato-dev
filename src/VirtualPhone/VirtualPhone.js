@@ -51318,11 +51318,11 @@ son compte Vixinol store */
 				
                 <div onClick={CloseAddVideoPageFA} className="block">
                   <div className="a"> <SvgVideo9 /> </div>
-                  <div className="b"> <p>Lien de la vidéo</p> </div>
+                  <div className="b"> <p>Publier une vidéo</p> </div>
                 </div>
                 {/* block */}
 				
-				<div className="p-14px-center-espace-gris"> <p>Mettez le Lien de la vidéo pour publier la vidéo</p> </div> 
+				<div className="p-14px-center-espace-gris"> <p>Héberger votre vidéo sur Dropbox et mettez le lien ici</p> </div> 
 				
 				<div className="pre-14px-center-gris"> <pre>{lienDropbox}</pre> </div> 
 				<Input texte="Lien de la vidéo.." valeur={lienDropbox} setValeur={setLienDropbox} />
@@ -51338,15 +51338,11 @@ son compte Vixinol store */
 				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
 				
 				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
-				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Envoyer</button> </div> )}
+				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Publier</button> </div> )}
 					
 				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
 
-                <div className="block-quatre"> 
-					<p>Important :</p>
-					<p>**Uploader les Petits fichiers sur : Dropbox, Gitlab, ou Github (taille maximale 25mb)</p>
-					<p>**Uploader les Gros fichiers sur : Dropbox</p>
-				</div> 	
+                <div className="block-quatre"> <p>Dropbox , Gitlab , Github</p></div> 	
                 {/* block-quatre */}
               </div>
               {/* card */}
