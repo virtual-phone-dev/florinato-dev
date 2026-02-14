@@ -8,6 +8,17 @@
   cursor: pointer;
 }
 
+.btn-transparent {
+  cursor: pointer;
+  background-color: transparent;
+  border: 1px solid #ccc;
+  padding: 4px 18px;
+  font-size: 14px;
+  border-radius: 3px;
+}
+
+
+.c-fff { color: #fff; }
 .c-6b7280 { color: #6b7280; }
 
 .c-a1a1aa { color: #a1a1aa; }
@@ -414,6 +425,7 @@
   font-size: 14px;
   border-radius: 3px;
 }
+
 
 /* Sur PC plus large, augmenter la taille si besoin */
 
