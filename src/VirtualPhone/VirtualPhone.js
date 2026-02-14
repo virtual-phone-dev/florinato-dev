@@ -34925,7 +34925,7 @@ const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(
 //const socketRef = useRef(null); 
 
 useEffect(() => {
-	if (!socketRef.current) return;
+
  /* if (socketRef.current) {
     socketRef.current.disconnect();
   }*/
@@ -34947,12 +34947,12 @@ useEffect(() => {
     }
   });
 
-  // 🔵 Si l'ID change, renvoyer au serveur le nouvel ID
+  // Envoi de l'ID lorsque celui-ci change
   if (idPersonConnectedFA) {
     socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
   } 
 
-
+	// Réception de la liste des utilisateurs en ligne 
   socket.on("users:online", (users) => {
     setOnlineUsers(users);
   }); 
