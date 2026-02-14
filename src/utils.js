@@ -2874,7 +2874,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 				</div>
 			  
 				<div className="flex"> 
-					<button className="btn-transparent c-fff m-0-15" onClick={publierVideoPage}>Publier une vidéo</button>
+					<button className="btn-transparent c-fff m-0-15" onClick={publierVideoPage}>Publier votre vidéo</button>
 					<img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> 
 				</div> 
 			</div>			

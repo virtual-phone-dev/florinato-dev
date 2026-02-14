@@ -51385,7 +51385,7 @@ son compte Vixinol store */
 				
                 <div onClick={CloseAddVideoPageFA} className="block">
                   <div className="a"> <SvgVideo9 /> </div>
-                  <div className="b"> <p>Publier une vidéo</p> </div>
+                  <div className="b"> <p>Publier votre vidéo</p> </div>
                 </div>
                 {/* block */}
 				
