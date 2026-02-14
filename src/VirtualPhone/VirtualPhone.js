@@ -50934,6 +50934,14 @@ son compte Vixinol store */
     setDatacenter1VB(false);
     setDatacenter2VB(false);
   }
+  
+  
+function rechargerPage() {
+	if (window.location.pathname === "/") {
+		window.location.reload();
+	}
+}
+
 
   // translation
   // translation
@@ -50971,7 +50979,7 @@ son compte Vixinol store */
     //rtl (s'il n'ya pas encore de langue selectionner, on injecte la langue anglaise sans rtl)
     const rtl = "0";
     localStorage.setItem("rtl", rtl);
-    window.location = "/";
+	rechargerPage();
   }
 
   // Datacenter et vitesse (configuration de l'application Alrani) - AA 
@@ -50980,7 +50988,7 @@ son compte Vixinol store */
     const defaultConfig = true;
     localStorage.setItem("speed1AA", defaultConfig);
     localStorage.setItem("datacenter1AA", defaultConfig);
-    window.location = "/";
+	rechargerPage();
   }
 
   // Datacenter et vitesse (configuration de l'application izocash) - IA
@@ -50989,7 +50997,7 @@ son compte Vixinol store */
     const defaultConfig = true;
     localStorage.setItem("speed1IA", defaultConfig);
     localStorage.setItem("datacenter1IA", defaultConfig);
-    window.location = "/";
+	rechargerPage();
   }
 
   // Datacenter et vitesse (configuration de l'application Vixinol Store) - VS
@@ -50998,7 +51006,7 @@ son compte Vixinol store */
     const defaultConfig = true;
     localStorage.setItem("speed1VS", defaultConfig);
     localStorage.setItem("datacenter1VS", defaultConfig);
-    window.location = "/";
+	rechargerPage();
   }
 
   // Datacenter et vitesse (configuration de l'application Veil Brillant) - VB 
@@ -51007,7 +51015,7 @@ son compte Vixinol store */
     const defaultConfig = true;
     localStorage.setItem("speed1VB", defaultConfig);
     localStorage.setItem("datacenter1VB", defaultConfig);
-    window.location = "/";
+	rechargerPage();
   }
 
   // onglet pour l'application official
@@ -51015,7 +51023,7 @@ son compte Vixinol store */
     // par defaut on injecte recommendation dans le localStorage
     const recommendation = true;
     localStorage.setItem("recommendation", recommendation);
-    window.location = "/";
+	rechargerPage();
   }
 
   // navbar (666izocashApp) - IA
@@ -51026,7 +51034,7 @@ son compte Vixinol store */
     const head3 = true;
     localStorage.setItem("head1666izocashApp", head3);
     localStorage.setItem("head3666izocashApp", head3);
-    window.location = "/";
+	rechargerPage();
   }
 
   // theme - AA
@@ -51035,7 +51043,7 @@ son compte Vixinol store */
     // par defaut on injecte theme1 dans le localStorage
     const theme3 = true;
     localStorage.setItem("theme3", theme3);
-    window.location = "/";
+	rechargerPage();
   }
 
 
