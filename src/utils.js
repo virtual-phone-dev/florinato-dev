@@ -958,7 +958,7 @@ export function ouvrirDB() {
 
 
 export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
-  console.log(`ecriture indexedDB : ${nomStockage}`);
+  //console.log(`ecriture indexedDB : ${nomStockage}`);
 
 
   if (!Array.isArray(donnees)) {
@@ -1023,7 +1023,7 @@ export async function sauvegarderDansIndexedDB(nomStockage, donnees = []) {
 
 
 export async function lireDepuisIndexedDB(nomStockage) {
-	console.log(`lecture indexedDB : ${nomStockage}`);
+	//console.log(`lecture indexedDB : ${nomStockage}`);
   const db = await ouvrirDB();
   const tr = db.transaction(nomStockage, "readonly");
   const table = tr.objectStore(nomStockage);
@@ -1982,6 +1982,7 @@ export function PopularityAccountCard({ api, online }) {
 	
 	{/*
 	<InfosDev api={api} /> */}
+	<InfosDev api={api} />
 </>)}
 
 
