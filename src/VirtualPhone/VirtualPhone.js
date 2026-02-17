@@ -34843,7 +34843,7 @@ async function DissadAA() {
   //const urlVideoFA = localStorage.getItem("urlVideo");
   
   const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
-  console.log("idPersonConnectedFA", idPersonConnectedFA);
+  //console.log("idPersonConnectedFA", idPersonConnectedFA);
 
   
   const idAccount = localStorage.getItem("idPersonConnectedFA");
@@ -35474,7 +35474,7 @@ const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 //const idDestinataire = state.idDestinataire; // récupéré depuis ton state
 const destinataireOnline = onlineUsers.includes(idDestinataire);
 
-console.log("infosCompteConnecterById", infosCompteConnecterById);
+//console.log("infosCompteConnecterById", infosCompteConnecterById);
 
 
 
