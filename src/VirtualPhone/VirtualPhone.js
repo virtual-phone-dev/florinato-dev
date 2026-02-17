@@ -34975,7 +34975,7 @@ useEffect(() => {
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
 
-
+/*
   async function SendMessageFAA() {
     if (!writeMessage66messageFA.trim()) return;
 	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
@@ -34995,8 +34995,82 @@ useEffect(() => {
 	
 	socketRef.current.emit("sendMessage", messageData);
     setWriteMessage66messageFA("");
-  };
+  }; */
   
+  
+  
+async function SendMessageFAA(customConversationId = null) {
+  if (!writeMessage66messageFA.trim()) return;
+  if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
+
+  let expediteur = idExpediteur; 
+  let destinataire = idDestinataire;
+  
+  // const idDestinataire = localStorage.getItem("idOther");
+  let idConversationreq = customConversationId ?? idConversation;
+
+
+  // ✅ CREER INVITE SI EXISTE PAS
+  if (!expediteur) {
+    try {
+		// on veut generer un identifiant unique pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
+		const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms Humains
+		const nom = nomsHumains[Math.floor(Math.random() * nomsHumains.length)];
+	  
+	  const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`, { nomIdentifiant: nom } );
+	  const identifiantId = res.data._id;
+      const identifiant = `${nom}_${identifiantId}`;
+	  
+	  await axios.put(`${process.env.REACT_APP_Api2}/api/messageFA/update/${identifiantId}`, { identifiant } );
+
+      localStorage.setItem("identifiantFA", identifiantId);	  
+      setIdExpediteur(identifiantId); // ✅ mettre à jour le state React
+	  
+      expediteur = identifiantId;
+    } catch (error) { console.error("Erreur création invité", error); return; }
+  }
+  
+  const messageData = { // ENVOI du message
+    idConversation: idConversationreq,
+    idAccount: expediteur,
+    idOther: destinataire,
+    message: writeMessage66messageFA,
+    type: "1",
+  };
+
+  console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
+  socketRef.current.emit("sendMessage", messageData);
+  setWriteMessage66messageFA("");
+}
+
+  
+ 
+const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
+
+async function BeginConversationFA() { //logique pour debuter une conversation
+  if (!writeMessage66messageFA.trim()) return;
+  setIsLoading66messageFA(true);
+
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`,
+      {
+        idAccount: idExpediteur,
+		idOther: idDestinataire,
+        type: "30",
+      }
+    );
+
+    const idConversation = res.data._id;
+	setIdConversation(idConversation);	
+	
+    console.log("Conversation créée :", idConversation);
+
+    // ✅ envoyer message via socket
+    SendMessageFAA(idConversation);
+  } 
+  catch (err) { console.error(err); }
+  finally { setIsLoading66messageFA(false); }
+}
 
 
 // Ce code gère la fonctionnalité d'indicateur d'écriture dans une messagerie en temps réel, en utilisant React et Socket.IO.
@@ -35155,6 +35229,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	const [idreq, setId] = useState(null);
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
+	const [idExpediteur, setIdExpediteur] = useState(null);
 	const [idDestinataire, setIdDestinataire] = useState(null);
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	const [idPost, setIdPost] = useState(null);
@@ -41944,8 +42019,9 @@ async function CloseConnexionPageAA() {
 
 
 //logique pour debuter une conversation 
-const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
+// const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
 
+/*
 async function BeginConversationFA() {
 
     localStorage.setItem("writeMessage66messageFA", writeMessage66messageFA);
@@ -42303,7 +42379,7 @@ async function BeginConversationFA() {
           //1ere requete - api1
      } //if (block === "0")
      } //if(idPersonConnectedFA)
-  }
+  } */
   //BeginConversationFA
 
     
