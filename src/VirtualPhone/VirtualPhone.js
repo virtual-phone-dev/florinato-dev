@@ -35423,7 +35423,8 @@ const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 
-const destinataireOnline = onlineUs
+const destinataireOnline = onlineUsers.includes(idDestinataire);
+
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
 const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtrerUnCompteRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtrerUnCompteRechercher, rechercherUnCompteFA] );
