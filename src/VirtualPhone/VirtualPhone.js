@@ -35386,50 +35386,6 @@ const clicFA = infosPostById.map((api) => api.clic); // clic
 const titreFA = infosPostById.map((api) => api.message); // message
 const photoCouvertureVideo = infosPostById.map((api) => api.urlPhoto);
 
-/*
-console.log("rechercherMaVideoFA", rechercherMaVideoFA);
-console.log("toutesVideoCompteConnecterParIdAccount", toutesVideoCompteConnecterParIdAccount);
-console.log("listTesVideosFA", listTesVideosFA);
-
-console.log("toutesVideoParIdAccount", toutesVideoParIdAccount);
-console.log("listMesVideosFA", listMesVideosFA); */
-
-
-
-/*
-const infosProprietairePost = apiMessageFA.filter((api) => api._id === idProprietairePost);
-const photoProprietairePost = infosProprietairePost.map((api) => api.photoProfile);
-const nomProprietairePost = infosProprietairePost.map((api) => api.nameAccount); */
-	
-
-
-
-/*  useEffect(() => {
-	  if (!idreq) return;
-	  const result = apiMessageFA.filter(api => api._id === idreq);
-	  setInfosPostFA(result);
-	}, [idreq, apiMessageFA]); */
-  
-	// filtre pour obtenir les infos du post - FA
-    //const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
-	
-    //const clicFA = infosPostFA.map((api) => api.clic); // clic
-    //const titreFA = infosPostFA.map((api) => api.message); // message
-	
-	
-
-/*
-const profilsFA = useMemo( () => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); 
-const { donneesAffichees:dataComptesFA } = useScrollIndexedDB({ nomStockage: "comptes", donnees:profilsFA });
-*/
-
-/*
-	const comptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount); //rechercher parmi les comptes
-	const listAccountFA = rechercherAvecFuse({ data:comptesR, search:mySearchFA, keys:["nameAccount"], });
-
-	const mesComptesR = apiMessageFA.filter((api) => api.type === "10" && api.visible === "1" && api.nameAccount);
-	const listMesComptesFA = rechercherAvecFuse({ data:mesComptesR, search:rechercheMesComptesFA, keys:["nameAccount"], });
-*/
 
 // visites
 const visitesSource = useMemo(() => apiMessageFA.filter(api => api.type === "200"), [apiMessageFA] ); // toutes mes visites
@@ -35461,42 +35417,19 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 
 // filtre pour obtenir les infos du compte - FA 
 const infosCompte = infosCompteById?.[0] ?? {};
-//const infosCompte = infosCompteById[0];
 const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
-//const photoTonCompteFA = infosCompte?.photoProfile ?? photoBlanche;
 
-//const photoProfileFA = infosCompteById.map((api) => api.photoProfile); // photo de profile
-//const photoCompteConnecter = infosCompteConnecterById.map((api) => api.photoProfile); // photo de profile
 
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 
-//const idDestinataire = state.idDestinataire; // récupéré depuis ton state
-const destinataireOnline = onlineUsers.includes(idDestinataire);
-
-//console.log("infosCompteConnecterById", infosCompteConnecterById);
-
-
-
-/*
-console.log("comptesOnline", comptesOnline);
-console.log("onlineUsers", onlineUsers); */
-
-
+const destinataireOnline = onlineUs
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
 const listAccountFA = useMemo(() => rechercherAvecFuse({ data:filtrerUnCompteRechercher, search:rechercherUnCompteFA, keys: ["nameAccount"] }), [filtrerUnCompteRechercher, rechercherUnCompteFA] );
 
 const filtrerMonCompteRechercher = useMemo(() => toutMesComptes.filter(api => api.nameAccount), [toutMesComptes] );
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompteRechercher, search:rechercherMonCompteFA, keys: ["nameAccount"] }), [filtrerMonCompteRechercher, rechercherMonCompteFA] );
-  
-// filtre pour obtenir les infos du compte
-//const photoProprietairePost = infosCompteById.map((api) => api.photoProfile); // photoProfile
-//const nomProprietairePost = infosCompteById.map((api) => api.nameAccount); // nameAccount
-
-/* console.log("photoProprietairePost", photoProprietairePost);
-console.log("nomProprietairePost", nomProprietairePost); 
-console.log("infosCompteById", infosCompteById); */
 
 
 
@@ -35504,10 +35437,13 @@ console.log("infosCompteById", infosCompteById); */
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
 const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
 
-const { donneesAffichees_account_other: dataConversations, gererScroll: gererScrollConversations 
+const {
+	donneesAffichees_account_other: dataConversations, 
+	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
 	donnees:conversationsSource 
+	idCompteConnecter: idPersonConnectedFA,
 }); 
 
 const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
@@ -35525,13 +35461,6 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 
 
 
-
-// filtre pour obtenir tout les messages de la discussion - FA
-//const filterMessageFA = apiMessageFA.filter((api) => api.idConversation === idConversationFA);
-//const filterMessageFA = useMemo(() => dataMessagesFA.filter(api => api.idConversation === idConversation), [dataMessagesFA, idConversation] );
-
-
-
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
@@ -35540,35 +35469,13 @@ useEffect(() => {
   if (!socket) return;
   
   
-//const typeDeTable = { "10":"comptes", "30":"conversations", "50":"followers", "1":"messages", "3":"videos", };
-//const typeDeTable = { "3":"videos" };
-
 socket.on("message:misAJour", (element) => {
     setToutesDonnees(prev =>
       prev.map(m => m._id === element._id ? element : m)
     );
   });
   
- 
-/* socket.on("message:misAJour", (element) => { // data modification reussi , (ce code recoit le nouveau document modifié)
-	console.log("element reçu modifié :", element); */
-  /* console.log("➡️ element.type :", element?.type, typeof element?.type);
-	
-	
-    const table = typeDeTable[element.type];
-	console.log("🗂️ table choisie :", table); */
-
-  /* setToutesDonnees(prev =>
-	prev.map(m => 
-		m._id === element._id ? element : m  // REMPLACEMENT EXACT DU DOCUMENT . Ce code fait exactement ça: Il parcourt tous les messages (ou element) du state . Il REMPLACE l’ancien document par le nouveau document modifié . Les autres messages restent inchangés  
-	)); */
-
-  /* sauvegarderDansIndexedDB(table, [element])
-    .then(() => console.log("✅ Sauvegardé dans", table))
-    .catch(err => console.error("❌ Erreur IndexedDB :", err)); */
-//});
-	
-	
+  
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
     setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
       ...prev,

@@ -1348,7 +1348,7 @@ const donneesAffichees_idCompteConnecter = useMemo(() => filtrerEtTrier(toutesDo
 
 
 
-const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idPersonConnectedFA || api.idOther === idPersonConnectedFA)
+const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idCompteConnecter || api.idOther === idCompteConnecter)
 .sort((a, b) => {
 	if (!a.createdAt && !b.createdAt) return 0;
 	if (!a.createdAt) return 1;
@@ -1356,7 +1356,7 @@ const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees]
 	
 	return new Date(b.createdAt) - new Date(a.createdAt);
 });
-}, [toutesDonnees, idPersonConnectedFA]);
+}, [toutesDonnees, idCompteConnecter]);
 
 
 
