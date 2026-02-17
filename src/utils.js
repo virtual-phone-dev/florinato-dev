@@ -1080,7 +1080,7 @@ const donneesAffichees_byClic = useMemo(() => {
 
 
 
-const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 
 /*
