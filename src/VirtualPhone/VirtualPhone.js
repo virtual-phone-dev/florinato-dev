@@ -35617,6 +35617,10 @@ const profilPropsCommun = {
 	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
 };
 
+const ComptesRecentsPropsCommun = {
+  listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA,
+  gererScroll: gererScrollComptes, ouvrirMessagePage: MessageFA, onlineUsers, // important
+};
 
 
 
@@ -51217,13 +51221,10 @@ function rechargerPage() {
 			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
 
+		
+		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
 
-		<ComptesRecentsTemplate 
-			visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} onlineUsers={onlineUsers} online listAccount={listAccountFA} 
-			setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
-			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
-		
-		
+
 		<SpeedMessages 
 			visible={speedMessagesPagesFA} data={dataComptesFA} fermer={CloseSpeedMessagesPagesFA} 
 			MenuPopup={MenuPopup} PagesGerer={PagesGerer} MenuAvecIcone={MenuAvecIcone} MenuBas={MenuBas} 
@@ -51259,12 +51260,9 @@ function rechargerPage() {
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
 		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
 		  
-		  
-	<ComptesRecentsTemplate 
-		visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} 
-		setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} dev
-		valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
-	
+
+	<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
+
 	
 	<MessageTemplate 
 			visible={messageFA} fermer={CloseMessageFA}
