@@ -2730,11 +2730,11 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
               {/* <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={gererChangementMessage}></textarea> </div> */}
               <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
 			  
-              {verifyConversation1 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
-              {verifyConversation2 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> </div></>)}
+              {verifyConversation1 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> 1a</div></>)}
+              {verifyConversation2 && (<> <div className="b" onClick={SendMessageFAA}> <SvgSend/> 1b</div></>)}
 
-              {isLoading66messageFA ? (<><div className="b" onClick={SendMessageFA}> <SvgSend/> </div></>):(<>
-              {!verifyConversation1 && !verifyConversation2 && (<><div className="b" onClick={BeginConversationFA}> <SvgSend/> </div></>)} </>)}
+              {isLoading66messageFA ? (<><div className="b" onClick={SendMessageFA}> <SvgSend/> 1c</div></>):(<>
+              {!verifyConversation1 && !verifyConversation2 && (<><div className="b" onClick={BeginConversationFA}> <SvgSend/> 1d</div></>)} </>)}
             </div>
             {/* write */}
         </div>
