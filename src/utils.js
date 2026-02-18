@@ -1599,11 +1599,12 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 
 
 
-export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, Gestionnaire }) {
+export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecentsPageFA, AdminFlorinato, Gestionnaire }) {
   return (<>
 		<div className="list">
             <div className="b" onClick={GestionDuCompte}> <p>Mon Compte</p> </div>
 			<div className="b" onClick={Gestionnaire}> <p>Gestionnaire</p> </div>
+            <div className="b" onClick={ComptesRecentsPageFA}> <p>Comptes Récents</p> </div>
             <div className="b" onClick={MettreEnAvantCompte}> <p>Mettre en avant un compte</p> </div>
             <div className="b" onClick={AdminFlorinato}> <p>Ajouter un compte comme Admin Florinato</p> </div>
         </div>
@@ -1612,7 +1613,8 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, AdminFlorina
 )}
 
 
-export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, cliquer, Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, setId }) {	
+export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, cliquer, 
+	Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, ComptesRecentsPageFA, setId }) {	
 	if (!visible) return null;
 
 	return (<>
@@ -1635,7 +1637,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 			{list && (
 			<ListeDuMenu 
 			  GestionDuCompte={GestionDuCompte} MettreEnAvantCompte={MettreEnAvantCompte} Gestionnaire={Gestionnaire}
-			  AdminFlorinato={AdminFlorinato}/> )}
+			  AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} /> )}
 			  
 			{search && (
 			<RechercheTemplate 

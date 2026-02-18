@@ -42595,9 +42595,15 @@ async function PageRedirection66groupOtherFA() {
   
 
   // Listes de tout les comptes (par ordre de comptes recents) - FA 
-  const [comptesRecentsPageFA, setComptesRecentsPageFA] = useState(false); 
-  async function ComptesRecentsPageFA() { setComptesRecentsPageFA(true); setFlorinatoApp(false); }
-  async function CloseComptesRecentsPageFA() { setFlorinatoApp(true); setComptesRecentsPageFA(false);  }
+  const [comptesRecentsPageFA, setComptesRecentsPageFA] = useState(false); // listes des comptes recents
+  async function ComptesRecentsPageFA() { setComptesRecentsPageFA(true); }
+  async function CloseComptesRecentsPageFA() { setComptesRecentsPageFA(false);  }
+  
+  
+  const [comptesEnLigneFA, setComptesEnLigneFA] = useState(false); // listes des comptes en lignes
+  async function ComptesEnLigneFA() { setComptesEnLigneFA(true); setFlorinatoApp(false); }
+  async function CloseComptesEnLigneFA() { setFlorinatoApp(true); setComptesEnLigneFA(false);  }
+  
   
   // ajouter un autre compte a la gestion du compte florinato - FA 
   //const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
@@ -51164,7 +51170,7 @@ function rechargerPage() {
 
                 <div className="b" onClick={VideosPageFA}> <SvgVideo6/> </div>
                 {dev && (<><div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div></>)}
-                <div className="b" onClick={ComptesRecentsPageFA}> <SvgSearch5/> </div>
+                <div className="b" onClick={ComptesEnLigneFA}> <SvgSearch5/> </div>
                 {dev && (<><div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div></>)}
                 <div className="c" onClick={CloseFlorinatoApp}> <SvgExit/> </div>
               </div>
@@ -51211,9 +51217,14 @@ function rechargerPage() {
 
 
 		<ComptesRecentsTemplate 
+			visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} onlineUsers={onlineUsers} listAccount={listAccountFA} 
+			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} ouvrirMessagePage={MessageFA} />
+		
+		<ComptesRecentsTemplate 
 			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesOnline} onlineUsers={onlineUsers} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
 			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} />
-		
+			
+			
 		<SpeedMessages 
 			visible={speedMessagesPagesFA} data={dataComptesFA} fermer={CloseSpeedMessagesPagesFA} 
 			MenuPopup={MenuPopup} PagesGerer={PagesGerer} MenuAvecIcone={MenuAvecIcone} MenuBas={MenuBas} 
@@ -51258,7 +51269,7 @@ function rechargerPage() {
 
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
-		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} list/>
+		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
   
     
 	  <PageTemplate 
