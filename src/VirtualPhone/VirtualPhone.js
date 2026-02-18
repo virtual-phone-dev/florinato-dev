@@ -51239,17 +51239,6 @@ function rechargerPage() {
 
 
   		
-		<MessageTemplate 
-			visible={messageFA} fermer={CloseMessageFA}
-			gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
-			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-			data={infosCompteById} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
-			Favorite66messageFA={Favorite66messageFA} 
-			EnvoyerContactFA={EnvoyerContactFA} 
-			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
-			dev={dev} verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
-			isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
-			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
 		
 	
@@ -51275,6 +51264,20 @@ function rechargerPage() {
 		visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} 
 		setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} dev={dev}
 		valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
+	
+	
+	<MessageTemplate 
+			visible={messageFA} fermer={CloseMessageFA}
+			gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
+			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
+			data={infosCompteById} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
+			Favorite66messageFA={Favorite66messageFA} 
+			EnvoyerContactFA={EnvoyerContactFA} 
+			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
+			dev={dev} verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
+			isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
+			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
+		
   
     
 	  <PageTemplate 
