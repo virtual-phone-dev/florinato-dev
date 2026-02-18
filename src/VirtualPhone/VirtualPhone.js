@@ -35395,7 +35395,9 @@ const { donneesAffichees_idCompteConnecter:dataMesVisitesFA, gererScroll:gererSc
 
 // comptes
 const comptesSource = useMemo(() => apiMessageFA.filter(api => api.type === "10"), [apiMessageFA] ); // toutes mes comptes
-const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA, 
+const { 
+	donneesAffichees:dataComptesFA, 
+	donneesAffichees_idUser:dataMesComptesFA, 
 	donneesAffichees_CompteEnLigne: comptesOnline,
 	
 	toutesDonnees_idUser: toutMesComptes, 
@@ -51218,10 +51220,12 @@ function rechargerPage() {
 
 		<ComptesRecentsTemplate 
 			visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} onlineUsers={onlineUsers} listAccount={listAccountFA} 
-			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} ouvrirMessagePage={MessageFA} />
+			setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
+			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
+		
 		
 		<ComptesRecentsTemplate 
-			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={comptesOnline} onlineUsers={onlineUsers} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
+			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} onlineUsers={onlineUsers} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
 			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} />
 			
 			

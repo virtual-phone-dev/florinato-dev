@@ -1936,36 +1936,41 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 </>)}
 
 
-export function ComptesRecentsTemplate({ visible, fermer, data, onlineUsers, listAccount, valeur, setValeur, setIdCompte, ouvrirMessagePage, gererScroll }) {
-  if (!visible) return null;
+export function ComptesRecentsTemplate({ visible, fermer, data, onlineUsers, listAccount, valeur, setValeur, 
+	setIdCompte, setIdDestinataire, ouvrirMessagePage, gererScroll }) {
+	if (!visible) return null;
   
   return (<>
       <div className="page-blanche" onScroll={gererScroll}>
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 			  
-			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} />
-			  <ListeDesComptes data={data} onlineUsers={onlineUsers} setIdCompte={setIdCompte} ouvrirMessagePage={ouvrirMessagePage} online />
+			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
+				
+			  <ListeDesComptes 
+				data={data} onlineUsers={onlineUsers}
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} online />
 		 </div>
 	 </div>
  </>)}
  
 
 			  
-export function ListeDesComptes({ data=[], online, setIdCompte, ouvrirMessagePage }) {
+export function ListeDesComptes({ data=[], online, setIdCompte, setIdDestinataire, ouvrirMessagePage }) {
   return (<>
       {data.map((api) => (
-		<div onClick={() => { ouvrirMessagePage(); setIdCompte(api._id); }}>	
+		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(); }}>	
 			<PopularityAccountCard api={api} online={online} />
 		</div>
       ))}
 </>)}
 
 
-export function ListeDesComptes2({ data=[], profilMap, proprietaireCompte, gestionnaireCompte }) {
+export function ListeDesComptes2({ data=[], setIdCompte, setIdDestinataire, profilMap, proprietaireCompte, gestionnaireCompte }) {
   return (<>
 		{data.map((api) => (
-        <div onClick={() => { localStorage.setItem("idPersonConnectedFA", api.idAccount); }}>
+        <div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); }}>
           <PopularityAccountCard2 api={api} profilMap={profilMap} proprietaireCompte={proprietaireCompte} gestionnaireCompte={gestionnaireCompte} />
         </div>
 		))}
