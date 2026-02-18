@@ -1790,7 +1790,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
 	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo=()=>{}, 
-	profilMap, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
+	setIdDestinataire, profilMap, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
 		{/* input pour effectuer une recherche */}
@@ -1814,7 +1814,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 				  
 
 			{listAccount.map((api) => (
-			<div onClick={() => { setIdCompte(api._id); ouvrirMessagePage(api); }}>	
+			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(api); }}>	
 				<PopularityAccountCard api={api} />
 			</div>
 			))}
@@ -1936,7 +1936,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 </>)}
 
 
-export function ComptesRecentsTemplate({ visible, fermer, data, online, listAccount, valeur, setValeur, 
+export function ComptesRecentsTemplate({ visible, fermer, data, online, dev, listAccount, valeur, setValeur, 
 	setIdCompte, setIdDestinataire, ouvrirMessagePage, gererScroll }) {
 	if (!visible) return null;
   
@@ -1945,11 +1945,11 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, listAcco
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
 0			  
-			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
+			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} dev={dev}
 				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
 				
 			  <ListeDesComptes 
-				data={data} online={online}
+				data={data} online={online} dev={dev}
 				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
 		 </div>
 	 </div>
@@ -1957,11 +1957,11 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, listAcco
  
 
 			  
-export function ListeDesComptes({ data=[], online, setIdCompte, setIdDestinataire, ouvrirMessagePage }) {
+export function ListeDesComptes({ data=[], online, dev, setIdCompte, setIdDestinataire, ouvrirMessagePage }) {
   return (<>
       {data.map((api) => (
 		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(); }}>	
-			<PopularityAccountCard api={api} online={online} />
+			<PopularityAccountCard api={api} online={online} dev={dev} />
 		</div>
       ))}
 </>)}
@@ -1977,7 +1977,7 @@ export function ListeDesComptes2({ data=[], setIdCompte, setIdDestinataire, prof
 </>)}
 	
 	
-export function PopularityAccountCard({ api, online }) {
+export function PopularityAccountCard({ api, online, dev }) {
   return (<>
     <div className="display-nowrap-espace">
       {/* <div className="p-15px"><p>{api.popularity}</p></div> */}
@@ -1987,9 +1987,7 @@ export function PopularityAccountCard({ api, online }) {
 	
 	{online && (<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)}
 	
-	{/*
-	<InfosDev api={api} /> */}
-	<InfosDev api={api} />
+	{dev && (<InfosDev api={api}/> )}
 </>)}
 
 

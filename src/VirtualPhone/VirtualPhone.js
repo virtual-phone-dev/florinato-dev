@@ -51273,7 +51273,7 @@ function rechargerPage() {
 		  
 	<ComptesRecentsTemplate 
 		visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} 
-		setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} 
+		setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} dev={dev}
 		valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
   
     
