@@ -1936,7 +1936,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 </>)}
 
 
-export function ComptesRecentsTemplate({ visible, fermer, data, onlineUsers, listAccount, valeur, setValeur, 
+export function ComptesRecentsTemplate({ visible, fermer, data, online, listAccount, valeur, setValeur, 
 	setIdCompte, setIdDestinataire, ouvrirMessagePage, gererScroll }) {
 	if (!visible) return null;
   
@@ -1944,13 +1944,13 @@ export function ComptesRecentsTemplate({ visible, fermer, data, onlineUsers, lis
       <div className="page-blanche" onScroll={gererScroll}>
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
-			  
+0			  
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
 				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
 				
 			  <ListeDesComptes 
-				data={data} onlineUsers={onlineUsers}
-				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} online />
+				data={data} online={online}
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
 		 </div>
 	 </div>
  </>)}

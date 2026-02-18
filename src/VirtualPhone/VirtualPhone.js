@@ -51219,7 +51219,7 @@ function rechargerPage() {
 
 
 		<ComptesRecentsTemplate 
-			visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} onlineUsers={onlineUsers} listAccount={listAccountFA} 
+			visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} listAccount={listAccountFA} 
 			setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
 			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
 		
@@ -51272,9 +51272,9 @@ function rechargerPage() {
 		  
 		  
 	<ComptesRecentsTemplate 
-			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} onlineUsers={onlineUsers} listAccount={listAccountFA} 
-			setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
-			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
+		visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} listAccount={listAccountFA} 
+		setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} 
+		valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
   
     
 	  <PageTemplate 
