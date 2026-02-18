@@ -34810,7 +34810,7 @@ async function DissadAA() {
   const phoneNumberFA = localStorage.getItem("phoneNumberFA");
   const nameGroupFA = localStorage.getItem("nameGroupFA");
   const photoGroupFA = localStorage.getItem("photoGroupFA");
-  const popularityFA = localStorage.getItem("popularityFA");
+  //const popularityFA = localStorage.getItem("popularityFA");
   //const idConversationFA = localStorage.getItem("idConversation");
   const message = localStorage.getItem("message"); 
   const type = localStorage.getItem("type"); 
