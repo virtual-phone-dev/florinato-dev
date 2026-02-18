@@ -1790,7 +1790,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
 	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo=()=>{}, 
-	setIdDestinataire, profilMap, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
+	setIdDestinataire, setIdExpediteur, profilMap, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
 		{/* input pour effectuer une recherche */}
@@ -1822,7 +1822,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			
 			<div className="api2">
 			{listMesComptes.map((api) => (
-			<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); cliquerSurMonCompte(); }}>
+			<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); }}>
 				<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
 			</div>
 			))}
