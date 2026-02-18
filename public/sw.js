@@ -1,72 +1,83 @@
-const CACHE_NAME = "florinato-cache-v1";
+const CACHE = "florinato-cache-v2";
 
-// fichiers essentiels
-const urlsToCache = [
-  "/",
-  "/index.html",
-  "/manifest.json",
-  "/favicon.ico"
-];
+self.addEventListener("install", e => {
 
-// INSTALL
-self.addEventListener("install", event => {
   self.skipWaiting();
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+
+  e.waitUntil(
+
+    caches.open(CACHE).then(cache => {
+
+      return cache.addAll([
+        "/",
+        "/index.html",
+        "/manifest.json",
+        "/favicon.ico",
+      ]);
+
+    })
+
   );
+
 });
 
-// ACTIVATE
-self.addEventListener("activate", event => {
+
+self.addEventListener("activate", e => {
+
   self.clients.claim();
-  event.waitUntil(
-    caches.keys().then(names =>
-      Promise.all(
-        names.map(name => {
-          if (name !== CACHE_NAME) {
-            return caches.delete(name);
-          }
-        })
-      )
-    )
-  );
+
 });
 
-// FETCH
-self.addEventListener("fetch", event => {
 
-  event.respondWith(
+self.addEventListener("fetch", e => {
 
-    caches.match(event.request)
-      .then(response => {
+  // pages React
+  if (e.request.mode === "navigate") {
 
-        // retourne cache si existe
-        if (response) {
-          return response;
-        }
+    e.respondWith(
 
-        // sinon fetch internet
-        return fetch(event.request)
-          .then(networkResponse => {
+      fetch(e.request)
 
-            // cache automatiquement les fichiers React
-            return caches.open(CACHE_NAME)
-              .then(cache => {
-                cache.put(event.request, networkResponse.clone());
-                return networkResponse;
-              });
+        .then(res => {
+
+          const copy = res.clone();
+
+          caches.open(CACHE)
+            .then(cache => cache.put("/index.html", copy));
+
+          return res;
+
+        })
+
+        .catch(() => caches.match("/index.html"))
+
+    );
+
+    return;
+
+  }
+
+
+  // static files
+  e.respondWith(
+
+    caches.match(e.request)
+
+      .then(res => {
+
+        return res || fetch(e.request)
+          .then(response => {
+
+            const copy = response.clone();
+
+            caches.open(CACHE)
+              .then(cache => cache.put(e.request, copy));
+
+            return response;
 
           })
 
-          .catch(() => {
-
-            // offline fallback
-            if (event.request.mode === "navigate") {
-              return caches.match("/index.html");
-            }
-
-          });
+          .catch(() => res);
 
       })
 
