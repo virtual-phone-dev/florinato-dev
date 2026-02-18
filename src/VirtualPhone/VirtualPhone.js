@@ -51219,7 +51219,7 @@ function rechargerPage() {
 
 
 		<ComptesRecentsTemplate 
-			visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online listAccount={listAccountFA} 
+			visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} onlineUsers={onlineUsers} online listAccount={listAccountFA} 
 			setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
 			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
 		
@@ -51274,7 +51274,7 @@ function rechargerPage() {
 			Favorite66messageFA={Favorite66messageFA} 
 			EnvoyerContactFA={EnvoyerContactFA} 
 			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
-			dev={dev} verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
+			dev verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
 			isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
 			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
