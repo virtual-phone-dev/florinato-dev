@@ -1790,7 +1790,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
 	setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo=()=>{}, 
-	setIdDestinataire=()=>{}, setIdExpediteur=()=>{}, profilMap, onlineUsers, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
+	setIdDestinataire=()=>{}, setIdExpediteur=()=>{}, profilMap, onlineUsers=[], nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
 		{/* input pour effectuer une recherche */}
@@ -1953,7 +1953,7 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, onlineUs
 				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
 				
 			  <ListeDesComptes 
-				data={data} online={online} dev={dev}
+				data={data} online={online} onlineUsers={onlineUsers} dev={dev}
 				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
 		 </div>
 	 </div>
@@ -1961,13 +1961,19 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, onlineUs
  
 
 			  
-export function ListeDesComptes({ data=[], online, dev, setIdCompte, setIdDestinataire, ouvrirMessagePage }) {
-  return (<>
-      {data.map((api) => (
+export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte, setIdDestinataire, ouvrirMessagePage }) {
+	const onlineSet = useMemo(() => new Set(onlineUsers), [onlineUsers]); // optimisation O(1)
+	
+	return (<>
+		{data.map((api) => {
+		const isOnline = onlineSet.has(api._id); // check si un utilisateur est en ligne
+		
+		return (
 		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(); }}>	
-			<PopularityAccountCard api={api} online={online} dev={dev} />
+			<PopularityAccountCard api={api} online={online} isOnline={isOnline} dev={dev} />
 		</div>
-      ))}
+		);
+		})}
 </>)}
 
 
