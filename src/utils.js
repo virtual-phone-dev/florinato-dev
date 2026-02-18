@@ -1962,7 +1962,7 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, onlineUs
 
 			  
 export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte, setIdDestinataire, ouvrirMessagePage }) {
-	const onlineSet = useMemo(() => new Set(onlineUsers), [onlineUsers]); // optimisation O(1)
+	const onlineSet = useMemo(() => new Set(onlineUsers), [onlineUsers]); // optimisation O(1) . Performance O(n) → optimisée avec Set.
 	
 	return (<>
 		{data.map((api) => {
