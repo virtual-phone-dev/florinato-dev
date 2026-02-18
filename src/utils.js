@@ -1789,8 +1789,8 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
-	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo=()=>{}, 
-	setIdDestinataire, setIdExpediteur, profilMap, onlineUsers, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
+	setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo=()=>{}, 
+	setIdDestinataire=()=>{}, setIdExpediteur=()=>{}, profilMap, onlineUsers, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
 		{/* input pour effectuer une recherche */}
