@@ -34819,6 +34819,18 @@ async function DissadAA() {
 
   const urlPhotoreq = localStorage.getItem("urlPhotoreq");
   const urlVideoreq = localStorage.getItem("urlVideoreq");
+   
+	const [idreq, setId] = useState(null);
+	const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
+	const [idCommentaire, setIdCommentaire] = useState(null);
+	const [idConversation, setIdConversation] = useState(null);
+	const [idExpediteur, setIdExpediteur] = useState(null);
+	const [idDestinataire, setIdDestinataire] = useState(null);
+	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
+	const [idPost, setIdPost] = useState(null);
+	const [idProprietairePost, setIdProprietairePost] = useState(null);
+	const [idCompte, setIdCompte] = useState(null);
+	const [urlVideo, setUrlVideo] = useState(null);
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
@@ -34842,7 +34854,6 @@ async function DissadAA() {
   //const idAccountFA = localStorage.getItem("idPersonConnectedFA");
   //const urlVideoFA = localStorage.getItem("urlVideo");
   
-  const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
   //console.log("idPersonConnectedFA", idPersonConnectedFA);
 
   
@@ -35224,18 +35235,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
   const filterMessageEpinglerFA = apiMessageFA.filter((api) => api.epingler === "1" && api._id === idMessageEpingler);
   const messageEpinglerFA = filterMessageEpinglerFA.map((api) => api.message); // messageEpingler
   
-  
-  
-	const [idreq, setId] = useState(null);
-	const [idCommentaire, setIdCommentaire] = useState(null);
-	const [idConversation, setIdConversation] = useState(null);
-	const [idExpediteur, setIdExpediteur] = useState(null);
-	const [idDestinataire, setIdDestinataire] = useState(null);
-	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
-	const [idPost, setIdPost] = useState(null);
-	const [idProprietairePost, setIdProprietairePost] = useState(null);
-	const [idCompte, setIdCompte] = useState(null);
-	const [urlVideo, setUrlVideo] = useState(null);
+	
 	
 	//console.log("urlVideo", urlVideo);
 	//console.log("idPost", idPost);
@@ -51622,9 +51622,9 @@ function rechargerPage() {
 						
             <div className="body">
 				<MesComptes  
-					data={dataMesComptesFA} dataCompteConnecté={infosCompteConnecterById} 
-					setIdPersonConnectedFA={setIdPersonConnectedFA} idPersonConnectedFA={idPersonConnectedFA} cliquerSurMonCompte={DataFA}
-					listMesComptes={listMesComptesFA} valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} />
+					data={dataMesComptesFA} dataCompteConnecté={infosCompteConnecterById} listMesComptes={listMesComptesFA}
+					setIdPersonConnectedFA={setIdPersonConnectedFA} setIdExpediteur={setIdExpediteur} idPersonConnectedFA={idPersonConnectedFA} 
+					valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} cliquerSurMonCompte={DataFA} />
 	
             </div>
             {/* body */} 

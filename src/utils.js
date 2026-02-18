@@ -1836,10 +1836,10 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 }
 
 
-export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, setIdPersonConnectedFA, idPersonConnectedFA, valeur, setValeur, cliquerSurMonCompte }) {
-		//console.log("idPersonConnectedFA dans MesComptes", idPersonConnectedFA);
+export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, 
+	setIdExpediteur, setIdPersonConnectedFA, idPersonConnectedFA, valeur, setValeur, cliquerSurMonCompte }) {
 
-  return (<>
+	return (<>
       <div className="api">
         {dataCompteConnecté.map((api) => (
           <ChildApi66accountsFA api={api} />
@@ -1847,12 +1847,12 @@ export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, se
       </div>
 	  
 	  	<RechercheTemplate 
-			listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} 
+			listMesComptes={listMesComptes} valeur={valeur} setValeur={setValeur} setIdExpediteur={setIdExpediteur} 
 			setIdPersonConnectedFA={setIdPersonConnectedFA} idPersonConnectedFA={idPersonConnectedFA} cliquerSurMonCompte={cliquerSurMonCompte} />
 
       <div className="api2">
 		{data.map((api) => (
-		<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); cliquerSurMonCompte(); }}>
+		<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); }}>
 			<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
 		</div>
         ))}
