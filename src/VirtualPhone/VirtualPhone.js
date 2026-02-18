@@ -35419,9 +35419,12 @@ const { donneesAffichees:dataComptesFA, donneesAffichees_idUser:dataMesComptesFA
 const infosCompte = infosCompteById?.[0] ?? {};
 const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
 
-
+// infos du compte connecté
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
+const nomCompteConnecter = infosCompteConnecter.nameAccount || "Compte inconnu";
+const populariteCompteConnecter = infosCompteConnecter.popularity || "0";
+
 
 const destinataireOnline = onlineUsers.includes(idDestinataire);
 
@@ -40810,9 +40813,8 @@ async function CloseConnexionPageAA() {
   async function ProfilFA() {
     setProfilFA(true);
 	setFlorinatoApp(false);
-	
-	if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
-	if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
+	//if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
+	//if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
   }
   
   async function CloseProfilFA() { setFlorinatoApp(true); setProfilFA(false); }
@@ -51137,7 +51139,8 @@ function rechargerPage() {
       {/* zimagicPopularity */}
       </>)}
       {/* les plus populaires sur Zimagic application zimagic */}
-
+	  
+	  
 
       {/* application florinato */}
       {/* application florinato */}
@@ -51146,12 +51149,12 @@ function rechargerPage() {
           <div className="head">
             <div className="close">
               <div className="block-un" onClick={ProfilFA}>
-                <div className="a"> <img src={photoFA} alt=""/> </div>
+                <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nameFA}</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter}</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
-                  <div className="cc"> <p>{popularityFA} visites</p> </div>
+                  <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
               </div>
               {/* block-un */}
