@@ -1944,7 +1944,7 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, dev, lis
       <div className="page-blanche" onScroll={gererScroll}>
 		  <div className="marge-20px">
 			  <Close fermer={fermer} />
-0			  
+			  
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} dev={dev}
 				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
 				
