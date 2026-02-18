@@ -51224,11 +51224,6 @@ function rechargerPage() {
 			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
 		
 		
-		<ComptesRecentsTemplate 
-			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} onlineUsers={onlineUsers} listAccount={listAccountFA} ouvrirMessagePage={MessageFA}
-			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} setIdCompte={setIdCompte} />
-			
-			
 		<SpeedMessages 
 			visible={speedMessagesPagesFA} data={dataComptesFA} fermer={CloseSpeedMessagesPagesFA} 
 			MenuPopup={MenuPopup} PagesGerer={PagesGerer} MenuAvecIcone={MenuAvecIcone} MenuBas={MenuBas} 
@@ -51274,6 +51269,12 @@ function rechargerPage() {
 	  <PopupDuBasTemplate 
 		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
 		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
+		  
+		  
+	<ComptesRecentsTemplate 
+			visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} onlineUsers={onlineUsers} listAccount={listAccountFA} 
+			setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
+			valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} gererScroll={gererScrollComptes} ouvrirMessagePage={MessageFA} />
   
     
 	  <PageTemplate 
