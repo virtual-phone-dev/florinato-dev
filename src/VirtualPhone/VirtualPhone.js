@@ -51279,9 +51279,9 @@ function rechargerPage() {
 					if (api.type === "30") {
 						setIdConversation(api._id);
 						
-						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); setIdExpediteur(api.idOther); } 
+						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); } 
 						else {
-						  setIdDestinataire(api.idAccount); setIdCompte(api.idAccount); setIdExpediteur(api.idAccount);
+						  setIdDestinataire(api.idAccount); setIdCompte(api.idAccount);
 						  //setIdProprietaireCompte(api.idAccountChef);
 						} 
 					}
