@@ -35407,6 +35407,8 @@ const dataConversation1 = useMemo(() =>
   ),
 [apiMessageFA, idPersonConnectedFA, idDestinataire]);
 
+const verifyConversation1 = dataConversation1.length > 0;
+
 
 const dataConversation2 = useMemo(() =>
   apiMessageFA.filter(
@@ -35417,23 +35419,19 @@ const dataConversation2 = useMemo(() =>
   ),
 [apiMessageFA, idPersonConnectedFA, idDestinataire]);
 
+const verifyConversation2 = dataConversation2.length > 0;
+
 
 
 useEffect(() => {
 
-  if (dataConversation1.length > 0) {
-
+  if (verifyConversation1) {
     setIdConversation(dataConversation1[0]._id);
-
-  } else if (dataConversation2.length > 0) {
-
+  } 
+  else if (verifyConversation2) {
     setIdConversation(dataConversation2[0]._id);
-
-  } else {
-
-    setIdConversation("0");
-
-  }
+  } 
+  else { setIdConversation("0"); }
 
 }, [dataConversation1, dataConversation2]);
 
