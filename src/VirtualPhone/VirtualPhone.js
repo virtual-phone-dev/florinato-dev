@@ -34831,6 +34831,12 @@ async function DissadAA() {
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
 	const [idCompte, setIdCompte] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
+	
+	console.log("idCompte", idCompte);
+	console.log("idPersonConnectedFA", idPersonConnectedFA);
+	console.log("idExpediteur", idExpediteur);
+	console.log("idDestinataire", idDestinataire);
+	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
