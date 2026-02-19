@@ -35638,27 +35638,28 @@ const ComptesRecentsPropsCommun = {
 
   // verifier s'il existe une conversation avec l'autre utilisateur
   // on verifie en fonction de l'idAccount
-  const getidConversation1 = apiMessageFA.filter((api) => api.idAccount === idPersonConnectedFA && api.idOther === idOther && api.visible === "1" && api.type === "30");
-  const verifyConversation1 = getidConversation1.length > 0;
-
-  const idConversation1 = getidConversation1.map((api) => api._id);
-  if (verifyConversation1) { localStorage.setItem("idConversation", idConversation1);  }
-
+  const dataConversation1 = apiMessageFA.filter((api) => api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire && api.type === "30");
+  const verifyConversation1 = dataConversation1.length > 0;
 
   //on verifie en fonction de l'idOther
-  const getidConversation2 = apiMessageFA.filter((api) => api.idOther === idPersonConnectedFA && api.idAccount === idOther && api.visible === "1" && api.type === "30");
-  const verifyConversation2 = getidConversation2.length > 0;
+  const dataConversation2 = apiMessageFA.filter((api) => api.idOther === idPersonConnectedFA && api.idAccount === idDestinataire && api.type === "30");
+  const verifyConversation2 = dataConversation2.length > 0;
   
-  const idConversation2 = getidConversation2.map((api) => api._id);
-  if (verifyConversation2) { localStorage.setItem("idConversation", idConversation2); }
 
-  if (!verifyConversation1 && !verifyConversation2) { //j'ai mis ça pour annuler l'idConversation stocké dans le localStorage pour que ça ne puisse pas afficher des messages lorsque je clique sur un compte avec lequel on a jamais eu à causer 
-    const zero = "0";
-    localStorage.setItem("idConversation", zero); 
+useEffect(() => {
+  if (verifyConversation1) {
+    setIdConversation(dataConversation1[0]._id);
   }
   
+  else if (verifyConversation2) {
+    setIdConversation(dataConversation2[0]._id);
+  }
+
+  else { setIdConversation("0"); }   //j'ai mis ça pour annuler l'idConversation stocké dans le state pour que ça ne puisse pas afficher des messages lorsque je clique sur un compte avec lequel on a jamais eu à causer 
   
-  
+}, [dataConversation1, dataConversation2, idPersonConnectedFA, idDestinataire]);
+
+
 // on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
 //const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
 /*
