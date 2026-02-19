@@ -35037,6 +35037,7 @@ console.log("socket:", socketRef.current);
 
   // ✅ CREER INVITE SI EXISTE PAS
   if (!expediteur) {
+	  console.log("Pas d'idExpediteur, création identifiant...");
     try {
 		// on veut generer un identifiant unique pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
 		const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms Humains
@@ -35063,7 +35064,7 @@ console.log("socket:", socketRef.current);
     type: "1",
   };
 
-  console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
+  console.log("messageData", messageData); //FRONT : message envoyé au serveur
   socketRef.current.emit("sendMessage", messageData);
   console.log("SOCKET EMIT ENVOYÉ");
   
@@ -35698,7 +35699,7 @@ console.log("dataConversation1:", dataConversation1);
 
 console.log("dataConversation2:", dataConversation2);
 
-}, [dataConversation1, dataConversation2]);
+}, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
 
 // on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
 //const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
