@@ -35011,14 +35011,14 @@ useEffect(() => {
   
   
 async function SendMessageFAA(customConversationId = null) {
-  //if (!writeMessage66messageFA.trim()) return;
-  //if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
-
-  let expediteur = idExpediteur; 
-  let destinataire = idDestinataire;
+	const messageText = writeMessage66messageFA;  
+	setWriteMessage66messageFA(""); // vider immédiatement (UX fluide)
   
-  // const idDestinataire = localStorage.getItem("idOther");
-  let idConversationreq = customConversationId ?? idConversation;
+	if (!writeMessage66messageFA.trim()) return;
+	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
+	let expediteur = idExpediteur; 
+	let destinataire = idDestinataire;
+	let idConversationreq = customConversationId ?? idConversation;
 
 
   // ✅ CREER INVITE SI EXISTE PAS
@@ -35045,7 +35045,7 @@ async function SendMessageFAA(customConversationId = null) {
     idConversation: idConversationreq,
     idAccount: expediteur,
     idOther: destinataire,
-    message: writeMessage66messageFA,
+    message: messageText,
     type: "1",
   };
 
