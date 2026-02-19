@@ -34884,296 +34884,6 @@ Le return dans useEffect retire l’écouteur quand le composant est démonté, 
 
 
 
-  // logique pour envoyer un message privé sur florinato
-  const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
-  
-  
-const socketRef = useRef(null); // Socket
-const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
-
-/*
-useEffect(() => {
-  if (!socketRef.current) {
-    socketRef.current = io("https://api2florinato.onrender.com", {
-      transports: ["websocket"],
-      reconnection: true,
-    });
-  }
-
-  const socket = socketRef.current;
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-
-  // 🔵 À CHAQUE connexion / reconnexion
-  socket.on("connect", () => {
-    console.log("Socket connecté :", socket.id);
-
-    if (idPersonConnectedFA) {
-      socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
-    }
-  });
-
-  socket.on("users:online", (users) => {
-    setOnlineUsers(users);
-  });
-
-  socket.on("receiveMessage", (msg) => {
-    setApiMessageFA(prev => [msg, ...prev]);
-  });
-
-  return () => {
-    socket.off("connect");
-    socket.off("users:online");
-    socket.off("receiveMessage");
-  };
-}, []); */
-
-
-/*
-const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(
-  localStorage.getItem("idPersonConnectedFA")
-); */
-
-
-// Socket
-//const socketRef = useRef(null); 
-
-useEffect(() => {
-	
-	// S'il ya une socket existante, déconnecte-la proprement
-    if (socketRef.current) {
-      socketRef.current.disconnect();
-    }
-  
-	// Crée une nouvelle socket
-    socketRef.current = io("https://api2florinato.onrender.com", {
-      transports: ["websocket"],
-      reconnection: true,
-    });
-
-  const socket = socketRef.current;
-  
-	// Lors de la connexion . À CHAQUE connexion / reconnexion
-	// Écoute la connexion et renvoie le bon idPersonConnectedFA
-  socket.on("connect", () => {
-    console.log("Socket connecté :", socket.id);
-    if (idPersonConnectedFA) {
-      socket.emit("user:online", idPersonConnectedFA);
-    }
-  });
-
-  // Envoie l'ID si changé
-  if (idPersonConnectedFA) {
-    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
-  } 
-
-	// Écoute les utilisateurs en ligne . Réception de la liste des utilisateurs en ligne 
-  socket.on("users:online", (users) => {
-    setOnlineUsers(users);
-  }); 
-  
-	// Reçoit les message
-  socket.on("receiveMessage", (msg) => {
-    setApiMessageFA(prev => [msg, ...prev]);
-  });
-  
-  // Nettoyage
-  return () => {
-    socket.off("connect");
-    socket.off("users:online");
-    socket.off("receiveMessage");
-	socket.disconnect();
-  };
-}, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
-
-
-/*
-  async function SendMessageFAA() {
-    if (!writeMessage66messageFA.trim()) return;
-	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
-	const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-	
-	
-    const messageData = {
-	  idConversation,
-	  idOther,
-      idAccount: idPersonConnectedFA,
-      message: writeMessage66messageFA,
-      type: "1",
-      visible: "1",
-    };
-	
-	console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
-	
-	socketRef.current.emit("sendMessage", messageData);
-    setWriteMessage66messageFA("");
-  }; */
-  
-  
-  
-async function SendMessageFAA(customConversationId = null) {
-	console.log("message:", writeMessage66messageFA);
-	
-	const messageText = writeMessage66messageFA;  
-	setWriteMessage66messageFA(""); // vider immédiatement (UX fluide)
-  
-	if (!writeMessage66messageFA.trim()) return;
-	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
-	let expediteur = idExpediteur; 
-	let destinataire = idDestinataire;
-	let idConversationreq = customConversationId ?? idConversation;
-	
-	console.log("messageText:", messageText);
-
-console.log("idExpediteur:", idExpediteur);
-
-console.log("idDestinataire:", idDestinataire);
-
-console.log("idConversation state:", idConversation);
-
-console.log("customConversationId:", customConversationId);
-
-console.log("socket:", socketRef.current);
-
-
-  // ✅ CREER INVITE SI EXISTE PAS
-  if (!expediteur) {
-	  console.log("Pas d'idExpediteur, création identifiant...");
-    try {
-		// on veut generer un identifiant unique pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
-		const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms Humains
-		const nom = nomsHumains[Math.floor(Math.random() * nomsHumains.length)];
-	  
-	  const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`, { nomIdentifiant: nom } );
-	  const identifiantId = res.data._id;
-      const identifiant = `${nom}_${identifiantId}`;
-	  
-	  await axios.put(`${process.env.REACT_APP_Api2}/api/messageFA/update/${identifiantId}`, { identifiant } );
-
-      localStorage.setItem("identifiantFA", identifiantId);	  
-      setIdExpediteur(identifiantId); // ✅ mettre à jour le state React
-	  
-      expediteur = identifiantId;
-    } catch (error) { console.error("Erreur création invité", error); return; }
-  }
-  
-  const messageData = { // ENVOI du message
-    idConversation: idConversationreq,
-    idAccount: expediteur,
-    idOther: destinataire,
-    message: messageText,
-    type: "1",
-  };
-
-  console.log("messageData", messageData); //FRONT : message envoyé au serveur
-  socketRef.current.emit("sendMessage", messageData);
-  console.log("SOCKET EMIT ENVOYÉ");
-  
-  setWriteMessage66messageFA("");
-}
-
-  
- 
-const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
-
-async function BeginConversationFA() { //logique pour debuter une conversation
-console.log("===== BeginConversationFA =====");
-
-console.log("idExpediteur:", idExpediteur);
-
-console.log("idDestinataire:", idDestinataire);
-
-console.log("message:", writeMessage66messageFA);
-
-  if (!writeMessage66messageFA.trim()) return;
-  setIsLoading66messageFA(true);
-  console.log("on lance la requete");
-
-  try {
-    const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`,
-      {
-        idAccount: idExpediteur,
-		idOther: idDestinataire,
-        type: "30",
-      }
-    );
-
-    const idConversation = res.data._id;
-	setIdConversation(idConversation);	
-	
-    console.log("Conversation créée :", idConversation);
-
-    // ✅ envoyer message via socket
-    SendMessageFAA(idConversation);
-  } 
-  catch (err) { console.error(err); }
-  finally { setIsLoading66messageFA(false); }
-}
-
-
-
-// Ce code gère la fonctionnalité d'indicateur d'écriture dans une messagerie en temps réel, en utilisant React et Socket.IO.
-
-
-/* PRINCIPE (1 phrase)
-
-Quand l’utilisateur commence à écrire, le client prévient le serveur.
-Le serveur prévient l’autre personne uniquement.
-Quand il arrête, on enlève l’indicateur. */
-
-
-/* Le typing indicator, c’est juste ça :
-
-✍️ quand je commence à taper → je préviens
-⏸️ quand j’arrête de taper → je préviens aussi
-et chez l’autre personne, on affiche ou enlève “en train d’écrire…” */
-
-const [estEnTrainDecrire, setEstEnTrainDecrire] = useState(false); // il n’écrivait pas -> false , il est déjà en train d’écrire -> true
-const timerEcriture = useRef(null); //Ça sert à savoir quand l’utilisateur s’est arrêté d’écrire.
-
-//Quand l’utilisateur écrit . Quand l’utilisateur écrit dans le textarea
-const gererChangementMessage = (e) => { // Quand l’utilisateur tape dans le textarea . Cette fonction est appelée à CHAQUE lettre
-	const texte = e.target.value;
-	console.log("L'utilisateur écrit :", texte); // Tu verras le texte s’afficher dans la console à chaque frappe
-	setWriteMessage66messageFA(texte); // On met à jour le texte (normal) . Juste pour afficher ce que l’utilisateur tape
-	
-  if (!socketRef.current) return;
-  
-  if (!estEnTrainDecrire) { // S’il commence JUSTE à écrire . Ah, il n’écrivait pas avant → là il commence → j’envoie UNE fois . Le if évite le spam socket
-    setEstEnTrainDecrire(true);
-
-    socketRef.current.emit("ecrire:debut", { // l'utilisateur commence à écrire . Quand un utilisateur commence à taper dans le message, le client envoie un signal au serveur (ecrire:debut) pour prévenir l'autre personne
-      idConversation,
-      idExpediteur: idPersonConnectedFA,
-      idDestinataire,
-    });
-  }
- 
-  clearTimeout(timerEcriture.current); // On reset le timer à chaque frappe . À chaque lettre, on dit: non, il ne s’est pas encore arrêté”
-
-	// Si l'utilisateur ne tape plus pendant 1,5 seconde, le timer se déclenche automatiquement : On met estEnTrainDecrire à false . On envoie ecrire:fin via le socket pour prévenir l'autre utilisateur.
-  timerEcriture.current = setTimeout(() => { // S’il ne tape plus pendant 1.5s . on enlève l’indicateur chez l’autre personne
-    setEstEnTrainDecrire(false);
-
-    socketRef.current.emit("ecrire:fin", { // Quand il arrête d'écrire pendant 1,5 seconde, le client envoie un signal (ecrire:fin) pour indiquer qu'il a arrêté
-      idConversation,
-      idExpediteur: idPersonConnectedFA,
-      idDestinataire,
-    });
-  }, 1500); // 1.5s sans écrire
-};
-// Sur le côté réception, chaque utilisateur voit qui est en train d'écrire grâce à ces signaux ci-dessus
-
-
-/* CE QUI SE PASSE CONCRÈTEMENT
-
-Tu tapes une lettre
-onChange se déclenche
-gererChangementMessage(e) est appelée
-Le socket envoie écriture:debut
-Si tu t’arrêtes 1,5 s → écriture:fin */
-
-
-
   // filtre pour obtenir quelques infos de l'utilisateur connecter
   const userConnectedFA = apiMessageFA.filter((api) => api._id === idUserConnectedFA);
   const getblockFA = userConnectedFA.map((api) => api.block); // block
@@ -35771,6 +35481,299 @@ async function SendMessageFAA() {
   setWriteMessage66messageFA("");
 }
 */
+
+
+
+
+
+  // logique pour envoyer un message privé sur florinato
+  const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
+  
+  
+const socketRef = useRef(null); // Socket
+const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
+
+/*
+useEffect(() => {
+  if (!socketRef.current) {
+    socketRef.current = io("https://api2florinato.onrender.com", {
+      transports: ["websocket"],
+      reconnection: true,
+    });
+  }
+
+  const socket = socketRef.current;
+  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+
+  // 🔵 À CHAQUE connexion / reconnexion
+  socket.on("connect", () => {
+    console.log("Socket connecté :", socket.id);
+
+    if (idPersonConnectedFA) {
+      socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
+    }
+  });
+
+  socket.on("users:online", (users) => {
+    setOnlineUsers(users);
+  });
+
+  socket.on("receiveMessage", (msg) => {
+    setApiMessageFA(prev => [msg, ...prev]);
+  });
+
+  return () => {
+    socket.off("connect");
+    socket.off("users:online");
+    socket.off("receiveMessage");
+  };
+}, []); */
+
+
+/*
+const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(
+  localStorage.getItem("idPersonConnectedFA")
+); */
+
+
+// Socket
+//const socketRef = useRef(null); 
+
+useEffect(() => {
+	
+	// S'il ya une socket existante, déconnecte-la proprement
+    if (socketRef.current) {
+      socketRef.current.disconnect();
+    }
+  
+	// Crée une nouvelle socket
+    socketRef.current = io("https://api2florinato.onrender.com", {
+      transports: ["websocket"],
+      reconnection: true,
+    });
+
+  const socket = socketRef.current;
+  
+	// Lors de la connexion . À CHAQUE connexion / reconnexion
+	// Écoute la connexion et renvoie le bon idPersonConnectedFA
+  socket.on("connect", () => {
+    console.log("Socket connecté :", socket.id);
+    if (idPersonConnectedFA) {
+      socket.emit("user:online", idPersonConnectedFA);
+    }
+  });
+
+  // Envoie l'ID si changé
+  if (idPersonConnectedFA) {
+    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
+  } 
+
+	// Écoute les utilisateurs en ligne . Réception de la liste des utilisateurs en ligne 
+  socket.on("users:online", (users) => {
+    setOnlineUsers(users);
+  }); 
+  
+	// Reçoit les message
+  socket.on("receiveMessage", (msg) => {
+    setApiMessageFA(prev => [msg, ...prev]);
+  });
+  
+  // Nettoyage
+  return () => {
+    socket.off("connect");
+    socket.off("users:online");
+    socket.off("receiveMessage");
+	socket.disconnect();
+  };
+}, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
+
+
+/*
+  async function SendMessageFAA() {
+    if (!writeMessage66messageFA.trim()) return;
+	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
+	const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+	
+	
+    const messageData = {
+	  idConversation,
+	  idOther,
+      idAccount: idPersonConnectedFA,
+      message: writeMessage66messageFA,
+      type: "1",
+      visible: "1",
+    };
+	
+	console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
+	
+	socketRef.current.emit("sendMessage", messageData);
+    setWriteMessage66messageFA("");
+  }; */
+  
+  
+  
+async function SendMessageFAA(customConversationId = null) {
+	console.log("message:", writeMessage66messageFA);
+	
+	const messageText = writeMessage66messageFA;  
+	setWriteMessage66messageFA(""); // vider immédiatement (UX fluide)
+  
+	if (!writeMessage66messageFA.trim()) return;
+	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
+	let expediteur = idExpediteur; 
+	let destinataire = idDestinataire;
+	let idConversationreq = customConversationId ?? idConversation;
+	
+	console.log("messageText:", messageText);
+
+console.log("idExpediteur:", idExpediteur);
+
+console.log("idDestinataire:", idDestinataire);
+
+console.log("idConversation state:", idConversation);
+
+console.log("customConversationId:", customConversationId);
+
+console.log("socket:", socketRef.current);
+
+
+  // ✅ CREER INVITE SI EXISTE PAS
+  if (!expediteur) {
+	  console.log("Pas d'idExpediteur, création identifiant...");
+    try {
+		// on veut generer un identifiant unique pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
+		const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms Humains
+		const nom = nomsHumains[Math.floor(Math.random() * nomsHumains.length)];
+	  
+	  const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`, { nomIdentifiant: nom } );
+	  const identifiantId = res.data._id;
+      const identifiant = `${nom}_${identifiantId}`;
+	  
+	  await axios.put(`${process.env.REACT_APP_Api2}/api/messageFA/update/${identifiantId}`, { identifiant } );
+
+      localStorage.setItem("identifiantFA", identifiantId);	  
+      setIdExpediteur(identifiantId); // ✅ mettre à jour le state React
+	  
+      expediteur = identifiantId;
+    } catch (error) { console.error("Erreur création invité", error); return; }
+  }
+  
+  const messageData = { // ENVOI du message
+    idConversation: idConversationreq,
+    idAccount: expediteur,
+    idOther: destinataire,
+    message: messageText,
+    type: "1",
+  };
+
+  console.log("messageData", messageData); //FRONT : message envoyé au serveur
+  socketRef.current.emit("sendMessage", messageData);
+  console.log("SOCKET EMIT ENVOYÉ");
+  
+  setWriteMessage66messageFA("");
+}
+
+  
+ 
+const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
+
+async function BeginConversationFA() { //logique pour debuter une conversation
+console.log("===== BeginConversationFA =====");
+
+console.log("idExpediteur:", idExpediteur);
+
+console.log("idDestinataire:", idDestinataire);
+
+console.log("message:", writeMessage66messageFA);
+
+  if (!writeMessage66messageFA.trim()) return;
+  setIsLoading66messageFA(true);
+  console.log("on lance la requete");
+
+  try {
+    const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`,
+      {
+        idAccount: idExpediteur,
+		idOther: idDestinataire,
+        type: "30",
+      }
+    );
+
+    const idConversation = res.data._id;
+	setIdConversation(idConversation);	
+	
+    console.log("Conversation créée :", idConversation);
+
+    // ✅ envoyer message via socket
+    SendMessageFAA(idConversation);
+  } 
+  catch (err) { console.error(err); }
+  finally { setIsLoading66messageFA(false); }
+}
+
+
+
+// Ce code gère la fonctionnalité d'indicateur d'écriture dans une messagerie en temps réel, en utilisant React et Socket.IO.
+
+
+/* PRINCIPE (1 phrase)
+
+Quand l’utilisateur commence à écrire, le client prévient le serveur.
+Le serveur prévient l’autre personne uniquement.
+Quand il arrête, on enlève l’indicateur. */
+
+
+/* Le typing indicator, c’est juste ça :
+
+✍️ quand je commence à taper → je préviens
+⏸️ quand j’arrête de taper → je préviens aussi
+et chez l’autre personne, on affiche ou enlève “en train d’écrire…” */
+
+const [estEnTrainDecrire, setEstEnTrainDecrire] = useState(false); // il n’écrivait pas -> false , il est déjà en train d’écrire -> true
+const timerEcriture = useRef(null); //Ça sert à savoir quand l’utilisateur s’est arrêté d’écrire.
+
+//Quand l’utilisateur écrit . Quand l’utilisateur écrit dans le textarea
+const gererChangementMessage = (e) => { // Quand l’utilisateur tape dans le textarea . Cette fonction est appelée à CHAQUE lettre
+	const texte = e.target.value;
+	console.log("L'utilisateur écrit :", texte); // Tu verras le texte s’afficher dans la console à chaque frappe
+	setWriteMessage66messageFA(texte); // On met à jour le texte (normal) . Juste pour afficher ce que l’utilisateur tape
+	
+  if (!socketRef.current) return;
+  
+  if (!estEnTrainDecrire) { // S’il commence JUSTE à écrire . Ah, il n’écrivait pas avant → là il commence → j’envoie UNE fois . Le if évite le spam socket
+    setEstEnTrainDecrire(true);
+
+    socketRef.current.emit("ecrire:debut", { // l'utilisateur commence à écrire . Quand un utilisateur commence à taper dans le message, le client envoie un signal au serveur (ecrire:debut) pour prévenir l'autre personne
+      idConversation,
+      idExpediteur: idPersonConnectedFA,
+      idDestinataire,
+    });
+  }
+ 
+  clearTimeout(timerEcriture.current); // On reset le timer à chaque frappe . À chaque lettre, on dit: non, il ne s’est pas encore arrêté”
+
+	// Si l'utilisateur ne tape plus pendant 1,5 seconde, le timer se déclenche automatiquement : On met estEnTrainDecrire à false . On envoie ecrire:fin via le socket pour prévenir l'autre utilisateur.
+  timerEcriture.current = setTimeout(() => { // S’il ne tape plus pendant 1.5s . on enlève l’indicateur chez l’autre personne
+    setEstEnTrainDecrire(false);
+
+    socketRef.current.emit("ecrire:fin", { // Quand il arrête d'écrire pendant 1,5 seconde, le client envoie un signal (ecrire:fin) pour indiquer qu'il a arrêté
+      idConversation,
+      idExpediteur: idPersonConnectedFA,
+      idDestinataire,
+    });
+  }, 1500); // 1.5s sans écrire
+};
+// Sur le côté réception, chaque utilisateur voit qui est en train d'écrire grâce à ces signaux ci-dessus
+
+
+/* CE QUI SE PASSE CONCRÈTEMENT
+
+Tu tapes une lettre
+onChange se déclenche
+gererChangementMessage(e) est appelée
+Le socket envoie écriture:debut
+Si tu t’arrêtes 1,5 s → écriture:fin */
+
 
 
 
