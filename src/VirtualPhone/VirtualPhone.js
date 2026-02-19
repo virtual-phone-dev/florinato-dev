@@ -34822,9 +34822,9 @@ async function DissadAA() {
    
 	const [idreq, setId] = useState(null);
 	const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
+	const [idExpediteur, setIdExpediteur] = useState(localStorage.getItem("idPersonConnectedFA"));
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
-	const [idExpediteur, setIdExpediteur] = useState(null);
 	const [idDestinataire, setIdDestinataire] = useState(null);
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	const [idPost, setIdPost] = useState(null);
@@ -51194,11 +51194,11 @@ function rechargerPage() {
 					if (api.type === "30") {
 						setIdConversation(api._id);
 						
-						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); } 
+						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); setIdExpediteur(api.idOther); } 
 						else {
-						  setIdDestinataire(api.idAccount); setIdCompte(api.idAccount);
+						  setIdDestinataire(api.idAccount); setIdCompte(api.idAccount); setIdExpediteur(api.idAccount);
 						  //setIdProprietaireCompte(api.idAccountChef);
-						}
+						} 
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
 					
@@ -51240,9 +51240,6 @@ function rechargerPage() {
 		<PopupBasTextareaTemplate visible={popupBasTextarea} fermer={ClosePopupBasTextarea} />
 
 
-  		
-		
-		
 	
 		{/* compte connecté - FA */}
 		<ProfilTemplate  
@@ -51273,7 +51270,7 @@ function rechargerPage() {
 		Favorite66messageFA={Favorite66messageFA} 
 		EnvoyerContactFA={EnvoyerContactFA} 
 		onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
-		dev verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
+		verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
 		isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
 		writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
@@ -51322,7 +51319,6 @@ function rechargerPage() {
 	  <ConfirmationTemplate 
 		  visible={adminFlorinatoconfp} fermer={CloseAdminFlorinatoconfp} 
 		  isLoading={isLoading666AjouterAdminFlorinato} Validerbtn={AjouterAdminFlorinato} />
-		  
 		  
 		  
 		  
