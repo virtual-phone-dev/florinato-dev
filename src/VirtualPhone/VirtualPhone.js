@@ -35375,7 +35375,7 @@ const ComptesRecentsPropsCommun = {
 
   // verifier s'il existe une conversation avec l'autre utilisateur
   // on verifie en fonction de l'idAccount
-  const dataConversation1 = apiMessageFA.filter((api) => api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire && api.type === "30");
+  /* const dataConversation1 = apiMessageFA.filter((api) => api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire && api.type === "30");
   const verifyConversation1 = dataConversation1.length > 0;
 
   //on verifie en fonction de l'idOther
@@ -35395,6 +35395,48 @@ useEffect(() => {
   else { setIdConversation("0"); }   //j'ai mis ça pour annuler l'idConversation stocké dans le state pour que ça ne puisse pas afficher des messages lorsque je clique sur un compte avec lequel on a jamais eu à causer 
   
 }, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
+
+*/
+
+const dataConversation1 = useMemo(() =>
+  apiMessageFA.filter(
+    api =>
+      api.idAccount === idPersonConnectedFA &&
+      api.idOther === idDestinataire &&
+      api.type === "30"
+  ),
+[apiMessageFA, idPersonConnectedFA, idDestinataire]);
+
+
+const dataConversation2 = useMemo(() =>
+  apiMessageFA.filter(
+    api =>
+      api.idOther === idPersonConnectedFA &&
+      api.idAccount === idDestinataire &&
+      api.type === "30"
+  ),
+[apiMessageFA, idPersonConnectedFA, idDestinataire]);
+
+
+
+useEffect(() => {
+
+  if (dataConversation1.length > 0) {
+
+    setIdConversation(dataConversation1[0]._id);
+
+  } else if (dataConversation2.length > 0) {
+
+    setIdConversation(dataConversation2[0]._id);
+
+  } else {
+
+    setIdConversation("0");
+
+  }
+
+}, [dataConversation1, dataConversation2]);
+
 
 
 useEffect(() => {
