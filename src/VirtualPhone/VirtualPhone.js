@@ -35011,8 +35011,8 @@ useEffect(() => {
   
   
 async function SendMessageFAA(customConversationId = null) {
-  if (!writeMessage66messageFA.trim()) return;
-  if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
+  //if (!writeMessage66messageFA.trim()) return;
+  //if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
 
   let expediteur = idExpediteur; 
   let destinataire = idDestinataire;
