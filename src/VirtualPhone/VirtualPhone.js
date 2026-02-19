@@ -35011,6 +35011,8 @@ useEffect(() => {
   
   
 async function SendMessageFAA(customConversationId = null) {
+	console.log("message:", writeMessage66messageFA);
+	
 	const messageText = writeMessage66messageFA;  
 	setWriteMessage66messageFA(""); // vider immédiatement (UX fluide)
   
@@ -35019,6 +35021,18 @@ async function SendMessageFAA(customConversationId = null) {
 	let expediteur = idExpediteur; 
 	let destinataire = idDestinataire;
 	let idConversationreq = customConversationId ?? idConversation;
+	
+	console.log("messageText:", messageText);
+
+console.log("idExpediteur:", idExpediteur);
+
+console.log("idDestinataire:", idDestinataire);
+
+console.log("idConversation state:", idConversation);
+
+console.log("customConversationId:", customConversationId);
+
+console.log("socket:", socketRef.current);
 
 
   // ✅ CREER INVITE SI EXISTE PAS
@@ -35051,6 +35065,8 @@ async function SendMessageFAA(customConversationId = null) {
 
   console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
   socketRef.current.emit("sendMessage", messageData);
+  console.log("SOCKET EMIT ENVOYÉ");
+  
   setWriteMessage66messageFA("");
 }
 
@@ -35059,8 +35075,17 @@ async function SendMessageFAA(customConversationId = null) {
 const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
 
 async function BeginConversationFA() { //logique pour debuter une conversation
+console.log("===== BeginConversationFA =====");
+
+console.log("idExpediteur:", idExpediteur);
+
+console.log("idDestinataire:", idDestinataire);
+
+console.log("message:", writeMessage66messageFA);
+
   if (!writeMessage66messageFA.trim()) return;
   setIsLoading66messageFA(true);
+  console.log("on lance la requete");
 
   try {
     const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`,
@@ -35082,6 +35107,7 @@ async function BeginConversationFA() { //logique pour debuter une conversation
   catch (err) { console.error(err); }
   finally { setIsLoading66messageFA(false); }
 }
+
 
 
 // Ce code gère la fonctionnalité d'indicateur d'écriture dans une messagerie en temps réel, en utilisant React et Socket.IO.
@@ -35659,6 +35685,20 @@ useEffect(() => {
   
 }, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
 
+
+useEffect(() => {
+
+console.log("===== USEEFFECT CONVERSATION =====");
+
+console.log("verifyConversation1:", verifyConversation1);
+
+console.log("verifyConversation2:", verifyConversation2);
+
+console.log("dataConversation1:", dataConversation1);
+
+console.log("dataConversation2:", dataConversation2);
+
+}, [dataConversation1, dataConversation2]);
 
 // on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
 //const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
