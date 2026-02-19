@@ -35657,7 +35657,7 @@ useEffect(() => {
 
   else { setIdConversation("0"); }   //j'ai mis ça pour annuler l'idConversation stocké dans le state pour que ça ne puisse pas afficher des messages lorsque je clique sur un compte avec lequel on a jamais eu à causer 
   
-}, [dataConversation1, dataConversation2, idPersonConnectedFA, idDestinataire]);
+}, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
 
 
 // on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
