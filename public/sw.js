@@ -1,11 +1,10 @@
-const CACHE = "florinato-cache-v2";
+const CACHE = "florinato-cache-v3";
 
 self.addEventListener("install", e => {
 
   self.skipWaiting();
 
   e.waitUntil(
-
     caches.open(CACHE).then(cache => {
 
       return cache.addAll([
@@ -16,7 +15,6 @@ self.addEventListener("install", e => {
       ]);
 
     })
-
   );
 
 });
@@ -31,7 +29,7 @@ self.addEventListener("activate", e => {
 
 self.addEventListener("fetch", e => {
 
-  // pages React
+  // ✅ IMPORTANT : React pages → toujours NETWORK FIRST
   if (e.request.mode === "navigate") {
 
     e.respondWith(
@@ -43,13 +41,13 @@ self.addEventListener("fetch", e => {
           const copy = res.clone();
 
           caches.open(CACHE)
-            .then(cache => cache.put("/index.html", copy));
+            .then(cache => cache.put(e.request, copy)); // ✅ CORRIGÉ ICI
 
           return res;
 
         })
 
-        .catch(() => caches.match("/index.html"))
+        .catch(() => caches.match(e.request))
 
     );
 
@@ -65,7 +63,10 @@ self.addEventListener("fetch", e => {
 
       .then(res => {
 
-        return res || fetch(e.request)
+        if (res) return res;
+
+        return fetch(e.request)
+
           .then(response => {
 
             const copy = response.clone();
@@ -75,9 +76,7 @@ self.addEventListener("fetch", e => {
 
             return response;
 
-          })
-
-          .catch(() => res);
+          });
 
       })
 
