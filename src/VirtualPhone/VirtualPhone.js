@@ -51366,7 +51366,7 @@ function rechargerPage() {
 		visible={messageFA} fermer={CloseMessageFA}
 		gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 		PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-		data={infosCompteById} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
+		data={infosCompteById[0]} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
 		Favorite66messageFA={Favorite66messageFA} 
 		EnvoyerContactFA={EnvoyerContactFA} 
 		onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 

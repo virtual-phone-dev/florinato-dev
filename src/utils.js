@@ -2679,9 +2679,16 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 	if (!visible) return null;
 	
 	
-	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, online, derniereConnexion, badge } = profile; // infos du profil
+	// const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
+	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, online, derniereConnexion, badge } = data; // infos du profil
 	
+	console.log("data", data);
+	console.log("nameAccount", nameAccount);
+	console.log("photoProfile", photoProfile);
+	console.log("derniereConnexion", derniereConnexion);
+	console.log("online", online);
+	console.log("badge", badge);
+
 	
 	return (<>
         <div className="messageFA" onScroll={gererScrollMessages}>
