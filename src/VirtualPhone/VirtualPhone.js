@@ -34835,7 +34835,7 @@ async function DissadAA() {
 	console.log("idCompte", idCompte);
 	console.log("idPersonConnectedFA", idPersonConnectedFA);
 	console.log("idExpediteur", idExpediteur);
-	console.log("idDestinataire", idDestinataire);
+	console.log("idDestinataire", idDestinataire); 
 	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -35200,7 +35200,18 @@ const {
 	rechercherUneVideo: rechercherUneVideoFA,
 });
 
-//console.log("dataVideoByIdCompteConnecter", dataVideoByIdCompteConnecter);
+	
+console.log("dataVideoRecenteByIdCompteConnecter", dataVideoRecenteByIdCompteConnecter);
+console.log("dataVideoFAbyClic", dataVideoFAbyClic);
+console.log("dataVideoByIdCompte", dataVideoByIdCompte);
+console.log("dataVideoByIdCompteConnecter", dataVideoByIdCompteConnecter);
+console.log("dataVideoRecenteByIdCompte", dataVideoRecenteByIdCompte);
+console.log("toutesVideos", toutesVideos);
+console.log("dataVideoRecenteByIdCompteConnecter", dataVideoRecenteByIdCompteConnecter);
+console.log("toutesVideoParIdAccount", toutesVideoParIdAccount);
+console.log("toutesVideoCompteConnecterParIdAccount", toutesVideoCompteConnecterParIdAccount);
+
+
 
 // scroller
 const scrollX = useScrollInfini(chargerPlus, 'x'); // scrollHorizontal , overflow-x 
@@ -35543,13 +35554,14 @@ useEffect(() => {
 }, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
 
 
-
+/*
 useEffect(() => {
 
 	console.log("===== USEEFFECT CONVERSATION =====");
 	console.log("dataConversation1:", dataConversation1);
 	console.log("dataConversation2:", dataConversation2);
-}, [dataConversation1, dataConversation2]);
+}, [dataConversation1, dataConversation2]); */
+
 
 // on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
 //const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
