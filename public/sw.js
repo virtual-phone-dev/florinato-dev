@@ -29,45 +29,40 @@ self.addEventListener("activate", e => {
 });
 
 
+
+
 self.addEventListener("fetch", e => {
 
-  // ✅ IMPORTANT : React pages → toujours NETWORK FIRST
-  if (e.request.mode === "navigate") {
+  const url = new URL(e.request.url);
 
-    e.respondWith(
 
-      fetch(e.request)
-
-        .then(res => {
-
-          const copy = res.clone();
-
-          caches.open(CACHE)
-            .then(cache => cache.put(e.request, copy)); // ✅ CORRIGÉ ICI
-
-          return res;
-
-        })
-
-        .catch(() => caches.match(e.request))
-
-    );
-
-    return;
-
+  // ❌ IMPORTANT : IGNORER API
+  if (url.hostname.includes("onrender.com")) {
+    return; // laisse le navigateur fetch normalement
   }
 
 
-  // static files
+  // pages React
+  if (e.request.mode === "navigate") {
+
+    e.respondWith(
+      fetch(e.request)
+        .catch(() => caches.match("/index.html"))
+    );
+
+    return;
+  }
+
+
+
+  // static files seulement
   e.respondWith(
 
     caches.match(e.request)
 
       .then(res => {
 
-        if (res) return res;
-
-        return fetch(e.request)
+        return res || fetch(e.request)
 
           .then(response => {
 
