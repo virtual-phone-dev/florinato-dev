@@ -1,6 +1,5 @@
-const CACHE = "florinato-cache-v4";
+const CACHE = "florinato-cache-v5";
 
-console.log("SERVICE WORKER V4 ACTIF");
 
 self.addEventListener("install", e => {
 
