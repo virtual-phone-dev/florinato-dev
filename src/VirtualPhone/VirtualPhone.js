@@ -35277,6 +35277,9 @@ const {
 const infosCompte = infosCompteById?.[0] ?? {};
 const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
 
+const taDerniereConnexion = infosCompte.derniereConnexion;
+console.log("taDerniereConnexion", taDerniereConnexion);
+
 // infos du compte connecté
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
