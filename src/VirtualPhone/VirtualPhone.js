@@ -35187,7 +35187,7 @@ const {
 	toutesVideoPar_idAccount: toutesVideoParIdAccount,
 	toutesVideoCompteConnecterPar_idAccount : toutesVideoCompteConnecterParIdAccount,
 	
-	setToutesDonnees, chargerPlus,
+	setToutesDonnees:setToutesDonneesVideos, chargerPlus,
 	gererScroll 
 } = useScrollIndexedDB({ 
 	nomStockage: "videos", 
@@ -35200,7 +35200,7 @@ const {
 	rechercherUneVideo: rechercherUneVideoFA,
 });
 
-	
+/*	
 console.log("videosSource", videosSource);
 console.log("dataVideoRecenteByIdCompteConnecter", dataVideoRecenteByIdCompteConnecter);
 console.log("dataVideoFAbyClic", dataVideoFAbyClic);
@@ -35211,7 +35211,7 @@ console.log("toutesVideos", toutesVideos);
 console.log("dataVideoRecenteByIdCompteConnecter", dataVideoRecenteByIdCompteConnecter);
 console.log("toutesVideoParIdAccount", toutesVideoParIdAccount);
 console.log("toutesVideoCompteConnecterParIdAccount", toutesVideoCompteConnecterParIdAccount);
-
+*/
 
 
 // scroller
@@ -35261,7 +35261,7 @@ const {
 	infosCompte_by_id: infosCompteById, 
 	infosCompteConnecter_by_id: infosCompteConnecterById, 
 	
-	setToutesDonnees,
+	setToutesDonnees: setToutesDonneesComptes,
 	gererScroll: gererScrollComptes 
 } = useScrollIndexedDB({
 	nomStockage: "comptes", 
@@ -35338,11 +35338,25 @@ useEffect(() => {
   
 socket.on("message:misAJour", (element) => {
 	console.log("element a", element);
-    setToutesDonnees(prev =>
-      prev.map(m => m._id === element._id ? element : m)
-    );
-	console.log("element b", element);
-  });
+	
+	//comptes
+    if (element.type === "10") {
+		console.log("element b", element);
+		
+		setToutesDonneesComptes(prev =>
+		  prev.map(m => m._id === element._id ? element : m)
+		);
+    }
+	
+	//videos
+    if (element.type === "3") { 
+		console.log("element c", element);
+		
+		setToutesDonneesVideos(prev =>
+		  prev.map(m => m._id === element._id ? element : m)
+		);
+    }
+});
   
   
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
