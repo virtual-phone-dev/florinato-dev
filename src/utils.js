@@ -2700,7 +2700,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 				<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div> </>):(<>
                 <div className="bb"> <p>{dateParserLong(online)} (Dernière connexion)</p> </div> </>)}
 				
-				<div className="bb"> <p>++ {derniereConnexion} derniereConnexion</p> </div> 
+				<div className="bb"> <p>++ {dateParserLong(derniereConnexion)} derniereConnexion</p> </div> 
               </div>
               {/* c */}
             </div>
