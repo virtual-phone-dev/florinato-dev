@@ -35332,9 +35332,11 @@ useEffect(() => {
   
   
 socket.on("message:misAJour", (element) => {
+	console.log("element a", element);
     setToutesDonnees(prev =>
       prev.map(m => m._id === element._id ? element : m)
     );
+	console.log("element b", element);
   });
   
   
