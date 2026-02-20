@@ -1,24 +1,24 @@
-const CACHE = "florinato-cache-v6";
+const CACHE = "florinato-cache-v7";
 
-self.addEventListener("install", e => {
+
+// INSTALL → rien forcer
+self.addEventListener("install", () => {
 
   self.skipWaiting();
-
-  e.waitUntil(
-    caches.open(CACHE)
-      .then(cache => cache.add("/index.html"))
-  );
 
 });
 
 
-self.addEventListener("activate", e => {
 
-  e.waitUntil(
+// ACTIVATE → supprimer anciens caches
+self.addEventListener("activate", event => {
 
-    caches.keys().then(keys => {
+  event.waitUntil(
 
-      return Promise.all(
+    caches.keys().then(keys =>
+
+      Promise.all(
+
         keys.map(key => {
 
           if (key !== CACHE)
@@ -26,9 +26,9 @@ self.addEventListener("activate", e => {
 
         })
 
-      );
+      )
 
-    })
+    )
 
   );
 
@@ -37,28 +37,34 @@ self.addEventListener("activate", e => {
 });
 
 
-self.addEventListener("fetch", e => {
 
-  const url = new URL(e.request.url);
 
+self.addEventListener("fetch", event => {
+
+  const url = new URL(event.request.url);
+
+
+  // ❌ API → jamais cache
   if (url.hostname.includes("onrender.com"))
     return;
 
 
-  if (e.request.mode === "navigate") {
 
-    e.respondWith(
+  // ✅ HTML → Network First
+  if (event.request.mode === "navigate") {
 
-      fetch(e.request)
+    event.respondWith(
 
-        .then(res => {
+      fetch(event.request)
 
-          const copy = res.clone();
+        .then(response => {
+
+          const copy = response.clone();
 
           caches.open(CACHE)
             .then(cache => cache.put("/index.html", copy));
 
-          return res;
+          return response;
 
         })
 
@@ -66,6 +72,32 @@ self.addEventListener("fetch", e => {
 
     );
 
+    return;
+
   }
+
+
+
+  // ✅ JS CSS images → Network First + fallback cache
+
+  event.respondWith(
+
+    fetch(event.request)
+
+      .then(response => {
+
+        const copy = response.clone();
+
+        caches.open(CACHE)
+          .then(cache => cache.put(event.request, copy));
+
+        return response;
+
+      })
+
+      .catch(() => caches.match(event.request))
+
+  );
+
 
 });
