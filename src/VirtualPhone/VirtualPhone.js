@@ -35278,6 +35278,7 @@ const infosCompte = infosCompteById?.[0] ?? {};
 const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
 
 const taDerniereConnexion = infosCompte.derniereConnexion;
+console.log("ton infosCompte", infosCompte);
 console.log("taDerniereConnexion", taDerniereConnexion);
 
 // infos du compte connecté
