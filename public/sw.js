@@ -1,21 +1,12 @@
-const CACHE = "florinato-cache-v5";
-
+const CACHE = "florinato-cache-v6";
 
 self.addEventListener("install", e => {
 
   self.skipWaiting();
 
   e.waitUntil(
-    caches.open(CACHE).then(cache => {
-
-      return cache.addAll([
-        "/",
-        "/index.html",
-        "/manifest.json",
-        "/favicon.ico",
-      ]);
-
-    })
+    caches.open(CACHE)
+      .then(cache => cache.add("/index.html"))
   );
 
 });
@@ -23,59 +14,58 @@ self.addEventListener("install", e => {
 
 self.addEventListener("activate", e => {
 
+  e.waitUntil(
+
+    caches.keys().then(keys => {
+
+      return Promise.all(
+        keys.map(key => {
+
+          if (key !== CACHE)
+            return caches.delete(key);
+
+        })
+
+      );
+
+    })
+
+  );
+
   self.clients.claim();
 
 });
-
-
 
 
 self.addEventListener("fetch", e => {
 
   const url = new URL(e.request.url);
 
-
-  // ❌ IMPORTANT : IGNORER API
-  if (url.hostname.includes("onrender.com")) {
-    return; // laisse le navigateur fetch normalement
-  }
+  if (url.hostname.includes("onrender.com"))
+    return;
 
 
-  // pages React
   if (e.request.mode === "navigate") {
 
     e.respondWith(
+
       fetch(e.request)
+
+        .then(res => {
+
+          const copy = res.clone();
+
+          caches.open(CACHE)
+            .then(cache => cache.put("/index.html", copy));
+
+          return res;
+
+        })
+
         .catch(() => caches.match("/index.html"))
+
     );
 
-    return;
   }
-
-
-
-  // static files seulement
-  e.respondWith(
-
-    caches.match(e.request)
-
-      .then(res => {
-
-        return res || fetch(e.request)
-
-          .then(response => {
-
-            const copy = response.clone();
-
-            caches.open(CACHE)
-              .then(cache => cache.put(e.request, copy));
-
-            return response;
-
-          });
-
-      })
-
-  );
 
 });
