@@ -2868,8 +2868,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	};
 	
 	
-	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=photoBlanche } = profile; // infos du profil
+	//const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
+	const { nameAccount="Compte inconnu", photoProfile=photoBlanche } = data; // infos du profil
 	
 	return (<>
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}

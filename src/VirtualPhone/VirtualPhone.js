@@ -35461,7 +35461,7 @@ const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate,
 
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
-  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompteById, idCompte, listVideoFA,
+  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
   rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA,
   profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
