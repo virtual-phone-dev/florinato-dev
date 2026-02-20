@@ -35261,6 +35261,7 @@ const {
 	infosCompte_by_id: infosCompteById, 
 	infosCompteConnecter_by_id: infosCompteConnecterById, 
 	
+	setToutesDonnees,
 	gererScroll: gererScrollComptes 
 } = useScrollIndexedDB({
 	nomStockage: "comptes", 
@@ -35365,6 +35366,7 @@ socket.on("message:misAJour", (element) => {
 	socket.off("message:misAJour");
   };
 }, [setToutesDonnees]);
+
 
 /* CE QUE TU AS BIEN FAIT
 
