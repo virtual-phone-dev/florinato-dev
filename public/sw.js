@@ -1,4 +1,4 @@
-const CACHE = "florinato-cache-v3";
+const CACHE = "florinato-cache-v4";
 
 self.addEventListener("install", e => {
 
