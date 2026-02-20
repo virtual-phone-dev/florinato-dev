@@ -2680,7 +2680,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 	
 	
 	const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, online, badge } = profile; // infos du profil
+	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, online, derniereConnexion, badge } = profile; // infos du profil
 	
 	
 	return (<>
@@ -2699,6 +2699,8 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 				{destinataireOnline ? (<>
 				<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div> </>):(<>
                 <div className="bb"> <p>{dateParserLong(online)} (Dernière connexion)</p> </div> </>)}
+				
+				<div className="bb"> <p>{dateParserLong(derniereConnexion)} derniereConnexion</p> </div> 
               </div>
               {/* c */}
             </div>
