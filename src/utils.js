@@ -2873,7 +2873,14 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
         <div className="body">
 			{/* on affiche la video */}
 			<div className="block-video">
-				<video ref={videoRef} autoPlay muted loop controls> <source src={urlVideo} type="video/mp4"/> </video>
+				<video ref={videoRef} autoPlay muted controls
+					onEnded={(e) => {
+						e.target.currentTime = 0;
+						e.target.play();
+					}}
+				>
+					<source src={urlVideo} type="video/mp4"/> 
+				</video>
 			</div>
 			
 			<div className="display-flex"> 
