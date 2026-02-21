@@ -40,9 +40,6 @@ const dateParserLong = (date) => {
 };
 
 
-const dev = localStorage.getItem("dev"); 
-
-
 
 /* 
 https://www.youtube.com/shorts/k68cyq1OnVY
