@@ -537,26 +537,32 @@ export async function EnvoyerFAA3({ urlApi, id, idUser, urlPhoto, urlVideo, visi
 }
 
 
-export async function envoyerPUT({ id, visible, type, url, clic, ...donnees }) {
-	const data = {
-	  ...(id !== undefined && { id }),
-	  ...(visible !== undefined && { visible }),
-	  ...(type !== undefined && { type }),
-	  ...(clic !== undefined && { clic }),
-	  //if (urlVideo !== undefined) data.urlVideo = urlVideo;
-	  ...donnees
-	};
+export async function envoyerPUT({ id, nouveauUrl, file, dataPUT }) {
+  try {
+    let urlVideoAdapter;
+    let urlPhotoConverti;
+	
+    if (nouveauUrl !== undefined) { urlVideoAdapter = await AdapterLien(nouveauUrl); }
+    if (file !== undefined) { urlPhotoConverti = await uploadImageConverti(file); }
 
-	for (const api of apiUrlsPUT) {
-		try {
-		  const fullUrl = `${api}/${id}`;
-		  const res = await axios.put(fullUrl, data);
-		  return res.data; // Retourne la réponse de l'API
-		} catch (err) {
-		  // Passer à l'API suivante en cas d'erreur
-		}
+    const data = {
+      ...(nouveauUrl !== undefined && { urlVideo: urlVideoAdapter }),
+      ...(file !== undefined && { urlPhoto: urlPhotoConverti }),
+      ...(dataPUT ?? {}),
+    };
+
+    for (const api of apiUrlsPUT) {
+      try {
+		const fullUrl = `${api}/${id}`;
+        const res = await axios.put(fullUrl, data);
+        return res.data; // Retourne la réponse de l'API
+      } catch {
+		// Passer à l'API suivante en cas d'erreur  
 	  }
-	  throw new Error('Toutes les tentatives envoyerPUT ont échoué avec toutes les url');
+    }
+
+    throw new Error("Toutes les tentatives envoyerPUT ont échoué avec toutes les url");
+  } catch (err) { console.log("Erreur envoyerPUT :", err); }
 }
 //envoyerPUT
 
@@ -735,7 +741,8 @@ export async function uploadImageConverti(file) {
 }
 
 
-export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAccount, nameAccount, photoAccount, nouveauUrl, idPost, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
+export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAccount, nameAccount, photoAccount, nouveauUrl, 
+	idPost, badgeAccount, idAccountChef, idGroupChef, clic, comment, account, group, visible, type, url }) {
 	
 	let urlPhotoSauvegarder = null;
 

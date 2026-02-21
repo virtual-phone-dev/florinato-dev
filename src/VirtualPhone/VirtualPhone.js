@@ -13,7 +13,7 @@ import {
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	SeeVideoTemplate, SeePhotoTemplate,
-	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, getAllData, ValiderModificationLogique, rechercherAvecFuse, useScrollIndexedDB,
+	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB,
 	} from "../utils";
   
 import { missions } from "../missions";
@@ -36015,18 +36015,16 @@ async function ObtenirLesDonneesFA() {
 }
 
 
-async function ExecuterActionFA({ actions = ["post"], id, file, loader, dataPOST={}, dataPUT={} }) {
+async function ExecuterActionFA({ actions = ["post"], loader, id, file, nouveauUrl, dataPUT={}, dataPOST={} }) {
 	try { if (loader) loader(true);
 		
 	    for (const action of actions) {
 		  if (action === "post") { await envoyerPOST({ dataPOST }); }
-		  if (action === "put") { await ValiderModificationLogique({ id, file, dataPUT }) }
+		  if (action === "put") { await envoyerPUT({ id, file, nouveauUrl, dataPUT }) }
 		}
-
-		//await ObtenirLesDonneesFA();
-
 	} finally { if (loader) loader(false); }
 }
+
 
 
 // il verifie s'il faut faire un post ou un put
@@ -36144,28 +36142,12 @@ const [modifierUrlPage, setmodifierUrlPage] = useState(false);
 async function ModifierUrlPage() { setmodifierUrlPage(true); }
 async function CloseModifierUrlPage() { setmodifierUrlPage(false); }
 
-//logique pour enregistrer l'url modifier
-const [isLoading666ValiderUrl, setisLoading666ValideUrl] = useState(false);
+const [isLoading666ValiderUrl, setisLoading666ValideUrl] = useState(false); //logique pour enregistrer l'url modifier 
 const [ecrire666modifierUrl, setecrire666modifierUrl] = useState("");
 
-async function ValiderUrl() {
-	setisLoading666ValideUrl(true);
-	//const idPost = localStorage.getItem("idPost");
-	
-	const actions = { modifier: true, allData: true };
-		
-	await Envoyer3({ nouveauUrl: ecrire666modifierUrl, idPost, actions });
-	setisLoading666ValideUrl(false);
-	
-	/* if (actions.allData) {
-		const data = await getAllData();
-		if (data === null) { return; }
-		setApiMessageFA(data);
-		setApiMessageFAA(data);
-	  } */
-}
-// ValiderUrl
-	
+// modifier l'url de la video
+async function ValiderUrl() { await ExecuterActionFA({ id: idPost, nouveauUrl: ecrire666modifierUrl, loader:setisLoading666ValideUrl, actions: ["put"] }); }
+
 
 
   // application florinato
