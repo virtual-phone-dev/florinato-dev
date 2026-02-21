@@ -35379,7 +35379,7 @@ socket.on("message:misAJour", (element) => {
     socket.off("ecrire:fin");
 	socket.off("message:misAJour");
   };
-}, [setToutesDonnees]);
+}, [setToutesDonneesComptes, setToutesDonneesVideos]);
 
 
 /* CE QUE TU AS BIEN FAIT
