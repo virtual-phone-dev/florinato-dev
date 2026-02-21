@@ -1815,14 +1815,13 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 
 			{listAccount.map((api) => {
 			const isOnline = onlineUsers.includes(api._id);
-			return (
-			
+			return (<>
 			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(api); }}>	
 				<PopularityAccountCard api={api} isOnline={isOnline}/>
 			</div>
 			
 			<InfosDev api={api} />
-			);
+			</>);
 			})}
 			
 			
@@ -2681,18 +2680,9 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 	}) {
 	if (!visible) return null;
 	
+	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, derniereConnexion, badge } = data; // infos du profil
 	
-	// const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, online, derniereConnexion, badge } = data; // infos du profil
-	
-	console.log("data", data);
-	console.log("nameAccount", nameAccount);
-	console.log("photoProfile", photoProfile);
-	console.log("derniereConnexion", derniereConnexion);
-	console.log("online", online);
-	console.log("badge", badge);
 
-	
 	return (<>
         <div className="messageFA" onScroll={gererScrollMessages}>
           <div className="close">
@@ -2708,9 +2698,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 
 				{destinataireOnline ? (<>
 				<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div> </>):(<>
-                <div className="bb"> <p>{dateParserLong(online)} (Dernière connexion)</p> </div> </>)}
-				
-				<div className="bb"> <p>++ {dateParserLong(derniereConnexion)} derniereConnexion</p> </div> 
+                <div className="bb"> <p>{dateParserLong(derniereConnexion)} (Dernière connexion)</p> </div> </>)}
               </div>
               {/* c */}
             </div>
