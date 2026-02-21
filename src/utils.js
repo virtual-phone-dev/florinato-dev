@@ -1825,7 +1825,6 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			})}
 			
 			
-			
 			<div className="api2">
 			{listMesComptes.map((api) => (
 			<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); }}>
