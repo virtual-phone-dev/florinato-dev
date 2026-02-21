@@ -7,13 +7,13 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 
 import "../utils.css"; 
-
+ 
 import { 
 	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	SeeVideoTemplate, SeePhotoTemplate,
-	GenererMiniatureVideo, SpeedMessages, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB,
+	GenererMiniatureVideo, SpeedMessages, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB, AdapterLien
 	} from "../utils";
   
 import { missions } from "../missions";
@@ -35484,7 +35484,7 @@ const SeeVideoTemplatePropsCommun = {
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
   rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA,
   profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
-  CommenterPageFA, ModifierUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
+  CommenterPageFA, ModifierUrlPage, ReparerUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
   setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
 };
 
@@ -36157,6 +36157,27 @@ const [ecrire666modifierUrl, setecrire666modifierUrl] = useState("");
 async function ValiderUrl() { await ExecuterActionFA({ id: idPost, nouveauUrl: ecrire666modifierUrl, loader:setisLoading666ValideUrl, actions: ["put"] }); }
 
 
+
+//page pour reparer l'url de la video
+const [reparerUrlPage, setReparerUrlPage] = useState(false);
+async function ReparerUrlPage() { setReparerUrlPage(true); }
+async function CloseReparerUrlPage() { setReparerUrlPage(false); }
+const [isLoading666ReparerUrl, setisLoading666ReparerUrl] = useState(false); 
+
+// logique pour reparer l'url de la video
+
+//async function ReparerUrl() { await ExecuterActionFA({ id: idPost, nouveauUrl: urlVideo, loader:setisLoading666ReparerUrl, actions: ["put"] }); }
+async function ReparerUrl() {
+    if (!urlVideo) return;
+	
+    const newUrl = await AdapterLien(urlVideo);
+	await ExecuterActionFA({ id: idPost, nouveauUrl: newUrl, loader:setisLoading666ReparerUrl, actions: ["put"] });
+    setUrlVideo(newUrl); // recharge video locale instantanément
+	console.log("newUrl", newUrl);
+}
+	
+	
+	
 
   // application florinato
   const [florinatoApp, setFlorinatoApp] = useState(false);
@@ -51434,19 +51455,24 @@ function rechargerPage() {
     {/* page pour modifier l'url  */}
 	<ModifierTemplate 
 		visible={modifierUrlPage} fermer={CloseModifierUrlPage} titre="Modifier l'url de la vidéo" infos={urlVideo}
-		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl />
-		
+		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl textarea />
 	
+	{/* reparer l'url  */} 
+	<ModifierTemplate 
+		visible={reparerUrlPage} fermer={CloseReparerUrlPage} titre="Réparer l'url de la vidéo automatiquement (url Dropbox)" textbtn="Réparer" infos={urlVideo}
+		Valider={ReparerUrl} isLoading={isLoading666ReparerUrl} changerUrl />
+		
+		
 	<ModifierTemplate 
 		visible={commenterPageFA} fermer={CloseCommenterPageFA} titre="Commenter la vidéo" texte = "Écrivez votre commentaire ..." infos={titreFA} 
 		valeur={ecrireCommentaireFA} setValeur={setEcrireCommentaireFA} Valider={CommenterFA} isLoading={isLoading666CommenterFA} profilMap={profilMap} 
-		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl lesCommentaires 
+		data={filterCommentaireFA} setIdCommentaire={setIdCommentaire} setIdProprietaireCommentaire={setIdProprietaireCommentaire} changerUrl textarea lesCommentaires 
 		RepondrePage={RepondrePageFA} />
 		
 		
 	<ModifierTemplate 
 		visible={modifierTitrePageFA} fermer={CloseModifierTitrePageFA} titre="Modifier le titre de la vidéo" texte = "Écrivez le titre ..." infos={titreFA} 
-		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl />
+		valeur={nouveauTitre} setValeur={setNouveauTitre} Valider={ModifierTitreFA} isLoading={isLoading666ModifierTitreFA} changerUrl textarea />
 		
 	
 	<ModifierTemplate 

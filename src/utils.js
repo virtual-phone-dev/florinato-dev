@@ -2012,7 +2012,7 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, pro
 
 
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire, profilMap,
-	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires, RepondrePage }) {
+	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", textbtn="Valider", textarea, transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires, RepondrePage }) {
 		
 	if (!visible) return null;
 	return (
@@ -2025,11 +2025,9 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  {changerUrl && (<>
 			  <pre className="pre-13px-center">{infos}</pre> 
 			  
-			  <AutoTextarea valeur={valeur} setValeur={setValeur} texte={texte} />
+			  {textarea && (<>
+			  <AutoTextarea valeur={valeur} setValeur={setValeur} texte={texte} /> </>)}
 			  
-              {/* <div className="textarea">
-                <textarea value={valeur} onChange={(e) => setValeur(e.target.value)} placeholder={texte} />
-              </div> */}
 			  </>)}
 			  
 			  
@@ -2037,7 +2035,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  <VideoMiniatureTemplate transVoirMiniature={transVoirMiniature} miniature={miniature} setFileVideo={setFileVideo} second={second} setSecond={setSecond}/> )}
 			  
               {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
-              ):(<div className="btn-bleu"> <button onClick={Valider}>Valider</button> </div> )}
+              ):(<div className="btn-bleu"> <button onClick={Valider}>{textbtn}</button> </div> )}
 			  
 			  {lesCommentaires && (<>
 			  {data.map((api) => (
@@ -2832,9 +2830,9 @@ export async function goFullScreen(mediaRef) {
  
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY,
-	rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage,
+	rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage, 
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
-	ModifierTitrePageFA, ModifierUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
+	ModifierTitrePageFA, ModifierUrlPage, ReparerUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
 	}) {
 	const videoRef = useRef(null);
 	
@@ -2885,6 +2883,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 				<p onClick={ModifierTitrePageFA} className="p-14px-ccc-esp">Modifier le Titre</p>
 				<p onClick={ChangerMiniaturePage} className="p-14px-ccc-esp">Changer la Miniature</p>
 				<p onClick={ModifierUrlPage} className="p-14px-ccc-esp">Modifier l'url</p>
+				<p onClick={ReparerUrlPage} className="p-14px-ccc-esp">Réparer l'url</p>
 				<p className="p-14px-ccc-esp">Supprimer le post</p>
 			</div>
 			
