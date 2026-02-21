@@ -1820,9 +1820,9 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(api); }}>	
 				<PopularityAccountCard api={api} isOnline={isOnline}/>
 			</div>
-			);
 			
 			<InfosDev api={api} />
+			);
 			})}
 			
 			
