@@ -785,6 +785,35 @@ export async function Envoyer3({ file, id, message, actions = {}, urlVideo, idAc
 // adapter le lien en un lien video github, gitlab, dropbox, drive
 export async function AdapterLien(url) {
   if (!url) return '';
+  let newUrl = url;
+
+  // dropbox 
+  if (newUrl.includes("dropbox.com")) {
+    newUrl = newUrl.replace( // remplacer domaine
+      "www.dropbox.com",
+      "dl.dropboxusercontent.com"
+    );
+
+    newUrl = newUrl.replace("dl=0", "raw=1"); // remplacer dl=0 ou dl=1
+    newUrl = newUrl.replace("dl=1", "raw=1");
+    
+    if (!newUrl.includes("raw=1")) { // si aucun paramètre raw présent
+      if (newUrl.includes("?")) { newUrl += "&raw=1"; } 
+	  else { newUrl += "?raw=1"; }
+    }
+  }
+
+  // github
+  if (newUrl.includes("github.com") && newUrl.includes("/blob/")) {
+    newUrl = newUrl.replace("/blob/", "/raw/");
+  }
+
+  return newUrl;
+}
+
+
+/* export async function AdapterLien(url) {
+  if (!url) return '';
   
   // Dropbox : dl=0 → raw=1
   if (url.includes('dl=0')) {
@@ -798,55 +827,9 @@ export async function AdapterLien(url) {
 
   // Ajoute d'autres cas si nécessaire (GitLab, Drive, etc.)
   return url;
-}
+}*/
 
 
-/*
-function openDB() {
-  return new Promise((resolve, reject) => {
-    const request = indexedDB.open("MessagesDB", 1);
-
-    request.onupgradeneeded = (e) => {
-      const db = e.target.result;
-      if (!db.objectStoreNames.contains("messages")) {
-        db.createObjectStore("messages", { keyPath: "_id" });
-      }
-    };
-
-    request.onsuccess = () => resolve(request.result);
-    request.onerror = () => reject(request.error);
-  });
-}
-
-
-export async function saveMessagesToIndexedDB(messages = []) {
-  if (!Array.isArray(messages)) return;
-
-  const db = await openDB();
-  const tx = db.transaction("messages", "readwrite");
-  const store = tx.objectStore("messages");
-
-  messages.forEach(msg => {
-    store.put(msg);
-  });
-
-  return new Promise(resolve => {
-    tx.oncomplete = () => resolve(true);
-  });
-}
-
-
-export async function getMessagesFromIndexedDB() {
-  const db = await openDB();
-  const tx = db.transaction("messages", "readonly");
-  const store = tx.objectStore("messages");
-
-  return new Promise(resolve => {
-    const request = store.getAll();
-    request.onsuccess = () => resolve(request.result || []);
-  });
-}
-*/
 
 
 export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
