@@ -567,22 +567,31 @@ export async function envoyerPUT({ id, nouveauUrl, file, dataPUT }) {
 //envoyerPUT
 
 
-export async function envoyerPOST({ visible, dataPOST, donnees }) {
-	const data = {
-	  ...(visible !== undefined && { visible }),
-	  ...(dataPOST ?? {}),
-	  ...donnees
-	};
+export async function envoyerPOST({ file, urlVideo, dataPOST={} }) {
+  try {
+    let urlPhotoConverti;
+    let urlVideoAdapter;
 
-	for (const api of apiUrlsPOST) {
-		try {
-		  const res = await axios.post(api, data);
-		  return res.data; // Retourne la réponse de l'API
-		} catch (err) {
-		  // Passer à l'API suivante en cas d'erreur
-		}
+    if (file !== undefined) { urlPhotoConverti = await uploadImageConverti(file); }
+    if (urlVideo !== undefined) { urlVideoAdapter = await AdapterLien(urlVideo); }
+
+    const data = {
+      ...(urlPhotoConverti !== undefined && { urlPhoto: urlPhotoConverti }),
+      ...(urlVideoAdapter !== undefined && { urlVideo: urlVideoAdapter }),
+      ...(dataPOST ?? {}),
+    };
+
+    for (const api of apiUrlsPOST) {
+      try {
+        const res = await axios.post(api, data);
+        return res.data; // Retourne la réponse de l'API
+      } catch {
+		// Passer à l'API suivante en cas d'erreur
 	  }
-	  throw new Error('Toutes les tentatives envoyerPOST ont échoué avec toutes les url');
+    }
+
+    throw new Error("Toutes les tentatives envoyerPOST ont échoué avec toutes les url");
+  } catch(err) { console.log("Erreur envoyerPOST :", err); }
 }
 //envoyerPOST
 

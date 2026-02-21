@@ -13,7 +13,7 @@ import {
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
 	SeeVideoTemplate, SeePhotoTemplate,
-	GenererMiniatureVideo, SpeedMessages, Envoyer3, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB,
+	GenererMiniatureVideo, SpeedMessages, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB,
 	} from "../utils";
   
 import { missions } from "../missions";
@@ -35973,7 +35973,19 @@ const [ecrireTitre, setecrireTitre] = useState(""); //titre de la video
 const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
 
 
-//logique pour envoyer ou publier une video
+//logique pour envoyer ou publier une video - FA
+async function EnvoyerVideoFAA() {
+  await ExecuterActionFA({ file:miniatureFA, urlVideo:lienDropbox, loader: setisLoading666EnvoyerVideoFAA, actions: ["post"],
+    dataPOST: {
+      message: ecrireTitre,
+      idAccount: idPersonConnectedFA,
+      idAccountChef: idPersonConnectedFA,
+      clic:0, account:1, type:3
+    }, });
+}
+
+
+/*
 async function EnvoyerVideoFAA() { 
 	setisLoading666EnvoyerVideoFAA(true);
 	const actions = { envoyerPhoto: true, publierVideo: true };
@@ -35998,7 +36010,7 @@ async function EnvoyerVideoFAA() {
 	//if (actions.allData) { await ObtenirLesDonneesFA(); }
 	  
 	setisLoading666EnvoyerVideoFAA(false);
-}
+} */
 // EnvoyerVideoFAA
 
 
@@ -36015,11 +36027,11 @@ async function ObtenirLesDonneesFA() {
 }
 
 
-async function ExecuterActionFA({ actions = ["post"], loader, id, file, nouveauUrl, dataPUT={}, dataPOST={} }) {
+async function ExecuterActionFA({ actions = ["post"], loader, id, file, nouveauUrl, urlVideo, dataPUT={}, dataPOST={} }) {
 	try { if (loader) loader(true);
 		
 	    for (const action of actions) {
-		  if (action === "post") { await envoyerPOST({ dataPOST }); }
+		  if (action === "post") { await envoyerPOST({ file, urlVideo, dataPOST }); }
 		  if (action === "put") { await envoyerPUT({ id, file, nouveauUrl, dataPUT }) }
 		}
 	} finally { if (loader) loader(false); }
@@ -36058,10 +36070,6 @@ async function MettreEnAvantFA() {
 // clic de la video
 async function ClicVideoFAA({ id, idOther, nombreClic }) {	
 	const clic = (Number(nombreClic) || 0) + 1; //type:204 il a cliqué sur la video 
-	/* console.log("nombreClic ", nombreClic);
-	console.log("clic ", clic); */
-	//console.log("idOther ", idOther);
-	//console.log("id ", id); 
 	await ExecuterActionFA({ dataPUT:{clic}, dataPOST: {idAccount, idOther, visible:1, id, type:204}, id, actions: ["post", "put"] });
 }
 		
