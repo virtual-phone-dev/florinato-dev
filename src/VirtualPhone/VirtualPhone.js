@@ -35075,11 +35075,6 @@ useEffect(() => {
 }, []); */
 
 
-/*
-const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(
-  localStorage.getItem("idPersonConnectedFA")
-); */
-
 
 // Socket
 //const socketRef = useRef(null); 
@@ -39471,6 +39466,9 @@ async function CloseConnexionPageAA() {
 						localStorage.setItem("idAccountChef", idAccount); 
 						localStorage.setItem("idGroupChef", idGroup); 
 						setIdPersonConnectedFA(idAccount);
+						
+						console.log("idPersonConnectedFA", idPersonConnectedFA);
+						console.log("idAccount", idAccount);
 					}
 					
                     const idUser = localStorage.getItem("idUser");
@@ -39847,6 +39845,9 @@ async function CloseConnexionPageAA() {
 						localStorage.setItem("idAccountChef", idAccount); 
 						localStorage.setItem("idGroupChef", idGroup); 
 						setIdPersonConnectedFA(idAccount);
+						
+						console.log("idPersonConnectedFA", idPersonConnectedFA);
+						console.log("idAccount", idAccount);
 					}
 
                     const idUser = localStorage.getItem("idUser");
@@ -40008,6 +40009,9 @@ async function CloseConnexionPageAA() {
 			if (idAccount) { 
 				localStorage.setItem("idPersonConnectedFA", idAccount); 
 				setIdPersonConnectedFA(idAccount);
+				
+				console.log("idPersonConnectedFA", idPersonConnectedFA);
+				console.log("idAccount", idAccount);
 			}
 
             const idUser = filterUser.map((api) => api._id); 
@@ -40055,7 +40059,13 @@ async function CloseConnexionPageAA() {
             console.log("numero deja inscrit");
 
             const idAccount = filterUser.map((api) => api.idAccount); //on enregistre l'idAccount pour le maintenir connecté !
-            if (idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
+			if (idAccount) { 
+				localStorage.setItem("idPersonConnectedFA", idAccount); 
+				setIdPersonConnectedFA(idAccount);
+				
+				console.log("idPersonConnectedFA", idPersonConnectedFA);
+				console.log("idAccount", idAccount);
+			}
 
             const idUser = filterUser.map((api) => api._id); 
             if (idUser) { localStorage.setItem("idUserConnectedFA", idUser); }
