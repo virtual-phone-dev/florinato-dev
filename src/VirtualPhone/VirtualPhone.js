@@ -34847,12 +34847,7 @@ async function DissadAA() {
 	fetchData();
   }, []);
   
-  
-  /*
-	useEffect(() => {
-	  console.log("apiMessageFA a changé :", apiMessageFA.length);
-	}, [apiMessageFA]); */
-  
+
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
@@ -35689,7 +35684,7 @@ async function SendMessageFAA() {
   
   
 async function SendMessageFAA(customConversationId = null) {
-	console.log("message:", writeMessage66messageFA);
+	//console.log("message:", writeMessage66messageFA);
 	
 	const messageText = writeMessage66messageFA;  
 	setWriteMessage66messageFA(""); // vider immédiatement (UX fluide)
@@ -35700,18 +35695,6 @@ async function SendMessageFAA(customConversationId = null) {
 	let destinataire = idDestinataire;
 	let idConversationreq = customConversationId ?? idConversation;
 	
-	console.log("messageText:", messageText);
-
-console.log("idExpediteur:", idExpediteur);
-
-console.log("idDestinataire:", idDestinataire);
-
-console.log("idConversation state:", idConversation);
-
-console.log("customConversationId:", customConversationId);
-
-console.log("socket:", socketRef.current);
-
 
   // ✅ CREER INVITE SI EXISTE PAS
   if (!expediteur) {
@@ -35742,9 +35725,9 @@ console.log("socket:", socketRef.current);
     type: "1",
   };
 
-  console.log("messageData", messageData); //FRONT : message envoyé au serveur
+  //console.log("messageData", messageData); //FRONT : message envoyé au serveur
   socketRef.current.emit("sendMessage", messageData);
-  console.log("SOCKET EMIT ENVOYÉ");
+  //console.log("SOCKET EMIT ENVOYÉ");
   
   setWriteMessage66messageFA("");
 }
@@ -35754,13 +35737,13 @@ console.log("socket:", socketRef.current);
 const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
 
 async function BeginConversationFA() { //logique pour debuter une conversation
-console.log("===== BeginConversationFA =====");
+/* console.log("===== BeginConversationFA =====");
 
 console.log("idExpediteur:", idExpediteur);
 
 console.log("idDestinataire:", idDestinataire);
 
-console.log("message:", writeMessage66messageFA);
+console.log("message:", writeMessage66messageFA); */
 
   if (!writeMessage66messageFA.trim()) return;
   setIsLoading66messageFA(true);
@@ -39483,10 +39466,11 @@ async function CloseConnexionPageAA() {
                     //on enregistre l'idAccount pour le maintenir connecté !
 					const idAccount = localStorage.getItem("idAccount");
                     const idGroup = localStorage.getItem("idGroup");
-                    if (idAccount) { 
+                    if (idAccount) {
 						localStorage.setItem("idPersonConnectedFA", idAccount);
 						localStorage.setItem("idAccountChef", idAccount); 
 						localStorage.setItem("idGroupChef", idGroup); 
+						setIdPersonConnectedFA(idAccount);
 					}
 					
                     const idUser = localStorage.getItem("idUser");
@@ -39862,6 +39846,7 @@ async function CloseConnexionPageAA() {
 						localStorage.setItem("idPersonConnectedFA", idAccount);
 						localStorage.setItem("idAccountChef", idAccount); 
 						localStorage.setItem("idGroupChef", idGroup); 
+						setIdPersonConnectedFA(idAccount);
 					}
 
                     const idUser = localStorage.getItem("idUser");
@@ -40019,7 +40004,11 @@ async function CloseConnexionPageAA() {
             console.log("numero deja inscrit");
 
             const idAccount = filterUser.map((api) => api.idAccount); //on enregistre l'idAccount pour le maintenir connecté !
-            if (idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
+            
+			if (idAccount) { 
+				localStorage.setItem("idPersonConnectedFA", idAccount); 
+				setIdPersonConnectedFA(idAccount);
+			}
 
             const idUser = filterUser.map((api) => api._id); 
             if (idUser) { localStorage.setItem("idUserConnectedFA", idUser); }
