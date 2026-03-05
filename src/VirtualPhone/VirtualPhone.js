@@ -40815,7 +40815,8 @@ async function CloseConnexionPageAA() {
   // ça c'est l'application X (page d'accueil)
   //const [xApp, setXApp] = useState(false); 
   async function XApp() {
-
+	const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+	
     if (idPersonConnectedFA) { // si la personne est connecté , on affiche pas la page d'inscription
       setFlorinatoApp(true);
       setTelephoneVirtuel(false);
