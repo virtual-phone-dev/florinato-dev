@@ -2820,14 +2820,15 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	}) {
 	const videoRef = useRef(null);
 	
+	
 	useEffect(() => { //Recharge la vidéo dès que l'URL change
 	  if (videoRef.current) {
 		videoRef.current.load(); // recharge la nouvelle vidéo
-		videoRef.current.play(); // relance la lecture automatiquement
+		videoRef.current.play().catch(() => {}); // relance la lecture automatiquement
 	  }
 	}, [urlVideo]); // à chaque changement de urlVideo
 	
-	if (!visible) return null;
+	if (!visible) return null; 
 
 	
 	const propsVideosCommunes = {
@@ -2851,14 +2852,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
         <div className="body">
 			{/* on affiche la video */}
 			<div className="block-video">
-				<video ref={videoRef} autoPlay muted controls
-					onEnded={(e) => {
-						e.target.currentTime = 0;
-						e.target.play();
-					}}
-				>
-					<source src={urlVideo} type="video/mp4"/> 
-				</video>
+				<video ref={videoRef} autoPlay muted controls loop> <source src={urlVideo} type="video/mp4"/> </video>
 			</div>
 			
 			<div className="display-flex"> 
