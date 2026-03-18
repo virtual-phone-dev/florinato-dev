@@ -1164,123 +1164,6 @@ function ChildApi66popularityAccountsPageFA({ api }) {
 //ChildApi 66popularityAccountsPageFA
 
 
-//on affiche les messages
-export function ChildApi66messageFA({ api }) {
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  const [checked, setChecked] = useState(false);
-  async function Checked() {
-    setChecked(!checked);
-
-    const photo = api.urlPhoto;
-    if(photo) { 
-      localStorage.setItem("urlPhoto", photo); 
-      localStorage.setItem("urlPhotoreq", photo); 
-    }
-
-    const video = api.urlVideo;
-    if(video) { 
-      localStorage.setItem("urlVideo", video); 
-      localStorage.setItem("urlVideoreq", video); 
-    }
-  }
-
-
-  // date envoie message
-  const dateParser = (date) => {
-    let newDate = new Date(date).toLocaleDateString("fr-FR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return newDate;
-  };
-
-  const one = "1";
-  const zero = "0";
-
-  // selectionner le message 
-  async function GoToselectedFA() {
-    localStorage.setItem("GoToselectedFA", one);
-    localStorage.setItem("GoToseePhotoFA", zero);
-  }
-
-  //voir la photo
-  async function GoToseePhotoFA() {
-    localStorage.setItem("GoToseePhotoFA", one);
-    localStorage.setItem("GoToselectedFA", zero);
-  }
-
-  const monMessage = api.idAccount === idPersonConnectedFA;  //si idAccount egale idPersonConnectedFA cela veut dire c'est mon message, sinon cela veut dire que c'est le message de l'autre
-
-  return (
-    <>
-    <div className="child" onClick={Checked}>
-
-      {/* message que j'ai recu) */}
-      {!monMessage && (<>
-      <div className="receiver">
-
-        {api.message && (<> {/* text */}
-        <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
-          
-        {api.type === "2" && (<> {/* photo */}
-        <div className="block-two">
-          <div className="a" onClick={GoToseePhotoFA}> <img src={api.urlPhoto} alt=""/> </div>
-          <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
-          <div className="c"> <p></p> <p>{dateParser(api.createdAt)}</p> </div>
-        </div> </>)}
-
-        {api.urlVideo && (<> {/* video */}
-        <div className="block-three">
-          <div className="a">
-            <div className="aa"> <img src={api.urlPhoto} alt=""/> </div>
-            <div className="bb"> <button><SvgPlay2/></button> </div>
-          </div>
-
-          <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
-        </div> </>)}
-        {/* block-three */}
-
-        <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
-      </div> </>)}
-      {/* receiver */}
-        
-
-        {/* mon message (message que j'ai envoyé) */}
-        {monMessage && (<>
-        <div className="sender">
-
-          {api.message && (<> {/* text */}
-          <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
-          
-          {api.type === "2" && (<> {/* photo */}
-          <div className="block-two">
-            <div className="a" onClick={GoToseePhotoFA}> <img src={api.urlPhoto} alt=""/> </div>
-            <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
-            <div className="c"> <p></p> <p>{dateParser(api.createdAt)}</p> </div>
-          </div> </>)}
-
-          {api.urlVideo && (<> {/* video */}
-          <div className="block-three">
-            <div className="a">
-              <div className="aa"> <img src={api.urlPhoto} alt=""/> </div>
-              <div className="bb"> <button><SvgPlay2/></button> </div>
-            </div>
-
-            <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
-          </div> </>)}
-          {/* block-three */}
-
-          <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
-        </div> </>)} 
-        {/* sender */}
-    </div>
-    </>
-  );
-}
-//ChildApi66messageFA
 
 
 //on affiche les messages privés dans l'application x
@@ -35506,28 +35389,10 @@ const ComptesRecentsPropsCommun = {
 
   // verifier s'il existe une conversation avec l'autre utilisateur
   // on verifie en fonction de l'idAccount
-  /* const dataConversation1 = apiMessageFA.filter((api) => api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire && api.type === "30");
-  const verifyConversation1 = dataConversation1.length > 0;
+  // le truc, le code ci-dessous je navais pas commenter ca, donc je ne pas dabord si je peux lui donner les commentaires ci-dessus
 
-  //on verifie en fonction de l'idOther
-  const dataConversation2 = apiMessageFA.filter((api) => api.idOther === idPersonConnectedFA && api.idAccount === idDestinataire && api.type === "30");
-  const verifyConversation2 = dataConversation2.length > 0;
-  
 
-useEffect(() => {
-  if (verifyConversation1) {
-    setIdConversation(dataConversation1[0]._id);
-  }
-  
-  else if (verifyConversation2) {
-    setIdConversation(dataConversation2[0]._id);
-  }
 
-  else { setIdConversation("0"); }   //j'ai mis ça pour annuler l'idConversation stocké dans le state pour que ça ne puisse pas afficher des messages lorsque je clique sur un compte avec lequel on a jamais eu à causer 
-  
-}, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
-
-*/
 
 const dataConversation1 = useMemo(() =>
   apiMessageFA.filter(
@@ -35567,122 +35432,17 @@ useEffect(() => {
 }, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
 
 
-/*
-useEffect(() => {
-
-	console.log("===== USEEFFECT CONVERSATION =====");
-	console.log("dataConversation1:", dataConversation1);
-	console.log("dataConversation2:", dataConversation2);
-}, [dataConversation1, dataConversation2]); */
 
 
-// on veut generer un identifiant pour permettre aux personnes qui n'ont pas de compte d'envoyer des messages
-//const nomsHumains = ["jennifer", "anna", "ciel", "alex", "sam", "lina", "marc", "nina", "leo", "sarah"]; // noms possibles (lisibles)
-/*
-async function SendMessageFAA() {
-  if (!writeMessage66messageFA.trim()) return;
-  if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
+// logique pour envoyer un message privé sur florinato
+const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
+const [partagerContactFA, setPartagerContactFA] = useState(false);
 
-  let idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  let nameFA = localStorage.getItem("nameAccountFA") || "Invité";
-
-  // ✅ 1. Si pas d'identifiant → créer un document invité
-  if (!idPersonConnectedFA) {
-    try {
-      // choisir un nom humain lisible
-      const nomHumain = nomsHumains[Math.floor(Math.random() * nomsHumains.length)];
-
-      // POST pour créer le document invité
-      const response = await fetch("/api/invite", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ nomHumain })
-      });
-      const invite = await response.json(); // retourne le document créé avec _id
-
-      // créer l'identifiant unique lisible : nomHumain + _id
-      const identifiant = `${nomHumain}_${invite._id.slice(-12)}`; // ex: jennifer_6e25fg25yhh
-
-      // PUT pour mettre à jour le document avec identifiant
-      await fetch(`/api/invite/${invite._id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ identifiant })
-      });
-
-      // enregistrer localement pour réutilisation
-      localStorage.setItem("idPersonConnectedFA", invite._id);
-      localStorage.setItem("identifiantFA", identifiant);
-      localStorage.setItem("nameAccountFA", nomHumain);
-      localStorage.setItem("isGuestFA", "1");
-
-      idPersonConnectedFA = invite._id;
-      nameFA = nomHumain;
-
-      console.log("Identifiant invité créé :", identifiant);
-    } catch (error) {
-      console.error("Erreur création identifiant invité :", error);
-      return;
-    }
-  }
-
-  // ✅ 2. Envoyer le message
-  const messageData = {
-    idConversation,
-    idOther,
-    idAccount: idPersonConnectedFA,
-    nameAccount: nameFA,
-    photoAccount: photoFA,
-    badgeAccount: badgeFA,
-    message: writeMessage66messageFA,
-    type: "1",
-    visible: "1",
-    createdAt: new Date().toISOString()
-  };
-
-  console.log("Envoi du message :", messageData);
-
-  socketRef.current.emit("sendMessage", messageData);
-  setWriteMessage66messageFA("");
-}
-*/
-
-
-
-
-
-  // logique pour envoyer un message privé sur florinato
-  const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
-  
-/*
-  async function SendMessageFAA() {
-    if (!writeMessage66messageFA.trim()) return;
-	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
-	const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-	
-	
-    const messageData = {
-	  idConversation,
-	  idOther,
-      idAccount: idPersonConnectedFA,
-      message: writeMessage66messageFA,
-      type: "1",
-      visible: "1",
-    };
-	
-	console.log("Envoi du message :", messageData); //FRONT : message envoyé au serveur
-	
-	socketRef.current.emit("sendMessage", messageData);
-    setWriteMessage66messageFA("");
-  }; */
-  
-  
   
 async function SendMessageFAA(customConversationId = null) {
-	//console.log("message:", writeMessage66messageFA);
 	
 	const messageText = writeMessage66messageFA;  
-	setWriteMessage66messageFA(""); // vider immédiatement (UX fluide)
+	setWriteMessage66messageFA(""); // vider immédiatement
   
 	if (!writeMessage66messageFA.trim()) return;
 	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
@@ -35712,33 +35472,27 @@ async function SendMessageFAA(customConversationId = null) {
     } catch (error) { console.error("Erreur création invité", error); return; }
   }
   
-  const messageData = { // ENVOI du message
-    idConversation: idConversationreq,
+  const messageData = { // ✅BASE COMMUNE
+    idConversation: idConversationreq, // ENVOI du message
     idAccount: expediteur,
     idOther: destinataire,
     message: messageText,
-    type: "1",
+	type: partagerContactFA ? "74" : "1",
   };
-
-  //console.log("messageData", messageData); //FRONT : message envoyé au serveur
-  socketRef.current.emit("sendMessage", messageData);
-  //console.log("SOCKET EMIT ENVOYÉ");
   
+  if (partagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
+
+  socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur  
   setWriteMessage66messageFA("");
+  if (partagerContactFA) setPartagerContactFA(false);
 }
 
   
- 
+  
+//logique pour debuter une conversation
 const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
 
-async function BeginConversationFA() { //logique pour debuter une conversation
-/* console.log("===== BeginConversationFA =====");
-
-console.log("idExpediteur:", idExpediteur);
-
-console.log("idDestinataire:", idDestinataire);
-
-console.log("message:", writeMessage66messageFA); */
+async function BeginConversationFA() { 
 
   if (!writeMessage66messageFA.trim()) return;
   setIsLoading66messageFA(true);
@@ -35755,7 +35509,6 @@ console.log("message:", writeMessage66messageFA); */
 
     const idConversation = res.data._id;
 	setIdConversation(idConversation);	
-	
     console.log("Conversation créée :", idConversation);
 
     // ✅ envoyer message via socket
@@ -41281,7 +41034,7 @@ async function CloseConnexionPageAA() {
   // page pour envoyer un message personnel - FA 
   const [messageFA, setMessageFA] = useState(false); 
   async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
-  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setPartagerContactPageFA(false); }
 
 
   //PageRedirection 66ChildApi66messageFA
@@ -41767,27 +41520,18 @@ async function CloseConnexionPageAA() {
     }//if(idPersonConnectedFA)
 }
 //AddPhoto66favorite66messageFA
-  
 
 
-  // envoyer un contact par message - FA
-  const [envoyerContactFA, setEnvoyerContactFA] = useState(false); 
-  async function EnvoyerContactFA() {
-    setEnvoyerContactFA(true);
-  }
-  async function CloseEnvoyerContactFA() {
-    setEnvoyerContactFA(false);
-  }
+  // partager un contact par message - FA
+  const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); 
+  async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
+  async function ClosePartagerContactPageFA() { setPartagerContactPageFA(false); }
 
 
   // on affiche les favoris au niveau des messages 
   const [favorite66messageFA, setFavorite66messageFA] = useState(false); 
-  async function Favorite66messageFA() {
-    setFavorite66messageFA(true);
-  }
-  async function CloseFavorite66messageFA() {
-    setFavorite66messageFA(false);
-  }
+  async function Favorite66messageFA() { setFavorite66messageFA(true); }
+  async function CloseFavorite66messageFA() { setFavorite66messageFA(false); }
 
 
   //PageRedirection 66favorite66messageFA
@@ -51389,15 +51133,20 @@ function rechargerPage() {
 		  
 
 	<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
-
 	
+
+	<PopupDuBasTemplate 
+		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" 
+		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={MessageFA} setId={setId} search/>
+
+ 
 	<MessageTemplate 
 		visible={messageFA} fermer={CloseMessageFA}
 		gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 		PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
 		data={infosCompteById[0]} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
 		Favorite66messageFA={Favorite66messageFA} 
-		EnvoyerContactFA={EnvoyerContactFA} 
+		PartagerContactPageFA={PartagerContactPageFA} 
 		onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
 		verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
 		isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
@@ -51405,15 +51154,15 @@ function rechargerPage() {
 		
   
     
-	  <PageTemplate 
+	    <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} proprietaireCompte={false} />
 		  
-	<PageTemplate 
-		visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap} proprietaireCompte
-		titre="Gestionnaire - Listes des comptes ou vous avez été ajoutés" photo={photoFA} gestionnaireCompte={false} />
-	  
-	  <PageTemplate 
+		<PageTemplate 
+			visible={gestionnaireFA} fermer={CloseGestionnaireFA} data={filterAdminFA} profilMap={profilMap} proprietaireCompte
+			titre="Gestionnaire - Listes des comptes ou vous avez été ajoutés" photo={photoFA} gestionnaireCompte={false} />
+		  
+	    <PageTemplate 
 		  visible={mettreEnAvantCompteFA} fermer={CloseMettreEnAvantCompteFA} data={filterTopFA} profilMap={profilMap}
 		  clicSvg={OuvrirMettreEnAvantFApb} titre="Listes des comptes mis en avant" photo={photoFA} />
 		  
@@ -51422,16 +51171,15 @@ function rechargerPage() {
 		  clicSvg={OuvrirAdminFlorinatopb} titre="Listes des comptes ajoutés comme Admin Florinato" photo={photoFA} />
 		
 		
-		
-	  <PopupDuBasTemplate 
+	    <PopupDuBasTemplate 
 		  visible={publierSurVotreCompteFApb} fermer={ClosePublierSurVotreCompteFApb} photo={photoFA} titre="Ajouter un compte qui pourra publier sur votre compte" 
 		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={PublierSurVotreCompteFAconfp} setId={setId} search/>
 	  
-	  <PopupDuBasTemplate 
+	    <PopupDuBasTemplate 
 		  visible={mettreEnAvantFApb} fermer={CloseMettreEnAvantFApb} photo={photoFA} titre="Choisir le compte à mettre en avant" 
 		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={MettreEnAvantFAconfp} setId={setId} search/>
 	  
-	  <PopupDuBasTemplate 
+	    <PopupDuBasTemplate 
 		  visible={adminFlorinatopb} fermer={CloseAdminFlorinatopb} photo={photoFA} titre="Ajouter un compte qui sera admin Florinato" 
 		  listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirAdminFlorinatoconfp} setId={setId} search/>
 		  

@@ -1,11 +1,10 @@
 
-
-
 .pre {
   padding: 0;
   white-space: pre-wrap;
   word-wrap: break-word;
   cursor: pointer;
+  line-height: 1.5;
 }
 
 .btn-transparent {
@@ -23,14 +22,77 @@
 
 .c-a1a1aa { color: #a1a1aa; }
 
-.f-13px { font-size: 13px; }
-.f-14px { font-size: 14px; }
-.f-15px { font-size: 15px; }
+.fs-13px { font-size: 13px; }
+.fs-14px { font-size: 14px; }
+.fs-15px { font-size: 15px; }
+.fs-17px { font-size: 17px; }
 
 
 .ml-5px { margin-left: 5px; }
+.mr-5px { margin-right: 5px; }
+.mb-15px { margin-bottom: 15px; }
+
+.m-0-15 { margin: 0px 15px; }
+.m-25-15 { margin: 25px 15px; }
+.m-15 { margin: 15px 15px; }
+
 .pb-30px { padding-bottom: 30px; }
 
+.between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex { display: flex; }
+.tc { text-align: center; } /* text-center */
+
+
+.photo-70px img {
+  height: 70px;
+  width: 70px;
+  margin-left: 5px;
+  margin-right: 10px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.photo-200px-carre img {
+  height: 200px;
+  width: 200px;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.photo-70px-carre img {
+  height: 70px;
+  width: 70px;
+  border-radius: 5px;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.photo-25px img {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
+
+.photo-25px {
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #eee;
+  cursor: pointer;
+}
 
 
 .noir {
@@ -99,24 +161,6 @@
   padding-left: 20px;
   padding-right: 20px;
 }
-
-.between {
-  display: flex;
-  justify-content: space-between;
-}
-
-
-.flex { display: flex; }
-
-.tc { text-align: center; } /* text-center */
-
-
-.m-0-15 { margin: 0px 15px; }
-.m-25-15 { margin: 25px 15px; }
-
-.m-15 { margin: 15px 15px; }
-
-
 
 .display-nowrap {
   display: flex;
@@ -301,53 +345,6 @@
   display: flex;
   flex-wrap: nowrap;
   overflow-x: auto;
-}
-
-.photo-70px img {
-  height: 70px;
-  width: 70px;
-  margin-left: 5px;
-  margin-right: 10px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #eee;
-  cursor: pointer;
-}
-
-.photo-200px-carre img {
-  height: 200px;
-  width: 200px;
-  border-radius: 5px;
-  object-fit: cover;
-  border: 1px solid #eee;
-  cursor: pointer;
-}
-
-.photo-70px-carre img {
-  height: 70px;
-  width: 70px;
-  border-radius: 5px;
-  object-fit: cover;
-  border: 1px solid #eee;
-  cursor: pointer;
-}
-
-.photo-25px img {
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #eee;
-  cursor: pointer;
-}
-
-.photo-25px {
-  height: 25px;
-  width: 25px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 1px solid #eee;
-  cursor: pointer;
 }
 
 .textarea-css {

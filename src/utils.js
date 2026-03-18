@@ -12,8 +12,6 @@ import {
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
-
-// import investirPhoto from "./img/investir.jpg";
 import photoBlanche from "./img/photoBlanche.jpg";
 
 
@@ -427,6 +425,501 @@ https://www.youtube.com/watch?v=zZLTigQI0ZQ
 https://www.youtube.com/watch?v=v5nfmtFzvvk
 
 
+
+
+
+
+https://www.youtube.com/watch?v=PA1l1OHRJhg&pp=0gcJCSMKAYcqIYzv
+https://www.youtube.com/watch?v=gw7U5R16NoU
+https://www.youtube.com/watch?v=k3OvD9QObNE
+
+https://www.youtube.com/watch?v=vb3hY_QtVMI
+https://www.youtube.com/shorts/_mHzv4jM54c
+https://www.youtube.com/shorts/zgubwxNGfH0
+
+https://www.youtube.com/shorts/_mHzv4jM54c
+https://www.youtube.com/shorts/8aV6DWvpF9k
+https://www.youtube.com/shorts/e5QsX_oI_tM
+
+https://www.youtube.com/shorts/zH2zfnYELlE
+https://www.youtube.com/shorts/_mHzv4jM54c
+https://www.youtube.com/watch?v=pKkhH95QuXY&pp=ygUHZ2FudmnDqQ%3D%3D
+https://www.youtube.com/watch?v=36tSicCx8p8&pp=0gcJCTYZAYcqIYzv
+https://www.youtube.com/watch?v=Z37Faedq_e8&pp=ygULaWxlIG91Z2FuZGE%3D
+https://www.youtube.com/watch?v=K-CBcmuhQY4&pp=ygULaWxlIG91Z2FuZGE%3D
+https://www.youtube.com/watch?v=WAqj1gwjwZ8&pp=ygUMcHJvc3RpdHV0aW9u
+https://www.youtube.com/watch?v=AuA6iJUb_-I&pp=ygUMcHJvc3RpdHV0aW9u
+https://www.youtube.com/watch?v=dpOr6lB4Mxc&pp=ygUMcHJvc3RpdHV0aW9u
+https://www.youtube.com/watch?v=LhmHQ74tIFg&pp=ygUMcHJvc3RpdHV0aW9u
+https://www.youtube.com/watch?v=dZHh1M87IU8&rco=1
+https://www.youtube.com/watch?v=VO6iOXnftUo
+https://www.youtube.com/watch?v=CF1fHdH-_Jo&pp=ygUPZmVtbWUgZGUgbGEgcnVl
+https://www.youtube.com/watch?v=vaup8zjaUf8
+https://www.youtube.com/watch?v=Krr1cpvvGrM&pp=ygUYY29tbXVuYXV0ZSAsIGFncmljdWx0dXJl
+https://www.youtube.com/watch?v=Q6XIC6AIND0
+https://www.youtube.com/watch?v=UzFlys09u2A&pp=ygUPZmlsbGUgZGUgbGEgcnVl
+https://www.youtube.com/watch?v=piRLlM-qROY
+https://www.youtube.com/watch?v=IFP9dghniPQ&pp=ygUPZmVtbWUgZGUgbGEgcnVl
+https://www.youtube.com/watch?v=2ys2zvSYflw&pp=ygUPZmVtbWUgZGUgbGEgcnVl
+
+https://www.youtube.com/watch?v=w0iYOKQaEVU&pp=ygUJZmVtbWUgc2Rm
+https://www.youtube.com/watch?v=nHEemvSsWU0&pp=ygUJZmVtbWUgc2Rm
+https://www.youtube.com/watch?v=kMxwQr0iwNc&pp=ygUPZmVtbWUgZGUgbGEgcnVl
+
+https://www.youtube.com/watch?v=yiJbFbgxTXI&pp=ygUMbWFpc29uIGNsb3Nl
+
+https://www.youtube.com/watch?v=uTrKYGc8eoU&pp=ygUMbWFpc29uIGNsb3Nl
+
+https://www.youtube.com/watch?v=1Fw4Nzr_YdU&pp=ygUPZmlsbGUgZGUgbGEgcnVl
+
+
+https://www.youtube.com/watch?v=nRaOnPQyDug&t=91s&pp=ygUPZmlsbGUgZGUgbGEgcnVl
+https://www.youtube.com/watch?v=uIgzlIh3UUs
+https://www.youtube.com/watch?v=dpOr6lB4Mxc&pp=ygUMcHJvc3RpdHV0aW9u
+https://www.youtube.com/watch?v=xsstYJjqG4Y
+https://www.youtube.com/watch?v=87VgLUwtOCU
+https://www.youtube.com/watch?v=nEh3CtNbyrk
+
+https://www.youtube.com/watch?v=xsstYJjqG4Y
+https://www.youtube.com/watch?v=1Fw4Nzr_YdU
+https://www.youtube.com/watch?v=ssaioJPwEa4&pp=0gcJCSMKAYcqIYzv
+https://www.youtube.com/watch?v=V-kYmPydrqs
+
+https://www.youtube.com/watch?v=HWyENtwbtXs
+https://www.youtube.com/watch?v=hNZtUuWjq3g
+https://www.youtube.com/watch?v=nuBUZhPlp3A
+
+https://www.youtube.com/watch?v=pKkhH95QuXY&t=61s&pp=0gcJCSMKAYcqIYzv
+https://www.youtube.com/watch?v=BytTJvfCVF4
+https://www.youtube.com/watch?v=njpeAUgBTmE
+
+https://www.youtube.com/watch?v=FcAGa66KolI
+
+*cameroun
+
+daphne 
+https://www.youtube.com/watch?v=VyhBD8Ji09E&pp=ygURZGFwaG5lIGFjb3VzdGlxdWXSBwkJFQoBhyohjO8%3D
+
+
+
+lydol
+
+https://www.youtube.com/watch?v=VaHiBD6aVGY&pp=ygUSbHlkb2wgLSBhY291c3RpcXVl
+
+
+minks
+https://www.youtube.com/watch?v=bBFNHjX2KA0
+https://www.youtube.com/watch?v=15nfx2JZR50
+mink's freestyle
+
+
+krys m
+
+
+https://www.youtube.com/watch?v=W1jquduihZo&pp=ygUTa3J5cyBtIC0gYWNvdXN0aXF1ZQ%3D%3D
+
+https://www.youtube.com/watch?v=TJ7gMDDN8hY
+https://www.youtube.com/watch?v=qby_Ivt-L_0&pp=ygUTa3J5cyBtIC0gYWNvdXN0aXF1ZQ%3D%3D
+https://www.youtube.com/watch?v=dxkgV2ryNZo&pp=ygUTa3J5cyBtIC0gYWNvdXN0aXF1ZQ%3D%3D
+
+https://www.youtube.com/watch?v=AufbXHzAxTA&pp=ygUTa3J5cyBtIC0gYWNvdXN0aXF1ZQ%3D%3D
+
+
+
+charlotte dipanda
+
+https://www.youtube.com/watch?v=1QjZ_ssPg70&pp=ygUeY2hhcmxvdHRlIGRpcGFuZGEgLSBhY291c3RpcXVl
+
+
+
+
+manu dibango
+
+https://www.youtube.com/watch?v=0ztEAQ2Ct84&pp=ygUZbWFudSBkaWJhbmdvIC0gYWNvdXN0aXF1ZdIHCQkVCgGHKiGM7w%3D%3D
+https://www.youtube.com/watch?v=hkMn5ZipdbM&pp=ygUZbWFudSBkaWJhbmdvIC0gYWNvdXN0aXF1ZQ%3D%3D
+
+
+
+ks bloom
+
+https://www.youtube.com/watch?v=BlSijgb3c8I&pp=ygUVa3MgYmxvb20gLSBhY291c3RpcXVl
+
+
+
+
+
+
+
+santrinos
+
+
+
+
+
+
+
+https://www.youtube.com/watch?v=LPonFatKb_c
+
+
+
+https://www.youtube.com/watch?v=uUEmKSIfqSU&pp=ygUcU2FudHJpbm9zIFJhcGhhZWwgYWNvdXN0aXF1ZQ%3D%3D
+https://www.youtube.com/watch?v=KZz4EM0hPT8&pp=ygUcU2FudHJpbm9zIFJhcGhhZWwgYWNvdXN0aXF1ZdIHCQkVCgGHKiGM7w%3D%3D
+
+
+
+
+zeynab
+
+https://www.youtube.com/watch?v=orNmqdOYGPo&pp=ygURemV5bmFiIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=qVSFTA0UvDM&pp=ygURemV5bmFiIGFjb3VzdGlxdWU%3D
+
+
+
+fanicko
+
+https://www.youtube.com/watch?v=-fPN9TH_j54&pp=ygUSZmFuaWNrbyBhY291c3RpcXVl
+
+
+
+
+sessime
+
+https://www.youtube.com/watch?v=xUIRvTrSd3c&pp=ygUSc2Vzc2ltZSBhY291c3RpcXVl
+
+https://www.youtube.com/watch?v=SnO8npcH-As&pp=ygUSc2Vzc2ltZSBhY291c3RpcXVl
+
+https://www.youtube.com/watch?v=hjK2NeBxvzY&pp=ygUSc2Vzc2ltZSBhY291c3RpcXVl
+
+https://www.youtube.com/watch?v=752-hFHlgLY&pp=ygUSc2Vzc2ltZSBhY291c3RpcXVl
+
+
+https://www.youtube.com/watch?v=VSQh9R7Au7o&pp=ygUSc2Vzc2ltZSBhY291c3RpcXVl
+
+https://www.youtube.com/watch?v=cyKO6bhNQO0&pp=ygUSc2Vzc2ltZSBhY291c3RpcXVl
+
+
+
+
+
+nikanor
+
+https://www.youtube.com/watch?v=OWHtXJRu12I&pp=ygUSc2Vzc2ltZSBhY291c3RpcXVl
+
+
+
+
+
+ralycia
+
+https://www.youtube.com/watch?v=iaL1ftzElQc&pp=ygUScmFseWNpYSBhY291c3RpcXVl
+https://www.youtube.com/watch?v=sV9ZTaTp1bw&pp=ygUScmFseWNpYSBhY291c3RpcXVl
+
+https://www.youtube.com/shorts/vvMf-t1IK7w
+
+https://www.youtube.com/shorts/9JLHEmmoFFg
+https://www.youtube.com/watch?v=RCeRbcdsoKM&pp=ygUScmFseWNpYSBhY291c3RpcXVl
+
+https://www.youtube.com/watch?v=itTFC1Lz5tU&pp=ygUScmFseWNpYSBhY291c3RpcXVl
+
+
+
+
+
+etane blex
+
+https://www.youtube.com/watch?v=3QjMSTWWW5g&pp=ygUScmFseWNpYSBhY291c3RpcXVl
+
+
+
+
+shan'l
+
+https://www.youtube.com/watch?v=xouioycaM0g&pp=ygURc2hhbidsIGFjb3VzdGlxdWU%3D
+
+
+https://www.youtube.com/watch?v=cz-v-SJe1kU&pp=ygURc2hhbidsIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=PMa30MFlsF0&pp=ygURc2hhbidsIGFjb3VzdGlxdWU%3D
+
+
+*cote d'ivoire
+
+mc one
+https://www.youtube.com/watch?v=O_1aDqw5b5Q
+
+https://www.youtube.com/watch?v=Y3XNQFD5sSc
+
+https://www.youtube.com/watch?v=bVvXZcpjaKU
+
+
+
+
+dj arafat
+https://www.youtube.com/watch?v=OPYN7H1bBUw
+
+
+
+
+
+*congo
+
+zuko ya deble
+https://www.youtube.com/watch?v=D66xuTwUF8U&pp=ygUYenVrbyB5YSBkZWJsZSBhY291c3RpcXVl
+
+
+
+lema
+https://www.youtube.com/watch?v=vBOIrZpQ5rg&pp=ygUPbGVtYSBhY291c3RpcXVl
+
+
+
+
+paterne maestro 
+
+https://www.youtube.com/watch?v=XENUVpqzABE&pp=ygUacGF0ZXJuZSBtYWVzdHJvIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=j0xCCkYFybQ&pp=ygUacGF0ZXJuZSBtYWVzdHJvIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=hc5YLY5ZdWc&pp=ygUacGF0ZXJuZSBtYWVzdHJvIGFjb3VzdGlxdWU%3D
+https://www.youtube.com/watch?v=a6L4A3zPjeQ&pp=ygUacGF0ZXJuZSBtYWVzdHJvIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=0chh5Z4Veos&pp=ygUacGF0ZXJuZSBtYWVzdHJvIGFjb3VzdGlxdWU%3D
+
+
+
+
+
+jessy b
+
+https://www.youtube.com/watch?v=TiAEZ9jodX0&pp=ygUacGF0ZXJuZSBtYWVzdHJvIGFjb3VzdGlxdWU%3D
+https://www.youtube.com/watch?v=_vViFoounIE&pp=ygUVamVzc3kgYiAtICBhY291c3RpcXVl
+https://www.youtube.com/watch?v=TiAEZ9jodX0&pp=ygUVamVzc3kgYiAtICBhY291c3RpcXVl
+https://www.youtube.com/watch?v=Ovae01HdqJQ&pp=ygUVamVzc3kgYiAtICBhY291c3RpcXVl
+
+
+
+
+louz baby
+
+
+
+
+
+teddy benzo
+
+
+
+
+*nigeria 
+
+tiwa savage
+https://www.youtube.com/watch?v=9S53BdCfsjw&pp=ygUUdGl3YSBzYXZhZ2UgYWNvdXN0aWM%3D
+
+https://www.youtube.com/watch?v=RFemL9l0UoM&pp=ygUUdGl3YSBzYXZhZ2UgYWNvdXN0aWM%3D
+
+
+https://www.youtube.com/watch?v=t5_TBOjKWf8&pp=ygUUdGl3YSBzYXZhZ2UgYWNvdXN0aWM%3D
+
+
+
+
+ayra starr
+https://www.youtube.com/watch?v=IP7bK39ZI_c&pp=ygUTYXlyYSBzdGFyciBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=duRYbwzS-Xk&pp=ygUTYXlyYSBzdGFyciBhY291c3RpY9IHCQkVCgGHKiGM7w%3D%3D
+
+https://www.youtube.com/watch?v=pCOhHIDXMZU&pp=ygUTYXlyYSBzdGFyciBhY291c3RpYw%3D%3D
+
+
+
+flavour
+
+https://www.youtube.com/watch?v=BwM2Y1UGRlA&pp=ygUQZmxhdm91ciBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=QGvRrqiHpn0&pp=ygUQZmxhdm91ciBhY291c3RpYw%3D%3D
+
+
+https://www.youtube.com/watch?v=kJElJmsf9CI&pp=ygUQZmxhdm91ciBhY291c3RpYw%3D%3D
+https://www.youtube.com/watch?v=WPg1kUGyQyU&pp=ygUQZmxhdm91ciBhY291c3RpYw%3D%3D
+
+
+
+
+
+*gabon
+
+ng bling
+https://www.youtube.com/watch?v=djnF9nBjNxs&pp=ygUTbmcgYmxpbmcgYWNvdXN0aXF1ZQ%3D%3D
+
+
+
+
+*france
+
+hiro
+https://www.youtube.com/watch?v=GkJWtPtrXRs&pp=ygUPaGlybyBhY291c3RpcXVl
+
+
+
+tiakola 
+
+https://www.youtube.com/watch?v=xrOoUV8uC4E&pp=ygUTbmlza2EgLSAgYWNvdXN0aXF1ZQ%3D%3D
+
+
+black m
+https://www.youtube.com/watch?v=fGANLE-I-XE&pp=ygURYmxhY2sgbSBmcmVlc3R5bGU%3D
+https://www.youtube.com/watch?v=NLs50rL-Fyc&pp=ygURYmxhY2sgbSBmcmVlc3R5bGU%3D
+
+https://www.youtube.com/watch?v=OFS3O6XTUSI&pp=ygURYmxhY2sgbSBmcmVlc3R5bGU%3D
+https://www.youtube.com/shorts/Ba6WY4pWuqE
+
+https://www.youtube.com/watch?v=9urwlCALflk&pp=ygURYmxhY2sgbSBmcmVlc3R5bGU%3D
+https://www.youtube.com/shorts/9GNm2MckKjQ
+https://www.youtube.com/shorts/01otW_UV430
+https://www.youtube.com/watch?v=SlSAQzLu9SI&pp=ygURYmxhY2sgbSBmcmVlc3R5bGU%3D
+https://www.youtube.com/watch?v=AxqCf2hoiqo&pp=ygURYmxhY2sgbSBmcmVlc3R5bGU%3D
+
+https://www.youtube.com/watch?v=8l4yMVV65ss&pp=ygURYmxhY2sgbSBmcmVlc3R5bGU%3D
+https://www.youtube.com/shorts/2hHZzB9jaCc
+
+
+
+tal
+https://www.youtube.com/watch?v=f19NPt0S2iU&pp=ygUOdGFsIGFjb3VzdGlxdWXSBwkJFQoBhyohjO8%3D
+
+https://www.youtube.com/watch?v=UGQwZ6zHeRE&pp=ygUOdGFsIGFjb3VzdGlxdWU%3D
+https://www.youtube.com/watch?v=_LIU95S9PII&pp=ygUOdGFsIGFjb3VzdGlxdWU%3D
+https://www.youtube.com/watch?v=0sQICoBoLEU&pp=ygUOdGFsIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=AE2KQxEIc08&pp=ygUOdGFsIGFjb3VzdGlxdWU%3D
+
+
+
+
+
+dadju
+
+https://www.youtube.com/watch?v=rvxoj99ACcw&pp=ygUSZGFkanUgLSBhY291c3RpcXVl0gcJCRUKAYcqIYzv
+
+https://www.youtube.com/watch?v=6FJtSDJClvk&pp=ygUSZGFkanUgLSBhY291c3RpcXVl
+
+https://www.youtube.com/watch?v=pdLSS-GR00g&pp=ygUSZGFkanUgLSBhY291c3RpcXVl
+
+
+lynda
+
+https://www.youtube.com/watch?v=i3mbc9-yfZE&pp=ygUSZGFkanUgLSBhY291c3RpcXVl
+
+
+
+
+kendji girac
+
+https://www.youtube.com/watch?v=o54VMExaFF8&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWU%3D
+https://www.youtube.com/watch?v=u6C256V2LFM&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=Gu68C9rIbWk&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWXSBwkJFQoBhyohjO8%3D
+https://www.youtube.com/watch?v=Jx9ZlOERKds&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=v5qtr-XnkKU&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=NfwG8aSad9I&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWU%3D
+
+https://www.youtube.com/watch?v=858lZwwp7K4&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWU%3D²
+
+https://www.youtube.com/watch?v=JDEeekc3hqY&pp=ygUXa2VuZGppIGdpcmFjIGFjb3VzdGlxdWU%3D
+
+
+
+
+natti natasha
+
+https://www.youtube.com/watch?v=ULMK3lCfIs0&pp=ygUkbmF0dGkgbmF0YXNoYSBsYSBtZWpvciB2ZXJzaW9uIGRlIG1p
+https://www.youtube.com/watch?v=Y5UBCjTSO68&pp=ygUkbmF0dGkgbmF0YXNoYSBsYSBtZWpvciB2ZXJzaW9uIGRlIG1p
+https://www.youtube.com/watch?v=Fg9-oU6sA7Y&pp=ygUWbmF0dGkgbmF0YXNoYSBhY3VzdGljbw%3D%3D
+
+
+https://www.youtube.com/watch?v=m2qjjc-eN2I&pp=ygUWbmF0dGkgbmF0YXNoYSBhY3VzdGljbw%3D%3D
+
+
+https://www.youtube.com/watch?v=KHoYoqriZg8&pp=ygUWbmF0dGkgbmF0YXNoYSBhY3VzdGljbw%3D%3D
+
+
+
+ozuna
+
+https://www.youtube.com/watch?v=61_G4TtJlog&pp=ygUOb3p1bmEgYWNvdXN0aWPSBwkJFQoBhyohjO8%3D
+
+
+
+
+anitta
+
+https://www.youtube.com/watch?v=7E1WIVvjhyk&pp=ygUPYW5pdHRhIGFjdXN0aWNv0gcJCRUKAYcqIYzv
+
+
+
+ludmilla
+
+https://www.youtube.com/watch?v=AdfAKHmAY1E&pp=ygUVZ2xvcmlhIHJvb3ZlIGFjdXN0aWNv
+
+
+
+rita ora
+
+https://www.youtube.com/watch?v=tlW63jhEEeg&pp=ygURcml0YSBvcmEgYWNvdXN0aWM%3D
+
+
+
+
+anne-marie
+
+https://www.youtube.com/watch?v=X8DhlfxHhns&pp=ygURcml0YSBvcmEgYWNvdXN0aWM%3D
+https://www.youtube.com/watch?v=u3ePPA0yzSU&pp=ygURcml0YSBvcmEgYWNvdXN0aWM%3D
+
+
+
+shakira
+
+https://www.youtube.com/watch?v=tmHh6HOsreI&pp=ygUQc2hha2lyYSBhY291c3RpYw%3D%3D
+
+
+
+beyonce
+
+https://www.youtube.com/watch?v=1XgTKgsnrbI&pp=ygUQYmV5b25jZSBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=Up5jsTj8sgk&pp=ygUQYmV5b25jZSBhY291c3RpYw%3D%3D
+
+
+https://www.youtube.com/watch?v=HGIh6auYaZs&pp=ygUQYmV5b25jZSBhY291c3RpYw%3D%3D
+
+
+
+ed sheeran
+
+https://www.youtube.com/playlist?list=PLjp0AEEJ0-fGzrJ9kqhrOlgZwJSqmFALS
+https://www.youtube.com/watch?v=TK-GiL17mBs&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=aCCKQ-WYE5I&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=jhamyN8TXbY&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpY9IHCQkVCgGHKiGM7w%3D%3D
+https://www.youtube.com/watch?v=AA75gCdr2TM&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=xADSSBs34is&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=lNPJBHUePl0&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+
+
+https://www.youtube.com/watch?v=eCEsy1wQkBM&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+
+https://www.youtube.com/watch?v=aWYkWoYzzTQ&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+
+
+https://www.youtube.com/watch?v=T0brO3x4h30&pp=ygUTZWQgc2hlZXJhbiBhY291c3RpYw%3D%3D
+https://www.youtube.com/watch?v=kEsYtK8a0PY&pp=ygUVZ2F6IG1hd2V0ZSBhY291c3RpcXVl
+https://www.youtube.com/watch?v=tXO8m6GDyyk&pp=ygUVZ2F6IG1hd2V0ZSBhY291c3RpcXVl
 
 
 */
@@ -1639,7 +2132,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 		
 export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirProfil=()=>{}, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, 
-	nomcss="pre c-6b7280 f-14px ml-5px", datecss="c-6b7280 f-13px", titrecss="pre-16px", cliccss="p-14px" }) {
+	nomcss="pre c-6b7280 fs-14px ml-5px", datecss="c-6b7280 fs-13px", titrecss="pre-16px", cliccss="p-14px" }) {
 
 	const imgRef = useRef(null);
 	const [nombreLettre, setnombreLettre] = useState(40);
@@ -1791,7 +2284,6 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 
                     <div className="hr-15px"> <hr /> </div>
                   </div>
-				  
 
 			{listAccount.map((api) => {
 			const isOnline = onlineUsers.includes(api._id);
@@ -1800,8 +2292,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 				<PopularityAccountCard api={api} isOnline={isOnline}/>
 			</div>
 			
-			<InfosDev api={api} />
-			</>);
+			{dev && (<><InfosDev api={api}/> </>)} </>); 
 			})}
 			
 			
@@ -2649,15 +3140,13 @@ export function MenuPopupTemplate({ visible, fermer }) {
 //MenuPopup
 
 
-
-// MessageTemplate
-export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProfil, PageRedirection66ChildApi66messageFA, data, filterMessageFA, idCompte,
-	Favorite66messageFA, EnvoyerContactFA, dev, destinataireOnline, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
+export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, PageRedirection66ChildApi66messageFA, data, filterMessageFA, idCompte,
+	Favorite66messageFA, PartagerContactPageFA, destinataireOnline, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
 	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage
 	}) {
 	if (!visible) return null;
 	
-	const { nameAccount="Compte inconnu", photoProfile=photoBlanche, derniereConnexion, badge } = data; // infos du profil
+	const { nameAccount, photoProfile=photoBlanche, derniereConnexion, badge } = data; // infos du profil
 	
 
 	return (<>
@@ -2683,8 +3172,7 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 
             <div className="block-deux">
               <div className="a" onClick={Favorite66messageFA}> <SvgFile/> </div>
-              <div className="b" onClick={EnvoyerContactFA}> <SvgPointsVertical/> </div>
-              {dev && (<><div className="b"> <SvgPointsVertical/> </div></>)}
+              <div className="b" onClick={PartagerContactPageFA}> <SvgPointsVertical/> </div>
             </div>
             {/* block-deux */}
           </div>
@@ -2704,14 +3192,19 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 
             {/* ecrire message (ca c'est l'input pour ecrire un message) */}
             <div className="write">
-              {/* <div className="a"> <textarea type="text" placeholder="Écrire un message..." value={writeMessage66messageFA} onChange={gererChangementMessage}></textarea> </div> */}
-              <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
+				{partage && (<>
+				<div className="partage-contact flex"> 
+					<img className="photo-25px mr-5px" src={api.urlPhoto} alt=""/> 
+					<pre className="pre fs-14px">{api.message}</pre> 
+				</div> </>)}
+		  
+                <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
 			  
-              {verifyConversation1 && (<> <div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1a</div></>)}
-              {verifyConversation2 && (<> <div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1b</div></>)}
+                {verifyConversation1 && (<> <div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1a</div></>)}
+                {verifyConversation2 && (<> <div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1b</div></>)}
 
-              {isLoading66messageFA ? (<><div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1c</div></>):(<>
-              {!verifyConversation1 && !verifyConversation2 && (<><div className="b" onClick={BeginConversationFA}> <SvgSend/> 1d</div></>)} </>)}
+                {isLoading66messageFA ? (<><div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1c</div></>):(<>
+                {!verifyConversation1 && !verifyConversation2 && (<><div className="b" onClick={BeginConversationFA}> <SvgSend/> 1d</div></>)} </>)}
             </div>
             {/* write */}
         </div>
@@ -2720,20 +3213,149 @@ export function MessageTemplate({ visible, fermer, gererScrollMessages, voirProf
 // MessageTemplate
 
 
+//on affiche les messages
+export function ChildApi66messageFA({ api }) { 
+  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+  const [checked, setChecked] = useState(false);
+  async function Checked() {
+    setChecked(!checked);
+
+    const photo = api.urlPhoto;
+    if(photo) { 
+      localStorage.setItem("urlPhoto", photo); 
+      localStorage.setItem("urlPhotoreq", photo); 
+    }
+
+    const video = api.urlVideo;
+    if(video) { 
+      localStorage.setItem("urlVideo", video); 
+      localStorage.setItem("urlVideoreq", video); 
+    }
+  }
 
 
-//ProfilTemplate 
+  // date envoie message
+  const dateParser = (date) => {
+    let newDate = new Date(date).toLocaleDateString("fr-FR", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+      hour: "numeric",
+      minute: "numeric",
+    });
+    return newDate;
+  };
+
+  const one = "1";
+  const zero = "0";
+
+  // selectionner le message 
+  async function GoToselectedFA() {
+    localStorage.setItem("GoToselectedFA", one);
+    localStorage.setItem("GoToseePhotoFA", zero);
+  }
+
+  //voir la photo
+  async function GoToseePhotoFA() {
+    localStorage.setItem("GoToseePhotoFA", one);
+    localStorage.setItem("GoToselectedFA", zero);
+  }
+
+  const monMessage = api.idAccount === idPersonConnectedFA;  //si idAccount egale idPersonConnectedFA cela veut dire c'est mon message, sinon cela veut dire que c'est le message de l'autre
+
+  return (
+    <>
+    <div className="child" onClick={Checked}>
+
+      {/* message que j'ai recu) */}
+      {!monMessage && (<>
+      <div className="receiver">
+
+        {api.message && (<> {/* text */}
+        <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
+          
+        {api.type === "2" && (<> {/* photo */}
+        <div className="block-two">
+          <div className="a" onClick={GoToseePhotoFA}> <img src={api.urlPhoto} alt=""/> </div>
+          <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
+          <div className="c"> <p></p> <p>{dateParser(api.createdAt)}</p> </div>
+        </div> </>)}
+
+        {api.urlVideo && (<> {/* video */}
+        <div className="block-three">
+          <div className="a">
+            <div className="aa"> <img src={api.urlPhoto} alt=""/> </div>
+            <div className="bb"> <button><SvgPlay2/></button> </div>
+          </div>
+
+          <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
+        </div> </>)}
+        {/* block-three */}
+		
+		{api.type === "74" && (<> <PartagerContact-Message api={api}/> </>)}
+
+        <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
+      </div> </>)}
+      {/* receiver */}
+        
+
+        {/* mon message (message que j'ai envoyé) */}
+        {monMessage && (<>
+        <div className="sender">
+
+          {api.message && (<> {/* text */}
+          <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
+          
+          {api.type === "2" && (<> {/* photo */}
+          <div className="block-two">
+            <div className="a" onClick={GoToseePhotoFA}> <img src={api.urlPhoto} alt=""/> </div>
+            <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
+            <div className="c"> <p></p> <p>{dateParser(api.createdAt)}</p> </div>
+          </div> </>)}
+
+          {api.urlVideo && (<> {/* video */}
+          <div className="block-three">
+            <div className="a">
+              <div className="aa"> <img src={api.urlPhoto} alt=""/> </div>
+              <div className="bb"> <button><SvgPlay2/></button> </div>
+            </div>
+
+            <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
+          </div> </>)}
+          {/* block-three */}
+		  
+		  {api.type === "74" && (<> <PartageContact-Message api={api}/> </>)}
+
+          <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
+        </div> </>)} 
+        {/* sender */}
+    </div>
+</>)}
+//ChildApi66messageFA
+
+
+
+export function PartageContact-Message({ api }) {
+  
+  return (<>
+	<pre className="pre fs-17px mb-15px">{api.message}</pre> 
+	
+	<div className="partage-contact flex"> 
+		<img className="photo-25px mr-5px" src={api.urlPhoto} alt=""/> 
+		<pre className="pre fs-14px">{api.message}</pre> 
+	</div>
+</>)}
+
+
+
 export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, connecter,
 	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
-	//setIdPost, setUrlVideo, setIdProprietairePost, idCompte, nom="", photoProfile=photoBlanche, popularity
 	}) { 
 		
   if (!visible) return null;
-  
-  //console.log("dataVideos xx", dataVideos);
-  
+    
 
   // 🔹 infos du profil
   const { nameAccount="", photoProfile=photoBlanche, popularity, } = data;
@@ -2833,7 +3455,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	
 	const propsVideosCommunes = {
 	  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, profilMap,
-	  titrecss: "pre-16px-white tc", cliccss: "p-14px-a1a1aa tc", nomcss: "pre c-a1a1aa ml-5px f-14px", datecss: "c-a1a1aa f-13px", 
+	  titrecss: "pre-16px-white tc", cliccss: "p-14px-a1a1aa tc", nomcss: "pre c-a1a1aa ml-5px fs-14px", datecss: "c-a1a1aa fs-13px", 
 	};
 	
 	
@@ -2872,7 +3494,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			<div className="between m-25-15">
 				<div className="flex">
 				  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
-				  <pre className="pre c-a1a1aa ml-5px f-15px" onClick={voirProfil}>{nameAccount}</pre>
+				  <pre className="pre c-a1a1aa ml-5px fs-15px" onClick={voirProfil}>{nameAccount}</pre>
 				</div>
 			  
 				<div className="flex"> 
