@@ -3292,7 +3292,7 @@ export function ChildApi66messageFA({ api }) {
         </div> </>)}
         {/* block-three */}
 		
-		{api.type === "74" && (<> <PartagerContact-Message api={api}/> </>)}
+		{api.type === "74" && (<> <PartagerContactMessage api={api}/> </>)}
 
         <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
       </div> </>)}
@@ -3324,7 +3324,7 @@ export function ChildApi66messageFA({ api }) {
           </div> </>)}
           {/* block-three */}
 		  
-		  {api.type === "74" && (<> <PartageContact-Message api={api}/> </>)}
+		  {api.type === "74" && (<> <PartageContactMessage api={api}/> </>)}
 
           <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
         </div> </>)} 
@@ -3335,7 +3335,7 @@ export function ChildApi66messageFA({ api }) {
 
 
 
-export function PartageContact-Message({ api }) {
+export function PartageContactMessage({ api }) {
   
   return (<>
 	<pre className="pre fs-17px mb-15px">{api.message}</pre> 
