@@ -1511,7 +1511,8 @@ export async function lireDepuisIndexedDB(nomStockage) {
 
 
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, onlineUsers=null,
-	idConversation, idCompte, idCompteConnecter, idPost, idProprietairePost, id, rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
+	idConversation, idCompte, idCompte2, idCompteConnecter, idPost, idProprietairePost, id, 
+	rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
   const [lotActuel, setLotActuel] = useState(lot);
@@ -1759,8 +1760,8 @@ const toutesVideoCompteConnecterPar_idAccount = useMemo(() => filtrerEtTrier(tou
 
 const infosPost_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idPost, }), [toutesDonnees, idPost]); // obtenir les infos dun post
 
-const infosCompte_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idCompte, }), 
-[toutesDonnees, idCompte]);
+const infosCompte_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idCompte, }), [toutesDonnees, idCompte]);
+const infosCompte_by_id_2 = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idCompte2, }), [toutesDonnees, idCompte2]);
 
 const infosCompteConnecter_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idCompteConnecter, }), 
 [toutesDonnees, idCompteConnecter]); // obtenir les infos dun post
@@ -1963,6 +1964,7 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
 		toutesDonnees_all,
 		infosPost_by_id,
 		infosCompte_by_id,
+		infosCompte_by_id_2,
 		infosCompteConnecter_by_id,
 		
 		toutesVideoPar_idAccount,
@@ -3140,13 +3142,14 @@ export function MenuPopupTemplate({ visible, fermer }) {
 //MenuPopup
 
 
-export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, PageRedirection66ChildApi66messageFA, data, filterMessageFA, idCompte,
-	Favorite66messageFA, PartagerContactPageFA, destinataireOnline, SendMessageFAA, SendMessageFA, isLoading66messageFA, BeginConversationFA,
-	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage
+export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, filterMessageFA, idCompte,
+	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA,
+	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, PageRedirection66ChildApi66messageFA
 	}) {
 	if (!visible) return null;
 	
 	const { nameAccount, photoProfile=photoBlanche, derniereConnexion, badge } = data; // infos du profil
+	const { nameAccount: nom, photoProfile: photo = photoBlanche } = data2;
 	
 
 	return (<>
@@ -3183,19 +3186,18 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
             <div className="api" onClick={PageRedirection66ChildApi66messageFA}>
             {filterMessageFA.map((api) => (
-              <ChildApi66messageFA key={api._id} api={api} />
+              <ChildApi66messageFA api={api} />
             ))}
             </div>
 
             <p style={{ paddingTop: "100px" }}></p>
-		
 
             {/* ecrire message (ca c'est l'input pour ecrire un message) */}
             <div className="write">
-				{partage && (<>
+				{blocPartagerContact && (<>
 				<div className="partage-contact flex"> 
-					<img className="photo-25px mr-5px" src={api.urlPhoto} alt=""/> 
-					<pre className="pre fs-14px">{api.message}</pre> 
+					<img className="photo-25px mr-5px" src={photo} alt=""/> 
+					<pre className="pre fs-14px">{nom}</pre> 
 				</div> </>)}
 		  
                 <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>

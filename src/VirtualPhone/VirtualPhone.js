@@ -35108,6 +35108,7 @@ const {
 	toutesDonnees_idUser: toutMesComptes, 
 	toutesDonnees: toutComptes, 
 	infosCompte_by_id: infosCompteById, 
+	infosCompte_by_id_2: infosCompteById2,
 	infosCompteConnecter_by_id: infosCompteConnecterById, 
 	
 	setToutesDonnees: setToutesDonneesComptes,
@@ -35117,6 +35118,7 @@ const {
 	donnees:comptesSource, 
 	onlineUsers,
 	idCompte,
+	idCompte2: idreq,
 	idCompteConnecter: idPersonConnectedFA,
 	rechercherUnCompte: rechercherUnCompteFA,
 	rechercherMonCompte: rechercherMonCompteFA,
@@ -35408,11 +35410,22 @@ useEffect(() => {
 }, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
 
 
+  
+  const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
+  async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
+  async function ClosePartagerContactPageFA() { setPartagerContactPageFA(false); }
+  
+  const [messageFA, setMessageFA] = useState(false); // page pour envoyer un message personnel - FA 
+  async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); }
+  
+  const [blocPartagerContactFA, setBlocPartagerContactFA] = useState(false); // blocPartagerContactFA c'est le petit bloc de contact (photo + nom) , qui va s'afficher au niveau du textarea ou on ecrit le message
+  async function OuvrirMessagePage66PartagerContactPageFA() { setBlocPartagerContactFA(true); setPartagerContactPageFA(false); }
+
 
 
 // logique pour envoyer un message privé sur florinato
 const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
-const [partagerContactFA, setPartagerContactFA] = useState(false);
 
   
 async function SendMessageFAA(customConversationId = null) {
@@ -35453,14 +35466,14 @@ async function SendMessageFAA(customConversationId = null) {
     idAccount: expediteur,
     idOther: destinataire,
     message: messageText,
-	type: partagerContactFA ? "74" : "1",
+	type: blocPartagerContactFA ? "74" : "1",
   };
   
-  if (partagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
+  if (blocPartagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
 
   socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur  
   setWriteMessage66messageFA("");
-  if (partagerContactFA) setPartagerContactFA(false);
+  if (blocPartagerContactFA) setBlocPartagerContactFA(false);
 }
 
   
@@ -41006,13 +41019,6 @@ async function CloseConnexionPageAA() {
   //DebuterJeuxFA
 
 
-
-  // page pour envoyer un message personnel - FA 
-  const [messageFA, setMessageFA] = useState(false); 
-  async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
-  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setPartagerContactPageFA(false); }
-
-
   //PageRedirection 66ChildApi66messageFA
   async function PageRedirection66ChildApi66messageFA() {
     //const selected = localStorage.getItem("GoToselectedFA"); //selectionner le message
@@ -41022,265 +41028,7 @@ async function CloseConnexionPageAA() {
     //if (seePhoto === "1") { setSeePhotoFA(true) }
   }
 	
-  
 
-
-  async function SendMessageFA() {
-    if (idPersonConnectedFA) {
-      const block = localStorage.getItem("blockFA");
-      if (block === "0") { //block on applique ça uniquement aux personnes indesirables qui veulent detruire notre business
-
-      //on enregistre le message saisi dans le localStorage pour ensuite vider le textarea
-      localStorage.setItem("writeMessage66messageFA", writeMessage66messageFA)
-      //ici on vide le textarea
-      setWriteMessage66messageFA("");
-
-      //1ere requete - api1
-      async function premiereReq() {
-        await axios
-        .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-          const api = res.data;
-
-          //creer un id pour chaque message envoyé sur X
-          const numberMessageXA = api.filter((api) => api._id);
-          const totalMessageXA = numberMessageXA.length;
-        
-          const createIdMessageXA = totalMessageXA + 1;
-          if (createIdMessageXA) { localStorage.setItem("createId", createIdMessageXA) }
-
-      //2e requete - api1
-      // on envoie le message
-      async function deuxiemeReq() {
-        const id = localStorage.getItem("createId");
-        const idConversation = localStorage.getItem("idConversation");
-        const idOther = localStorage.getItem("idOther");
-        const message = localStorage.getItem("writeMessage66messageFA");
-        const visible = "1";
-        const type = "1";
-
-        await axios({
-          method: "post",
-          url: `${process.env.REACT_APP_Api1}/api/messageFA/new`,
-          data: {
-            id,
-            idConversation,
-            message,
-            idAccount: idPersonConnectedFA,
-            nameAccount: nameFA,
-            photoAccount: photoFA,
-            badgeAccount: badgeFA,
-            idOther,
-            visible,
-            type,
-          },
-        })
-        .then((res) => {
-          const id = res.data._id; //id (cet id va etre utile lorsqu'on voudra mettre si le message a ete lu ou non)
-          if (id) { localStorage.getItem("idLastMessage", id); }
-
-          const online = res.data.createdAt; //createdAt, c'est pour prendre la date de derniere connexion
-          localStorage.setItem("online", online);
-          console.log(online);
-          console.log(res);
-
-      //3e requete - api1
-      // cette requete c'est pour modifier le dernier message au niveau de la conversation
-      async function troisiemeReq() {
-        const id = localStorage.getItem("createId");
-        const idConversation = localStorage.getItem("idConversation");
-        const lastMessage = localStorage.getItem("writeMessage66messageFA");
-
-        await axios({
-          method: "put",
-          url: `${process.env.REACT_APP_Api1}/api/messageFA/update/${idConversation}`,
-          data: {
-            id,
-            lastMessage,
-          },
-        })
-        .then((res) => {
-
-      //4e requete - api1
-      // on enregistre la date de derniere connexion
-      async function quatriemeReq() {
-        const online = localStorage.getItem("online");
-        await axios({
-          method: "put",
-          url: `${process.env.REACT_APP_Api1}/api/messageFA/update/${idPersonConnectedFA}`,
-          data: {
-            online,
-          },
-        })
-        .then((res) => {
-
-      //5e requete - api1
-      // on obtiens les nouvelles données
-      async function cinquiemeReq() {
-        await axios
-        .get(`${process.env.REACT_APP_Api1}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-        })
-        .catch((err) => {
-          setErreur(true);
-        })
-        }
-        cinquiemeReq();
-        //5e requete - api1
-        })
-        .catch((err) => {
-          setErreur(true);
-        })
-        }
-        quatriemeReq();
-        //4e requete - api1
-        })
-        .catch((err) => {
-          setErreur(true);
-        })
-        }
-        troisiemeReq();
-        //3e requete - api1
-        })
-        .catch((err) => {
-          setErreur(true);
-        })
-        }
-        deuxiemeReq();
-        //2e requete - api1
-        })
-        .catch((err) => {
-          
-      //1ere requete - api2
-      async function premiereReq() {
-        await axios
-        .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-          const api = res.data;
-
-          //creer un id pour chaque message envoyé sur X
-          const numberMessageXA = api.filter((api) => api._id);
-          const totalMessageXA = numberMessageXA.length;
-        
-          const createIdMessageXA = totalMessageXA + 1;
-          if (createIdMessageXA) { localStorage.setItem("createId", createIdMessageXA) }
-
-      //2e requete - api2
-      // on envoie le message
-      async function deuxiemeReq() {
-        const id = localStorage.getItem("createId");
-        const idConversation = localStorage.getItem("idConversation");
-        const idOther = localStorage.getItem("idOther");
-        const message = localStorage.getItem("writeMessage66messageFA");
-        const visible = "1";
-        const type = "1";
-
-        await axios({
-          method: "post",
-          url: `${process.env.REACT_APP_Api2}/api/messageFA/new`,
-          data: {
-            id,
-            idConversation,
-            message,
-            idAccount: idPersonConnectedFA,
-            nameAccount: nameFA,
-            photoAccount: photoFA,
-            badgeAccount: badgeFA,
-            idOther,
-            visible,
-            type,
-          },
-        })
-        .then((res) => {
-          const online = res.data.createdAt; //createdAt, c'est pour prendre la date de derniere connexion
-          localStorage.setItem("online", online);
-          console.log(online);
-          console.log(res);
-
-      //3e requete - api2
-      // cette requete c'est pour modifier le dernier message au niveau de la conversation
-      async function troisiemeReq() {
-        const id = localStorage.getItem("createId");
-        const idConversation = localStorage.getItem("idConversation");
-        const lastMessage = localStorage.getItem("writeMessage66messageFA");
-
-        await axios({
-          method: "put",
-          url: `${process.env.REACT_APP_Api2}/api/messageFA/update/${idConversation}`,
-          data: {
-            id,
-            lastMessage,
-          },
-        })
-        .then((res) => {
-
-      //4e requete - api2
-      // on enregistre la date de derniere connexion
-      async function quatriemeReq() {
-        const online = localStorage.getItem("online");
-        await axios({
-          method: "put",
-          url: `${process.env.REACT_APP_Api2}/api/messageFA/update/${idPersonConnectedFA}`,
-          data: {
-            online,
-          },
-        })
-        .then((res) => {
-
-      //5e requete - api2
-      // on obtiens les nouvelles données
-      async function cinquiemeReq() {
-        await axios
-        .get(`${process.env.REACT_APP_Api2}/api/messageFA`)
-        .then((res) => {
-          setApiMessageFA(res.data);
-        })
-        .catch((err) => {
-          setErreur(true);
-        });
-        }
-        cinquiemeReq();
-        //5e requete - api2
-        })
-        .catch((err) => {
-          setErreur(true);
-        });
-        }
-        quatriemeReq();
-        //4e requete - api2
-        })
-        .catch((err) => {
-          setErreur(true);
-        })
-        }
-        troisiemeReq();
-        //3e requete - api2
-        })
-        .catch((err) => {
-          setErreur(true);
-        })
-        }
-        deuxiemeReq();
-        //2e requete - api2
-        })
-        .catch((err) => {
-          setErreur(true);
-        })
-        }
-        premiereReq();
-        //1ere requete - api2
-
-        })
-        }
-        premiereReq();
-        //1ere requete - api1
-  } //if (block === "0")
-  } //if(idPersonConnectedFA)
-}
-//SendMessageFA
 
 
 //logique pour ajouter une photo à nos favoris FA
@@ -41498,10 +41246,6 @@ async function CloseConnexionPageAA() {
 //AddPhoto66favorite66messageFA
 
 
-  // partager un contact par message - FA
-  const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); 
-  async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
-  async function ClosePartagerContactPageFA() { setPartagerContactPageFA(false); }
 
 
   // on affiche les favoris au niveau des messages 
@@ -51112,23 +50856,22 @@ function rechargerPage() {
 	
 
 	<PopupDuBasTemplate 
-		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" 
-		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={MessageFA} setId={setId} search/>
+		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setId={setId}
+		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirMessagePage66PartagerContactPageFA} search/>
 
  
 	<MessageTemplate 
 		visible={messageFA} fermer={CloseMessageFA}
 		gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 		PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-		data={infosCompteById[0]} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
+		data={infosCompteById[0]} data2={infosCompteById2[0]} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
 		Favorite66messageFA={Favorite66messageFA} 
-		PartagerContactPageFA={PartagerContactPageFA} 
+		PartagerContactPageFA={PartagerContactPageFA} blocPartagerContact={blocPartagerContactFA}
 		onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
 		verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
-		isLoading66messageFA={isLoading66messageFA} SendMessageFA={SendMessageFA} BeginConversationFA={BeginConversationFA} 
+		isLoading66messageFA={isLoading66messageFA} BeginConversationFA={BeginConversationFA} 
 		writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
-  
     
 	    <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
