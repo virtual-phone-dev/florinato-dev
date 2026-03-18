@@ -9,7 +9,7 @@ import {
 	SvgFile, SvgFullScreen2, SvgLeft, SvgMark1, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 
 } from "./Svg/Svg";
 	
-import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi66messageFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
+import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
 import "./utils.css"; 
 import "./darkmode.css";
 import photoBlanche from "./img/photoBlanche.jpg";

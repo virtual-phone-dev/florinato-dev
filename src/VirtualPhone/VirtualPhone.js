@@ -281,30 +281,6 @@ function ChildApi66delivrerNumeroVirtuelAf({ api }) {
 //ChildApi 66delivrerNumeroVirtuelAf
 
 
-//ChildApi 66envoyerContactFA (on affiche la liste des contacts)
-function ChildApi66envoyerContactFA({ api }) {
-  const [checked, setChecked] = useState(false);
-  async function Checked() {
-    setChecked(!checked);
-  }
-
-  return (
-    <>
-    <div className="child" onClick={Checked}>
-      
-      {api.type === "4" && (<>
-      <div className="type1">
-        <div className="a"> <p>{api.photoProfile}</p> </div>
-        <div className="b"> <pre>{api.name}</pre> </div>
-      </div></>)}
-      {/* type=1 */}
-    </div>
-    {/* child */}
-    </>
-  );
-}
-//ChildApi 66envoyerContactFA (on affiche la liste des contacts)
-
 
 //ChildApi66accountsFA
 export function ChildApi66accountsFA({ api }) {
@@ -35384,7 +35360,7 @@ const ComptesRecentsPropsCommun = {
   const filter66delivrerNumeroVirtuelAf = apiMessageFA.filter((api) => api.izocashApp === "1" && api.visible === "1" && api.type === "1").sort((a, b) => b.id - a.id);
 
   //on affiche la liste des contacts 
-  const filter66envoyerContactFA = apiMessageFA.filter((api) => api.florinatoApp === "1" && api.visible === "1" && api.type === "10").sort((a, b) => b.id - a.id);
+  //const filter66envoyerContactFA = apiMessageFA.filter((api) => api.florinatoApp === "1" && api.visible === "1" && api.type === "10").sort((a, b) => b.id - a.id);
 
 
   // verifier s'il existe une conversation avec l'autre utilisateur
@@ -51810,32 +51786,6 @@ function rechargerPage() {
       {/* on affiche les favoris au niveau des messages */}
 
 
-      {/* envoyer un contact par message - FA */}
-      {/* envoyer un contact par message - FA */}
-      {envoyerContactFA && (<>
-        <div className="envoyerContactFA">
-          <div className="align">
-            <div className="head"></div>
-
-            <div className="body"> 
-              <div className="block-un" onClick={CloseEnvoyerContactFA}> <p>Choisissez le contact à envoyer</p> </div>
-
-              <div className="api"> 
-              {filter66envoyerContactFA.map((api) => (<>
-                <ChildApi66envoyerContactFA api={api} />
-              </>))}
-              </div>
-              {/* api */}
-            </div>
-            {/* body */}
-          </div>
-          {/* align */}
-        </div>
-        {/* envoyerContactFA */}
-      </>)}
-      {/* envoyer un contact par message - FA */}
-
-      
       {/* selected2FA (selectionner photo, vidéo, texte,.. ) */}
       {/* selected2FA (selectionner photo, vidéo, texte,.. ) */}
       {selected2FA && (<>
