@@ -3344,7 +3344,7 @@ export function PartageContactMessage({ api }) {
 	
 	<div className="partage-contact flex"> 
 		<img className="photo-25px mr-5px" src={api.urlPhoto} alt=""/> 
-		<pre className="pre fs-14px">{api.message}</pre> 
+		<pre className="pre fs-14px">{api.message} aa44</pre>
 	</div>
 </>)}
 
