@@ -2133,7 +2133,8 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 
 		
-export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirProfil=()=>{}, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, 
+export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, 
+	voirVideo=()=>{}, voirProfil=()=>{}, setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, clicVideo=()=>{},
 	nomcss="pre c-6b7280 fs-14px ml-5px", datecss="c-6b7280 fs-13px", titrecss="pre-16px", cliccss="p-14px" }) {
 
 	const imgRef = useRef(null);
@@ -2167,8 +2168,9 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
   const titre = api.message || "";
   const gettitre = titre.length > nombreLettre ? titre.slice(0, nombreLettre) + ". . ." : titre;
 
-    const afficherVideo = video && api.type === "3";
-    const afficherPhoto = photo && api.type === "2";
+  const afficherVideo = video && api.type === "3";
+  const afficherPhoto = photo && api.type === "2";
+  
 	
   const idAccountUtiliser = api?.idAccountChef;
   const profil = idAccountUtiliser? profilMap?.[idAccountUtiliser] : null;
@@ -2179,9 +2181,15 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
 	return (<>
 		{afficherVideo && (<>
 		<div className="video-card pb-30px">
-			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} onClick={() => { voirVideo(api); }} /> 
+			<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} 
+			
+			onClick={() => {
+				setUrlVideo(api.urlVideo); setIdPost(api._id); setIdProprietairePost(api.idAccountChef); voirVideo(api);
+				setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }} />
+				
 			<pre className={titrecss}>{gettitre}</pre>
 			<p className={cliccss}>{api.clic} clic</p> 
+			
 			
 			{nomEtphoto && (<>
 			<div className="display-nowrap-espace">
@@ -2204,26 +2212,18 @@ export function ChildApi66LesVideos({ api, verifierId, voirVideo=()=>{}, voirPro
 } 
 
 
-
-export function LesVideos({ data=[], setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, clicVideo=()=>{}, nomcss, datecss,
-	voirVideo, voirProfil, dateParser, titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX, nomEtphoto
-	}) {
+export function LesVideos({ data=[], setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, clicVideo, nomcss, datecss,
+	voirVideo, voirProfil, dateParser, titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX, nomEtphoto }) {
 		
 	return (
 	<div className={affichagecss} onScroll={scrollX || undefined}>
 		{data.map((api) => (
 		
-		  <div onClick={() => {
-			setUrlVideo(api.urlVideo); setIdPost(api._id); setIdProprietairePost(api.idAccountChef); 
-			setIdCompte(api.idAccountChef); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
-			
 			<ChildApi66LesVideos 
 				api={api} nomEtphoto={nomEtphoto} voirVideo={voirVideo} voirProfil={voirProfil} titrecss={titrecss} cliccss={cliccss} nomcss={nomcss} datecss={datecss} 
+				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} clicVideo={clicVideo} 
 				profilMap={profilMap} dateAfficher={dateParser} video />
-				
-		  </div>
-		  
-		  ))}
+		))}
 	</div>
 )}
 
@@ -2264,7 +2264,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
 
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
-	setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo=()=>{}, 
+	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo, 
 	setIdDestinataire=()=>{}, setIdExpediteur=()=>{}, profilMap, onlineUsers=[], dev, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>

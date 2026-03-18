@@ -21815,12 +21815,10 @@ const [writeSuperCodeIzocashDealsPageIA, setWriteSuperCodeIzocashDealsPageIA] = 
   // Telephone Virtuel
   // Telephone Virtuel
   // quand on clique, ca va ouvrir le menu des applications dans le telephone virtuel
-  const [telephoneVirtuel, setTelephoneVirtuel] = useState(true);
+  const [telephoneVirtuel, setTelephoneVirtuel] = useState(false);
 
   //ouvrir menu applications - telephone Virtuel
-  async function CloseAlraniAppGotoMenuTelephone() {
-    setTelephoneVirtuel(true);
-  }
+  async function CloseAlraniAppGotoMenuTelephone() { setTelephoneVirtuel(true); }
 
   // infos Language
   // infos Language
@@ -40620,7 +40618,6 @@ async function CloseConnexionPageAA() {
   // on affiche les messages de groupe dans l'application x 
   const [messagePublicXA, setMessagePublicXA] = useState(false); 
   async function CloseMessagePublicXA() {
-    //setMessagePublicXA(false);
     setTelephoneVirtuel(true);
   }
   
@@ -42212,7 +42209,7 @@ async function PageRedirection66groupOtherFA() {
   
   
   // page ou on affiche toutes les videos - FA 
-  const [videosPageFA, setVideosPageFA] = useState(false); 
+  const [videosPageFA, setVideosPageFA] = useState(true); 
   async function VideosPageFA() { setVideosPageFA(true); setFlorinatoApp(false); }
   async function CloseVideosPageFA() { setFlorinatoApp(true); setVideosPageFA(false); }
   
