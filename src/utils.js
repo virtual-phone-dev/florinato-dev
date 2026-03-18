@@ -3182,9 +3182,9 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
             <div className="espacement-navbar-top-et-donnees-api"></div>
 
             <div className="api" onClick={PageRedirection66ChildApi66messageFA}>
-            {filterMessageFA.map((api) => (<>
-              <ChildApi66messageFA api={api} />
-            </>))}
+            {filterMessageFA.map((api) => (
+              <ChildApi66messageFA key={api._id} api={api} />
+            ))}
             </div>
 
             <p style={{ paddingTop: "100px" }}></p>
@@ -3292,7 +3292,7 @@ export function ChildApi66messageFA({ api }) {
         </div> </>)}
         {/* block-three */}
 		
-		{api.type === "74" && (<> <PartagerContactMessage api={api}/> </>)}
+		{api.type === "74" && (<> <PartageContactMessage api={api}/> </>)}
 
         <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
       </div> </>)}
