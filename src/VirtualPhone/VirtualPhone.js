@@ -202,8 +202,8 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
           </>) : (<><p>Profil non trouvé</p> </>)}
 
         <div className="B">
-          <div className="a"> <p>{api.nameOther}</p> </div>
-          <div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
+          <div className="a"> <p>{profil.nameAccount}</p> </div>
+          <div className="b"> <p>{messageRecent?.message || ""}</p> </div>
 
 		  {isOnline && (
 		  <div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)}
@@ -220,7 +220,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 		</>) : (<><p>Profil non trouvé</p> </>)}
 
         <div className="B">
-			<div className="a"> <p>{api.nameAccount}</p> </div>
+			<div className="a"> <p>{profil.nameAccount}</p> </div>
 			<div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
 
 			{isOnline && (
@@ -239,7 +239,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 		</>) : (<><p>Profil non trouvé</p> </>)}
 
         <div className="B">
-          <div className="a"> <pre>{api.nameOther}</pre> </div>
+          <div className="a"> <pre>{profil.nameAccount}</pre> </div>
           <div className="a"> <pre>{api.lastMessage}</pre> </div>
           <div className="b"> <p>{dateParser(api.createdAt)}</p> </div>
         </div>
@@ -50861,7 +50861,7 @@ function rechargerPage() {
 
  
 	<MessageTemplate 
-		visible={messageFA} fermer={CloseMessageFA}
+		visible={messageFA} fermer={CloseMessageFA} profilMap={profilMap}
 		gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 		PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
 		data={infosCompteById[0]} data2={infosCompteById2[0]} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}

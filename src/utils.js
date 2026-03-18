@@ -2464,15 +2464,12 @@ export function ListeDesComptes2({ data=[], setIdCompte, setIdDestinataire, prof
 export function PopularityAccountCard({ api, online, isOnline, dev }) {
   return (<>
     <div className="display-nowrap-espace">
-      {/* <div className="p-15px"><p>{api.popularity}</p></div> */}
       <div className="photo-70px"><img src={api.photoProfile} alt="" /></div>
       <div className="pre-17px"><pre>{api.nameAccount}</pre></div>
     </div>
 	
 	{(online || isOnline) && (<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)}
-	
-	{/* {online && (<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)} */}
-	
+
 	{dev && (<InfosDev api={api}/> )}
 </>)}
 
@@ -2545,14 +2542,6 @@ export default function CommentaireTemplate({ api, profilMap={}, RepondrePage })
 	<pre className="pre-17px">{api.commentaire}</pre>
 	<p className="p-12px-top3">{dateParserLong(api.createdAt)}</p>
 	<div className="p-14px-espace" onClick={RepondrePage}> <p>Répondre</p> </div>
-
-	
-	{/* test
-	<div className="display-nowrap-espace">
-      <div className="photo-70px"><img src={photoBlanche} alt="" /></div>
-      <div className="pre-17px"><pre>NGanon Koné</pre></div>
-    </div> */}
-	
 </>)}
 //CommentaireTemplate
 
@@ -2629,15 +2618,12 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
 		localStorage.setItem("gotoPhoto", photo);
 	}
 
-  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  //const id = api.idAccountChef === idPersonConnectedFA && api.account === "1";
-  
+
   const afficherVideo = video && api.type === "3";
   const afficherPhoto = photo && api.type === "2";
 
   return (<>
 	<div className="child" onClick={Checked}>
-      {/* {afficherPhoto && (!verifierId || id) && (<> */}
       {afficherPhoto && (
       <div className="type3">
         <div className={photocss}> <img onClick={GotoPhoto} src={api.urlPhoto} alt=""/> </div>
@@ -2649,7 +2635,6 @@ export function ChildApi66profilFA({ api, photocss, titrecss="pre-17px", cliccss
       </div> )}
 
 
-      {/* {afficherVideo && (!verifierId || id) && (<> */}
       {afficherVideo && (
       <div className="type2"> 
 		<div className={photocss}> <img onClick={GotoVideo} src={api.urlPhoto} alt=""/> </div>
@@ -3142,7 +3127,7 @@ export function MenuPopupTemplate({ visible, fermer }) {
 //MenuPopup
 
 
-export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, filterMessageFA, idCompte,
+export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, filterMessageFA, profilMap, idCompte,
 	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA,
 	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, PageRedirection66ChildApi66messageFA
 	}) {
@@ -3186,7 +3171,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
             <div className="api" onClick={PageRedirection66ChildApi66messageFA}>
             {filterMessageFA.map((api) => (
-              <ChildApi66messageFA api={api} />
+              <ChildApi66messageFA api={api} profilMap={profilMap} />
             ))}
             </div>
 
@@ -3216,7 +3201,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 
 //on affiche les messages
-export function ChildApi66messageFA({ api }) { 
+export function ChildApi66messageFA({ api, profilMap }) { 
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const [checked, setChecked] = useState(false);
   async function Checked() {
@@ -3294,7 +3279,7 @@ export function ChildApi66messageFA({ api }) {
         </div> </>)}
         {/* block-three */}
 		
-		{api.type === "74" && (<> <PartageContactMessage api={api}/> </>)}
+		{api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap}/> </>)}
 
         <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
       </div> </>)}
@@ -3326,7 +3311,7 @@ export function ChildApi66messageFA({ api }) {
           </div> </>)}
           {/* block-three */}
 		  
-		  {api.type === "74" && (<> <PartageContactMessage api={api}/> </>)}
+		  {api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap}/> </>)}
 
           <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
         </div> </>)} 
@@ -3336,15 +3321,16 @@ export function ChildApi66messageFA({ api }) {
 //ChildApi66messageFA
 
 
-
-export function PartageContactMessage({ api }) {
+export function PartageContactMessage({ api, profilMap={} }) {
+  const idaUtiliser = api?.idContact; // obtenir les informations du profil
+  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
   return (<>
 	<pre className="pre fs-17px mb-15px">{api.message}</pre> 
 	
 	<div className="partage-contact flex"> 
-		<img className="photo-25px mr-5px" src={api.urlPhoto} alt=""/> 
-		<pre className="pre fs-14px">{api.message} aa44</pre>
+		<img className="photo-25px mr-5px" src={profil.photoProfile} alt=""/> 
+		<pre className="pre fs-14px">{profil.nameAccount} aa44</pre>
 	</div>
 </>)}
 
