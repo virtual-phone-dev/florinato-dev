@@ -34687,6 +34687,7 @@ async function DissadAA() {
 	const [idPost, setIdPost] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
 	const [idCompte, setIdCompte] = useState(null);
+	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
 	console.log("idCompte", idCompte);
@@ -35016,11 +35017,35 @@ useEffect(() => {
   if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
   if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
 
-	
-	
+
+			
+const annoncesSource = useMemo(() => apiMessageFA.filter(api => api.type === "60"), [apiMessageFA] ); // toutes les annonces
+const {
+	donneesAffichees_byClic: dataAnnoncesFA, 
+	infosAnnonce_by_id: dataAnnoncesById, 
+	//setToutesDonnees:setToutesDonneesVideos, 
+	gererScroll: gererScrollAnnonces 
+} = useScrollIndexedDB({
+	nomStockage: "annonces", 
+	donnees:annoncesSource, 
+	//idProprietaireAnnonce,
+	idAnnonce,
+});
+
+
+// filtre pour obtenir les infos de l'annonce - FA
+const texteAnnonceFA = dataAnnoncesById.map((api) => api.texte); // texte
+
+
+console.log("jai mis des console.log pour savoir si dataVideoFAbyClic, dataAnnoncesFA, dataAnnoncesById, dataComptesFA, renvoie toute la base de donnees ou renvoie seulement ce qui est necessaire"); 
+console.log("texteAnnonceFA", texteAnnonceFA);
+console.log("dataAnnoncesFA", dataAnnoncesFA);
+console.log("dataAnnoncesById", dataAnnoncesById);
+
+
+
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
 const { 
-	//donneesAffichees: dataVideoFA, 
 	donneesAffichees_byClic: dataVideoFAbyClic, 
 	donneesAffichees_byClic_idAccount: dataVideoByIdCompte, 
 	donneesAffichees_byClic_idAccountConnecter: dataVideoByIdCompteConnecter, 
@@ -35046,19 +35071,6 @@ const {
 	rechercherMaVideo: rechercherMaVideoFA,
 	rechercherUneVideo: rechercherUneVideoFA,
 });
-
-/*	
-console.log("videosSource", videosSource);
-console.log("dataVideoRecenteByIdCompteConnecter", dataVideoRecenteByIdCompteConnecter);
-console.log("dataVideoFAbyClic", dataVideoFAbyClic);
-console.log("dataVideoByIdCompte", dataVideoByIdCompte);
-console.log("dataVideoByIdCompteConnecter", dataVideoByIdCompteConnecter);
-console.log("dataVideoRecenteByIdCompte", dataVideoRecenteByIdCompte);
-console.log("toutesVideos", toutesVideos);
-console.log("dataVideoRecenteByIdCompteConnecter", dataVideoRecenteByIdCompteConnecter);
-console.log("toutesVideoParIdAccount", toutesVideoParIdAccount);
-console.log("toutesVideoCompteConnecterParIdAccount", toutesVideoCompteConnecterParIdAccount);
-*/
 
 
 // scroller
@@ -35122,20 +35134,23 @@ const {
 	rechercherMonCompte: rechercherMonCompteFA,
 });
 
+console.log("dataComptesFA", dataComptesFA); 
+console.log("dataVideoFAbyClic", dataVideoFAbyClic);
+
 
 // filtre pour obtenir les infos du compte - FA 
 const infosCompte = infosCompteById?.[0] ?? {};
 const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
 
 const taDerniereConnexion = infosCompte.derniereConnexion;
-console.log("ton infosCompte", infosCompte);
-console.log("taDerniereConnexion", taDerniereConnexion);
+//console.log("ton infosCompte", infosCompte);
+//console.log("taDerniereConnexion", taDerniereConnexion);
 
 // infos du compte connecté
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
 const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
-const nomCompteConnecter = infosCompteConnecter.nameAccount || "Compte inconnu";
-const populariteCompteConnecter = infosCompteConnecter.popularity || "0";
+const nomCompteConnecter = infosCompteConnecter.nameAccount || "";
+const populariteCompteConnecter = infosCompteConnecter.popularity || "";
 
 
 const destinataireOnline = onlineUsers.includes(idDestinataire);
@@ -35688,12 +35703,12 @@ const [lienDropbox, setLienDropbox] = useState("");
 const [lienGitHub, setLienGitHub] = useState("");
 const [lienGitLab, setLienGitLab] = useState("");
 const [ecrireTitre, setecrireTitre] = useState(""); //titre de la video
-const [isLoading666EnvoyerVideoFAA, setisLoading666EnvoyerVideoFAA] = useState(false);
+const [isLoading666PublierVideoFAA, setisLoading666PublierVideoFAA] = useState(false);
 
 
-//logique pour envoyer ou publier une video - FA
-async function EnvoyerVideoFAA() {
-  await ExecuterActionFA({ file:miniatureFA, urlVideo:lienDropbox, loader: setisLoading666EnvoyerVideoFAA, actions: ["post"],
+//logique pour publier une video - FA
+async function PublierVideoFAA() {
+  await ExecuterActionFA({ file:miniatureFA, urlVideo:lienDropbox, loader: setisLoading666PublierVideoFAA, actions: ["post"],
     dataPOST: {
       message: ecrireTitre,
       idAccount: idPersonConnectedFA,
@@ -35703,33 +35718,19 @@ async function EnvoyerVideoFAA() {
 }
 
 
-/*
-async function EnvoyerVideoFAA() { 
-	setisLoading666EnvoyerVideoFAA(true);
-	const actions = { envoyerPhoto: true, publierVideo: true };
-		
-	await Envoyer3({
-	    file: miniatureFA,
-		
-        message: ecrireTitre,
-        urlVideo: lienDropbox,
-		idAccount: idPersonConnectedFA,
-		idAccountChef: idPersonConnectedFA,
-        clic: 0,
-        comment: 0,
-        account: 1,
-        group: 1,
-        visible: 1,		
-	    type: 3, 
-	    actions,
-		url: "/api/messageFA/new",
-	});
-	
-	//if (actions.allData) { await ObtenirLesDonneesFA(); }
-	  
-	setisLoading666EnvoyerVideoFAA(false);
-} */
-// EnvoyerVideoFAA
+//logique pour publier une annonce - FA
+const [ecrireAnnonce, setEcrireAnnonce] = useState("");
+const [isLoading666PublierAnnonceFA, setisLoading666PublierAnnonceFA] = useState(false);
+
+async function PublierAnnonceFA() {
+  await ExecuterActionFA({ loader: setisLoading666PublierAnnonceFA, actions: ["post"],
+    dataPOST: {
+      texte: ecrireAnnonce,
+      idProprietaireAnnonce: idPersonConnectedFA,
+      clic:0, type:60
+    }, });
+}
+
 
 
 const [isLoading666AjouterAdminFA, setIsLoading666AjouterAdminFA] = useState(false);
@@ -35812,6 +35813,17 @@ async function CloseModifierTitrePageFA() { setmodifierTitrePageFA(false); }
 const [isLoading666ModifierTitreFA, setIsLoading666ModifierTitreFA] = useState(false);
 const [nouveauTitre, setNouveauTitre] = useState("");
 async function ModifierTitreFA() { await ExecuterActionFA({ dataPUT:{message: nouveauTitre}, id:idPost, loader:setIsLoading666ModifierTitreFA, actions: ["put"] }); }
+
+
+//page pour modifier l'annonce - FA
+const [modifierAnnoncePageFA , setModifierAnnoncePageFA] = useState(false);
+async function ModifierAnnoncePageFA() { setModifierAnnoncePageFA(true); }
+async function CloseModifierAnnoncePageFA() { setModifierAnnoncePageFA(false); }
+
+//logique pour modifier l'annonce - FA
+const [isLoading666ModifierAnnonceFA, setIsLoading666ModifierAnnonceFA] = useState(false);
+const [nouvelleAnnonce, setNouvelleAnnonce] = useState("");
+async function ModifierAnnonceFA() { await ExecuterActionFA({ dataPUT:{texte: nouvelleAnnonce}, id:idAnnonce, loader:setIsLoading666ModifierAnnonceFA, actions: ["put"] }); }
 
 
 
@@ -42206,6 +42218,22 @@ async function PageRedirection66groupOtherFA() {
   //const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
   //async function AjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(true); }
   //async function CloseAjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(false); }
+
+
+  
+  const [annoncesPageFA, setAnnoncesPageFA] = useState(false); // page pour afficher les annonces
+  async function AnnoncesPageFA() { setAnnoncesPageFA(true); }
+  async function CloseAnnoncesPageFA() { setAnnoncesPageFA(false); }
+  
+  
+  const [afficherAnnoncePageFA, setAfficherAnnoncePageFA] = useState(false); // page pour afficher une annonce
+  async function AfficherAnnoncePageFA() { setAfficherAnnoncePageFA(true); }
+  async function CloseAfficherAnnoncePageFA() { setAfficherAnnoncePageFA(false); }
+  
+  
+  const [publierAnnoncePageFA, setPublierAnnoncePageFA] = useState(false); // page pour publier une annonce
+  async function PublierAnnoncePageFA() { setPublierAnnoncePageFA(true); }
+  async function ClosePublierAnnoncePageFA() { setPublierAnnoncePageFA(false); }
   
   
   // page ou on affiche toutes les videos - FA 
@@ -50804,16 +50832,26 @@ function rechargerPage() {
       {/* application florinato */}
 	  
 	  
-				
+		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} voirProfil={ProfilFA2e} 
 			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
-			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} 
+			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} OuvrirAnnoncesPage={AnnoncesPageFA}
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
-
+  
+  
+		<AnnoncesTemplate 
+			visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} 
+			data={dataAnnoncesFA} OuvrirMessagePage={MessageFA} AfficherAnnoncePage={AfficherAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 		
+		<AfficherAnnonceTemplate 
+			visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap}
+			data={dataAnnoncesById[0]} OuvrirMessagePage={MessageFA} ModifierAnnoncePageFA={ModifierAnnoncePageFA} gererScroll={gererScrollAnnonces} />
+			
+			
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
+
 
 
 		<SpeedMessages 
@@ -50825,28 +50863,37 @@ function rechargerPage() {
 		<MenuPopupTemplate visible={menuPopup} fermer={CloseMenuPopup} />
 		<PagesGererTemplate visible={pagesGerer} fermer={ClosePagesGerer} />
 		<MenuAvecIconeTemplate visible={menuAvecIcone} fermer={CloseMenuAvecIcone} />
-		<MenuBasTemplate visible={menuBas} fermer={CloseMenuBas} />
 		<GestionPageTemplate visible={gestionPage} fermer={CloseGestionPage} />
 		<PopupBasTextareaTemplate visible={popupBasTextarea} fermer={ClosePopupBasTextarea} />
-
-
+		
 	
 		{/* compte connecté - FA */}
 		<ProfilTemplate  
 			{...profilPropsCommun}
 			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} 
 			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecter} listVideo={listMesVideosFA} 
-			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} />
+			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} MenuBas={MenuBas} />
 
 		<SeeVideoTemplate 
 			{...SeeVideoTemplatePropsCommun}
 			visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} />
 
 
+		<MenuBasTemplate visible={menuBas} fermer={CloseMenuBas} PublierAnnoncePageFA={PublierAnnoncePageFA} titre="Publier une annonce" />
+		
+		<ModifierTemplate 
+			visible={publierAnnoncePageFA} fermer={ClosePublierAnnoncePageFA} titre="Publier une annonce" texte = "Écrivez l'annonce ..." textbtn="Publier" 
+			valeur={ecrireAnnonce} setValeur={setEcrireAnnonce} Valider={PublierAnnonceFA} isLoading={isLoading666PublierAnnonceFA} changerUrl textarea />
 
-	  <PopupDuBasTemplate 
-		  visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
-		  MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
+		<ModifierTemplate 
+			visible={modifierAnnoncePageFA} fermer={CloseModifierAnnoncePageFA} titre="Modifier l'annonce" texte = "Écrivez..." infos={texteAnnonceFA} 
+			valeur={nouvelleAnnonce} setValeur={setNouvelleAnnonce} Valider={ModifierAnnonceFA} isLoading={isLoading666ModifierAnnonceFA} changerUrl textarea />
+
+
+		<PopupDuBasTemplate 
+			visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
+			MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
+		  
 		  
 
 	<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
@@ -51015,8 +51062,8 @@ function rechargerPage() {
 				  
 				<VideoMiniatureTemplate transVoirMiniature={transVoirMiniatureFA} miniature={miniatureFA} setFileVideo={setFileVideoFAA} second={second} setSecond={setSecond} />
 				
-				{isLoading666EnvoyerVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
-				):(<div className="block-trois"> <button onClick={EnvoyerVideoFAA}>Publier</button> </div> )}
+				{isLoading666PublierVideoFAA ? (<div className="loader-display-flex"> <Loader/> </div>
+				):(<div className="block-trois"> <button onClick={PublierVideoFAA}>Publier</button> </div> )}
 					
 				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
 

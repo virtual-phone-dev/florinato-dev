@@ -3866,11 +3866,9 @@
 
 .izocashDealsActivationIA .block-one button p {
   color: blue;
-  font-family: "Google Sans", Helvetica, Arial, sans-serif;
-  font-family: "Google Sans", Roboto, Arial, sans-serif;
+  font-family: Helvetica, Roboto, Arial, sans-serif;
   font-size: 16px;
   font-weight: 400;
-  font-weight: 500;
   cursor: pointer;
 }
 

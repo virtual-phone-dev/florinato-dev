@@ -6,7 +6,7 @@ import { theme } from "./theme";
 
 import { 
 	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, 
-	SvgFile, SvgFullScreen2, SvgLeft, SvgMark1, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 
+	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMenu2, SvgMenu3, SvgMenu4, SvgMenu5, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 
 } from "./Svg/Svg";
 	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -1289,25 +1289,6 @@ export async function AdapterLien(url) {
 }
 
 
-/* export async function AdapterLien(url) {
-  if (!url) return '';
-  
-  // Dropbox : dl=0 → raw=1
-  if (url.includes('dl=0')) {
-    return url.replace('dl=0', 'raw=1');
-  }
-
-  // GitHub : blob → raw
-  if (url.includes('github.com') && url.includes('/blob/')) {
-    return url.replace('/blob/', '/raw/');
-  }
-
-  // Ajoute d'autres cas si nécessaire (GitLab, Drive, etc.)
-  return url;
-}*/
-
-
-
 
 export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileVideo, second, setSecond }) {
   return (
@@ -1326,25 +1307,6 @@ export function VideoMiniatureTemplate({ transVoirMiniature, miniature, setFileV
 	</>
 )}
 
-
-
-export function Close({ fermer }) {
-  return (<>
-			<div className="close">
-              <div className="a" onClick={fermer}> <SvgLeft /> </div>
-              <div className="b"> <p></p> </div>
-            </div>
-            {/* close */}
-  </>
-)}
-
-
-export function Page({ visible }) {
-	if (!visible) return null;
-  return (
-    <div className="page-blanche"> </div>
-  );
-}
 
 
 export function Page2({ visible, fermer, children }) {
@@ -1511,7 +1473,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 
 
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, onlineUsers=null,
-	idConversation, idCompte, idCompte2, idCompteConnecter, idPost, idProprietairePost, id, 
+	idConversation, idCompte, idCompte2, idCompteConnecter, idPost, idProprietairePost, id, idAnnonce,
 	rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
@@ -1554,7 +1516,6 @@ const donneesAffichees_byClic = useMemo(() => {
 
 
 
-//const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
 
 /*
@@ -1767,6 +1728,9 @@ const infosCompteConnecter_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, {
 [toutesDonnees, idCompteConnecter]); // obtenir les infos dun post
 
 
+const infosAnnonce_by_id = useMemo(() => filtrerEtTrier(toutesDonnees, { key: "_id", value: idAnnonce, }), [toutesDonnees, idAnnonce]); // obtenir les infos d'une annonce
+
+
 
 
 const donneesAffichees_CompteEnLigne = useMemo(() => {
@@ -1939,17 +1903,17 @@ useEffect(() => { //on reinitialise le lot , si maRechercheVideo change . 🔹 R
   setLotActuel(prochainLot);
 } */
 
-	function chargerPlus() {
-		setLotActuel(prev => prev + lot);
-	  }
+function chargerPlus() {
+	setLotActuel(prev => prev + lot);
+}
 	
-	async function gererScroll(e) {
-		const { scrollTop, scrollHeight, clientHeight } = e.target;
-		if (scrollTop + clientHeight >= scrollHeight - 10) {
-			//Si on arrive en bas, charger plus
-			chargerPlus(); 
-		}
-	};
+async function gererScroll(e) {
+	const { scrollTop, scrollHeight, clientHeight } = e.target;
+	if (scrollTop + clientHeight >= scrollHeight - 10) {
+		//Si on arrive en bas, charger plus
+		chargerPlus(); 
+	}
+};
 
 	return { 
 		toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
@@ -1994,7 +1958,6 @@ export function useScrollInfini(chargerPlus, overflow='y', marge=150) {
 
 
 export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup, PagesGerer, MenuAvecIcone, MenuBas, GestionPage, PopupBasTextarea }) {
-	//const { donneesAffichees: afficherMessages, gererScroll, chargerPlus } = useScrollIndexedDB({ donnees:data });
 	
 	async function logMessages() {
 	  console.log("data ici :", data);
@@ -2026,16 +1989,19 @@ export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup
 }
 
 
-export function CloseAction({ fermer, clicSvgAdd, left, titre, photo }) {
+export function CloseAction({ fermer, clicSvgAdd, titre, photo, annonce, OuvrirAnnoncesPage }) {
   return (
-    <div className="flex m-15">
-      <div className="display-flex-nowrap" onClick={fermer}>
-        {left && (<div> <SvgLeft/> </div>)}
-        {titre && (<div> <p>{titre}</p> </div>)}
-        {photo && (<div className="photo-25px"> <img src={photo} alt=""/> </div>)}
-      </div>
+    <div className="between m-15">
+		<div className="a display-flex-nowrap" onClick={fermer}>
+			<div> <SvgLeft/> </div>
+			<div> <p>{titre}</p> </div>
+			<div className="photo-25px"> <img src={photo} alt=""/> </div>
+		</div>
 
-      {clicSvgAdd && (<div className="b"> <div onClick={clicSvgAdd}><SvgAdd/></div> </div>)}
+		<div className="b"> 
+			{clicSvgAdd && (<div onClick={clicSvgAdd}> <SvgAdd/> </div>)}
+			{annonce && (<div onClick={OuvrirAnnoncesPage}> <SvgInfos/> </div>)}
+		</div>
     </div>
   );
 }
@@ -2130,7 +2096,6 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
         {/* favoriteFA */}
 	</>)}
 // PopupDuBasTemplate 
-
 
 		
 export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, 
@@ -2247,12 +2212,12 @@ export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, set
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, profilMap,
+export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage,
 	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, video, clicVideo, gererScroll, voirVideo, voirProfil, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche" onScroll={gererScroll}> 
-			<CloseAction fermer={fermer} titre="Videos" photo={photo} left />
+			<CloseAction fermer={fermer} titre="Videos" photo={photo} OuvrirAnnoncesPage={OuvrirAnnoncesPage} annonce />
 			
 			<VideoSearchBlock 
 				data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
@@ -2373,18 +2338,18 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
   const idOtherUtiliser = api?.idOther;
   const profil_idOther = idOtherUtiliser? profilMap?.[idOtherUtiliser] : null;
 
-  const populariteGestionnaire = profil_idOther?.popularity ?? 0;
+  const populariteGestionnaire = profil_idOther?.popularity;
   const photoGestionnaire = profil_idOther?.photoProfile ?? photoBlanche;
-  const nomGestionnaire = profil_idOther?.nameAccount ?? "Compte inconnu";
+  const nomGestionnaire = profil_idOther?.nameAccount ?? "";
   
   
   // idAccount
   const idAccountUtiliser = api?.idAccount;
   const profil_idAccount = idAccountUtiliser? profilMap?.[idAccountUtiliser] : null;
 
-  const populariteProprietaire = profil_idAccount?.popularity ?? 0;
+  const populariteProprietaire = profil_idAccount?.popularity;
   const photoProprietaire = profil_idAccount?.photoProfile ?? photoBlanche;
-  const nomProprietaire = profil_idAccount?.nameAccount ?? "Compte inconnu";
+  const nomProprietaire = profil_idAccount?.nameAccount ?? "";
   
   return (<>
 	{gestionnaireCompte && (<> {/* le proprietaire voit le gestionnaire du compte */}
@@ -2478,7 +2443,7 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, pro
 	if (!visible) return null;
     return (<>
 	<div className="page-blanche">
-		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} left titre={titre} photo={photo}/>
+		<CloseAction fermer={fermer} clicSvgAdd={clicSvg} titre={titre} photo={photo}/>
 		<ListeDesComptes2 data={data} profilMap={profilMap} proprietaireCompte={proprietaireCompte} gestionnaireCompte={gestionnaireCompte} />
     </div>
     {/* page-blanche */}
@@ -2808,37 +2773,6 @@ export function GestionPageTemplate({ visible, fermer, AjouterAdmin, ActualiserP
 </>)}
 // gestion de la page
 
-
-//MenuBas
-export function MenuBasTemplate({ visible, fermer }) {
-  if (!visible) return null;
-  
-  return (<>
-      {/* apres avoir cliquer sur Publiciter, on va afficher cette navbar bottom qui va 
-      permettre a l'utilisateur de cliquer sur Booster la page */}
-          <div className="actualiser-page-opacity">
-            <div className="align">
-              <div className="card">
-                <div className="block">
-                  <div className="a">
-                    <p onClick={fermer}>Booster la Page</p>
-                  </div>
-
-                  <div className="b">
-                    <p>Gestionnaire de Publicité</p>
-                  </div>
-                  {/* b */}
-                </div>
-                {/* block */}
-              </div>
-              {/* card */}
-            </div>
-            {/* align */}
-          </div>
-          {/* actualiser-page-opacity */}
-        </>
-      )}  
-//MenuBas
 
 
 // MenuAvecIcone
@@ -3335,8 +3269,91 @@ export function PartageContactMessage({ api, profilMap={} }) {
 </>)}
 
 
+export function Close2({ fermer, titre, titrecss }) {
+  return (<>
+		<div className="close flex">
+          <div className="a" onClick={fermer}> <SvgLeft /> </div>
+          <div className={titrecss}> <p>{titre}</p> </div>
+        </div>
+        {/* close */}
+</>)}
 
-export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, AccountsFA, video, connecter,
+
+export function AnnoncesTemplate({ visible, fermer, data, api, profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage=()=>{}, AfficherAnnoncePage=()=>{} }) {
+  const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
+  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
+  
+  return (<>
+	<div className="page-blanche">
+		<Close2 fermer={fermer} titre="Annonces" titrecss="fs-19px c-00cc00"/>
+		
+		<div onClick={() => { setIdAnnonce(api._id); }}>
+			<pre className="pre fs-17px mb-15px" onClick={() => { AfficherAnnoncePage(); }}>{api.titre}</pre> 
+			
+			<div className="flex" onClick={() => { OuvrirMessagePage(); }}> 
+				<img className="photo-25px mr-5px" src={profil.photoProfile} alt=""/> 
+				<pre className="pre fs-14px">{profil.nameAccount} aa44</pre>
+			</div>
+			
+			<p className="fs-12px">{api.clic} clic</p>
+		</div>
+		
+	</div>
+</>)}
+
+
+export function AfficherAnnonceTemplate({ visible, fermer, api, data, profilMap={}, OuvrirMessagePage=()=>{}, ModifierAnnoncePageFA }) {
+  const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
+  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
+  
+  return (<>
+	<div className="page-blanche">
+		<div className="close flex">
+		  <div className="a" onClick={fermer}> <SvgLeft /> </div>
+		  
+		  <div className="b flex" onClick={() => { OuvrirMessagePage(); }}> 
+			<img className="photo-25px mr-5px" src={profil.photoProfile} alt=""/> 
+			<pre className="pre fs-14px">{profil.nameAccount} aa44</pre>
+		  </div>
+		  {/* b */}
+		</div>
+		{/* close */}
+		
+		<div>
+		<pre className="pre fs-17px mb-15px">{api.titre}</pre> 
+		<p className="fs-12px">{api.clic} clic</p>
+		<div className="btn-p-hr"> <button> <p>Envoyer un message</p> <hr/> </button> </div>
+		<div className="btn-p-hr"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>
+		</div>
+		
+	</div>
+</>)}
+
+
+export function MenuBasTemplate({ visible, fermer, titre, AnnoncesPageFA }) {
+  if (!visible) return null;
+  return (<>
+          <div className="actualiser-page-opacity">
+            <div className="align">
+              <div className="card">
+                <div className="block">
+                  <div className="a"> <p onClick={fermer}>fermer</p> </div>
+                  <div className="b"> <p onClick={AnnoncesPageFA}>{titre}</p> </div>
+                  {/* b */}
+                </div>
+                {/* block */}
+              </div>
+              {/* card */}
+            </div>
+            {/* align */}
+          </div>
+          {/* actualiser-page-opacity */}
+</>)}
+//MenuBas
+
+
+
+export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter,
 	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
@@ -3360,6 +3377,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, AddVideoPageFA, Accoun
 
 				{connecter && (<>
 				<div className="display-flex-nowrap"> 
+				  <div className="a" onClick={MenuBas}> <SvgMenu/> <SvgMenu2/> <SvgMenu3/> <SvgMenu4/> <SvgMenu5/> </div> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
@@ -3537,8 +3555,28 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
         {/* seePhotoFA */}
 </>)}
 // SeePhotoTemplate
+
   
-	 
+export function Page({ visible, fermer }) {
+  if (!visible) return null;
+  
+  return (<>
+	<div className="page-blanche"> 
+		<Close2 fermer={fermer}/>
+	</div>
+</>)}
+
+
+export function Close({ fermer }) {
+  return (<>
+		<div className="close">
+          <div className="a" onClick={fermer}> <SvgLeft /> </div>
+          <div className="b"> <p></p> </div>
+        </div>
+        {/* close */}
+</>)}
+
+
 export function MissionTemplate({ visible, valeur, setValeur, envoyer, message, nomMembre, titre, titre2, titre3, titre4, titre5, titre7, titre8, titre9 }) {
   if (!visible) return null;
 
