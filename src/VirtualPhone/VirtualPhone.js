@@ -35034,8 +35034,8 @@ const {
 
 
 // filtre pour obtenir les infos de l'annonce - FA
-const texteAnnonceFA = dataAnnoncesById.map((api) => api.texte); // texte
-
+const infosAnnonce = dataAnnoncesById?.[0] ?? {};
+const texteAnnonceFA = infosAnnonce.texte || "";
 
 console.log("jai mis des console.log pour savoir si dataVideoFAbyClic, dataAnnoncesFA, dataAnnoncesById, dataComptesFA, renvoie toute la base de donnees ou renvoie seulement ce qui est necessaire"); 
 console.log("texteAnnonceFA", texteAnnonceFA);
