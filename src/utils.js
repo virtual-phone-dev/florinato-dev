@@ -3279,7 +3279,7 @@ export function Close2({ fermer, titre, titrecss }) {
 </>)}
 
 
-export function AnnoncesTemplate({ visible, fermer, data, api, profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage=()=>{}, AfficherAnnoncePage=()=>{} }) {
+export function AnnoncesTemplate({ visible, fermer, data, api={}, profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage=()=>{}, AfficherAnnoncePage=()=>{} }) {
   const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
@@ -3302,7 +3302,7 @@ export function AnnoncesTemplate({ visible, fermer, data, api, profilMap={}, set
 </>)}
 
 
-export function AfficherAnnonceTemplate({ visible, fermer, api, data, profilMap={}, OuvrirMessagePage=()=>{}, ModifierAnnoncePageFA }) {
+export function AfficherAnnonceTemplate({ visible, fermer, api={}, data, profilMap={}, OuvrirMessagePage=()=>{}, ModifierAnnoncePageFA }) {
   const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
