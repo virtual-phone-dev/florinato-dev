@@ -35034,11 +35034,12 @@ const {
 
 
 // filtre pour obtenir les infos de l'annonce - FA
-const infosAnnonce = dataAnnoncesById?.[0] ?? {};
-const texteAnnonceFA = infosAnnonce.texte || "";
+const dataAnnonce = dataAnnoncesById?.[0] ?? {};
+const texteAnnonceFA = dataAnnonce.texte || "";
 
 console.log("jai mis des console.log pour savoir si dataVideoFAbyClic, dataAnnoncesFA, dataAnnoncesById, dataComptesFA, renvoie toute la base de donnees ou renvoie seulement ce qui est necessaire"); 
 console.log("texteAnnonceFA", texteAnnonceFA);
+console.log("dataAnnonce", dataAnnonce);
 console.log("dataAnnoncesFA", dataAnnoncesFA);
 console.log("dataAnnoncesById", dataAnnoncesById);
 
@@ -50847,7 +50848,7 @@ function rechargerPage() {
 		
 		<AfficherAnnonceTemplate 
 			visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap}
-			data={dataAnnoncesById[0]} OuvrirMessagePage={MessageFA} ModifierAnnoncePageFA={ModifierAnnoncePageFA} gererScroll={gererScrollAnnonces} />
+			data={dataAnnonce} OuvrirMessagePage={MessageFA} ModifierAnnoncePageFA={ModifierAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 			
 			
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
