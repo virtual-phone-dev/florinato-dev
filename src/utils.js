@@ -3283,6 +3283,9 @@ export function AnnoncesTemplate({ visible, fermer, data, api={}, profilMap={}, 
   const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
+  const photo = profil?.photoProfile ?? photoBlanche;
+  const nom = profil?.nameAccount ?? "";	
+  
   return (<>
 	<div className="page-blanche">
 		<Close2 fermer={fermer} titre="Annonces" titrecss="fs-19px c-00cc00"/>
@@ -3291,8 +3294,8 @@ export function AnnoncesTemplate({ visible, fermer, data, api={}, profilMap={}, 
 			<pre className="pre fs-17px mb-15px" onClick={() => { AfficherAnnoncePage(); }}>{api.titre}</pre> 
 			
 			<div className="flex" onClick={() => { OuvrirMessagePage(); }}> 
-				<img className="photo-25px mr-5px" src={profil.photoProfile} alt=""/> 
-				<pre className="pre fs-14px">{profil.nameAccount} aa44</pre>
+				<img className="photo-25px mr-5px" src={photo} alt=""/> 
+				<pre className="pre fs-14px">{nom} aa44</pre>
 			</div>
 			
 			<p className="fs-12px">{api.clic} clic</p>
@@ -3306,14 +3309,17 @@ export function AfficherAnnonceTemplate({ visible, fermer, api={}, data, profilM
   const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
+  const photo = profil?.photoProfile ?? photoBlanche;
+  const nom = profil?.nameAccount ?? "";	
+  
   return (<>
 	<div className="page-blanche">
 		<div className="close flex">
 		  <div className="a" onClick={fermer}> <SvgLeft /> </div>
 		  
 		  <div className="b flex" onClick={() => { OuvrirMessagePage(); }}> 
-			<img className="photo-25px mr-5px" src={profil.photoProfile} alt=""/> 
-			<pre className="pre fs-14px">{profil.nameAccount} aa44</pre>
+			<img className="photo-25px mr-5px" src={photo} alt=""/> 
+			<pre className="pre fs-14px">{nom} aa44</pre>
 		  </div>
 		  {/* b */}
 		</div>
