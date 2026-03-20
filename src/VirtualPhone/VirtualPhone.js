@@ -38906,7 +38906,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   // inscription Page - AA
   // inscription Page - AA
   // on affiche la page qui permet a l'utilisateur de s'inscrire - AA
-  const [inscriptionPageAA, setInscriptionPageAA] = useState(true);
+  const [inscriptionPageAA, setInscriptionPageAA] = useState(false);
   async function InscriptionPageAA() {
     setInscriptionPageAA(true);
     setConnexionPageAA(false);
