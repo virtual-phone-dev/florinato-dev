@@ -3391,7 +3391,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 
 				{connecter && (<>
 				<div className="display-flex-nowrap"> 
-				  <div className="a" onClick={MenuBas}> <SvgMenu/> <SvgMenu2/> <SvgMenu3/> <SvgMenu4/> <SvgMenu5/> </div> 
+				  <div className="a" onClick={MenuBas}> a<SvgMenu/> b<SvgMenu2/> c<SvgMenu3/>d </div> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
