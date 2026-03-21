@@ -6,7 +6,8 @@ import { theme } from "./theme";
 
 import { 
 	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, 
-	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMenu2, SvgMenu3, SvgMenu4, SvgMenu5, SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5 
+	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMenu2, SvgMenu3, 
+	SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgValidate3
 } from "./Svg/Svg";
 	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -3570,7 +3571,7 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
 // SeePhotoTemplate
 
 
-export function PortefeuilleSortie({ visible, fermer }) {
+export function PortefeuilleSortie({ visible, fermer, CloseAlraniPayAA, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
   if (!visible) return null;
   
   return (<>
@@ -3593,7 +3594,8 @@ export function PortefeuilleSortie({ visible, fermer }) {
 // PortefeuilleSortie		
 
 
-export function MonetizationEntrer({ visible, fermer }) {
+export function MonetizationEntrer({ visible, fermer, SeePhoto2personConnectedAA, RefreshBalanceAA, InfosBalanceAlraniBusinessAA, monetizationBalanceAA,
+	namePersonConnectedAA, photoPersonConnectedAA }) {
     if (!visible) return null;
   
     return (<>
