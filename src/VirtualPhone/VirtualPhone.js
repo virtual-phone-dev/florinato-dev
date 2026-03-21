@@ -35418,14 +35418,17 @@ const conversationExistante = useMemo(() => {
 
 
 const verifyConversation = !!conversationExistante;
+const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
 
 useEffect(() => {
+  if (choisirManuellementConversation) return; // 🔥 cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
+	
   if (conversationExistante) {
     setIdConversation(conversationExistante._id);
   } else {
     setIdConversation("0");
   }
-}, [conversationExistante]);
+}, [conversationExistante, choisirManuellementConversation]);
 
 
 console.log("dataMessagesFA", dataMessagesFA); 
@@ -50827,6 +50830,7 @@ function rechargerPage() {
                 {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
+						setChoisirManuellementConversation(true); //important
 						setIdConversation(api._id);
 						
 						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
