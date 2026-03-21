@@ -1796,13 +1796,16 @@ const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees]
 });
 }, [toutesDonnees, idCompteConnecter]);
 
-
-
-const donneesAffichees_messages = useMemo(() => {
+	
+	
+const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
   if (!idConversation) return [];
 
   return [...toutesDonnees]
-    .filter(api => api?.idConversation && api.idConversation === idConversation)
+    .filter(api => 
+	  api.idConversation &&
+	  api.idConversation !== "0" && 
+	  api.idConversation === idConversation)
     .sort((a, b) => {
       if (!a.createdAt && !b.createdAt) return 0;
       if (!a.createdAt) return 1;
@@ -1936,6 +1939,8 @@ async function gererScroll(e) {
 		infosCompte_by_id,
 		infosCompte_by_id_2,
 		infosCompteConnecter_by_id,
+		
+		infosAnnonce_by_id,
 		
 		toutesVideoPar_idAccount,
 		toutesVideoCompteConnecterPar_idAccount,
