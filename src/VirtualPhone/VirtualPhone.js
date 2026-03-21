@@ -34689,10 +34689,13 @@ async function DissadAA() {
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
   
-  const countRef = useRef(0);
+  const countRefb1 = useRef(0);
+  
   useEffect(() => {
-	countRef.current++;
-	console.log("use a1", countRef.current);
+	  
+	countRefb1.current++;
+	console.log("use b1", countRefb1.current);
+	
 	async function fetchData() {
 		await ObtenirLesDonneesFA();
 	}
@@ -34797,11 +34800,12 @@ async function DissadAA() {
 const socketRef = useRef(null); // Socket
 const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
+const countRefb2 = useRef(0);
 
 useEffect(() => {
 	
-	countRef.current++;
-	console.log("use b2", countRef.current);
+	countRefb2.current++;
+	console.log("use b2", countRefb2.current);
 	
 	// S'il ya une socket existante, déconnecte-la proprement
     if (socketRef.current) {
@@ -35038,9 +35042,11 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
+const countRefb3 = useRef(0);
+
 useEffect(() => {
-	countRef.current++;
-	console.log("use b3", countRef.current);
+	countRefb3.current++;
+	console.log("use b3", countRefb3.current);
 	
   const socket = socketRef.current;
   if (!socket) return;
@@ -35224,6 +35230,8 @@ const ComptesRecentsPropsCommun = {
 
 // ca verifie si ya deja une conversation entre les 2 utilisateurs
 const conversationExistante = useMemo(() => {
+	console.log("🔥 useMemo conversationExistante recalculé");
+	
   if (!idPersonConnectedFA || !idDestinataire) return null;
 
   return toutConversations.find(api =>
@@ -35241,10 +35249,12 @@ const conversationExistante = useMemo(() => {
 const verifyConversation = !!conversationExistante;
 const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
 
+const countRefb6 = useRef(0);
+
 useEffect(() => {
 	
-	countRef.current++;
-	console.log("use b6", countRef.current);
+	countRefb6.current++;
+	console.log("use b6", countRefb6.current);
 	
 	
   if (choisirManuellementConversation) return; // 🔥 cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
@@ -35439,11 +35449,13 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 	const location = useLocation();
 	// const navigate = useNavigate();
 
-  // État pour gérer l’ouverture du popup
+	const countRefb5 = useRef(0);
+
+	// État pour gérer l’ouverture du popup
 	useEffect(() => {
 		
-		countRef.current++;
-	console.log("use b5", countRef.current);
+	  countRefb5.current++;
+	  console.log("use b5", countRefb5.current);
 	
 	
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
@@ -35520,12 +35532,13 @@ const [miniatureFA, setMiniatureFA] = useState();
 const [fileVideoFAA, setFileVideoFAA] = useState();
 const [second, setSecond] = useState(10);
 
+const countRefb4 = useRef(0);
 
 // useEffect affiche la miniature immédiatement après sa génération sans délai
   useEffect(() => {
 	  
-	  countRef.current++;
-	console.log("use b4", countRef.current);
+	  countRefb4.current++;
+	console.log("use b4", countRefb4.current);
 	
 	async function GenererMiniature() {
 		if (fileVideoFAA) {

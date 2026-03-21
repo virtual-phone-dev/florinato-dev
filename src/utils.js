@@ -1846,10 +1846,14 @@ const toutesDonnees_all = useMemo(() => {
 
 
 
-
+const countRefz1 = useRef(0);
 
   // useEffect 1 (affiche les donnees sans attendre que les donnees mongodb arrive, il prend ca dans indexedDB) 🔹 1) LECTURE INDEXEDDB (AFFICHAGE IMMEDIAT)
   useEffect(() => {
+	  
+	  countRefz1.current++;
+	console.log("use z1", countRefz1.current);
+	
     if (!visible || !nomStockage) return;
 
     async function lireLocal() {
@@ -1866,8 +1870,12 @@ const toutesDonnees_all = useMemo(() => {
   }, [nomStockage, visible, lot]);
 
 
+const countRefz2 = useRef(0);
 // useEffect 2 (agit quand les donnees mongodb arrive) 🔹 2) SYNC AVEC MONGODB
 useEffect(() => {
+	countRefz2.current++;
+	console.log("use z2", countRefz2.current);
+	
   if (!visible || !Array.isArray(donnees) || donnees.length === 0 || !nomStockage || syncEnCours.current) return;
   syncEnCours.current = true;
 
@@ -2072,7 +2080,7 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
 	const imgRef = useRef(null);
 	const [nombreLettre, setnombreLettre] = useState(40);
 
-  useEffect(() => {
+  /* // useEffect(() => {
     const img = imgRef.current;
     if (!img) return;
 
@@ -2095,7 +2103,32 @@ export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, 
     } else {
       img.onload = calculerRatio;
     }
-  }, []);
+  }, []); */
+
+  
+useEffect(() => {
+  const img = imgRef.current;
+  if (!img) return;
+
+  let isMounted = true;
+
+  function calculerRatio() {
+    if (!isMounted) return;
+    const ratio = img.naturalWidth / img.naturalHeight;
+
+    if (ratio < 0.8) setnombreLettre(15);
+    else if (ratio < 1.3) setnombreLettre(30);
+    else setnombreLettre(50);
+  }
+
+  if (img.complete) {
+    calculerRatio();
+  } else {
+    img.onload = calculerRatio;
+  }
+
+  return () => { isMounted = false };
+}, []);
 
   const titre = api.message || "";
   const gettitre = titre.length > nombreLettre ? titre.slice(0, nombreLettre) + ". . ." : titre;
