@@ -6,8 +6,7 @@ import { theme } from "./theme";
 
 import { 
 	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, 
-	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMenu2, SvgMenu3, 
-	SvgPointsVertical, SvgSend, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgValidate3
+	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
 } from "./Svg/Svg";
 	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -3256,6 +3255,70 @@ export function ChildApi66messageFA({ api, profilMap }) {
 //ChildApi66messageFA
 
 
+export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter,
+	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
+	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
+	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
+	}) { 
+		
+  if (!visible) return null;
+    
+
+  // 🔹 infos du profil
+  const { nameAccount="", photoProfile=photoBlanche, popularity, } = data;
+  
+  return (<>
+        <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
+          <div className="head">
+            <div className="close">
+              <div className="block-un" onClick={fermer}> 
+                <div className="a"> <SvgLeft/> </div>
+                <div className="b"> <pre>{nameAccount}</pre> </div>
+              </div>
+              {/* block-un */}
+
+				{connecter && (<>
+				<div className="display-flex-nowrap"> 
+				  <div className="a" onClick={MenuBas}> <SvgMenu/> </div> 
+				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
+				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
+				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
+				</div> </>)}
+            </div>
+            {/* close */} 
+          </div>
+          {/* head */}
+
+      <div className="body">
+        <div className="block-un">
+          <div className="a"> <img onClick={SeePhoto66profilFA} src={photoProfile} alt=""/> </div>
+          <div className="b"> <pre>{nameAccount}</pre> </div>
+          <div className="c"> <SvgPopularity/> <p>Popularité</p> </div>
+          <div className="d"> <p>{popularity} visites</p> </div>
+        </div>
+        {/* block-un */}
+			  
+			  
+			<VideoSearchBlock 
+				data={dataVideos} dataOverflow={dataOverflow} listVideo={listVideo} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
+				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} 
+				video overflow scrollX={scrollX} affichagecss="overflow-x" /> 
+
+
+              <div className="api2">
+              {dataMesVisitesFA.map((api2) => (<>
+                <ChildApi266profilFA api2={api2} />
+              </>))}
+              </div>
+            </div>
+            {/* body */}
+        </div>
+        {/* profilFA */}
+</>)}
+//ProfilTemplate	
+
+
+
 export function PartageContactMessage({ api={}, profilMap={} }) {
   const idaUtiliser = api?.idContact; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
@@ -3364,71 +3427,6 @@ export function MenuBasTemplate({ visible, fermer, titre, AnnoncesPageFA }) {
           {/* actualiser-page-opacity */}
 </>)}
 //MenuBas
-
-
-
-export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter,
-	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[],
-	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
-	setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
-	}) { 
-		
-  if (!visible) return null;
-    
-
-  // 🔹 infos du profil
-  const { nameAccount="", photoProfile=photoBlanche, popularity, } = data;
-  
-  return (<>
-        <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
-          <div className="head">
-            <div className="close">
-              <div className="block-un" onClick={fermer}> 
-                <div className="a"> <SvgLeft/> </div>
-                <div className="b"> <pre>{nameAccount}</pre> </div>
-              </div>
-              {/* block-un */}
-
-				{connecter && (<>
-				<div className="display-flex-nowrap"> 
-				  <div className="a" onClick={MenuBas}> a<SvgMenu/> b<SvgMenu2/> c<SvgMenu3/>d </div> 
-				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
-				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
-				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
-				</div> </>)}
-            </div>
-            {/* close */} 
-          </div>
-          {/* head */}
-
-      <div className="body">
-        <div className="block-un">
-          <div className="a"> <img onClick={SeePhoto66profilFA} src={photoProfile} alt=""/> </div>
-          <div className="b"> <pre>{nameAccount}</pre> </div>
-          <div className="c"> <SvgPopularity/> <p>Popularité</p> </div>
-          <div className="d"> <p>{popularity} visites</p> </div>
-        </div>
-        {/* block-un */}
-			  
-			  
-			<VideoSearchBlock 
-				data={dataVideos} dataOverflow={dataOverflow} listVideo={listVideo} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
-				setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} clicVideo={ClicVideoFAA} voirVideo={voirVideo} 
-				video overflow scrollX={scrollX} affichagecss="overflow-x" /> 
-
-
-              <div className="api2">
-              {dataMesVisitesFA.map((api2) => (<>
-                <ChildApi266profilFA api2={api2} />
-              </>))}
-              </div>
-            </div>
-            {/* body */}
-        </div>
-        {/* profilFA */}
-</>)}
-//ProfilTemplate	
-
 
 
 // plein ecran
@@ -3569,6 +3567,7 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
         {/* seePhotoFA */}
 </>)}
 // SeePhotoTemplate
+
 
 
 export function PortefeuilleSortie({ visible, fermer, CloseAlraniPayAA, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
