@@ -2061,7 +2061,7 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecen
 
 
 export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, cliquer, 
-	Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, ComptesRecentsPageFA, setId }) {	
+	Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, ComptesRecentsPageFA, setIdContact }) {	
 	if (!visible) return null;
 
 	return (<>
@@ -2089,7 +2089,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 			{search && (
 			<RechercheTemplate 
 				listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
-				cliquer={cliquer} setId={setId}/> )}
+				cliquer={cliquer} setIdContact={setIdContact}/> )}
 			
 			<p style={{ paddingTop: "100px" }}></p>
             </div>
@@ -2235,7 +2235,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, Ou
 
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
-	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, idPersonConnectedFA, clicVideo, voirVideo, 
+	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, setIdContact=()=>{}, idPersonConnectedFA, clicVideo, voirVideo, 
 	setIdDestinataire=()=>{}, setIdExpediteur=()=>{}, profilMap, onlineUsers=[], dev, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
 	
 	return (<>
@@ -2261,7 +2261,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			{listAccount.map((api) => {
 			const isOnline = onlineUsers.includes(api._id);
 			return (<>
-			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(api); }}>	
+			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); setIdContact(api._id); ouvrirMessagePage(); }}>	
 				<PopularityAccountCard api={api} isOnline={isOnline}/>
 			</div>
 			
@@ -2281,8 +2281,9 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 				data={listVideo} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
 				clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} 
 				titrecss={titrecss} cliccss={cliccss} nomcss={nomcss} datecss={datecss} nomEtphoto={nomEtphoto} voirProfil={voirProfil} /> 
-	</>);
-}
+</>)}
+//RechercheTemplate
+
 
 
 export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, 
@@ -3142,6 +3143,8 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 //on affiche les messages
 export function ChildApi66messageFA({ api, profilMap }) { 
+console.log("api ChildApi66messageFA", api);
+
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const [checked, setChecked] = useState(false);
   async function Checked() {

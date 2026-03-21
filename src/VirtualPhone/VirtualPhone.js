@@ -114,9 +114,6 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
   async function Checked() {
     setChecked(!checked);
 
-    //const id = api._id; // id
-    //if(id) { localStorage.setItem("idConversation", id); }
-
     const idOther = api.idOther;
     if(idOther) { 
       localStorage.setItem("idOther", idOther); 
@@ -141,17 +138,6 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
     }
   }
 
-  // date envoie message
-  /* const dateParser = (date) => {
-    let newDate = new Date(date).toLocaleDateString("fr-FR", {
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-      hour: "numeric",
-      minute: "numeric",
-    });
-    return newDate;
-  }; */
 
   // afficher le groupe
   async function GoTogroupOtherFA() {
@@ -211,6 +197,8 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 		  {utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
         </div>
         {/* B */}
+		
+		<p>{api._id} idConversation</p>
       </div></>)}
       {/* type=30 , Account */}
 
@@ -227,6 +215,8 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 			{utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
         </div>
         {/* B */}
+		
+		<p>{api._id} idConversation</p>
       </div></>)}
       {/* type=30 , Other */}
 
@@ -241,6 +231,8 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
           <div className="b"> <p>{dateParser(api.createdAt)}</p> </div>
         </div>
         {/* B */}
+		
+		<p>{api._id} idConversation</p>
       </div></>)}
       {/* type=50 , je me suis abonné */}
     </div>
@@ -34684,6 +34676,7 @@ async function DissadAA() {
 	const [idPost, setIdPost] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
 	const [idCompte, setIdCompte] = useState(null);
+	const [idContact, setIdContact] = useState(null);
 	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
@@ -34691,6 +34684,7 @@ async function DissadAA() {
 	console.log("idPersonConnectedFA", idPersonConnectedFA);
 	console.log("idExpediteur", idExpediteur);
 	console.log("idDestinataire", idDestinataire); 
+	console.log("idContact", idContact); 
 	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -35127,7 +35121,7 @@ const {
 	donnees:comptesSource, 
 	onlineUsers,
 	idCompte,
-	idCompte2: idreq,
+	idCompte2: idContact,
 	idCompteConnecter: idPersonConnectedFA,
 	rechercherUnCompte: rechercherUnCompteFA,
 	rechercherMonCompte: rechercherMonCompteFA,
@@ -50828,16 +50822,13 @@ function rechargerPage() {
 
           <div className="body"> 
             <div className="api">
-                {dataConversationFA.map((api) => ( 
+                {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
 						setIdConversation(api._id);
 						
-						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); } 
-						else {
-						  setIdDestinataire(api.idAccount); setIdCompte(api.idAccount);
-						  //setIdProprietaireCompte(api.idAccountChef);
-						} 
+						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
+						else { setIdDestinataire(api.idAccount); setIdCompte(api.idAccount); }
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
 					
@@ -50949,7 +50940,7 @@ function rechargerPage() {
 		
 		
     <PopupDuBasTemplate 
-		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setId={setId}
+		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
 		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirMessagePage66PartagerContactPageFA} search/>
 
 
