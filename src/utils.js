@@ -3094,8 +3094,8 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
             {/* block-un */}
 
             <div className="block-deux">
-              <div className="a" onClick={Favorite66messageFA}> <SvgFile/> </div>
-              <div className="b" onClick={PartagerContactPageFA}> <SvgPointsVertical/> </div>
+				<div className="b" onClick={PartagerContactPageFA}> <SvgPointsVertical/> </div>
+				<div className="a" onClick={Favorite66messageFA}> <SvgFile/> </div>
             </div>
             {/* block-deux */}
           </div>
