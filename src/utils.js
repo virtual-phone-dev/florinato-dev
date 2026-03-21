@@ -3068,8 +3068,8 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 
 export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, dataMessagesFA, profilMap, idCompte,
-	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA,
-	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, PageRedirection66ChildApi66messageFA
+	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA, verifyConversation,
+	writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, PageRedirection66ChildApi66messageFA
 	}) {
 	if (!visible) return null;
 	
@@ -3129,11 +3129,9 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 		  
                 <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
 			  
-                {verifyConversation1 && (<> <div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1a</div></>)}
-                {verifyConversation2 && (<> <div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1b</div></>)}
-
-                {isLoading66messageFA ? (<><div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 1c</div></>):(<>
-                {!verifyConversation1 && !verifyConversation2 && (<><div className="b" onClick={BeginConversationFA}> <SvgSend/> 1d</div></>)} </>)}
+                {isLoading66messageFA ? (<div className="b"> <SvgSend/> 5loading</div>) : 
+				verifyConversation ? (<div className="b" onClick={SendMessageFAA}> <SvgSend/> 5envoyer</div> ):( <div className="b" onClick={BeginConversationFA}> <SvgSend/> 5commencer</div>)}
+				
             </div>
             {/* write */}
         </div>

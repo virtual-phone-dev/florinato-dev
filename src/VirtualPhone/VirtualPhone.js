@@ -35175,8 +35175,6 @@ const {
 
 const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
-console.log("dataConversations", dataConversations); 
-console.log("toutConversations", toutConversations);
 
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
@@ -35373,7 +35371,7 @@ const ComptesRecentsPropsCommun = {
 
 
 
-
+/*
 const dataConversation1 = useMemo(() =>
   apiMessageFA.filter(
     api =>
@@ -35410,9 +35408,42 @@ useEffect(() => {
   else { setIdConversation("0"); }
 
 }, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
+*/
 
 
-  
+// ca verifie si ya deja une conversation entre les 2 utilisateurs
+const conversationExistante = useMemo(() => {
+  if (!idPersonConnectedFA || !idDestinataire) return null;
+
+  return toutConversations.find(api =>
+    api.type === "30" &&
+    (
+      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire) ||
+      (api.idAccount === idDestinataire && api.idOther === idPersonConnectedFA)
+    )
+  );
+
+}, [toutConversations, idPersonConnectedFA, idDestinataire]);
+
+
+
+const verifyConversation = !!conversationExistante;
+
+useEffect(() => {
+  if (conversationExistante) {
+    setIdConversation(conversationExistante._id);
+  } else {
+    setIdConversation("0");
+  }
+}, [conversationExistante]);
+
+
+console.log("dataConversations", dataConversations); 
+console.log("toutConversations", toutConversations);
+console.log("conversationExistante", conversationExistante);
+console.log("verifyConversation", verifyConversation);
+
+
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
   async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
   async function ClosePartagerContactPageFA() { setPartagerContactPageFA(false); }
@@ -50915,8 +50946,7 @@ function rechargerPage() {
 		Favorite66messageFA={Favorite66messageFA} 
 		PartagerContactPageFA={PartagerContactPageFA} blocPartagerContact={blocPartagerContactFA}
 		onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
-		verifyConversation1={verifyConversation1} verifyConversation2={verifyConversation2} 
-		isLoading66messageFA={isLoading66messageFA} BeginConversationFA={BeginConversationFA} 
+		isLoading66messageFA={isLoading66messageFA} BeginConversationFA={BeginConversationFA} verifyConversation={verifyConversation} 
 		writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
     
