@@ -3390,7 +3390,7 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
   const { _id: idAnnonce, texte, clic } = data;
   
   //const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
-  const profil = idaUtiliser ? profilMap?.[idAnnonce] : null;
+  const profil = idAnnonce ? profilMap?.[idAnnonce] : null;
   
   const photo = profil?.photoProfile ?? photoBlanche;
   const nom = profil?.nameAccount ?? "";	
