@@ -3340,14 +3340,14 @@ export function PartageContactMessage({ api={}, profilMap={} }) {
 	
 	<div className="partage-contact flex"> 
 		<img className="photo-25px mr-5px" src={photo} alt=""/> 
-		<pre className="pre fs-14px">{nom} aa44</pre>
+		<pre className="pre fs-14px">{nom}</pre>
 	</div>
 </>)}
 
 
 export function Close2({ fermer, titre, titrecss }) {
   return (<>
-		<div className="close flex">
+		<div className="close flex m-15-0">
           <div className="a" onClick={fermer}> <SvgLeft /> </div>
           <div className={titrecss}> <p>{titre}</p> </div>
         </div>
@@ -3359,7 +3359,7 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
   if (!visible) return null;
   
   return (<>
-	<div className="page-blanche">
+	<div className="page-blanche m-0-20">
 		<Close2 fermer={fermer} titre="Annonces" titrecss="fs-19px c-00cc00"/>
 		
 		{data.map((api) => {
@@ -3371,11 +3371,11 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
   
 		return (
 		<div onClick={() => { setIdAnnonce(api._id); }}>
-			<pre className="pre fs-17px mb-15px" onClick={() => { AfficherAnnoncePage(); }}>{api.titre}</pre> 
+			<pre className="pre fs-17px mb-15px" onClick={() => { AfficherAnnoncePage(); }}>{api.texte}</pre> 
 			
 			<div className="flex" onClick={() => { OuvrirMessagePage(); }}> 
 				<img className="photo-25px mr-5px" src={photo} alt=""/> 
-				<pre className="pre fs-14px">{nom} aa44</pre>
+				<pre className="pre fs-14px">{nom}</pre>
 			</div>
 			
 			<p className="fs-12px">{api.clic} clic</p>
@@ -3399,13 +3399,13 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
   const nom = profil?.nameAccount ?? "";	
   
   return (<>
-	<div className="page-blanche">
-		<div className="close flex">
+	<div className="page-blanche m-0-20">
+		<div className="close flex m-15-0">
 		  <div className="a" onClick={fermer}> <SvgLeft /> </div>
 		  
 		  <div className="b flex" onClick={() => { OuvrirMessagePage(); }}> 
 			<img className="photo-25px mr-5px" src={photo} alt=""/> 
-			<pre className="pre fs-14px">{nom} aa44</pre>
+			<pre className="pre fs-14px">{nom}</pre>
 		  </div>
 		  {/* b */}
 		</div>

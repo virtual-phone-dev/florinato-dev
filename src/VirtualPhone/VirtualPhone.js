@@ -35031,13 +35031,6 @@ const texteAnnonceFA = dataAnnonce.texte || "";
 
 
 
-console.log("annoncesSource", annoncesSource);
-console.log("dataAnnoncesFA", dataAnnoncesFA);
-console.log("dataAnnoncesById", dataAnnoncesById);
-console.log("texteAnnonceFA", texteAnnonceFA);
-console.log("dataAnnonce", dataAnnonce);
-
-
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
 const { 
 	donneesAffichees_byClic: dataVideoFAbyClic, 
@@ -35439,6 +35432,12 @@ console.log("dataConversations", dataConversations);
 console.log("toutConversations", toutConversations);
 console.log("conversationExistante", conversationExistante);
 console.log("verifyConversation", verifyConversation);
+
+console.log("annoncesSource", annoncesSource);
+console.log("dataAnnoncesFA", dataAnnoncesFA);
+console.log("dataAnnoncesById", dataAnnoncesById);
+console.log("texteAnnonceFA", texteAnnonceFA);
+console.log("dataAnnonce", dataAnnonce);
 
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
