@@ -34685,6 +34685,7 @@ async function DissadAA() {
 	console.log("idExpediteur", idExpediteur);
 	console.log("idDestinataire", idDestinataire); 
 	console.log("idContact", idContact); 
+	console.log("idConversation", idConversation); 
 	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -35190,7 +35191,7 @@ useEffect(() => {
   
   
 socket.on("message:misAJour", (element) => {
-	console.log("element a", element);
+	//console.log("element a", element);
 	
 	//comptes
     if (element.type === "10") {
@@ -35433,6 +35434,7 @@ useEffect(() => {
 }, [conversationExistante]);
 
 
+console.log("dataMessagesFA", dataMessagesFA); 
 console.log("dataConversations", dataConversations); 
 console.log("toutConversations", toutConversations);
 console.log("conversationExistante", conversationExistante);
