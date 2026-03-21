@@ -50933,10 +50933,7 @@ function rechargerPage() {
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 	
 
-	<PopupDuBasTemplate 
-		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setId={setId}
-		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirMessagePage66PartagerContactPageFA} search/>
-
+	
  
 	<MessageTemplate 
 		visible={messageFA} fermer={CloseMessageFA} profilMap={profilMap}
@@ -50949,7 +50946,12 @@ function rechargerPage() {
 		isLoading66messageFA={isLoading66messageFA} BeginConversationFA={BeginConversationFA} verifyConversation={verifyConversation} 
 		writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 		
-    
+		
+    <PopupDuBasTemplate 
+		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setId={setId}
+		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirMessagePage66PartagerContactPageFA} search/>
+
+
 	    <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} proprietaireCompte={false} />
