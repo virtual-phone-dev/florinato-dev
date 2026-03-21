@@ -35338,7 +35338,7 @@ const profilPropsCommun = {
 
 const ComptesRecentsPropsCommun = {
   listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA,
-  gererScroll: gererScrollComptes, ouvrirMessagePage: MessageFA, onlineUsers, // important
+  gererScroll: gererScrollComptes, OuvrirMessagePage: MessageFA, onlineUsers, // important
 };
 
 
@@ -50926,8 +50926,6 @@ function rechargerPage() {
 		  
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 	
-
-	
  
 	<MessageTemplate 
 		visible={messageFA} fermer={CloseMessageFA} profilMap={profilMap}
@@ -50943,7 +50941,7 @@ function rechargerPage() {
 		
     <PopupDuBasTemplate 
 		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
-		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} cliquer={OuvrirMessagePage66PartagerContactPageFA} search/>
+		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} OuvrirMessagePage={OuvrirMessagePage66PartagerContactPageFA} search/>
 
 
 	    <PageTemplate 

@@ -2059,50 +2059,6 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecen
   </>
 )}
 
-
-export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, cliquer, 
-	Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, ComptesRecentsPageFA, setIdContact }) {	
-	if (!visible) return null;
-
-	return (<>
-        <div className="favoriteFA">
-        <div className="align">
-          <div className="head" onClick={fermer}> 
-            <div className="block-one"> <p>{titre}</p> </div>
-
-            <div className="block-two"> 
-              <div className="a"> <img src={photo} alt=""/> </div>
-              <div className="b"> <SvgBottom5/> </div>
-            </div>
-            {/* block-two */}
-          </div>
-          {/* head */}
-
-          <div className="body">
-            <div className="card">
-			
-			{list && (
-			<ListeDuMenu 
-			  GestionDuCompte={GestionDuCompte} MettreEnAvantCompte={MettreEnAvantCompte} Gestionnaire={Gestionnaire}
-			  AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} /> )}
-			  
-			{search && (
-			<RechercheTemplate 
-				listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
-				cliquer={cliquer} setIdContact={setIdContact}/> )}
-			
-			<p style={{ paddingTop: "100px" }}></p>
-            </div>
-            {/* card */}
-          </div>
-          {/* body */}
-        </div>
-        {/* align */}
-        </div>
-        {/* favoriteFA */}
-	</>)}
-// PopupDuBasTemplate 
-
 		
 export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, 
 	voirVideo=()=>{}, voirProfil=()=>{}, setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, clicVideo=()=>{},
@@ -2234,58 +2190,6 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, Ou
 
 
 
-export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, ouvrirMessagePage, cliquerSurMonCompte, voirProfil,
-	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, setIdContact=()=>{}, idPersonConnectedFA, clicVideo, voirVideo, 
-	setIdDestinataire=()=>{}, setIdExpediteur=()=>{}, profilMap, onlineUsers=[], dev, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
-	
-	return (<>
-		{/* input pour effectuer une recherche */}
-                  <div>
-                    <div className="marge-bottom25px">
-                      <div className="display-flex">
-                        <div className="a">
-                          <label for="css"> <SvgSearch5/> </label>
-                        </div>
-                        {/* a */}
-
-                        <div className="input-130px"> <input id="css" type="text" placeholder="..." value={valeur} onChange={(e) => setValeur(e.target.value)}/> </div>
-                        {/* input-130px */}
-                      </div>
-                      {/* display-flex */}
-                    </div>
-                    {/* marge-bottom25px */}
-
-                    <div className="hr-15px"> <hr /> </div>
-                  </div>
-
-			{listAccount.map((api) => {
-			const isOnline = onlineUsers.includes(api._id);
-			return (<>
-			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); setIdContact(api._id); ouvrirMessagePage(); }}>	
-				<PopularityAccountCard api={api} isOnline={isOnline}/>
-			</div>
-			
-			{dev && (<><InfosDev api={api}/> </>)} </>); 
-			})}
-			
-			
-			<div className="api2">
-			{listMesComptes.map((api) => (
-			<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); }}>
-				<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
-			</div>
-			))}
-			</div>
-			
-			<LesVideos 
-				data={listVideo} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
-				clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} 
-				titrecss={titrecss} cliccss={cliccss} nomcss={nomcss} datecss={datecss} nomEtphoto={nomEtphoto} voirProfil={voirProfil} /> 
-</>)}
-//RechercheTemplate
-
-
-
 export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes, 
 	setIdExpediteur, setIdPersonConnectedFA, idPersonConnectedFA, valeur, setValeur, cliquerSurMonCompte }) {
 
@@ -2387,7 +2291,7 @@ export function PopularityAccountCard2({ api={}, profilMap={} , proprietaireComp
 
 
 export function ComptesRecentsTemplate({ visible, fermer, data, online, onlineUsers, dev, listAccount, valeur, setValeur, 
-	setIdCompte, setIdDestinataire, ouvrirMessagePage, gererScroll }) {
+	setIdCompte, setIdDestinataire, OuvrirMessagePage, gererScroll }) {
 	if (!visible) return null;
   
   return (<>
@@ -2396,18 +2300,18 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, onlineUs
 			  <Close fermer={fermer} />
 			  
 			  <RechercheTemplate listAccount={listAccount} valeur={valeur} setValeur={setValeur} dev={dev} onlineUsers={onlineUsers}
-				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirMessagePage={OuvrirMessagePage} />
 				
 			  <ListeDesComptes 
 				data={data} online={online} onlineUsers={onlineUsers} dev={dev}
-				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} ouvrirMessagePage={ouvrirMessagePage} />
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirMessagePage={OuvrirMessagePage} />
 		 </div>
 	 </div>
  </>)}
  
 
 			  
-export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte, setIdDestinataire, ouvrirMessagePage }) {
+export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte, setIdDestinataire, OuvrirMessagePage }) {
 	const onlineSet = useMemo(() => new Set(onlineUsers), [onlineUsers]); // optimisation O(1) . Performance O(n) → optimisée avec Set.
 	
 	return (<>
@@ -2415,7 +2319,7 @@ export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte
 		const isOnline = onlineSet.has(api._id); // check si un utilisateur est en ligne
 		
 		return (
-		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); ouvrirMessagePage(); }}>	
+		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); OuvrirMessagePage(); }}>	
 			<PopularityAccountCard api={api} online={online} isOnline={isOnline} dev={dev} />
 		</div>
 		);
@@ -3355,7 +3259,7 @@ export function Close2({ fermer, titre, titrecss }) {
 </>)}
 
 
-export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage=()=>{}, AfficherAnnoncePage }) {
+export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage, AfficherAnnoncePage }) {
   if (!visible) return null;
   
   return (<>
@@ -3371,9 +3275,9 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
   
 		return (
 		<div onClick={() => { setIdAnnonce(api._id); }}>
-			<pre className="pre fs-17px mb-15px" onClick={() => { AfficherAnnoncePage(); }}>{api.texte}</pre> 
+			<pre className="pre fs-17px mb-15px" onClick={AfficherAnnoncePage}>{api.texte}</pre> 
 			
-			<div className="flex" onClick={() => { OuvrirMessagePage(); }}> 
+			<div className="flex" onClick={OuvrirMessagePage}> 
 				<img className="photo-25px mr-5px" src={photo} alt=""/> 
 				<pre className="pre fs-14px">{nom}</pre>
 			</div>
@@ -3386,15 +3290,13 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
 </>)}
 
 
-export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}, OuvrirMessagePage=()=>{}, ModifierAnnoncePageFA }) {
+export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}, OuvrirMessagePage, ModifierAnnoncePageFA }) {
   if (!visible) return null;
   
   // 🔹 infos de l'annonce
   const { _id: idAnnonce, texte, clic } = data;
   
-  //const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
-  const profil = idAnnonce ? profilMap?.[idAnnonce] : null;
-  
+  const profil = idAnnonce ? profilMap?.[idAnnonce] : null; // obtenir les informations du profil
   const photo = profil?.photoProfile ?? photoBlanche;
   const nom = profil?.nameAccount ?? "";	
   
@@ -3403,14 +3305,13 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
 		<div className="close flex m-15-0">
 		  <div className="a" onClick={fermer}> <SvgLeft /> </div>
 		  
-		  <div className="b flex" onClick={() => { OuvrirMessagePage(); }}> 
+		  <div className="b flex" onClick={OuvrirMessagePage}> 
 			<img className="photo-25px mr-5px" src={photo} alt=""/> 
 			<pre className="pre fs-14px">{nom}</pre>
 		  </div>
 		  {/* b */}
 		</div>
 		{/* close */}
-		
 		
 		<div>
 		<pre className="pre fs-17px mb-15px">{texte}</pre> 
@@ -3442,6 +3343,105 @@ export function MenuBasTemplate({ visible, fermer, titre, PublierAnnoncePageFA }
           {/* actualiser-page-opacity */}
 </>)}
 //MenuBas
+
+
+
+
+export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, OuvrirMessagePage, 
+	Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, ComptesRecentsPageFA, setIdContact }) {	
+	if (!visible) return null;
+
+	return (<>
+        <div className="favoriteFA">
+        <div className="align">
+          <div className="head" onClick={fermer}> 
+            <div className="block-one"> <p>{titre}</p> </div>
+
+            <div className="block-two"> 
+              <div className="a"> <img src={photo} alt=""/> </div>
+              <div className="b"> <SvgBottom5/> </div>
+            </div>
+            {/* block-two */}
+          </div>
+          {/* head */}
+
+          <div className="body">
+            <div className="card">
+			
+			{list && (
+			<ListeDuMenu 
+			  GestionDuCompte={GestionDuCompte} MettreEnAvantCompte={MettreEnAvantCompte} Gestionnaire={Gestionnaire}
+			  AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} /> )}
+			  
+			{search && (
+			<RechercheTemplate 
+				listAccount={listAccount} valeur={valeur} setValeur={setValeur} 
+				OuvrirMessagePage={OuvrirMessagePage} setIdContact={setIdContact}/> )}
+			
+			<p style={{ paddingTop: "100px" }}></p>
+            </div>
+            {/* card */}
+          </div>
+          {/* body */}
+        </div>
+        {/* align */}
+        </div>
+        {/* favoriteFA */}
+	</>)}
+// PopupDuBasTemplate 
+
+
+
+export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, OuvrirMessagePage, cliquerSurMonCompte, voirProfil,
+	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, setIdContact=()=>{}, idPersonConnectedFA, clicVideo, voirVideo, 
+	setIdDestinataire=()=>{}, setIdExpediteur=()=>{}, profilMap, onlineUsers=[], dev, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
+	
+	return (<>
+		{/* input pour effectuer une recherche */}
+                  <div>
+                    <div className="marge-bottom25px">
+                      <div className="display-flex">
+                        <div className="a">
+                          <label for="css"> <SvgSearch5/> </label>
+                        </div>
+                        {/* a */}
+
+                        <div className="input-130px"> <input id="css" type="text" placeholder="..." value={valeur} onChange={(e) => setValeur(e.target.value)}/> </div>
+                        {/* input-130px */}
+                      </div>
+                      {/* display-flex */}
+                    </div>
+                    {/* marge-bottom25px */}
+
+                    <div className="hr-15px"> <hr /> </div>
+                  </div>
+
+			{listAccount.map((api) => {
+			const isOnline = onlineUsers.includes(api._id);
+			return (<>
+			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); setIdContact(api._id); OuvrirMessagePage(); }}>	
+				<PopularityAccountCard api={api} isOnline={isOnline}/>
+			</div>
+			
+			{dev && (<><InfosDev api={api}/> </>)} </>); 
+			})}
+			
+			
+			<div className="api2">
+			{listMesComptes.map((api) => (
+			<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); }}>
+				<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
+			</div>
+			))}
+			</div>
+			
+			<LesVideos 
+				data={listVideo} setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte}
+				clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} 
+				titrecss={titrecss} cliccss={cliccss} nomcss={nomcss} datecss={datecss} nomEtphoto={nomEtphoto} voirProfil={voirProfil} /> 
+</>)}
+//RechercheTemplate
+
 
 
 // plein ecran
