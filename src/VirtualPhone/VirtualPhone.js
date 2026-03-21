@@ -10730,7 +10730,7 @@ dans le localStorage */
 
   // requete pour obtenir tout les utilisateurs Alrani - AA
   const [apiUserAA, setApiUserAA] = useState([]);
-  /* useEffect(() => {
+  /* // useEffect(() => {
     async function get() {
       //console.log("aa1");
       await axios
@@ -21757,11 +21757,8 @@ const [writeSuperCodeIzocashDealsPageIA, setWriteSuperCodeIzocashDealsPageIA] = 
 	
 	if (nomEnregistre) setNomMembre(nomEnregistre);
     if (missionSauvegarder) setIndex(parseInt(missionSauvegarder, 10));
-	
-    if (nomEnregistre) {
-      setNomMembre(nomEnregistre);
-    }
   }, []);
+  
 
   const EnvoyerMission = () => {
 	const reponse = ecrireMA.trim().toLowerCase();
@@ -34691,49 +34688,26 @@ async function DissadAA() {
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
+  
+  const countRef = useRef(0);
   useEffect(() => {
+	countRef.current++;
+	console.log("use a1", countRef.current);
 	async function fetchData() {
 		await ObtenirLesDonneesFA();
 	}
 	fetchData();
-  }, []);
+  }, []); 
   
 
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
-  //const idAccountFA = localStorage.getItem("idPersonConnectedFA");
-  //const urlVideoFA = localStorage.getItem("urlVideo");
-  
-  //console.log("idPersonConnectedFA", idPersonConnectedFA);
 
-  
   const idAccount = localStorage.getItem("idPersonConnectedFA");
   const idOther = localStorage.getItem("idAccountChef");
   const idAccountChefFA = localStorage.getItem("idAccountChef");
-
-
-  /*
-useEffect(() => {
-  const handleStorage = (event) => {
-    if (event.key === "idPersonConnectedFA") {
-      setIdPersonConnectedFA(event.newValue);
-    }
-  };
-  window.addEventListener("storage", handleStorage);
-  return () => window.removeEventListener("storage", handleStorage);
-}, []); */
-
-/* Explication
-
-window.addEventListener("storage", ...) : c’est un écouteur d’événement du navigateur.
-Il se déclenche quand une autre fenêtre ou un autre onglet change localStorage.
-event.key est la clé qui a changé. On ne veut écouter que les changements sur "idPersonConnectedFA".
-setIdPersonConnectedFA(event.newValue) : on met à jour le state React pour que tout ce qui dépend de idPersonConnectedFA (comme ton socket ou 
-le filtrage des comptes en ligne) se mette automatiquement à jour.
-Le return dans useEffect retire l’écouteur quand le composant est démonté, pour éviter les fuites de mémoire. */
-
 
 
   // filtre pour obtenir quelques infos de l'utilisateur connecter
@@ -34799,10 +34773,6 @@ Le return dans useEffect retire l’écouteur quand le composant est démonté, 
     const getfollow = apiMessageFA.filter((api) => api.follow === "1" && api.idOther === idAccount && api.idAccount === idPersonConnectedFA && api.type === "50"); 
     const follow = getfollow.length > 0; //verifier s'il est déjà abonné
 
-    //const countryOther = accountOther.map((api) => api.countryCode); // pays
-    //const onlineOther = accountOther.map((api) => api.online); // online (pour savoir sa date de derniere connexion)
-
-    //const idOtherFA = localStorage.getItem("idOtherFA");
     const idGroupOther = localStorage.getItem("idGroupChef");
     const idMessageEpingler = localStorage.getItem("idMessageEpingler");
 
@@ -34814,8 +34784,6 @@ Le return dans useEffect retire l’écouteur quand le composant est démonté, 
 
     const getidMessageEpingler = getInfosGroupOther.map((api) => api.idMessageEpingler); // idMessageEpingler
     if (getidMessageEpingler) { localStorage.setItem("idMessageEpingler", getidMessageEpingler); }
-
-    //const idMessageEpingler = getInfosGroupOther.map((api) => api.idMessageEpingler);
  
   //filtre pour affiher les infos de l'autre
   const filter66profilOtherFA = apiMessageFA.sort((a, b) => b.id - a.id);
@@ -34824,113 +34792,16 @@ Le return dans useEffect retire l’écouteur quand le composant est démonté, 
   const filterMessageEpinglerFA = apiMessageFA.filter((api) => api.epingler === "1" && api._id === idMessageEpingler);
   const messageEpinglerFA = filterMessageEpinglerFA.map((api) => api.message); // messageEpingler
   
-	
-	
-	//console.log("urlVideo", urlVideo);
-	//console.log("idPost", idPost);
-	//console.log("idProprietairePost", idProprietairePost);
-	
-	
-	
-	//const [infosPostFA, setInfosPostFA] = useState([]);
-	/* console.log(`idreq ici:`, idreq);
-	console.log(`infosPostFA ici:`, infosPostFA); */	
-
-	/* useEffect(() => {
-	  if (!idreq) return;
-	  const result = apiMessageFA.filter(api => api._id === idreq);
-	  setInfosPostFA(result);
-	}, [idreq, apiMessageFA]); */
   
-	// filtre pour obtenir les infos du post - FA
-    //const infosPostFA = apiMessageFA.filter((api) => api._id === idreq);
-	
-    //const clicFA = infosPostFA.map((api) => api.clic); // clic
-    //const titreFA = infosPostFA.map((api) => api.message); // message
-	
-	
-	
-	/*
-	console.log(`idDestinataire`, idDestinataire);
-	console.log(`idProprietairePost`, idProprietairePost);
-	console.log(`infosProprietairePost`, infosProprietairePost);
-	console.log(`photoProprietairePost`, photoProprietairePost);
-	console.log(`nomProprietairePost`, nomProprietairePost); */
-
-	
-
-  //filtre general
-  //const filterFA = apiMessageFA.sort((a, b) => b.id - a.id);
-	
-	
-/* const profilMap = useMemo(() => {
-  const map = {};
-  dataComptesFA.forEach(profil => { map[profil._id] = profil; });
-  return map;
-}, [dataComptesFA]); */
-
-  
-  /*
-  const profilMap = useMemo(() => {
-	const map = {};
-	apiMessageFA.slice().sort((a, b) => b.id - a.id)
-	.forEach(item => {
-		if (item.type === "10") {
-		  map[item._id] = item;
-		}
-	  });
-	  //console.log("profilMap mis à jour", map);
-	  return map;
-}, [apiMessageFA]); */
-
-
-
   
 const socketRef = useRef(null); // Socket
 const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
-/*
-useEffect(() => {
-  if (!socketRef.current) {
-    socketRef.current = io("https://api2florinato.onrender.com", {
-      transports: ["websocket"],
-      reconnection: true,
-    });
-  }
-
-  const socket = socketRef.current;
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-
-  // 🔵 À CHAQUE connexion / reconnexion
-  socket.on("connect", () => {
-    console.log("Socket connecté :", socket.id);
-
-    if (idPersonConnectedFA) {
-      socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
-    }
-  });
-
-  socket.on("users:online", (users) => {
-    setOnlineUsers(users);
-  });
-
-  socket.on("receiveMessage", (msg) => {
-    setApiMessageFA(prev => [msg, ...prev]);
-  });
-
-  return () => {
-    socket.off("connect");
-    socket.off("users:online");
-    socket.off("receiveMessage");
-  };
-}, []); */
-
-
-
-// Socket
-//const socketRef = useRef(null); 
 
 useEffect(() => {
+	
+	countRef.current++;
+	console.log("use b2", countRef.current);
 	
 	// S'il ya une socket existante, déconnecte-la proprement
     if (socketRef.current) {
@@ -34987,10 +34858,7 @@ useEffect(() => {
   const filterAdminFA = apiMessageFA.filter((api) => api.admin ==="1" && api.idUser === idUserConnectedFA);
   const filterAdminFlorinatoFA = apiMessageFA.filter((api) => api.adminFlorinato ==="1" && api.idUser === idUserConnectedFA);
     
-  
-  //filtre pour afficher les comptes creer.
-  //const comptesRecentsFA = apiMessageFA.filter((api) => api.florinatoApp === "1").sort((a, b) => b.id - a.id);
-  
+	
   //filtre pour afficher les commentaires d'un post (video, photo, ...)
   const filterCommentaireFA = apiMessageFA.filter((api) => api.type ==="25" && api.idPost === idPost);
 
@@ -35000,15 +34868,6 @@ useEffect(() => {
   
   const [rechercherUneVideoFA, setRechercherUneVideoFA] = useState("");
   const [rechercherMaVideoFA, setRechercherMaVideoFA] = useState("");
-  
-  /* const [mySearchFA, setMySearchFA] = useState(() => localStorage.getItem("mySearchFA") || "");
-  const [maRechercheVideoFA, setmaRechercheVideoFA] = useState(() => localStorage.getItem("maRechercheVideoFA") || "");
-  const [rechercheMesComptesFA, setrechercheMesComptesFA] = useState(() => localStorage.getItem("rechercheMesComptesFA") || ""); */
-  
-   //const [mySearchFA, setMySearchFA] = useState("");
-  /* if (mySearchFA) { localStorage.setItem("mySearchFA", mySearchFA); }
-  if (maRechercheVideoFA) { localStorage.setItem("maRechercheVideoFA", maRechercheVideoFA); } // rechercher parmi les videos
-  if (rechercheMesComptesFA) { localStorage.setItem("rechercheMesComptesFA", rechercheMesComptesFA); } */ // rechercher parmi les comptes
 
 
 			
@@ -35180,6 +35039,9 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
 useEffect(() => {
+	countRef.current++;
+	console.log("use b3", countRef.current);
+	
   const socket = socketRef.current;
   if (!socket) return;
   
@@ -35360,47 +35222,6 @@ const ComptesRecentsPropsCommun = {
   // le truc, le code ci-dessous je navais pas commenter ca, donc je ne pas dabord si je peux lui donner les commentaires ci-dessus
 
 
-
-/*
-const dataConversation1 = useMemo(() =>
-  apiMessageFA.filter(
-    api =>
-      api.idAccount === idPersonConnectedFA &&
-      api.idOther === idDestinataire &&
-      api.type === "30"
-  ),
-[apiMessageFA, idPersonConnectedFA, idDestinataire]);
-
-const verifyConversation1 = dataConversation1.length > 0;
-
-
-const dataConversation2 = useMemo(() =>
-  apiMessageFA.filter(
-    api =>
-      api.idOther === idPersonConnectedFA &&
-      api.idAccount === idDestinataire &&
-      api.type === "30"
-  ),
-[apiMessageFA, idPersonConnectedFA, idDestinataire]);
-
-const verifyConversation2 = dataConversation2.length > 0;
-
-
-
-useEffect(() => {
-
-  if (verifyConversation1) {
-    setIdConversation(dataConversation1[0]._id);
-  } 
-  else if (verifyConversation2) {
-    setIdConversation(dataConversation2[0]._id);
-  } 
-  else { setIdConversation("0"); }
-
-}, [dataConversation1, dataConversation2, verifyConversation1, verifyConversation2]);
-*/
-
-
 // ca verifie si ya deja une conversation entre les 2 utilisateurs
 const conversationExistante = useMemo(() => {
   if (!idPersonConnectedFA || !idDestinataire) return null;
@@ -35421,6 +35242,11 @@ const verifyConversation = !!conversationExistante;
 const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
 
 useEffect(() => {
+	
+	countRef.current++;
+	console.log("use b6", countRef.current);
+	
+	
   if (choisirManuellementConversation) return; // 🔥 cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
 	
   if (conversationExistante) {
@@ -35615,6 +35441,11 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 
   // État pour gérer l’ouverture du popup
 	useEffect(() => {
+		
+		countRef.current++;
+	console.log("use b5", countRef.current);
+	
+	
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
 	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
 	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
@@ -35692,6 +35523,10 @@ const [second, setSecond] = useState(10);
 
 // useEffect affiche la miniature immédiatement après sa génération sans délai
   useEffect(() => {
+	  
+	  countRef.current++;
+	console.log("use b4", countRef.current);
+	
 	async function GenererMiniature() {
 		if (fileVideoFAA) {
 			// Supposons que vous avez votre fichier vidéo dans `file`
@@ -46521,24 +46356,26 @@ async function FullScreen() { videoRef.current.requestFullscreen(); }
     };
   }
 
-  useEffect(() => {
-    if (isPlaying) {
-      //duree totale de la video
-      const afficherDuree = setInterval(() => {
-        const { min, sec } = sec2Min(videoRef.current.duration);
-        setDurationSec(videoRef.current.duration);
-        setDuration([min, sec]);
-      }, 0);
+useEffect(() => {
+  if (!isPlaying) return;
 
-      //duree de la video en cours
-      const interval = setInterval(() => {
-        const { min, sec } = sec2Min(videoRef.current.currentTime);
-        setCurrentTimeSec(videoRef.current.currentTime);
-        setCurrentTime([min, sec]);
-      }, 0);
-      return () => clearInterval(interval, afficherDuree);
-    }
-  }, [isPlaying]);
+  const afficherDuree = setInterval(() => {
+    const { min, sec } = sec2Min(videoRef.current.duration);
+    setDurationSec(videoRef.current.duration);
+    setDuration([min, sec]);
+  }, 500); // ✅ 500ms pour durée totale
+
+  const interval = setInterval(() => {
+    const { min, sec } = sec2Min(videoRef.current.currentTime);
+    setCurrentTimeSec(videoRef.current.currentTime);
+    setCurrentTime([min, sec]);
+  }, 200); // ✅ 200ms pour timer en cours
+
+  return () => {
+    clearInterval(afficherDuree);
+    clearInterval(interval);
+  };
+}, [isPlaying]);
 
   // videoPage (page) - VB
   // on recupere l'url de la video sur laquelle on a cliquer, pour voir la video.
@@ -46646,24 +46483,26 @@ async function FullScreen() { videoRef.current.requestFullscreen(); }
     };
   }
 
-  useEffect(() => {
-    if (isPlaying3) {
-      //duree totale de la video
-      const afficherDuree3 = setInterval(() => {
-        const { min, sec } = secToMin3(videoRef3.current.duration);
-        setDurationSec3(videoRef3.current.duration);
-        setDuration3([min, sec]);
-      }, 0);
+useEffect(() => {
+  if (!isPlaying3) return;
 
-      //duree de la video en cours
-      const interval3 = setInterval(() => {
-        const { min, sec } = secToMin3(videoRef3.current.currentTime);
-        setCurrentTimeSec3(videoRef3.current.currentTime);
-        setCurrentTime3([min, sec]);
-      }, 0);
-      return () => clearInterval(interval3, afficherDuree3);
-    }
-  }, [isPlaying3]);
+  const afficherDuree3 = setInterval(() => {
+    const { min, sec } = secToMin3(videoRef3.current.duration);
+    setDurationSec3(videoRef3.current.duration);
+    setDuration3([min, sec]);
+  }, 500); // ✅ 500ms suffit pour durée totale
+
+  const interval3 = setInterval(() => {
+    const { min, sec } = secToMin3(videoRef3.current.currentTime);
+    setCurrentTimeSec3(videoRef3.current.currentTime);
+    setCurrentTime3([min, sec]);
+  }, 200); // ✅ 200ms pour mise à jour timer en cours
+
+  return () => {
+    clearInterval(afficherDuree3);
+    clearInterval(interval3);
+  };
+}, [isPlaying3]);
 
   //logique pour jouer/couper le son de la video - VB
   const [son3, setSon3] = useState(false);
@@ -46754,24 +46593,28 @@ async function FullScreen() { videoRef.current.requestFullscreen(); }
     };
   }
 
-  useEffect(() => {
-    if (isPlaying4) {
-      //duree totale de la video
-      const afficherDuree4 = setInterval(() => {
-        const { min, sec } = secToMin4(videoRef4.current.duration);
-        setDurationSec4(videoRef4.current.duration);
-        setDuration4([min, sec]);
-      }, 0);
 
-      //duree de la video en cours
-      const interval4 = setInterval(() => {
-        const { min, sec } = secToMin4(videoRef4.current.currentTime);
-        setCurrentTimeSec4(videoRef4.current.currentTime);
-        setCurrentTime4([min, sec]);
-      }, 0);
-      return () => clearInterval(interval4, afficherDuree4);
-    }
-  }, [isPlaying4]);
+useEffect(() => {
+  if (!isPlaying4) return;
+
+  const afficherDuree4 = setInterval(() => {
+    const { min, sec } = secToMin4(videoRef4.current.duration);
+    setDurationSec4(videoRef4.current.duration);
+    setDuration4([min, sec]);
+  }, 500); // ✅ 500ms suffisent pour afficher la durée totale
+
+  const interval4 = setInterval(() => {
+    const { min, sec } = secToMin4(videoRef4.current.currentTime);
+    setCurrentTimeSec4(videoRef4.current.currentTime);
+    setCurrentTime4([min, sec]);
+  }, 200); // ✅ 200ms est suffisant pour le timer en cours
+
+  return () => {
+    clearInterval(afficherDuree4);
+    clearInterval(interval4);
+  };
+}, [isPlaying4]);
+
 
   //logique pour jouer/couper le son de la video - VB
   const [son4, setSon4] = useState(false);
@@ -46887,24 +46730,28 @@ async function FullScreen() { videoRef.current.requestFullscreen(); }
     };
   }
 
-  useEffect(() => {
-    if (isPlaying2VB) {
-      //duree totale de la video
-      const afficherDuree2VB = setInterval(() => {
-        const { min, sec } = secToMin2VB(videoRef2VB.current.duration);
-        setDurationSec2VB(videoRef2VB.current.duration);
-        setDuration2VB([min, sec]);
-      }, 0);
 
-      //duree de la video en cours
-      const interval2VB = setInterval(() => {
-        const { min, sec } = secToMin2VB(videoRef2VB.current.currentTime);
-        setCurrentTimeSec2VB(videoRef2VB.current.currentTime);
-        setCurrentTime2VB([min, sec]);
-      }, 0);
-      return () => clearInterval(interval2VB, afficherDuree2VB);
-    }
-  }, [isPlaying2VB]);
+useEffect(() => {
+  if (!isPlaying2VB) return;
+
+  const afficherDuree2VB = setInterval(() => {
+    const { min, sec } = secToMin2VB(videoRef2VB.current.duration);
+    setDurationSec2VB(videoRef2VB.current.duration);
+    setDuration2VB([min, sec]);
+  }, 500); // ✅ 500ms suffisent
+
+  const interval2VB = setInterval(() => {
+    const { min, sec } = secToMin2VB(videoRef2VB.current.currentTime);
+    setCurrentTimeSec2VB(videoRef2VB.current.currentTime);
+    setCurrentTime2VB([min, sec]);
+  }, 200); // ✅ 200ms est suffisant
+
+  return () => {
+    clearInterval(afficherDuree2VB);
+    clearInterval(interval2VB);
+  };
+}, [isPlaying2VB]);
+
 
   // SuggestedVideo (page) - VB
   // on recupere l'url de la video sur laquelle on a cliquer, pour voir la video.
@@ -47939,25 +47786,6 @@ async function FullScreen() { videoRef.current.requestFullscreen(); }
         //1ere requete
       } //if (idPersonConnectedVB)
   }
-
-  //on accede aux donnees (useselector pour acceder aux donnees)
-  //const apiPostVB = useSelector((state) => state.posts.posts)
-  
-  //const idPostVB = localStorage.getItem("idPostVB");  
-  // requete pour obtenir tout les posts sur Veil Brillant - VB
-  //const [apiPostAA, setApiPostAA] = useState([]);
-  /*useEffect(() => {
-    async function get() {
-      await axios
-        .get(`${process.env.REACT_APP_PostVB}/api/postVB`)
-        .then((res) => {
-          //dispatch(setApiPostAA(res.data));
-          allPostVB(res.data);
-        });
-    }
-    get();
-  }, []);*/
-
 
 
   // page pour publier la video - VB 
