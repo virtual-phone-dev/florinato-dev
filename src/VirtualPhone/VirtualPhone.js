@@ -35034,12 +35034,13 @@ const {
 const dataAnnonce = dataAnnoncesById?.[0] ?? {};
 const texteAnnonceFA = dataAnnonce.texte || "";
 
-console.log("jai mis des console.log pour savoir si dataVideoFAbyClic, dataAnnoncesFA, dataAnnoncesById, dataComptesFA, renvoie toute la base de donnees ou renvoie seulement ce qui est necessaire"); 
-console.log("texteAnnonceFA", texteAnnonceFA);
-console.log("dataAnnonce", dataAnnonce);
+
+
+console.log("annoncesSource", annoncesSource);
 console.log("dataAnnoncesFA", dataAnnoncesFA);
 console.log("dataAnnoncesById", dataAnnoncesById);
-
+console.log("texteAnnonceFA", texteAnnonceFA);
+console.log("dataAnnonce", dataAnnonce);
 
 
 const videosSource = useMemo(() => apiMessageFA.filter(api => api.type === "3"), [apiMessageFA] ); // toutes les vidéos
