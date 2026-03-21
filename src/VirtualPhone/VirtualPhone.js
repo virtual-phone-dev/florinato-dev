@@ -177,6 +177,9 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
   const idUtiliser = idAccount ? api.idOther:idOther ? api.idAccount : null; // logique pour savoir si c'est l'id de l'expediteur ou du destinataire
   const profil = idUtiliser ? profilMap[idUtiliser] : null;
   
+  const photo = profil?.photoProfile ?? photoBlanche;
+  const nom = profil?.nameAccount ?? "";
+  
 
   // On récupère le message récent pour chaque conversation
   const messageRecent = api._id ? messageMap[api._id] : null;
@@ -197,12 +200,10 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
     <div className="child" onClick={Checked}>
       {api.type === "30" && idAccount && (<> {/* type=30 , (conversation que j'ai envoyé à Other) */}
       <div className="type30" onClick={GoTomessageFA}>
-		{profil ? (<>
-        <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
-          </>) : (<><p>Profil non trouvé</p> </>)}
+        <div className="A"> <img src={photo} alt=""/> </div>
 
         <div className="B">
-          <div className="a"> <p>{profil.nameAccount}</p> </div>
+          <div className="a"> <p>{nom}</p> </div>
           <div className="b"> <p>{messageRecent?.message || ""}</p> </div>
 
 		  {isOnline && (
@@ -215,13 +216,11 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 
       {api.type === "30" && idOther && (<> {/* type=30 , (conversation que Other à reçu) */}
       <div className="type30" onClick={GoTomessageFA}>
-		{profil ? (<>
-        <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
-		</>) : (<><p>Profil non trouvé</p> </>)}
+        <div className="A"> <img src={photo} alt=""/> </div>
 
         <div className="B">
-			<div className="a"> <p>{profil.nameAccount}</p> </div>
-			<div className="b"> <p>{messageRecent?.message || "Pas de message récent"}</p> </div>
+			<div className="a"> <p>{nom}</p> </div>
+			<div className="b"> <p>{messageRecent?.message || ""}</p> </div>
 
 			{isOnline && (
 			<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)}
@@ -234,12 +233,10 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
     
       {api.type === "50" && id && (<> {/* type=50 , je me suis abonné */}
       <div className="type50" onClick={GoTogroupOtherFA}>
-		{profil ? (<>
-        <div className="A"> <img src={profil.photoProfile} alt=""/> </div>
-		</>) : (<><p>Profil non trouvé</p> </>)}
+        <div className="A"> <img src={photo} alt=""/> </div>
 
         <div className="B">
-          <div className="a"> <pre>{profil.nameAccount}</pre> </div>
+          <div className="a"> <pre>{nom}</pre> </div>
           <div className="a"> <pre>{api.lastMessage}</pre> </div>
           <div className="b"> <p>{dateParser(api.createdAt)}</p> </div>
         </div>
