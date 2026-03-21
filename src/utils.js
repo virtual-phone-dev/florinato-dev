@@ -1366,8 +1366,8 @@ export function MiniPhrase({ titre1, titre2 }) {
 
 export function ouvrirDB() {
   return new Promise((resolve, reject) => {
-    const requete = indexedDB.open("MessagesDB", 13);
-    const tables = ["conversations", "comptes", "followers", "messages", "videos", "visites"];
+    const requete = indexedDB.open("MessagesDB", 14);
+    const tables = ["annonces", "conversations", "comptes", "followers", "messages", "videos", "visites"];
 
     requete.onupgradeneeded = (e) => {
       const base = e.target.result;
