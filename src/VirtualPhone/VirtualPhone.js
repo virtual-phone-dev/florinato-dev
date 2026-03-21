@@ -34686,6 +34686,7 @@ async function DissadAA() {
 	console.log("idDestinataire", idDestinataire); 
 	console.log("idContact", idContact); 
 	console.log("idConversation", idConversation); 
+	console.log("idAnnonce", idAnnonce); 
 	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
