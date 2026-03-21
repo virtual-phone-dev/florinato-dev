@@ -3346,19 +3346,21 @@ export function Close2({ fermer, titre, titrecss }) {
 </>)}
 
 
-export function AnnoncesTemplate({ visible, fermer, data, api={}, profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage=()=>{}, AfficherAnnoncePage=()=>{} }) {
+export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage=()=>{}, AfficherAnnoncePage }) {
   if (!visible) return null;
-  
-  const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
-  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
-  
-  const photo = profil?.photoProfile ?? photoBlanche;
-  const nom = profil?.nameAccount ?? "";	
   
   return (<>
 	<div className="page-blanche">
 		<Close2 fermer={fermer} titre="Annonces" titrecss="fs-19px c-00cc00"/>
 		
+		{data.map((api) => {
+		const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
+		const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
+		
+		const photo = profil?.photoProfile ?? photoBlanche;
+		const nom = profil?.nameAccount ?? "";	
+  
+		return (
 		<div onClick={() => { setIdAnnonce(api._id); }}>
 			<pre className="pre fs-17px mb-15px" onClick={() => { AfficherAnnoncePage(); }}>{api.titre}</pre> 
 			
@@ -3368,17 +3370,21 @@ export function AnnoncesTemplate({ visible, fermer, data, api={}, profilMap={}, 
 			</div>
 			
 			<p className="fs-12px">{api.clic} clic</p>
-		</div>
+		</div> 
+		); })}
 		
 	</div>
 </>)}
 
 
-export function AfficherAnnonceTemplate({ visible, fermer, api={}, data, profilMap={}, OuvrirMessagePage=()=>{}, ModifierAnnoncePageFA }) {
+export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}, OuvrirMessagePage=()=>{}, ModifierAnnoncePageFA }) {
   if (!visible) return null;
   
-  const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
-  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
+  // 🔹 infos de l'annonce
+  const { _id: idAnnonce, texte, clic } = data;
+  
+  //const idaUtiliser = api?.idProprietaireAnnonce; // obtenir les informations du profil
+  const profil = idaUtiliser ? profilMap?.[idAnnonce] : null;
   
   const photo = profil?.photoProfile ?? photoBlanche;
   const nom = profil?.nameAccount ?? "";	
@@ -3396,9 +3402,10 @@ export function AfficherAnnonceTemplate({ visible, fermer, api={}, data, profilM
 		</div>
 		{/* close */}
 		
+		
 		<div>
-		<pre className="pre fs-17px mb-15px">{api.titre}</pre> 
-		<p className="fs-12px">{api.clic} clic</p>
+		<pre className="pre fs-17px mb-15px">{texte}</pre> 
+		<p className="fs-12px">{clic} clic</p>
 		<div className="btn-p-hr"> <button> <p>Envoyer un message</p> <hr/> </button> </div>
 		<div className="btn-p-hr"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>
 		</div>
@@ -3407,7 +3414,7 @@ export function AfficherAnnonceTemplate({ visible, fermer, api={}, data, profilM
 </>)}
 
 
-export function MenuBasTemplate({ visible, fermer, titre, AnnoncesPageFA }) {
+export function MenuBasTemplate({ visible, fermer, titre, PublierAnnoncePageFA }) {
   if (!visible) return null;
   return (<>
           <div className="actualiser-page-opacity">
@@ -3415,8 +3422,7 @@ export function MenuBasTemplate({ visible, fermer, titre, AnnoncesPageFA }) {
               <div className="card">
                 <div className="block">
                   <div className="a"> <p onClick={fermer}>fermer</p> </div>
-                  <div className="b"> <p onClick={AnnoncesPageFA}>{titre}</p> </div>
-                  {/* b */}
+                  <div className="b"> <p onClick={PublierAnnoncePageFA}>{titre}</p> </div>
                 </div>
                 {/* block */}
               </div>
