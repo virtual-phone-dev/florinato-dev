@@ -35132,17 +35132,14 @@ const {
 	rechercherMonCompte: rechercherMonCompteFA,
 });
 
-console.log("dataComptesFA", dataComptesFA); 
-console.log("dataVideoFAbyClic", dataVideoFAbyClic);
+
 
 
 // filtre pour obtenir les infos du compte - FA 
 const infosCompte = infosCompteById?.[0] ?? {};
 const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
-
 const taDerniereConnexion = infosCompte.derniereConnexion;
-//console.log("ton infosCompte", infosCompte);
-//console.log("taDerniereConnexion", taDerniereConnexion);
+
 
 // infos du compte connecté
 const infosCompteConnecter = infosCompteConnecterById?.[0] ?? {};
@@ -35168,6 +35165,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 
 const {
 	donneesAffichees_account_other: dataConversations, 
+	toutesDonnees: toutConversations,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
@@ -35177,6 +35175,8 @@ const {
 
 const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
 
+console.log("dataConversations", dataConversations); 
+console.log("toutConversations", toutConversations);
 
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
@@ -35303,7 +35303,6 @@ const messageMap = useMemo(() => {
 
 const conversationsTrierParDate = useMemo(() => {
   return [...dataConversations]
-  //return [...toutesConversations] 
   .sort((a, b) => {
     const msgA = messageMap[a._id];
     const msgB = messageMap[b._id];
