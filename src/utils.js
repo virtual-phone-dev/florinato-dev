@@ -3255,16 +3255,19 @@ export function ChildApi66messageFA({ api, profilMap }) {
 //ChildApi66messageFA
 
 
-export function PartageContactMessage({ api, profilMap={} }) {
+export function PartageContactMessage({ api={}, profilMap={} }) {
   const idaUtiliser = api?.idContact; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
-  return (<>
+  const photo = profil?.photoProfile ?? photoBlanche;
+  const nom = profil?.nameAccount ?? "";
+  
+  return (<> 
 	<pre className="pre fs-17px mb-15px">{api.message}</pre> 
 	
 	<div className="partage-contact flex"> 
-		<img className="photo-25px mr-5px" src={profil.photoProfile} alt=""/> 
-		<pre className="pre fs-14px">{profil.nameAccount} aa44</pre>
+		<img className="photo-25px mr-5px" src={photo} alt=""/> 
+		<pre className="pre fs-14px">{nom} aa44</pre>
 	</div>
 </>)}
 
@@ -3476,7 +3479,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	
 	
 	//const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="Compte inconnu", photoProfile=photoBlanche } = data; // infos du profil
+	const { nameAccount="", photoProfile=photoBlanche } = data; // infos du profil
 	
 	return (<>
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
@@ -3566,7 +3569,78 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
 </>)}
 // SeePhotoTemplate
 
+
+export function PortefeuilleSortie({ visible, fermer }) {
+  if (!visible) return null;
   
+  return (<>
+        <div className="alraniPayAA">
+            <div className="close">
+              <div className="a">
+                <p>Florinato <b>Pay</b></p>
+              </div>
+              <div className="b"> <button onClick={CloseAlraniPayAA}>Fermer</button> </div>
+            </div>
+            {/* close */}
+
+            <div className="solde">
+              <div onClick={RefreshBalanceAA} className="a"> <button onClick={InfosBalanceAlraniPayAA}> <p>{balanceAlraniPayAA} FCFA</p> </button></div>
+            </div> 
+            {/* solde */}
+        </div>
+        {/* alraniPayAA */}
+</>)}
+// PortefeuilleSortie		
+
+
+export function MonetizationEntrer({ visible, fermer }) {
+    if (!visible) return null;
+  
+    return (<>
+        <div className="alraniBusinessAA">
+            <div className="close">
+              <div onClick={fermer} className="a">
+                <p>Florinato <b>Business</b></p>
+              </div>
+
+              <div className="b">
+                <p onClick={SeePhoto2personConnectedAA}>{namePersonConnectedAA}</p>
+                <img onClick={SeePhoto2personConnectedAA} src={photoPersonConnectedAA} alt="" />
+              </div>
+            </div>
+            {/* close */}
+
+            <div className="solde">
+              <div onClick={RefreshBalanceAA} className="a"> <button onClick={InfosBalanceAlraniBusinessAA}> <p>{monetizationBalanceAA} FCFA</p> </button></div>
+              <div onClick={RefreshBalanceAA} className="b"> <p onClick={InfosBalanceAlraniBusinessAA}>Solde disponible</p> </div>
+            </div> 
+            {/* solde */}
+
+            <div style={{ paddingTop: "30px", paddingBottom: "20px", paddingLeft: "20px", paddingRight: "20px", display: "flex"  }}>
+              <p style={{ fontSize: "15px", paddingRight: "5px" }}>Monétisation activé</p>
+              <SvgValidate3 />
+            </div>
+          </div>
+          {/* alraniBusinessAA */}
+</>)}
+// MonetizationEntrer
+
+
+export function InfosTemplate({ visible, fermer, texte }) {
+  if (!visible) return null;
+  
+  return (<>
+        <div onClick={fermer} className="infosLanguage">
+          <div className="align">
+            <div className="card"> <p>{texte}</p> </div>
+          </div> 
+        </div>
+        {/* infosLanguage */}
+</>)}
+// InfosTemplate
+
+
+
 export function Page({ visible, fermer }) {
   if (!visible) return null;
   

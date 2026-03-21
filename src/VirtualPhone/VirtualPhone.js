@@ -12,10 +12,10 @@ import {
 	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate, MessageTemplate,
-	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate,
+	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate, InfosTemplate, MonetizationEntrer, PortefeuilleSortie,
 	GenererMiniatureVideo, SpeedMessages, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB, AdapterLien
 	} from "../utils";
-  
+		
 import { missions } from "../missions";
 import BackSansUseNavigate from "../Back/BackSansUseNavigate";
 
@@ -50891,13 +50891,27 @@ function rechargerPage() {
 			valeur={nouvelleAnnonce} setValeur={setNouvelleAnnonce} Valider={ModifierAnnonceFA} isLoading={isLoading666ModifierAnnonceFA} changerUrl textarea />
 
 
+		<MonetizationEntrer visible={alraniBusinessAA} fermer={CloseAlraniBusinessAA} />
+		
+		<PortefeuilleSortie visible={alraniPayAA} fermer={CloseAlraniPayAA} />
+		
+		{/* infos solde Alrani Business - AA */}
+		<InfosTemplate 
+			visible={infosBalanceAlraniBusinessAA} fermer={CloseInfosBalanceAlraniBusinessAA} 
+			texte="Votre Solde Florinato Business est de {monetizationBalanceAA} FCFA" />
+
+		{/* infos solde Alrani Pay - AA */}
+		<InfosTemplate 
+			visible={infosBalanceAlraniPayAA} fermer={CloseInfosBalanceAlraniPayAA} 
+			texte="Votre Solde Florinato Pay est de {balanceAlraniPayAA} FCFA" />
+
+
+		  
 		<PopupDuBasTemplate 
 			visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
 			MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
 		  
-		  
-
-	<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
+		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 	
 
 	<PopupDuBasTemplate 
@@ -53963,51 +53977,6 @@ function rechargerPage() {
       {/* Monétisation Activé (message de success) - AA */}
 
       
-      {/* alrani Business - AA */}
-      {/* alrani Business - AA */}
-      {alraniBusinessAA && (<>
-        <div className="alraniBusinessAA">
-            <div className="close">
-              <div onClick={CloseAlraniBusinessAA} className="a">
-                <p>Florinato <b>Business</b></p>
-              </div>
-
-              <div className="b">
-                <p onClick={SeePhoto2personConnectedAA}>{namePersonConnectedAA}</p>
-                <img onClick={SeePhoto2personConnectedAA} src={photoPersonConnectedAA} alt="" />
-              </div>
-            </div>
-            {/* close */}
-
-            <div className="solde">
-              <div onClick={RefreshBalanceAA} className="a"> <button onClick={InfosBalanceAlraniBusinessAA}> <p>{monetizationBalanceAA} FCFA</p> </button></div>
-              <div onClick={RefreshBalanceAA} className="b"> <p onClick={InfosBalanceAlraniBusinessAA}>Solde disponible</p> </div>
-            </div> 
-            {/* solde */}
-
-            <div style={{ paddingTop: "30px", paddingBottom: "20px", paddingLeft: "20px", paddingRight: "20px", display: "flex"  }}>
-              <p style={{ fontSize: "15px", paddingRight: "5px" }}>Monétisation activé</p>
-              <SvgValidate3 />
-            </div>
-          </div>
-          {/* alraniBusinessAA */}
-        </>)}
-      {/* alrani Business - AA */}
-
-
-      {/* infos solde Alrani Business - AA */}
-      {/* infos solde Alrani Business - AA */}
-      {infosBalanceAlraniBusinessAA && (<>
-        <div onClick={CloseInfosBalanceAlraniBusinessAA} className="infosLanguage">
-          <div className="align">
-            <div className="card"> <p>Votre Solde Florinato Business est de {monetizationBalanceAA} FCFA</p> </div>
-          </div>
-          {/* align */}
-        </div>
-        {/* infosLanguage */}
-        </>)}
-      {/* infos solde Alrani Business - AA */}
-
 
       {/* seePhoto2 (page pour voir la photo de la personne connecté) */}
       {/* seePhoto2 (page pour voir la photo de la personne connecté) */}
@@ -54604,47 +54573,7 @@ function rechargerPage() {
       {/* Fonctionnalités Supplémentaires (cette page signale que au niveau de son compte Florinato, l'application Donazia a ete activé) - FA */}
 
 
-      {/* alrani Pay - AA */}
-      {/* alrani Pay - AA */}
-      {alraniPayAA && (<>
-        <div className="alraniPayAA">
-            <div className="close">
-              <div className="a">
-                <p>Florinato <b>Pay</b></p>
-              </div>
-              <div className="b"> <button onClick={CloseAlraniPayAA}>Fermer</button> </div>
-            </div>
-            {/* close */}
-
-            <div className="solde">
-              <div onClick={RefreshBalanceAA} className="a"> <button onClick={InfosBalanceAlraniPayAA}> <p>{balanceAlraniPayAA} FCFA</p> </button></div>
-
-            {dev && (<>
-              <div className="b">
-                <p>Publication de Serfin SA - 1 FCFA</p>
-              </div>
-              {/* b */}
-              </>)} {/* dev se ferme ici */}
-            </div> 
-            {/* solde */}
-          </div>
-          {/* alraniPayAA */}
-        </>)}
-      {/* alrani Pay - AA */}
-
-      {/* infos solde Alrani Pay - AA */}
-      {/* infos solde Alrani Pay - AA */}
-      {infosBalanceAlraniPayAA && (<>
-        <div onClick={CloseInfosBalanceAlraniPayAA} className="infosLanguage">
-          <div className="align">
-            <div className="card"> <p>Votre solde Florinato Pay est de {balanceAlraniPayAA} FCFA</p> </div>
-          </div>
-          {/* align */}
-        </div>
-        {/* infosLanguage */}
-        </>)}
-      {/* infos solde Alrani Pay - AA */}
-
+     
 
       {/* security alrani Pay - AA */}
       {/* security alrani Pay - AA */}
