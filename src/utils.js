@@ -3073,8 +3073,10 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 	}) {
 	if (!visible) return null;
 	
-	const { nameAccount, photoProfile=photoBlanche, derniereConnexion, badge } = data; // infos du profil
+	const { nameAccount, photoProfile=photoBlanche, derniereConnexion, online, badge } = data; // infos du profil
 	const { nameAccount: nom, photoProfile: photo = photoBlanche } = data2;
+	
+	const vu = derniereConnexion || online; // la derniere fois qu'il a ete vu en ligne
 	
 
 	return (<>
@@ -3092,7 +3094,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 				{destinataireOnline ? (<>
 				<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div> </>):(<>
-                <div className="bb"> <p>{dateParserLong(derniereConnexion)} (Dernière connexion)</p> </div> </>)}
+                <div className="bb"> <p>{dateParserLong(vu)} (Dernière connexion)</p> </div> </>)}
               </div>
               {/* c */}
             </div>
