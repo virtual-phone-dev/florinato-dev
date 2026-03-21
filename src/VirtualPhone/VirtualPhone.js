@@ -35188,8 +35188,6 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 });
 
 
-
-
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
@@ -35251,12 +35249,6 @@ socket.on("message:misAJour", (element) => {
 ✔️ séparation émetteur / récepteur 
 ✔️ logique PRO (niveau WhatsApp) */
 
-
-
-const filterMessageFA = useMemo(() => {
-  if (!idConversation) return []; //Si idConversation peut être null / undefined au début . Ça évite les faux résultats au premier render.
-  return dataMessagesFA.filter(api => api.idConversation === idConversation);
-}, [dataMessagesFA, idConversation]);
 
 
   // Créer une map pour accéder rapidement aux profils par id
@@ -50920,7 +50912,7 @@ function rechargerPage() {
 		visible={messageFA} fermer={CloseMessageFA} profilMap={profilMap}
 		gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
 		PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-		data={infosCompteById[0]} data2={infosCompteById2[0]} filterMessageFA={filterMessageFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
+		data={infosCompteById[0]} data2={infosCompteById2[0]} dataMessagesFA={dataMessagesFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
 		Favorite66messageFA={Favorite66messageFA} 
 		PartagerContactPageFA={PartagerContactPageFA} blocPartagerContact={blocPartagerContactFA}
 		onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 

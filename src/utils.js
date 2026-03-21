@@ -1798,15 +1798,21 @@ const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees]
 
 
 
-const donneesAffichees_messages = useMemo(() => { return [...toutesDonnees].filter(api => api.idConversation === idConversation)
-.sort((a, b) => {
-	if (!a.createdAt && !b.createdAt) return 0;
-	if (!a.createdAt) return 1;
-	if (!b.createdAt) return -1;
-	
-	return new Date(b.createdAt) - new Date(a.createdAt);
-}).slice(0, lotActuel);
-}, [toutesDonnees, lotActuel, idConversation] ); 
+const donneesAffichees_messages = useMemo(() => {
+  if (!idConversation) return [];
+
+  return [...toutesDonnees]
+    .filter(api => api?.idConversation && api.idConversation === idConversation)
+    .sort((a, b) => {
+      if (!a.createdAt && !b.createdAt) return 0;
+      if (!a.createdAt) return 1;
+      if (!b.createdAt) return -1;
+
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    })
+    .slice(0, lotActuel);
+
+}, [toutesDonnees, lotActuel, idConversation]);
 
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
@@ -3061,7 +3067,7 @@ export function MenuPopupTemplate({ visible, fermer }) {
 //MenuPopup
 
 
-export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, filterMessageFA, profilMap, idCompte,
+export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, dataMessagesFA, profilMap, idCompte,
 	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA,
 	verifyConversation1, verifyConversation2, writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, PageRedirection66ChildApi66messageFA
 	}) {
@@ -3104,7 +3110,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
             <div className="espacement-navbar-top-et-donnees-api"></div>
 
             <div className="api" onClick={PageRedirection66ChildApi66messageFA}>
-            {filterMessageFA.map((api) => (
+            {dataMessagesFA.map((api) => (
               <ChildApi66messageFA api={api} profilMap={profilMap} />
             ))}
             </div>
