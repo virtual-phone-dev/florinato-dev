@@ -12,28 +12,18 @@ self.addEventListener("install", () => {
 
 // ACTIVATE → supprimer anciens caches
 self.addEventListener("activate", event => {
-
   event.waitUntil(
-
     caches.keys().then(keys =>
-
       Promise.all(
-
         keys.map(key => {
-
           if (key !== CACHE)
             return caches.delete(key);
-
         })
-
       )
-
     )
-
   );
 
   self.clients.claim();
-
 });
 
 
