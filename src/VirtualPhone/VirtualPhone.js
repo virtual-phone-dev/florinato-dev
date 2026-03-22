@@ -35006,7 +35006,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 
 const {
 	donneesAffichees_account_other: dataConversations, 
-	//donneesAffichees_obtenir_conversation_avec_son_destinataire: conversationDestinataire,
+	donneesAffichees_obtenir_conversation_avec_son_destinataire: conversationDestinataire,
 	toutesDonnees: toutConversations,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
@@ -35239,7 +35239,7 @@ useEffect(() => {
   if (conversationExistante) {
     setIdConversation(conversationExistante._id); 
   } else {
-	//setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
+	setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
   }
 }, [conversationExistante, choisirManuellementConversation]);
 
@@ -35261,8 +35261,8 @@ console.log("dataAnnonce", dataAnnonce); */
 	  //setIdConversation("0");   // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
 
 	  // filtre pour obtenir la conversation avec le destinataire . (on annule d'abord, meme si le filtre ne trouve pas de idConversation, au moins dans le state, idConversation sera = a 0)
-	  /*const conversationDest = conversationDestinataire?.[0] ?? {};
-	  setIdConversation(conversationDest._id);*/
+	  const conversationDest = conversationDestinataire?.[0] ?? {};
+	  setIdConversation(conversationDest._id);
 		
 	  setMessageFA(true); 
 	  /* console.log("idDestinataire", idDestinataire); 
