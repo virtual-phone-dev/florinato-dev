@@ -1473,7 +1473,7 @@ export async function lireDepuisIndexedDB(nomStockage) {
 
 
 export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=true, onlineUsers=null,
-	idConversation, idCompte, idCompte2, idCompteConnecter, idPost, idProprietairePost, id, idAnnonce,
+	idConversation, idDestinataire, idCompte, idCompte2, idCompteConnecter, idPost, idProprietairePost, id, idAnnonce,
 	rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
@@ -1786,7 +1786,29 @@ const donneesAffichees_idCompteConnecter = useMemo(() => filtrerEtTrier(toutesDo
 
 
 
-const donneesAffichees_account_other = useMemo(() => { return [...toutesDonnees].filter(api => api.idAccount === idCompteConnecter || api.idOther === idCompteConnecter)
+// en fonction de idDestinataire, idCompteConnecter, obtenir la ou les conversations d'un compte connecté avec son destinataire
+const donneesAffichees_obtenir_conversation_avec_son_destinataire = useMemo(() => { 
+if (!idCompteConnecter) return [];
+if (!idDestinataire) return [];
+
+return [...toutesDonnees].filter(api => 
+  api.idAccount === idCompteConnecter && api.idOther === idDestinataire || 
+  api.idAccount === idDestinataire && api.idOther === idCompteConnecter)
+  .sort((a, b) => {
+	if (!a.createdAt && !b.createdAt) return 0;
+	if (!a.createdAt) return 1;
+	if (!b.createdAt) return -1;
+	
+	return new Date(b.createdAt) - new Date(a.createdAt);
+});
+}, [toutesDonnees, idCompteConnecter, idDestinataire]);
+
+
+
+const donneesAffichees_account_other = useMemo(() => { // obtenir toutes les conversations d'un compte connecté
+if (!idCompteConnecter) return [];
+
+return [...toutesDonnees].filter(api => api.idAccount === idCompteConnecter || api.idOther === idCompteConnecter)
 .sort((a, b) => {
 	if (!a.createdAt && !b.createdAt) return 0;
 	if (!a.createdAt) return 1;
@@ -1924,7 +1946,10 @@ async function gererScroll(e) {
 };
 
 	return { 
-		toutesDonnees, setToutesDonnees, donneesAffichees, donneesAffichees_messages, 
+		toutesDonnees, setToutesDonnees, donneesAffichees, 
+		donneesAffichees_messages, 
+		donneesAffichees_obtenir_conversation_avec_son_destinataire,
+		
 		donneesAffichees_byClic, 
 		donneesAffichees_account_other, 
 		donneesAffichees_CompteEnLigne,

@@ -35006,15 +35006,18 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 
 const {
 	donneesAffichees_account_other: dataConversations, 
+	donneesAffichees_obtenir_conversation_avec_son_destinataire: conversationDestinataire,
 	toutesDonnees: toutConversations,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
 	donnees:conversationsSource,
 	idCompteConnecter: idPersonConnectedFA,
+	idDestinataire,
 }); 
 
 const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
+
 
 
 // messages
@@ -35188,8 +35191,8 @@ const profilPropsCommun = {
 };
 
 const ComptesRecentsPropsCommun = {
-  listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA,
-  gererScroll: gererScrollComptes, OuvrirMessagePage: MessageFA, onlineUsers, // important
+  listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA, onlineUsers, gererScroll: gererScrollComptes, 
+  OuvrirMessagePage: OuvrirMessagePage66ComptesEnLigne, 
 };
 
 
@@ -35212,9 +35215,7 @@ const ComptesRecentsPropsCommun = {
 
 
 // ca verifie si ya deja une conversation entre les 2 utilisateurs
-const conversationExistante = useMemo(() => {
-	console.log("🔥 useMemo conversationExistante recalculé");
-	
+const conversationExistante = useMemo(() => {	
   if (!idPersonConnectedFA || !idDestinataire) return null;
 
   return toutConversations.find(api =>
@@ -35258,13 +35259,25 @@ console.log("texteAnnonceFA", texteAnnonceFA);
 console.log("dataAnnonce", dataAnnonce);
 
 
+  async function OuvrirMessagePage66ComptesEnLigne() {	
+	  setIdConversation("0");   // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
+
+	  // filtre pour obtenir la conversation avec le destinataire . (on annule d'abord, meme si le filtre ne trouve pas de idConversation, au moins dans le state, idConversation sera = a 0)
+	  const conversationDest = conversationDestinataire?.[0] ?? {};
+	  setIdConversation(conversationDest._id);
+		
+	  setMessageFA(true); 
+	  console.log("conversationDestinataire", conversationDestinataire); console.log("conversationDest", conversationDest);
+  }
+
+
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
   async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
   async function ClosePartagerContactPageFA() { setPartagerContactPageFA(false); }
   
   const [messageFA, setMessageFA] = useState(false); // page pour envoyer un message personnel - FA 
   async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
-  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); setIdConversation("0"); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); }
   
   const [blocPartagerContactFA, setBlocPartagerContactFA] = useState(false); // blocPartagerContactFA c'est le petit bloc de contact (photo + nom) , qui va s'afficher au niveau du textarea ou on ecrit le message
   async function OuvrirMessagePage66PartagerContactPageFA() { setBlocPartagerContactFA(true); setPartagerContactPageFA(false); }
