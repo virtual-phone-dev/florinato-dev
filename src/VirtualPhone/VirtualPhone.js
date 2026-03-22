@@ -34677,13 +34677,13 @@ async function DissadAA() {
 	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
-	console.log("idCompte", idCompte);
+	console.log("idDestinataire", idDestinataire); 
+	/* console.log("idCompte", idCompte);
 	console.log("idPersonConnectedFA", idPersonConnectedFA);
 	console.log("idExpediteur", idExpediteur);
-	console.log("idDestinataire", idDestinataire); 
 	console.log("idContact", idContact); 
 	console.log("idConversation", idConversation); 
-	console.log("idAnnonce", idAnnonce); 
+	console.log("idAnnonce", idAnnonce); */
 	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -35243,7 +35243,7 @@ useEffect(() => {
   }
 }, [conversationExistante, choisirManuellementConversation]);
 
-
+/*
 console.log("dataMessagesFA", dataMessagesFA); 
 console.log("dataConversations", dataConversations); 
 console.log("toutConversations", toutConversations);
@@ -35254,7 +35254,7 @@ console.log("annoncesSource", annoncesSource);
 console.log("dataAnnoncesFA", dataAnnoncesFA);
 console.log("dataAnnoncesById", dataAnnoncesById);
 console.log("texteAnnonceFA", texteAnnonceFA);
-console.log("dataAnnonce", dataAnnonce);
+console.log("dataAnnonce", dataAnnonce); */
 
 
   async function OuvrirMessagePage66ComptesEnLigne() {	
