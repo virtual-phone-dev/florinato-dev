@@ -35237,7 +35237,7 @@ useEffect(() => {
  if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
 	
   if (conversationExistante) {
-    setIdConversation(conversationExistante._id);
+    /*setIdConversation(conversationExistante._id); */
   } else {  
 	setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
   }
