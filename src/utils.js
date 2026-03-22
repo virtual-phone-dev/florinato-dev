@@ -3101,8 +3101,6 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 //on affiche les messages
 export function ChildApi66messageFA({ api, profilMap }) { 
-console.log("api ChildApi66messageFA", api);
-
   const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const [checked, setChecked] = useState(false);
   async function Checked() {
