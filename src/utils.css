@@ -34,10 +34,10 @@
 .mb-15px { margin-bottom: 15px; }
 
 .m-0-15 { margin: 0px 15px; }
-.m-0-20 { margin: 0px 20px; }
+.p-0-20 { padding: 0px 20px; }
 .m-25-15 { margin: 25px 15px; }
 .m-15 { margin: 15px 15px; }
-.m-15-0 { margin: 15px 0px; }
+.p-15-0 { padding: 15px 0px; }
 
 .pb-30px { padding-bottom: 30px; }
 

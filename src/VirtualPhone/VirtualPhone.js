@@ -34689,18 +34689,12 @@ async function DissadAA() {
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
   
-  const countRefb1 = useRef(0);
-  
-  useEffect(() => {
-	  
-	countRefb1.current++;
-	console.log("use b1", countRefb1.current);
-	
+  /* // useEffect(() => {
 	async function fetchData() {
 		await ObtenirLesDonneesFA();
 	}
 	fetchData();
-  }, []); 
+  }, []); */
   
 
 
@@ -34800,13 +34794,7 @@ async function DissadAA() {
 const socketRef = useRef(null); // Socket
 const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
-const countRefb2 = useRef(0);
-
 useEffect(() => {
-	
-	countRefb2.current++;
-	console.log("use b2", countRefb2.current);
-	
 	// S'il ya une socket existante, déconnecte-la proprement
     if (socketRef.current) {
       socketRef.current.disconnect();
@@ -35042,12 +35030,7 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
-const countRefb3 = useRef(0);
-
 useEffect(() => {
-	countRefb3.current++;
-	console.log("use b3", countRefb3.current);
-	
   const socket = socketRef.current;
   if (!socket) return;
   
@@ -35247,24 +35230,19 @@ const conversationExistante = useMemo(() => {
 
 
 const verifyConversation = !!conversationExistante;
-const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
 
-const countRefb6 = useRef(0);
 
+//const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
+
+/*
 useEffect(() => {
-	
-	countRefb6.current++;
-	console.log("use b6", countRefb6.current);
-	
-	
-  if (choisirManuellementConversation) return; // 🔥 cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
+ // if (choisirManuellementConversation) return; // 🔥 cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
 	
   if (conversationExistante) {
     setIdConversation(conversationExistante._id);
-  } else {
-    setIdConversation("0");
-  }
-}, [conversationExistante, choisirManuellementConversation]);
+  } 
+  //else {  setIdConversation("0");}
+}, [conversationExistante]);*/
 
 
 console.log("dataMessagesFA", dataMessagesFA); 
@@ -35286,7 +35264,7 @@ console.log("dataAnnonce", dataAnnonce);
   
   const [messageFA, setMessageFA] = useState(false); // page pour envoyer un message personnel - FA 
   async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
-  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); setIdConversation("0"); }
   
   const [blocPartagerContactFA, setBlocPartagerContactFA] = useState(false); // blocPartagerContactFA c'est le petit bloc de contact (photo + nom) , qui va s'afficher au niveau du textarea ou on ecrit le message
   async function OuvrirMessagePage66PartagerContactPageFA() { setBlocPartagerContactFA(true); setPartagerContactPageFA(false); }
@@ -35296,11 +35274,10 @@ console.log("dataAnnonce", dataAnnonce);
 // logique pour envoyer un message privé sur florinato
 const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
 
-  
+
 async function SendMessageFAA(customConversationId = null) {
-	console.log("🔥 Click SendMessageFAA");
-	const messageText = writeMessage66messageFA; console.log("📝 messageText:", messageText);
-	if (!messageText.trim()) { console.log("⛔ message vide, stop"); return; }
+	const messageText = writeMessage66messageFA; 
+	if (!messageText.trim()) return; 
 	setWriteMessage66messageFA(""); // vider immédiatement
   
 	
@@ -35340,25 +35317,8 @@ async function SendMessageFAA(customConversationId = null) {
   };
   
   if (blocPartagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
-  
-    console.log("📦 messageData", messageData);
-  
-    try {
-	  JSON.stringify(messageData);
-	  console.log("✅ messageData est SAFE");
-	} catch (e) {
-	  console.log("❌ messageData CIRCULAIRE", e);
-	}
-	
-  console.log("message test");
-  socketRef.current.emit("sendMessage", "test 10");
-  console.log("message test est passé");
-  
-  console.log("🚀 emit sendMessage");
-  
-  socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur  
-  console.log("✅ message envoyé");
-  
+
+  socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur    
   setWriteMessage66messageFA("");
   if (blocPartagerContactFA) setBlocPartagerContactFA(false);
 }
@@ -35465,17 +35425,9 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 // url pour tomber directement sur la page
 
 	const location = useLocation();
-	// const navigate = useNavigate();
-
-	const countRefb5 = useRef(0);
 
 	// État pour gérer l’ouverture du popup
 	useEffect(() => {
-		
-	  countRefb5.current++;
-	  console.log("use b5", countRefb5.current);
-	
-	
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
 	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
 	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
@@ -35550,14 +35502,8 @@ const [miniatureFA, setMiniatureFA] = useState();
 const [fileVideoFAA, setFileVideoFAA] = useState();
 const [second, setSecond] = useState(10);
 
-const countRefb4 = useRef(0);
-
 // useEffect affiche la miniature immédiatement après sa génération sans délai
   useEffect(() => {
-	  
-	  countRefb4.current++;
-	console.log("use b4", countRefb4.current);
-	
 	async function GenererMiniature() {
 		if (fileVideoFAA) {
 			// Supposons que vous avez votre fichier vidéo dans `file`
@@ -50689,7 +50635,7 @@ function rechargerPage() {
                 {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
-						setChoisirManuellementConversation(true); //important
+						//setChoisirManuellementConversation(true); //important
 						setIdConversation(api._id);
 						
 						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
