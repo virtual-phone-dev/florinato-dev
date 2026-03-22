@@ -3073,7 +3073,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
                 <div className="a"> <AutoTextarea valeur={writeMessage66messageFA} setValeur={setWriteMessage66messageFA} ecrire={gererChangementMessage} texte="Écrire un message..." /> </div>
 			  
                 {isLoading66messageFA ? (<div className="b"> <SvgSend/> 5loading</div>) : 
-				verifyConversation ? (<div className="b" onClick={SendMessageFAA}> <SvgSend/> 5envoyer</div> ):( <div className="b" onClick={BeginConversationFA}> <SvgSend/> 5commencer</div>)}
+				verifyConversation ? (<div className="b" onClick={() => SendMessageFAA()}> <SvgSend/> 5envoyer</div> ):( <div className="b" onClick={BeginConversationFA}> <SvgSend/> 5commencer</div>)}
 				
             </div>
             {/* write */}

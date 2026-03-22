@@ -35298,11 +35298,12 @@ const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // s
 
   
 async function SendMessageFAA(customConversationId = null) {
-	
-	const messageText = writeMessage66messageFA;  
+	console.log("🔥 Click SendMessageFAA");
+	const messageText = writeMessage66messageFA; console.log("📝 messageText:", messageText);
+	if (!messageText.trim()) { console.log("⛔ message vide, stop"); return; }
 	setWriteMessage66messageFA(""); // vider immédiatement
   
-	if (!writeMessage66messageFA.trim()) return;
+	
 	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
 	let expediteur = idExpediteur; 
 	let destinataire = idDestinataire;
@@ -35339,8 +35340,25 @@ async function SendMessageFAA(customConversationId = null) {
   };
   
   if (blocPartagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
-
+  
+    console.log("📦 messageData", messageData);
+  
+    try {
+	  JSON.stringify(messageData);
+	  console.log("✅ messageData est SAFE");
+	} catch (e) {
+	  console.log("❌ messageData CIRCULAIRE", e);
+	}
+	
+  console.log("message test");
+  socketRef.current.emit("sendMessage", "test 10");
+  console.log("message test est passé");
+  
+  console.log("🚀 emit sendMessage");
+  
   socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur  
+  console.log("✅ message envoyé");
+  
   setWriteMessage66messageFA("");
   if (blocPartagerContactFA) setBlocPartagerContactFA(false);
 }
