@@ -1,4 +1,4 @@
-const CACHE = "florinato-cache-v7";
+const CACHE = "florinato-cache-v8";
 
 
 // INSTALL → rien forcer
@@ -38,66 +38,45 @@ self.addEventListener("activate", event => {
 
 
 
-
 self.addEventListener("fetch", event => {
-
   const url = new URL(event.request.url);
 
+  // ❌ ignorer API
+  if (url.hostname.includes("api2florinato.onrender.com")) return;
 
-  // ❌ API → jamais cache
-  if (url.hostname.includes("onrender.com"))
-    return;
+  // ❌ ignorer non-GET
+  if (event.request.method !== "GET") return;
 
-
-
-  // ✅ HTML → Network First
+  // ✅ HTML
   if (event.request.mode === "navigate") {
-
     event.respondWith(
-
       fetch(event.request)
-
         .then(response => {
-
           const copy = response.clone();
-
-          caches.open(CACHE)
-            .then(cache => cache.put("/index.html", copy));
-
+          caches.open(CACHE).then(cache => {
+            cache.put("/index.html", copy);
+          });
           return response;
-
         })
-
         .catch(() => caches.match("/index.html"))
-
     );
-
     return;
-
   }
 
-
-
-  // ✅ JS CSS images → Network First + fallback cache
-
+  // ✅ assets (JS, CSS, images)
   event.respondWith(
-
-    fetch(event.request)
-
-      .then(response => {
-
-        const copy = response.clone();
-
-        caches.open(CACHE)
-          .then(cache => cache.put(event.request, copy));
-
-        return response;
-
-      })
-
-      .catch(() => caches.match(event.request))
-
+    caches.match(event.request).then(cached => {
+      return (
+        cached ||
+        fetch(event.request).then(response => {
+          const copy = response.clone();
+          caches.open(CACHE).then(cache => {
+            cache.put(event.request, copy);
+          });
+          return response;
+        })
+      );
+    })
   );
-
-
 });
+
