@@ -35237,9 +35237,9 @@ useEffect(() => {
  if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
 	
   if (conversationExistante) {
-    /*setIdConversation(conversationExistante._id); */
-  } else {  
-	setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
+    setIdConversation(conversationExistante._id); 
+  } else {
+	//setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
   }
 }, [conversationExistante, choisirManuellementConversation]);
 
@@ -35277,7 +35277,7 @@ console.log("dataAnnonce", dataAnnonce); */
   
   const [messageFA, setMessageFA] = useState(false); // page pour envoyer un message personnel - FA 
   async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
-  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); setIdConversation("0"); }
   
   const [blocPartagerContactFA, setBlocPartagerContactFA] = useState(false); // blocPartagerContactFA c'est le petit bloc de contact (photo + nom) , qui va s'afficher au niveau du textarea ou on ecrit le message
   async function OuvrirMessagePage66PartagerContactPageFA() { setBlocPartagerContactFA(true); setPartagerContactPageFA(false); }
