@@ -17526,21 +17526,6 @@
   color: #00cc00;
 }
 
-.page-opacity .align .card .block .a .btn-bleu {
-  text-align: center;
-}
-
-.page-opacity .align .card .block .a .btn-bleu button {
-  cursor: pointer;
-  background: transparent;
-  color: blue;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  padding: 4px 13px;
-  font-size: 15px;
-  margin: 15px;
-}
-
 .page-opacity .align .card .block .b p {
   text-align: center;
   color: #444;

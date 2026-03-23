@@ -69,13 +69,21 @@
   border-top: 1px solid blue;
 }
 
-
-
 .btn-bleu {
+  cursor: pointer;
+  background: blue;
+  color: white;
+  border: 1px solid blue;
+  border-radius: 10px;
+  padding: 4px 13px;
+  font-size: 15px;
+}
+
+.btn-bleu-transparent {
   text-align: center;
 }
 
-.btn-bleu button {
+.btn-bleu-transparent button {
   cursor: pointer;
   background: transparent;
   color: blue;

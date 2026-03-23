@@ -7782,10 +7782,10 @@ function EnfantPublicationEnAttente({ api }) {
                   <div className="a">
                     <p>Approuver la publication !</p>
 
-                    <div className="btn-bleu">
+                    <div className="btn-bleu-transparent">
                       <button onClick={ApprouverPost}>Approuver</button>
                     </div>
-                    {/* btn-bleu */}
+                    {/* btn-bleu-transparent */}
                   </div>
                   {/* a */}
                 </div>
@@ -7812,10 +7812,10 @@ function EnfantPublicationEnAttente({ api }) {
                   <div className="a">
                     <p>Rejeter la publication !</p>
 
-                    <div className="btn-bleu">
+                    <div className="btn-bleu-transparent">
                       <button onClick={RejeterPost}>Rejeter</button>
                     </div>
-                    {/* btn-bleu */}
+                    {/* btn-bleu-transparent */}
                   </div>
                   {/* a */}
                 </div>
@@ -8603,10 +8603,10 @@ function EnfantPublicationRejeter({ api }) {
                   <div className="a">
                     <p>Approuver la publication !</p>
 
-                    <div className="btn-bleu">
+                    <div className="btn-bleu-transparent">
                       <button onClick={ApprouverPost}>Approuver</button>
                     </div>
-                    {/* btn-bleu */}
+                    {/* btn-bleu-transparent */}
                   </div>
                   {/* a */}
                 </div>
@@ -8633,10 +8633,10 @@ function EnfantPublicationRejeter({ api }) {
                   <div className="a">
                     <p>Supprimer la publication !</p>
 
-                    <div className="btn-bleu">
+                    <div className="btn-bleu-transparent">
                       <button onClick={SupprimerPost}>Supprimer</button>
                     </div>
-                    {/* btn-bleu */}
+                    {/* btn-bleu-transparent */}
                   </div>
                   {/* a */}
                 </div>
@@ -8679,10 +8679,10 @@ function EnfantPublicationRejeter({ api }) {
                       </div>
                     ) : (
                       <>
-                        <div className="btn-bleu">
+                        <div className="btn-bleu-transparent">
                           <button onClick={ModifierPost}>Valider</button>
                         </div>
-                        {/* btn-bleu */}
+                        {/* btn-bleu-transparent */}
                       </>
                     )}
                   </div>

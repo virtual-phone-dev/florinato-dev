@@ -2060,8 +2060,8 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
                   <div className="a"> <button onClick={fermer}>Annuler</button> </div>
 				  
 				  {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
-				  ):(<div className="btn-bleu"> <button onClick={Validerbtn}>Valider</button> </div> )}
-                  {/* btn-bleu */}
+				  ):(<div className="btn-bleu-transparent"> <button onClick={Validerbtn}>Valider</button> </div> )}
+                  {/* btn-bleu-transparent */}
                 </div>
                 {/* block-trois */}
               </div>
@@ -2439,7 +2439,7 @@ export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, 
 			  <VideoMiniatureTemplate transVoirMiniature={transVoirMiniature} miniature={miniature} setFileVideo={setFileVideo} second={second} setSecond={setSecond}/> )}
 			  
               {isLoading ? (<div className="loader-display-flex"> <Loader/> </div>
-              ):(<div className="btn-bleu"> <button onClick={Valider}>{textbtn}</button> </div> )}
+              ):(<div className="btn-bleu-transparent"> <button onClick={Valider}>{textbtn}</button> </div> )}
 			  
 			  {lesCommentaires && (<>
 			  {data.map((api) => (
@@ -3335,6 +3335,7 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
 			</div>
 			
 			<p className="fs-12px">{api.clic} clic</p>
+			<button className="btn-bleu" onClick={OuvrirMessagePage}>Envoyer un message</button>
 		</div> 
 		); })}
 		
@@ -3368,7 +3369,8 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
 		<div>
 		<pre className="pre fs-17px mb-15px">{texte}</pre> 
 		<p className="fs-12px">{clic} clic</p>
-		<div className="btn-p-hr"> <button onClick={OuvrirMessagePage}> <p>Envoyer un message</p> <hr/> </button> </div>
+		
+		<button className="btn-bleu" onClick={OuvrirMessagePage}>Envoyer un message</button>
 		<div className="btn-p-hr"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>
 		</div>
 		
