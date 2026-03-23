@@ -1789,7 +1789,7 @@ const donneesAffichees_idCompteConnecter = useMemo(() => filtrerEtTrier(toutesDo
 const donneesAffichees_account_other = useMemo(() => { // obtenir toutes les conversations d'un compte connecté
 if (!idCompteConnecter) return [];
 
-return [...toutesDonnees].filter(api => api.idAccount === idCompteConnecter || api.idOther === idCompteConnecter)
+return [...toutesDonnees].filter(api => (api.idAccount === idCompteConnecter) || (api.idOther === idCompteConnecter))
 .sort((a, b) => {
 	if (!a.createdAt && !b.createdAt) return 0;
 	if (!a.createdAt) return 1;
