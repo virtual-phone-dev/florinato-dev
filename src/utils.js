@@ -3303,8 +3303,8 @@ export function PartageContactMessage({ api={}, profilMap={} }) {
 
 export function Close2({ fermer, titre, titrecss }) {
   return (<>
-		<div className="close flex p-20">
-          <div className="a" onClick={fermer}> <SvgLeft /> </div>
+		<div className="close flex p-20" onClick={fermer}>
+          <div className="a"> <SvgLeft /> </div>
           <div className={titrecss}> <p>{titre}</p> </div>
         </div>
         {/* close */}
