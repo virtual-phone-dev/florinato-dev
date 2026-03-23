@@ -34677,8 +34677,6 @@ async function DissadAA() {
 	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
-	console.log("idDestinataire", idDestinataire); 
-	console.log("idConversation", idConversation); 
 	/* console.log("idCompte", idCompte);
 	console.log("idPersonConnectedFA", idPersonConnectedFA);
 	console.log("idExpediteur", idExpediteur);
@@ -35282,6 +35280,9 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
 
   setIdConversation(conversation ? conversation._id : "0");
   setMessageFA(true);
+  
+  console.log("idDestinataire", idDestinataire); 
+	console.log("idConversation", idConversation); 
 }
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
@@ -50634,7 +50635,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0805</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0858</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
