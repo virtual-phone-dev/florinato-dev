@@ -3303,7 +3303,7 @@ export function PartageContactMessage({ api={}, profilMap={} }) {
 
 export function Close2({ fermer, titre, titrecss }) {
   return (<>
-		<div className="close flex">
+		<div className="close flex p-20">
           <div className="a" onClick={fermer}> <SvgLeft /> </div>
           <div className={titrecss}> <p>{titre}</p> </div>
         </div>
@@ -3315,7 +3315,7 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
   if (!visible) return null;
   
   return (<>
-	<div className="page-blanche p-15-20">
+	<div className="page-blanche">
 		<Close2 fermer={fermer} titre="Annonces" titrecss="fs-19px c-00cc00"/>
 		
 		{data.map((api) => {
@@ -3326,7 +3326,7 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
 		const nom = profil?.nameAccount ?? "";	
   
 		return (
-		<div onClick={() => { setIdAnnonce(api._id); }} className="p-15">
+		<div onClick={() => { setIdAnnonce(api._id); }} className="p-20">
 			<pre className="pre fs-16 mb-15" onClick={AfficherAnnoncePage}>{api.texte}</pre> 
 			
 			<div className="flex" onClick={OuvrirMessagePage}> 
@@ -3354,8 +3354,8 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
   const nom = profil?.nameAccount ?? "";	
   
   return (<>
-	<div className="page-blanche p-15-20">
-		<div className="close flex" onClick={fermer}>
+	<div className="page-blanche">
+		<div className="close flex p-20" onClick={fermer}>
 		  <div className="a"> <SvgLeft /> </div>
 		  
 		  <div className="b flex"> 
@@ -3366,7 +3366,7 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
 		</div>
 		{/* close */}
 		
-		<div className="p-15">
+		<div className="p-20">
 			<pre className="pre fs-17px mb-15">{texte}</pre> 
 			<p className="fs-12px">{clic} clic</p>
 			
