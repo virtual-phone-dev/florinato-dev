@@ -34790,58 +34790,6 @@ async function DissadAA() {
   const filterMessageEpinglerFA = apiMessageFA.filter((api) => api.epingler === "1" && api._id === idMessageEpingler);
   const messageEpinglerFA = filterMessageEpinglerFA.map((api) => api.message); // messageEpingler
   
-  
-  
-const socketRef = useRef(null); // Socket
-const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
-
-useEffect(() => {
-	// S'il ya une socket existante, déconnecte-la proprement
-    if (socketRef.current) {
-      socketRef.current.disconnect();
-    }
-  
-	// Crée une nouvelle socket
-    socketRef.current = io("https://api2florinato.onrender.com", {
-      transports: ["websocket"],
-      reconnection: true,
-    });
-
-  const socket = socketRef.current;
-  
-	// Lors de la connexion . À CHAQUE connexion / reconnexion
-	// Écoute la connexion et renvoie le bon idPersonConnectedFA
-  socket.on("connect", () => {
-    console.log("Socket connecté :", socket.id);
-    if (idPersonConnectedFA) {
-      socket.emit("user:online", idPersonConnectedFA);
-    }
-  });
-
-  // Envoie l'ID si changé
-  if (idPersonConnectedFA) {
-    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
-  } 
-
-	// Écoute les utilisateurs en ligne . Réception de la liste des utilisateurs en ligne 
-  socket.on("users:online", (users) => {
-    setOnlineUsers(users);
-  }); 
-  
-	// Reçoit les message
-  socket.on("receiveMessage", (msg) => {
-    setApiMessageFA(prev => [msg, ...prev]);
-  });
-  
-  // Nettoyage
-  return () => {
-    socket.off("connect");
-    socket.off("users:online");
-    socket.off("receiveMessage");
-	socket.disconnect();
-  };
-}, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
-
 
 
   //filtre pour afficher les comptes les plus populaires sur Florinato
@@ -35007,14 +34955,12 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 
 const {
 	donneesAffichees_account_other: dataConversations, 
-	//donneesAffichees_obtenir_conversation_avec_son_destinataire: conversationDestinataire,
 	toutesDonnees: toutConversations,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
 	donnees:conversationsSource,
-	idCompteConnecter: idPersonConnectedFA,
-	idDestinataire,
+	idCompteConnecter: idPersonConnectedFA
 }); 
 
 const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
@@ -35029,6 +34975,62 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 	donnees:messagesSource, 
 	idConversation
 });
+
+
+  
+  
+const socketRef = useRef(null); // Socket
+const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
+
+useEffect(() => {
+	// S'il ya une socket existante, déconnecte-la proprement
+    if (socketRef.current) {
+      socketRef.current.disconnect();
+    }
+  
+	// Crée une nouvelle socket
+    socketRef.current = io("https://api2florinato.onrender.com", {
+      transports: ["websocket"],
+      reconnection: true,
+    });
+
+  const socket = socketRef.current;
+  
+	// Lors de la connexion . À CHAQUE connexion / reconnexion
+	// Écoute la connexion et renvoie le bon idPersonConnectedFA
+  socket.on("connect", () => {
+    console.log("Socket connecté :", socket.id);
+    if (idPersonConnectedFA) {
+      socket.emit("user:online", idPersonConnectedFA);
+    }
+  });
+
+  // Envoie l'ID si changé
+  if (idPersonConnectedFA) {
+    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
+  } 
+
+	// Écoute les utilisateurs en ligne . Réception de la liste des utilisateurs en ligne 
+  socket.on("users:online", (users) => {
+    setOnlineUsers(users);
+  }); 
+  
+	// Reçoit les message
+  socket.on("receiveMessage", (msg) => {
+    setApiMessageFA(prev => [msg, ...prev]);
+  });
+  
+  // Nettoyage
+  return () => {
+    socket.off("connect");
+    socket.off("users:online");
+    socket.off("receiveMessage");
+	socket.disconnect();
+  };
+}, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
+
+
+
 
 
 // Écouter l'écriture (côté RECEVEUR) 
@@ -35229,30 +35231,15 @@ const conversationExistante = useMemo(() => {
 
 }, [toutConversations, idPersonConnectedFA, idDestinataire]);
 
+const verifyConversation = !!conversationExistante;
 
 
-
-/*
-console.log("dataMessagesFA", dataMessagesFA); 
-console.log("dataConversations", dataConversations); 
-console.log("toutConversations", toutConversations);
-console.log("conversationExistante", conversationExistante);
-console.log("verifyConversation", verifyConversation);
-
-console.log("annoncesSource", annoncesSource);
-console.log("dataAnnoncesFA", dataAnnoncesFA);
-console.log("dataAnnoncesById", dataAnnoncesById);
-console.log("texteAnnonceFA", texteAnnonceFA);
-console.log("dataAnnonce", dataAnnonce); */
 
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
-
-  // 🔥 utilise directement la valeur passée
-  setIdDestinataire(idDestinataireget);
-
-  // 🔥 reset
-  setIdConversation(null);
-
+  setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
+  setIdConversation(null); // 🔥 reset (ou supprime)
+  
+// en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
   const conversation = toutConversations.find(api =>
     api.type === "30" && (
       (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
@@ -35261,30 +35248,13 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   );
 
   setIdConversation(conversation ? conversation._id : "0");
-
   setMessageFA(true);
-  
   
   console.log("idDestinataire", idDestinataire); 
   console.log("idConversation", idConversation); 
 }
 
-const verifyConversation = !!conversationExistante;
 
-/*const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
-
-useEffect(() => {
-	if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
-	//if (!idDestinataire) return;
-
-    if (conversationExistante) {
-      setIdConversation(conversationExistante._id); 
-    } else {
-	  setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
-    } 
-}, [conversationExistante, choisirManuellementConversation]);
-
-*/
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
   async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
@@ -35345,7 +35315,9 @@ async function SendMessageFAA(customConversationId = null) {
   };
   
   if (blocPartagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
-
+  
+  setApiMessageFA(prev => [messageData, ...prev]); // ce code cest pour afficher le message instantanément avant meme que il n'arrive au serveur (mais si la datee s'affiche, ca veut dire que le message a ete envoyer)
+  
   socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur    
   setWriteMessage66messageFA("");
   if (blocPartagerContactFA) setBlocPartagerContactFA(false);
@@ -35370,10 +35342,14 @@ async function BeginConversationFA() {
         type: "30",
       }
     );
-
+	
+	const nouvelleConv = res.data; // type=30
+	
     const idConversation = res.data._id;
 	setIdConversation(idConversation);	
     console.log("Conversation créée :", idConversation);
+	
+    setApiMessageFA(prev => [nouvelleConv, ...prev]); // Ajouter la conversation directement côté expéditeur, (dans apiMessageFA)
 
     // ✅ envoyer message via socket
     SendMessageFAA(idConversation);
@@ -35381,11 +35357,12 @@ async function BeginConversationFA() {
   catch (err) { console.error(err); }
   finally { setIsLoading66messageFA(false); }
 }
+// BeginConversationFA
+
 
 
 
 // Ce code gère la fonctionnalité d'indicateur d'écriture dans une messagerie en temps réel, en utilisant React et Socket.IO.
-
 
 /* PRINCIPE (1 phrase)
 
@@ -50663,7 +50640,6 @@ function rechargerPage() {
                 {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
-						//setChoisirManuellementConversation(true); 
 						setIdConversation(api._id);
 						
 						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
