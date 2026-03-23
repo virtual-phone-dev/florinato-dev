@@ -2373,7 +2373,7 @@ export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte
 		const isOnline = onlineSet.has(api._id); // check si un utilisateur est en ligne
 		
 		return (
-		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); OuvrirMessagePage({ idDestinataireget: api._id }); }}>	
+		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); OuvrirMessagePage(api._id); }}>	
 			<PopularityAccountCard api={api} online={online} isOnline={isOnline} dev={dev} />
 		</div>
 		);

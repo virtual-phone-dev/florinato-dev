@@ -35007,7 +35007,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 
 const {
 	donneesAffichees_account_other: dataConversations, 
-	donneesAffichees_obtenir_conversation_avec_son_destinataire: conversationDestinataire,
+	//donneesAffichees_obtenir_conversation_avec_son_destinataire: conversationDestinataire,
 	toutesDonnees: toutConversations,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
@@ -35245,29 +35245,33 @@ console.log("dataAnnoncesById", dataAnnoncesById);
 console.log("texteAnnonceFA", texteAnnonceFA);
 console.log("dataAnnonce", dataAnnonce); */
 
-
-
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
+
+  // 🔥 utilise directement la valeur passée
   setIdDestinataire(idDestinataireget);
-  setIdConversation(null); //reset immédiat
+
+  // 🔥 reset
+  setIdConversation(null);
 
   const conversation = toutConversations.find(api =>
     api.type === "30" && (
-	(api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
-    (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA))
+      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
+      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
+    )
   );
 
   setIdConversation(conversation ? conversation._id : "0");
+
   setMessageFA(true);
+  
   
   console.log("idDestinataire", idDestinataire); 
   console.log("idConversation", idConversation); 
 }
 
-
-
 const verifyConversation = !!conversationExistante;
-const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
+
+/*const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
 
 useEffect(() => {
 	if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
@@ -35280,7 +35284,7 @@ useEffect(() => {
     } 
 }, [conversationExistante, choisirManuellementConversation]);
 
-
+*/
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
   async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
@@ -50632,7 +50636,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1042</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1116</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50659,7 +50663,7 @@ function rechargerPage() {
                 {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
-						setChoisirManuellementConversation(true); 
+						//setChoisirManuellementConversation(true); 
 						setIdConversation(api._id);
 						
 						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
