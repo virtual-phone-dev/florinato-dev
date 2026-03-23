@@ -34659,13 +34659,12 @@ async function DissadAA() {
   const type = localStorage.getItem("type"); 
   const urlPhoto = localStorage.getItem("urlPhoto"); 
   //const urlVideo = localStorage.getItem("urlVideo"); 
-
   const urlPhotoreq = localStorage.getItem("urlPhotoreq");
   const urlVideoreq = localStorage.getItem("urlVideoreq");
-   
+	
 	const [idreq, setId] = useState(null);
-	const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
-	const [idExpediteur, setIdExpediteur] = useState(localStorage.getItem("idPersonConnectedFA"));
+	const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(null);
+	const [idExpediteur, setIdExpediteur] = useState(null);
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
 	const [idDestinataire, setIdDestinataire] = useState(null);	
@@ -34685,6 +34684,25 @@ async function DissadAA() {
 	console.log("idContact", idContact); 
 	console.log("idConversation", idConversation); 
 	console.log("idAnnonce", idAnnonce); */
+
+
+// jai mis le useEffect pour quil utilise dabord idPersonConnectedFA qui est dans sessionStorage, et lavantage de mettre sessionStorage comme prioritaire, cest que si idPersonConnectedFA change, ca reste dans cet onglet, ca ne change pas dans les autres onglets
+useEffect(() => {
+  // Au chargement de la page
+  const idSession = sessionStorage.getItem("idPersonConnectedFA");
+  const idLocal = localStorage.getItem("idPersonConnectedFA");
+
+  if (idSession) {
+    setIdPersonConnectedFA(idSession);
+    setIdExpediteur(idSession);
+  } else if (idLocal) {
+    // Si sessionStorage est vide, on récupère idPersonConnectedFA dans localStorage et on le met dans sessionStorage
+    sessionStorage.setItem("idPersonConnectedFA", idLocal);
+    setIdPersonConnectedFA(idLocal);
+    setIdExpediteur(idLocal);
+  }
+}, []);
+
 	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -50616,7 +50634,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1520</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1633</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>

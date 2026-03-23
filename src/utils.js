@@ -2239,13 +2239,14 @@ export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes,
 
       <div className="api2">
 		{data.map((api) => (
-		<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); }}>
+		<div onClick={() => { setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); sessionStorage.setItem("idPersonConnectedFA", api._id); localStorage.setItem("idPersonConnectedFA", api._id); }}>
 			<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
 		</div>
         ))}
       </div>
     </>
   )}
+
 
 
 export function InfosDev({ api }) {
