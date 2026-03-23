@@ -35230,19 +35230,29 @@ const conversationExistante = useMemo(() => {
 }, [toutConversations, idPersonConnectedFA, idDestinataire]);
 
 
+/*
+useEffect(() => {
+	setIdConversation(null); // dès que le destinataire change → reset
+}, [idDestinataire]); */
+
 
 const verifyConversation = !!conversationExistante;
-const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
+/* const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
 
 useEffect(() => {
- if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
+	if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
+	//if (!idDestinataire) retur	n;
+
+    if (conversationExistante) {
+      setIdConversation(conversationExistante._id); 
+    } 
 	
-  if (conversationExistante) {
-    setIdConversation(conversationExistante._id); 
-  } else {
-	setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
-  }
-}, [conversationExistante, choisirManuellementConversation, idConversation]);
+	else {
+	  setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
+    } 
+}, [conversationExistante, choisirManuellementConversation]);
+*/
+
 
 /*
 console.log("dataMessagesFA", dataMessagesFA); 
@@ -35258,19 +35268,21 @@ console.log("texteAnnonceFA", texteAnnonceFA);
 console.log("dataAnnonce", dataAnnonce); */
 
 
-  async function OuvrirMessagePage66ComptesEnLigne() {	
-	  setIdConversation("0");   // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
 
-	  // filtre pour obtenir la conversation avec le destinataire . (on annule d'abord, meme si le filtre ne trouve pas de idConversation, au moins dans le state, idConversation sera = a 0)
-	  const conversationDest = conversationDestinataire?.[0] ?? {};
-	  setIdConversation(conversationDest._id);
-		
-	  setMessageFA(true); 
-	  console.log("idDestinataire", idDestinataire); 
-	  console.log("conversationDestinataire", conversationDestinataire); 
-	  console.log("conversationDest", conversationDest); 
-  } 
+async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
+  setIdDestinataire(idDestinataireget);
+  setIdConversation(null); // 🔥 reset immédiat
 
+  // 🔥 calcul direct (pas de lag)
+  const conversation = toutConversations.find(api =>
+    api.type === "30" && (
+	(api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
+    (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA))
+  );
+
+  setIdConversation(conversation ? conversation._id : "0");
+  setMessageFA(true);
+}
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
   async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
@@ -50622,7 +50634,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0705</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0805</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50649,7 +50661,7 @@ function rechargerPage() {
                 {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
-						setChoisirManuellementConversation(true); 
+						//setChoisirManuellementConversation(true); 
 						setIdConversation(api._id);
 						
 						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }

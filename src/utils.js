@@ -1792,8 +1792,8 @@ if (!idCompteConnecter) return [];
 if (!idDestinataire) return [];
 
 return [...toutesDonnees].filter(api => 
-  api.idAccount === idCompteConnecter && api.idOther === idDestinataire || 
-  api.idAccount === idDestinataire && api.idOther === idCompteConnecter)
+  (api.idAccount === idCompteConnecter && api.idOther === idDestinataire) || 
+  (api.idAccount === idDestinataire && api.idOther === idCompteConnecter))
   .sort((a, b) => {
 	if (!a.createdAt && !b.createdAt) return 0;
 	if (!a.createdAt) return 1;
@@ -2373,7 +2373,7 @@ export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte
 		const isOnline = onlineSet.has(api._id); // check si un utilisateur est en ligne
 		
 		return (
-		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); OuvrirMessagePage(); }}>	
+		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); OuvrirMessagePage({ idDestinataireget: api._id }); }}>	
 			<PopularityAccountCard api={api} online={online} isOnline={isOnline} dev={dev} />
 		</div>
 		);
