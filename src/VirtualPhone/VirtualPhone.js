@@ -34677,6 +34677,8 @@ async function DissadAA() {
 	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
+	console.log("idConversation", idConversation); 
+	
 	/* console.log("idCompte", idCompte);
 	console.log("idPersonConnectedFA", idPersonConnectedFA);
 	console.log("idExpediteur", idExpediteur);
@@ -50635,7 +50637,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0858</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0905</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
