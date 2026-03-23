@@ -34668,7 +34668,7 @@ async function DissadAA() {
 	const [idExpediteur, setIdExpediteur] = useState(localStorage.getItem("idPersonConnectedFA"));
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
-	const [idDestinataire, setIdDestinataire] = useState(null);
+	const [idDestinataire, setIdDestinataire] = useState(null);	
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	const [idPost, setIdPost] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
@@ -35230,28 +35230,6 @@ const conversationExistante = useMemo(() => {
 }, [toutConversations, idPersonConnectedFA, idDestinataire]);
 
 
-/*
-useEffect(() => {
-	setIdConversation(null); // dès que le destinataire change → reset
-}, [idDestinataire]); */
-
-
-const verifyConversation = !!conversationExistante;
-/* const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
-
-useEffect(() => {
-	if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
-	//if (!idDestinataire) retur	n;
-
-    if (conversationExistante) {
-      setIdConversation(conversationExistante._id); 
-    } 
-	
-	else {
-	  setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
-    } 
-}, [conversationExistante, choisirManuellementConversation]);
-*/
 
 
 /*
@@ -35271,9 +35249,8 @@ console.log("dataAnnonce", dataAnnonce); */
 
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setIdDestinataire(idDestinataireget);
-  setIdConversation(null); // 🔥 reset immédiat
+  setIdConversation(null); //reset immédiat
 
-  // 🔥 calcul direct (pas de lag)
   const conversation = toutConversations.find(api =>
     api.type === "30" && (
 	(api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
@@ -35284,8 +35261,26 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setMessageFA(true);
   
   console.log("idDestinataire", idDestinataire); 
-	console.log("idConversation", idConversation); 
+  console.log("idConversation", idConversation); 
 }
+
+
+
+const verifyConversation = !!conversationExistante;
+const [choisirManuellementConversation, setChoisirManuellementConversation] = useState(false);
+
+useEffect(() => {
+	if (choisirManuellementConversation) return; // cette ligne evite que l'idConversation choisi manuellement lors du clic ne soit écrasé (66 florinatoApp)
+	//if (!idDestinataire) return;
+
+    if (conversationExistante) {
+      setIdConversation(conversationExistante._id); 
+    } else {
+	  setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
+    } 
+}, [conversationExistante, choisirManuellementConversation]);
+
+
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
   async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
@@ -50664,7 +50659,7 @@ function rechargerPage() {
                 {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
-						//setChoisirManuellementConversation(true); 
+						setChoisirManuellementConversation(true); 
 						setIdConversation(api._id);
 						
 						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
