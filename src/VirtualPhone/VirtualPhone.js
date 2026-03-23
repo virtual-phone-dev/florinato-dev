@@ -34938,7 +34938,10 @@ const nomCompteConnecter = infosCompteConnecter.nameAccount || "";
 const populariteCompteConnecter = infosCompteConnecter.popularity || "";
 
 
-const destinataireOnline = onlineUsers.includes(idDestinataire);
+//const destinataireOnline = onlineUsers.includes(idDestinataire);
+
+const onlineSet = useMemo(() => new Set(Array.isArray(onlineUsers) ? onlineUsers : []), [onlineUsers]);
+const destinataireOnline = idDestinataire != null && onlineSet.has(idDestinataire);
 
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
@@ -35328,7 +35331,7 @@ async function SendMessageFAA(customConversationId = null) {
 //logique pour debuter une conversation
 const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
 
-async function BeginConversationFA() { 
+async function BeginConversationFA() {
 
   if (!writeMessage66messageFA.trim()) return;
   setIsLoading66messageFA(true);
@@ -50613,7 +50616,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1433</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1520</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
