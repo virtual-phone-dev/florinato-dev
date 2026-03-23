@@ -3292,7 +3292,7 @@ export function PartageContactMessage({ api={}, profilMap={} }) {
   const nom = profil?.nameAccount ?? "";
   
   return (<> 
-	<pre className="pre fs-17px mb-15px">{api.message}</pre> 
+	<pre className="pre fs-17px mb-15">{api.message}</pre> 
 	
 	<div className="partage-contact flex"> 
 		<img className="photo-25px mr-5px" src={photo} alt=""/> 
@@ -3303,7 +3303,7 @@ export function PartageContactMessage({ api={}, profilMap={} }) {
 
 export function Close2({ fermer, titre, titrecss }) {
   return (<>
-		<div className="close flex p-15-0">
+		<div className="close flex">
           <div className="a" onClick={fermer}> <SvgLeft /> </div>
           <div className={titrecss}> <p>{titre}</p> </div>
         </div>
@@ -3315,7 +3315,7 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
   if (!visible) return null;
   
   return (<>
-	<div className="page-blanche p-0-20">
+	<div className="page-blanche p-15-20">
 		<Close2 fermer={fermer} titre="Annonces" titrecss="fs-19px c-00cc00"/>
 		
 		{data.map((api) => {
@@ -3326,8 +3326,8 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
 		const nom = profil?.nameAccount ?? "";	
   
 		return (
-		<div onClick={() => { setIdAnnonce(api._id); }}>
-			<pre className="pre fs-17px mb-15px" onClick={AfficherAnnoncePage}>{api.texte}</pre> 
+		<div onClick={() => { setIdAnnonce(api._id); }} className="p-15">
+			<pre className="pre fs-16 mb-15" onClick={AfficherAnnoncePage}>{api.texte}</pre> 
 			
 			<div className="flex" onClick={OuvrirMessagePage}> 
 				<img className="photo-25px mr-5px" src={photo} alt=""/> 
@@ -3354,8 +3354,8 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
   const nom = profil?.nameAccount ?? "";	
   
   return (<>
-	<div className="page-blanche p-0-20">
-		<div className="close flex p-15-0" onClick={fermer}>
+	<div className="page-blanche p-15-20">
+		<div className="close flex" onClick={fermer}>
 		  <div className="a"> <SvgLeft /> </div>
 		  
 		  <div className="b flex"> 
@@ -3366,12 +3366,12 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
 		</div>
 		{/* close */}
 		
-		<div>
-		<pre className="pre fs-17px mb-15px">{texte}</pre> 
-		<p className="fs-12px">{clic} clic</p>
-		
-		<button className="btn-bleu" onClick={OuvrirMessagePage}>Envoyer un message</button>
-		<div className="btn-p-hr"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>
+		<div className="p-15">
+			<pre className="pre fs-17px mb-15">{texte}</pre> 
+			<p className="fs-12px">{clic} clic</p>
+			
+			<button className="btn-bleu" onClick={OuvrirMessagePage}>Envoyer un message</button>
+			<div className="btn-p-hr pt-15"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>
 		</div>
 		
 	</div>

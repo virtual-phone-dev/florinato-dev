@@ -26,19 +26,21 @@
 .fs-13px { font-size: 13px; }
 .fs-14px { font-size: 14px; }
 .fs-15px { font-size: 15px; }
+.fs-16 { font-size: 16px; }
 .fs-17px { font-size: 17px; }
 
 
 .ml-5px { margin-left: 5px; }
 .mr-5px { margin-right: 5px; }
-.mb-15px { margin-bottom: 15px; }
+.mb-15 { margin-bottom: 15px; }
 
 .m-0-15 { margin: 0px 15px; }
-.p-0-20 { padding: 0px 20px; }
 .m-25-15 { margin: 25px 15px; }
 .m-15 { margin: 15px 15px; }
-.p-15-0 { padding: 15px 0px; }
+.p-15 { padding: 15px 15px; }
+.p-15-20 { padding: 15px 20px; }
 
+.pt-15 { padding-top: 15px; }
 .pb-30px { padding-bottom: 30px; }
 
 .between {
