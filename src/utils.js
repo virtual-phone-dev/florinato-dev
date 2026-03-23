@@ -2239,7 +2239,8 @@ export function MesComptes({ data=[], dataCompteConnecté=[], listMesComptes,
 
       <div className="api2">
 		{data.map((api) => (
-		<div onClick={() => { setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); sessionStorage.setItem("idPersonConnectedFA", api._id); localStorage.setItem("idPersonConnectedFA", api._id); }}>
+		<div onClick={() => { setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); // setIdPersonConnectedFA(api._id); setIdExpediteur... faire un set est indispensable pour que le composant se mette à jour au niveau de l'interface, car le useeffect ne se declenche que au 1er rendu lorsquon actualise la page
+			cliquerSurMonCompte(); sessionStorage.setItem("idPersonConnectedFA", api._id); localStorage.setItem("idPersonConnectedFA", api._id); }}>
 			<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
 		</div>
         ))}
@@ -3463,7 +3464,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			
 			<div className="api2">
 			{listMesComptes.map((api) => (
-			<div onClick={() => { localStorage.setItem("idPersonConnectedFA", api._id); setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); }}>
+			<div onClick={() => { setIdPersonConnectedFA(api._id); setIdExpediteur(api._id); cliquerSurMonCompte(); sessionStorage.setItem("idPersonConnectedFA", api._id); localStorage.setItem("idPersonConnectedFA", api._id);  }}>
 				<ChildApi266accountsFA api2={api} idPersonConnectedFA={idPersonConnectedFA} />
 			</div>
 			))}
@@ -3477,7 +3478,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 //RechercheTemplate
 
 
-
+	  
 // plein ecran
 export async function goFullScreen(mediaRef) {
   if (!mediaRef?.current) return;
