@@ -35242,7 +35242,7 @@ useEffect(() => {
   } else {
 	setIdConversation("0"); // setIdConversation("0"); on annule idConversation pour eviter qu'il affiche les messages des autres comptes, car dans le state il aura l'idConversation des autres, lorsqu'on arrive sur un compte auquel on jamais envoyer de message avant, donc, pas encore d'idConversation entre nous
   }
-}, [conversationExistante, choisirManuellementConversation]);
+}, [conversationExistante, choisirManuellementConversation, idConversation]);
 
 /*
 console.log("dataMessagesFA", dataMessagesFA); 
@@ -50622,7 +50622,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2220</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0705</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
