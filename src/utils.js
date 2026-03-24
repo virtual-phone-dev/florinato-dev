@@ -3292,7 +3292,7 @@ export function Close2({ fermer, titre, titrecss }) {
 </>)}
 
 
-export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage, AfficherAnnoncePage }) {
+export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setIdAnnonce=()=>{}, setIdDestinataire=()=>{}, OuvrirMessagePage, AfficherAnnoncePage }) {
   if (!visible) return null;
   
   return (<>
@@ -3307,7 +3307,7 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
 		const nom = profil?.nameAccount ?? "";	
   
 		return (
-		<div onClick={() => { setIdAnnonce(api._id); }} className="p-20">
+		<div onClick={() => { setIdAnnonce(api._id); setIdDestinataire(api.idProprietaireAnnonce); }} className="p-20">
 			<pre className="pre fs-16 mb-15" onClick={AfficherAnnoncePage}>{api.texte}</pre> 
 			
 			<div className="flex" onClick={OuvrirMessagePage}> 

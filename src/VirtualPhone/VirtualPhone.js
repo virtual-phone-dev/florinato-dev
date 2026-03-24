@@ -34955,8 +34955,9 @@ const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 const nomCompteConnecter = infosCompteConnecter.nameAccount || "";
 const populariteCompteConnecter = infosCompteConnecter.popularity || "";
 
-// Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, l’opérateur && stoppe l’évaluation et destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
-const destinataireOnline = Array.isArray(onlineUsers) && onlineUsers.includes(idDestinataire); // 
+// Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
+const destinataireOnline = (onlineUsers && Array.isArray(onlineUsers)) ? onlineUsers.includes(idDestinataire) : false;
+
 
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
@@ -50631,7 +50632,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0740</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0805</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50687,7 +50688,7 @@ function rechargerPage() {
   
   
 		<AnnoncesTemplate 
-			visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} 
+			visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} setIdDestinataire={setIdDestinataire} 
 			data={dataAnnoncesFA} OuvrirMessagePage={MessageFA} AfficherAnnoncePage={AfficherAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 		
 		<AfficherAnnonceTemplate 
