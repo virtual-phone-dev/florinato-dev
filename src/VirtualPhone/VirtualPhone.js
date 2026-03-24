@@ -35335,9 +35335,7 @@ async function SendMessageFAA(customConversationId = null) {
   };
   
   if (blocPartagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
-  
-  setApiMessageFA(prev => [messageData, ...prev]); // ce code cest pour afficher le message instantanément avant meme que il n'arrive au serveur (mais si la datee s'affiche, ca veut dire que le message a ete envoyer)
-  
+    
   socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur    
   setWriteMessage66messageFA("");
   if (blocPartagerContactFA) setBlocPartagerContactFA(false);
