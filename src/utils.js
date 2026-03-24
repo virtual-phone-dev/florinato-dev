@@ -3328,19 +3328,19 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
   if (!visible) return null;
   
   // 🔹 infos de l'annonce
-  const { _id: idAnnonce, texte, clic } = data;
+  const { idProprietaireAnnonce, texte, clic } = data;
   
-  const profil = idAnnonce ? profilMap?.[idAnnonce] : null; // obtenir les informations du profil
+  const profil = idProprietaireAnnonce ? profilMap?.[idProprietaireAnnonce] : null; // obtenir les informations du profil
   const photo = profil?.photoProfile ?? photoBlanche;
   const nom = profil?.nameAccount ?? "";	
   
-  console.log("data", data);
+  /* console.log("data", data);
   console.log("idAnnonce", idAnnonce);
   console.log("texte", texte);
   console.log("clic", clic);
   console.log("profil", profil);
   console.log("photo", photo);
-  console.log("nom", nom);
+  console.log("nom", nom); */
   
   return (<>
 	<div className="page-blanche">
