@@ -35060,7 +35060,7 @@ useEffect(() => {
   return () => {
     socket.off("receiveMessage");
   };
-}, [idConversation]);
+}, []);
 
 
 // Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
@@ -50652,7 +50652,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2315</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2342</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
