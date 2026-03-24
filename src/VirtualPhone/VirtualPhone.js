@@ -50870,7 +50870,7 @@ function rechargerPage() {
 		
 		
   
-		{/* 2e profil (on affiche ton compte) - FA */}
+		{/* 2e profil	- (on affiche ton compte) - FA */}
 		<ProfilTemplate 
 			{...profilPropsCommun}
 			visible={profilFA2e} fermer={CloseProfilFA2e} voirVideo={SeeVideoFA2e} video SeePhoto66profilFA={SeePhoto2e} />
