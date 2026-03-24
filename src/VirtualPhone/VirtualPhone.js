@@ -34835,12 +34835,11 @@ const annoncesSource = useMemo(() => apiMessageFA.filter(api => api.type === "60
 const {
 	donneesAffichees_byClic: dataAnnoncesFA, 
 	infosAnnonce_by_id: dataAnnoncesById, 
-	//setToutesDonnees:setToutesDonneesVideos, 
+	setToutesDonnees: setToutesDonneesAnnonces,
 	gererScroll: gererScrollAnnonces 
 } = useScrollIndexedDB({
 	nomStockage: "annonces", 
 	donnees:annoncesSource, 
-	//idProprietaireAnnonce,
 	idAnnonce,
 });
 
@@ -35033,18 +35032,35 @@ useEffect(() => {
   }); 
   
 	// Reçoit les message
-  socket.on("receiveMessage", (msg) => {
+ /* socket.on("receiveMessage", (msg) => {
     setApiMessageFA(prev => [msg, ...prev]);
-  });
+  });*/
   
   // Nettoyage
   return () => {
     socket.off("connect");
     socket.off("users:online");
-    socket.off("receiveMessage");
+    //socket.off("receiveMessage");
 	socket.disconnect();
   };
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
+
+
+
+useEffect(() => {
+  const socket = socketRef.current;
+  if (!socket) return;
+  
+  // Ecoute les messages, videos, annonces, et autres ...
+  socket.on("receiveMessage", (msg) => {
+	console.log("nouveau", msg);
+    setApiMessageFA(prev => [msg, ...prev]);
+  });
+
+  return () => {
+    socket.off("receiveMessage");
+  };
+}, [idConversation]);
 
 
 // Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
@@ -35063,6 +35079,15 @@ useEffect(() => {
   
 socket.on("message:misAJour", (element) => {
 	//console.log("element a", element);
+	
+	//annonces
+    if (element.type === "60") {
+		console.log("element, annonce modifié", element);
+		
+		setToutesDonneesAnnonces(prev =>
+		  prev.map(m => m._id === element._id ? element : m)
+		);
+    }
 	
 	//comptes
     if (element.type === "10") {
@@ -35252,9 +35277,7 @@ const conversationExistante = useMemo(() => {
 }, [toutConversations, idPersonConnectedFA, idDestinataire]);
 
 const verifyConversation = !!conversationExistante;
-
 console.log("conversationExistante", conversationExistante); 
-console.log("verifyConversation", verifyConversation); 
 
 
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
@@ -35362,15 +35385,11 @@ async function BeginConversationFA() {
         type: "30",
       }
     );
-	
-	const nouvelleConv = res.data; // type=30
-	
+		
     const idConversation = res.data._id;
 	setIdConversation(idConversation);	
     console.log("Conversation créée :", idConversation);
 	
-    setApiMessageFA(prev => [nouvelleConv, ...prev]); // Ajouter la conversation directement côté expéditeur, (dans apiMessageFA)
-
     // ✅ envoyer message via socket
     SendMessageFAA(idConversation);
   } 
@@ -50633,7 +50652,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1455</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2315</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
