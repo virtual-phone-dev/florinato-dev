@@ -34662,6 +34662,7 @@ async function DissadAA() {
   const urlPhotoreq = localStorage.getItem("urlPhotoreq");
   const urlVideoreq = localStorage.getItem("urlVideoreq");
 	
+	const [onlineUsers, setOnlineUsers] = useState([]); // pour Écouter (ou Surveiller) les utilisateurs en ligne
 	const [idreq, setId] = useState(null);
 	const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(null);
 	const [idExpediteur, setIdExpediteur] = useState(null);
@@ -34955,9 +34956,6 @@ const photoCompteConnecter = infosCompteConnecter.photoProfile || photoBlanche;
 const nomCompteConnecter = infosCompteConnecter.nameAccount || "";
 const populariteCompteConnecter = infosCompteConnecter.popularity || "";
 
-// Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
-const destinataireOnline = (onlineUsers && Array.isArray(onlineUsers)) ? onlineUsers.includes(idDestinataire) : false;
-
 
 
 const filtrerUnCompteRechercher = useMemo(() => toutComptes.filter(api => api.nameAccount), [toutComptes] );
@@ -34999,7 +34997,7 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
   
   
 const socketRef = useRef(null); // Socket
-const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
+//const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
 useEffect(() => {
 	// S'il ya une socket existante, déconnecte-la proprement
@@ -35048,6 +35046,9 @@ useEffect(() => {
   };
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
+
+// Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
+const destinataireOnline = (onlineUsers && Array.isArray(onlineUsers)) ? onlineUsers.includes(idDestinataire) : false;
 
 
 
@@ -42078,13 +42079,13 @@ async function PageRedirection66groupOtherFA() {
 
   
   const [annoncesPageFA, setAnnoncesPageFA] = useState(false); // page pour afficher les annonces
-  async function AnnoncesPageFA() { setAnnoncesPageFA(true); }
-  async function CloseAnnoncesPageFA() { setAnnoncesPageFA(false); }
+  async function AnnoncesPageFA() { setAnnoncesPageFA(true); setVideosPageFA(false); }
+  async function CloseAnnoncesPageFA() { setVideosPageFA(true); setAnnoncesPageFA(false); }
   
   
   const [afficherAnnoncePageFA, setAfficherAnnoncePageFA] = useState(false); // page pour afficher une annonce
-  async function AfficherAnnoncePageFA() { setAfficherAnnoncePageFA(true); }
-  async function CloseAfficherAnnoncePageFA() { setAfficherAnnoncePageFA(false); }
+  async function AfficherAnnoncePageFA() { setAfficherAnnoncePageFA(true); setAnnoncesPageFA(false); }
+  async function CloseAfficherAnnoncePageFA() { setAnnoncesPageFA(true); setAfficherAnnoncePageFA(false); }
   
   
   const [publierAnnoncePageFA, setPublierAnnoncePageFA] = useState(false); // page pour publier une annonce
@@ -50632,7 +50633,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0805</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0828</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
