@@ -3243,7 +3243,8 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
           <div className="d"> <p>{popularity} visites</p> </div>
         </div>
         {/* block-un */}
-			  
+		
+		<div className="tc"> <button className="btn-bleu">Créer un compte</button> </div>
 			  
 			<VideoSearchBlock 
 				data={dataVideos} dataOverflow={dataOverflow} listVideo={listVideo} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
