@@ -35253,6 +35253,8 @@ const conversationExistante = useMemo(() => {
 
 const verifyConversation = !!conversationExistante;
 
+console.log("conversationExistante", conversationExistante); 
+console.log("verifyConversation", verifyConversation); 
 
 
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
@@ -35282,7 +35284,7 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   
   const [messageFA, setMessageFA] = useState(false); // page pour envoyer un message personnel - FA 
   async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
-  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); setIdConversation("0"); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); }
   
   const [blocPartagerContactFA, setBlocPartagerContactFA] = useState(false); // blocPartagerContactFA c'est le petit bloc de contact (photo + nom) , qui va s'afficher au niveau du textarea ou on ecrit le message
   async function OuvrirMessagePage66PartagerContactPageFA() { setBlocPartagerContactFA(true); setPartagerContactPageFA(false); }
@@ -50631,7 +50633,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1018</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1455</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50879,7 +50881,7 @@ function rechargerPage() {
 		
 			
 	
-		{/* 3e profil - FA */}
+		{/* 3e profil	- FA */}
 		<ProfilTemplate 
 			{...profilPropsCommun}
 			visible={profilFA3e} fermer={CloseProfilFA3e} voirVideo={SeeVideoFA3e} video SeePhoto66profilFA={SeePhoto66profilFA} />
