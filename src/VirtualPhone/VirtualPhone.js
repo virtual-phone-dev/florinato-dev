@@ -35096,7 +35096,7 @@ useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
   
-/* socket.on("message:misAJour", (element) => {
+ socket.on("message:misAJour", (element) => {
 	//console.log("element a", element);
 	
 	//annonces
@@ -35125,7 +35125,7 @@ useEffect(() => {
 		  prev.map(m => m._id === element._id ? element : m)
 		);
     }
-}); */
+}); 
   
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
     setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
@@ -35145,12 +35145,13 @@ useEffect(() => {
   return () => {
     socket.off("ecrire:debut");
     socket.off("ecrire:fin");
-	//socket.off("message:misAJour");
+	socket.off("message:misAJour");
   };
-}, []);
+// }, []);
+}, [setToutesDonneesAnnonces, setToutesDonneesComptes, setToutesDonneesVideos]); 
 
 
-
+/*
 useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
@@ -35168,7 +35169,7 @@ useEffect(() => {
     socket.off("message:misAJour", handleMessage);
   };
 }, [setToutesDonneesAnnonces, setToutesDonneesComptes, setToutesDonneesVideos]); 
-
+*/
 
 
   // Créer une map pour accéder rapidement aux profils par id
