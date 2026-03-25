@@ -35089,8 +35089,6 @@ useEffect(() => {
 const destinataireOnline = (onlineUsers && Array.isArray(onlineUsers)) ? onlineUsers.includes(idDestinataire) : false;
 
 
-
-
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
@@ -35098,8 +35096,7 @@ useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
   
-  
-socket.on("message:misAJour", (element) => {
+/* socket.on("message:misAJour", (element) => {
 	//console.log("element a", element);
 	
 	//annonces
@@ -35128,8 +35125,7 @@ socket.on("message:misAJour", (element) => {
 		  prev.map(m => m._id === element._id ? element : m)
 		);
     }
-});
-  
+}); */
   
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
     setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
@@ -35149,17 +35145,29 @@ socket.on("message:misAJour", (element) => {
   return () => {
     socket.off("ecrire:debut");
     socket.off("ecrire:fin");
-	socket.off("message:misAJour");
+	//socket.off("message:misAJour");
   };
-}, [setToutesDonneesComptes, setToutesDonneesVideos]);
+}, []);
 
 
-/* CE QUE TU AS BIEN FAIT
 
-✔️ useRef pour le timer
-✔️ estEnTrainDecrire pour éviter le spam
-✔️ séparation émetteur / récepteur 
-✔️ logique PRO (niveau WhatsApp) */
+useEffect(() => {
+  const socket = socketRef.current;
+  if (!socket) return;
+  
+  // Ecoute les messages, videos, annonces, et autres ...
+  const handleMessage = (msg) => {
+    if (msg.type === "60") { console.log("annonces :modifié", msg); setToutesDonneesAnnonces(prev => prev.map(m => m._id === msg._id ? msg : m)); } //annonces
+    if (msg.type === "10") { console.log("comptes :modifié", msg); setToutesDonneesComptes(prev => prev.map(m => m._id === msg._id ? msg : m)); } //comptes
+    if (msg.type === "3") {	console.log("videos :modifié", msg); setToutesDonneesVideos(prev => prev.map(m => m._id === msg._id ? msg : m)); } //videos
+  };
+  
+  socket.on("message:misAJour", handleMessage);
+
+  return () => {
+    socket.off("message:misAJour", handleMessage);
+  };
+}, []); 
 
 
 
