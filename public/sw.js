@@ -26,6 +26,7 @@ self.addEventListener("activate", event => {
 
 
 self.addEventListener("fetch", event => {
+	return;
   const url = new URL(event.request.url);
 
   // ✅ IMPORTANT
