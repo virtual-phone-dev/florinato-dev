@@ -3,9 +3,7 @@ const CACHE = "florinato-cache-v8";
 
 // INSTALL → rien forcer
 self.addEventListener("install", () => {
-
   self.skipWaiting();
-
 });
 
 
@@ -27,9 +25,11 @@ self.addEventListener("activate", event => {
 });
 
 
-
 self.addEventListener("fetch", event => {
   const url = new URL(event.request.url);
+
+  // ✅ IMPORTANT
+  if (url.protocol !== "http:" && url.protocol !== "https:") return;
 
   // ❌ ignorer API
   if (url.hostname.includes("api2florinato.onrender.com")) return;
@@ -53,7 +53,7 @@ self.addEventListener("fetch", event => {
     return;
   }
 
-  // ✅ assets (JS, CSS, images)
+  // ✅ assets
   event.respondWith(
     caches.match(event.request).then(cached => {
       return (
@@ -69,4 +69,5 @@ self.addEventListener("fetch", event => {
     })
   );
 });
+
 
