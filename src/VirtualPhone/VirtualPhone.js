@@ -35052,9 +35052,9 @@ useEffect(() => {
   if (!socket) return;
   
   // Ecoute les messages, videos, annonces, et autres ...
-  const handleMessage = (msg) => {
-    if (msg.type === "1") {	console.log("nouveau message", msg); setApiMessageFA(prev => [msg, ...prev]); } //message
-    if (msg.type === "30") { console.log("nouveau conversation", msg); setApiMessageFA(prev => [msg, ...prev]); } //conversation
+  const handleMessage = (data) => {
+    if (data.type === "1") { console.log("nouveau message", data); setApiMessageFA(prev => [data, ...prev]); } //message
+    if (data.type === "30") { console.log("nouveau conversation", data); setApiMessageFA(prev => [data, ...prev]); } //conversation
   };
   
   socket.on("receiveMessage", handleMessage);
@@ -35097,7 +35097,7 @@ useEffect(() => {
   if (!socket) return;
   
  socket.on("message:misAJour", (element) => {
-	//console.log("element a", element);
+	console.log("element a", element);
 	
 	//annonces
     if (element.type === "60") {
@@ -35147,8 +35147,7 @@ useEffect(() => {
     socket.off("ecrire:fin");
 	socket.off("message:misAJour");
   };
-// }, []);
-}, [setToutesDonneesAnnonces, setToutesDonneesComptes, setToutesDonneesVideos]); 
+}, []);
 
 
 /*
@@ -35157,10 +35156,10 @@ useEffect(() => {
   if (!socket) return;
   
   // Ecoute les messages, videos, annonces, et autres ...
-  const handleMessage = (msg) => {
-    if (msg.type === "60") { console.log("annonces :modifié", msg); setToutesDonneesAnnonces(prev => prev.map(m => m._id === msg._id ? msg : m)); } //annonces
-    if (msg.type === "10") { console.log("comptes :modifié", msg); setToutesDonneesComptes(prev => prev.map(m => m._id === msg._id ? msg : m)); } //comptes
-    if (msg.type === "3") {	console.log("videos :modifié", msg); setToutesDonneesVideos(prev => prev.map(m => m._id === msg._id ? msg : m)); } //videos
+  const handleMessage = (data) => {
+    if (data.type === "60") { console.log("annonces :modifié", data); setToutesDonneesAnnonces(prev => prev.map(m => m._id === data._id ? data : m)); } //annonces
+    if (data.type === "10") { console.log("comptes :modifié", data); setToutesDonneesComptes(prev => prev.map(m => m._id === data._id ? data : m)); } //comptes
+    if (data.type === "3") { console.log("videos :modifié", data); setToutesDonneesVideos(prev => prev.map(m => m._id === data._id ? data : m)); } //videos
   };
   
   socket.on("message:misAJour", handleMessage);
@@ -50683,7 +50682,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2320</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2351</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
