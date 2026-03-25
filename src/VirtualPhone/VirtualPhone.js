@@ -35167,7 +35167,7 @@ useEffect(() => {
   return () => {
     socket.off("message:misAJour", handleMessage);
   };
-}, []); 
+}, [setToutesDonneesAnnonces, setToutesDonneesComptes, setToutesDonneesVideos]); 
 
 
 
@@ -50682,7 +50682,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1310</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1533</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50956,7 +50956,7 @@ function rechargerPage() {
                 </div>
                 {/* block */}
 				
-				<div className="p-14px-center-espace-gris"> <p>Héberger votre vidéo sur Dropbox et mettez le lien ici</p> </div> 
+				<div className="p-14px-center-espace-gris"> <p>Mettez votre vidéo dans Dropbox et mettez le lien de la vidéo ici</p> </div> 
 				
 				<div className="pre-14px-center-gris"> <pre>{lienDropbox}</pre> </div> 
 				<Input texte="Lien de la vidéo.." valeur={lienDropbox} setValeur={setLienDropbox} />
@@ -50976,7 +50976,7 @@ function rechargerPage() {
 					
 				<div className="fermer"> <button onClick={CloseAddVideoPageFA}>Fermer</button> </div>
 
-                <div className="block-quatre"> <p>Dropbox , Gitlab , ou Github</p></div> 	
+                <div className="block-quatre"> <p>Mettez votre vidéo dans Dropbox , Gitlab , ou Github</p></div> 	
                 {/* block-quatre */}
               </div>
               {/* card */}
