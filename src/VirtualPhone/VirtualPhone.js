@@ -35046,14 +35046,15 @@ useEffect(() => {
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
 
+
 useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
   
   // Ecoute les messages, videos, annonces, et autres ...
   socket.on("receiveMessage", (msg) => {
-	console.log("nouveau", msg);
-    setApiMessageFA(prev => [msg, ...prev]);
+    if (msg.type === "1") {	console.log("nouveau message", msg); setApiMessageFA(prev => [msg, ...prev]); } //message
+    if (msg.type === "30") { console.log("nouveau conversation", msg); setApiMessageFA(prev => [msg, ...prev]); } //conversation
   });
 
   return () => {
@@ -50671,7 +50672,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0611</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0657</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
