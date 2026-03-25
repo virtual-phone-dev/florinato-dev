@@ -35052,15 +35052,17 @@ useEffect(() => {
   if (!socket) return;
   
   // Ecoute les messages, videos, annonces, et autres ...
-  socket.on("receiveMessage", (msg) => {
+  const handleMessage = (msg) => {
     if (msg.type === "1") {	console.log("nouveau message", msg); setApiMessageFA(prev => [msg, ...prev]); } //message
     if (msg.type === "30") { console.log("nouveau conversation", msg); setApiMessageFA(prev => [msg, ...prev]); } //conversation
-  });
+  };
+  
+  socket.on("receiveMessage", handleMessage);
 
   return () => {
-    socket.off("receiveMessage");
+    socket.off("receiveMessage", handleMessage);
   };
-}, [idConversation]); 
+}, []); 
 
 
 /*
@@ -50672,7 +50674,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0657</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0713</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
