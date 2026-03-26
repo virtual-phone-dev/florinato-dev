@@ -9,7 +9,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
  
 import { 
-	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini,
+	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini, sauvegarderDansIndexedDB,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, MessageTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate, InfosTemplate, MonetizationEntrer, PortefeuilleSortie,
@@ -35118,12 +35118,14 @@ useEffect(() => {
     }
 	
 	//videos
-    if (element.type === "3") { 
+    if (element.type === "3") {
 		console.log("element c", element);
 		
 		setToutesDonneesVideos(prev =>
 		  prev.map(m => m._id === element._id ? element : m)
 		);
+		
+		sauvegarderDansIndexedDB("videos", [element]);
     }
 }); 
   
@@ -50682,7 +50684,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2351</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0157</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
