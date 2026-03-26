@@ -34994,7 +34994,6 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 
 
   
-  
 const socketRef = useRef(null); // Socket
 //const [onlineUsers, setOnlineUsers] = useState([]); // Écouter les utilisateurs en ligne
 
@@ -35036,10 +35035,21 @@ useEffect(() => {
     setApiMessageFA(prev => [msg, ...prev]);
   });*/
   
+  socket.on("message:misAJour", (element) => {
+    console.log("🔥 SOCKET RECU :", element);
+
+    if (element.type === "3") {
+      setToutesDonneesVideos(prev =>
+        prev.map(m => m._id === element._id ? element : m)
+      );
+    }
+  });
+  
   // Nettoyage
   return () => {
     socket.off("connect");
     socket.off("users:online");
+    socket.off("message:misAJour");
     //socket.off("receiveMessage");
 	socket.disconnect();
   };
@@ -35118,7 +35128,7 @@ useEffect(() => {
     }
 	
 	//videos
-    if (element.type === "3") {
+    /*if (element.type === "3") {
 		console.log("element c", element);
 		
 		setToutesDonneesVideos(prev =>
@@ -35126,7 +35136,7 @@ useEffect(() => {
 		);
 		
 		sauvegarderDansIndexedDB("videos", [element]);
-    }
+    } */
 }); 
   
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
@@ -50684,7 +50694,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0157</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0225</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
