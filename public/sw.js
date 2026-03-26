@@ -1,4 +1,4 @@
-const CACHE = "florinato-cache-v8";
+const CACHE = "florinato-cache-v9";
 
 
 // INSTALL → rien forcer

@@ -34835,7 +34835,7 @@ const annoncesSource = useMemo(() => apiMessageFA.filter(api => api.type === "60
 const {
 	donneesAffichees_byClic: dataAnnoncesFA, 
 	infosAnnonce_by_id: dataAnnoncesById, 
-	setToutesDonnees: setToutesDonneesAnnonces,
+	//setToutesDonnees: setToutesDonneesAnnonces,
 	gererScroll: gererScrollAnnonces 
 } = useScrollIndexedDB({
 	nomStockage: "annonces", 
@@ -35036,13 +35036,20 @@ useEffect(() => {
   });*/
   
   socket.on("message:misAJour", (element) => {
-    console.log("🔥 SOCKET RECU :", element);
-
-    if (element.type === "3") {
-      setToutesDonneesVideos(prev =>
-        prev.map(m => m._id === element._id ? element : m)
-      );
-    }
+    console.log("🔥 SOCKET RECU - put:", element);
+    if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
+    if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
+    if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
+  });
+  
+  
+  socket.on("receiveMessage", (element) => {
+    console.log("🔥 SOCKET RECU - post:", element);
+    if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
+    if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
+    if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
+    if (element.type === "30") { console.log("nouveau conversation", data); setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // conversations
+    if (element.type === "1") { console.log("nouveau message", data); setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // messages
   });
   
   // Nettoyage
@@ -35050,13 +35057,13 @@ useEffect(() => {
     socket.off("connect");
     socket.off("users:online");
     socket.off("message:misAJour");
-    //socket.off("receiveMessage");
+    socket.off("receiveMessage");
 	socket.disconnect();
   };
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
 
-
+/*
 useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
@@ -35073,6 +35080,7 @@ useEffect(() => {
     socket.off("receiveMessage", handleMessage);
   };
 }, [idConversation]); 
+*/
 
 
 /*
@@ -35106,6 +35114,7 @@ useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
   
+  /*
  socket.on("message:misAJour", (element) => {
 	console.log("element a", element);
 	
@@ -35128,7 +35137,7 @@ useEffect(() => {
     }
 	
 	//videos
-    /*if (element.type === "3") {
+    if (element.type === "3") {
 		console.log("element c", element);
 		
 		setToutesDonneesVideos(prev =>
@@ -35136,8 +35145,8 @@ useEffect(() => {
 		);
 		
 		sauvegarderDansIndexedDB("videos", [element]);
-    } */
-}); 
+    }
+}); */
   
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
     setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
@@ -35157,7 +35166,7 @@ useEffect(() => {
   return () => {
     socket.off("ecrire:debut");
     socket.off("ecrire:fin");
-	socket.off("message:misAJour");
+	//socket.off("message:misAJour");
   };
 }, []);
 
@@ -50694,7 +50703,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0225</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0547</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
