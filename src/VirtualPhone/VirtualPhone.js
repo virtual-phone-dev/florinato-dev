@@ -35060,7 +35060,7 @@ useEffect(() => {
     socket.off("receiveMessage");
 	socket.disconnect();
   };
-}, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
+}, [idPersonConnectedFA, idConversation]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
 
 /*
