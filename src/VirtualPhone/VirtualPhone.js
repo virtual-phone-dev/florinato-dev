@@ -34704,6 +34704,10 @@ useEffect(() => {
   }
 }, []);
 
+
+useEffect(() => {
+  console.log("🔥 idConversation mis à jour :", idConversation);
+}, [idConversation]); 
 	
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -34716,13 +34720,6 @@ useEffect(() => {
 	fetchData();
   }, []); */
   
-  
-/*
-useEffect(() => {
-  console.log("🔥 idConversation mis à jour :", idConversation);
-}, [idConversation]); */
-  
-
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
@@ -50709,7 +50706,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2230</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2332</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
