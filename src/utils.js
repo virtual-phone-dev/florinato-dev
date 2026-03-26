@@ -1802,7 +1802,7 @@ return [...toutesDonnees].filter(api => (api.idAccount === idCompteConnecter) ||
 	
 	
 const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
-  if (!idConversation) return [];
+  //if (!idConversation) return toutesDonnees.slice(0, lotActuel);
 
   return [...toutesDonnees]
     .filter(api => 
