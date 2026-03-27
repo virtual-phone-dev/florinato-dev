@@ -35286,9 +35286,9 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setIdConversation(conversation ? conversation._id : null);
   setMessageFA(true);
   
-  /*console.log("idDestinataire", idDestinataire); */
+  /* console.log("idDestinataire", idDestinataire); 
   console.log("idConversation", idConversation); 
-  console.log("conversation trouvé", conversation);
+  console.log("conversation trouvé", conversation); */
 }
 
 
