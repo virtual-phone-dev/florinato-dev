@@ -35263,20 +35263,20 @@ const conversationExistante = useMemo(() => {
 const verifyConversation = !!conversationExistante;
 console.log("conversationExistante", conversationExistante); 
 
-
+/*
 useEffect(() => {
   if (conversationExistante?._id) {
     setIdConversation(conversationExistante._id); console.log("conversationExistante aa", conversationExistante); 
   } else {
     setIdConversation(null);
   }
-}, [conversationExistante]);
+}, [conversationExistante]); */
 
 
 
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
-  setIdConversation(null); // 🔥 reset (ou supprime)
+  //setIdConversation(null); // 🔥 reset (ou supprime)
   
 // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
   const conversation = toutConversations.find(api =>
@@ -35292,7 +35292,6 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   /*console.log("idDestinataire", idDestinataire); */
   console.log("idConversation", idConversation); 
   console.log("conversation trouvé", conversation);
-  console.log("idConversation", idConversation); 
 }
 
 
@@ -35303,7 +35302,7 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   
   const [messageFA, setMessageFA] = useState(false); // page pour envoyer un message personnel - FA 
   async function MessageFA() { setMessageFA(true); setFlorinatoApp(false); }
-  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); }
+  async function CloseMessageFA() { setFlorinatoApp(true); setMessageFA(false); setBlocPartagerContactFA(false); setIdConversation(null); }
   
   const [blocPartagerContactFA, setBlocPartagerContactFA] = useState(false); // blocPartagerContactFA c'est le petit bloc de contact (photo + nom) , qui va s'afficher au niveau du textarea ou on ecrit le message
   async function OuvrirMessagePage66PartagerContactPageFA() { setBlocPartagerContactFA(true); setPartagerContactPageFA(false); }
@@ -50648,7 +50647,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1518</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1615</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>

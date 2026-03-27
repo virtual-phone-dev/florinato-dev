@@ -1477,7 +1477,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
-  const [idConversationtrans, setIdConversationtrans] = useState(idConversation);
+  const [idConversationtrans, setIdConversationtrans] = useState(idConversation); // idConversation transmis
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
@@ -1833,9 +1833,9 @@ const donneesAffichees_messages = useMemo(() => { // afficher les messages dune 
 const donneesAffichees_messages = useMemo(() => {
   console.log("useMemo déclenché");
   console.log("👉 idConversation actuel:", idConversation);
-  console.log("👉 idConversationtrans:", idConversationtrans);
-  console.log("toutesDonnees", toutesDonnees);
-  console.log("👉 toutesDonnees length:", toutesDonnees.length);
+  console.log("👉 idConversation transmis:", idConversationtrans);
+  //console.log("toutesDonnees", toutesDonnees);
+  //console.log("👉 toutesDonnees length:", toutesDonnees.length);
 
   const result = [...toutesDonnees]
     .filter(api => {
