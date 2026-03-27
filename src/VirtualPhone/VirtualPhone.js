@@ -34705,10 +34705,7 @@ useEffect(() => {
 }, []);
 
 
-useEffect(() => {
-  console.log("🔥 idConversation mis à jour :", idConversation);
-}, [idConversation]); 
-	
+
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
@@ -34974,7 +34971,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 const {
 	donneesAffichees_account_other: dataConversations, 
 	toutesDonnees: toutConversations,
-	//setToutesDonnees: setToutesDonneesConversation,
+	setToutesDonnees: setToutesDonneesConversation,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
@@ -34989,7 +34986,7 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
 const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, 
-	//setToutesDonnees: setToutesDonneesMessages, 
+	setToutesDonnees: setToutesDonneesMessages, 
 	//setIdConversationtrans: idConversation, 
 	gererScroll:gererScrollMessages 
 } = useScrollIndexedDB({
@@ -35058,13 +35055,13 @@ useEffect(() => {
     if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
 	
     if (element.type === "30") { console.log("nouveau conversation", element); 
-		setApiMessageFA(prev => [element, ...prev]); 
-		//setToutesDonneesConversation(prev => prev.map(m => m._id === element._id ? element : m)); 
+		//setApiMessageFA(prev => [element, ...prev]); 
+		setToutesDonneesConversation(prev => prev.map(m => m._id === element._id ? element : m)); 
 	} // conversations
 	
     if (element.type === "1") { console.log("nouveau message", element); 
-		setApiMessageFA(prev => [element, ...prev]); 
-		//setToutesDonneesMessages(prev => prev.map(m => m._id === element._id ? element : m)); 
+		//setApiMessageFA(prev => [element, ...prev]); 
+		setToutesDonneesMessages(prev => prev.map(m => m._id === element._id ? element : m)); 
 	} // messages
   });
     
@@ -50647,7 +50644,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1615</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1636</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
