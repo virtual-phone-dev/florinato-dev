@@ -1477,6 +1477,7 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
+  const [idConversationtrans, setIdConversationtrans] = useState(null);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
@@ -1827,6 +1828,7 @@ const donneesAffichees_messages = useMemo(() => { // afficher les messages dune 
 const donneesAffichees_messages = useMemo(() => {
   console.log("useMemo déclenché");
   console.log("👉 idConversation actuel:", idConversation);
+  console.log("👉 idConversationtrans:", idConversationtrans);
   console.log("toutesDonnees", toutesDonnees);
   console.log("👉 toutesDonnees length:", toutesDonnees.length);
 
@@ -1835,7 +1837,7 @@ const donneesAffichees_messages = useMemo(() => {
       const match =
         api.idConversation &&
         api.idConversation !== "0" &&
-        api.idConversation === idConversation;
+        api.idConversation === idConversationtrans;
 
       if (!match) {
       } else {
@@ -1857,7 +1859,8 @@ const donneesAffichees_messages = useMemo(() => {
   console.log("result", result);
   console.log("📦 résultat final:", result.length);
   return result;
-}, [toutesDonnees, lotActuel, idConversation]);
+}, [toutesDonnees, lotActuel, idConversationtrans]);
+
 
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
@@ -1962,7 +1965,8 @@ async function gererScroll(e) {
 };
 
 	return { 
-		toutesDonnees, setToutesDonnees, donneesAffichees, 
+		toutesDonnees, setToutesDonnees, setIdConversationtrans,
+		donneesAffichees, 
 		donneesAffichees_messages, 		
 		donneesAffichees_byClic, 
 		donneesAffichees_account_other, 

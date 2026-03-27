@@ -34974,7 +34974,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 const {
 	donneesAffichees_account_other: dataConversations, 
 	toutesDonnees: toutConversations,
-	setToutesDonnees: setToutesDonneesConversation,
+	//setToutesDonnees: setToutesDonneesConversation,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
@@ -34988,7 +34988,10 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
-const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, setToutesDonnees: setToutesDonneesMessages, gererScroll:gererScrollMessages 
+const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, 
+	//setToutesDonnees: setToutesDonneesMessages, 
+	setIdConversationtrans: idConversation, 
+	gererScroll:gererScrollMessages 
 } = useScrollIndexedDB({
 	nomStockage: "messages", 
 	donnees:messagesSource, 
@@ -35056,13 +35059,12 @@ useEffect(() => {
 	
     if (element.type === "30") { console.log("nouveau conversation", element); 
 		setApiMessageFA(prev => [element, ...prev]); 
-		setToutesDonneesConversation(prev => prev.map(m => m._id === element._id ? element : m)); 
-		await ObtenirLesDonneesFA(); 
+		//setToutesDonneesConversation(prev => prev.map(m => m._id === element._id ? element : m)); 
 	} // conversations
 	
     if (element.type === "1") { console.log("nouveau message", element); 
 		setApiMessageFA(prev => [element, ...prev]); 
-		setToutesDonneesMessages(prev => prev.map(m => m._id === element._id ? element : m)); 
+		//setToutesDonneesMessages(prev => prev.map(m => m._id === element._id ? element : m)); 
 	} // messages
   });
     
