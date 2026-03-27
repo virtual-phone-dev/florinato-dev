@@ -34945,7 +34945,6 @@ const {
 
 
 
-
 // filtre pour obtenir les infos du compte - FA 
 const infosCompte = infosCompteById?.[0] ?? {};
 const photoTonCompteFA = infosCompte.photoProfile || photoBlanche;
@@ -34975,6 +34974,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 const {
 	donneesAffichees_account_other: dataConversations, 
 	toutesDonnees: toutConversations,
+	setToutesDonnees: setToutesDonneesConversation,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
@@ -34988,7 +34988,7 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
-const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, gererScroll:gererScrollMessages 
+const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, setToutesDonnees: setToutesDonneesMessages, gererScroll:gererScrollMessages 
 } = useScrollIndexedDB({
 	nomStockage: "messages", 
 	donnees:messagesSource, 
@@ -35054,8 +35054,16 @@ useEffect(() => {
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
     if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
 	
-    if (element.type === "30") { console.log("nouveau conversation", element); await ObtenirLesDonneesFA(); } // conversations
-    if (element.type === "1") { console.log("nouveau message", element); setApiMessageFA(prev => [element, ...prev]); } // messages
+    if (element.type === "30") { console.log("nouveau conversation", element); 
+		setApiMessageFA(prev => [element, ...prev]); 
+		setToutesDonneesConversation(prev => prev.map(m => m._id === element._id ? element : m)); 
+		await ObtenirLesDonneesFA(); 
+	} // conversations
+	
+    if (element.type === "1") { console.log("nouveau message", element); 
+		setApiMessageFA(prev => [element, ...prev]); 
+		setToutesDonneesMessages(prev => prev.map(m => m._id === element._id ? element : m)); 
+	} // messages
   });
     
   
@@ -50627,7 +50635,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1135</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1233</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
