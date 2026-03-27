@@ -1799,8 +1799,14 @@ return [...toutesDonnees].filter(api => (api.idAccount === idCompteConnecter) ||
 }, [toutesDonnees, idCompteConnecter]);
 
 	
-	
+	/*
 const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
+  console.log("useMemo déclenché");
+  console.log("👉 idConversation actuel:", idConversation);
+  console.log("👉 toutesDonnees", toutesDonnees);
+  console.log("👉 toutesDonnees length:", toutesDonnees.length);
+  console.log("👉 idConversation dans les messages:", toutesDonnees.map(m => m.idConversation));
+ 
 	return [...toutesDonnees]
 	.filter(api =>
 		api.idConversation &&
@@ -1815,6 +1821,61 @@ const donneesAffichees_messages = useMemo(() => { // afficher les messages dune 
 	  return new Date(b.createdAt) - new Date(a.createdAt);
 	})
 	.slice(0, lotActuel);
+}, [toutesDonnees, lotActuel, idConversation]); */
+
+
+const donneesAffichees_messages = useMemo(() => {
+  console.log("useMemo déclenché");
+  console.log("👉 idConversation actuel:", idConversation);
+  console.log("👉 toutesDonnees length:", toutesDonnees.length);
+
+  console.log(
+    "👉 idConversation dans les messages:",
+    toutesDonnees.map(m => m.idConversation)
+  );
+
+  const result = [...toutesDonnees]
+    .filter(api => {
+      const match =
+        api.idConversation &&
+        api.idConversation !== "0" &&
+        api.idConversation === idConversation;
+
+      if (!match) {
+        console.log("❌ rejeté:", {
+          msgId: api._id,
+          msgConversation: api.idConversation,
+          currentConversation: idConversation
+        });
+      } else {
+		console.log("✅ gardé :");
+		console.table(
+		  toutesDonnees.map(m => ({
+			msgId: m._id,
+			msgConversation: m.idConversation,
+			currentConversation: idConversation,
+			match: m.idConversation === idConversation
+		  }))
+		);
+		
+        console.log("✅ gardé:", api._id);
+        console.log("✅ gardé:", api.idConversation);
+        console.log("✅ gardé:", api.message);
+      }
+
+      return match;
+    })
+    .sort((a, b) => {
+      if (!a.createdAt && !b.createdAt) return 0;
+      if (!a.createdAt) return 1;
+      if (!b.createdAt) return -1;
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    })
+    .slice(0, lotActuel);
+
+  console.log("📦 résultat final:", result.length);
+
+  return result;
 }, [toutesDonnees, lotActuel, idConversation]);
 
 
