@@ -35255,7 +35255,7 @@ console.log("conversationExistante", conversationExistante);
 
 useEffect(() => {
   if (conversationExistante?._id) {
-    setIdConversation(conversationExistante._id); console.log("conversationExistante aa", conversationExistante); 
+    setIdConversation(conversationExistante._id); 
   } else {
     setIdConversation(null);
   }
@@ -35348,6 +35348,8 @@ async function SendMessageFAA(customConversationId = null) {
   socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur    
   setWriteMessage66messageFA("");
   if (blocPartagerContactFA) setBlocPartagerContactFA(false);
+  
+  await ObtenirLesDonneesFA();
 }
 
   
@@ -50636,7 +50638,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1900</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2037</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
