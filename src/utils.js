@@ -1477,15 +1477,15 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
-  const [idConversationtrans, setIdConversationtrans] = useState(idConversation); // idConversation transmis
+  //const [idConversationtrans, setIdConversationtrans] = useState(idConversation); // idConversation transmis
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
 
-
+/*
 useEffect(() => { //surveiller et mettre a jour, en cas de changement d'id
   setIdConversationtrans(idConversation);
-}, [idConversation]);
+}, [idConversation]); */
 
 
 const donneesAffichees = useMemo(() => { return [...toutesDonnees]
@@ -1805,14 +1805,7 @@ return [...toutesDonnees].filter(api => (api.idAccount === idCompteConnecter) ||
 }, [toutesDonnees, idCompteConnecter]);
 
 	
-	/*
 const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
-  console.log("useMemo déclenché");
-  console.log("👉 idConversation actuel:", idConversation);
-  console.log("👉 toutesDonnees", toutesDonnees);
-  console.log("👉 toutesDonnees length:", toutesDonnees.length);
-  console.log("👉 idConversation dans les messages:", toutesDonnees.map(m => m.idConversation));
- 
 	return [...toutesDonnees]
 	.filter(api =>
 		api.idConversation &&
@@ -1827,9 +1820,10 @@ const donneesAffichees_messages = useMemo(() => { // afficher les messages dune 
 	  return new Date(b.createdAt) - new Date(a.createdAt);
 	})
 	.slice(0, lotActuel);
-}, [toutesDonnees, lotActuel, idConversation]); */
+}, [toutesDonnees, lotActuel, idConversation]); 
 
 
+/*
 const donneesAffichees_messages = useMemo(() => {
   console.log("useMemo déclenché");
   console.log("👉 idConversation actuel:", idConversation);
@@ -1865,7 +1859,7 @@ const donneesAffichees_messages = useMemo(() => {
   console.log("📦 résultat final:", result.length);
   return result;
 }, [toutesDonnees, lotActuel, idConversationtrans]);
-
+*/
 
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
@@ -1970,7 +1964,7 @@ async function gererScroll(e) {
 };
 
 	return { 
-		toutesDonnees, setToutesDonnees, setIdConversationtrans,
+		toutesDonnees, setToutesDonnees,
 		donneesAffichees, 
 		donneesAffichees_messages, 		
 		donneesAffichees_byClic, 
