@@ -35053,9 +35053,10 @@ useEffect(() => {
     if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
     if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
-    if (element.type === "30") { console.log("nouveau conversation", element); setApiMessageFA(prev => [element, ...prev]); } // conversations
+    if (element.type === "30") { console.log("nouveau conversation", element); if (!idConversation) { setIdConversation(element._id); } setApiMessageFA(prev => [element, ...prev]); } // conversations
     if (element.type === "1") { console.log("nouveau message", element); setApiMessageFA(prev => [element, ...prev]); } // messages
   });
+    
   
   // Nettoyage
   return () => {
@@ -35066,46 +35067,6 @@ useEffect(() => {
 	socket.disconnect();
   };
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
-
-
-/*
-useEffect(() => {
-  const socket = socketRef.current;
-  if (!socket) return;
-  
-  // Ecoute les messages, videos, annonces, et autres ...
-  const handleMessage = (data) => {
-    if (data.type === "1") { console.log("nouveau message", data); setApiMessageFA(prev => [data, ...prev]); } //message
-    if (data.type === "30") { console.log("nouveau conversation", data); setApiMessageFA(prev => [data, ...prev]); } //conversation
-  };
-  
-  socket.on("receiveMessage", handleMessage);
-
-  return () => {
-    socket.off("receiveMessage", handleMessage);
-  };
-}, [idConversation]); 
-*/
-
-
-/*
-useEffect(() => {
-  if (!socketRef.current) return;
-
-  const socket = socketRef.current;
-
-  const handleMessage = (msg) => {
-    if (msg.idConversation === idConversation) {
-      setDataMessagesFA(prev => [...prev, msg]);
-    }
-  };
-
-  socket.on("receiveMessage", handleMessage);
-
-  return () => {
-    socket.off("receiveMessage", handleMessage);
-  };
-}, [idConversation]); */
 
 
 // Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
@@ -35119,39 +35080,6 @@ useEffect(() => {
   const socket = socketRef.current;
   if (!socket) return;
   
-  /*
- socket.on("message:misAJour", (element) => {
-	console.log("element a", element);
-	
-	//annonces
-    if (element.type === "60") {
-		console.log("element, annonce modifié", element);
-		
-		setToutesDonneesAnnonces(prev =>
-		  prev.map(m => m._id === element._id ? element : m)
-		);
-    }
-	
-	//comptes
-    if (element.type === "10") {
-		console.log("element b", element);
-		
-		setToutesDonneesComptes(prev =>
-		  prev.map(m => m._id === element._id ? element : m)
-		);
-    }
-	
-	//videos
-    if (element.type === "3") {
-		console.log("element c", element);
-		
-		setToutesDonneesVideos(prev =>
-		  prev.map(m => m._id === element._id ? element : m)
-		);
-		
-		sauvegarderDansIndexedDB("videos", [element]);
-    }
-}); */
   
   socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
     setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
@@ -35171,16 +35099,11 @@ useEffect(() => {
   return () => {
     socket.off("ecrire:debut");
     socket.off("ecrire:fin");
-	//socket.off("message:misAJour");
   };
 }, []);
 
 
 /*
-useEffect(() => {
-  const socket = socketRef.current;
-  if (!socket) return;
-  
   // Ecoute les messages, videos, annonces, et autres ...
   const handleMessage = (data) => {
     if (data.type === "60") { console.log("annonces :modifié", data); setToutesDonneesAnnonces(prev => prev.map(m => m._id === data._id ? data : m)); } //annonces
@@ -35188,12 +35111,6 @@ useEffect(() => {
     if (data.type === "3") { console.log("videos :modifié", data); setToutesDonneesVideos(prev => prev.map(m => m._id === data._id ? data : m)); } //videos
   };
   
-  socket.on("message:misAJour", handleMessage);
-
-  return () => {
-    socket.off("message:misAJour", handleMessage);
-  };
-}, [setToutesDonneesAnnonces, setToutesDonneesComptes, setToutesDonneesVideos]); 
 */
 
 
@@ -35336,6 +35253,7 @@ const verifyConversation = !!conversationExistante;
 console.log("conversationExistante", conversationExistante); 
 
 
+
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
   setIdConversation(null); // 🔥 reset (ou supprime)
@@ -35348,11 +35266,11 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
     )
   );
 
-  setIdConversation(conversation ? conversation._id : "0");
+  setIdConversation(conversation ? conversation._id : null);
   setMessageFA(true);
   
-  /*console.log("idDestinataire", idDestinataire); 
-  console.log("idConversation", idConversation); */
+  /*console.log("idDestinataire", idDestinataire); */
+  console.log("idConversation", idConversation); 
 }
 
 
@@ -35443,7 +35361,7 @@ async function BeginConversationFA() {
     );
 		
     const idConversation = res.data._id;
-	setIdConversation(idConversation);	
+	//setIdConversation(idConversation);	
     console.log("Conversation créée :", idConversation);
 	
     // ✅ envoyer message via socket
@@ -50708,7 +50626,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0205</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0716</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
