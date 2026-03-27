@@ -35040,7 +35040,7 @@ useEffect(() => {
     setApiMessageFA(prev => [msg, ...prev]);
   });*/
   
-  socket.on("message:misAJour", (element) => {
+  socket.on("message:misAJour", async (element) => {
     console.log("🔥 SOCKET RECU - put:", element);
     if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
@@ -35048,7 +35048,7 @@ useEffect(() => {
   });
   
   
-  socket.on("receiveMessage", (element) => {
+  socket.on("receiveMessage", async (element) => {
     console.log("🔥 SOCKET RECU - post:", element);
     if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
@@ -50627,7 +50627,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1033</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1055</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
