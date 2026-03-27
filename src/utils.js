@@ -1785,6 +1785,17 @@ const donneesAffichees_idCompteConnecter = useMemo(() => filtrerEtTrier(toutesDo
 [toutesDonnees, idCompteConnecter, lotActuel]); */
 
 
+useEffect(() => {
+  if (idConversation) {
+    // Si votre filtre est dans un hook personnalisé, il devrait se recalculer automatiquement
+    // Sinon, vous pouvez forcer une mise à jour ou re-filtrer ici si besoin
+    // Par exemple : 
+    // setDataMessagesFA(filteredMessages); // si vous avez une fonction pour ça
+    console.log(idConversation, "idConversation changé, mettre à jour la liste des messages");
+  }
+}, [idConversation]);
+
+
 
 const donneesAffichees_account_other = useMemo(() => { // obtenir toutes les conversations d'un compte connecté
 if (!idCompteConnecter) return [];

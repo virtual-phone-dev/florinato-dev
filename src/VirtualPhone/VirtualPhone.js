@@ -35346,8 +35346,7 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
     )
   );
 
-  //setIdConversation(conversation ? conversation._id : "0");
-  setIdConversation(conversation._id);
+  setIdConversation(conversation ? conversation._id : "0");
   setMessageFA(true);
   
   /*console.log("idDestinataire", idDestinataire); 
@@ -50707,7 +50706,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0035</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0137</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
