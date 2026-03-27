@@ -34971,7 +34971,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 const {
 	donneesAffichees_account_other: dataConversations, 
 	toutesDonnees: toutConversations,
-	//setToutesDonnees: setToutesDonneesConversation,
+	setToutesDonnees: setToutesDonneesConversation,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
@@ -34979,14 +34979,11 @@ const {
 	idCompteConnecter: idPersonConnectedFA
 }); 
 
-const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
-
-
 
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
 const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, 
-	//setToutesDonnees: setToutesDonneesMessages, 
+	setToutesDonnees: setToutesDonneesMessage, 
 	//setIdConversationtrans: idConversation, 
 	gererScroll:gererScrollMessages 
 } = useScrollIndexedDB({
@@ -35045,16 +35042,17 @@ useEffect(() => {
     if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
     if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
-  });
+  });+
   
   
   socket.on("receiveMessage", async (element) => {
     console.log("🔥 SOCKET RECU - post:", element);
-    if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
-    if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
-    if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
-    if (element.type === "30") { console.log("nouveau conversation", element); setApiMessageFA(prev => [element, ...prev]); await ObtenirLesDonneesFA(); } // conversation
-    if (element.type === "1") { console.log("nouveau message", element); setApiMessageFA(prev => [element, ...prev]); } // message
+    if (element.type === "3") { setToutesDonneesVideos(prev => [msg, ...prev]); } // videos
+    if (element.type === "10") { setToutesDonneesComptes(prev => [msg, ...prev]); } // comptes
+    if (element.type === "60") { setApiMessageFA(prev => [msg, ...prev]); } // annonces
+	
+	if (element.type === "1") { console.log("nouveau message", element); setToutesDonneesMessage(prev => [msg, ...prev]); } // message
+    if (element.type === "30") { console.log("nouveau conversation", element); setToutesDonneesConversation(prev => [msg, ...prev]); await ObtenirLesDonneesFA(); } // conversation
   });
     
   
@@ -35069,7 +35067,7 @@ useEffect(() => {
 }, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
 
-// Array.isArray(onlineUsers) , vérifie que onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
+// Array.isArray(onlineUsers) , vérifie qpue onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
 const destinataireOnline = (onlineUsers && Array.isArray(onlineUsers)) ? onlineUsers.includes(idDestinataire) : false;
 
 
@@ -50638,7 +50636,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2244</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0047</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
