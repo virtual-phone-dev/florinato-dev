@@ -35262,6 +35262,15 @@ const verifyConversation = !!conversationExistante;
 console.log("conversationExistante", conversationExistante); 
 
 
+useEffect(() => {
+  if (conversationExistante?._id) {
+    setIdConversation(conversationExistante._id); console.log("conversationExistante aa", conversationExistante); 
+  } else {
+    setIdConversation(null);
+  }
+}, [conversationExistante]);
+
+
 
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
@@ -35279,6 +35288,8 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setMessageFA(true);
   
   /*console.log("idDestinataire", idDestinataire); */
+  console.log("idConversation", idConversation); 
+  console.log("conversation trouvé", conversation);
   console.log("idConversation", idConversation); 
 }
 
@@ -50635,7 +50646,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1253</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1332</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
