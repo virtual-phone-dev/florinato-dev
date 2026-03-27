@@ -34990,7 +34990,7 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
 const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, 
 	//setToutesDonnees: setToutesDonneesMessages, 
-	setIdConversationtrans: idConversation, 
+	//setIdConversationtrans: idConversation, 
 	gererScroll:gererScrollMessages 
 } = useScrollIndexedDB({
 	nomStockage: "messages", 
@@ -50648,7 +50648,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1502</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1518</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>

@@ -1477,10 +1477,15 @@ export function useScrollIndexedDB({ nomStockage, donnees=[], lot=20, visible=tr
 	rechercherUneVideo, rechercherMaVideo, rechercherUnCompte, rechercherMonCompte }) {
 		
   const [toutesDonnees, setToutesDonnees] = useState([]);
-  const [idConversationtrans, setIdConversationtrans] = useState(null);
+  const [idConversationtrans, setIdConversationtrans] = useState(idConversation);
   const [lotActuel, setLotActuel] = useState(lot);
   const dejaInitialise = useRef(false);
   const syncEnCours = useRef(false);
+
+
+useEffect(() => { //surveiller et mettre a jour, en cas de changement d'id
+  setIdConversationtrans(idConversation);
+}, [idConversation]);
 
 
 const donneesAffichees = useMemo(() => { return [...toutesDonnees]
