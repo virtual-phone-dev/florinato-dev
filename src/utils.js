@@ -1804,14 +1804,40 @@ return [...toutesDonnees].filter(api => (api.idAccount === idCompteConnecter) ||
 });
 }, [toutesDonnees, idCompteConnecter]);
 
+
+
+const [donneesAffichees_messages, setDonneesAfficheesMessages] = useState([]);
+
+useEffect(() => {
+  const resultat = [...toutesDonnees]
+    .filter(api =>
+      api.idConversation &&
+      api.idConversation !== "0" &&
+      api.idConversation === idConversation
+    )
+    .sort((a, b) => {
+      if (!a.createdAt && !b.createdAt) return 0;
+      if (!a.createdAt) return 1;
+      if (!b.createdAt) return -1;
+
+      return new Date(b.createdAt) - new Date(a.createdAt);
+    })
+    .slice(0, lotActuel);
 	
+	console.log("resultat", resultat);
+
+  setDonneesAfficheesMessages(resultat);
+}, [toutesDonnees, lotActuel, idConversation]);
+
+
+	/*
 const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
 	return [...toutesDonnees]
-	/*.filter(api =>
+	.filter(api =>
 		api.idConversation &&
 		api.idConversation !== "0" && 
 		api.idConversation === idConversation
-	) */
+	) 
 	.sort((a, b) => {
 	  if (!a.createdAt && !b.createdAt) return 0;
 	  if (!a.createdAt) return 1;
@@ -1821,7 +1847,7 @@ const donneesAffichees_messages = useMemo(() => { // afficher les messages dune 
 	})
 	.slice(0, lotActuel);
 }, [toutesDonnees, lotActuel, idConversation]); 
-
+*/
 
 /*
 const donneesAffichees_messages = useMemo(() => {
@@ -1966,27 +1992,26 @@ async function gererScroll(e) {
 	return { 
 		toutesDonnees, setToutesDonnees,
 		donneesAffichees, 
-		donneesAffichees_messages, 		
 		donneesAffichees_byClic, 
 		donneesAffichees_account_other, 
 		donneesAffichees_CompteEnLigne,
-		
+		donneesAffichees_idUser,
 		donneesAffichees_byClic_idAccount,
 		donneesAffichees_byClic_idAccountConnecter,
 		donneesAffichees_recent_idAccount,
 		donneesAffichees_recent_idAccountConnecter,
+		donneesAffichees_messages,
+		
 		toutesDonnees_all,
 		infosPost_by_id,
 		infosCompte_by_id,
 		infosCompte_by_id_2,
 		infosCompteConnecter_by_id,
-		
 		infosAnnonce_by_id,
 		
 		toutesVideoPar_idAccount,
 		toutesVideoCompteConnecterPar_idAccount,
-		
-		donneesAffichees_idUser, toutesDonnees_idUser, chargerPlus, gererScroll 
+		toutesDonnees_idUser, chargerPlus, gererScroll 
 	};
 }
 //useScrollIndexedDB
