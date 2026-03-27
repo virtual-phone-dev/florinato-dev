@@ -1827,12 +1827,8 @@ const donneesAffichees_messages = useMemo(() => { // afficher les messages dune 
 const donneesAffichees_messages = useMemo(() => {
   console.log("useMemo déclenché");
   console.log("👉 idConversation actuel:", idConversation);
+  console.log("toutesDonnees", toutesDonnees);
   console.log("👉 toutesDonnees length:", toutesDonnees.length);
-
-  console.log(
-    "👉 idConversation dans les messages:",
-    toutesDonnees.map(m => m.idConversation)
-  );
 
   const result = [...toutesDonnees]
     .filter(api => {
@@ -1842,11 +1838,6 @@ const donneesAffichees_messages = useMemo(() => {
         api.idConversation === idConversation;
 
       if (!match) {
-        console.log("❌ rejeté:", {
-          msgId: api._id,
-          msgConversation: api.idConversation,
-          currentConversation: idConversation
-        });
       } else {
 		console.log("✅ gardé :");
 		console.table(
@@ -1873,8 +1864,8 @@ const donneesAffichees_messages = useMemo(() => {
     })
     .slice(0, lotActuel);
 
+  console.log("result", result);
   console.log("📦 résultat final:", result.length);
-
   return result;
 }, [toutesDonnees, lotActuel, idConversation]);
 
