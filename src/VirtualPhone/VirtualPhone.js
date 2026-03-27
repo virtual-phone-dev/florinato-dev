@@ -35349,7 +35349,7 @@ async function SendMessageFAA(customConversationId = null) {
   setWriteMessage66messageFA("");
   if (blocPartagerContactFA) setBlocPartagerContactFA(false);
   
-  await ObtenirLesDonneesFA();
+  //await ObtenirLesDonneesFA();
 }
 
   
