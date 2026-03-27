@@ -1839,17 +1839,7 @@ const donneesAffichees_messages = useMemo(() => {
 
       if (!match) {
       } else {
-		console.log("✅ gardé :");
-		console.table(
-		  toutesDonnees.map(m => ({
-			msgId: m._id,
-			msgConversation: m.idConversation,
-			currentConversation: idConversation,
-			match: m.idConversation === idConversation
-		  }))
-		);
-		
-        console.log("✅ gardé:", api._id);
+		console.log("✅ gardé:", api._id);
         console.log("✅ gardé:", api.idConversation);
         console.log("✅ gardé:", api.message);
       }
