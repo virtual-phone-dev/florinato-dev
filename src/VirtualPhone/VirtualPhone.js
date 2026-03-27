@@ -34971,7 +34971,7 @@ const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "5
 const {
 	donneesAffichees_account_other: dataConversations, 
 	toutesDonnees: toutConversations,
-	setToutesDonnees: setToutesDonneesConversation,
+	//setToutesDonnees: setToutesDonneesConversation,
 	gererScroll: gererScrollConversations 
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
@@ -34986,7 +34986,7 @@ const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFo
 // messages
 const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
 const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, 
-	setToutesDonnees: setToutesDonneesMessages, 
+	//setToutesDonnees: setToutesDonneesMessages, 
 	//setIdConversationtrans: idConversation, 
 	gererScroll:gererScrollMessages 
 } = useScrollIndexedDB({
@@ -35053,16 +35053,8 @@ useEffect(() => {
     if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
     if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
-	
-    if (element.type === "30") { console.log("nouveau conversation", element); 
-		//setApiMessageFA(prev => [element, ...prev]); 
-		setToutesDonneesConversation(prev => prev.map(m => m._id === element._id ? element : m)); 
-	} // conversations
-	
-    if (element.type === "1") { console.log("nouveau message", element); 
-		//setApiMessageFA(prev => [element, ...prev]); 
-		setToutesDonneesMessages(prev => prev.map(m => m._id === element._id ? element : m)); 
-	} // messages
+    if (element.type === "30") { console.log("nouveau conversation", element); await ObtenirLesDonneesFA(); } // conversation
+    if (element.type === "1") { console.log("nouveau message", element); setApiMessageFA(prev => [element, ...prev]); } // message
   });
     
   
@@ -50644,7 +50636,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1645</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1805</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
