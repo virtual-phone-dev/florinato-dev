@@ -34995,6 +34995,8 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, ge
 	idConversation
 });
 
+console.log("dataMessagesFA", dataMessagesFA);
+
 
   
 const socketRef = useRef(null); // Socket
@@ -50706,7 +50708,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0137</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0205</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
