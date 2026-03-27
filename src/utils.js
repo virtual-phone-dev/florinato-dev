@@ -1801,14 +1801,11 @@ return [...toutesDonnees].filter(api => (api.idAccount === idCompteConnecter) ||
 	
 	
 const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
-  //if (!idConversation) return toutesDonnees.slice(0, lotActuel);
-    if (idConversation) {
 		return [...toutesDonnees]
 			.filter(api => {
 				api.idConversation &&
 				api.idConversation !== "0" && 
 				api.idConversation === idConversation
-				console.log("idConversation disponible :", idConversation);
 			})
 			.sort((a, b) => {
 			  if (!a.createdAt && !b.createdAt) return 0;
@@ -1818,25 +1815,6 @@ const donneesAffichees_messages = useMemo(() => { // afficher les messages dune 
 			  return new Date(b.createdAt) - new Date(a.createdAt);
 			})
 			.slice(0, lotActuel);
-	
-	} else {
-		return [...toutesDonnees]
-			.filter(api => {
-				api.idConversation &&
-				api.idConversation !== "0" && 
-				api.idConversation === idConversation
-				console.log("Pas de idConversation :", idConversation);
-			})
-			.sort((a, b) => {
-			  if (!a.createdAt && !b.createdAt) return 0;
-			  if (!a.createdAt) return 1;
-			  if (!b.createdAt) return -1;
-
-			  return new Date(b.createdAt) - new Date(a.createdAt);
-			})
-			.slice(0, lotActuel);
-	}
-
 }, [toutesDonnees, lotActuel, idConversation]);
 
 

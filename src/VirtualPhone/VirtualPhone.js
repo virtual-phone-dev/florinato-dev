@@ -35053,7 +35053,8 @@ useEffect(() => {
     if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
     if (element.type === "60") { setApiMessageFA(prev => prev.map(m => m._id === element._id ? element : m)); } // annonces
-    if (element.type === "30") { console.log("nouveau conversation", element); if (!idConversation) { setIdConversation(element._id); } setApiMessageFA(prev => [element, ...prev]); } // conversations
+	
+    if (element.type === "30") { console.log("nouveau conversation", element); await ObtenirLesDonneesFA(); } // conversations
     if (element.type === "1") { console.log("nouveau message", element); setApiMessageFA(prev => [element, ...prev]); } // messages
   });
     
@@ -50626,7 +50627,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0809</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1033</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
