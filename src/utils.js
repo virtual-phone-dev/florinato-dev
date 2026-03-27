@@ -1807,11 +1807,11 @@ return [...toutesDonnees].filter(api => (api.idAccount === idCompteConnecter) ||
 	
 const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
 	return [...toutesDonnees]
-	.filter(api =>
+	/*.filter(api =>
 		api.idConversation &&
 		api.idConversation !== "0" && 
 		api.idConversation === idConversation
-	)
+	) */
 	.sort((a, b) => {
 	  if (!a.createdAt && !b.createdAt) return 0;
 	  if (!a.createdAt) return 1;
