@@ -34677,6 +34677,7 @@ async function DissadAA() {
 	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
+	console.log("idDestinataire", idDestinataire); 
 	console.log("idConversation", idConversation); 
 	
 	/* console.log("idCompte", idCompte);
@@ -50624,7 +50625,6 @@ function rechargerPage() {
       {/* zimagicPopularity */}
       </>)}
       {/* les plus populaires sur Zimagic application zimagic */}
-	  
 	  
 
       {/* application florinato */}
