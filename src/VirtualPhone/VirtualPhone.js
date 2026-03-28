@@ -35308,7 +35308,6 @@ async function SendMessageFAA(customConversationId = null) {
 	if (!messageText.trim()) return; 
 	setWriteMessage66messageFA(""); // vider immédiatement
   
-	
 	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
 	let expediteur = idExpediteur; 
 	let destinataire = idDestinataire;
@@ -35359,10 +35358,8 @@ async function SendMessageFAA(customConversationId = null) {
 const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
 
 async function BeginConversationFA() {
-
   if (!writeMessage66messageFA.trim()) return;
   setIsLoading66messageFA(true);
-  console.log("on lance la requete");
 
   try {
     const res = await axios.post(`${process.env.REACT_APP_Api2}/api/messageFA/new`,
@@ -35409,7 +35406,7 @@ const timerEcriture = useRef(null); //Ça sert à savoir quand l’utilisateur s
 //Quand l’utilisateur écrit . Quand l’utilisateur écrit dans le textarea
 const gererChangementMessage = (e) => { // Quand l’utilisateur tape dans le textarea . Cette fonction est appelée à CHAQUE lettre
 	const texte = e.target.value;
-	console.log("L'utilisateur écrit :", texte); // Tu verras le texte s’afficher dans la console à chaque frappe
+	//console.log("L'utilisateur écrit :", texte); // Tu verras le texte s’afficher dans la console à chaque frappe
 	setWriteMessage66messageFA(texte); // On met à jour le texte (normal) . Juste pour afficher ce que l’utilisateur tape
 	
   if (!socketRef.current) return;
@@ -50639,7 +50636,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0117</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1535</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
