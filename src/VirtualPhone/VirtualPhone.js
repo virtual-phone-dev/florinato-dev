@@ -34963,10 +34963,13 @@ const filtrerMonCompteRechercher = useMemo(() => toutMesComptes.filter(api => ap
 const listMesComptesFA = useMemo(() => rechercherAvecFuse({ data:filtrerMonCompteRechercher, search:rechercherMonCompteFA, keys: ["nameAccount"] }), [filtrerMonCompteRechercher, rechercherMonCompteFA] );
 
 
+// follower
+const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
+const { donneesAffichees_account_other:dataFollowers, gererScroll: gererScrollFollowers } = useScrollIndexedDB({ nomStockage: "followers", donnees:followersSource });
+
 
 // conversations
 const conversationsSource = useMemo(() => apiMessageFA.filter(api => api.type === "30"), [apiMessageFA] ); 
-const followersSource = useMemo(() => apiMessageFA.filter(api => api.type === "50"), [apiMessageFA] ); 
 
 const {
 	donneesAffichees_account_other: dataConversations, 
@@ -35045,14 +35048,14 @@ useEffect(() => {
   });+
   
   
-  socket.on("receiveMessage", async (element) => {
-    console.log("🔥 SOCKET RECU - post:", element);
-    if (element.type === "3") { setToutesDonneesVideos(prev => [msg, ...prev]); } // videos
-    if (element.type === "10") { setToutesDonneesComptes(prev => [msg, ...prev]); } // comptes
-    if (element.type === "60") { setApiMessageFA(prev => [msg, ...prev]); } // annonces
+  socket.on("receiveMessage", async (data) => {
+    console.log("🔥 SOCKET RECU - post:", data);
+    if (data.type === "3") { setToutesDonneesVideos(prev => [data, ...prev]); } // videos
+    if (data.type === "10") { setToutesDonneesComptes(prev => [data, ...prev]); } // comptes
+    if (data.type === "60") { setApiMessageFA(prev => [data, ...prev]); } // annonces
 	
-	if (element.type === "1") { console.log("nouveau message", element); setToutesDonneesMessage(prev => [msg, ...prev]); } // message
-    if (element.type === "30") { console.log("nouveau conversation", element); setToutesDonneesConversation(prev => [msg, ...prev]); await ObtenirLesDonneesFA(); } // conversation
+	if (data.type === "1") { console.log("nouveau message", data); setToutesDonneesMessage(prev => [data, ...prev]); } // message
+    if (data.type === "30") { console.log("nouveau conversation", data); setToutesDonneesConversation(prev => [data, ...prev]); await ObtenirLesDonneesFA(); } // conversation
   });
     
   
@@ -50636,7 +50639,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0047</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0117</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
