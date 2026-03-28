@@ -35055,8 +35055,9 @@ useEffect(() => {
     if (data.type === "60") { setApiMessageFA(prev => [data, ...prev]); } // annonces
 	
 	if (data.type === "1") { console.log("nouveau message", data); setToutesDonneesMessage(prev => [data, ...prev]); } // message
-    if (data.type === "30") { console.log("nouveau conversation", data); setToutesDonneesConversation(prev => [data, ...prev]); await ObtenirLesDonneesFA(); } // conversation
-  });
+    if (data.type === "30") { console.log("nouveau conversation", data); setToutesDonneesConversation(prev => [data, ...prev]); } // conversation
+	// if (data.type === "30") { console.log("nouveau conversation", data); setToutesDonneesConversation(prev => [data, ...prev]); await ObtenirLesDonneesFA(); } // conversation
+ });
     
   
   // Nettoyage
@@ -50636,7 +50637,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1535</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1604</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
