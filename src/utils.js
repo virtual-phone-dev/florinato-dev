@@ -2132,7 +2132,7 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecen
 )}
 
 		
-export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, clicVideo=()=>{},
+export function ChildApi66LesVideos({ api, verifierId, photo, video, profilMap, nomEtphoto, dateAfficher = dateParser, clicVideo=()=>{}, AvantMessagePage=()=>{},
 	voirVideo=()=>{}, voirProfil=()=>{}, setIdPost=()=>{}, setUrlVideo=()=>{}, setIdProprietairePost=()=>{}, setIdCompte=()=>{}, setIdDestinataire=()=>{}, 
 	nomcss="pre c-6b7280 fs-14px ml-5px", datecss="c-6b7280 fs-13px", titrecss="pre-16px", cliccss="p-14px" }) {
 
@@ -2179,7 +2179,7 @@ useEffect(() => {
 
 	return (<>
 		{afficherVideo && (<>
-		<div className="video-card pb-30px" onClick={() => { setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); setIdDestinataire(api.idAccountChef); }}>
+		<div className="video-card pb-30px" onClick={() => { setIdProprietairePost(api.idAccountChef); setIdCompte(api.idAccountChef); setIdDestinataire(api.idAccountChef); AvantMessagePage(api.idAccountChef); }}>
 			<div onClick={() => { setUrlVideo(api.urlVideo); setIdPost(api._id); voirVideo(); clicVideo({ id:api._id, idOther:api.idAccountChef, nombreClic:api.clic }) }}>
 				<img className="video-thumb" src={api.urlPhoto} alt="" ref={imgRef} />
 				<pre className={titrecss}>{gettitre}</pre>
@@ -2207,8 +2207,9 @@ useEffect(() => {
 } 
 
 
+
 export function LesVideos({ data=[], setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, setIdDestinataire, clicVideo, nomcss, datecss,
-	voirVideo, voirProfil, dateParser, titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX, nomEtphoto }) {
+	voirVideo, voirProfil, AvantMessagePage, dateParser, titrecss, cliccss, profilMap, video, affichagecss="video-grille", scrollX, nomEtphoto }) {
 		
 	return (
 	<div className={affichagecss} onScroll={scrollX || undefined}>
@@ -2216,36 +2217,36 @@ export function LesVideos({ data=[], setIdPost, setUrlVideo, setIdProprietairePo
 		
 			<ChildApi66LesVideos 
 				api={api} nomEtphoto={nomEtphoto} voirVideo={voirVideo} voirProfil={voirProfil} titrecss={titrecss} cliccss={cliccss} nomcss={nomcss} datecss={datecss} 
-				setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
+				setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} AvantMessagePage={AvantMessagePage}
 				setIdPost={setIdPost} setUrlVideo={setUrlVideo} profilMap={profilMap} clicVideo={clicVideo} dateAfficher={dateParser} video />
 		))}
 	</div>
 )}
 
 
-export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto, dataOverflow, overflow,
+export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, setValeur, nomEtphoto, dataOverflow, overflow, AvantMessagePage,
 	setUrlVideo, setIdPost, setIdProprietairePost, setIdCompte, setIdDestinataire, clicVideo, voirVideo, voirProfil, video, affichagecss, scrollX, }) {
 		
   return (<>
 	<RechercheTemplate 
 		listVideo={listVideo} valeur={valeur} setValeur={setValeur} clicVideo={clicVideo} voirVideo={voirVideo} voirProfil={voirProfil} nomEtphoto={nomEtphoto}
 		setIdPost={setIdPost} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} 
-		setUrlVideo={setUrlVideo} profilMap={profilMap} />
+		setUrlVideo={setUrlVideo} profilMap={profilMap} AvantMessagePage={AvantMessagePage} />
 
 	{overflow && (<>	
     <LesVideos 
 		data={dataOverflow} setIdPost={setIdPost} setUrlVideo={setUrlVideo} 
-		setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} video
+		setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} AvantMessagePage={AvantMessagePage} video 
 		clicVideo={clicVideo} voirVideo={voirVideo} profilMap={profilMap} affichagecss={affichagecss} scrollX={scrollX} dateParser={dateParserLong} /> </>)}
 	
     <LesVideos 
 		data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} 
-		setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
+		setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} AvantMessagePage={AvantMessagePage}
 		clicVideo={clicVideo} voirVideo={voirVideo} voirProfil={voirProfil} profilMap={profilMap} nomEtphoto={nomEtphoto} video />
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, setIdCompte, setIdDestinataire,
+export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, setIdCompte, setIdDestinataire, AvantMessagePage,
 	setIdPost, setUrlVideo, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, voirProfil, listVideo, valeur, setValeur, photocss }) {
 	if (!visible) return null;
 	return (
@@ -2255,7 +2256,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, Ou
 			<VideoSearchBlock 
 				data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
 				setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
-				clicVideo={clicVideo} voirVideo={voirVideo} voirProfil={voirProfil} video={video} nomEtphoto />
+				clicVideo={clicVideo} voirVideo={voirVideo} voirProfil={voirProfil} video={video} AvantMessagePage={AvantMessagePage} nomEtphoto />
 		</div>
 )}
 

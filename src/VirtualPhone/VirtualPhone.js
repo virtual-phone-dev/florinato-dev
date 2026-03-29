@@ -35434,8 +35434,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 
 
 
-/*
-async function OuvrirMessagePage66ProfilTemplate(idDestinataireget) {
+async function AvantMessagePage(idDestinataireget) {
   setIdDestinataire(idDestinataireget); 
   setIdCompte(idDestinataireget);
   
@@ -35446,9 +35445,10 @@ async function OuvrirMessagePage66ProfilTemplate(idDestinataireget) {
     ));
 
   setIdConversation(conversation ? conversation._id : null);
-  setMessageFA(true);
+  //setMessageFA(true);
+  console.log("idDestinataire aab", idDestinataireget);
   console.log("idCompte", idCompte);
-} */
+} 
 
 /*
 async function OuvrirMessagePage66ProfilTemplate() {
@@ -35467,7 +35467,7 @@ async function OuvrirMessagePage66ProfilTemplate() {
   console.log("idDestinataire aa5", idDestinataire);
 } */
 
-console.log("idDestinataire aa6", idDestinataire);
+//console.log("idDestinataire aa6", idDestinataire);
 
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
@@ -50681,7 +50681,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1820</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2026</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50730,9 +50730,9 @@ function rechargerPage() {
 		
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} voirProfil={ProfilFA2e} 
-			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
+			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} AvantMessagePage={AvantMessagePage} video
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
-			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} OuvrirAnnoncesPage={AnnoncesPageFA}
+			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} OuvrirAnnoncesPage={AnnoncesPageFA} photo={photoFA}
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
   
   
@@ -50806,12 +50806,6 @@ function rechargerPage() {
 		  
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 	
- 
- 
-    <PopupDuBasTemplate 
-		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
-		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} OuvrirMessagePage={OuvrirMessagePage66PartagerContactPageFA} search/>
-
 
 	    <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
@@ -50939,7 +50933,11 @@ function rechargerPage() {
 			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
 			
 		
-		
+		 <PopupDuBasTemplate 
+			visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
+			listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} OuvrirMessagePage={OuvrirMessagePage66PartagerContactPageFA} search/>
+
+
 		{/* choisir la video a ajouter à la photo - FA  */}
 		{/* choisir la video a ajouter à la photo - FA  */}
 		{addVideoPageFA && (<>
