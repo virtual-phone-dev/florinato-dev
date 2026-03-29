@@ -35241,7 +35241,7 @@ useEffect(() => {
 
 
 
-async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
+async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) { 
   setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
   
 // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
@@ -35255,10 +35255,12 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setIdConversation(conversation ? conversation._id : null);
   setMessageFA(true);
 }
+
 
 
 async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
   setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
+  setIdCompte(idDestinataireget);
   
 // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
   const conversation = toutConversations.find(api =>
@@ -35270,7 +35272,9 @@ async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
 
   setIdConversation(conversation ? conversation._id : null);
   setMessageFA(true);
+  console.log("idCompte", idCompte);
 }
+
 
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
@@ -50646,7 +50650,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0807</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1357</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
