@@ -35244,31 +35244,26 @@ useEffect(() => {
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) { 
   setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
   
-// en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
-  const conversation = toutConversations.find(api =>
+  const conversation = toutConversations.find(api => // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
     api.type === "30" && (
       (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
       (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
-    )
-  );
+    ));
 
   setIdConversation(conversation ? conversation._id : null);
   setMessageFA(true);
 }
 
 
-
 async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
-  setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
+  setIdDestinataire(idDestinataireget); 
   setIdCompte(idDestinataireget);
   
-// en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
   const conversation = toutConversations.find(api =>
     api.type === "30" && (
       (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
       (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
-    )
-  );
+    ));
 
   setIdConversation(conversation ? conversation._id : null);
   setMessageFA(true);
@@ -35437,6 +35432,43 @@ Le socket envoie écriture:debut
 Si tu t’arrêtes 1,5 s → écriture:fin */
 
 
+
+
+/*
+async function OuvrirMessagePage66ProfilTemplate(idDestinataireget) {
+  setIdDestinataire(idDestinataireget); 
+  setIdCompte(idDestinataireget);
+  
+  const conversation = toutConversations.find(api => // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
+    api.type === "30" && (
+      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
+      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
+    ));
+
+  setIdConversation(conversation ? conversation._id : null);
+  setMessageFA(true);
+  console.log("idCompte", idCompte);
+} */
+
+/*
+async function OuvrirMessagePage66ProfilTemplate() {
+  //setIdDestinataire(idDestinataireget); 
+  //setIdCompte(idDestinataireget);
+  
+  const conversation = toutConversations.find(api => // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
+    api.type === "30" && (
+      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire) ||
+      (api.idAccount === idDestinataire && api.idOther === idPersonConnectedFA)
+    )
+  );
+
+  setIdConversation(conversation ? conversation._id : null);
+  //setMessageFA(true);
+  console.log("idDestinataire aa5", idDestinataire);
+} */
+
+console.log("idDestinataire aa6", idDestinataire);
+
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
@@ -35448,7 +35480,7 @@ const SeeVideoTemplatePropsCommun = {
 
 
 const profilPropsCommun = {
-	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte,
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, OuvrirMessagePage: MessageFA,
 	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
 	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
 };
@@ -35458,9 +35490,8 @@ const ComptesRecentsPropsCommun = {
   OuvrirMessagePage: OuvrirMessagePage66ComptesEnLigne, 
 };
 
-const AnnoncesPropsCommun = {
-  OuvrirMessagePage: OuvrirMessagePage66AnnoncesFA, 
-};
+const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessagePage66AnnoncesFA, };
+
 
 
 
@@ -50700,7 +50731,7 @@ function rechargerPage() {
 		<VideosPageTemplate
 			visible={videosPageFA} fermer={CloseVideosPageFA} voirProfil={ProfilFA2e} 
 			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} video
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} 
+			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
 			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} OuvrirAnnoncesPage={AnnoncesPageFA}
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
   
