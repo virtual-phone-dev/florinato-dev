@@ -50681,7 +50681,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1725</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1820</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50807,18 +50807,7 @@ function rechargerPage() {
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 	
  
-	<MessageTemplate 
-		visible={messageFA} fermer={CloseMessageFA} profilMap={profilMap}
-		gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
-		PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-		data={infosCompteById[0]} data2={infosCompteById2[0]} dataMessagesFA={dataMessagesFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
-		Favorite66messageFA={Favorite66messageFA} 
-		PartagerContactPageFA={PartagerContactPageFA} blocPartagerContact={blocPartagerContactFA}
-		onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
-		isLoading66messageFA={isLoading66messageFA} BeginConversationFA={BeginConversationFA} verifyConversation={verifyConversation} 
-		writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
-		
-		
+ 
     <PopupDuBasTemplate 
 		visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
 		listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} OuvrirMessagePage={OuvrirMessagePage66PartagerContactPageFA} search/>
@@ -50875,7 +50864,7 @@ function rechargerPage() {
 		valeur={ecrire666modifierUrl} setValeur={setecrire666modifierUrl} Valider={ValiderUrl} isLoading={isLoading666ValiderUrl} changerUrl textarea />
 	
 	{/* reparer l'url  */} 
-	<ModifierTemplate 
+ 	<ModifierTemplate 
 		visible={reparerUrlPage} fermer={CloseReparerUrlPage} titre="Réparer l'url de la vidéo automatiquement (url Dropbox)" textbtn="Réparer" infos={urlVideo}
 		Valider={ReparerUrl} isLoading={isLoading666ReparerUrl} changerUrl />
 		
@@ -50938,6 +50927,17 @@ function rechargerPage() {
 			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} />
 		
 		
+		<MessageTemplate 
+			visible={messageFA} fermer={CloseMessageFA} profilMap={profilMap}
+			gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
+			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
+			data={infosCompteById[0]} data2={infosCompteById2[0]} dataMessagesFA={dataMessagesFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
+			Favorite66messageFA={Favorite66messageFA} 
+			PartagerContactPageFA={PartagerContactPageFA} blocPartagerContact={blocPartagerContactFA}
+			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
+			isLoading66messageFA={isLoading66messageFA} BeginConversationFA={BeginConversationFA} verifyConversation={verifyConversation} 
+			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
+			
 		
 		
 		{/* choisir la video a ajouter à la photo - FA  */}
