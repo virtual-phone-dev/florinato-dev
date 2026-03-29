@@ -3356,7 +3356,7 @@ export function Close2({ fermer, titre, titrecss }) {
 </>)}
 
 
-export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setIdAnnonce=()=>{}, setIdDestinataire=()=>{}, OuvrirMessagePage, AfficherAnnoncePage }) {
+export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setIdAnnonce=()=>{}, OuvrirMessagePage, AfficherAnnoncePage }) {
   if (!visible) return null;
   
   return (<>
@@ -3371,16 +3371,16 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
 		const nom = profil?.nameAccount ?? "";	
   
 		return (
-		<div onClick={() => { setIdAnnonce(api._id); setIdDestinataire(api.idProprietaireAnnonce); }} className="p-20">
+		<div onClick={() => { setIdAnnonce(api._id); }} className="p-20">
 			<pre className="pre fs-16 mb-15" onClick={AfficherAnnoncePage}>{api.texte}</pre> 
 			
-			<div className="flex" onClick={OuvrirMessagePage}> 
+			<div className="flex" onClick={() => OuvrirMessagePage(api.idProprietaireAnnonce)}> 
 				<img className="photo-25px mr-5px" src={photo} alt=""/> 
 				<pre className="pre fs-14px">{nom}</pre>
 			</div>
 			
 			<p className="fs-12px">{api.clic} clic</p>
-			<button className="btn-bleu" onClick={OuvrirMessagePage}>Envoyer un message</button>
+			<button className="btn-bleu" onClick={() => OuvrirMessagePage(api.idProprietaireAnnonce)}>Envoyer un message</button>
 		</div> 
 		); })}
 		

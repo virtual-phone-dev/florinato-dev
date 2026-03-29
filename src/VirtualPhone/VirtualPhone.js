@@ -35193,32 +35193,7 @@ const conversationsTrierParDate = useMemo(() => {
 	on compare leurs dates
 	la conversation avec le message le plus récent monte en haut */
 
-
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
-
-
-
-const SeeVideoTemplatePropsCommun = {
-  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
-  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
-  rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA,
-  profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
-  CommenterPageFA, ModifierUrlPage, ReparerUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
-  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
-};
-
-
-const profilPropsCommun = {
-	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte,
-	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
-	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
-};
-
-const ComptesRecentsPropsCommun = {
-  listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA, onlineUsers, gererScroll: gererScrollComptes, 
-  OuvrirMessagePage: OuvrirMessagePage66ComptesEnLigne, 
-};
-
 
 
    // filtre pour obtenir tout les favoris
@@ -35268,7 +35243,6 @@ useEffect(() => {
 
 async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
-  //setIdConversation(null); // 🔥 reset (ou supprime)
   
 // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
   const conversation = toutConversations.find(api =>
@@ -35280,12 +35254,23 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
 
   setIdConversation(conversation ? conversation._id : null);
   setMessageFA(true);
-  
-  /* console.log("idDestinataire", idDestinataire); 
-  console.log("idConversation", idConversation); 
-  console.log("conversation trouvé", conversation); */
 }
 
+
+async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
+  setIdDestinataire(idDestinataireget); // 🔥 utilise directement la valeur passée
+  
+// en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
+  const conversation = toutConversations.find(api =>
+    api.type === "30" && (
+      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
+      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
+    )
+  );
+
+  setIdConversation(conversation ? conversation._id : null);
+  setMessageFA(true);
+}
 
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
@@ -35448,6 +35433,30 @@ Le socket envoie écriture:debut
 Si tu t’arrêtes 1,5 s → écriture:fin */
 
 
+const SeeVideoTemplatePropsCommun = {
+  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
+  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
+  rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA,
+  profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
+  CommenterPageFA, ModifierUrlPage, ReparerUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
+  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
+};
+
+
+const profilPropsCommun = {
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte,
+	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
+	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
+};
+
+const ComptesRecentsPropsCommun = {
+  listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA, onlineUsers, gererScroll: gererScrollComptes, 
+  OuvrirMessagePage: OuvrirMessagePage66ComptesEnLigne, 
+};
+
+const AnnoncesPropsCommun = {
+  OuvrirMessagePage: OuvrirMessagePage66AnnoncesFA, 
+};
 
 
 
@@ -50693,16 +50702,15 @@ function rechargerPage() {
   
   
 		<AnnoncesTemplate 
-			visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} setIdDestinataire={setIdDestinataire} 
-			data={dataAnnoncesFA} OuvrirMessagePage={MessageFA} AfficherAnnoncePage={AfficherAnnoncePageFA} gererScroll={gererScrollAnnonces} />
+			{...AnnoncesPropsCommun} visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} 
+			data={dataAnnoncesFA} AfficherAnnoncePage={AfficherAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 		
 		<AfficherAnnonceTemplate 
 			visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap}
-			data={dataAnnonce} OuvrirMessagePage={MessageFA} ModifierAnnoncePageFA={ModifierAnnoncePageFA} gererScroll={gererScrollAnnonces} />
+			data={dataAnnonce} ModifierAnnoncePageFA={ModifierAnnoncePageFA} OuvrirMessagePage={MessageFA} gererScroll={gererScrollAnnonces} />
 			
 			
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
-
 
 
 		<SpeedMessages 
