@@ -3281,19 +3281,22 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
           <div className="head">
             <div className="close">
-              <div className="block-un" onClick={fermer}> 
-                <div className="a"> <SvgLeft/> </div>
-                <div className="b"> <pre>{nameAccount}</pre> </div>
-              </div>
-              {/* block-un */}
+				<div className="block-un" onClick={fermer}> 
+					<div className="a"> <SvgLeft/> </div>
+					<div className="b"> <pre>{nameAccount}</pre> </div>
+				</div>
+				{/* block-un */}
 
 				{connecter && (<>
 				<div className="display-flex-nowrap"> 
 				  <div className="a" onClick={MenuBas}> <SvgMenu/> </div> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
+				  
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
 				</div> </>)}
+				
+				<div className="display-flex-nowrap"> <div className="a"> <p>Message</p> </div> </div>
             </div>
             {/* close */} 
           </div>
