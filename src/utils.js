@@ -3504,7 +3504,7 @@ export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes
 			{listAccount.map((api) => {
 			const isOnline = onlineUsers.includes(api._id);
 			return (<>
-			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); setIdContact(api._id); OuvrirMessagePage(); }}>	
+			<div onClick={() => { const id = api._id; setIdCompte(id); setIdDestinataire(id); setIdContact(id); OuvrirMessagePage(id); }}>	
 				<PopularityAccountCard api={api} isOnline={isOnline}/>
 			</div>
 			
