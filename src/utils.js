@@ -6,7 +6,7 @@ import { theme } from "./theme";
 
 import { 
 	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, 
-	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
+	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, SvgMessage01, SvgMessage2, SvgMessage3, SvgMessage4, SvgMessage10, SvgMessage11, SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
 } from "./Svg/Svg";
 	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -3270,7 +3270,8 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
 				</div> </>)}
 				
-				<div className="display-flex-nowrap"> <div className="a"> <p onClick={OuvrirMessagePage}>Message</p> </div> </div>
+				<div className="display-flex-nowrap"> <div className="a"> <p onClick={OuvrirMessagePage}>
+				a<SvgMessage/> b<SvgMessage01/> c<SvgMessage2/> d<SvgMessage3/> e<SvgMessage4/> f<SvgMessage10/> g<SvgMessage11/> h Message</p> </div> </div>
             </div>
             {/* close */} 
           </div>
@@ -3610,7 +3611,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			
 			
 			<div className="between m-25-15">
-				<div className="A mt-mb-5">
+				<div className="A mt-mb-10">
 					<div className="a flex">
 					  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
 					  <pre className="pre c-a1a1aa ml-5px fs-15px" onClick={voirProfil}>{nameAccount}</pre>
@@ -3618,7 +3619,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 					<button className="b btn-jaune mt-10" onClick={OuvrirMessagePage}>Envoyer un message</button>
 				</div>
 			  
-				<div className="B flex mt-mb-5"> 
+				<div className="B flex mt-mb-10"> 
 					<button className="btn-transparent c-fff m-0-15" onClick={publierVideoPage}>Publier votre vidéo</button>
 					<img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> 
 				</div> 
