@@ -35454,10 +35454,9 @@ async function AvantMessagePage(idDestinataireget) {
 
 
 const SeeVideoTemplatePropsCommun = {
-  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
+  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo, OuvrirMessagePage: MessageFA2e,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
-  rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA,
-  profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
+  rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA, profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ReparerUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
   setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
 };
@@ -50760,6 +50759,7 @@ function rechargerPage() {
 			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecter} listVideo={listMesVideosFA} 
 			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} MenuBas={MenuBas} />
 
+		{/* SeeVideoFA */}
 		<SeeVideoTemplate 
 			{...SeeVideoTemplatePropsCommun}
 			visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} />

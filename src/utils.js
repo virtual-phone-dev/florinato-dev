@@ -3554,7 +3554,7 @@ export async function goFullScreen(mediaRef) {
  
 // SeeVideoTemplate
 export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY,
-	rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage, 
+	rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage, OuvrirMessagePage,
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, setIdCompte, setUrlVideo,
 	ModifierTitrePageFA, ModifierUrlPage, ReparerUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
 	}) {
@@ -3610,12 +3610,15 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			
 			
 			<div className="between m-25-15">
-				<div className="flex">
-				  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
-				  <pre className="pre c-a1a1aa ml-5px fs-15px" onClick={voirProfil}>{nameAccount}</pre>
+				<div className="A">
+					<div className="a flex">
+					  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
+					  <pre className="pre c-a1a1aa ml-5px fs-15px" onClick={voirProfil}>{nameAccount}</pre>
+					</div>
+					<button className="b btn-bleu" onClick={OuvrirMessagePage}>Envoyer un message</button>
 				</div>
 			  
-				<div className="flex"> 
+				<div className="B flex"> 
 					<button className="btn-transparent c-fff m-0-15" onClick={publierVideoPage}>Publier votre vidéo</button>
 					<img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> 
 				</div> 
