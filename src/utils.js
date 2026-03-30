@@ -3615,7 +3615,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 					  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
 					  <pre className="pre c-a1a1aa ml-5px fs-15px" onClick={voirProfil}>{nameAccount}</pre>
 					</div>
-					<button className="b btn-jaune-n" onClick={OuvrirMessagePage}>Envoyer un message</button>
+					<button className="b btn-jaune" onClick={OuvrirMessagePage}>Envoyer un message</button>
 				</div>
 			  
 				<div className="B flex"> 
