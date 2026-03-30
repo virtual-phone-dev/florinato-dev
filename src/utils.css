@@ -96,16 +96,6 @@
 
 .btn-jaune {
   cursor: pointer;
-  background: #facc15;
-  color: #1a1a1a;
-  border: 1px solid #facc15;
-  border-radius: 10px;
-  padding: 4px 13px;
-  font-size: 15px;
-}
-
-.btn-jaune-n {
-  cursor: pointer;
   background: #ffff00;
   color: #000;
   border: 1px solid #ffff00;
