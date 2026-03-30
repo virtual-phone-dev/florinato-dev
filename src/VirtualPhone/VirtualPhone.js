@@ -35285,6 +35285,11 @@ async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
 
 
 
+  const [messageFA2e, setMessageFA2e] = useState(false); // 2e page pour envoyer un message personnel - FA 
+  async function MessageFA2e() { setMessageFA2e(true); }
+  async function CloseMessageFA2e() { setMessageFA2e(false); setBlocPartagerContactFA(false); }
+  
+  
 // logique pour envoyer un message privé sur florinato
 const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
 
@@ -35445,29 +35450,8 @@ async function AvantMessagePage(idDestinataireget) {
     ));
 
   setIdConversation(conversation ? conversation._id : null);
-  //setMessageFA(true);
-  console.log("idDestinataire aab", idDestinataireget);
-  console.log("idCompte", idCompte);
 } 
 
-/*
-async function OuvrirMessagePage66ProfilTemplate() {
-  //setIdDestinataire(idDestinataireget); 
-  //setIdCompte(idDestinataireget);
-  
-  const conversation = toutConversations.find(api => // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
-    api.type === "30" && (
-      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire) ||
-      (api.idAccount === idDestinataire && api.idOther === idPersonConnectedFA)
-    )
-  );
-
-  setIdConversation(conversation ? conversation._id : null);
-  //setMessageFA(true);
-  console.log("idDestinataire aa5", idDestinataire);
-} */
-
-//console.log("idDestinataire aa6", idDestinataire);
 
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo,
@@ -35480,7 +35464,7 @@ const SeeVideoTemplatePropsCommun = {
 
 
 const profilPropsCommun = {
-	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, OuvrirMessagePage: MessageFA,
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, OuvrirMessagePage: MessageFA2e,
 	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
 	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
 };
@@ -35491,6 +35475,14 @@ const ComptesRecentsPropsCommun = {
 };
 
 const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessagePage66AnnoncesFA, };
+
+
+const MessagePropsCommun = {
+  profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA, PageRedirection66ChildApi66messageFA,
+  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA,
+  idCompte, destinataireOnline, Favorite66messageFA, PartagerContactPageFA, blocPartagerContact: blocPartagerContactFA,
+  onlineOther, badgeOther, nameOther, photoOther, isLoading66messageFA, BeginConversationFA, verifyConversation, writeMessage66messageFA, setWriteMessage66messageFA,
+};
 
 
 
@@ -50681,7 +50673,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2026</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0841</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50729,10 +50721,10 @@ function rechargerPage() {
 	  
 		
 		<VideosPageTemplate
-			visible={videosPageFA} fermer={CloseVideosPageFA} voirProfil={ProfilFA2e} 
-			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} AvantMessagePage={AvantMessagePage} video
+			visible={videosPageFA} fermer={CloseVideosPageFA} 
+			voirVideo={SeeVideoFA} OuvrirAnnoncesPage={AnnoncesPageFA} voirProfil={ProfilFA2e} AvantMessagePage={AvantMessagePage} video
 			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
-			gererScroll={scrollY} clicVideo={ClicVideoFAA} voirVideo={SeeVideoFA} OuvrirAnnoncesPage={AnnoncesPageFA} photo={photoFA}
+			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} gererScroll={scrollY} clicVideo={ClicVideoFAA} photo={photoFA}
 			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
   
   
@@ -50807,6 +50799,11 @@ function rechargerPage() {
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 	
 
+		<MessageTemplate 
+			{...MessagePropsCommun} 
+			visible={messageFA} fermer={CloseMessageFA} />
+			
+			
 	    <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} proprietaireCompte={false} />
@@ -50920,22 +50917,17 @@ function rechargerPage() {
 			{...SeeVideoTemplatePropsCommun}
 			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} />
 		
+
 		
 		<MessageTemplate 
-			visible={messageFA} fermer={CloseMessageFA} profilMap={profilMap}
-			gererScrollMessages={gererScrollMessages} voirProfil={ProfilFA2e} gererChangementMessage={gererChangementMessage} SendMessageFAA={SendMessageFAA}
-			PageRedirection66ChildApi66messageFA={PageRedirection66ChildApi66messageFA} 
-			data={infosCompteById[0]} data2={infosCompteById2[0]} dataMessagesFA={dataMessagesFA} idCompte={idCompte} destinataireOnline={destinataireOnline}
-			Favorite66messageFA={Favorite66messageFA} 
-			PartagerContactPageFA={PartagerContactPageFA} blocPartagerContact={blocPartagerContactFA}
-			onlineOther={onlineOther} badgeOther={badgeOther} nameOther={nameOther} photoOther={photoOther} 
-			isLoading66messageFA={isLoading66messageFA} BeginConversationFA={BeginConversationFA} verifyConversation={verifyConversation} 
-			writeMessage66messageFA={writeMessage66messageFA} setWriteMessage66messageFA={setWriteMessage66messageFA} />
-			
+			{...MessagePropsCommun} 
+			visible={messageFA2e} fermer={CloseMessageFA2e} />
 		
-		 <PopupDuBasTemplate 
+		<PopupDuBasTemplate 
 			visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
 			listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} OuvrirMessagePage={OuvrirMessagePage66PartagerContactPageFA} search/>
+
+
 
 
 		{/* choisir la video a ajouter à la photo - FA  */}
