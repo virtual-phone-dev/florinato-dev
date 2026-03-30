@@ -3610,7 +3610,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 			
 			
 			<div className="between m-25-15">
-				<div className="A">
+				<div className="A mt-mb-5">
 					<div className="a flex">
 					  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
 					  <pre className="pre c-a1a1aa ml-5px fs-15px" onClick={voirProfil}>{nameAccount}</pre>
@@ -3618,7 +3618,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 					<button className="b btn-jaune mt-10" onClick={OuvrirMessagePage}>Envoyer un message</button>
 				</div>
 			  
-				<div className="B flex"> 
+				<div className="B flex mt-mb-5"> 
 					<button className="btn-transparent c-fff m-0-15" onClick={publierVideoPage}>Publier votre vidéo</button>
 					<img className="photo-25px" src={photoCouvertureVideo} alt="" onClick={voirPhoto}/> 
 				</div> 
