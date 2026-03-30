@@ -75,6 +75,7 @@ export { default as SvgMoneyBag } from "./SvgMoneyBag";
 
 export { default as SvgMessage } from "./SvgMessage";
 export { default as SvgMessage01 } from "./SvgMessage01";
+export { default as SvgMessage2 } from "./SvgMessage2";
 export { default as SvgMessage3 } from "./SvgMessage3";
 export { default as SvgMessage4 } from "./SvgMessage4";
 export { default as SvgMessage10 } from "./SvgMessage10";
