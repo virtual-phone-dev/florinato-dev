@@ -3377,14 +3377,6 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
   const photo = profil?.photoProfile ?? photoBlanche;
   const nom = profil?.nameAccount ?? "";	
   
-  /* console.log("data", data);
-  console.log("idAnnonce", idAnnonce);
-  console.log("texte", texte);
-  console.log("clic", clic);
-  console.log("profil", profil);
-  console.log("photo", photo);
-  console.log("nom", nom); */
-  
   return (<>
 	<div className="page-blanche">
 		<div className="close flex p-20" onClick={fermer}>
@@ -3402,7 +3394,7 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
 			<pre className="pre fs-16 mb-15">{texte}</pre> 
 			<p className="fs-12px">{clic} clic</p>
 			
-			<button className="btn-bleu" onClick={OuvrirMessagePage}>Envoyer un message</button>
+			<button className="btn-bleu" onClick={() => OuvrirMessagePage(idProprietaireAnnonce)}>Envoyer un message</button>
 			<div className="btn-p-hr pt-15"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>
 		</div>
 		

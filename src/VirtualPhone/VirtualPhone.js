@@ -35255,22 +35255,6 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
 }
 
 
-async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
-  setIdDestinataire(idDestinataireget); 
-  setIdCompte(idDestinataireget);
-  
-  const conversation = toutConversations.find(api =>
-    api.type === "30" && (
-      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
-      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
-    ));
-
-  setIdConversation(conversation ? conversation._id : null);
-  setMessageFA(true);
-  console.log("idCompte", idCompte);
-}
-
-
 
   const [partagerContactPageFA, setPartagerContactPageFA] = useState(false); // partager un contact par message - FA
   async function PartagerContactPageFA() { setPartagerContactPageFA(true); }
@@ -35451,6 +35435,22 @@ async function AvantMessagePage(idDestinataireget) {
 
   setIdConversation(conversation ? conversation._id : null);
 } 
+
+
+
+async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
+  setIdDestinataire(idDestinataireget); setIdCompte(idDestinataireget);
+  
+  const conversation = toutConversations.find(api =>
+    api.type === "30" && (
+      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
+      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
+    ));
+
+  setIdConversation(conversation ? conversation._id : null);
+  setMessageFA(true);
+}
+
 
 
 const SeeVideoTemplatePropsCommun = {
@@ -50672,7 +50672,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2245</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2313</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50728,12 +50728,14 @@ function rechargerPage() {
   
   
 		<AnnoncesTemplate 
-			{...AnnoncesPropsCommun} visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} 
+			{...AnnoncesPropsCommun} 
+			visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} 
 			data={dataAnnoncesFA} AfficherAnnoncePage={AfficherAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 		
 		<AfficherAnnonceTemplate 
+			{...AnnoncesPropsCommun} 
 			visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap}
-			data={dataAnnonce} ModifierAnnoncePageFA={ModifierAnnoncePageFA} OuvrirMessagePage={MessageFA} gererScroll={gererScrollAnnonces} />
+			data={dataAnnonce} ModifierAnnoncePageFA={ModifierAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 			
 			
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
