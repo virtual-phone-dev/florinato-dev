@@ -51,7 +51,7 @@
 }
 
 .flex { display:flex; align-items:center; }
-.flex-no { display:flex; flex-wrap:nowrap; }
+.flex-no { display:flex; flex-wrap:nowrap; align-items:center; }
 .tc { text-align: center; } /* text-center */
 
 
