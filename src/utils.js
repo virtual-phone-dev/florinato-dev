@@ -3367,7 +3367,7 @@ export function AnnoncesTemplate({ visible, fermer, data=[], profilMap={}, setId
 </>)}
 
 
-export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}, OuvrirMessagePage, ModifierAnnoncePageFA }) {
+export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}, OuvrirMessagePage, ModifierAnnoncePageFA, idCompteConnecter }) {
   if (!visible) return null;
   
   // 🔹 infos de l'annonce
@@ -3376,7 +3376,11 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
   const profil = idProprietaireAnnonce ? profilMap?.[idProprietaireAnnonce] : null; // obtenir les informations du profil
   const photo = profil?.photoProfile ?? photoBlanche;
   const nom = profil?.nameAccount ?? "";	
+  const proprietaire = idProprietaireAnnonce === idCompteConnecter;
   
+  console.log("idProprietaireAnnonce", idProprietaireAnnonce);
+  console.log("idCompteConnecter", idCompteConnecter);
+
   return (<>
 	<div className="page-blanche">
 		<div className="close flex p-20" onClick={fermer}>
@@ -3393,9 +3397,10 @@ export function AfficherAnnonceTemplate({ visible, fermer, data={}, profilMap={}
 		<div className="p-20">
 			<pre className="pre fs-16 mb-15">{texte}</pre> 
 			<p className="fs-12px">{clic} clic</p>
-			
 			<button className="btn-bleu" onClick={() => OuvrirMessagePage(idProprietaireAnnonce)}>Envoyer un message</button>
-			<div className="btn-p-hr pt-15"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>
+			
+			{proprietaire && (
+			<div className="btn-p-hr pt-15"> <button onClick={ModifierAnnoncePageFA}> <p>Modifier l'annonce</p> <hr/> </button> </div>)}
 		</div>
 		
 	</div>
@@ -3571,7 +3576,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	
 	
 	//const profile = data.find(api => api._id === idCompte) || {}; // on récupère le bon profil (personne connecté OU un autre utilisateur)	
-	const { nameAccount="", photoProfile=photoBlanche } = data; // infos du profil
+	const { _id: idDuCompte, nameAccount="", photoProfile=photoBlanche } = data; // infos du profil
 	
 	return (<>
       {/* <div className="seeVideoFA" onScroll={gererScroll}> */}
@@ -3608,7 +3613,7 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 					  <div className="photo-25px"> <img src={photoProfile} alt={nameAccount} onClick={voirProfil}/> </div>
 					  <pre className="pre c-a1a1aa ml-5px fs-15px" onClick={voirProfil}>{nameAccount}</pre>
 					</div>
-					<button className="b btn-jaune mt-10" onClick={OuvrirMessagePage}>Envoyer un message</button>
+					<button className="b btn-jaune mt-10" onClick={() => OuvrirMessagePage(idDuCompte)}>Envoyer un message</button>
 				</div>
 			  
 				<div className="B flex mt-mb-10"> 

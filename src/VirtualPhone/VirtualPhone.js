@@ -35424,8 +35424,7 @@ Si tu t’arrêtes 1,5 s → écriture:fin */
 
 
 async function AvantMessagePage(idDestinataireget) {
-  setIdDestinataire(idDestinataireget); 
-  setIdCompte(idDestinataireget);
+  setIdDestinataire(idDestinataireget); setIdCompte(idDestinataireget);
   
   const conversation = toutConversations.find(api => // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
     api.type === "30" && (
@@ -35438,7 +35437,7 @@ async function AvantMessagePage(idDestinataireget) {
 
 
 
-async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
+async function OuvrirMessageFA2e(idDestinataireget) {
   setIdDestinataire(idDestinataireget); setIdCompte(idDestinataireget);
   
   const conversation = toutConversations.find(api =>
@@ -35448,13 +35447,14 @@ async function OuvrirMessagePage66AnnoncesFA(idDestinataireget) {
     ));
 
   setIdConversation(conversation ? conversation._id : null);
-  setMessageFA(true);
+  setMessageFA2e(true);
 }
 
 
 
+
 const SeeVideoTemplatePropsCommun = {
-  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo, OuvrirMessagePage: MessageFA2e,
+  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo, OuvrirMessagePage: OuvrirMessageFA2e,
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
   rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA, profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ReparerUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
@@ -35473,7 +35473,7 @@ const ComptesRecentsPropsCommun = {
   OuvrirMessagePage: OuvrirMessagePage66ComptesEnLigne, 
 };
 
-const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessagePage66AnnoncesFA, };
+const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
 
 
 const MessagePropsCommun = {
@@ -50672,7 +50672,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2313</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0716</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50734,10 +50734,11 @@ function rechargerPage() {
 		
 		<AfficherAnnonceTemplate 
 			{...AnnoncesPropsCommun} 
-			visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap}
+			visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap} idCompteConnecter={idCompteConnecter}
 			data={dataAnnonce} ModifierAnnoncePageFA={ModifierAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 			
-			
+		
+	
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
 
 
