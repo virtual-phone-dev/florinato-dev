@@ -35409,9 +35409,9 @@ const SeeVideoTemplatePropsCommun = {
 
 
 const profilPropsCommun = {
-	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, idCompteConnecter, OuvrirMessagePage: MessageFA2e, message,
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, idCompteConnecter, OuvrirMessagePage: MessageFA2e,
 	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
-	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
+	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA, messagebtn: true
 };
 
 const ComptesRecentsPropsCommun = {
@@ -50608,7 +50608,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1751</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2045</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50694,7 +50694,7 @@ function rechargerPage() {
 		{/* compte connecté - FA */}
 		<ProfilTemplate  
 			{...profilPropsCommun}
-			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} message={false}
+			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} messagebtn={false}
 			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecter} listVideo={listMesVideosFA} 
 			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} MenuBas={MenuBas} />
 

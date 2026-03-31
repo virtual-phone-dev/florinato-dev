@@ -3236,7 +3236,7 @@ export function MesComptesTemplate({ data=[], dataCompteConnecté=[], listMesCom
 </>)}
 
 
-export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter, OuvrirMessagePage, message,
+export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter, OuvrirMessagePage, messagebtn,
 	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[], setIdPost, setUrlVideo, setIdProprietairePost, idCompte, idCompteConnecter,
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	}) {
@@ -3266,8 +3266,8 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
 				</div>)}
 				
-				{message && (
-				<div className="flex-no"> <p onClick={OuvrirMessagePage}><SvgMessage/>Message</p> </div>)}
+				{messagebtn && (
+				<div className="flex-no"> <p onClick={OuvrirMessagePage}><SvgMessage/> Message</p> </div>)}
             </div>
             {/* close */} 
           </div>
