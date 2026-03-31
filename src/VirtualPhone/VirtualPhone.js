@@ -35198,7 +35198,7 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
 
   const [messageFA2e, setMessageFA2e] = useState(false); // 2e page pour envoyer un message personnel - FA 
   async function MessageFA2e() { setMessageFA2e(true); }
-  async function CloseMessageFA2e() { setMessageFA2e(false); setBlocPartagerContactFA(false); }
+  async function CloseMessageFA2e() { setMessageFA2e(false); setBlocPartagerContactFA(false); setIdConversation(null); }
   
   
 // logique pour envoyer un message privé sur florinato
@@ -35415,7 +35415,7 @@ const SeeVideoTemplatePropsCommun = {
 
 
 const profilPropsCommun = {
-	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, OuvrirMessagePage: MessageFA2e,
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, OuvrirMessagePage: MessageFA2e, message,
 	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
 	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
 };
@@ -50624,7 +50624,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1205</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1441</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
