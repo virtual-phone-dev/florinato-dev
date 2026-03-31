@@ -35400,7 +35400,7 @@ async function OuvrirMessageFA2e(idDestinataireget) {
 
 
 const SeeVideoTemplatePropsCommun = {
-  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo, OuvrirMessagePage: OuvrirMessageFA2e,
+  voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo, OuvrirMessagePage: OuvrirMessageFA2e, 
   dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, idCompteConnecter, listVideoFA,
   rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA, profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ReparerUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
@@ -35409,8 +35409,8 @@ const SeeVideoTemplatePropsCommun = {
 
 
 const profilPropsCommun = {
-	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, idCompteConnecter, OuvrirMessagePage: MessageFA2e,
-	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, idCompteConnecter, 
+	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost, OuvrirMessagePage: MessageFA2e, OuvrirInscriptionPage,
 	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA, messagebtn: true
 };
 
@@ -35430,6 +35430,154 @@ const MessagePropsCommun = {
 };
 
 
+
+const [inscriptionPageAA, setInscriptionPageAA] = useState(false); // inscription Page AA - on affiche la page qui permet a l'utilisateur de s'inscrire - AA
+async function InscriptionPageAA() {
+    setInscriptionPageAA(true);
+    setConnexionPageAA(false);
+}
+  
+async function CloseInscriptionPageAA() { 
+	setTelephoneVirtuel(true); 
+	setInscriptionPageAA(false); 
+}
+
+
+
+async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA(false); }
+
+
+
+
+  // on affiche son compte - FA
+  const [profilFA, setProfilFA] = useState(false); 
+  async function ProfilFA() { setProfilFA(true); setFlorinatoApp(false); }
+  async function CloseProfilFA() { setFlorinatoApp(true); setProfilFA(false); }
+  
+  
+  const [tonProfilPourNonConnecter, setTonProfilPourNonConnecter] = useState(false); 
+  //async function ProfilFA0e() { setTonProfilPourNonConnecter(true); }
+  async function CloseTonProfilPourNonConnecter() { setVideosPageFA(true); setTonProfilPourNonConnecter(false); }
+  
+  
+  const [profilFA2e, setProfilFA2e] = useState(false); 
+  async function ProfilFA2e() { setProfilFA2e(true); }
+  async function CloseProfilFA2e() { setProfilFA2e(false); }
+  
+  
+  const [profilFA3e, setProfilFA3e] = useState(false); 
+  async function ProfilFA3e() { setProfilFA3e(true); }
+  async function CloseProfilFA3e() { setProfilFA3e(false); }
+  
+  
+  const [seePhotoFA, setSeePhotoFA] = useState(false); //voir la photo 
+  async function SeePhotoFA() { setSeePhotoFA(true); }
+  async function CloseSeePhotoFA() { setSeePhotoFA(false); }
+  
+  
+  const [seeVideoFA, setSeeVideoFA] = useState(false); //voir la video
+  async function SeeVideoFA() { setSeeVideoFA(true); setVideosPageFA(false); }
+  async function CloseSeeVideoFA() { setVideosPageFA(true); setSeeVideoFA(false); }
+  
+
+  const [seeVideoFAPourNonConnecter, setSeeVideoFAPourNonConnecter] = useState(false); 
+  async function SeeVideoFAPourNonConnecter() { setSeeVideoFAPourNonConnecter(true); }
+  async function CloseSeeVideoFAPourNonConnecter() { setSeeVideoFAPourNonConnecter(false); }
+  
+  
+  const [seeVideoFA2e, setSeeVideoFA2e] = useState(false); 
+  async function SeeVideoFA2e() { setSeeVideoFA2e(true); }
+  async function CloseSeeVideoFA2e() { setSeeVideoFA2e(false); }
+  
+  
+  const [seeVideoFA3e, setSeeVideoFA3e] = useState(false); 
+  async function SeeVideoFA3e() { setSeeVideoFA3e(true); }
+  async function CloseSeeVideoFA3e() { setSeeVideoFA3e(false); }
+  
+
+  const [seePhotoFAreq, setSeePhotoFAreq] = useState(false); 
+  async function SeePhotoFAreq() { setSeePhotoFAreq(true); } //voir la photo (lors de la requete) 
+  async function CloseSeePhotoFAreq() { setSeePhotoFAreq(false); }
+  
+
+  const [seeVideoFAreq, setSeeVideoFAreq] = useState(false); 
+  async function SeeVideoFAreq() { setSeeVideoFAreq(true); } //voir la video (lors de la requete)
+  async function CloseSeeVideoFAreq() { setSeeVideoFAreq(false); }
+
+  
+  const [seePhotoOther, setSeePhotoOther] = useState(false); 
+  async function SeePhotoOther() { setSeePhotoOther(true); } //afficher la photo de l'autre 
+  async function CloseSeePhotoOther() { setSeePhotoOther(false); }
+
+
+  //selected2FA (selectionner photo, video, texte,.. )
+  const [selected2FA, setSelected2FA] = useState(false);
+  async function CloseSelected2FA() { setSelected2FA(false); }
+  async function Annuler66selected2FA() { setSelected2FA(false); } 
+
+
+
+
+  // menuFA
+  const [menuFA, setMenuFA] = useState(false); 
+  async function MenuFA() { setMenuFA(true); }
+  async function CloseMenuFA() { setMenuFA(false); }
+
+
+  // gestionnaireFA - listes des comptes ou vous avez été ajoutés
+  const [gestionnaireFA, setGestionnaireFA] = useState(false); 
+  async function GestionnaireFA() { setGestionnaireFA(true); }
+  async function CloseGestionnaireFA() { setGestionnaireFA(false); }
+
+  
+  // gestionDuCompteFA - listes des comptes qui pourront publier sur votre compte
+  const [gestionDuCompteFA, setGestionDuCompteFA] = useState(false); 
+  async function GestionDuCompteFA() { setGestionDuCompteFA(true); }
+  async function CloseGestionDuCompteFA() { setGestionDuCompteFA(false); }
+  
+  // PopupDuBas - Ajouter un compte qui pourra publier sur votre compte
+  const [publierSurVotreCompteFApb, setPublierSurVotreCompteFApb] = useState(false); 
+  async function OuvrirPublierSurVotreCompteFApb() { setPublierSurVotreCompteFApb(true); }
+  async function ClosePublierSurVotreCompteFApb() { setPublierSurVotreCompteFApb(false); }
+  
+  // confirmation popup - confirmer l'ajout du compte qui pourra publier sur votre compte
+  const [publierSurVotreCompteFAconfp, setPublierSurVotreCompteFAconfp] = useState(false); 
+  async function PublierSurVotreCompteFAconfp() { setPublierSurVotreCompteFAconfp(true); }
+  async function ClosePublierSurVotreCompteFAconfp() { setPublierSurVotreCompteFAconfp(false); }
+  
+  
+  // MettreEnAvantCompteFA
+  const [mettreEnAvantCompteFA, setMettreEnAvantCompteFA] = useState(false); 
+  async function MettreEnAvantCompteFA() { setMettreEnAvantCompteFA(true); }
+  async function CloseMettreEnAvantCompteFA() { setMettreEnAvantCompteFA(false); }
+  
+  // PopupDuBas - Selectionner, Ajouter un compte qui sera mis en avant
+  const [mettreEnAvantFApb, setMettreEnAvantFApb] = useState(false); 
+  async function OuvrirMettreEnAvantFApb() { setMettreEnAvantFApb(true); }
+  async function CloseMettreEnAvantFApb() { setMettreEnAvantFApb(false); }
+  
+  // confirmation popup - confirmer l'ajout du compte qui sera mis en avant sur Florinato
+  const [mettreEnAvantFAconfp, setMettreEnAvantFAconfp] = useState(false); 
+  async function MettreEnAvantFAconfp() { setMettreEnAvantFAconfp(true); }
+  async function CloseMettreEnAvantFAconfp() { setMettreEnAvantFAconfp(false); }
+  
+  
+    // page - listes des admins florinato
+  const [adminFlorinato, setAdminFlorinato] = useState(false); 
+  async function AdminFlorinato() { setAdminFlorinato(true); }
+  async function CloseAdminFlorinato() { setAdminFlorinato(false); }
+  
+  // PopupDuBas - Selectionner, Ajouter un compte qui sera admin Florinato
+  const [adminFlorinatopb, setAdminFlorinatopb] = useState(false); 
+  async function OuvrirAdminFlorinatopb() { setAdminFlorinatopb(true); }
+  async function CloseAdminFlorinatopb() { setAdminFlorinatopb(false); }
+  
+  // confirmation popup - confirmer l'ajout du compte qui sera admin Florinato
+  const [adminFlorinatoconfp, setAdminFlorinatoconfp] = useState(false); 
+  async function OuvrirAdminFlorinatoconfp() { setAdminFlorinatoconfp(true); }
+  async function CloseAdminFlorinatoconfp() { setAdminFlorinatoconfp(false); }
+  
+  
 
 
 // url pour tomber directement sur la page
@@ -38745,21 +38893,7 @@ async function CloseInfosBalanceAlraniBusinessAA() { //fermer
   }
 
 
-  // inscription Page - AA
-  // inscription Page - AA
-  // on affiche la page qui permet a l'utilisateur de s'inscrire - AA
-  const [inscriptionPageAA, setInscriptionPageAA] = useState(false);
-  async function InscriptionPageAA() {
-    setInscriptionPageAA(true);
-    setConnexionPageAA(false);
-  }
   
-async function CloseInscriptionPageAA() { 
-	setTelephoneVirtuel(true); 
-	setInscriptionPageAA(false); 
-}
-
-
   // connexion Page - AA
   // connexion Page - AA
   // on affiche la page qui permet a l'utilisateur de se connecter - AA
@@ -40477,140 +40611,6 @@ async function CloseConnexionPageAA() {
   }
   
   
-  // menuFA
-  const [menuFA, setMenuFA] = useState(false); 
-  async function MenuFA() { setMenuFA(true); }
-  async function CloseMenuFA() { setMenuFA(false); }
-
-
-  // gestionnaireFA - listes des comptes ou vous avez été ajoutés
-  const [gestionnaireFA, setGestionnaireFA] = useState(false); 
-  async function GestionnaireFA() { setGestionnaireFA(true); }
-  async function CloseGestionnaireFA() { setGestionnaireFA(false); }
-
-  
-  // gestionDuCompteFA - listes des comptes qui pourront publier sur votre compte
-  const [gestionDuCompteFA, setGestionDuCompteFA] = useState(false); 
-  async function GestionDuCompteFA() { setGestionDuCompteFA(true); }
-  async function CloseGestionDuCompteFA() { setGestionDuCompteFA(false); }
-  
-  // PopupDuBas - Ajouter un compte qui pourra publier sur votre compte
-  const [publierSurVotreCompteFApb, setPublierSurVotreCompteFApb] = useState(false); 
-  async function OuvrirPublierSurVotreCompteFApb() { setPublierSurVotreCompteFApb(true); }
-  async function ClosePublierSurVotreCompteFApb() { setPublierSurVotreCompteFApb(false); }
-  
-  // confirmation popup - confirmer l'ajout du compte qui pourra publier sur votre compte
-  const [publierSurVotreCompteFAconfp, setPublierSurVotreCompteFAconfp] = useState(false); 
-  async function PublierSurVotreCompteFAconfp() { setPublierSurVotreCompteFAconfp(true); }
-  async function ClosePublierSurVotreCompteFAconfp() { setPublierSurVotreCompteFAconfp(false); }
-  
-  
-  // MettreEnAvantCompteFA
-  const [mettreEnAvantCompteFA, setMettreEnAvantCompteFA] = useState(false); 
-  async function MettreEnAvantCompteFA() { setMettreEnAvantCompteFA(true); }
-  async function CloseMettreEnAvantCompteFA() { setMettreEnAvantCompteFA(false); }
-  
-  // PopupDuBas - Selectionner, Ajouter un compte qui sera mis en avant
-  const [mettreEnAvantFApb, setMettreEnAvantFApb] = useState(false); 
-  async function OuvrirMettreEnAvantFApb() { setMettreEnAvantFApb(true); }
-  async function CloseMettreEnAvantFApb() { setMettreEnAvantFApb(false); }
-  
-  // confirmation popup - confirmer l'ajout du compte qui sera mis en avant sur Florinato
-  const [mettreEnAvantFAconfp, setMettreEnAvantFAconfp] = useState(false); 
-  async function MettreEnAvantFAconfp() { setMettreEnAvantFAconfp(true); }
-  async function CloseMettreEnAvantFAconfp() { setMettreEnAvantFAconfp(false); }
-  
-  
-    // page - listes des admins florinato
-  const [adminFlorinato, setAdminFlorinato] = useState(false); 
-  async function AdminFlorinato() { setAdminFlorinato(true); }
-  async function CloseAdminFlorinato() { setAdminFlorinato(false); }
-  
-  // PopupDuBas - Selectionner, Ajouter un compte qui sera admin Florinato
-  const [adminFlorinatopb, setAdminFlorinatopb] = useState(false); 
-  async function OuvrirAdminFlorinatopb() { setAdminFlorinatopb(true); }
-  async function CloseAdminFlorinatopb() { setAdminFlorinatopb(false); }
-  
-  // confirmation popup - confirmer l'ajout du compte qui sera admin Florinato
-  const [adminFlorinatoconfp, setAdminFlorinatoconfp] = useState(false); 
-  async function OuvrirAdminFlorinatoconfp() { setAdminFlorinatoconfp(true); }
-  async function CloseAdminFlorinatoconfp() { setAdminFlorinatoconfp(false); }
-  
-  
-  
-  // on affiche son compte - FA
-  const [profilFA, setProfilFA] = useState(false); 
-  async function ProfilFA() {
-    setProfilFA(true);
-	setFlorinatoApp(false);
-	//if (idPersonConnectedFA) { localStorage.setItem("idAccountChef", idPersonConnectedFA); }
-	//if (getidGroup) { localStorage.setItem("idGroupChef", getidGroup); }
-  }
-  
-  async function CloseProfilFA() { setFlorinatoApp(true); setProfilFA(false); }
-  
-  
-  const [tonProfilPourNonConnecter, setTonProfilPourNonConnecter] = useState(false); 
-  //async function ProfilFA0e() { setTonProfilPourNonConnecter(true); }
-  async function CloseTonProfilPourNonConnecter() { setVideosPageFA(true); setTonProfilPourNonConnecter(false); }
-  
-  
-  const [profilFA2e, setProfilFA2e] = useState(false); 
-  async function ProfilFA2e() { setProfilFA2e(true); }
-  async function CloseProfilFA2e() { setProfilFA2e(false); }
-  
-  
-  const [profilFA3e, setProfilFA3e] = useState(false); 
-  async function ProfilFA3e() { setProfilFA3e(true); }
-  async function CloseProfilFA3e() { setProfilFA3e(false); }
-  
-  
-  const [seePhotoFA, setSeePhotoFA] = useState(false); //voir la photo 
-  async function SeePhotoFA() { setSeePhotoFA(true); }
-  async function CloseSeePhotoFA() { setSeePhotoFA(false); }
-  
-  
-  const [seeVideoFA, setSeeVideoFA] = useState(false); //voir la video
-  async function SeeVideoFA() { setSeeVideoFA(true); setVideosPageFA(false); }
-  async function CloseSeeVideoFA() { setVideosPageFA(true); setSeeVideoFA(false); }
-  
-
-  const [seeVideoFAPourNonConnecter, setSeeVideoFAPourNonConnecter] = useState(false); 
-  async function SeeVideoFAPourNonConnecter() { setSeeVideoFAPourNonConnecter(true); }
-  async function CloseSeeVideoFAPourNonConnecter() { setSeeVideoFAPourNonConnecter(false); }
-  
-  
-  const [seeVideoFA2e, setSeeVideoFA2e] = useState(false); 
-  async function SeeVideoFA2e() { setSeeVideoFA2e(true); }
-  async function CloseSeeVideoFA2e() { setSeeVideoFA2e(false); }
-  
-  
-  const [seeVideoFA3e, setSeeVideoFA3e] = useState(false); 
-  async function SeeVideoFA3e() { setSeeVideoFA3e(true); }
-  async function CloseSeeVideoFA3e() { setSeeVideoFA3e(false); }
-  
-
-  const [seePhotoFAreq, setSeePhotoFAreq] = useState(false); 
-  async function SeePhotoFAreq() { setSeePhotoFAreq(true); } //voir la photo (lors de la requete) 
-  async function CloseSeePhotoFAreq() { setSeePhotoFAreq(false); }
-  
-
-  const [seeVideoFAreq, setSeeVideoFAreq] = useState(false); 
-  async function SeeVideoFAreq() { setSeeVideoFAreq(true); } //voir la video (lors de la requete)
-  async function CloseSeeVideoFAreq() { setSeeVideoFAreq(false); }
-
-  
-  const [seePhotoOther, setSeePhotoOther] = useState(false); 
-  async function SeePhotoOther() { setSeePhotoOther(true); } //afficher la photo de l'autre 
-  async function CloseSeePhotoOther() { setSeePhotoOther(false); }
-
-
-  //selected2FA (selectionner photo, video, texte,.. )
-  const [selected2FA, setSelected2FA] = useState(false);
-  async function CloseSelected2FA() { setSelected2FA(false); }
-  async function Annuler66selected2FA() { setSelected2FA(false); } 
-
-
   // PageRedirection 66ChildApi66profilFA
   /* async function PageRedirection66ChildApi66profilFA() {
 	  
@@ -50608,7 +50608,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2045</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2158</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>

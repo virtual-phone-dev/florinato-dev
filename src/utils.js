@@ -3236,7 +3236,7 @@ export function MesComptesTemplate({ data=[], dataCompteConnecté=[], listMesCom
 </>)}
 
 
-export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter, OuvrirMessagePage, messagebtn,
+export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter, OuvrirMessagePage, OuvrirInscriptionPage, messagebtn,
 	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[], setIdPost, setUrlVideo, setIdProprietairePost, idCompte, idCompteConnecter,
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	}) {
@@ -3282,7 +3282,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
         </div>
         {/* block-un */}
 		
-		{!idCompteConnecter && (<div className="tc"> <button className="btn-bleu">Créer un compte</button> </div>)}
+		{!idCompteConnecter && (<div className="tc"> <button className="btn-bleu" onClick={OuvrirInscriptionPage}>Créer un compte</button> </div>)}
 			  
 			<VideoSearchBlock 
 				data={dataVideos} dataOverflow={dataOverflow} listVideo={listVideo} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
