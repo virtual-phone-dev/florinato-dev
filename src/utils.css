@@ -50,7 +50,8 @@
   align-items: center;
 }
 
-.flex { display: flex; }
+.flex { display:flex; align-items:center; }
+.flex-no { display:flex; align-items:center; flex-wrap:nowrap; }
 .tc { text-align: center; } /* text-center */
 
 

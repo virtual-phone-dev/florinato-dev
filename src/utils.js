@@ -3236,7 +3236,7 @@ export function MesComptesTemplate({ data=[], dataCompteConnecté=[], listMesCom
 </>)}
 
 
-export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter, OuvrirMessagePage,
+export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter, OuvrirMessagePage, message,
 	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[], setIdPost, setUrlVideo, setIdProprietairePost, idCompte,
 	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
 	}) {
@@ -3244,10 +3244,10 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
     if (!visible) return null;
     
 
-  // 🔹 infos du profil
-  const { nameAccount="", photoProfile=photoBlanche, popularity, } = data;
+    // 🔹 infos du profil
+    const { nameAccount="", photoProfile=photoBlanche, popularity, } = data;
   
-  return (<>
+    return (<>
         <div className="profilFA" onScroll={(e) => { gererScroll(e); gererScrollVisites(e); }}>
           <div className="head">
             <div className="close">
@@ -3257,16 +3257,17 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 				</div>
 				{/* block-un */}
 
-				{connecter && (<>
+				{connecter && (
 				<div className="display-flex-nowrap"> 
 				  <div className="a" onClick={MenuBas}> <SvgMenu/> </div> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
 				  
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
-				</div> </>)}
+				</div>)}
 				
-				<div className="display-flex-nowrap"> <div className="a"> <p onClick={OuvrirMessagePage}><SvgMessage/> Message</p> </div> </div>
+				{message && (
+				<div className="flex-no"> <p onClick={OuvrirMessagePage}><SvgMessage/>Message</p> </div)}
             </div>
             {/* close */} 
           </div>
