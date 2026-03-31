@@ -35423,9 +35423,9 @@ const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
 
 
 const MessagePropsCommun = {
-  profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA, PageRedirection66ChildApi66messageFA,
+  profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA,
   data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA,
-  idCompte, destinataireOnline, Favorite66messageFA, PartagerContactPageFA, blocPartagerContact: blocPartagerContactFA,
+  idCompte, idCompteConnecter, destinataireOnline, Favorite66messageFA, PartagerContactPageFA, blocPartagerContact: blocPartagerContactFA,
   onlineOther, badgeOther, nameOther, photoOther, isLoading66messageFA, BeginConversationFA, verifyConversation, writeMessage66messageFA, setWriteMessage66messageFA,
 };
 
@@ -40870,16 +40870,6 @@ async function CloseConnexionPageAA() {
   }
   //DebuterJeuxFA
 
-
-  //PageRedirection 66ChildApi66messageFA
-  async function PageRedirection66ChildApi66messageFA() {
-    //const selected = localStorage.getItem("GoToselectedFA"); //selectionner le message
-    //if (selected === "1") { setSelectedFA(true) }
-    
-    //const seePhoto = localStorage.getItem("GoToseePhotoFA"); //voir la photo
-    //if (seePhoto === "1") { setSeePhotoFA(true) }
-  }
-	
 
 
 
@@ -50618,7 +50608,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1652</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1751</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>

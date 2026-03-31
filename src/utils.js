@@ -3018,9 +3018,9 @@ export function MenuPopupTemplate({ visible, fermer }) {
 //MenuPopup
 
 
-export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, dataMessagesFA, profilMap, idCompte,
+export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, dataMessagesFA, profilMap, idCompte, idCompteConnecter,
 	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA, verifyConversation,
-	writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, PageRedirection66ChildApi66messageFA
+	writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, 
 	}) {
 	if (!visible) return null;
 	
@@ -3062,9 +3062,9 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
             {/* ici c'est pour mettre l'espacement entre le navbar top et les donnees de l'api */}
             <div className="espacement-navbar-top-et-donnees-api"></div>
 
-            <div className="api" onClick={PageRedirection66ChildApi66messageFA}>
+            <div className="api">
             {dataMessagesFA.map((api) => (
-              <ChildApi66messageFA api={api} profilMap={profilMap} />
+              <ChildApi66messageFA api={api} profilMap={profilMap} idCompteConnecter={idCompteConnecter} />
             ))}
             </div>
 
@@ -3092,13 +3092,13 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 
 //on affiche les messages
-export function ChildApi66messageFA({ api, profilMap }) { 
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) { 
+  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const [checked, setChecked] = useState(false);
   async function Checked() {
     setChecked(!checked);
 
-    const photo = api.urlPhoto;
+    /*const photo = api.urlPhoto;
     if(photo) { 
       localStorage.setItem("urlPhoto", photo); 
       localStorage.setItem("urlPhotoreq", photo); 
@@ -3108,7 +3108,7 @@ export function ChildApi66messageFA({ api, profilMap }) {
     if(video) { 
       localStorage.setItem("urlVideo", video); 
       localStorage.setItem("urlVideoreq", video); 
-    }
+    }*/
   }
 
 
@@ -3139,7 +3139,7 @@ export function ChildApi66messageFA({ api, profilMap }) {
     localStorage.setItem("GoToselectedFA", zero);
   }
 
-  const monMessage = api.idAccount === idPersonConnectedFA;  //si idAccount egale idPersonConnectedFA cela veut dire c'est mon message, sinon cela veut dire que c'est le message de l'autre
+  const monMessage = api.idAccount === idCompteConnecter;  //si idAccount egale idCompteConnecter cela veut dire c'est mon message, sinon cela veut dire que c'est le message de l'autre
 
   return (
     <>
