@@ -35409,14 +35409,14 @@ const SeeVideoTemplatePropsCommun = {
 
 
 const profilPropsCommun = {
-	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, OuvrirMessagePage: MessageFA2e, message,
+	MenuFA, AddVideoPageFA, AccountsFA, ClicVideoFAA, rechercherMaVideoFA, setRechercherMaVideoFA, idCompte, idCompteConnecter, OuvrirMessagePage: MessageFA2e, message,
 	gererScroll, gererScrollVisites, scrollX, setIdPost, setUrlVideo, setIdProprietairePost,
 	data: infosCompte, dataMesVisitesFA, dataVideos: dataVideoByIdCompte, dataOverflow: dataVideoRecenteByIdCompte, listVideo: listTesVideosFA,
 };
 
 const ComptesRecentsPropsCommun = {
-  listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA, onlineUsers, gererScroll: gererScrollComptes, 
-  OuvrirMessagePage: OuvrirMessagePage66ComptesEnLigne, 
+  listAccount: listAccountFA, setIdCompte, setIdDestinataire, valeur: rechercherUnCompteFA, setValeur: setRechercherUnCompteFA, onlineUsers, 
+  gererScroll: gererScrollComptes, OuvrirMessagePage: OuvrirMessagePage66ComptesEnLigne, 
 };
 
 const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
