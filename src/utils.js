@@ -5,8 +5,8 @@ import Loader from "./Loader/Loader";
 import { theme } from "./theme";
 
 import { 
-	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, 
-	SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, SvgMessage01, SvgMessage2, SvgMessage3, SvgMessage4, SvgMessage10, SvgMessage11, SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
+	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, 
+	SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
 } from "./Svg/Svg";
 	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -3266,8 +3266,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 				  <div className="a" onClick={AccountsFA}><p>Mes comptes</p></div>
 				</div> </>)}
 				
-				<div className="display-flex-nowrap"> <div className="a"> <p onClick={OuvrirMessagePage}>
-				a<SvgMessage/> b<SvgMessage01/> c<SvgMessage2/> d<SvgMessage3/> e<SvgMessage4/> f<SvgMessage10/> g<SvgMessage11/> h Message</p> </div> </div>
+				<div className="display-flex-nowrap"> <div className="a"> <p onClick={OuvrirMessagePage}><SvgMessage/> Message</p> </div> </div>
             </div>
             {/* close */} 
           </div>
@@ -3427,10 +3426,9 @@ export async function goFullScreen(mediaRef) {
 
  
 // SeeVideoTemplate
-export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY,
-	rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage, OuvrirMessagePage,
+export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollX, scrollY, rechercherUneVideoFA, setRechercherUneVideoFA,
 	data, dataVideoFAbyClic, dataVideoByIdCompte, listVideoFA, profilMap, setIdPost, setIdProprietairePost, idCompte, idCompteConnecter, setIdCompte, setUrlVideo,
-	ModifierTitrePageFA, ModifierUrlPage, ReparerUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto
+	ModifierTitrePageFA, ModifierUrlPage, ReparerUrlPage, ChangerMiniaturePage, CommenterPageFA, clicVideo, voirProfil, voirPhoto, publierVideoPage, OuvrirMessagePage
 	}) {
 	const videoRef = useRef(null);
 	
@@ -3450,8 +3448,8 @@ export function SeeVideoTemplate({ visible, fermer, clicFA, titreFA, photoCouver
 	  titrecss: "pre-16px-white tc", cliccss: "p-14px-a1a1aa tc", nomcss: "pre c-a1a1aa ml-5px fs-14px", datecss: "c-a1a1aa fs-13px", 
 	};
 	
-	const { _id: idDuPost, nameAccount="", photoProfile=photoBlanche } = data; // infos du profil
-	const proprietaire = idDuPost === idCompteConnecter;
+	const { _id: idDuCompte, nameAccount="", photoProfile=photoBlanche } = data; // infos du profil
+	const proprietaire = idDuCompte === idCompteConnecter;
 	
 	return (<>
       <div className="seeVideoFA" onScroll={scrollY}>
@@ -3707,8 +3705,8 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 
 export function RechercheTemplate({ listAccount=[], listVideo=[], listMesComptes=[], valeur, setValeur, OuvrirMessagePage, cliquerSurMonCompte, voirProfil,
 	setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte=()=>{}, setIdPersonConnectedFA=()=>{}, setIdContact=()=>{}, setIdDestinataire=()=>{}, clicVideo, voirVideo, 
-	setIdExpediteur=()=>{}, idCompteConnecter, profilMap, onlineUsers=[], dev, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
-	
+	setIdExpediteur=()=>{}, setIdCompteConnecter=()=>{}, idCompteConnecter, profilMap, onlineUsers=[], dev, nomEtphoto, titrecss, cliccss, nomcss, datecss }) {	
+
 	return (<>
 		{/* input pour effectuer une recherche */}
                   <div>
