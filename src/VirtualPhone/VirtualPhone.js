@@ -106,8 +106,8 @@ const dateParserLong = (date) => {
 
 
 //ChildApi 66florinatoApp
-function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, profilMap, messageMap }) {
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
+function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, idCompteConnecter, profilMap, messageMap }) {
+  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
 
   const [checked, setChecked] = useState(false);
   async function Checked() {
@@ -123,7 +123,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
     if(idGroupOther) { localStorage.setItem("idGroupChef", idGroupOther); }
 
 
-    if (api.idAccount === idPersonConnectedFA) {  //logique pour obtenir l'id de la personne qui va recevoir mon message
+    if (api.idAccount === idCompteConnecter) {  //logique pour obtenir l'id de la personne qui va recevoir mon message
       const id = api.idOther;
       const idUser = api.idUserOther;
       localStorage.setItem("idOther", id);      
@@ -155,8 +155,8 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
   }
   
   //afficher les messages uniquement aux personnes concernées (cette logique nous permet d'éviter que les messages que j'ai envoyé ou recu puissent s'afficher a tout le monde)
-  const idAccount = api.idAccount === idPersonConnectedFA;
-  const idOther = api.idOther === idPersonConnectedFA;
+  const idAccount = api.idAccount === idCompteConnecter;
+  const idOther = api.idOther === idCompteConnecter;
   
   // pour obtenir les informations du profil
   const idUtiliser = idAccount ? api.idOther:idOther ? api.idAccount : null; // logique pour savoir si c'est l'id de l'expediteur ou du destinataire
@@ -175,7 +175,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 	messageRecent.message = le texte à afficher */
 	
 
-  const id = api.idAccount === idPersonConnectedFA && api.follow === "1";
+  const id = api.idAccount === idCompteConnecter && api.follow === "1";
   
   const isOnline = onlineUsers.includes(idUtiliser);
   const idConversation = api._id;
@@ -193,11 +193,9 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 
 		  {isOnline && (
 		  <div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)}
-		  {utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
+		  {utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ Écris ..</p> </div>)}
         </div>
         {/* B */}
-		
-		<p>{api._id} idConversation</p>
       </div></>)}
       {/* type=30 , Account */}
 
@@ -211,11 +209,9 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
 
 			{isOnline && (
 			<div className="connecter"> <p>En Ligne</p> <SvgMark1/> </div>)}
-			{utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ En train d’écrire…</p> </div>)}
+			{utilisateursQuiEcrivent[idConversation] && (<div className="b"> <p>✍️ Écris ..</p> </div>)}
         </div>
         {/* B */}
-		
-		<p>{api._id} idConversation</p>
       </div></>)}
       {/* type=30 , Other */}
 
@@ -229,9 +225,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, pro
           <div className="a"> <pre>{api.lastMessage}</pre> </div>
           <div className="b"> <p>{dateParser(api.createdAt)}</p> </div>
         </div>
-        {/* B */}
-		
-		<p>{api._id} idConversation</p>
+        {/* B */}		
       </div></>)}
       {/* type=50 , je me suis abonné */}
     </div>
@@ -50624,7 +50618,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1441</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1510</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50658,7 +50652,7 @@ function rechargerPage() {
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
 					
-					<ChildApi66florinatoApp api={api} profilMap={profilMap} messageMap={messageMap} onlineUsers={onlineUsers} utilisateursQuiEcrivent={utilisateursQuiEcrivent} /> 
+					<ChildApi66florinatoApp api={api} idCompteConnecter={idCompteConnecter} profilMap={profilMap} messageMap={messageMap} onlineUsers={onlineUsers} utilisateursQuiEcrivent={utilisateursQuiEcrivent} /> 
 				</div> 
 				))}
             </div> 
