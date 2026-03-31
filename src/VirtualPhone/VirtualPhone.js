@@ -5,12 +5,11 @@ import Loader from "../Loader/Loader";
 import axios from "axios";
 import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
-
 import "../utils.css"; 
- 
+
 import { 
 	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini, sauvegarderDansIndexedDB,
-	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate,
+	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, MesComptesTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, MessageTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
 	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate, InfosTemplate, MonetizationEntrer, PortefeuilleSortie,
 	GenererMiniatureVideo, SpeedMessages, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB, AdapterLien
@@ -272,24 +271,9 @@ function ChildApi66delivrerNumeroVirtuelAf({ api }) {
 
 
 //ChildApi66accountsFA
-export function ChildApi66accountsFA({ api }) {
+export function ChildApi66accountsFA({ api, idCompteConnecter }) {
   const [checked, setChecked] = useState(false);
-  async function Checked() {
-    setChecked(!checked);
-
-    const idAccount = api._id;
-    if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
-
-    const idGroup = api.idGroup;
-	if(idGroup) { 
-		localStorage.setItem("idGroupFA", idGroup); 
-		localStorage.setItem("idAccountChef", idAccount); 
-		localStorage.setItem("idGroupChef", idGroup); 
-	}
-
-    //console.log("idPersonConnectedFA", idAccount);
-    //console.log("idGroupFA", idGroup);
-  }
+  async function Checked() { setChecked(!checked); }
 
   // date envoie message
   const dateParser = (date) => {
@@ -306,8 +290,7 @@ export function ChildApi66accountsFA({ api }) {
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const id = api.idUser === idUserConnectedFA;
 
-  const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  const id2 = api._id === idPersonConnectedFA;
+  const id2 = api._id === idCompteConnecter;
 
   return (<>
     {id2 && api.type === "10" && id && (<> {/* on affiche mon compte florinato connecté */}
@@ -337,23 +320,9 @@ export function ChildApi66accountsFA({ api }) {
 
 
 //ChildApi266accountsFA
-export function ChildApi266accountsFA({ api2, idPersonConnectedFA }) {
-	//console.log("idPersonConnectedFA dans ChildApi266accountsFA", idPersonConnectedFA);
-	
+export function ChildApi266accountsFA({ api2, idCompteConnecter }) {	
   const [checked, setChecked] = useState(false);
-  async function Checked() {
-    setChecked(!checked);
-
-    /*const idAccount = api2._id;
-    if(idAccount) { localStorage.setItem("idPersonConnectedFA", idAccount); }
-
-    const idGroup = api2.idGroup;
-    if(idGroup) {
-		localStorage.setItem("idGroupFA", idGroup); 
-		localStorage.setItem("idAccountChef", idAccount); 
-		localStorage.setItem("idGroupChef", idGroup); 
-	} */
-  }
+  async function Checked() { setChecked(!checked); }
 
   // date envoie message
   const dateParser = (date) => {
@@ -370,8 +339,7 @@ export function ChildApi266accountsFA({ api2, idPersonConnectedFA }) {
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
   const id = api2.idUser === idUserConnectedFA;
 
-  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-  const id2 = api2._id === idPersonConnectedFA;
+  const id2 = api2._id === idCompteConnecter;
 
   return (
     <>
@@ -34664,8 +34632,9 @@ async function DissadAA() {
 	
 	const [onlineUsers, setOnlineUsers] = useState([]); // pour Écouter (ou Surveiller) les utilisateurs en ligne
 	const [idreq, setId] = useState(null);
-	const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(null);
-	const [idExpediteur, setIdExpediteur] = useState(null);
+	const [idPersonConnectedFA, setIdPersonConnectedFA] = useState(localStorage.getItem("idPersonConnectedFA"));
+	const [idCompteConnecter, setIdCompteConnecter] = useState(idPersonConnectedFA);
+	const [idExpediteur, setIdExpediteur] = useState(idPersonConnectedFA);
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
 	const [idDestinataire, setIdDestinataire] = useState(null);	
@@ -34689,7 +34658,8 @@ async function DissadAA() {
 
 
 // jai mis le useEffect pour quil utilise dabord idPersonConnectedFA qui est dans sessionStorage, et lavantage de mettre sessionStorage comme prioritaire, cest que si idPersonConnectedFA change, ca reste dans cet onglet, ca ne change pas dans les autres onglets
-useEffect(() => {
+
+/*useEffect(() => {
   // Au chargement de la page
   const idSession = sessionStorage.getItem("idPersonConnectedFA");
   const idLocal = localStorage.getItem("idPersonConnectedFA");
@@ -34703,7 +34673,7 @@ useEffect(() => {
     setIdPersonConnectedFA(idLocal);
     setIdExpediteur(idLocal);
   }
-}, []);
+}, []); */
 
 
 
@@ -34872,7 +34842,7 @@ const {
 	nomStockage: "videos", 
 	donnees:videosSource, 
 	idCompte,
-	idCompteConnecter: idPersonConnectedFA,
+	idCompteConnecter,
 	idProprietairePost,
 	idPost,
 	rechercherMaVideo: rechercherMaVideoFA,
@@ -34936,7 +34906,7 @@ const {
 	onlineUsers,
 	idCompte,
 	idCompte2: idContact,
-	idCompteConnecter: idPersonConnectedFA,
+	idCompteConnecter,
 	rechercherUnCompte: rechercherUnCompteFA,
 	rechercherMonCompte: rechercherMonCompteFA,
 });
@@ -34980,7 +34950,7 @@ const {
 } = useScrollIndexedDB({ 
 	nomStockage: "conversations", 
 	donnees:conversationsSource,
-	idCompteConnecter: idPersonConnectedFA
+	idCompteConnecter
 }); 
 
 
@@ -35021,14 +34991,14 @@ useEffect(() => {
 	// Écoute la connexion et renvoie le bon idPersonConnectedFA
   socket.on("connect", () => {
     console.log("Socket connecté :", socket.id);
-    if (idPersonConnectedFA) {
-      socket.emit("user:online", idPersonConnectedFA);
+    if (idCompteConnecter) {
+      socket.emit("user:online", idCompteConnecter);
     }
   });
 
   // Envoie l'ID si changé
-  if (idPersonConnectedFA) {
-    socket.emit("user:online", idPersonConnectedFA); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
+  if (idCompteConnecter) {
+    socket.emit("user:online", idCompteConnecter); // Quand l’utilisateur est connecté , on envoie ca pour signaler quil est en ligne
   } 
 
 	// Écoute les utilisateurs en ligne . Réception de la liste des utilisateurs en ligne 
@@ -35054,10 +35024,8 @@ useEffect(() => {
     if (data.type === "3") { setToutesDonneesVideos(prev => [data, ...prev]); } // videos
     if (data.type === "10") { setToutesDonneesComptes(prev => [data, ...prev]); } // comptes
     if (data.type === "60") { setApiMessageFA(prev => [data, ...prev]); } // annonces
-	
 	if (data.type === "1") { console.log("nouveau message", data); setToutesDonneesMessage(prev => [data, ...prev]); } // message
     if (data.type === "30") { console.log("nouveau conversation", data); setToutesDonneesConversation(prev => [data, ...prev]); } // conversation
-	// if (data.type === "30") { console.log("nouveau conversation", data); setToutesDonneesConversation(prev => [data, ...prev]); await ObtenirLesDonneesFA(); } // conversation
  });
     
   
@@ -35069,52 +35037,11 @@ useEffect(() => {
     socket.off("receiveMessage");
 	socket.disconnect();
   };
-}, [idPersonConnectedFA]); // 🔹 Dépendance ici pour réémettre à chaque changement
+}, [idCompteConnecter]); // 🔹 Dépendance ici pour réémettre à chaque changement
 
 
 // Array.isArray(onlineUsers) , vérifie qpue onlineUsers est un tableau. Si ce n’est pas un tableau, destinataireOnline sera false au lieu de planter le site. Si c’est bien un tableau, .includes(idDestinataire) s’exécute normalement. C’est tout ce qu’il faut pour réparer le problème de includes sans toucher à la logique des utilisateurs en ligne.
 const destinataireOnline = (onlineUsers && Array.isArray(onlineUsers)) ? onlineUsers.includes(idDestinataire) : false;
-
-
-// Écouter l'écriture (côté RECEVEUR) 
-const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
-
-useEffect(() => {
-  const socket = socketRef.current;
-  if (!socket) return;
-  
-  
-  socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
-    setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
-      ...prev,
-      [idConversation]: idExpediteur,
-    }));
-  });
-
-  socket.on("ecrire:fin", ({ idConversation }) => { // Quand il arrête . On enlève l’indicateur pour cette conversation
-    setUtilisateursQuiEcrivent(prev => { // Quand il arrête (ecrire:fin), on supprime cette information
-      const copie = { ...prev };
-      delete copie[idConversation];
-      return copie;
-    });
-  });
-
-  return () => {
-    socket.off("ecrire:debut");
-    socket.off("ecrire:fin");
-  };
-}, []);
-
-
-/*
-  // Ecoute les messages, videos, annonces, et autres ...
-  const handleMessage = (data) => {
-    if (data.type === "60") { console.log("annonces :modifié", data); setToutesDonneesAnnonces(prev => prev.map(m => m._id === data._id ? data : m)); } //annonces
-    if (data.type === "10") { console.log("comptes :modifié", data); setToutesDonneesComptes(prev => prev.map(m => m._id === data._id ? data : m)); } //comptes
-    if (data.type === "3") { console.log("videos :modifié", data); setToutesDonneesVideos(prev => prev.map(m => m._id === data._id ? data : m)); } //videos
-  };
-  
-*/
 
 
   // Créer une map pour accéder rapidement aux profils par id
@@ -35215,17 +35142,17 @@ const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate,
 
 // on verifie si ya deja une conversation entre les 2 utilisateurs
 const conversationExistante = useMemo(() => {	
-  if (!idPersonConnectedFA || !idDestinataire) return null;
+  if (!idCompteConnecter || !idDestinataire) return null;
 
   return toutConversations.find(api =>
     api.type === "30" &&
     (
-      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataire) ||
-      (api.idAccount === idDestinataire && api.idOther === idPersonConnectedFA)
+      (api.idAccount === idCompteConnecter && api.idOther === idDestinataire) ||
+      (api.idAccount === idDestinataire && api.idOther === idCompteConnecter)
     )
   );
 
-}, [toutConversations, idPersonConnectedFA, idDestinataire]);
+}, [toutConversations, idCompteConnecter, idDestinataire]);
 
 const verifyConversation = !!conversationExistante;
 console.log("conversationExistante", conversationExistante); 
@@ -35246,8 +35173,8 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   
   const conversation = toutConversations.find(api => // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
     api.type === "30" && (
-      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
-      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
+      (api.idAccount === idCompteConnecter && api.idOther === idDestinataireget) ||
+      (api.idAccount === idDestinataireget && api.idOther === idCompteConnecter)
     ));
 
   setIdConversation(conversation ? conversation._id : null);
@@ -35360,6 +35287,39 @@ async function BeginConversationFA() {
 
 
 
+
+// Écouter l'écriture (côté RECEVEUR) 
+const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
+
+useEffect(() => {
+  const socket = socketRef.current;
+  if (!socket) return;
+  
+  
+  socket.on("ecrire:debut", ({ idConversation, idExpediteur }) => { // 👂 il ecoute Quand quelqu’un commence à écrire , puis sest afficher ‘en train d’écrire’”
+    setUtilisateursQuiEcrivent(prev => ({ // Quand un autre utilisateur commence à écrire (ecrire:debut), on met à jour l'état utilisateursQuiEcrivent pour indiquer qui écrit dans quelle conversation.
+      ...prev,
+      [idConversation]: idExpediteur,
+    }));
+  });
+
+  socket.on("ecrire:fin", ({ idConversation }) => { // Quand il arrête . On enlève l’indicateur pour cette conversation
+    setUtilisateursQuiEcrivent(prev => { // Quand il arrête (ecrire:fin), on supprime cette information
+      const copie = { ...prev };
+      delete copie[idConversation];
+      return copie;
+    });
+  });
+
+  return () => {
+    socket.off("ecrire:debut");
+    socket.off("ecrire:fin");
+  };
+}, []);
+
+
+
+
 // Ce code gère la fonctionnalité d'indicateur d'écriture dans une messagerie en temps réel, en utilisant React et Socket.IO.
 
 /* PRINCIPE (1 phrase)
@@ -35381,18 +35341,14 @@ const timerEcriture = useRef(null); //Ça sert à savoir quand l’utilisateur s
 //Quand l’utilisateur écrit . Quand l’utilisateur écrit dans le textarea
 const gererChangementMessage = (e) => { // Quand l’utilisateur tape dans le textarea . Cette fonction est appelée à CHAQUE lettre
 	const texte = e.target.value;
-	//console.log("L'utilisateur écrit :", texte); // Tu verras le texte s’afficher dans la console à chaque frappe
 	setWriteMessage66messageFA(texte); // On met à jour le texte (normal) . Juste pour afficher ce que l’utilisateur tape
-	
-  if (!socketRef.current) return;
+    if (!socketRef.current) return;
   
   if (!estEnTrainDecrire) { // S’il commence JUSTE à écrire . Ah, il n’écrivait pas avant → là il commence → j’envoie UNE fois . Le if évite le spam socket
     setEstEnTrainDecrire(true);
 
     socketRef.current.emit("ecrire:debut", { // l'utilisateur commence à écrire . Quand un utilisateur commence à taper dans le message, le client envoie un signal au serveur (ecrire:debut) pour prévenir l'autre personne
-      idConversation,
-      idExpediteur: idPersonConnectedFA,
-      idDestinataire,
+	  idConversation, idAccount:idExpediteur, idOther:idDestinataire,
     });
   }
  
@@ -35403,9 +35359,7 @@ const gererChangementMessage = (e) => { // Quand l’utilisateur tape dans le te
     setEstEnTrainDecrire(false);
 
     socketRef.current.emit("ecrire:fin", { // Quand il arrête d'écrire pendant 1,5 seconde, le client envoie un signal (ecrire:fin) pour indiquer qu'il a arrêté
-      idConversation,
-      idExpediteur: idPersonConnectedFA,
-      idDestinataire,
+      idConversation, idAccount:idExpediteur, idOther:idDestinataire,
     });
   }, 1500); // 1.5s sans écrire
 };
@@ -35428,8 +35382,8 @@ async function AvantMessagePage(idDestinataireget) {
   
   const conversation = toutConversations.find(api => // en fonction de idDestinataire, idCompteConnecter (idPersonConnectedFA), obtenir la ou les conversations d'un compte connecté avec son destinataire
     api.type === "30" && (
-      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
-      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
+      (api.idAccount === idCompteConnecter && api.idOther === idDestinataireget) ||
+      (api.idAccount === idDestinataireget && api.idOther === idCompteConnecter)
     ));
 
   setIdConversation(conversation ? conversation._id : null);
@@ -35442,8 +35396,8 @@ async function OuvrirMessageFA2e(idDestinataireget) {
   
   const conversation = toutConversations.find(api =>
     api.type === "30" && (
-      (api.idAccount === idPersonConnectedFA && api.idOther === idDestinataireget) ||
-      (api.idAccount === idDestinataireget && api.idOther === idPersonConnectedFA)
+      (api.idAccount === idCompteConnecter && api.idOther === idDestinataireget) ||
+      (api.idAccount === idDestinataireget && api.idOther === idCompteConnecter)
     ));
 
   setIdConversation(conversation ? conversation._id : null);
@@ -35455,7 +35409,7 @@ async function OuvrirMessageFA2e(idDestinataireget) {
 
 const SeeVideoTemplatePropsCommun = {
   voirProfil: ProfilFA2e, voirPhoto: SeePhotoCouvertureVideo, OuvrirMessagePage: OuvrirMessageFA2e,
-  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, listVideoFA,
+  dataVideoFAbyClic, dataVideoByIdCompte, data: infosCompte, idCompte, idCompteConnecter, listVideoFA,
   rechercherUneVideoFA, setRechercherUneVideoFA, publierVideoPage:AddVideoPageFA, profilMap, clicFA, titreFA, photoCouvertureVideo, urlVideo, scrollY, scrollX,
   CommenterPageFA, ModifierUrlPage, ReparerUrlPage, ModifierTitrePageFA, ChangerMiniaturePage, clicVideo: ClicVideoFAA,
   setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte,
@@ -50672,7 +50626,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0716</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0913</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50701,7 +50655,7 @@ function rechargerPage() {
 					if (api.type === "30") {
 						setIdConversation(api._id);
 						
-						if (api.idAccount === idPersonConnectedFA) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
+						if (api.idAccount === idCompteConnecter) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
 						else { setIdDestinataire(api.idAccount); setIdCompte(api.idAccount); }
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
@@ -50990,6 +50944,112 @@ function rechargerPage() {
 		{/* voir la miniature - FA  */}
 		<SeePhotoTemplate visible={voirMiniature} fermer={CloseVoirMiniature} urlPhoto={photoUrl} />
 		
+	
+
+      {/* mes comptes Florinato */}
+      {/* mes comptes Florinato */}
+      {accountsFA && (<>
+        <div className="accountsFA" onScroll={gererScrollComptes}>
+          <div className="align">
+            <div className="head">
+              <div className="close">
+                <div className="block-un" onClick={CloseAccountsFA}> <p>Fermer</p> </div>
+                <div className="block-deux" onClick={Favorite66accountsFA}> <p>Créer un nouveau compte</p> </div>
+              </div>
+              {/* close */}
+            </div>
+            {/* head */}
+			
+						
+            <div className="body">
+				<MesComptesTemplate
+					data={dataMesComptesFA} dataCompteConnecté={infosCompteConnecterById} listMesComptes={listMesComptesFA}
+					setIdExpediteur={setIdExpediteur} idCompteConnecter={idCompteConnecter} setIdCompteConnecter={setIdCompteConnecter} 
+					valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} cliquerSurMonCompte={DataFA} />
+	
+            </div>
+            {/* body */} 
+          </div>
+          {/* align */}
+        </div>
+        {/* accountsFA */}
+      </>)}
+      {/* mes comptes Florinato */}
+
+
+      {/* on affiche les favoris 66accountsFA */}
+      {/* on affiche les favoris 66accountsFA */}
+      {favorite66accountsFA && (<>
+        <div className="favoriteFA">
+        <div className="align">
+          <div className="head" onClick={CloseFavorite66accountsFA}> 
+            <div className="block-one"> <p>Choisissez une photo de profil</p> </div>
+
+            <div className="block-two"> 
+              <div className="a"> <img src={photoFA} alt=""/> </div>
+              <div className="b"> <SvgBottom5/> </div>
+            </div>
+            {/* block-two */}
+          </div>
+          {/* head */}
+
+          <div className="body">
+            <div className="card">
+              <div className="block-one">                
+                <div className="a"><input onChange={(e) => setFile66favoriteFA(e.target.files[0])} id="file" type="file" name="image" accept=".jpg, .jpeg, .png"/> </div>
+           
+                {isLoading66favoriteFA ? (<><div className="b"> <Loader/> </div></>
+                ):(<><div className="b"> <button onClick={AddPhoto66favoriteFA}>Valider</button> </div></>)}
+              </div>
+              {/* block-one */}
+
+              <div className="child">
+                {allMessageFA.map((api) => (
+                <div onClick={NewAccountPageFA}>
+                  <ChildApi66favoriteFA api={api} />
+                </div>
+                ))}
+              </div>
+              {/* child */}
+
+              <p style={{ paddingTop: "100px" }}></p>
+            </div>
+            {/* card */}
+          </div>
+          {/* body */}
+        </div>
+        {/* align */}
+        </div>
+        {/* favoriteFA */}
+      </>)}
+      {/* on affiche les favoris 66accountsFA */}
+
+
+      {/* page pour créer un nouveau compte Florinato */}
+      {/* page pour créer un nouveau compte Florinato */}
+      {newAccountPageFA && (<>
+        <div className="newAccountPageFA">
+          <div className="align">
+            <div className="head"></div>
+            {/* head */} 
+
+            <div className="body">
+              <div className="a" onClick={CloseNewAccountPageFA}> <p>Créer un nouveau compte Florinato</p> </div>
+              <div className="b"> <img onClick={SeePhotoFA} src={urlPhoto} alt=""/> </div>
+              <div className="c"> <pre>{nameNewAccountFA}</pre> </div>
+
+              <div className="a"> <input type="text" placeholder="Nom du compte.." value={nameNewAccountFA} onChange={(e) => setNameNewAccountFA(e.target.value)}/> </div>
+              <div className="a"> <button onClick={NewAccountFA}>Créer</button> </div>
+              <div className="b"> <p onClick={CloseNewAccountPageFA}>Annuler</p> </div>
+            </div>
+            {/* body */}
+          </div>
+          {/* align */}
+        </div>
+        {/* newAccountPageFA */}
+      </>)}
+      {/* page pour créer un nouveau compte Florinato */}
+
 
 
       {/* rencontre - FA */}
@@ -51147,110 +51207,6 @@ function rechargerPage() {
       </>)}
       {/* Numero Offert Success (ça c'est la page de success, lorsque le numero virtuel a ete offert, on va afficher cette page) */}
 
-
-      {/* mes comptes Florinato */}
-      {/* mes comptes Florinato */}
-      {accountsFA && (<>
-        <div className="accountsFA" onScroll={gererScrollComptes}>
-          <div className="align">
-            <div className="head">
-              <div className="close">
-                <div className="block-un" onClick={CloseAccountsFA}> <p>Fermer</p> </div>
-                <div className="block-deux" onClick={Favorite66accountsFA}> <p>Créer un nouveau compte</p> </div>
-              </div>
-              {/* close */}
-            </div>
-            {/* head */}
-			
-						
-            <div className="body">
-				<MesComptes  
-					data={dataMesComptesFA} dataCompteConnecté={infosCompteConnecterById} listMesComptes={listMesComptesFA}
-					setIdPersonConnectedFA={setIdPersonConnectedFA} setIdExpediteur={setIdExpediteur} idPersonConnectedFA={idPersonConnectedFA} 
-					valeur={rechercherMonCompteFA} setValeur={setRechercherMonCompteFA} cliquerSurMonCompte={DataFA} />
-	
-            </div>
-            {/* body */} 
-          </div>
-          {/* align */}
-        </div>
-        {/* accountsFA */}
-      </>)}
-      {/* mes comptes Florinato */}
-
-
-      {/* on affiche les favoris 66accountsFA */}
-      {/* on affiche les favoris 66accountsFA */}
-      {favorite66accountsFA && (<>
-        <div className="favoriteFA">
-        <div className="align">
-          <div className="head" onClick={CloseFavorite66accountsFA}> 
-            <div className="block-one"> <p>Choisissez une photo de profil</p> </div>
-
-            <div className="block-two"> 
-              <div className="a"> <img src={photoFA} alt=""/> </div>
-              <div className="b"> <SvgBottom5/> </div>
-            </div>
-            {/* block-two */}
-          </div>
-          {/* head */}
-
-          <div className="body">
-            <div className="card">
-              <div className="block-one">                
-                <div className="a"><input onChange={(e) => setFile66favoriteFA(e.target.files[0])} id="file" type="file" name="image" accept=".jpg, .jpeg, .png"/> </div>
-           
-                {isLoading66favoriteFA ? (<><div className="b"> <Loader/> </div></>
-                ):(<><div className="b"> <button onClick={AddPhoto66favoriteFA}>Valider</button> </div></>)}
-              </div>
-              {/* block-one */}
-
-              <div className="child">
-                {allMessageFA.map((api) => (
-                <div onClick={NewAccountPageFA}>
-                  <ChildApi66favoriteFA api={api} />
-                </div>
-                ))}
-              </div>
-              {/* child */}
-
-              <p style={{ paddingTop: "100px" }}></p>
-            </div>
-            {/* card */}
-          </div>
-          {/* body */}
-        </div>
-        {/* align */}
-        </div>
-        {/* favoriteFA */}
-      </>)}
-      {/* on affiche les favoris 66accountsFA */}
-
-
-      {/* page pour créer un nouveau compte Florinato */}
-      {/* page pour créer un nouveau compte Florinato */}
-      {newAccountPageFA && (<>
-        <div className="newAccountPageFA">
-          <div className="align">
-            <div className="head"></div>
-            {/* head */} 
-
-            <div className="body">
-              <div className="a" onClick={CloseNewAccountPageFA}> <p>Créer un nouveau compte Florinato</p> </div>
-              <div className="b"> <img onClick={SeePhotoFA} src={urlPhoto} alt=""/> </div>
-              <div className="c"> <pre>{nameNewAccountFA}</pre> </div>
-
-              <div className="a"> <input type="text" placeholder="Nom du compte.." value={nameNewAccountFA} onChange={(e) => setNameNewAccountFA(e.target.value)}/> </div>
-              <div className="a"> <button onClick={NewAccountFA}>Créer</button> </div>
-              <div className="b"> <p onClick={CloseNewAccountPageFA}>Annuler</p> </div>
-            </div>
-            {/* body */}
-          </div>
-          {/* align */}
-        </div>
-        {/* newAccountPageFA */}
-      </>)}
-      {/* page pour créer un nouveau compte Florinato */}
 
 
       {/* on affiche le compte de l'autre - FA */}
