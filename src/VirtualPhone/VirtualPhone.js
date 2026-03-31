@@ -35286,8 +35286,6 @@ async function BeginConversationFA() {
 
 
 
-
-
 // Écouter l'écriture (côté RECEVEUR) 
 const [utilisateursQuiEcrivent, setUtilisateursQuiEcrivent] = useState({}); // État qui stocke qui écrit
 
@@ -50626,7 +50624,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1112</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1135</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50712,7 +50710,7 @@ function rechargerPage() {
 		{/* compte connecté - FA */}
 		<ProfilTemplate  
 			{...profilPropsCommun}
-			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} 
+			visible={profilFA} fermer={CloseProfilFA} video connecter={idPersonConnectedFA} idCompte={idPersonConnectedFA} message=false
 			dataVideos={dataVideoByIdCompteConnecter} dataOverflow={dataVideoRecenteByIdCompteConnecter} data={infosCompteConnecter} listVideo={listMesVideosFA} 
 			SeePhoto66profilFA={SeePhoto66profilFA} voirVideo={SeeVideoFA} MenuBas={MenuBas} />
 

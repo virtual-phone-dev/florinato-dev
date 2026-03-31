@@ -3267,7 +3267,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 				</div>)}
 				
 				{message && (
-				<div className="flex-no"> <p onClick={OuvrirMessagePage}><SvgMessage/>Message</p> </div)}
+				<div className="flex-no"> <p onClick={OuvrirMessagePage}><SvgMessage/>Message</p> </div>)}
             </div>
             {/* close */} 
           </div>
