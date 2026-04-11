@@ -34936,7 +34936,7 @@ const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages,
 	idConversation
 });
 
-console.log("dataMessagesFA", dataMessagesFA);
+//console.log("dataMessagesFA", dataMessagesFA);
 
 
   
@@ -34976,12 +34976,7 @@ useEffect(() => {
     setOnlineUsers(users);
   }); 
   
-	// Reçoit les message
- /* socket.on("receiveMessage", (msg) => {
-    setApiMessageFA(prev => [msg, ...prev]);
-  });*/
-  
-  socket.on("message:misAJour", async (element) => {
+  socket.on("message:misAJour", async (element) => { // Reçoit les modifications en temps reel
     console.log("🔥 SOCKET RECU - put:", element);
     if (element.type === "3") { setToutesDonneesVideos(prev => prev.map(m => m._id === element._id ? element : m)); } // videos
     if (element.type === "10") { setToutesDonneesComptes(prev => prev.map(m => m._id === element._id ? element : m)); } // comptes
@@ -34989,7 +34984,7 @@ useEffect(() => {
   });
   
   
-  socket.on("receiveMessage", async (data) => {
+  socket.on("receiveMessage", async (data) => { // Reçoit les message en temps reel
     console.log("🔥 SOCKET RECU - post:", data);
     if (data.type === "3") { setToutesDonneesVideos(prev => [data, ...prev]); } // videos
     if (data.type === "10") { setToutesDonneesComptes(prev => [data, ...prev]); } // comptes
@@ -35405,7 +35400,7 @@ const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
 
 const MessagePropsCommun = {
   profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA,
-  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA OuvrirMessagePagepc: MessageFApc,
+  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA, OuvrirMessagePagepc: MessageFApc,
   idCompte, idCompteConnecter, destinataireOnline, Favorite66messageFA, PartagerContactPageFA, blocPartagerContact: blocPartagerContactFA,
   onlineOther, badgeOther, nameOther, photoOther, isLoading66messageFA, BeginConversationFA, verifyConversation, writeMessage66messageFA, setWriteMessage66messageFA,
 };
@@ -50589,7 +50584,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1240</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1320</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
