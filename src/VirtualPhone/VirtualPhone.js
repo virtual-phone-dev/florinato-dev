@@ -34640,35 +34640,9 @@ async function DissadAA() {
 	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
+	console.log("idContact", idContact); 
 	console.log("idDestinataire", idDestinataire); 
 	console.log("idConversation", idConversation); 
-	
-	/* console.log("idCompte", idCompte);
-	console.log("idPersonConnectedFA", idPersonConnectedFA);
-	console.log("idExpediteur", idExpediteur);
-	console.log("idContact", idContact); 
-	console.log("idConversation", idConversation); 
-	console.log("idAnnonce", idAnnonce); */
-
-
-// jai mis le useEffect pour quil utilise dabord idPersonConnectedFA qui est dans sessionStorage, et lavantage de mettre sessionStorage comme prioritaire, cest que si idPersonConnectedFA change, ca reste dans cet onglet, ca ne change pas dans les autres onglets
-
-/*useEffect(() => {
-  // Au chargement de la page
-  const idSession = sessionStorage.getItem("idPersonConnectedFA");
-  const idLocal = localStorage.getItem("idPersonConnectedFA");
-
-  if (idSession) {
-    setIdPersonConnectedFA(idSession);
-    setIdExpediteur(idSession);
-  } else if (idLocal) {
-    // Si sessionStorage est vide, on récupère idPersonConnectedFA dans localStorage et on le met dans sessionStorage
-    sessionStorage.setItem("idPersonConnectedFA", idLocal);
-    setIdPersonConnectedFA(idLocal);
-    setIdExpediteur(idLocal);
-  }
-}, []); */
-
 
 
 
@@ -34684,7 +34658,6 @@ async function DissadAA() {
   
 
   const idUserConnectedFA = localStorage.getItem("idUserConnectedFA");
-  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const idGroupFA = localStorage.getItem("idGroupFA");
 
   const idAccount = localStorage.getItem("idPersonConnectedFA");
@@ -34948,9 +34921,11 @@ const {
 }); 
 
 
-
 // messages
-const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1" || api.type === "74"), [apiMessageFA] ); // toutes mes messages
+const typesAutorises = ["1", "74"];
+const messagesSource = useMemo(() => apiMessageFA.filter(api => typesAutorises.includes(api.type)), [apiMessageFA]); // toutes mes messages
+//const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1" || api.type === "74" ), [apiMessageFA] ); // toutes mes messages
+
 const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, 
 	setToutesDonnees: setToutesDonneesMessage, 
 	//setIdConversationtrans: idConversation, 
@@ -50609,7 +50584,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0930</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1018</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
