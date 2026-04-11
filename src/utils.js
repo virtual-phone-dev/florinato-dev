@@ -3093,23 +3093,8 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 //on affiche les messages
 export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) { 
-  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
   const [checked, setChecked] = useState(false);
-  async function Checked() {
-    setChecked(!checked);
-
-    /*const photo = api.urlPhoto;
-    if(photo) { 
-      localStorage.setItem("urlPhoto", photo); 
-      localStorage.setItem("urlPhotoreq", photo); 
-    }
-
-    const video = api.urlVideo;
-    if(video) { 
-      localStorage.setItem("urlVideo", video); 
-      localStorage.setItem("urlVideoreq", video); 
-    }*/
-  }
+  async function Checked() { setChecked(!checked); }
 
 
   // date envoie message
@@ -3140,9 +3125,11 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
   }
 
   const monMessage = api.idAccount === idCompteConnecter;  //si idAccount egale idCompteConnecter cela veut dire c'est mon message, sinon cela veut dire que c'est le message de l'autre
+  console.log("aa api ", api);
+  console.log("aa idCompteConnecter ", idCompteConnecter);
+  console.log("aa monMessage ", monMessage);
 
-  return (
-    <>
+  return (<>
     <div className="child" onClick={Checked}>
 
       {/* message que j'ai recu) */}
@@ -3210,6 +3197,27 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
     </div>
 </>)}
 //ChildApi66messageFA
+
+
+export function PartageContactMessage({ api={}, profilMap={} }) {
+  const idaUtiliser = api?.idContact; // obtenir les informations du profil
+  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
+  
+  const photo = profil?.photoProfile ?? photoBlanche;
+  const nom = profil?.nameAccount ?? "";
+  console.log("bb api ", api);
+  console.log("bb idaUtiliser ", idaUtiliser);
+  console.log("bb profil ", profil);
+  console.log("bb nom ", nom);
+  
+  return (<> 
+	<pre className="pre fs-17px mb-15">{api.message}</pre> 
+	
+	<div className="partage-contact flex"> 
+		<img className="photo-25px mr-5px" src={photo} alt=""/> 
+		<pre className="pre fs-14px">{nom}</pre>
+	</div>
+</>)}
 
 
 export function MesComptesTemplate({ data=[], dataCompteConnecté=[], listMesComptes, setIdExpediteur, setIdCompteConnecter, idCompteConnecter, 
@@ -3302,23 +3310,6 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 </>)}
 //ProfilTemplate	
 
-
-
-export function PartageContactMessage({ api={}, profilMap={} }) {
-  const idaUtiliser = api?.idContact; // obtenir les informations du profil
-  const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
-  
-  const photo = profil?.photoProfile ?? photoBlanche;
-  const nom = profil?.nameAccount ?? "";
-  
-  return (<> 
-	<pre className="pre fs-17px mb-15">{api.message}</pre> 
-	
-	<div className="partage-contact flex"> 
-		<img className="photo-25px mr-5px" src={photo} alt=""/> 
-		<pre className="pre fs-14px">{nom}</pre>
-	</div>
-</>)}
 
 
 export function Close2({ fermer, titre, titrecss }) {
