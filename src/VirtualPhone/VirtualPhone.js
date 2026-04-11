@@ -34632,6 +34632,8 @@ async function DissadAA() {
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
 	const [idDestinataire, setIdDestinataire] = useState(null);	
+	const [idDestinatairepc, setIdDestinatairepc] = useState(null);	// idDestinatairepc : idDestinataire partage contact
+	const [idDestinatairemp, setIdDestinatairemp] = useState(null);	// idDestinatairemp : idDestinataire message page
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
 	const [idPost, setIdPost] = useState(null);
 	const [idProprietairePost, setIdProprietairePost] = useState(null);
@@ -34640,10 +34642,12 @@ async function DissadAA() {
 	const [idAnnonce, setIdAnnonce] = useState(null);
 	const [urlVideo, setUrlVideo] = useState(null);
 	
+	
 	console.log("idContact", idContact); 
 	console.log("idDestinataire", idDestinataire); 
+	console.log("idDestinatairemp", idDestinatairemp); 
+	console.log("idDestinatairepc", idDestinatairepc); 
 	console.log("idConversation", idConversation); 
-
 
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -35167,9 +35171,11 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   async function CloseMessageFA2e() { setMessageFA2e(false); setBlocPartagerContactFA(false); setIdConversation(null); }
   
   const [messageFApc, setMessageFApc] = useState(false); // 2e page pour envoyer un message personnel - FA 
-  async function MessageFApc() { setMessageFApc(true); }
-  async function CloseMessageFApc() { setMessageFApc(false); setBlocPartagerContactFA(false); }
+  async function MessageFApc() { setIdConversation(null); setMessageFApc(true); }
+  async function CloseMessageFApc() { setMessageFApc(false); setBlocPartagerContactFA(false); setIdConversation(null); setIdDestinataire(idDestinatairemp); }
   
+
+
   
 // logique pour envoyer un message privé sur florinato
 const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
@@ -35400,7 +35406,7 @@ const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
 
 const MessagePropsCommun = {
   profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA,
-  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA, OuvrirMessagePagepc: MessageFApc,
+  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA, OuvrirMessagePagepc: MessageFApc, setIdDestinataire, setIdDestinatairepc,
   idCompte, idCompteConnecter, destinataireOnline, Favorite66messageFA, PartagerContactPageFA, blocPartagerContact: blocPartagerContactFA,
   onlineOther, badgeOther, nameOther, photoOther, isLoading66messageFA, BeginConversationFA, verifyConversation, writeMessage66messageFA, setWriteMessage66messageFA,
 };
@@ -50584,7 +50590,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1320</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1500</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50605,7 +50611,8 @@ function rechargerPage() {
             {/* close */}
           </div>
           {/* head */}
-
+		  
+		  
           <div className="body"> 
             <div className="api">
                 {dataConversationFA.map((api) => (
@@ -50613,8 +50620,8 @@ function rechargerPage() {
 					if (api.type === "30") {
 						setIdConversation(api._id);
 						
-						if (api.idAccount === idCompteConnecter) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); }
-						else { setIdDestinataire(api.idAccount); setIdCompte(api.idAccount); }
+						if (api.idAccount === idCompteConnecter) { setIdDestinataire(api.idOther); setIdDestinatairemp(api.idOther); setIdCompte(api.idOther); }
+						else { setIdDestinataire(api.idAccount); setIdDestinatairemp(api.idAccount); setIdCompte(api.idAccount); }
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
 					
