@@ -35184,7 +35184,7 @@ const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // s
 
 async function SendMessageFAA(customConversationId = null) {
 	const messageText = writeMessage66messageFA; 
-	if (!messageText.trim()) return; 
+	if (!messageText.trim() && !blocPartagerContactFA) return; // pas de message + pas de contact = bloque
 	setWriteMessage66messageFA(""); // vider immédiatement
   
 	if (!socketRef.current) { console.warn("Socket non initialisé"); return; }
@@ -35237,7 +35237,7 @@ async function SendMessageFAA(customConversationId = null) {
 const [isLoading66messageFA, setIsLoading66messageFA] = useState(false);
 
 async function BeginConversationFA() {
-  if (!writeMessage66messageFA.trim()) return;
+  if (!writeMessage66messageFA.trim() && !blocPartagerContactFA) return; // pas de message + pas de contact = bloque
   setIsLoading66messageFA(true);
 
   try {
@@ -50592,7 +50592,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1720</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1945</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50818,8 +50818,22 @@ function rechargerPage() {
 		<SeeVideoTemplate 
 			{...SeeVideoTemplatePropsCommun}
 			visible={seeVideoFAPourNonConnecter} fermer={CloseSeeVideoFAPourNonConnecter} voirProfil={ProfilFA2e} />
+			
 		
 		
+		<MessageTemplate 
+			{...MessagePropsCommun} 
+			visible={messageFA2e} fermer={CloseMessageFA2e} />
+			
+		<MessageTemplate 
+			{...MessagePropsCommun} 
+			visible={messageFApc} fermer={CloseMessageFApc} />
+		
+		<PopupDuBasTemplate 
+			visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
+			listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} OuvrirMessagePage={OuvrirMessagePage66PartagerContactPageFA} search/>
+
+
   
 		{/* 2e profil	- (on affiche ton compte) - FA */}
 		<ProfilTemplate 
@@ -50841,20 +50855,6 @@ function rechargerPage() {
 			{...SeeVideoTemplatePropsCommun}
 			visible={seeVideoFA3e} fermer={CloseSeeVideoFA3e} voirProfil={CloseSeeVideoFA3e} />
 		
-
-		
-		<MessageTemplate 
-			{...MessagePropsCommun} 
-			visible={messageFA2e} fermer={CloseMessageFA2e} />
-			
-		<MessageTemplate 
-			{...MessagePropsCommun} 
-			visible={messageFApc} fermer={CloseMessageFApc} />
-		
-		<PopupDuBasTemplate 
-			visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}
-			listAccount={listAccountFA} valeur={rechercherUnCompteFA} setValeur={setRechercherUnCompteFA} OuvrirMessagePage={OuvrirMessagePage66PartagerContactPageFA} search/>
-
 
 
 
