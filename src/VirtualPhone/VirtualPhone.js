@@ -35171,7 +35171,7 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   async function CloseMessageFA2e() { setMessageFA2e(false); setBlocPartagerContactFA(false); setIdConversation(null); }
   
   const [messageFApc, setMessageFApc] = useState(false); // 2e page pour envoyer un message personnel - FA 
-  async function MessageFApc() { setIdConversation(null); setMessageFApc(true); }
+  async function MessageFApc() { setMessageFApc(true); }
   async function CloseMessageFApc() { setMessageFApc(false); setBlocPartagerContactFA(false); setIdConversation(null); setIdDestinataire(idDestinatairemp); }
   
 
@@ -50590,7 +50590,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1500</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1600</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
