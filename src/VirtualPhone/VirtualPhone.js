@@ -35406,7 +35406,7 @@ const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
 
 const MessagePropsCommun = {
   profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA,
-  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA, OuvrirMessagePagepc: MessageFApc, setIdDestinataire, setIdDestinatairepc,
+  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA, OuvrirMessagePagepc: MessageFApc, setIdDestinataire, setIdDestinatairepc, setIdConversation,
   idCompte, idCompteConnecter, destinataireOnline, Favorite66messageFA, PartagerContactPageFA, blocPartagerContact: blocPartagerContactFA,
   onlineOther, badgeOther, nameOther, photoOther, isLoading66messageFA, BeginConversationFA, verifyConversation, writeMessage66messageFA, setWriteMessage66messageFA,
 };
@@ -50590,7 +50590,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1604</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1615</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>

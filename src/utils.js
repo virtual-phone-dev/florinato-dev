@@ -2963,7 +2963,7 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, dataMessagesFA, profilMap, idCompte, idCompteConnecter,
 	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA, verifyConversation,
-	writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, OuvrirMessagePagepc, setIdDestinatairepc, setIdDestinataire
+	writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, OuvrirMessagePagepc, setIdDestinatairepc, setIdDestinataire, setIdConversation
 	}) {
 	if (!visible) return null;
 	
@@ -3007,7 +3007,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
             <div className="api">
             {dataMessagesFA.map((api) => (
-                <ChildApi66messageFA api={api} profilMap={profilMap} idCompteConnecter={idCompteConnecter} 
+                <ChildApi66messageFA api={api} profilMap={profilMap} idCompteConnecter={idCompteConnecter} setIdConversation={setIdConversation}
 					OuvrirMessagePagepc={OuvrirMessagePagepc} setIdDestinataire={setIdDestinataire} setIdDestinatairepc={setIdDestinatairepc} />
             ))}
             </div>
@@ -3036,7 +3036,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 
 //on affiche les messages
-export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirMessagePagepc, setIdDestinatairepc, setIdDestinataire }) { 
+export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirMessagePagepc, setIdDestinatairepc, setIdDestinataire, setIdConversation }) { 
   const [checked, setChecked] = useState(false);
   async function Checked() { setChecked(!checked); }
 
@@ -3099,7 +3099,7 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirM
 		{api.type === "74" && (
 		<div className="block-one"> 
 		<PartageContactMessage 
-			api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc} 
+			api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc} setIdConversation={setIdConversation}
 			setIdDestinataire={setIdDestinataire} setIdDestinatairepc={setIdDestinatairepc} /> </div>)}
 			
         <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
@@ -3133,7 +3133,7 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirM
 			{api.type === "74" && (
 			<div className="block-one"> 
 			<PartageContactMessage 
-				api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc} 
+				api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc} setIdConversation={setIdConversation}
 				setIdDestinataire={setIdDestinataire} setIdDestinatairepc={setIdDestinatairepc} /> </div>)}
 			  
           <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
@@ -3145,7 +3145,7 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirM
 
 
 
-export function PartageContactMessage({ api={}, profilMap={}, OuvrirMessagePagepc, setIdDestinatairepc=()=>{}, setIdDestinataire=()=>{} }) {
+export function PartageContactMessage({ api={}, profilMap={}, OuvrirMessagePagepc, setIdDestinatairepc=()=>{}, setIdDestinataire=()=>{}, setIdConversation=()=>{} }) {
   const idaUtiliser = api?.idContact; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
@@ -3156,7 +3156,7 @@ export function PartageContactMessage({ api={}, profilMap={}, OuvrirMessagePagep
   return (<> 
 	<pre className="pre fs-17px mb-15">{api.message}</pre> 
 	
-	<div className="partage-contact flex" onClick={() => { OuvrirMessagePagepc(); setIdDestinataire(api.idContact); setIdDestinatairepc(api.idContact); }}> {/* OuvrirMessagePagepc = OuvrirMessagePage Partage Contact */}
+	<div className="partage-contact flex" onClick={() => { OuvrirMessagePagepc(); setIdConversation(null); setIdDestinataire(api.idContact); setIdDestinatairepc(api.idContact); }}> {/* OuvrirMessagePagepc = OuvrirMessagePage Partage Contact */}
 		<img className="photo-25px mr-5px" src={photo} alt=""/> 
 		<pre className="pre fs-14px">{nom}</pre>
 	</div>
