@@ -35170,6 +35170,10 @@ async function OuvrirMessagePage66ComptesEnLigne(idDestinataireget) {
   async function MessageFA2e() { setMessageFA2e(true); }
   async function CloseMessageFA2e() { setMessageFA2e(false); setBlocPartagerContactFA(false); setIdConversation(null); }
   
+  const [messageFApc, setMessageFApc] = useState(false); // 2e page pour envoyer un message personnel - FA 
+  async function MessageFApc() { setMessageFApc(true); }
+  async function CloseMessageFApc() { setMessageFApc(false); setBlocPartagerContactFA(false); }
+  
   
 // logique pour envoyer un message privé sur florinato
 const [writeMessage66messageFA, setWriteMessage66messageFA] = useState(""); // saisir le message
@@ -35400,7 +35404,7 @@ const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
 
 const MessagePropsCommun = {
   profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA,
-  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA,
+  data: infosCompteById[0], data2: infosCompteById2[0], dataMessagesFA OuvrirMessagePagepc: MessageFApc,
   idCompte, idCompteConnecter, destinataireOnline, Favorite66messageFA, PartagerContactPageFA, blocPartagerContact: blocPartagerContactFA,
   onlineOther, badgeOther, nameOther, photoOther, isLoading66messageFA, BeginConversationFA, verifyConversation, writeMessage66messageFA, setWriteMessage66messageFA,
 };
@@ -50584,7 +50588,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1100</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1240</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50837,6 +50841,10 @@ function rechargerPage() {
 		<MessageTemplate 
 			{...MessagePropsCommun} 
 			visible={messageFA2e} fermer={CloseMessageFA2e} />
+			
+		<MessageTemplate 
+			{...MessagePropsCommun} 
+			visible={messageFApc} fermer={CloseMessageFApc} />
 		
 		<PopupDuBasTemplate 
 			visible={partagerContactPageFA} fermer={ClosePartagerContactPageFA} photo={photoFA} titre="Partager un contact" setIdContact={setIdContact}

@@ -2963,7 +2963,7 @@ export function MenuPopupTemplate({ visible, fermer }) {
 
 export function MessageTemplate({ visible, fermer, partage, gererScrollMessages, voirProfil, data={}, data2={}, dataMessagesFA, profilMap, idCompte, idCompteConnecter,
 	Favorite66messageFA, PartagerContactPageFA, blocPartagerContact, destinataireOnline, SendMessageFAA, isLoading66messageFA, BeginConversationFA, verifyConversation,
-	writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, 
+	writeMessage66messageFA, setWriteMessage66messageFA, gererChangementMessage, OuvrirMessagePagepc
 	}) {
 	if (!visible) return null;
 	
@@ -3007,7 +3007,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
             <div className="api">
             {dataMessagesFA.map((api) => (
-              <ChildApi66messageFA api={api} profilMap={profilMap} idCompteConnecter={idCompteConnecter} />
+              <ChildApi66messageFA api={api} profilMap={profilMap} idCompteConnecter={idCompteConnecter} OuvrirMessagePagepc={OuvrirMessagePagepc} />
             ))}
             </div>
 
@@ -3035,7 +3035,7 @@ export function MessageTemplate({ visible, fermer, partage, gererScrollMessages,
 
 
 //on affiche les messages
-export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) { 
+export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirMessagePagepc }) { 
   const [checked, setChecked] = useState(false);
   async function Checked() { setChecked(!checked); }
 
@@ -3068,9 +3068,9 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
   }
 
   const monMessage = api.idAccount === idCompteConnecter;  //si idAccount egale idCompteConnecter cela veut dire c'est mon message, sinon cela veut dire que c'est le message de l'autre
-  console.log("aa api ", api);
-  console.log("aa idCompteConnecter ", idCompteConnecter);
-  console.log("aa monMessage ", monMessage);
+  //console.log("aa api ", api);
+  //console.log("aa idCompteConnecter ", idCompteConnecter);
+  //console.log("aa monMessage ", monMessage);
 
   return (<>
     <div className="child" onClick={Checked}>
@@ -3078,7 +3078,6 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
       {/* message que j'ai recu) */}
       {!monMessage && (<>
       <div className="receiver">
-
         {api.message && (<> {/* text */}
         <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
           
@@ -3098,10 +3097,8 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
 
           <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
         </div> </>)}
-        {/* block-three */}
 		
-		{api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap}/> </>)}
-
+		{api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc}/> </>)}
         <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
       </div> </>)}
       {/* receiver */}
@@ -3110,7 +3107,6 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
         {/* mon message (message que j'ai envoyé) */}
         {monMessage && (<>
         <div className="sender">
-
           {api.message && (<> {/* text */}
           <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
           
@@ -3130,10 +3126,8 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
 
             <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
           </div> </>)}
-          {/* block-three */}
 		  
-		  {api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap}/> </>)}
-
+		  {api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap} OuvrirMessagePage2={OuvrirMessagePage2}/> </>)}
           <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
         </div> </>)} 
         {/* sender */}
@@ -3142,21 +3136,21 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap }) {
 //ChildApi66messageFA
 
 
-export function PartageContactMessage({ api={}, profilMap={} }) {
+export function PartageContactMessage({ api={}, profilMap={}, OuvrirMessagePagepc }) {
   const idaUtiliser = api?.idContact; // obtenir les informations du profil
   const profil = idaUtiliser ? profilMap?.[idaUtiliser] : null;
   
   const photo = profil?.photoProfile ?? photoBlanche;
   const nom = profil?.nameAccount ?? "";
-  console.log("bb api ", api);
-  console.log("bb idaUtiliser ", idaUtiliser);
-  console.log("bb profil ", profil);
-  console.log("bb nom ", nom);
+  //console.log("bb api ", api);
+  //console.log("bb idaUtiliser ", idaUtiliser);
+  //console.log("bb profil ", profil);
+  //console.log("bb nom ", nom);
   
   return (<> 
 	<pre className="pre fs-17px mb-15">{api.message}</pre> 
 	
-	<div className="partage-contact flex"> 
+	<div className="partage-contact flex" onClick={OuvrirMessagePagepc}> {/* OuvrirMessagePagepc = OuvrirMessagePage Partage Contact */}
 		<img className="photo-25px mr-5px" src={photo} alt=""/> 
 		<pre className="pre fs-14px">{nom}</pre>
 	</div>
