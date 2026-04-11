@@ -35215,7 +35215,7 @@ async function SendMessageFAA(customConversationId = null) {
 	type: blocPartagerContactFA ? "74" : "1",
   };
   
-  if (blocPartagerContactFA) messageData.idContact = idreq; // AJOUT CONDITIONNEL
+  if (blocPartagerContactFA) messageData.idContact = idContact; // AJOUT CONDITIONNEL
     
   socketRef.current.emit("sendMessage", messageData); //FRONT : message envoyé au serveur    
   setWriteMessage66messageFA("");
@@ -50584,7 +50584,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1018</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1100</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
