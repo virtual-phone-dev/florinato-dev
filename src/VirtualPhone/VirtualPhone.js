@@ -107,35 +107,8 @@ const dateParserLong = (date) => {
 
 //ChildApi 66florinatoApp
 function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, idCompteConnecter, profilMap, messageMap }) {
-  //const idPersonConnectedFA = localStorage.getItem("idPersonConnectedFA");
-
   const [checked, setChecked] = useState(false);
-  async function Checked() {
-    setChecked(!checked);
-
-    const idOther = api.idOther;
-    if(idOther) { 
-      localStorage.setItem("idOther", idOther); 
-      localStorage.setItem("idAccountChef", idOther);
-    }
-
-    const idGroupOther = api.idGroupOther;
-    if(idGroupOther) { localStorage.setItem("idGroupChef", idGroupOther); }
-
-
-    if (api.idAccount === idCompteConnecter) {  //logique pour obtenir l'id de la personne qui va recevoir mon message
-      const id = api.idOther;
-      const idUser = api.idUserOther;
-      localStorage.setItem("idOther", id);      
-      localStorage.setItem("idUser", idUser);
-    } else {
-      const id = api.idAccount;
-      const idUser = api.idUser;
-      localStorage.setItem("idOther", id);
-      localStorage.setItem("idUser", idUser);
-      localStorage.setItem("idAccountChef", id);
-    }
-  }
+  async function Checked() { setChecked(!checked); }
 
 
   // afficher le groupe
@@ -230,9 +203,7 @@ function ChildApi66florinatoApp({ api, onlineUsers, utilisateursQuiEcrivent, idC
       {/* type=50 , je me suis abonné */}
     </div>
     {/* child */}
-    </>
-  );
-} 
+</>)}
 //ChildApi 66florinatoApp
 
 
@@ -35034,10 +35005,11 @@ const destinataireOnline = (onlineUsers && Array.isArray(onlineUsers)) ? onlineU
 // On crée un map de messages récents par conversation
 const messageMap = useMemo(() => {
   const map = {};
-
+  const typesAcceptes = ["1", "74"];
+  
   toutMessages.forEach(msg => {
-    if (msg.type !== "1") return; // on ne prend que les messages ( type=1 )
-
+	if (!typesAcceptes.includes(msg.type)) return;
+	
     const idConv = msg.idConversation;
     const exist = map[idConv];
 
@@ -50592,7 +50564,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1945</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 2055</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
