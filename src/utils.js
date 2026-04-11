@@ -1831,63 +1831,6 @@ useEffect(() => {
 }, [toutesDonnees, lotActuel, idConversation]);
 
 
-	/*
-const donneesAffichees_messages = useMemo(() => { // afficher les messages dune conversation
-	return [...toutesDonnees]
-	.filter(api =>
-		api.idConversation &&
-		api.idConversation !== "0" && 
-		api.idConversation === idConversation
-	) 
-	.sort((a, b) => {
-	  if (!a.createdAt && !b.createdAt) return 0;
-	  if (!a.createdAt) return 1;
-	  if (!b.createdAt) return -1;
-
-	  return new Date(b.createdAt) - new Date(a.createdAt);
-	})
-	.slice(0, lotActuel);
-}, [toutesDonnees, lotActuel, idConversation]); 
-*/
-
-/*
-const donneesAffichees_messages = useMemo(() => {
-  console.log("useMemo déclenché");
-  console.log("👉 idConversation actuel:", idConversation);
-  console.log("👉 idConversation transmis:", idConversationtrans);
-  //console.log("toutesDonnees", toutesDonnees);
-  //console.log("👉 toutesDonnees length:", toutesDonnees.length);
-
-  const result = [...toutesDonnees]
-    .filter(api => {
-      const match =
-        api.idConversation &&
-        api.idConversation !== "0" &&
-        api.idConversation === idConversationtrans;
-
-      if (!match) {
-      } else {
-		console.log("✅ gardé:", api._id);
-        console.log("✅ gardé:", api.idConversation);
-        console.log("✅ gardé:", api.message);
-      }
-
-      return match;
-    })
-    .sort((a, b) => {
-      if (!a.createdAt && !b.createdAt) return 0;
-      if (!a.createdAt) return 1;
-      if (!b.createdAt) return -1;
-      return new Date(b.createdAt) - new Date(a.createdAt);
-    })
-    .slice(0, lotActuel);
-
-  console.log("result", result);
-  console.log("📦 résultat final:", result.length);
-  return result;
-}, [toutesDonnees, lotActuel, idConversationtrans]);
-*/
-
 
 //filtrer en fonction de idUserConnectedFA (idUser de la personne connecter) 
 const donneesAffichees_idUser = useMemo(() => { return toutesDonnees.filter(api => api.idUser === idUserConnectedFA)

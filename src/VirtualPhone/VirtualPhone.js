@@ -34948,8 +34948,9 @@ const {
 }); 
 
 
+
 // messages
-const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1"), [apiMessageFA] ); // toutes mes messages
+const messagesSource = useMemo(() => apiMessageFA.filter(api => api.type === "1" || api.type === "74"), [apiMessageFA] ); // toutes mes messages
 const { donneesAffichees_messages:dataMessagesFA, toutesDonnees:toutMessages, 
 	setToutesDonnees: setToutesDonneesMessage, 
 	//setIdConversationtrans: idConversation, 
@@ -50608,7 +50609,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0859</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0930</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
