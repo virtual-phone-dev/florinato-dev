@@ -3230,16 +3230,20 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
           </div>
           {/* head */}
 
-      <div className="body">
-        <div className="block-un">
-          <div className="a"> <img onClick={SeePhoto66profilFA} src={photoProfile} alt=""/> </div>
-          <div className="b"> <pre>{nameAccount}</pre> </div>
-          <div className="c"> <SvgPopularity/> <p>Popularité</p> </div>
-          <div className="d"> <p>{popularity} visites</p> </div>
-        </div>
-        {/* block-un */}
+        <div className="body">
+			<div>
+				<div className="g block-un">
+					<div className="a"> <img onClick={SeePhoto66profilFA} src={photoProfile} alt=""/> </div>
+					<div className="b"> <pre>{nameAccount}</pre> </div>
+					<div className="c"> <SvgPopularity/> <p>Popularité</p> </div>
+					<div className="d"> <p>{popularity} visites</p> </div>
+				</div>
+			
+				<div> <button className="d btn-vert">S'abonner</button> </div>
+			</div>
+			
 		
-		{!idCompteConnecter && (<div className="tc"> <button className="btn-bleu" onClick={OuvrirInscriptionPage}>Créer un compte</button> </div>)}
+		   {!idCompteConnecter && (<div className="tc"> <button className="btn-bleu" onClick={OuvrirInscriptionPage}>Créer un compte</button> </div>)}
 			  
 			<VideoSearchBlock 
 				data={dataVideos} dataOverflow={dataOverflow} listVideo={listVideo} valeur={rechercherMaVideoFA} setValeur={setRechercherMaVideoFA} 
