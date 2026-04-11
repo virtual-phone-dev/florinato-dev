@@ -34995,6 +34995,7 @@ useEffect(() => {
     if (data.type === "10") { setToutesDonneesComptes(prev => [data, ...prev]); } // comptes
     if (data.type === "60") { setApiMessageFA(prev => [data, ...prev]); } // annonces
 	if (data.type === "1") { console.log("nouveau message", data); setToutesDonneesMessage(prev => [data, ...prev]); } // message
+	if (data.type === "74") { console.log("nouveau message74", data); setToutesDonneesMessage(prev => [data, ...prev]); } // message
     if (data.type === "30") { console.log("nouveau conversation", data); setToutesDonneesConversation(prev => [data, ...prev]); } // conversation
  });
     

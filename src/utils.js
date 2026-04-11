@@ -3078,7 +3078,7 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirM
       {/* message que j'ai recu) */}
       {!monMessage && (<>
       <div className="receiver">
-        {api.message && (<> {/* text */}
+        {api.type === "1" && (<> {/* text */}
         <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
           
         {api.type === "2" && (<> {/* photo */}
@@ -3098,7 +3098,7 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirM
           <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
         </div> </>)}
 		
-		{api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc}/> </>)}
+		{api.type === "74" && (<div className="block-one"> <PartageContactMessage api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc}/> </div>)}
         <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
       </div> </>)}
       {/* receiver */}
@@ -3107,7 +3107,7 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirM
         {/* mon message (message que j'ai envoyé) */}
         {monMessage && (<>
         <div className="sender">
-          {api.message && (<> {/* text */}
+          {api.type === "1" && (<> {/* text */}
           <div className="block-one" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div></>)} 
           
           {api.type === "2" && (<> {/* photo */}
@@ -3127,7 +3127,7 @@ export function ChildApi66messageFA({ api, idCompteConnecter, profilMap, OuvrirM
             <div className="b" onClick={GoToselectedFA}> <pre>{api.message}</pre> </div>
           </div> </>)}
 		  
-		  {api.type === "74" && (<> <PartageContactMessage api={api} profilMap={profilMap} OuvrirMessagePage2={OuvrirMessagePage2}/> </>)}
+		  {api.type === "74" && (<div className="block-one"> <PartageContactMessage api={api} profilMap={profilMap} OuvrirMessagePagepc={OuvrirMessagePagepc}/> </div>)}
           <div className="block-quatre" onClick={GoToselectedFA}> <p>{dateParser(api.createdAt)}</p> </div>
         </div> </>)} 
         {/* sender */}
