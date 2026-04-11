@@ -50590,7 +50590,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1600</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1604</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50618,10 +50618,10 @@ function rechargerPage() {
                 {dataConversationFA.map((api) => (
 			    <div onClick={() => {
 					if (api.type === "30") {
-						setIdConversation(api._id);
-						
 						if (api.idAccount === idCompteConnecter) { setIdDestinataire(api.idOther); setIdDestinatairemp(api.idOther); setIdCompte(api.idOther); }
 						else { setIdDestinataire(api.idAccount); setIdDestinatairemp(api.idAccount); setIdCompte(api.idAccount); }
+						
+						setIdConversation(api._id);
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
 					
