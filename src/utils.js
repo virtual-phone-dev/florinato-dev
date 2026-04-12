@@ -2346,7 +2346,8 @@ export function PageTemplate({ visible, fermer, photo, titre, clicSvg, data, pro
 
 
 export function ModifierTemplate({ visible, fermer, valeur, setValeur, Valider, isLoading, infos, data, setIdCommentaire, setIdProprietaireCommentaire, profilMap,
-	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", textbtn="Valider", textarea, transVoirMiniature, miniature, setFileVideo, second, setSecond, lesCommentaires, RepondrePage }) {
+	changerUrl, changerMiniature, titre, texte = "Écrivez l'url ...", textbtn="Valider", textarea, transVoirMiniature, miniature, setFileVideo, second, setSecond, 
+	lesCommentaires, RepondrePage }) {
 		
 	if (!visible) return null;
 	return (
@@ -3542,8 +3543,9 @@ export function MonetizationEntrer({ visible, fermer, SeePhoto2personConnectedAA
 // MonetizationEntrer
 
 
-export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecentsPageFA, AdminFlorinato, Gestionnaire, MonArgentFA }) {
-  return (<>
+
+export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecentsPageFA, AdminFlorinato, Gestionnaire, MonArgentFA, FlorinatoPay, FlorinatoBusiness }) {
+	return (<>
 		<div className="list">
             <div className="b" onClick={GestionDuCompte}> <p>Mon Compte</p> </div>
 			<div className="b" onClick={Gestionnaire}> <p>Gestionnaire</p> </div>
@@ -3551,13 +3553,15 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecen
             <div className="b" onClick={MettreEnAvantCompte}> <p>Mettre en avant un compte</p> </div>
             <div className="b" onClick={AdminFlorinato}> <p>Ajouter un compte comme Admin Florinato</p> </div>
             <div className="b" onClick={MonArgentFA}> <p>Mon argent</p> </div>
+            <div className="b" onClick={FlorinatoPay}> <p>Florinato Pay</p> </div>
+            <div className="b" onClick={FlorinatoBusiness}> <p>Monetisation</p> </div>
         </div>
         {/* list */}
   </>
 )}
 
 export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre, listAccount, valeur, setValeur, OuvrirMessagePage, setIdContact,
-	Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, ComptesRecentsPageFA, MonArgentFA }) {	
+	Gestionnaire, GestionDuCompte, MettreEnAvantCompte, AdminFlorinato, ComptesRecentsPageFA, MonArgentFA, FlorinatoBusiness, FlorinatoPay }) {	
 	if (!visible) return null;
 
 	return (<>
@@ -3577,17 +3581,17 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
           <div className="body">
             <div className="card">
 			
-			{list && (
-			<ListeDuMenu 
-				GestionDuCompte={GestionDuCompte} MettreEnAvantCompte={MettreEnAvantCompte} Gestionnaire={Gestionnaire} AdminFlorinato={AdminFlorinato} 
-				ComptesRecentsPageFA={ComptesRecentsPageFA} MonArgentFA={MonArgentFA} />)}
+				{list && (
+				<ListeDuMenu 
+					GestionDuCompte={GestionDuCompte} MettreEnAvantCompte={MettreEnAvantCompte} Gestionnaire={Gestionnaire} AdminFlorinato={AdminFlorinato} 
+					ComptesRecentsPageFA={ComptesRecentsPageFA} MonArgentFA={MonArgentFA} FlorinatoBusiness={FlorinatoBusiness} FlorinatoPay={FlorinatoPay} />)}
+					
+				  
+				{search && (
+				<RechercheTemplate 
+					listAccount={listAccount} valeur={valeur} setValeur={setValeur} OuvrirMessagePage={OuvrirMessagePage} setIdContact={setIdContact} />)}
 				
-			  
-			{search && (
-			<RechercheTemplate 
-				listAccount={listAccount} valeur={valeur} setValeur={setValeur} OuvrirMessagePage={OuvrirMessagePage} setIdContact={setIdContact} />)}
-			
-			<p style={{ paddingTop: "100px" }}></p>
+				<p style={{ paddingTop: "100px" }}></p>
             </div>
             {/* card */}
           </div>

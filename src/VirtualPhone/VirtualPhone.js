@@ -35880,8 +35880,16 @@ async function ReparerUrl() {
 	actions: ["put", "post"], loader: setIsLoading66RechargerMesPiecesPage
 	//actions: ["put", "post"], loader: setIsLoading66RechargerMesPiecesPage, id: idMonArgent
   }); }
+  
+  
+  const [florinatoBusiness, setFlorinatoBusiness] = useState(false); 
+  async function FlorinatoBusiness() { setFlorinatoBusiness(true); }
+  async function CloseFlorinatoBusiness() { setFlorinatoBusiness(false); }
+  
+  const [florinatoPay, setFlorinatoPay] = useState(false); 
+  async function FlorinatoPay() { setFlorinatoPay(true); }
+  async function CloseFlorinatoPay() { setFlorinatoPay(false); }
 
-	
 
   // application florinato
   const [florinatoApp, setFlorinatoApp] = useState(false);
@@ -50589,7 +50597,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1340</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1432</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50694,8 +50702,8 @@ function rechargerPage() {
 			valeur={nouvelleAnnonce} setValeur={setNouvelleAnnonce} Valider={ModifierAnnonceFA} isLoading={isLoading666ModifierAnnonceFA} changerUrl textarea />
 
 
-		<MonetizationEntrer visible={alraniBusinessAA} fermer={CloseAlraniBusinessAA} />
-		<PortefeuilleSortie visible={alraniPayAA} fermer={CloseAlraniPayAA} />
+		<MonetizationEntrer visible={florinatoBusiness} fermer={CloseFlorinatoBusiness} />
+		<PortefeuilleSortie visible={florinatoPay} fermer={CloseFlorinatoPay} />
 
 		
 		{/* infos solde Alrani Business - AA */}
@@ -50711,7 +50719,8 @@ function rechargerPage() {
 		  
 		<PopupDuBasTemplate 
 			visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA} MonArgentFA={MonArgentFA}
-			MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
+			MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} FlorinatoBusiness={FlorinatoBusiness} 
+			FlorinatoPay={FlorinatoPay} list/>
 		  
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 		
@@ -50732,6 +50741,7 @@ function rechargerPage() {
 			visible={publierAnnoncePageFA} fermer={ClosePublierAnnoncePageFA} titre="Recharger Pièces du client" texte = "Montant ..." textbtn="Envoyer" 
 			valeur={ecrireMontant66} setValeur={setEcrireMontant66} Valider={RechargePiecePagePR} isLoading={isLoading666PublierAnnonceFA} changerUrl textarea />
 			*/}
+
 			
 		<ModifierTemplate 
 			visible={rechargerMesPiecesPage} fermer={CloseRechargerMesPiecesPage} titre="Recharger Mes Pièces" texte = "Écrire le nombre de pièces ..." textbtn="Envoyer" 
