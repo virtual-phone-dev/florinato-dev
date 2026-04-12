@@ -3600,7 +3600,7 @@ export function PopupDuBasTemplate({ visible, fermer, list, search, photo, titre
 // PopupDuBasTemplate 
 
 
-export function MonArgentTemplate({ visible, fermer }) {
+export function MonArgentTemplate({ visible, fermer, RechargerMesPieces }) {
   if (!visible) return null;
   
   return (<>
@@ -3609,7 +3609,7 @@ export function MonArgentTemplate({ visible, fermer }) {
 		
 		<div className="a">Mon Stock izocash</div>
 		<div className="a">Mon Argent</div>
-		<div className="a">Mes Pièces</div>
+		<div className="a" onClick={RechargerMesPieces}>Mes Pièces</div>
 	</div>
 </>)}
 

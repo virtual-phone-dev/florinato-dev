@@ -50717,7 +50717,7 @@ function rechargerPage() {
 		
 		<MessageTemplate {...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
 		
-		<MonArgentTemplate visible={monArgentFA} fermer={CloseMonArgentFA} />
+		<MonArgentTemplate visible={monArgentFA} fermer={CloseMonArgentFA} RechargerMesPieces={RechargerMesPiecesPage} />
 		
 		{/*
 		<ModifierTemplate 
