@@ -35478,12 +35478,6 @@ async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA
   async function CloseSelected2FA() { setSelected2FA(false); }
   async function Annuler66selected2FA() { setSelected2FA(false); } 
 
-
-
-  // monArgentFA
-  const [monArgentFA, setMonArgentFA] = useState(false); 
-  async function MonArgentFA() { setMonArgentFA(true); }
-  async function CloseMonArgentFA() { setMonArgentFA(false); }
   
   
   // menuFA
@@ -35866,6 +35860,27 @@ async function ReparerUrl() {
 }
 	
 	
+  // monArgentFA
+  const [monArgentFA, setMonArgentFA] = useState(false); 
+  async function MonArgentFA() { setMonArgentFA(true); }
+  async function CloseMonArgentFA() { setMonArgentFA(false); }
+  
+  
+  // rechargerMesPieces Page
+  const [rechargerMesPiecesPage, setRechargerMesPiecesPage] = useState(false); 
+  async function RechargerMesPiecesPage() { setRechargerMesPiecesPage(true); }
+  async function CloseRechargerMesPiecesPage() { setRechargerMesPiecesPage(false); }
+  
+  const [isLoading66RechargerMesPiecesPage, setIsLoading66RechargerMesPiecesPage] = useState(false); 
+  const [ecrireNombrePieces, setEcrireNombrePieces] = useState("");
+  
+  // logique pour recharger mes pieces
+  async function RechargerMesPieces() {
+	await ExecuterActionFA({ dataPUT:{mesPieces: ecrireNombrePieces}, dataPOST:{ mesPieces: ecrireNombrePieces, idProprietairePieces: idCompte, type:31 }, 
+	actions: ["put", "post"], loader: setIsLoading66RechargerMesPiecesPage
+	//actions: ["put", "post"], loader: setIsLoading66RechargerMesPiecesPage, id: idMonArgent
+  }); }
+
 	
 
   // application florinato
@@ -35875,7 +35890,6 @@ async function ReparerUrl() {
   const [dataFA, setDataFA] = useState(false);
   async function DataFA() { setDataFA(!dataFA); }
 
-  
   // PageRedirection 66ChildApi66florinatoApp
   async function PageRedirection66ChildApi66florinatoApp() {
     //page pour afficher le groupe que j'ai cliqué
@@ -50704,8 +50718,27 @@ function rechargerPage() {
 		<MessageTemplate {...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
 		
 		<MonArgentTemplate visible={monArgentFA} fermer={CloseMonArgentFA} />
+		
+		{/*
+		<ModifierTemplate 
+			visible={publierAnnoncePageFA} fermer={ClosePublierAnnoncePageFA} titre="Recharge stock izocash" texte = "Montant ..." textbtn="Envoyer" 
+			valeur={ecrireMontant66} setValeur={setEcrireMontant66} Valider={RechargeStockPage} isLoading={isLoading666PublierAnnonceFA} changerUrl textarea />
+		
+		<ModifierTemplate 
+			visible={publierAnnoncePageFA} fermer={ClosePublierAnnoncePageFA} titre="Recharger Argent du client" texte = "Montant ..." textbtn="Envoyer" 
+			valeur={ecrireMontant66} setValeur={setEcrireMontant66} Valider={RechargeMonArgentPage} isLoading={isLoading666PublierAnnonceFA} changerUrl textarea />
 			
+		<ModifierTemplate  
+			visible={publierAnnoncePageFA} fermer={ClosePublierAnnoncePageFA} titre="Recharger Pièces du client" texte = "Montant ..." textbtn="Envoyer" 
+			valeur={ecrireMontant66} setValeur={setEcrireMontant66} Valider={RechargePiecePagePR} isLoading={isLoading666PublierAnnonceFA} changerUrl textarea />
+			*/}
 			
+		<ModifierTemplate 
+			visible={rechargerMesPiecesPage} fermer={CloseRechargerMesPiecesPage} titre="Recharger Mes Pièces" texte = "Écrire le nombre de pièces ..." textbtn="Envoyer" 
+			valeur={ecrireNombrePieces} setValeur={setEcrireNombrePieces} Valider={RechargerMesPieces} 
+			isLoading={isLoading66RechargerMesPiecesPage} changerUrl textarea />
+
+
 	    <PageTemplate 
 		  visible={gestionDuCompteFA} fermer={CloseGestionDuCompteFA} data={filterAdminFA} profilMap={profilMap} gestionnaireCompte
 		  clicSvg={OuvrirPublierSurVotreCompteFApb} titre="Mon compte - Listes des comptes qui peuvent publier sur votre compte" photo={photoFA} proprietaireCompte={false} />
