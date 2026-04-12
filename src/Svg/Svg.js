@@ -16,6 +16,7 @@ export { default as SvgClose4 } from "./SvgClose4";
 export { default as SvgCamera } from "./SvgCamera";
 export { default as SvgCamera3 } from "./SvgCamera3";
 
+export { default as SvgDollars } from "./SvgDollars";
 export { default as SvgDash3 } from "./SvgDash3";
 export { default as SvgDislove } from "./SvgDislove";
 export { default as SvgDislike } from "./SvgDislike";
@@ -71,6 +72,7 @@ export { default as SvgMenu3 } from "./SvgMenu3";
 export { default as SvgMenu4 } from "./SvgMenu4";
 export { default as SvgMenu5 } from "./SvgMenu5";
 
+export { default as SvgMoney1 } from "./SvgMoney1";
 export { default as SvgMoneyBag } from "./SvgMoneyBag";
 
 export { default as SvgMessage } from "./SvgMessage";

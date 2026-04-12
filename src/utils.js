@@ -5,7 +5,7 @@ import Loader from "./Loader/Loader";
 import { theme } from "./theme";
 
 import { 
-	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, SvgExplore, SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, 
+	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, SvgDollars, SvgExplore, SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, 
 	SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
 } from "./Svg/Svg";
 	
@@ -3191,7 +3191,8 @@ export function MesComptesTemplate({ data=[], dataCompteConnecté=[], listMesCom
 
 export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageFA, AccountsFA, video, connecter, OuvrirMessagePage, OuvrirInscriptionPage, messagebtn,
 	data={}, dataVideos=[], dataMesVisitesFA=[], listVideo=[], dataOverflow=[], setIdPost, setUrlVideo, setIdProprietairePost, idCompte, idCompteConnecter,
-	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites, 
+	rechercherMaVideoFA, setRechercherMaVideoFA, ClicVideoFAA, voirVideo, PageRedirection66ChildApi66profilFA, SeePhoto66profilFA, scrollX, gererScroll, gererScrollVisites,
+	FlorinatoPay
 	}) {
 		
     if (!visible) return null;
@@ -3212,6 +3213,7 @@ export function ProfilTemplate({ visible, fermer, MenuFA, MenuBas, AddVideoPageF
 
 				{connecter && (
 				<div className="display-flex-nowrap"> 
+				  <div className="a" onClick={FlorinatoPay}> <SvgDollars/> </div> 
 				  <div className="a" onClick={MenuBas}> <SvgMenu/> </div> 
 				  <div className="a" onClick={MenuFA}> <SvgPointsHorizontal/> </div> 
 				  <div className="a" onClick={AddVideoPageFA}> <SvgAdd/> </div>  
@@ -3486,7 +3488,7 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
 
 
 
-export function PortefeuilleSortie({ visible, fermer, RechargerMesPieces, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
+export function FlorinatoPay({ visible, fermer, RechargerMesPieces, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
   if (!visible) return null;
   
   return (<>
