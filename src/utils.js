@@ -6,6 +6,7 @@ import { theme } from "./theme";
 
 import { 
 	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, SvgDollars, SvgExplore, SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, 
+	SvgGroup1, SvgGroup2, SvgGroup3, SvgGroup4,
 	SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
 } from "./Svg/Svg";
 	
@@ -3508,15 +3509,15 @@ export function FlorinatoPayTemplate({ visible, fermer, RechargerMesPieces, Refr
             {/* solde */}
 			
 			<div> 		
-				<div className="a">Mon Stock izocash</div>
-				<div className="a">Mon Argent</div>
-				<div className="a" onClick={RechargerMesPieces}>Mes Pièces</div>
+				<div className="a"> <SvgGroup1/> <p>Mon Stock izocash</p> </div>
+				<div className="a"> <SvgGroup2/> <p>Mon Argent</p> </div>
+				<div className="a" onClick={RechargerMesPieces}> <SvgGroup3/> <SvgGroup4/> <p>Mes Pièces</p> </div>
 			</div>
 	
         </div>
         {/* alraniPayAA */}
 </>)}
-// PortefeuilleSortie		
+// FlorinatoPayTemplate		
 
 
 export function MonetizationEntrer({ visible, fermer, SeePhoto2personConnectedAA, RefreshBalanceAA, InfosBalanceAlraniBusinessAA, monetizationBalanceAA,
