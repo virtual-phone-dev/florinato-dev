@@ -3486,7 +3486,7 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
 
 
 
-export function PortefeuilleSortie({ visible, fermer, CloseAlraniPayAA, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
+export function PortefeuilleSortie({ visible, fermer, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
   if (!visible) return null;
   
   return (<>
@@ -3495,7 +3495,7 @@ export function PortefeuilleSortie({ visible, fermer, CloseAlraniPayAA, RefreshB
               <div className="a">
                 <p>Florinato <b>Pay</b></p>
               </div>
-              <div className="b"> <button onClick={CloseAlraniPayAA}>Fermer</button> </div>
+              <div className="b"> <button onClick={fermer}>Fermer</button> </div>
             </div>
             {/* close */}
 
