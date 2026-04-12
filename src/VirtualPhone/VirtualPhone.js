@@ -35376,6 +35376,12 @@ const ComptesRecentsPropsCommun = {
 
 const AnnoncesPropsCommun = { OuvrirMessagePage: OuvrirMessageFA2e, };
 
+const VideosPropsCommun = {
+  voirVideo: SeeVideoFA, voirProfil: ProfilFA2e, AvantMessagePage,
+  setIdPost, setUrlVideo, setIdProprietairePost, setIdCompte, setIdDestinataire, profilMap, photo: photoFA, data: dataVideoFAbyClic, listVideo: listVideoFA,
+  gererScroll: scrollY, clicVideo: ClicVideoFAA, photocss: "photo-200px-carre", valeur: rechercherUneVideoFA, setValeur: setRechercherUneVideoFA,
+};
+
 
 const MessagePropsCommun = {
   profilMap, gererScrollMessages, voirProfil: ProfilFA2e, gererChangementMessage, SendMessageFAA,
@@ -35412,8 +35418,7 @@ async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA
   
   
   const [tonProfilPourNonConnecter, setTonProfilPourNonConnecter] = useState(false); 
-  //async function ProfilFA0e() { setTonProfilPourNonConnecter(true); }
-  async function CloseTonProfilPourNonConnecter() { setVideosPageFA(true); setTonProfilPourNonConnecter(false); }
+  async function CloseTonProfilPourNonConnecter() { setVideosAbonnementsFA(true); setTonProfilPourNonConnecter(false); }
   
   
   const [profilFA2e, setProfilFA2e] = useState(false); 
@@ -35432,8 +35437,8 @@ async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA
   
   
   const [seeVideoFA, setSeeVideoFA] = useState(false); //voir la video
-  async function SeeVideoFA() { setSeeVideoFA(true); setVideosPageFA(false); }
-  async function CloseSeeVideoFA() { setVideosPageFA(true); setSeeVideoFA(false); }
+  async function SeeVideoFA() { setSeeVideoFA(true); setVideosAbonnementsFA(false); }
+  async function CloseSeeVideoFA() { setVideosAbonnementsFA(true); setSeeVideoFA(false); }
   
 
   const [seeVideoFAPourNonConnecter, setSeeVideoFAPourNonConnecter] = useState(false); 
@@ -35582,7 +35587,7 @@ async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA
 	  }
 	  
 	  if (videoPage) {
-		setVideosPageFA(true);
+		setVideosAbonnementsFA(true);
 		
 		setFlorinatoApp(false);
         setTelephoneVirtuel(false);
@@ -42003,16 +42008,10 @@ async function PageRedirection66groupOtherFA() {
   async function CloseComptesEnLigneFA() { setFlorinatoApp(true); setComptesEnLigneFA(false);  }
   
   
-  // ajouter un autre compte a la gestion du compte florinato - FA 
-  //const [ajouterGestionCompteConfirmation, setAjouterGestionCompteConfirmation] = useState(false); 
-  //async function AjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(true); }
-  //async function CloseAjouterGestionCompteConfirmation() { setAjouterGestionCompteConfirmation(false); }
-
-
   
   const [annoncesPageFA, setAnnoncesPageFA] = useState(false); // page pour afficher les annonces
-  async function AnnoncesPageFA() { setAnnoncesPageFA(true); setVideosPageFA(false); }
-  async function CloseAnnoncesPageFA() { setVideosPageFA(true); setAnnoncesPageFA(false); }
+  async function AnnoncesPageFA() { setAnnoncesPageFA(true); setVideosAbonnementsFA(false); }
+  async function CloseAnnoncesPageFA() { setVideosAbonnementsFA(true); setAnnoncesPageFA(false); }
   
   
   const [afficherAnnoncePageFA, setAfficherAnnoncePageFA] = useState(false); // page pour afficher une annonce
@@ -42026,9 +42025,14 @@ async function PageRedirection66groupOtherFA() {
   
   
   // page ou on affiche toutes les videos - FA 
-  const [videosPageFA, setVideosPageFA] = useState(true); 
-  async function VideosPageFA() { setVideosPageFA(true); setFlorinatoApp(false); }
-  async function CloseVideosPageFA() { setFlorinatoApp(true); setVideosPageFA(false); }
+  const [videosPageFA, setVideosPageFA] = useState(false); 
+  async function VideosPageFA() { setVideosPageFA(true); setVideosAbonnementsFA(false); }
+  async function CloseVideosPageFA() { setVideosAbonnementsFA(true); setVideosPageFA(false); }
+  
+  // videosAbonnementsFA 
+  const [videosAbonnementsFA, setVideosAbonnementsFA] = useState(true); 
+  async function VideosAbonnementsFA() { setVideosAbonnementsFA(true); setFlorinatoApp(false); }
+  async function CloseVideosAbonnementsFA() { setFlorinatoApp(true); setVideosAbonnementsFA(false); }
   
   
   // Les comptes les plus populaires sur florinato - FA 
@@ -50564,7 +50568,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 2250</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0340</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50574,7 +50578,7 @@ function rechargerPage() {
               <div className="block-deux">
                 {dev && (<><div className="a" onClick={RencontreFA}> <SvgLove2/> </div></>)}
 
-                <div className="b" onClick={VideosPageFA}> <SvgVideo6/> </div>
+                <div className="b" onClick={VideosAbonnementsFA}> <SvgVideo6/> </div>
                 {dev && (<><div className="b" onClick={SpeedMessagesPagesFA}> <SvgLove2/> </div></>)}
                 <div className="b" onClick={ComptesEnLigneFA}> <SvgSearch5/> </div>
                 {dev && (<><div className="b" onClick={PopularityAccountsPageFA}> <SvgExplore/> </div></>)}
@@ -50611,28 +50615,26 @@ function rechargerPage() {
       {/* application florinato */}
 	  
 	  
+	  
+		<VideosPageTemplate 
+			{...VideosPropsCommun} visible={videosPageFA} fermer={CloseVideosPageFA} titre="Vidéos suggérées" />
 		
-		<VideosPageTemplate
-			visible={videosPageFA} fermer={CloseVideosPageFA} 
-			voirVideo={SeeVideoFA} OuvrirAnnoncesPage={AnnoncesPageFA} voirProfil={ProfilFA2e} AvantMessagePage={AvantMessagePage} video
-			setIdPost={setIdPost} setUrlVideo={setUrlVideo} setIdProprietairePost={setIdProprietairePost} setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire}
-			data={dataVideoFAbyClic} profilMap={profilMap} photo={photoFA} gererScroll={scrollY} clicVideo={ClicVideoFAA} photo={photoFA}
-			photocss="photo-200px-carre" listVideo={listVideoFA} valeur={rechercherUneVideoFA} setValeur={setRechercherUneVideoFA} />
-  
-  
+		<VideosPageTemplate 
+			{...VideosPropsCommun} visible={videosAbonnementsFA} fermer={CloseVideosAbonnementsFA} OuvrirAnnoncesPage={AnnoncesPageFA} OuvrirVideosSuggerer={VideosPageFA}
+			videosPage annonce titre="Vidéos" />
+	
+	
 		<AnnoncesTemplate 
-			{...AnnoncesPropsCommun} 
-			visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} 
+			{...AnnoncesPropsCommun} visible={annoncesPageFA} fermer={CloseAnnoncesPageFA} profilMap={profilMap} setIdAnnonce={setIdAnnonce} 
 			data={dataAnnoncesFA} AfficherAnnoncePage={AfficherAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 		
 		<AfficherAnnonceTemplate 
-			{...AnnoncesPropsCommun} 
-			visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap} idCompteConnecter={idCompteConnecter}
+			{...AnnoncesPropsCommun} visible={afficherAnnoncePageFA} fermer={CloseAfficherAnnoncePageFA} profilMap={profilMap} idCompteConnecter={idCompteConnecter}
 			data={dataAnnonce} ModifierAnnoncePageFA={ModifierAnnoncePageFA} gererScroll={gererScrollAnnonces} />
 			
-		
 	
-		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
+		<ComptesRecentsTemplate 
+			{...ComptesRecentsPropsCommun} visible={comptesEnLigneFA} fermer={CloseComptesEnLigneFA} data={comptesOnline} online />
 
 
 		<SpeedMessages 

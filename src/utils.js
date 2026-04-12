@@ -6,7 +6,7 @@ import { theme } from "./theme";
 
 import { 
 	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, 
-	SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
+	SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3, SvgVideo6
 } from "./Svg/Svg";
 	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -2006,26 +2006,7 @@ export function SpeedMessages({ visible, fermer, data=[], gererScroll, MenuPopup
       ))}
     </div>
 	
-  );
-}
-
-
-export function CloseAction({ fermer, clicSvgAdd, titre, photo, annonce, OuvrirAnnoncesPage }) {
-  return (
-    <div className="between m-15">
-		<div className="a display-flex-nowrap" onClick={fermer}>
-			<div> <SvgLeft/> </div>
-			<div> <p>{titre}</p> </div>
-			<div className="photo-25px"> <img src={photo} alt=""/> </div>
-		</div>
-
-		<div className="b"> 
-			{clicSvgAdd && (<div onClick={clicSvgAdd}> <SvgAdd/> </div>)}
-			{annonce && (<div onClick={OuvrirAnnoncesPage}> <SvgInfos/> </div>)}
-		</div>
-    </div>
-  );
-}
+)}
 
 	
 		   
@@ -2189,12 +2170,33 @@ export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, set
 </>)}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, setIdCompte, setIdDestinataire, AvantMessagePage,
-	setIdPost, setUrlVideo, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, voirProfil, listVideo, valeur, setValeur, photocss }) {
+export function CloseAction({ fermer, clicSvgAdd, titre, photo, annonce, videosPage, OuvrirAnnoncesPage, OuvrirVideosSuggerer }) {
+  return (
+    <div className="between m-15">
+		<div className="a display-flex-nowrap" onClick={fermer}>
+			<div> <SvgLeft/> </div>
+			<div> <p>{titre}</p> </div>
+			<div className="photo-25px"> <img src={photo} alt=""/> </div>
+		</div>
+
+		<div className="b"> 
+			{clicSvgAdd && (<div onClick={clicSvgAdd}> <SvgAdd/> </div>)}
+			{videosPage && (<div onClick={OuvrirVideosSuggerer}> <SvgVideo6/> </div>)}
+			{annonce && (<div onClick={OuvrirAnnoncesPage}> <SvgInfos/> </div>)}
+		</div>
+    </div>
+)}
+
+
+export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, OuvrirVideosSuggerer, setIdCompte, setIdDestinataire, 
+	AvantMessagePage, titre,
+	setIdPost, setUrlVideo, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, voirProfil, listVideo, valeur, setValeur, photocss, annonce, videosPage }) {
 	if (!visible) return null;
 	return (
 		<div className="page-blanche" onScroll={gererScroll}> 
-			<CloseAction fermer={fermer} titre="Videos" photo={photo} OuvrirAnnoncesPage={OuvrirAnnoncesPage} annonce />
+			<CloseAction 
+				fermer={fermer} titre={titre} photo={photo} OuvrirAnnoncesPage={OuvrirAnnoncesPage} OuvrirVideosSuggerer={OuvrirVideosSuggerer} annonce={annonce} 
+				videosPage={videosPage} />
 			
 			<VideoSearchBlock 
 				data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
