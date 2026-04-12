@@ -11,7 +11,7 @@ import {
 	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini, sauvegarderDansIndexedDB,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, MesComptesTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, MessageTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
-	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate, InfosTemplate, MonetizationEntrer, PortefeuilleSortie,
+	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate, InfosTemplate, MonArgentTemplate, MonetizationEntrer, PortefeuilleSortie,
 	GenererMiniatureVideo, SpeedMessages, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB, AdapterLien
 	} from "../utils";
 		
@@ -35480,7 +35480,12 @@ async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA
 
 
 
-
+  // monArgentFA
+  const [monArgentFA, setMonArgentFA] = useState(false); 
+  async function MonArgentFA() { setMonArgentFA(true); }
+  async function CloseMonArgentFA() { setMonArgentFA(false); }
+  
+  
   // menuFA
   const [menuFA, setMenuFA] = useState(false); 
   async function MenuFA() { setMenuFA(true); }
@@ -50570,7 +50575,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0747</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0826</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50676,8 +50681,8 @@ function rechargerPage() {
 
 
 		<MonetizationEntrer visible={alraniBusinessAA} fermer={CloseAlraniBusinessAA} />
-		
 		<PortefeuilleSortie visible={alraniPayAA} fermer={CloseAlraniPayAA} />
+
 		
 		{/* infos solde Alrani Business - AA */}
 		<InfosTemplate 
@@ -50689,17 +50694,16 @@ function rechargerPage() {
 			visible={infosBalanceAlraniPayAA} fermer={CloseInfosBalanceAlraniPayAA} 
 			texte="Votre Solde Florinato Pay est de {balanceAlraniPayAA} FCFA" />
 
-
 		  
 		<PopupDuBasTemplate 
-			visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA}
+			visible={menuFA} fermer={CloseMenuFA} photo={photoFA} titre="Menu" GestionDuCompte={GestionDuCompteFA} Gestionnaire={GestionnaireFA} MonArgentFA={MonArgentFA}
 			MettreEnAvantCompte={MettreEnAvantCompteFA} AdminFlorinato={AdminFlorinato} ComptesRecentsPageFA={ComptesRecentsPageFA} list/>
 		  
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
-	
-
-		<MessageTemplate 
-			{...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
+		
+		<MessageTemplate {...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
+		
+		<MonArgentTemplate visible={monArgentFA} fermer={CloseMonArgentFA} />
 			
 			
 	    <PageTemplate 
