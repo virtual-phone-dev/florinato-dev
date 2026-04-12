@@ -50597,7 +50597,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1520</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1604</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50702,9 +50702,6 @@ function rechargerPage() {
 			valeur={nouvelleAnnonce} setValeur={setNouvelleAnnonce} Valider={ModifierAnnonceFA} isLoading={isLoading666ModifierAnnonceFA} changerUrl textarea />
 
 
-		<MonetizationEntrer visible={florinatoBusiness} fermer={CloseFlorinatoBusiness} />
-		<PortefeuilleSortie visible={florinatoPay} fermer={CloseFlorinatoPay} />
-
 		
 		{/* infos solde Alrani Business - AA */}
 		<InfosTemplate 
@@ -50725,6 +50722,9 @@ function rechargerPage() {
 		<ComptesRecentsTemplate {...ComptesRecentsPropsCommun} visible={comptesRecentsPageFA} fermer={CloseComptesRecentsPageFA} data={dataComptesFA} dev />
 		
 		<MessageTemplate {...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
+		
+		<MonetizationEntrer visible={florinatoBusiness} fermer={CloseFlorinatoBusiness} />
+		<PortefeuilleSortie visible={florinatoPay} fermer={CloseFlorinatoPay} />
 		
 		<MonArgentTemplate visible={monArgentFA} fermer={CloseMonArgentFA} RechargerMesPieces={RechargerMesPiecesPage} />
 		
