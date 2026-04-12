@@ -1,4 +1,5 @@
 export { default as SvgAdd } from "./SvgAdd";
+export { default as SvgAddGroup } from "./SvgAddGroup";
 export { default as SvgAdd3 } from "./SvgAdd3";
 export { default as SvgAdd5 } from "./SvgAdd5";
 
@@ -29,6 +30,11 @@ export { default as SvgFile } from "./SvgFile";
 export { default as SvgFire } from "./SvgFire";
 export { default as SvgFavoris } from "./SvgFavoris";
 export { default as SvgFullScreen2 } from "./SvgFullScreen2";
+
+export { default as SvgGroup1 } from "./SvgGroup1";
+export { default as SvgGroup2 } from "./SvgGroup2";
+export { default as SvgGroup3 } from "./SvgGroup3";
+export { default as SvgGroup4 } from "./SvgGroup4";
 
 export { default as SvgHome } from "./SvgHome";
 export { default as SvgHome2 } from "./SvgHome2";
@@ -72,8 +78,11 @@ export { default as SvgMenu3 } from "./SvgMenu3";
 export { default as SvgMenu4 } from "./SvgMenu4";
 export { default as SvgMenu5 } from "./SvgMenu5";
 
+export { default as SvgModifierGroup } from "./SvgModifierGroup";
+
 export { default as SvgMoney1 } from "./SvgMoney1";
 export { default as SvgMoney2 } from "./SvgMoney2";
+export { default as SvgMoney3 } from "./SvgMoney3";
 export { default as SvgMoneyInfos } from "./SvgMoneyInfos";
 export { default as SvgMoneyBag } from "./SvgMoneyBag";
 

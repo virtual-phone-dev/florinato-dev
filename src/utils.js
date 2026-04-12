@@ -3494,9 +3494,10 @@ export function FlorinatoPayTemplate({ visible, fermer, RechargerMesPieces, Refr
   return (<>
         <div className="alraniPayAA">
             <div className="close">
-              <div className="a">
+              <div className="a" onClick={fermer}>
                 <p>Florinato <b>Pay</b></p>
               </div>
+			  
               <div className="b"> <button onClick={fermer}>Fermer</button> </div>
             </div>
             {/* close */}
