@@ -50621,7 +50621,7 @@ function rechargerPage() {
 		
 		<VideosPageTemplate 
 			{...VideosPropsCommun} visible={videosAbonnementsFA} fermer={CloseVideosAbonnementsFA} OuvrirAnnoncesPage={AnnoncesPageFA} OuvrirVideosSuggerer={VideosPageFA}
-			videosPage annonce titre="Vidéos" />
+			OuvrirProfil={ProfilFA2e} dataComptes={dataComptesFA} onlineUsers={onlineUsers} scrollX={scrollX} online videosPage annonce comptesSuggerer titre="Vidéos" />
 	
 	
 		<AnnoncesTemplate 

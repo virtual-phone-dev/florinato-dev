@@ -5,8 +5,8 @@ import Loader from "./Loader/Loader";
 import { theme } from "./theme";
 
 import { 
-	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, 
-	SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3, SvgVideo6
+	SvgAdd, SvgBadge, SvgBottom5, SvgClose2, SvgExplore, SvgFile, SvgFullScreen2, SvgInfos, SvgLeft, SvgMark1, SvgMenu, SvgMessage, 
+	SvgPointsVertical, SvgPlay2, SvgPopularity, SvgPointsHorizontal, SvgSearch5, SvgSend, SvgValidate3
 } from "./Svg/Svg";
 	
 import { ChildApi266accountsFA, ChildApi66accountsFA, ChildApi266profilFA } from "./VirtualPhone/VirtualPhone";
@@ -2181,15 +2181,15 @@ export function CloseAction({ fermer, clicSvgAdd, titre, photo, annonce, videosP
 
 		<div className="b"> 
 			{clicSvgAdd && (<div onClick={clicSvgAdd}> <SvgAdd/> </div>)}
-			{videosPage && (<div onClick={OuvrirVideosSuggerer}> <SvgVideo6/> </div>)}
+			{videosPage && (<div onClick={OuvrirVideosSuggerer}> <SvgExplore/> </div>)}
 			{annonce && (<div onClick={OuvrirAnnoncesPage}> <SvgInfos/> </div>)}
 		</div>
     </div>
 )}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, OuvrirVideosSuggerer, setIdCompte, setIdDestinataire, 
-	AvantMessagePage, titre,
+export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, OuvrirVideosSuggerer, OuvrirProfil, setIdCompte, setIdDestinataire, 
+	AvantMessagePage, titre, comptesSuggerer, onlineUsers, online, dataComptes, scrollX,
 	setIdPost, setUrlVideo, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, voirProfil, listVideo, valeur, setValeur, photocss, annonce, videosPage }) {
 	if (!visible) return null;
 	return (
@@ -2197,6 +2197,11 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, Ou
 			<CloseAction 
 				fermer={fermer} titre={titre} photo={photo} OuvrirAnnoncesPage={OuvrirAnnoncesPage} OuvrirVideosSuggerer={OuvrirVideosSuggerer} annonce={annonce} 
 				videosPage={videosPage} />
+				
+			{comptesSuggerer && (
+			<ListeDesComptes 
+				data={dataComptes} online={online} onlineUsers={onlineUsers} affichagecss="overflow-x" scrollX={scrollX}
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirProfil={OuvrirProfil} />)}
 			
 			<VideoSearchBlock 
 				data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
@@ -2301,20 +2306,22 @@ export function ComptesRecentsTemplate({ visible, fermer, data, online, onlineUs
  </>)}
  
 
-			  
-export function ListeDesComptes({ data=[], online, onlineUsers, dev, setIdCompte, setIdDestinataire, OuvrirMessagePage }) {
-	const onlineSet = useMemo(() => new Set(onlineUsers), [onlineUsers]); // optimisation O(1) . Performance O(n) → optimisée avec Set.
+
+export function ListeDesComptes({ data=[], online, onlineUsers, dev, affichagecss, scrollX, setIdCompte, setIdDestinataire, OuvrirMessagePage, OuvrirProfil }) {
+	const onlineSet = useMemo(() => new Set(onlineUsers), [onlineUsers]); // Performance, optimisée avec Set.
 	
 	return (<>
-		{data.map((api) => {
-		const isOnline = onlineSet.has(api._id); // check si un utilisateur est en ligne
-		
-		return (
-		<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); OuvrirMessagePage(api._id); }}>	
-			<PopularityAccountCard api={api} online={online} isOnline={isOnline} dev={dev} />
+		<div className={affichagecss} onScroll={scrollX || undefined}>
+			{data.map((api) => {
+			const isOnline = onlineSet.has(api._id); // check si un utilisateur est en ligne
+			
+			return (
+			<div onClick={() => { setIdCompte(api._id); setIdDestinataire(api._id); OuvrirMessagePage(api._id); OuvrirProfil(); }}>	
+				<PopularityAccountCard api={api} online={online} isOnline={isOnline} dev={dev} />
+			</div>
+			);
+			})}
 		</div>
-		);
-		})}
 </>)}
 
 
