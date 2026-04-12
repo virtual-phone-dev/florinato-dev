@@ -50597,7 +50597,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1604</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1620</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50724,7 +50724,7 @@ function rechargerPage() {
 		<MessageTemplate {...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
 		
 		<MonetizationEntrer visible={florinatoBusiness} fermer={CloseFlorinatoBusiness} />
-		<PortefeuilleSortie visible={florinatoPay} fermer={CloseFlorinatoPay} />
+		<PortefeuilleSortie visible={florinatoPay} fermer={CloseFlorinatoPay} RechargerMesPieces={RechargerMesPiecesPage} />
 		
 		<MonArgentTemplate visible={monArgentFA} fermer={CloseMonArgentFA} RechargerMesPieces={RechargerMesPiecesPage} />
 		

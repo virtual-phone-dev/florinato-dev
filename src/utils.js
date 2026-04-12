@@ -3486,7 +3486,7 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
 
 
 
-export function PortefeuilleSortie({ visible, fermer, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
+export function PortefeuilleSortie({ visible, fermer, RechargerMesPieces, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
   if (!visible) return null;
   
   return (<>
@@ -3503,6 +3503,13 @@ export function PortefeuilleSortie({ visible, fermer, RefreshBalanceAA, InfosBal
               <div onClick={RefreshBalanceAA} className="a"> <button onClick={InfosBalanceAlraniPayAA}> <p>{balanceAlraniPayAA} FCFA</p> </button></div>
             </div> 
             {/* solde */}
+			
+			<div> 		
+				<div className="a">Mon Stock izocash</div>
+				<div className="a">Mon Argent</div>
+				<div className="a" onClick={RechargerMesPieces}>Mes Pièces</div>
+			</div>
+	
         </div>
         {/* alraniPayAA */}
 </>)}
