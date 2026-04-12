@@ -73,6 +73,8 @@ export { default as SvgMenu4 } from "./SvgMenu4";
 export { default as SvgMenu5 } from "./SvgMenu5";
 
 export { default as SvgMoney1 } from "./SvgMoney1";
+export { default as SvgMoney2 } from "./SvgMoney2";
+export { default as SvgMoneyInfos } from "./SvgMoneyInfos";
 export { default as SvgMoneyBag } from "./SvgMoneyBag";
 
 export { default as SvgMessage } from "./SvgMessage";

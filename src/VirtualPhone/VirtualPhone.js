@@ -11,7 +11,7 @@ import {
 	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini, sauvegarderDansIndexedDB,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, MesComptesTemplate,
 	PopupBasTextareaTemplate, MenuPopupTemplate, MenuBasTemplate, MenuAvecIconeTemplate, MessageTemplate, PagesGererTemplate, GestionPageTemplate, ProfilTemplate,
-	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate, InfosTemplate, MonArgentTemplate, MonetizationEntrer, PortefeuilleSortie,
+	SeeVideoTemplate, SeePhotoTemplate, AnnoncesTemplate, AfficherAnnonceTemplate, InfosTemplate, MonArgentTemplate, MonetizationEntrer, FlorinatoPayTemplate,
 	GenererMiniatureVideo, SpeedMessages, envoyerPOST, envoyerPUT, getAllData, rechercherAvecFuse, useScrollIndexedDB, AdapterLien
 	} from "../utils";
 		
@@ -50597,7 +50597,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1645</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 1716</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50724,7 +50724,7 @@ function rechargerPage() {
 		<MessageTemplate {...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
 		
 		<MonetizationEntrer visible={florinatoBusiness} fermer={CloseFlorinatoBusiness} />
-		<PortefeuilleSortie visible={florinatoPay} fermer={CloseFlorinatoPay} RechargerMesPieces={RechargerMesPiecesPage} />
+		<FlorinatoPayTemplate visible={florinatoPay} fermer={CloseFlorinatoPay} RechargerMesPieces={RechargerMesPiecesPage} />
 		
 		<MonArgentTemplate visible={monArgentFA} fermer={CloseMonArgentFA} RechargerMesPieces={RechargerMesPiecesPage} />
 		

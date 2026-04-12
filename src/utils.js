@@ -3488,7 +3488,7 @@ export function SeePhotoTemplate({ visible, fermer, urlPhoto }) {
 
 
 
-export function FlorinatoPay({ visible, fermer, RechargerMesPieces, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
+export function FlorinatoPayTemplate({ visible, fermer, RechargerMesPieces, RefreshBalanceAA, InfosBalanceAlraniPayAA, balanceAlraniPayAA }) {
   if (!visible) return null;
   
   return (<>
