@@ -34841,7 +34841,8 @@ const {
 	infosCompteConnecter_by_id: infosCompteConnecterById, 
 	
 	setToutesDonnees: setToutesDonneesComptes,
-	gererScroll: gererScrollComptes 
+	gererScroll: gererScrollComptes, 
+	chargerPlus: chargerPlusComptes
 } = useScrollIndexedDB({
 	nomStockage: "comptes", 
 	donnees:comptesSource, 
@@ -34853,6 +34854,7 @@ const {
 	rechercherMonCompte: rechercherMonCompteFA,
 });
 
+const scrollXcomptes = useScrollInfini(chargerPlusComptes, 'x'); // scrollHorizontal , overflow-x 
 
 
 // filtre pour obtenir les infos du compte - FA 
@@ -50568,7 +50570,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0340</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0747</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50621,7 +50623,7 @@ function rechargerPage() {
 		
 		<VideosPageTemplate 
 			{...VideosPropsCommun} visible={videosAbonnementsFA} fermer={CloseVideosAbonnementsFA} OuvrirAnnoncesPage={AnnoncesPageFA} OuvrirVideosSuggerer={VideosPageFA}
-			OuvrirProfil={ProfilFA2e} dataComptes={dataComptesFA} onlineUsers={onlineUsers} scrollX={scrollX} online videosPage annonce comptesSuggerer titre="Vidéos" />
+			OuvrirProfil={ProfilFA2e} dataComptes={dataComptesFA} onlineUsers={onlineUsers} scrollX={scrollXcomptes} videosPage annonce comptesSuggerer titre="Vidéos" />
 	
 	
 		<AnnoncesTemplate 
@@ -50659,8 +50661,7 @@ function rechargerPage() {
 
 		{/* SeeVideoFA */}
 		<SeeVideoTemplate 
-			{...SeeVideoTemplatePropsCommun}
-			visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} />
+			{...SeeVideoTemplatePropsCommun} visible={seeVideoFA} fermer={CloseSeeVideoFA} voirProfil={ProfilFA2e} />
 
 
 		<MenuBasTemplate visible={menuBas} fermer={CloseMenuBas} PublierAnnoncePageFA={PublierAnnoncePageFA} titre="Publier une annonce" />
@@ -50698,8 +50699,7 @@ function rechargerPage() {
 	
 
 		<MessageTemplate 
-			{...MessagePropsCommun} 
-			visible={messageFA} fermer={CloseMessageFA} />
+			{...MessagePropsCommun} visible={messageFA} fermer={CloseMessageFA} />
 			
 			
 	    <PageTemplate 

@@ -2042,7 +2042,7 @@ export function ConfirmationTemplate({ visible, fermer, isLoading, Validerbtn })
 
 
 
-export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecentsPageFA, AdminFlorinato, Gestionnaire }) {
+export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecentsPageFA, AdminFlorinato, Gestionnaire, MonArgentFA }) {
   return (<>
 		<div className="list">
             <div className="b" onClick={GestionDuCompte}> <p>Mon Compte</p> </div>
@@ -2050,6 +2050,7 @@ export function ListeDuMenu({ GestionDuCompte, MettreEnAvantCompte, ComptesRecen
             <div className="b" onClick={ComptesRecentsPageFA}> <p>Comptes Récents</p> </div>
             <div className="b" onClick={MettreEnAvantCompte}> <p>Mettre en avant un compte</p> </div>
             <div className="b" onClick={AdminFlorinato}> <p>Ajouter un compte comme Admin Florinato</p> </div>
+            <div className="b" onClick={MonArgentFA}> <p>Mon argent</p> </div>
         </div>
         {/* list */}
   </>
@@ -2189,7 +2190,7 @@ export function CloseAction({ fermer, clicSvgAdd, titre, photo, annonce, videosP
 
 
 export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, OuvrirVideosSuggerer, OuvrirProfil, setIdCompte, setIdDestinataire, 
-	AvantMessagePage, titre, comptesSuggerer, onlineUsers, online, dataComptes, scrollX,
+	AvantMessagePage, titre, comptesSuggerer, onlineUsers, dataComptes, scrollX,
 	setIdPost, setUrlVideo, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, voirProfil, listVideo, valeur, setValeur, photocss, annonce, videosPage }) {
 	if (!visible) return null;
 	return (
@@ -2200,7 +2201,7 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, Ou
 				
 			{comptesSuggerer && (
 			<ListeDesComptes 
-				data={dataComptes} online={online} onlineUsers={onlineUsers} affichagecss="overflow-x" scrollX={scrollX}
+				data={dataComptes} onlineUsers={onlineUsers} affichagecss="overflow-x" scrollX={scrollX}
 				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirProfil={OuvrirProfil} />)}
 			
 			<VideoSearchBlock 
