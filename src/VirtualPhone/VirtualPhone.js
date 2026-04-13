@@ -34602,6 +34602,7 @@ async function DissadAA() {
 	const [idExpediteur, setIdExpediteur] = useState(idPersonConnectedFA);
 	const [idCommentaire, setIdCommentaire] = useState(null);
 	const [idConversation, setIdConversation] = useState(null);
+	const [idConversationmp, setIdConversationmp] = useState(null);
 	const [idDestinataire, setIdDestinataire] = useState(null);	
 	const [idDestinatairemp, setIdDestinatairemp] = useState(null);	// idDestinatairemp : idDestinataire message page
 	const [idProprietaireCommentaire, setIdProprietaireCommentaire] = useState(null);
@@ -34619,6 +34620,11 @@ async function DissadAA() {
 	console.log("idDestinatairemp", idDestinatairemp); 
 	console.log("idComptemp", idComptemp); 
 	console.log("idConversation", idConversation); 
+	
+
+	useEffect(() => {
+			setIdConversation(idConversationmp);
+	}, [idConversationmp]); 
 
 
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
@@ -50597,7 +50603,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 1930</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0133</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50628,13 +50634,13 @@ function rechargerPage() {
 						if (api.idAccount === idCompteConnecter) { setIdDestinataire(api.idOther); setIdCompte(api.idOther); setIdDestinatairemp(api.idOther); setIdComptemp(api.idOther); }
 						else { setIdDestinataire(api.idAccount); setIdCompte(api.idAccount); setIdDestinatairemp(api.idAccount); setIdComptemp(api.idAccount); }
 						
-						setIdConversation(api._id);
+						setIdConversation(api._id); setIdConversationmp(api._id);
 					}
 					PageRedirection66ChildApi66florinatoApp(); }} >
 					
 					<ChildApi66florinatoApp api={api} idCompteConnecter={idCompteConnecter} profilMap={profilMap} messageMap={messageMap} onlineUsers={onlineUsers} utilisateursQuiEcrivent={utilisateursQuiEcrivent} /> 
 				</div> 
-				))}
+				))} 
             </div> 
           </div>
           {/* body */}
