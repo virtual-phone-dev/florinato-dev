@@ -34622,11 +34622,6 @@ async function DissadAA() {
 	console.log("idConversation", idConversation); 
 	
 
-	useEffect(() => {
-			setIdConversation(idConversationmp);
-	}, [idConversationmp]); 
-
-
   //requete pour obtenir tout les donnees (messages, videos, comptes, ..)
   const [apiMessageFA, setApiMessageFA] = useState([]);
   
@@ -35072,6 +35067,12 @@ const conversationsTrierParDate = useMemo(() => {
 
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
 
+
+useEffect(() => {
+			setIdConversation(idConversationmp);
+	}, [idConversationmp]); 
+	
+	
 
    // filtre pour obtenir tout les favoris
   const allMessageFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA);
@@ -50603,7 +50604,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0133</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter} 0250</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
