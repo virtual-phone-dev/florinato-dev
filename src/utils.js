@@ -2190,7 +2190,7 @@ export function VideosPageTemplate({ visible, fermer, dev, photo, data, profilMa
 			{comptesSuggerer && (
 			<ListeDesComptes 
 				data={dataComptes} onlineUsers={onlineUsers} affichagecss="overflow-x" scrollX={scrollX}
-				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirProfil={OuvrirProfil} />)} </>}
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirProfil={OuvrirProfil} />)} </>)}
 			
 			<VideoSearchBlock 
 				data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 
