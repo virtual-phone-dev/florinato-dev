@@ -2171,7 +2171,7 @@ export function CloseAction({ fermer, dev, clicSvgAdd, titre, photo, annonce, vi
 			{clicSvgAdd && (<div onClick={clicSvgAdd}> <SvgAdd/> </div>)}
 			{videosPage && (<div onClick={OuvrirVideosSuggerer}> <SvgExplore/> </div>)}
 			{annonce && (<div onClick={OuvrirAnnoncesPage}> <SvgInfos/> </div>)}
-		</div> </>}
+		</div> </>)}
     </div>
 )}
 
