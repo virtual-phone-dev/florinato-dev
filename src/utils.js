@@ -2157,7 +2157,7 @@ export function VideoSearchBlock({ data=[], profilMap, listVideo=[], valeur, set
 </>)}
 
 
-export function CloseAction({ fermer, clicSvgAdd, titre, photo, annonce, videosPage, OuvrirAnnoncesPage, OuvrirVideosSuggerer }) {
+export function CloseAction({ fermer, dev, clicSvgAdd, titre, photo, annonce, videosPage, OuvrirAnnoncesPage, OuvrirVideosSuggerer }) {
   return (
     <div className="between m-15">
 		<div className="a display-flex-nowrap" onClick={fermer}>
@@ -2166,16 +2166,17 @@ export function CloseAction({ fermer, clicSvgAdd, titre, photo, annonce, videosP
 			<div className="photo-25px"> <img src={photo} alt=""/> </div>
 		</div>
 
+		{dev && (<>
 		<div className="b"> 
 			{clicSvgAdd && (<div onClick={clicSvgAdd}> <SvgAdd/> </div>)}
 			{videosPage && (<div onClick={OuvrirVideosSuggerer}> <SvgExplore/> </div>)}
 			{annonce && (<div onClick={OuvrirAnnoncesPage}> <SvgInfos/> </div>)}
-		</div>
+		</div> </>}
     </div>
 )}
 
 
-export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, OuvrirAnnoncesPage, OuvrirVideosSuggerer, OuvrirProfil, setIdCompte, setIdDestinataire, 
+export function VideosPageTemplate({ visible, fermer, dev, photo, data, profilMap, OuvrirAnnoncesPage, OuvrirVideosSuggerer, OuvrirProfil, setIdCompte, setIdDestinataire, 
 	AvantMessagePage, titre, comptesSuggerer, onlineUsers, dataComptes, scrollX,
 	setIdPost, setUrlVideo, setIdProprietairePost, video, clicVideo, gererScroll, voirVideo, voirProfil, listVideo, valeur, setValeur, photocss, annonce, videosPage }) {
 	if (!visible) return null;
@@ -2185,10 +2186,11 @@ export function VideosPageTemplate({ visible, fermer, photo, data, profilMap, Ou
 				fermer={fermer} titre={titre} photo={photo} OuvrirAnnoncesPage={OuvrirAnnoncesPage} OuvrirVideosSuggerer={OuvrirVideosSuggerer} annonce={annonce} 
 				videosPage={videosPage} />
 				
+			{dev && (<>	
 			{comptesSuggerer && (
 			<ListeDesComptes 
 				data={dataComptes} onlineUsers={onlineUsers} affichagecss="overflow-x" scrollX={scrollX}
-				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirProfil={OuvrirProfil} />)}
+				setIdCompte={setIdCompte} setIdDestinataire={setIdDestinataire} OuvrirProfil={OuvrirProfil} />)} </>}
 			
 			<VideoSearchBlock 
 				data={data} setIdPost={setIdPost} setUrlVideo={setUrlVideo} listVideo={listVideo} valeur={valeur} setValeur={setValeur} profilMap={profilMap} 

@@ -50588,7 +50588,7 @@ function rechargerPage() {
                 <div className="a"> <img src={photoCompteConnecter} alt=""/> </div>
 
                 <div className="b">
-                  <div className="aa"> <p>{nomCompteConnecter} 0250</p> </div>
+                  <div className="aa"> <p>{nomCompteConnecter}</p> </div>
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
                   <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
                 </div>
@@ -50633,15 +50633,15 @@ function rechargerPage() {
         {/* florinatoApp */}
       </>)}
       {/* application florinato */}
-	  
+      
 	  
 	  
 		<VideosPageTemplate 
-			{...VideosPropsCommun} visible={videosPageFA} fermer={CloseVideosPageFA} titre="Vidéos suggérées" />
+			{...VideosPropsCommun} visible={videosPageFA} fermer={CloseVideosPageFA} titre="Vidéos suggérées" /> {/* Vidéos suggérées , le vrai */}
 		
 		<VideosPageTemplate 
 			{...VideosPropsCommun} visible={videosAbonnementsFA} fermer={CloseVideosAbonnementsFA} OuvrirAnnoncesPage={AnnoncesPageFA} OuvrirVideosSuggerer={VideosPageFA}
-			OuvrirProfil={ProfilFA2e} dataComptes={dataComptesFA} onlineUsers={onlineUsers} scrollX={scrollXcomptes} videosPage annonce comptesSuggerer titre="Vidéos" />
+			OuvrirProfil={ProfilFA2e} dataComptes={dataComptesFA} onlineUsers={onlineUsers} scrollX={scrollXcomptes} videosPage annonce comptesSuggerer titre="Vidéos suggérées" />
 	
 	
 		<AnnoncesTemplate 
