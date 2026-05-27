@@ -35883,7 +35883,7 @@ async function ReparerUrl() {
 
 
   // application florinato
-  const [florinatoApp, setFlorinatoApp] = useState(false);
+  const [florinatoApp, setFlorinatoApp] = useState(True);
   async function CloseFlorinatoApp() { setTelephoneVirtuel(true); setFlorinatoApp(false); }
 
   const [dataFA, setDataFA] = useState(false);
