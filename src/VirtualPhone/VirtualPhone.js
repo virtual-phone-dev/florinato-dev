@@ -50589,8 +50589,10 @@ function rechargerPage() {
 
                 <div className="b">
                   <div className="aa"> <p>{nomCompteConnecter}</p> </div>
+				  
+				  {dev && (<> 
                   <div className="bb"> <SvgPopularity/> <p>Popularité</p> </div>
-                  <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div>
+                  <div className="cc"> <p>{populariteCompteConnecter} visites</p> </div></>)}
                 </div>
               </div>
               {/* block-un */}

@@ -3236,8 +3236,10 @@ export function ProfilTemplate({ visible, fermer, dev, MenuFA, MenuBas, AddVideo
 				<div className="g block-un">
 					<div className="a"> <img onClick={SeePhoto66profilFA} src={photoProfile} alt=""/> </div>
 					<div className="b"> <pre>{nameAccount}</pre> </div>
+					
+					{dev && (<>
 					<div className="c"> <SvgPopularity/> <p>Popularité</p> </div>
-					<div className="d"> <p>{popularity} visites</p> </div>
+					<div className="d"> <p>{popularity} visites</p> </div></>)}
 				</div>
 			
 				{dev && (<><div> <button className="d btn-vert">S'abonner</button> </div></>)}
