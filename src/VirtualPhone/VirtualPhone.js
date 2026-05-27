@@ -39177,6 +39177,8 @@ async function CloseConnexionPageAA() {
 						localStorage.setItem("idAccountChef", idAccount); 
 						localStorage.setItem("idGroupChef", idGroup); 
 						setIdPersonConnectedFA(idAccount);
+						setIdCompteConnecter(idAccount); 
+						setIdExpediteur(idAccount); 
 						
 						console.log("idPersonConnectedFA", idPersonConnectedFA);
 						console.log("idAccount", idAccount);
@@ -39556,6 +39558,8 @@ async function CloseConnexionPageAA() {
 						localStorage.setItem("idAccountChef", idAccount); 
 						localStorage.setItem("idGroupChef", idGroup); 
 						setIdPersonConnectedFA(idAccount);
+						setIdCompteConnecter(idAccount); 
+						setIdExpediteur(idAccount); 
 						
 						console.log("idPersonConnectedFA", idPersonConnectedFA);
 						console.log("idAccount", idAccount);
@@ -39707,22 +39711,20 @@ async function CloseConnexionPageAA() {
 
         const api = res.data;
         const filterUser = api.filter((api) => api.phoneNumber === writePhoneNumber && api.password === writePassword && api.type === "9");
-        console.log("filterUser", filterUser);
-        console.log(res);
 
         const verifyAlreadySignup = filterUser.length > 0; // verifyAlreadySignup > 0 numero deja inscrit, verifyAlreadySignup < 0 numero virtuel non inscrit
         if (verifyAlreadySignup) {
-            // dans ce cas: numero  deja inscrit
-            console.log("numero deja inscrit");
+            // dans ce cas: numero deja inscrit , console.log("numero deja inscrit");
 
             const idAccount = filterUser.map((api) => api.idAccount); //on enregistre l'idAccount pour le maintenir connecté !
             
-			if (idAccount) { 
+			if (idAccount) {
 				localStorage.setItem("idPersonConnectedFA", idAccount); 
-				setIdPersonConnectedFA(idAccount);
+				setIdPersonConnectedFA(idAccount); 
+				setIdCompteConnecter(idAccount); 
+				setIdExpediteur(idAccount); 
 				
-				console.log("idPersonConnectedFA", idPersonConnectedFA);
-				console.log("idAccount", idAccount);
+				//console.log("idPersonConnectedFA", idPersonConnectedFA); console.log("idAccount", idAccount);
 			}
 
             const idUser = filterUser.map((api) => api._id); 
@@ -39773,6 +39775,8 @@ async function CloseConnexionPageAA() {
 			if (idAccount) { 
 				localStorage.setItem("idPersonConnectedFA", idAccount); 
 				setIdPersonConnectedFA(idAccount);
+				setIdCompteConnecter(idAccount); 
+				setIdExpediteur(idAccount); 
 				
 				console.log("idPersonConnectedFA", idPersonConnectedFA);
 				console.log("idAccount", idAccount);
