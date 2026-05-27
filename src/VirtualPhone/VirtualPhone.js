@@ -8,6 +8,7 @@ import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
 // groupOtherFA
+// florinato119 . clarkilluminati@gmail.com
 
 import { 
 	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini, sauvegarderDansIndexedDB,
