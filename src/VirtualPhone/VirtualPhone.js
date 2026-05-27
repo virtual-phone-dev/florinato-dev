@@ -40526,9 +40526,9 @@ async function CloseConnexionPageAA() {
   async function XApp() {
 	  
     if (idPersonConnectedFA) { // si la personne est connecté , on affiche pas la page d'inscription
-      setFlorinatoApp(true);
-      setTelephoneVirtuel(false);
-      setInscriptionPageAA(false);
+        setFlorinatoApp(true);
+        setTelephoneVirtuel(false);
+        setInscriptionPageAA(false);
     } else {
 		setInscriptionPageAA(true);
         setTelephoneVirtuel(false);
@@ -42050,7 +42050,7 @@ async function PageRedirection66groupOtherFA() {
   async function CloseVideosPageFA() { setVideosAbonnementsFA(true); setVideosPageFA(false); }
   
   // videosAbonnementsFA 
-  const [videosAbonnementsFA, setVideosAbonnementsFA] = useState(true); 
+  const [videosAbonnementsFA, setVideosAbonnementsFA] = useState(false); 
   async function VideosAbonnementsFA() { setVideosAbonnementsFA(true); setFlorinatoApp(false); }
   async function CloseVideosAbonnementsFA() { setFlorinatoApp(true); setVideosAbonnementsFA(false); }
   
