@@ -7,6 +7,8 @@ import i18n from "../i18n";
 import { useTranslation } from "react-i18next";
 import "../utils.css"; 
 
+// groupOtherFA
+
 import { 
 	Page, Close, Input, MissionTemplate, MesComptes, useScrollInfini, sauvegarderDansIndexedDB,
 	ModifierTemplate, ConfirmationTemplate, ComptesRecentsTemplate, PageTemplate, PopupDuBasTemplate, VideosPageTemplate, VideoMiniatureTemplate, MesComptesTemplate,
@@ -35068,11 +35070,6 @@ const conversationsTrierParDate = useMemo(() => {
 const dataConversationFA = useMemo(() => { return [...conversationsTrierParDate, ...dataFollowers] }, [conversationsTrierParDate, dataFollowers]);
 
 
-useEffect(() => {
-			setIdConversation(idConversationmp);
-	}, [idConversationmp]); 
-	
-	
 
    // filtre pour obtenir tout les favoris
   const allMessageFA = apiMessageFA.filter((api) => api.idUser === idUserConnectedFA);
@@ -35557,9 +35554,9 @@ async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA
 	// État pour gérer l’ouverture du popup
 	useEffect(() => {
 	  // const match = location.pathname.match(/^\/profile\/(.+)$/);
-	  const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
-	  const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
-	  const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
+	  //const profilePage = location.pathname.startsWith('/profile'); // Vérifier si l'URL correspond à la page profil
+	  //const messagePage = location.pathname.startsWith('/m'); // Vérifier si l'URL correspond à la page des messages
+	  //const videoPage = location.pathname.startsWith('/video'); // Vérifier si l'URL correspond à la page pour voir la video
 	  // const userId = isProfilePage ? location.pathname.split('/profile/')[1] : null; // Extraire l'ID si besoin
 	  
 	  // petite logique pour recuperer l'id qui est dans l'url
@@ -35576,31 +35573,18 @@ async function OuvrirInscriptionPage() { setInscriptionPageAA(true); setProfilFA
 		  // localStorage.setItem("idAccountChef", id);
 		  // console.log("idAccountChef deja enregistrer : ", id);
 		}
-	  
-	  if (profilePage) {
-		// const id = isProfilePage[1];
-		// ouvre la popup avec cet ID
-		setTonProfilPourNonConnecter(true);
 		
-		setFlorinatoApp(false);
-        setTelephoneVirtuel(false);
-        setInscriptionPageAA(false);
-	  }
 	  
-	  if (messagePage) {
-		setMessageFA(true);
-		setFlorinatoApp(true);
+	if (idPersonConnectedFA) { // si la personne est connecté , on affiche pas la page d'inscription
+		console.log("connecté - Florinato");
+        setFlorinatoApp(true);
         setTelephoneVirtuel(false);
         setInscriptionPageAA(false);
-	  }
-	  
-	  if (videoPage) {
-		setVideosAbonnementsFA(true);
-		
-		setFlorinatoApp(false);
+    } else {
+		console.log("Non connecté - Florinato");
+		setInscriptionPageAA(true);
         setTelephoneVirtuel(false);
-        setInscriptionPageAA(false);
-	  }
+    }
 	  
 	  
 	  async function fetchData() {
@@ -52356,41 +52340,6 @@ function rechargerPage() {
 	  />
 	  
 	  
-	  {/*
-	  <Page>
-		<MilieuMA 
-		nom="Florinato" 
-		titre="À la fin de vos missions, en tant que Membre Florinato, vous allez recevoir une maison et des voitures" />
-		
-		<MilieuMA 
-		nom="Réalisez ces missions" 
-		titre="1/100"
-		titre2="Quel est votre nom de Membre Florinato ?" />
-		
-		<Input texte=". . ." valeur={ecrireMA} setValeur={setEcrireMA} />
-		  
-		<Button texte="Envoyer" envoyer={NewApp} />
-	</Page>*/}
-
-		  
-      {/* ecran de demarrage - donazia app */}
-      {/* ecran de demarrage - donazia app */}
-      {/* sur cette page on a mis l'ecran de demarrage de notre application donazia
-      {ecranDemarrageDA && (<>
-          <div className="ecranDemarrageDA">
-            <div className="align">
-              <div className="logo">
-                <img src={donaziaEcranDemarrage} alt="" />
-              </div>
-              {/* logo 
-            </div>
-            {/* align 
-          </div>
-          {/* ecranDemarrageDA 
-        </>
-      )}
-      {/* ecran de demarrage - donazia app */}
-
 
       {/* donazia app */}
       {/* donazia app */}
